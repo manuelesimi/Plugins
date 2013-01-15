@@ -342,6 +342,9 @@ public class Plugins {
 
         List<String> errors = null;
         final File fileToUnmarshal = new File(pluginDirectory, "config.xml");
+        if (!fileToUnmarshal.exists()) {
+            return;
+        }
         PluginConfig config
         try {
             config = (PluginConfig) m.unmarshal(fileToUnmarshal);
@@ -362,24 +365,26 @@ public class Plugins {
             if (config != null) {
                 errors = config.validate();
             }
-            def dirName = FilenameUtils.getBaseName(pluginDirectory)
-            if (!config.id.equals(dirName) && !(config instanceof ResourceConfig)) {
-            // TODO: consider removing this constraint. Non resource plugins would also benefit from keeping older versions around.
-                // checking the name of
-                if (errors == null) {
-                    errors = new ArrayList<String>()
+            if (errors == null || errors.isEmpty()) {
+                def dirName = FilenameUtils.getBaseName(pluginDirectory)
+                if (!config.id.equals(dirName) && !(config instanceof ResourceConfig)) {
+                    // TODO: consider removing this constraint. Non resource plugins would also benefit from keeping older versions around.
+                    // checking the name of
+                    if (errors == null) {
+                        errors = new ArrayList<String>()
+                    }
+                    errors.add(String.format("FATAL: the plugin id %s must match the directory name where the config file resides (%s)",
+                            config.id, dirName));
                 }
-                errors.add(String.format("FATAL: the plugin id %s must match the directory name where the config file resides (%s)",
-                        config.id, dirName));
+                config.setPluginDirectory(pluginDirectory);
+
+                addScriptFile(scanningResources, config)
+                addInstallFile(scanningResources, config)
+                addServerSidetools(scanningResources, config)
+
+                pluginConfigs.add(config);
+                LOG.info(String.format("Registering plugin %s", config.id));
             }
-            config.setPluginDirectory(pluginDirectory);
-
-            addScriptFile(scanningResources, config)
-            addInstallFile(scanningResources, config)
-            addServerSidetools(scanningResources, config)
-
-            pluginConfigs.add(config);
-            LOG.info(String.format("Registering plugin %s", config.id));
         } else {
             errors = new ArrayList<String>()
             for (ValidationEvent event : validationCollector.getEvents()) {
@@ -393,6 +398,7 @@ public class Plugins {
 
         if (errors != null) {
             errors.each { message ->
+                println("An error occured configuring plugin: ${message}")
                 LOG.error("An error occured configuring plugin: ${message}")
             }
             somePluginReportedErrors = true

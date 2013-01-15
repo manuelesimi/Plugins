@@ -190,11 +190,7 @@ public class PluginConfig {
         }
         validateArtifacts();
         outputSchema.validate(errors);
-        if (errors.size() > 0) {
-            return errors;
-        } else {
-            return null;
-        }
+       return errors;
     }
 
     protected void validateArtifacts() {
@@ -258,7 +254,7 @@ public class PluginConfig {
 
     public void validateId(final String type, final String id, final ArrayList<String> errors) {
         if (id == null || id.length() == 0) {
-            errors.add("Each plugin and option must have an id.");
+            errors.add("Each plugin and option must have an id." );
         } else {
             for (int i = 0; i < id.length(); i++) {
                 char curChar = id.charAt(i);

@@ -13,7 +13,7 @@
 <alignerConfig xsi:noNamespaceSchemaLocation="../../../schemas/plugins.xsd"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <name>GSNAP (Goby output)</name>
-    <id>GSNAP_GOBY</id>
+    <id>GSNAP_WITH_GOBY</id>
     <dbLegacyId>gsnap (Goby native)</dbLegacyId>
     <help>GSNAP writing to Goby output.</help>
     <supportsColorSpace>false</supportsColorSpace>
