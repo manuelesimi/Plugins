@@ -161,9 +161,8 @@ public class PluginConfig {
      *
      * @return list of error messages, or null when no errors are detected.
      */
-    public ArrayList<String> validate() {
-        ArrayList<String> errors = new ArrayList<String>();
-        validateId("Plugin", id, errors);
+    public void validate(ArrayList<String> errors) {
+       validateId("Plugin", id, errors);
 
 
         for (ValidationRule rule : options.rules) {
@@ -190,7 +189,7 @@ public class PluginConfig {
         }
         validateArtifacts();
         outputSchema.validate(errors);
-       return errors;
+
     }
 
     protected void validateArtifacts() {

@@ -4,7 +4,7 @@
 
     <groupId>org.campagnelab.gobyweb</groupId>
     <artifactId>plugins</artifactId>
-    <version>2.0.3-SNAPSHOT</version>
+    <version>2.0.7-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>plugins</name>
@@ -13,12 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <distributionManagement>
-        <repository>
-            <id>toulouse.med.cornell.edu</id>
-            <url>http://toulouse.med.cornell.edu:8010/artifactory/CampagneLab/</url>
-        </repository>
-    </distributionManagement>
+
 
     <build>
         <plugins>

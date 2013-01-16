@@ -71,7 +71,9 @@ public class PluginsTest {
         assertEquals("config must exactly one user-defined option", 1, config.userSpecifiedOptions().size());
         option.userDefinedValue = null;
         assertEquals("config must have no user-defined option", 0, config.userSpecifiedOptions().size());
-        config.validate();
+
+        ArrayList<String> errors=new ArrayList<String>();
+        config.validate(errors);
         assertEquals("config must exactly one user-defined option", 1, config.userSpecifiedOptions().size());
 
     }
@@ -119,7 +121,8 @@ public class PluginsTest {
         assertEquals("config must exactly one user-defined option", 1, config.userSpecifiedOptions().size());
         option.userDefinedValue = null;
         assertEquals("config must have no user-defined option", 0, config.userSpecifiedOptions().size());
-        config.validate();
+        ArrayList<String> errors=new ArrayList<String>();
+        config.validate(errors);
         assertEquals("config must exactly one user-defined option", 1, config.userSpecifiedOptions().size());
 
 

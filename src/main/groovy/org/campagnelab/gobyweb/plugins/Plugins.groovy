@@ -277,6 +277,8 @@ public class Plugins {
      * @param location path to load from.
      */
     public void readConfigurationFromLocation(String location, boolean scanningResources = false) {
+        //printf "-------- Reading Configuration from Location %s %n", location
+
         File directory = new File(location);
         if (directory == null || directory.list() == null) {
             LOG.info(String.format("Scanned location %s but ignored since empty.", location));
@@ -322,8 +324,12 @@ public class Plugins {
         }
         return false;
     }
+    public void hello() {
 
+    }
     private void readPluginDirectory(String pluginDirectory, boolean scanningResources) {
+       // printf "Reading plugin dir: error=%b %s %n",somePluginReportedErrors(), pluginDirectory
+
         LOG.info("Scanning location ${pluginDirectory}");
         final JAXBContext jc = JAXBContext.newInstance(PluginConfig.class);
         Schema schema;
@@ -340,7 +346,7 @@ public class Plugins {
         ValidationEventCollector validationCollector = new ValidationEventCollector();
         m.setEventHandler(validationCollector);
 
-        List<String> errors = null;
+        List<String> errors =  new ArrayList<String>()
         final File fileToUnmarshal = new File(pluginDirectory, "config.xml");
         if (!fileToUnmarshal.exists()) {
             return;
@@ -349,30 +355,30 @@ public class Plugins {
         try {
             config = (PluginConfig) m.unmarshal(fileToUnmarshal);
             if (config == null) {
-                errors = new ArrayList<String>()
+
                 errors.add("Cannot find config.xml file in plugin directory " + fileToUnmarshal);
                 LOG.error "Cannot find config.xml file in plugin directory " + fileToUnmarshal
             }
         } catch (JAXBException e) {
             // Errors will be reported below, no need to log them here
             somePluginReportedErrors = true
-            errors = new ArrayList<String>()
+
             errors.add(e.getMessage())
             LOG.error("JAXBException when unmarshaling a plugin", e)
         }
 
         if (!validationCollector.hasEvents()) {
             if (config != null) {
-                errors = config.validate();
+
+                config.validate(errors);
+
             }
-            if (errors == null || errors.isEmpty()) {
+            if (errors.isEmpty()) {
                 def dirName = FilenameUtils.getBaseName(pluginDirectory)
                 if (!config.id.equals(dirName) && !(config instanceof ResourceConfig)) {
                     // TODO: consider removing this constraint. Non resource plugins would also benefit from keeping older versions around.
                     // checking the name of
-                    if (errors == null) {
-                        errors = new ArrayList<String>()
-                    }
+
                     errors.add(String.format("FATAL: the plugin id %s must match the directory name where the config file resides (%s)",
                             config.id, dirName));
                 }
@@ -386,7 +392,7 @@ public class Plugins {
                 LOG.info(String.format("Registering plugin %s", config.id));
             }
         } else {
-            errors = new ArrayList<String>()
+
             for (ValidationEvent event : validationCollector.getEvents()) {
                 String msg = event.getMessage();
                 ValidationEventLocator locator = event.getLocator();
@@ -396,7 +402,7 @@ public class Plugins {
             }
         }
 
-        if (errors != null) {
+        if (!errors.isEmpty()) {
             errors.each { message ->
                 println("An error occured configuring plugin: ${message}")
                 LOG.error("An error occured configuring plugin: ${message}")

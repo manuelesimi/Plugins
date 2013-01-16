@@ -131,23 +131,18 @@ public class AlignmentAnalysisConfig extends ExecutablePluginConfig {
     public AnalysisType analysisType;
 
     @Override
-    public ArrayList<String> validate() {
 
-        ArrayList<String> errors = super.validate();
-        if (errors==null) {
-            errors=new ArrayList<String>();
-        }
+    public void validate(ArrayList<String> errors) {
+
+        super.validate(errors);
+
         if (!producesTabDelimitedOutput && !producesVariantCallingFormatOutput) {
             errors.add("At least one output (TSV or VCF) must be specified.");
         }
         if (producesTabDelimitedOutput && producesVariantCallingFormatOutput) {
             errors.add("TSV and VCF are mutually exclusive. An alignment analysis plugin cannot support both.");
         }
-        if (errors.size() > 0) {
-            return errors;
-        } else {
-            return null;
-        }
+
     }
 
 
