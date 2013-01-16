@@ -150,29 +150,6 @@ public class Plugins {
                 }
             }
         }
-        // Create install-requests.pb files for each resource:
-        // Each .pb file will contain the artifacts needed by the resource, starting with the artifacts that the
-        // resource requires.
-        pluginConfigs.findAll {
-            it -> it instanceof ResourceConfig
-        }.each {
-            config ->
-                def resourceConfig = config as ResourceConfig
-                BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
-                writePbForResource(resourceConfig, requestBuilder)
-                def uniqueFilename = "${resourceConfig.id}-${resourceConfig.version}-install-requests.pb"
-
-
-                if (!requestBuilder.isEmpty()) {
-                    requestBuilder.save(new File(FilenameUtils.concat(resourceConfig.pluginDirectory,
-                            uniqueFilename)));
-                    def pbFile = new PluginFile()
-                    pbFile.id = "INSTALL_REQUESTS_PB"
-                    pbFile.filename = uniqueFilename
-                    pbFile.localFilename = new File(FilenameUtils.concat(resourceConfig.pluginDirectory, uniqueFilename));
-                    resourceConfig.files.add(pbFile)
-                }
-        }
 
         // add GLOBAL resource definition for those plugins that don't provide it explicitly:
         addDefaultNeed("GLOBAL", "excl", "false")
@@ -184,6 +161,34 @@ public class Plugins {
         addDefaultNeed("ALIGNMENT_POST_PROCESSING", "virtual_free", "12g")
 
         loaded = true;
+    }
+    /**
+     * Create artifacts install requests for the plugin given as argument. Traverse the graph of resource
+     * dependency and order resource artifact installation such that resources that must be installed before
+     * others are so. The client is responsible for deleting the result file when it is no longer needed.
+     * @param pluginConfig
+     * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
+     */
+    public File createPbRequestFile(PluginConfig pluginConfig) {
+        BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
+        def uniqueFile = File.createTempFile("artifacts-install-requests", ".pb");
+         // Create a single .pb file containing all resources that the plugin requires:
+        // Each .pb file will contain the artifacts needed by the resource, starting with the artifacts that the
+        // resource requires (deep first search)
+        pluginConfig?.requires.each {
+            resource ->
+
+                def resourceConfig = lookupResource(resource.id, resource.versionAtLeast, resource.versionExactly)
+                writePbForResource(resourceConfig, requestBuilder)
+        }
+        if (!requestBuilder.isEmpty()) {
+            requestBuilder.save(uniqueFile);
+            return uniqueFile
+
+        }  else {
+            return null;
+        }
+
     }
     /**
      * Write PB artifact requests for a resource, starting with the artifacts of the resources required by the argument
@@ -324,11 +329,13 @@ public class Plugins {
         }
         return false;
     }
+
     public void hello() {
 
     }
+
     private void readPluginDirectory(String pluginDirectory, boolean scanningResources) {
-       // printf "Reading plugin dir: error=%b %s %n",somePluginReportedErrors(), pluginDirectory
+        // printf "Reading plugin dir: error=%b %s %n",somePluginReportedErrors(), pluginDirectory
 
         LOG.info("Scanning location ${pluginDirectory}");
         final JAXBContext jc = JAXBContext.newInstance(PluginConfig.class);
@@ -346,7 +353,7 @@ public class Plugins {
         ValidationEventCollector validationCollector = new ValidationEventCollector();
         m.setEventHandler(validationCollector);
 
-        List<String> errors =  new ArrayList<String>()
+        List<String> errors = new ArrayList<String>()
         final File fileToUnmarshal = new File(pluginDirectory, "config.xml");
         if (!fileToUnmarshal.exists()) {
             return;
@@ -534,7 +541,9 @@ public class Plugins {
  */
     public void addServerConf(String serverConfDirectory) {
         File confDir = new File(serverConfDirectory)
+
         if (confDir.exists() && confDir.isDirectory()) {
+
             serverConfDirectories.add(serverConfDirectory);
             locateSchema()
         }
@@ -786,13 +795,13 @@ public class Plugins {
         }
     }
 
-/**
- * Return the resource with largest version number, such that the resource has the identifier and at least the specified
- * version number.
- * @param resourceId
- * @param v required version
- * @return Most recent resource (by version number) with id and version>v
- */
+    /**
+     * Return the resource with largest version number, such that the resource has the identifier and at least the specified
+     * version number.
+     * @param resourceId
+     * @param v required version
+     * @return Most recent resource (by version number) with id and version>v
+     */
     ResourceConfig lookupResource(String resourceId, String versionAtLeast, String versionExactly) {
         ArrayList<ResourceConfig> resourceList = (ArrayList<ResourceConfig>) pluginConfigs.findAll { resource ->
             if (versionExactly != null) {

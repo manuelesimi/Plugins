@@ -1,5 +1,7 @@
 package org.campagnelab.gobyweb.plugins;
 
+import org.apache.commons.io.FilenameUtils;
+import org.campagnelab.gobyweb.artifacts.ArtifactRequestHelper;
 import org.campagnelab.gobyweb.plugins.xml.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,6 +9,10 @@ import org.junit.Test;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -22,8 +28,9 @@ public class PluginsTest {
 
     @Before
     public void configure() {
+
         plugins = new Plugins();
-        plugins.addServerConf("test-data/plugin-root-1");
+        plugins.addServerConf( "test-data/plugin-root-1");
         plugins.setWebServerHostname("localhost");
         plugins.reload();
     }
@@ -72,7 +79,7 @@ public class PluginsTest {
         option.userDefinedValue = null;
         assertEquals("config must have no user-defined option", 0, config.userSpecifiedOptions().size());
 
-        ArrayList<String> errors=new ArrayList<String>();
+        ArrayList<String> errors = new ArrayList<String>();
         config.validate(errors);
         assertEquals("config must exactly one user-defined option", 1, config.userSpecifiedOptions().size());
 
@@ -121,7 +128,7 @@ public class PluginsTest {
         assertEquals("config must exactly one user-defined option", 1, config.userSpecifiedOptions().size());
         option.userDefinedValue = null;
         assertEquals("config must have no user-defined option", 0, config.userSpecifiedOptions().size());
-        ArrayList<String> errors=new ArrayList<String>();
+        ArrayList<String> errors = new ArrayList<String>();
         config.validate(errors);
         assertEquals("config must exactly one user-defined option", 1, config.userSpecifiedOptions().size());
 
@@ -165,14 +172,12 @@ public class PluginsTest {
         assertNotNull(star);
         assertFalse(star.artifacts.isEmpty());
         //
-        assertEquals(2, star.files.size());
+        assertEquals(1, star.files.size());
         final Iterator<PluginFile> iterator = star.files.iterator();
         PluginFile file = iterator.next();
         assertEquals("INSTALL", file.id);
         assertEquals("install.sh", file.filename);
-        file = iterator.next();
-        assertEquals("INSTALL_REQUESTS_PB", file.id);
-        assertEquals("STAR-2.2.0-install-requests.pb", file.filename);
+
     }
 
     /**
@@ -205,7 +210,7 @@ public class PluginsTest {
      * GSNAP_WITH_GOBY/atLeast=2099.12.13 cannot be satisfied as it is too big a version.
      * 2011.01.01 can be satisfied and should return the HIGHEST version GSNAP_WITH_GOBY.
      */
-     @Test
+    @Test
     public void loadResourcesAtLeast() {
         assertNull(plugins.lookupResource("GSNAP_WITH_GOBY", "2099.12.31", null));
         ResourceConfig resourceConfig = plugins.lookupResource("GSNAP_WITH_GOBY", "2011.07.07", null);
@@ -227,4 +232,6 @@ public class PluginsTest {
         assertNotNull(bwa_goby_resource);
         assertNotSame(alignerById, bwa_goby_resource);
     }
+
+
 }

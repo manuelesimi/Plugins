@@ -25,7 +25,7 @@ public class InvalidPluginsTest {
     @Before
     public void configure() {
         plugins = new Plugins();
-        plugins.addServerConf("test-data/plugin-root-2");
+        plugins.addServerConf("./test-data/plugin-root-2");
         plugins.setWebServerHostname("localhost");
         plugins.reload();
     }
