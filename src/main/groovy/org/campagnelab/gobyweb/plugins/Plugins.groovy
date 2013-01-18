@@ -170,6 +170,7 @@ public class Plugins {
      * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
      */
     public File createPbRequestFile(PluginConfig pluginConfig) {
+        LOG.debug("createPbRequestFile for "+pluginConfig?.id)
         BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
         def uniqueFile = File.createTempFile("artifacts-install-requests", ".pb");
          // Create a single .pb file containing all resources that the plugin requires:
@@ -197,7 +198,7 @@ public class Plugins {
      * @param requestBuilder
      */
     def writePbForResource(ResourceConfig resourceConfig, BuildArtifactRequest requestBuilder) {
-
+        LOG.debug("writePbForResource for "+resourceConfig?.id+" visiting resource dependencies..")
         if (!resourceConfig.requires.isEmpty()) {
             // recursively generate PB requests for resources required by this resource.
             for (Resource prerequisite : resourceConfig.requires) {
@@ -206,6 +207,8 @@ public class Plugins {
             }
 
         }
+        LOG.debug("writePbForResource for "+resourceConfig?.id+" writing artifact requests.")
+
         if (!resourceConfig.artifacts.isEmpty()) {
             // resource has artifacts. Generate the "install-requests.pb" file to tell the cluster nodes
             // how to install each artifact:
@@ -219,6 +222,8 @@ public class Plugins {
             }
 
         }
+        LOG.debug("writePbForResource for "+resourceConfig?.id+" done.")
+
     }
 
     static List<Artifacts.AttributeValuePair> constructAvp(Artifact artifact) {
@@ -448,7 +453,7 @@ public class Plugins {
 
             if (!pluginConfig.requires.contains(resourceRef)) {
 
-                pluginConfig.requires.add(resourceRef);
+                pluginConfig.requires.add(0,resourceRef);
             }
         } /*else {
             println("${pluginConfig.id} not a resource")

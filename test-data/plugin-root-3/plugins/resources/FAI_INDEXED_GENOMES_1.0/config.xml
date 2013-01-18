@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
-  ~ Copyright (c) 2011-2012  by Cornell University  and the  Cornell Research Foundation,
+  ~ Copyright (c) 2011-2013  by Cornell University  and the  Cornell Research Foundation,
   ~ Inc. All Rights Reserved.
   ~
   ~ GobyWeb plugins  are released  under the LGPL3 license,  unless  otherwise specified
@@ -13,24 +13,23 @@
 <resourceConfig
         xsi:noNamespaceSchemaLocation="file:/Users/campagne/IdeaProjects/gobyweb2-plugin-install/gobyweb_home/conf/schemas/plugins.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <name>STAR</name>
-    <id>STAR</id>
-    <help>Version of STAR writing to Goby format.</help>
-    <version>2.2.0</version>
-    <!-- 2.0.0g -->
+    <name>FAI indexed genomes</name>
+    <id>FAI_INDEXED_GENOMES</id>
+    <help>Genome indexed with samtools fai</help>
+    <version>1.1.1</version>
     <requires>
         <resource>
-            <id>FAI_INDEXED_GENOMES</id>
-            <versionAtLeast>1.1.1</versionAtLeast>
+            <id>ENSEMBL_GENOMES</id>
+            <versionAtLeast>1.0</versionAtLeast>
         </resource>
         <resource>
-            <id>GSNAP_WITH_GOBY</id>
-            <versionExactly>2011.07.08</versionExactly>
+            <id>SAMTOOLS</id>
+            <versionAtLeast>0.1.18.1</versionAtLeast>
         </resource>
     </requires>
     <artifacts>
-        <artifact id="EXECUTABLE"/>
-        <artifact id="INDEX">
+
+        <artifact order="1" id="SAMTOOLS_FAI_INDEX">
             <attributes>
                 <attribute name="organism"/>
                 <attribute name="reference-build"/>

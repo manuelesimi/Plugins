@@ -47,17 +47,52 @@ public class ResourceDependencyTest {
     public void writePbRequests() throws IOException {
 
         PluginConfig starAligner = plugins.findAlignerById("STAR22_GOBY");
+        assertNotNull("STAR aligner must be found", starAligner);
         File requests = plugins.createPbRequestFile(starAligner);
         assertNotNull("Aligner plugin STAR must have some artifact dependencies", requests);
 
         ArtifactRequestHelper helper = new ArtifactRequestHelper(requests);
 
         assertEquals("artifacts {\n" +
+                "  plugin_id: \"ENSEMBL_GENOMES\"\n" +
+                "  artifact_id: \"TOPLEVEL\"\n" +
+                "  version: \"1.1\"\n" +
+                "  script_install_path: \"INSTALL_PATH_OMITTED\"\n" +
+                "  ssh_web_app_host: \"localhost\"\n" +
+                "  attributes {\n" +
+                "    name: \"organism\"\n" +
+                "  }\n" +
+                "  attributes {\n" +
+                "    name: \"reference-build\"\n" +
+                "  }\n" +
+                "  attributes {\n" +
+                "    name: \"ensembl-version-number\"\n" +
+                "  }\n" +
+                "  retention: REMOVE_OLDEST\n" +
+                "}\n" +
+                "artifacts {\n" +
                 "  plugin_id: \"SAMTOOLS\"\n" +
                 "  artifact_id: \"SAMTOOLS\"\n" +
                 "  version: \"0.1.18.1\"\n" +
                 "  script_install_path: \"INSTALL_PATH_OMITTED\"\n" +
                 "  ssh_web_app_host: \"localhost\"\n" +
+                "  retention: REMOVE_OLDEST\n" +
+                "}\n" +
+                "artifacts {\n" +
+                "  plugin_id: \"FAI_INDEXED_GENOMES\"\n" +
+                "  artifact_id: \"SAMTOOLS_FAI_INDEX\"\n" +
+                "  version: \"1.1.1\"\n" +
+                "  script_install_path: \"INSTALL_PATH_OMITTED\"\n" +
+                "  ssh_web_app_host: \"localhost\"\n" +
+                "  attributes {\n" +
+                "    name: \"organism\"\n" +
+                "  }\n" +
+                "  attributes {\n" +
+                "    name: \"reference-build\"\n" +
+                "  }\n" +
+                "  attributes {\n" +
+                "    name: \"ensembl-version-number\"\n" +
+                "  }\n" +
                 "  retention: REMOVE_OLDEST\n" +
                 "}\n" +
                 "artifacts {\n" +
