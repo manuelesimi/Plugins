@@ -170,10 +170,10 @@ public class Plugins {
      * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
      */
     public File createPbRequestFile(PluginConfig pluginConfig) {
-        LOG.debug("createPbRequestFile for "+pluginConfig?.id)
+        LOG.debug("createPbRequestFile for " + pluginConfig?.id)
         BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
         def uniqueFile = File.createTempFile("artifacts-install-requests", ".pb");
-         // Create a single .pb file containing all resources that the plugin requires:
+        // Create a single .pb file containing all resources that the plugin requires:
         // Each .pb file will contain the artifacts needed by the resource, starting with the artifacts that the
         // resource requires (deep first search)
         pluginConfig?.requires.each {
@@ -184,9 +184,10 @@ public class Plugins {
         }
         if (!requestBuilder.isEmpty()) {
             requestBuilder.save(uniqueFile);
+            LOG.debug(requestBuilder.toString());
             return uniqueFile
 
-        }  else {
+        } else {
             return null;
         }
 
@@ -198,7 +199,7 @@ public class Plugins {
      * @param requestBuilder
      */
     def writePbForResource(ResourceConfig resourceConfig, BuildArtifactRequest requestBuilder) {
-        LOG.debug("writePbForResource for "+resourceConfig?.id+" visiting resource dependencies..")
+        LOG.debug("writePbForResource for " + resourceConfig?.id + " visiting resource dependencies..")
         if (!resourceConfig.requires.isEmpty()) {
             // recursively generate PB requests for resources required by this resource.
             for (Resource prerequisite : resourceConfig.requires) {
@@ -207,7 +208,7 @@ public class Plugins {
             }
 
         }
-        LOG.debug("writePbForResource for "+resourceConfig?.id+" writing artifact requests.")
+        LOG.debug("writePbForResource for " + resourceConfig?.id + " writing artifact requests.")
 
         if (!resourceConfig.artifacts.isEmpty()) {
             // resource has artifacts. Generate the "install-requests.pb" file to tell the cluster nodes
@@ -216,13 +217,13 @@ public class Plugins {
             String scriptFilename = resourceConfig.files.find { f -> f.id == "INSTALL" }.localFilename
 
             for (Artifact artifactXml : resourceConfig.artifacts) {
+                LOG.debug(String.format("PB request.add(%s:%s)", resourceConfig.id, artifactXml.id))
                 requestBuilder.addArtifactWithList(resourceConfig.id, artifactXml.id, resourceConfig.version,
                         scriptFilename, Artifacts.RetentionPolicy.REMOVE_OLDEST, constructAvp(artifactXml)
                 )
             }
-
         }
-        LOG.debug("writePbForResource for "+resourceConfig?.id+" done.")
+        LOG.debug("writePbForResource for " + resourceConfig?.id + " done.")
 
     }
 
@@ -453,7 +454,7 @@ public class Plugins {
 
             if (!pluginConfig.requires.contains(resourceRef)) {
 
-                pluginConfig.requires.add(0,resourceRef);
+                pluginConfig.requires.add(0, resourceRef);
             }
         } /*else {
             println("${pluginConfig.id} not a resource")
