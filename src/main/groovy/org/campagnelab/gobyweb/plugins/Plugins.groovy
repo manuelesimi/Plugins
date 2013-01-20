@@ -203,13 +203,17 @@ public class Plugins {
         if (!resourceConfig.requires.isEmpty()) {
             // recursively generate PB requests for resources required by this resource.
             for (Resource prerequisite : resourceConfig.requires) {
-                ResourceConfig preResourceConfig = findPluginTypeById(ResourceConfig.class, prerequisite.id) as ResourceConfig
+                ResourceConfig preResourceConfig =lookupResource(prerequisite.id,
+                        prerequisite.versionAtLeast,
+                        prerequisite.versionExactly)
                 writePbForResource(preResourceConfig, requestBuilder)
             }
 
         }
         LOG.debug("writePbForResource for " + resourceConfig?.id + " writing artifact requests.")
-
+        if ("SAMTOOLS".equals(resourceConfig?.id)) {
+            println"STOP"
+        }
         if (!resourceConfig.artifacts.isEmpty()) {
             // resource has artifacts. Generate the "install-requests.pb" file to tell the cluster nodes
             // how to install each artifact:
