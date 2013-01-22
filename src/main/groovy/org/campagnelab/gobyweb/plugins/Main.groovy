@@ -41,6 +41,7 @@ class Main {
         this.tmpDir = tmpDir
         this.commandExecutor = new CommandExecutor(username, remoteServer)
         this.commandExecutor.setQuiet(false)
+        this.remoteRepoDir=remoteRepoDir
     }
 
     public static void main(String[] args) {
