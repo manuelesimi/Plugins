@@ -81,6 +81,11 @@ public class Plugins {
     Plugins() {
     }
 
+    Plugins(String serverConf) {
+        addServerConf(serverConf)
+    }
+
+
     Plugins(final boolean loadOnCreation) {
         this()
         if (loadOnCreation) {
@@ -556,6 +561,8 @@ public class Plugins {
 
             serverConfDirectories.add(serverConfDirectory);
             locateSchema()
+        }   else {
+            LOG.warn("serverConf does not exist or is not a directory: "+serverConfDirectory)
         }
     }
 

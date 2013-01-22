@@ -1,0 +1,105 @@
+<jsap>
+    <parameters>
+
+        <flaggedOption>
+            <id>deployment-server</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>s</shortFlag>
+            <longFlag>deployment-server</longFlag>
+            <help>The server where to deploy the plugins.</help>
+        </flaggedOption>
+        <flaggedOption>
+            <id>plugin-root</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>p</shortFlag>
+            <longFlag>plugin-root</longFlag>
+            <help>The root of the plugin directory. This directory must contain plugins/ and schema sub-directories.</help>
+        </flaggedOption>
+        <flaggedOption>
+            <id>tmp-dir</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>t</shortFlag>
+            <longFlag>tmp-dir</longFlag>
+            <defaults>
+                <string>${TMPDIR}</string>
+            </defaults>
+            <help>Location of temporary directory on remote server.</help>
+        </flaggedOption>
+        <flaggedOption>
+            <id>username</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>u</shortFlag>
+            <longFlag>username</longFlag>
+            <help>The username for login on deployment server.</help>
+        </flaggedOption>
+        <flaggedOption>
+            <id>repository</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+
+            </stringParser>
+
+            <required>true</required>
+
+            <defaults>
+                <string>/scratchLocal/gobyweb/ARTIFACT_REPOSITORY</string>
+            </defaults>
+            <shortFlag>r</shortFlag>
+            <longFlag>repository</longFlag>
+            <help>The directory that holds the artifact repository on the deployment machine.</help>
+        </flaggedOption>
+
+
+        <flaggedOption>
+            <id>repo-dir-quota</id>
+            <stringParser>
+                <classname>LongStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <longFlag>repo-dir-quota</longFlag>
+            <defaults> <!-- default repo storage is 1 TB -->
+                <string>1000000000</string>
+            </defaults>
+            <help>The repository directory quota. The repository will try not to use more storage than indicated in this
+                quota, even when the filesystem that contains the repository directory has more available space.
+            </help>
+        </flaggedOption>
+
+        <switch>
+            <id>test-install</id>
+            <shortFlag>i</shortFlag>
+            <longFlag>test-install</longFlag>
+            <help>Test plugin installation.</help>
+        </switch>
+
+
+        <switch>
+            <id>help</id>
+            <shortFlag>h</shortFlag>
+            <longFlag>help</longFlag>
+            <help>Print help message.</help>
+        </switch>
+
+        <unflaggedOption>
+            <id>plugins</id>
+
+            <required>true</required>
+            <greedy>true</greedy>
+            <help>List of plugins to test, in the format PLUGIN_ID:VERSION.
+            </help>
+        </unflaggedOption>
+
+    </parameters>
+</jsap>
