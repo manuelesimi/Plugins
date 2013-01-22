@@ -12,6 +12,27 @@
             <help>The server where to deploy the plugins.</help>
         </flaggedOption>
         <flaggedOption>
+            <id>env-script</id>
+            <stringParser>
+                <classname>FileStringParser</classname>
+                <properties>
+                    <property>
+                        <name>mustExist</name>
+                        <value>true</value>
+                    </property>
+                </properties>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>e</shortFlag>
+            <longFlag>env-script</longFlag>
+            <defaults>
+                <string>env.sh</string>
+            </defaults>
+            <help>The path to a script to initialize the plugin environment. The script will be sourced before the
+                plugins are installed.
+            </help>
+        </flaggedOption>
+        <flaggedOption>
             <id>plugin-root</id>
             <stringParser>
                 <classname>StringStringParser</classname>
@@ -19,7 +40,8 @@
             <required>true</required>
             <shortFlag>p</shortFlag>
             <longFlag>plugin-root</longFlag>
-            <help>The root of the plugin directory. This directory must contain plugins/ and schema sub-directories.</help>
+            <help>The root of the plugin directory. This directory must contain plugins/ and schema sub-directories.
+            </help>
         </flaggedOption>
         <flaggedOption>
             <id>tmp-dir</id>

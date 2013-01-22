@@ -30,6 +30,7 @@ class Main {
     String remoteInstallDir
     String tmpDir = "\${TMPDIR}"
     String remoteRepoDir
+    File environmentScriptLocalFilename;
 
     Main(String pluginRoot,
          String username,
@@ -41,7 +42,7 @@ class Main {
         this.tmpDir = tmpDir
         this.commandExecutor = new CommandExecutor(username, remoteServer)
         this.commandExecutor.setQuiet(false)
-        this.remoteRepoDir=remoteRepoDir
+        this.remoteRepoDir = remoteRepoDir
     }
 
     public static void main(String[] args) {
@@ -76,6 +77,7 @@ class Main {
         String username = config.getString("username")
         String remoteRepo = config.getString("repository")
         String tmpDir = config.getString("tmp-dir")
+        File environmentScriptLocalFilename = config.getFile("env-script")
         String action = "not-set"
         if (config.getBoolean("test-install")) {
             action = "test-install"
@@ -83,11 +85,13 @@ class Main {
 
         String[] pluginDescriptions = config.getStringArray("plugins")
         Main processor = new Main(pluginRoot, username, remoteServer, tmpDir, remoteRepo)
+        processor.environmentScriptLocalFilename = environmentScriptLocalFilename
         processor.process(action, pluginDescriptions)
 
     }
 
     static Boolean hasError(JSAPResult jsapResult) {
+
         // must have at least one command:
         return !(jsapResult.getBoolean("test-install"))
     }
@@ -140,19 +144,28 @@ class Main {
             resourceRef ->
                 installResource(resourceRef)
         }
-        // run the installation for the plugin's artifacts:
+        // push environment script:
+        commandExecutor.scpToRemote(environmentScriptLocalFilename.getCanonicalPath(), remotePath("env.sh"))
+        commandExecutor.ssh("chmod +x " + remotePath("env.sh"));
 
-        def tmpFile = File.createTempFile("run-", "script.sh")
-        PrintWriter writer = new PrintWriter(tmpFile)
-        writer.println("#!/bin/bash")
-        writer.println("java -Dtmp.io.dir=${tmpDir} -jar artifact-manager.jar --install " +
+        // run the installation for the plugin's artifacts:
+        String runScriptContent = "#!/bin/bash\n" +
+                ". ${remotePath("env.sh")}\n" +
+                "java -Dtmp.io.dir=${tmpDir} -jar artifact-manager.jar --install " +
                 "--repository ${this.remoteRepoDir} " +
-                "--ssh-requests install-requests.pb")
-        writer.flush()
-        commandExecutor.scpToRemote(tmpFile.getCanonicalPath(), remotePath("run.sh"))
-        commandExecutor.ssh("chmod +x "+remotePath("run.sh"));
+                "--ssh-requests install-requests.pb"
+        pushRunScript(runScriptContent, "run.sh")
         commandExecutor.ssh(remotePath("run.sh"));
         cleanupInstallationDirectory()
+    }
+
+    private void pushRunScript(String runScriptContent, String scriptFilename) {
+        def tmpFile = File.createTempFile("run-", "script.sh")
+        PrintWriter writer = new PrintWriter(tmpFile)
+        writer.println(runScriptContent)
+        writer.flush()
+        commandExecutor.scpToRemote(tmpFile.getCanonicalPath(), remotePath(scriptFilename))
+        commandExecutor.ssh("chmod +x " + remotePath(scriptFilename));
     }
 
     def installResource(Resource resource) {
