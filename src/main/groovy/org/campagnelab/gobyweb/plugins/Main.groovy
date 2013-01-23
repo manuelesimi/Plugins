@@ -31,15 +31,18 @@ class Main {
     String tmpDir = "\${TMPDIR}"
     String remoteRepoDir
     File environmentScriptLocalFilename;
+    String artifactServer
 
     Main(String pluginRoot,
          String username,
+         String artifactServer,
          String remoteServer,
          String tmpDir,
          String remoteRepoDir) {
 
         this.pluginRoot = pluginRoot
         this.tmpDir = tmpDir
+        this.artifactServer = artifactServer
         this.commandExecutor = new CommandExecutor(username, remoteServer)
         this.commandExecutor.setQuiet(false)
         this.remoteRepoDir = remoteRepoDir
@@ -74,6 +77,7 @@ class Main {
         }
         String pluginRoot = config.getString("plugin-root")
         String remoteServer = config.getString("deployment-server")
+        String artifactServer = config.getString("artifact-server")
         String username = config.getString("username")
         String remoteRepo = config.getString("repository")
         String tmpDir = config.getString("tmp-dir")
@@ -84,7 +88,7 @@ class Main {
         }
 
         String[] pluginDescriptions = config.getStringArray("plugins")
-        Main processor = new Main(pluginRoot, username, remoteServer, tmpDir, remoteRepo)
+        Main processor = new Main(pluginRoot, username, artifactServer, remoteServer, tmpDir, remoteRepo)
         processor.environmentScriptLocalFilename = environmentScriptLocalFilename
         processor.process(action, pluginDescriptions)
 
@@ -105,7 +109,7 @@ class Main {
 
         // load the plugins from plugin root
         plugins = new Plugins(pluginRoot)
-        plugins.setWebServerHostname("localhost")
+        plugins.setWebServerHostname(artifactServer)
         plugins.reload()
 
         pluginDescriptions.each {
@@ -150,8 +154,10 @@ class Main {
 
         // run the installation for the plugin's artifacts:
         String runScriptContent = "#!/bin/bash\n" +
+                "cd ${remoteInstallDir}\n" +
+                "mkdir -p ${this.remoteRepoDir} \n"+
                 ". ${remotePath("env.sh")}\n" +
-                "java -Dtmp.io.dir=${tmpDir} -jar artifact-manager.jar --install " +
+                "java -Dtmp.io.dir=${tmpDir} -jar ${remoteInstallDir}/artifact-manager.jar --install " +
                 "--repository ${this.remoteRepoDir} " +
                 "--ssh-requests install-requests.pb"
         pushRunScript(runScriptContent, "run.sh")
@@ -176,10 +182,13 @@ class Main {
         }
         config.files.each {
             file ->
-                LOG.info("Transferring " + file.localFile.getName())
-                int status = commandExecutor.scpToRemote(file.localFilename, remotePath(file.localFile.getName()))
-                if (status != 0) {
-                    throw new RuntimeException("Copying of plugin file failed for " + file.localFilename)
+                // transfer all but artifact install scripts (since they are fetched automatically)
+                if (!"INSTALL".equals(file.id)) {
+                    LOG.info("Transferring " + file.localFile.getName())
+                    int status = commandExecutor.scpToRemote(file.localFilename, remotePath(file.localFile.getName()))
+                    if (status != 0) {
+                        throw new RuntimeException("Copying of plugin file failed for " + file.localFilename)
+                    }
                 }
         }
     }

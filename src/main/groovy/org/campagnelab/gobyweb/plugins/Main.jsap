@@ -12,6 +12,16 @@
             <help>The server where to deploy the plugins.</help>
         </flaggedOption>
         <flaggedOption>
+            <id>artifact-server</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>a</shortFlag>
+            <longFlag>artifact-server</longFlag>
+            <help>The server where to the artifacts installation scripts are located.</help>
+        </flaggedOption>
+        <flaggedOption>
             <id>env-script</id>
             <stringParser>
                 <classname>FileStringParser</classname>
