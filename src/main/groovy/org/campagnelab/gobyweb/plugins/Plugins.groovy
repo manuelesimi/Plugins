@@ -216,9 +216,7 @@ public class Plugins {
 
         }
         LOG.debug("writePbForResource for " + resourceConfig?.id + " writing artifact requests.")
-        if ("SAMTOOLS".equals(resourceConfig?.id)) {
-            println"STOP"
-        }
+
         if (!resourceConfig.artifacts.isEmpty()) {
             // resource has artifacts. Generate the "install-requests.pb" file to tell the cluster nodes
             // how to install each artifact:
