@@ -1,3 +1,4 @@
+export JOB_DIR=~/tmp/install-7082844104313396863-dir
 . auto-options.sh
 
 # environment file to test genome download and index creation.

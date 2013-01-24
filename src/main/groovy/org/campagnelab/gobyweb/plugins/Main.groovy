@@ -161,7 +161,7 @@ class Main {
                 "cd ${remoteInstallDir}\n" +
                 "mkdir -p ${this.remoteRepoDir} \n"+
                 ". ${remotePath("env.sh")}\n" +
-                "java -Dtmp.io.dir=${tmpDir} -jar ${remoteInstallDir}/artifact-manager.jar --install " +
+                "java -Dlog4j.configuration=file:log4j.properties -Dtmp.io.dir=${tmpDir} -jar ${remoteInstallDir}/artifact-manager.jar --install " +
                 "--repository ${this.remoteRepoDir} " +
                 "--ssh-requests install-requests.pb"
         pushRunScript(runScriptContent, "run.sh")

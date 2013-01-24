@@ -208,7 +208,7 @@ public class Plugins {
         if (!resourceConfig.requires.isEmpty()) {
             // recursively generate PB requests for resources required by this resource.
             for (Resource prerequisite : resourceConfig.requires) {
-                ResourceConfig preResourceConfig =lookupResource(prerequisite.id,
+                ResourceConfig preResourceConfig = lookupResource(prerequisite.id,
                         prerequisite.versionAtLeast,
                         prerequisite.versionExactly)
                 writePbForResource(preResourceConfig, requestBuilder)
@@ -559,8 +559,8 @@ public class Plugins {
 
             serverConfDirectories.add(serverConfDirectory);
             locateSchema()
-        }   else {
-            LOG.warn("serverConf does not exist or is not a directory: "+serverConfDirectory)
+        } else {
+            LOG.warn("serverConf does not exist or is not a directory: " + serverConfDirectory)
         }
     }
 
@@ -718,16 +718,27 @@ public class Plugins {
 
         writer.println("# The plugin has access to the following resources: ")
         for (Resource resourceRef : pluginConfig.requires) {
-            // write resources in the format  ${ RESOURCES _ resource-id _ file-id}
-            ResourceConfig resource = lookupResource(resourceRef.id, resourceRef.versionAtLeast, resourceRef.versionExactly)
-            if (resource != null) {
-                for (PluginFile file : resource.files) {
-                    writer.println("RESOURCES_${resource.id}_${file.id}=\${JOB_DIR}/${file.filename}")
-                }
-            }
+            writeResourceFileVariables(resourceRef, writer)
         }
         writer.flush()
         return autoOptionTmpFile;
+    }
+
+    private void writeResourceFileVariables(Resource resourceRef, PrintWriter writer) {
+
+        // write variables for resource's requirements:
+        ResourceConfig resource = lookupResource(resourceRef.id, resourceRef.versionAtLeast, resourceRef.versionExactly)
+        for (Resource prerequisite : resource.requires) {
+            writeResourceFileVariables(prerequisite, writer)
+        }
+
+        if (resource != null) {
+            // write resources in the format  ${ RESOURCES _ resource-id _ file-id}
+            for (PluginFile file : resource.files) {
+
+                writer.println("RESOURCES_${resource.id}_${file.id}=\${JOB_DIR}/${file.filename}")
+            }
+        }
     }
 /**
  * Write autoFormat options that are defined to the _ALL_OTHER_OPTIONS variable.
