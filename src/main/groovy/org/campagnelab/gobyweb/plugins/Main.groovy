@@ -5,6 +5,7 @@ import com.martiansoftware.jsap.JSAPResult
 import org.apache.commons.io.FilenameUtils
 import org.apache.log4j.Logger
 import org.campagnelab.gobyweb.artifacts.util.CommandExecutor
+import org.campagnelab.gobyweb.plugins.xml.ExecutablePluginConfig
 import org.campagnelab.gobyweb.plugins.xml.PluginConfig
 import org.campagnelab.gobyweb.plugins.xml.Resource
 import org.campagnelab.gobyweb.plugins.xml.ResourceConfig
@@ -141,6 +142,9 @@ class Main {
         }
 
         prepareInstallationDirectory()
+        File autoOptionsFile=plugins.generateAutoOptionsFile(config as ExecutablePluginConfig)
+        commandExecutor.scpToRemote(autoOptionsFile.getAbsolutePath(),remotePath("auto-options.sh"))
+
         File pbRequests = plugins.createPbRequestFile(config);
         commandExecutor.scpToRemote(pbRequests.getAbsolutePath(), remotePath("install-requests.pb"))
 
