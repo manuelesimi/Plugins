@@ -158,14 +158,21 @@ class Main {
 
         // run the installation for the plugin's artifacts:
         String runScriptContent = "#!/bin/bash\n" +
+                "echo \"Running in \${JOB_DIR}\"\n" +
                 "cd ${remoteInstallDir}\n" +
                 "mkdir -p ${this.remoteRepoDir} \n"+
                 ". ${remotePath("env.sh")}\n" +
+                "java -Dlog4j.configuration=file:log4j.properties -Dtmp.io.dir=${tmpDir} -jar ${remoteInstallDir}/artifact-manager.jar --bash-exports " +
+                                "--repository ${this.remoteRepoDir} " +
+                                "--ssh-requests install-requests.pb --output exports.sh\n" +
+                "chmod +x exports.sh ; \n" +
+                ". ${remotePath("exports.sh")} ; "+
                 "java -Dlog4j.configuration=file:log4j.properties -Dtmp.io.dir=${tmpDir} -jar ${remoteInstallDir}/artifact-manager.jar --install " +
                 "--repository ${this.remoteRepoDir} " +
                 "--ssh-requests install-requests.pb"
+
         pushRunScript(runScriptContent, "run.sh")
-        commandExecutor.ssh(remotePath("run.sh"));
+        commandExecutor.ssh(remotePath("run.sh"), "JOB_DIR=${remoteInstallDir}");
         cleanupInstallationDirectory()
     }
 
