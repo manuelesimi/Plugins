@@ -105,6 +105,12 @@ public class Plugins {
         });
     }
 
+    public ArrayList<PluginConfig> getResourceConfigs() {
+            return pluginConfigs.findAll({ i ->
+                i instanceof ResourceConfig;
+            });
+        }
+
     /**
      * Reload the plugin configuration from disk.
      */
@@ -343,9 +349,6 @@ public class Plugins {
         return false;
     }
 
-    public void hello() {
-
-    }
 
     private void readPluginDirectory(String pluginDirectory, boolean scanningResources) {
         // printf "Reading plugin dir: error=%b %s %n",somePluginReportedErrors(), pluginDirectory
