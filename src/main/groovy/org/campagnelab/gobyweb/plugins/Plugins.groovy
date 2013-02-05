@@ -106,10 +106,10 @@ public class Plugins {
     }
 
     public ArrayList<PluginConfig> getResourceConfigs() {
-            return pluginConfigs.findAll({ i ->
-                i instanceof ResourceConfig;
-            });
-        }
+        return pluginConfigs.findAll({ i ->
+            i instanceof ResourceConfig;
+        });
+    }
 
     /**
      * Reload the plugin configuration from disk.
@@ -313,7 +313,7 @@ public class Plugins {
             if (ignoreFilenames(filename)) {
                 continue;
             }
-            readPluginDirectory(new File(directory, filename).getAbsolutePath(), scanningResources);
+            readPluginConfigFile(new File(directory, filename).getAbsolutePath(), scanningResources);
         }
 
         // now check resources requirements, and remove the plugins that cannot find their resources:
@@ -350,44 +350,17 @@ public class Plugins {
     }
 
 
-    private void readPluginDirectory(String pluginDirectory, boolean scanningResources) {
+    private void readPluginConfigFile(String pluginConfigFilePath, boolean scanningResources) {
         // printf "Reading plugin dir: error=%b %s %n",somePluginReportedErrors(), pluginDirectory
 
-        LOG.info("Scanning location ${pluginDirectory}");
-        final JAXBContext jc = JAXBContext.newInstance(PluginConfig.class);
-        Schema schema;
-        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        // def url = new URL("http://campagnelab.org/schemas/gobyweb/plugins/plugins.xsd")
-
-        final Unmarshaller m = jc.createUnmarshaller();
-        if (schemaFile?.exists()) {
-            schema = schemaFactory.newSchema(schemaFile);
-            m.setSchema(schema);
-        }
-
-        //If the message regarding validation to be customized
-        ValidationEventCollector validationCollector = new ValidationEventCollector();
-        m.setEventHandler(validationCollector);
-
-        List<String> errors = new ArrayList<String>()
-        final File fileToUnmarshal = new File(pluginDirectory, "config.xml");
-        if (!fileToUnmarshal.exists()) {
-            return;
-        }
-        PluginConfig config
-        try {
-            config = (PluginConfig) m.unmarshal(fileToUnmarshal);
-            if (config == null) {
-
-                errors.add("Cannot find config.xml file in plugin directory " + fileToUnmarshal);
-                LOG.error "Cannot find config.xml file in plugin directory " + fileToUnmarshal
-            }
-        } catch (JAXBException e) {
-            // Errors will be reported below, no need to log them here
-            somePluginReportedErrors = true
-
-            errors.add(e.getMessage())
-            LOG.error("JAXBException when unmarshaling a plugin", e)
+        LOG.info("Scanning location ${pluginConfigFilePath}");
+        javax.xml.bind.util.ValidationEventCollector validationCollector
+        org.campagnelab.gobyweb.plugins.xml.PluginConfig config
+        java.util.List<java.lang.String> errors
+        java.io.File fileToUnmarshal
+        (config, validationCollector, errors, fileToUnmarshal) = parsePluginConfig(pluginConfigFilePath, this)
+        if (config == null) {
+            return
         }
 
         if (!validationCollector.hasEvents()) {
@@ -397,7 +370,7 @@ public class Plugins {
 
             }
             if (errors.isEmpty()) {
-                def dirName = FilenameUtils.getBaseName(pluginDirectory)
+                def dirName = FilenameUtils.getBaseName(pluginConfigFilePath)
                 if (!config.id.equals(dirName) && !(config instanceof ResourceConfig)) {
                     // TODO: consider removing this constraint. Non resource plugins would also benefit from keeping older versions around.
                     // checking the name of
@@ -405,7 +378,7 @@ public class Plugins {
                     errors.add(String.format("FATAL: the plugin id %s must match the directory name where the config file resides (%s)",
                             config.id, dirName));
                 }
-                config.setPluginDirectory(pluginDirectory);
+                config.setPluginDirectory(pluginConfigFilePath);
 
                 addScriptFile(scanningResources, config)
                 addInstallFile(scanningResources, config)
@@ -432,6 +405,43 @@ public class Plugins {
             }
             somePluginReportedErrors = true
         }
+    }
+
+    public void saveToXml(PluginConfig config, OutputStream os) {
+
+        marshaller.marshal(config, os)
+        os.flush()
+    }
+
+    public List parsePluginConfig(String pluginConfigFilePath, Plugins pluginSystem) {
+
+        //If the message regarding validation to be customized
+        ValidationEventCollector validationCollector = new ValidationEventCollector();
+        unmarshaller.setEventHandler(validationCollector);
+        PluginConfig config
+        List<String> errors = new ArrayList<String>()
+        final File fileToUnmarshal = new File(pluginConfigFilePath, "config.xml");
+        if (!fileToUnmarshal.exists()) {
+            config = null;
+        }
+
+        try {
+            config = (PluginConfig) unmarshaller.unmarshal(fileToUnmarshal);
+            if (config == null) {
+
+                errors.add("Cannot find config.xml file in plugin directory " + fileToUnmarshal);
+                LOG.error "Cannot find config.xml file in plugin directory " + fileToUnmarshal
+            }
+        } catch (JAXBException e) {
+            // Errors will be reported below, no need to log them here
+            if (pluginSystem != null) {
+                pluginSystem.somePluginReportedErrors = true
+            }
+
+            errors.add(e.getMessage())
+            LOG.error("JAXBException when unmarshaling a plugin", e)
+        }
+        [config, validationCollector, errors, fileToUnmarshal]
     }
     /** if scanning a resource with artifacts, and files does not contain install.sh,
      we define the default install.sh file.          */
@@ -574,6 +584,7 @@ public class Plugins {
                 if (currentSchemaFile.exists()) {
                     schemaFile = currentSchemaFile
                     LOG.info "Installing schema file ${schemaFile} for plugins XML validation."
+                    installSchema(currentSchemaFile)
                     return
                 }
             }
@@ -581,12 +592,31 @@ public class Plugins {
         }
     }
 
-    /**
-     * Returns the PluginConfig matching id or null if the plugin was not found.
-     * @param idToFind
-     * @return the PluginConfig that matches or null
-     * @see Plugins#findPluginTypeById(java.lang.Class, java.lang.String)
-     */
+    private JAXBContext jaxbContext = null;
+    private Marshaller marshaller;
+    private Unmarshaller unmarshaller;
+
+    def installSchema(File schemaFile) {
+        jaxbContext = JAXBContext.newInstance(PluginConfig.class);
+        Schema schema;
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        // def url = new URL("http://campagnelab.org/schemas/gobyweb/plugins/plugins.xsd")
+
+        if (schemaFile?.exists()) {
+            schema = schemaFactory.newSchema(schemaFile);
+            marshaller = jaxbContext.createMarshaller();
+            unmarshaller = jaxbContext.createUnmarshaller();
+
+            marshaller.setSchema(schema);
+            unmarshaller.setSchema(schema);
+        }
+    }
+/**
+ * Returns the PluginConfig matching id or null if the plugin was not found.
+ * @param idToFind
+ * @return the PluginConfig that matches or null
+ * @see Plugins#findPluginTypeById(java.lang.Class, java.lang.String)
+ */
     public PluginConfig findById(String idToFind) {
         if (idToFind) {
             for (PluginConfig plugin in pluginConfigs) {
