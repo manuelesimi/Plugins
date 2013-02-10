@@ -519,9 +519,21 @@ public class Plugins {
         }
         return errors;
     }
-
+    /**
+     * Given a plugin, make a map of the plugin and resource names, to their version numbers.
+     * @param pluginConfig the plugin to collect version numbers for
+     * @return map of plugins to version numbers
+     */
     Map<String, String> pluginVersionsMap(PluginConfig pluginConfig) {
-        Map<String, String> versionsMap = new LinkedHashMap<String, String>()
+        pluginVersionsMap(pluginConfig, new LinkedHashMap<String, String>())
+    }
+    /**
+     * Given a plugin, make a map of the plugin and resource names, to their version numbers.
+     * @param pluginConfig the plugin to collect version numbers for
+     * @return map of plugins to version numbers
+     */
+    Map<String, String> pluginVersionsMap(PluginConfig pluginConfig, Map<String, String> versionsMap) {
+
         versionsMap["${pluginConfig.getClass().getName()}:${pluginConfig.id}:${pluginConfig.name}"] =
             pluginConfig.version
         for (Resource resource in pluginConfig.requires) {
@@ -529,10 +541,17 @@ public class Plugins {
                     resource.id, resource.versionAtLeast, resource.versionExactly)
             versionsMap["${resourceConfig.getClass().getName()}:${resourceConfig.id}:${resourceConfig.name}"] =
                 resourceConfig.version
+            pluginVersionsMap(resourceConfig, versionsMap)
         }
         return versionsMap
     }
-
+    /**
+     * Given a map of plugins to version numbers created by pluginVersionsMap
+     * create a list of map, where each map contains details about the plugins
+     * used, their names, version number, id, and the class for that plugin
+     * @param versionsMap the version map created by pluginVersionsMap
+     * @return list of map of details for the used plugins
+     */
     List<Map<String, String>> pluginVersionsMapToDisplayList(Map<String, String> versionsMap) {
         List<Map<String, String>> displayList = new LinkedList<Map<String, String>>()
         if (versionsMap) {
