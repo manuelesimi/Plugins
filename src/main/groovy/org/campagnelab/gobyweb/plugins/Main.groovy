@@ -111,6 +111,7 @@ class Main {
         // load the plugins from plugin root
         plugins = new Plugins(pluginRoot)
         plugins.setWebServerHostname(artifactServer)
+        plugins.registerPluginEnvironmentCollectionScript("env.sh")
         plugins.reload()
 
         pluginDescriptions.each {
@@ -152,16 +153,12 @@ class Main {
             resourceRef ->
                 installResource(resourceRef)
         }
-        // push environment script:
-        commandExecutor.scpToRemote(environmentScriptLocalFilename.getCanonicalPath(), remotePath("env.sh"))
-        commandExecutor.ssh("chmod +x " + remotePath("env.sh"));
 
         // run the installation for the plugin's artifacts:
         String runScriptContent = "#!/bin/bash\n" +
                 "echo \"Running in \${JOB_DIR}\"\n" +
                 "cd ${remoteInstallDir}\n" +
                 "mkdir -p ${this.remoteRepoDir} \n"+
-                ". ${remotePath("env.sh")}\n" +
                 "java -Dlog4j.configuration=file:log4j.properties -Dtmp.io.dir=${tmpDir} -jar ${remoteInstallDir}/artifact-manager.jar --bash-exports " +
                                 "--repository ${this.remoteRepoDir} " +
                                 "--ssh-requests install-requests.pb --output exports.sh\n" +

@@ -173,16 +173,30 @@ public class Plugins {
 
         loaded = true;
     }
+
+    private ObjectArrayList<String> pluginEnvironmentCollectionScripts = new ObjectArrayList<String>()
     /**
-     * Create artifacts install requests for the plugin given as argument. Traverse the graph of resource
-     * dependency and order resource artifact installation such that resources that must be installed before
-     * others are so. The client is responsible for deleting the result file when it is no longer needed.
-     * @param pluginConfig
-     * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
+     * Register environment collection scripts.
+     * @param script
      */
+    void registerPluginEnvironmentCollectionScript(String script) {
+        this.pluginEnvironmentCollectionScripts.add(script);
+    }
+/**
+ * Create artifacts install requests for the plugin given as argument. Traverse the graph of resource
+ * dependency and order resource artifact installation such that resources that must be installed before
+ * others are so. The client is responsible for deleting the result file when it is no longer needed.
+ * @param pluginConfig
+ * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
+ */
     public File createPbRequestFile(PluginConfig pluginConfig) {
         LOG.debug("createPbRequestFile for " + pluginConfig?.id)
         BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
+
+        pluginEnvironmentCollectionScripts.each { envScript ->
+            requestBuilder.registerEnvironmentCollection(envScript)
+        }
+
         def uniqueFile = File.createTempFile("artifacts-install-requests", ".pb");
         // Create a single .pb file containing all resources that the plugin requires:
         // Each .pb file will contain the artifacts needed by the resource, starting with the artifacts that the
