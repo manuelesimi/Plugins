@@ -1,0 +1,18 @@
+<fileSetConfig>
+    <id>ANY_DIR</id>
+    <name>Name goes here</name>
+    <version>2.0.0</version>
+    <help>Allow to upload a folder with any content </help>
+    <attributes>
+        <attribute name="description"/>
+        <attribute name="basename"/>
+    </attributes>
+    <dirSelectors>
+        <selector>
+            <id>DIR</id>
+            <pattern>*/**</pattern>
+            <mandatory>true</mandatory>
+        </selector>
+    </dirSelectors>
+</fileSetConfig>
+

@@ -1,0 +1,19 @@
+<fileSetConfig>
+    <id>COMPACT_READS</id>
+    <name>Compact reads</name>
+    <version>1.0</version>
+    <help>Fileset defining a list of compact reads files, an instance of fileset will be created for each uploaded file</help>
+    <disabled>false</disabled>
+    <attributes>
+        <attribute name="basename"/>
+        <attribute name="organism"/>
+    </attributes>
+    <fileSelectors>
+            <selector>
+                <id>READS</id>
+                <pattern matchAttribute="basename">*.compact-reads</pattern>
+                <mandatory>true</mandatory>
+            </selector>
+    </fileSelectors>
+</fileSetConfig>
+

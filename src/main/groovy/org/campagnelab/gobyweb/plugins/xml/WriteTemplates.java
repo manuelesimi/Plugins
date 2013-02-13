@@ -36,6 +36,10 @@
 
 package org.campagnelab.gobyweb.plugins.xml;
 
+import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
+import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
+import org.campagnelab.gobyweb.plugins.xml.common.*;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -50,8 +54,12 @@ public class WriteTemplates {
     public static void main(String args[]) {
 
         try {
-
-            final JAXBContext jc = JAXBContext.newInstance(PluginConfig.class);
+            Class<?>[] classes = new Class<?>[CONFIGS_TO_CLASSES.values().length];
+            int j=0;
+            for (CONFIGS_TO_CLASSES value : CONFIGS_TO_CLASSES.values())  {
+                classes[j++] = value.register();
+            }
+            final JAXBContext jc = JAXBContext.newInstance(classes);
 
             {
                 int i;

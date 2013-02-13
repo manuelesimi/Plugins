@@ -17,13 +17,15 @@
     <dbLegacyId>Extract Contaminants</dbLegacyId>
     <help>Finds potential contaminants based on the unmapped reads in the alignments. This plugin will create contigs from unmapped reads, and try to align these contigs to viral and bacterial nucleotide sequences to identify potential sample contaminants.
     </help>
+    <version>1.7</version>
+    <minimumNumberOfGroups>1</minimumNumberOfGroups>
+    <maximumNumberOfGroups>10</maximumNumberOfGroups>
     <analysisType>DiffExp</analysisType>
     <supportsTranscriptAlignments>false</supportsTranscriptAlignments>
     <splitProcessCombine>true</splitProcessCombine>
     <producesTabDelimitedOutput>true</producesTabDelimitedOutput>
     <supportsGobyAlignments>true</supportsGobyAlignments>
     <copyWeightFiles>false</copyWeightFiles>
-    <version>1.7</version>
     <files>
         <file>
             <id>OUTPUT_FORMATTER</id>
@@ -252,6 +254,4 @@
             <autoFormat>false</autoFormat>
         </option>
     </options>
-    <minimumNumberOfGroups>1</minimumNumberOfGroups>
-    <maximumNumberOfGroups>10</maximumNumberOfGroups>
 </alignmentAnalysisConfig>

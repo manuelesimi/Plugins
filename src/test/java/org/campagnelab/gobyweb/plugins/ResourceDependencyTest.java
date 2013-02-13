@@ -2,21 +2,17 @@ package org.campagnelab.gobyweb.plugins;
 
 import org.campagnelab.gobyweb.artifacts.ArtifactRequestHelper;
 import org.campagnelab.gobyweb.artifacts.Artifacts;
-import org.campagnelab.gobyweb.plugins.xml.*;
+import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.print.attribute.Size2DSyntax;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 
 import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertEquals;
 
 /**
  * @author campagne
@@ -25,6 +21,7 @@ import static junit.framework.Assert.*;
  */
 public class ResourceDependencyTest {
     Plugins plugins;
+    PluginRegistry pluginRegistry = PluginRegistry.getRegistry();
 
     @Before
     public void configure() {
@@ -37,7 +34,7 @@ public class ResourceDependencyTest {
 
     @Test
     public void noPbRequests() {
-        AlignerConfig alignerById = plugins.findAlignerById("GSNAP_WITH_GOBY");
+        AlignerConfig alignerById = pluginRegistry.findByTypedId("GSNAP_WITH_GOBY",AlignerConfig.class);
         File requests = plugins.createPbRequestFile(alignerById);
         assertNull("Aligner plugin GSNAP_WITH_GOBY has no artifact dependencies", requests);
 
@@ -47,7 +44,7 @@ public class ResourceDependencyTest {
     @Test
     public void writePbRequests() throws IOException {
 
-        PluginConfig starAligner = plugins.findAlignerById("STAR22_GOBY");
+        AlignerConfig starAligner = pluginRegistry.findByTypedId("STAR22_GOBY",AlignerConfig.class);
         assertNotNull("STAR aligner must be found", starAligner);
         File requests = plugins.createPbRequestFile(starAligner);
         assertNotNull("Aligner plugin STAR must have some artifact dependencies", requests);
@@ -141,7 +138,7 @@ public class ResourceDependencyTest {
 
     @Test
     public void testPluginVersionMap() {
-        PluginConfig starAligner = plugins.findAlignerById("STAR22_GOBY");
+        AlignerConfig starAligner = pluginRegistry.findByTypedId("STAR22_GOBY",AlignerConfig.class);
 
         Map<String, String> map = plugins.pluginVersionsMap(starAligner);
         StringBuffer buffer = new StringBuffer();
@@ -152,14 +149,16 @@ public class ResourceDependencyTest {
             buffer.append("\n");
 
         }
-        assertEquals("org.campagnelab.gobyweb.plugins.xml.AlignerConfig:STAR22_GOBY:STAR 2.20 (Goby output)=1.2\n" +
-                "org.campagnelab.gobyweb.plugins.xml.ResourceConfig:GOBYWEB_SERVER_SIDE:GobyWeb server side tools=2.0\n" +
-                "org.campagnelab.gobyweb.plugins.xml.ResourceConfig:STAR:STAR=2.2.0\n" +
-                "org.campagnelab.gobyweb.plugins.xml.ResourceConfig:FAI_INDEXED_GENOMES:FAI indexed genomes=1.1.1\n" +
-                "org.campagnelab.gobyweb.plugins.xml.ResourceConfig:ENSEMBL_GENOMES:Ensembl Genomes=1.1\n" +
-                "org.campagnelab.gobyweb.plugins.xml.ResourceConfig:SAMTOOLS:Samtools=0.1.18.1\n" +
-                "org.campagnelab.gobyweb.plugins.xml.ResourceConfig:GSNAP_WITH_GOBY:GSNAP with Goby support=2011.07.08\n", buffer.toString());
+        System.out.println(buffer.toString());
 
+
+        assertEquals("org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig:STAR22_GOBY:STAR 2.20 (Goby output)=1.2\n" +
+            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GOBYWEB_SERVER_SIDE:GobyWeb server side tools=2.0\n" +
+            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:STAR:STAR=2.2.0\n" +
+            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:FAI_INDEXED_GENOMES:FAI indexed genomes=1.1.1\n" +
+            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:ENSEMBL_GENOMES:Ensembl Genomes=1.1\n" +
+            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:SAMTOOLS:Samtools=0.1.18.1\n" +
+            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GSNAP_WITH_GOBY:GSNAP with Goby support=2011.07.08\n", buffer.toString());
 
     }
 

@@ -11,7 +11,7 @@
   ~ the plugin's config.xml will indicate how that specific plugin is released/licensed.
   -->
 <resourceConfig
-        xsi:noNamespaceSchemaLocation="file:/Users/campagne/IdeaProjects/gobyweb2-plugin-install/gobyweb_home/conf/schemas/plugins.xsd"
+        xsi:noNamespaceSchemaLocation="../../../schemas/plugins.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <name>STAR</name>
     <id>STAR</id>

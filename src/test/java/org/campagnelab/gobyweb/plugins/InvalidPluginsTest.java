@@ -1,14 +1,9 @@
 package org.campagnelab.gobyweb.plugins;
 
-import org.campagnelab.gobyweb.plugins.xml.*;
+import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
+import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.junit.Before;
 import org.junit.Test;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 import static junit.framework.Assert.*;
 
@@ -21,6 +16,7 @@ import static junit.framework.Assert.*;
  */
 public class InvalidPluginsTest {
     Plugins plugins;
+    PluginRegistry pluginRegistry = PluginRegistry.getRegistry();
 
     @Before
     public void configure() {
@@ -32,8 +28,8 @@ public class InvalidPluginsTest {
 
     @Test
     public void loadConfig() {
-        assertEquals("no valid plugins must be found", 0, plugins.getAlignerPluginConfigs().size());
-        assertEquals("no valid plugins must be found", 0, plugins.getAlignmentAnalysisConfigs().size());
+        assertEquals("no valid plugins must be found", 0, pluginRegistry.filterConfigs(AlignerConfig.class).size());
+        assertEquals("no valid plugins must be found", 0, pluginRegistry.filterConfigs(AlignmentAnalysisConfig.class).size());
     }
 
 

@@ -5,10 +5,11 @@ import com.martiansoftware.jsap.JSAPResult
 import org.apache.commons.io.FilenameUtils
 import org.apache.log4j.Logger
 import org.campagnelab.gobyweb.artifacts.util.CommandExecutor
-import org.campagnelab.gobyweb.plugins.xml.ExecutablePluginConfig
-import org.campagnelab.gobyweb.plugins.xml.PluginConfig
-import org.campagnelab.gobyweb.plugins.xml.Resource
-import org.campagnelab.gobyweb.plugins.xml.ResourceConfig
+import org.campagnelab.gobyweb.plugins.xml.ConfigRef
+import org.campagnelab.gobyweb.plugins.xml.common.ExecutableConfig
+import org.campagnelab.gobyweb.plugins.xml.Config
+import org.campagnelab.gobyweb.plugins.xml.common.Resource
+import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig
 
 /**
  * Tool to work with plugins from the command line.
@@ -132,18 +133,18 @@ class Main {
 
 
     def testInstall(String pluginDescription) {
-        PluginRef ref = PluginRef.parseDescription(pluginDescription)
+        ConfigRef ref = ConfigRef.parseDescription(pluginDescription)
         if (ref == null) {
             throw new RuntimeException("Could not parse plugin reference: " + pluginDescription)
         }
 
-        PluginConfig config = ref.instantiate(plugins)
+        Config config = ref.instantiate()
         if (config == null) {
             throw new RuntimeException("Could not instantiate plugin: " + pluginDescription)
         }
 
         prepareInstallationDirectory()
-        File autoOptionsFile=plugins.generateAutoOptionsFile(config as ExecutablePluginConfig)
+        File autoOptionsFile=plugins.generateAutoOptionsFile(config as ExecutableConfig)
         commandExecutor.scpToRemote(autoOptionsFile.getAbsolutePath(),remotePath("auto-options.sh"))
 
         File pbRequests = plugins.createPbRequestFile(config);
@@ -192,7 +193,7 @@ class Main {
             file ->
                 // transfer all but artifact install scripts (since they are fetched automatically)
                 if (!"INSTALL".equals(file.id)) {
-                    LOG.info("Transferring " + file.localFile.getName())
+                    LOG.info("Transferring " + file.localFile.getAbsolutePath())
                     int status = commandExecutor.scpToRemote(file.localFilename, remotePath(file.localFile.getName()))
                     if (status != 0) {
                         throw new RuntimeException("Copying of plugin file failed for " + file.localFilename)

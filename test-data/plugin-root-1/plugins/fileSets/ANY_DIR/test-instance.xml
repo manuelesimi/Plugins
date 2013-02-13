@@ -1,0 +1,23 @@
+<fileSet type="ANY_DIR" version-at-least="1.0">
+    <id>instance1</id>
+    <tag>UBWHKRJ</tag>
+    <output_basename>%%gobyweb.webFilesDir%%/manuele.simi/SXRUJEW/</output_basename>
+    <creationDate>06-FEB-13 05.25.50.660000000 PM</creationDate>
+    <deletionDate></deletionDate>
+    <owner>manuele.simi</owner>
+    <attributes>
+        <attribute name="basename"  value="MyFolder"/>
+        <attribute name="description" value="this folder contains..."/>
+    </attributes>
+
+    <files>
+        <file>dir-1/baz.doc</file> <!-- MyFolder.DIR referes all the files-->
+        <file>dir-1/foo.txt</file>
+        <file>dir-1/bar.index</file>
+        <file>dir-2/qux.entries</file>
+        <file>dir-2/qex.header</file>
+        <file>dir-2/ll.index</file>
+
+    </files>
+
+</fileSet>

@@ -34,6 +34,9 @@
         <module name="plugins" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="plugins" target="1.6" />
+    </bytecodeTargetLevel>
   </component>
   <component name="CopyrightManager" default="">
     <module2copyright />
@@ -42,7 +45,6 @@
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
-    <file url="file://$PROJECT_DIR$/../artifacts" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
   </component>
   <component name="EntryPointsManager">
@@ -210,10 +212,21 @@
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="mySupportsUserInfoFilter" value="true" />
   </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="" />
+    <mapping directory="" vcs="svn" />
   </component>
   <component name="libraryTable">
     <library name="Maven: com.google.protobuf:protobuf-java:2.4.1">
@@ -348,26 +361,37 @@
         <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.16/log4j-1.2.16-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.campagnelab.gobyweb:icb-groovy-support:1.0.1-SNAPSHOT">
+    <library name="Maven: org.campagnelab.gobyweb:artifacts:2.0.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/1.0.1-SNAPSHOT/icb-groovy-support-1.0.1-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.0.0-SNAPSHOT/artifacts-2.0.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/1.0.1-SNAPSHOT/icb-groovy-support-1.0.1-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.0.0-SNAPSHOT/artifacts-2.0.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/1.0.1-SNAPSHOT/icb-groovy-support-1.0.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.0.0-SNAPSHOT/artifacts-2.0.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.campagnelab.gobyweb:option-validation-language:2.0">
+    <library name="Maven: org.campagnelab.gobyweb:icb-groovy-support:2.0.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/option-validation-language/2.0/option-validation-language-2.0.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/option-validation-language/2.0/option-validation-language-2.0-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/option-validation-language/2.0/option-validation-language-2.0-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-SNAPSHOT-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.campagnelab.gobyweb:option-validation-language:2.0.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/option-validation-language/2.0.0-SNAPSHOT/option-validation-language-2.0.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/option-validation-language/2.0.0-SNAPSHOT/option-validation-language-2.0.0-SNAPSHOT-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/option-validation-language/2.0.0-SNAPSHOT/option-validation-language-2.0.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.codehaus.groovy:groovy-all:1.8.6">

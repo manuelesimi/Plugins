@@ -45,7 +45,15 @@ import org.apache.log4j.Logger
 import org.campagnelab.gobyweb.artifacts.Artifacts
 import org.campagnelab.gobyweb.artifacts.BuildArtifactRequest
 import org.campagnelab.gobyweb.plugins.xml.*
-import org.campagnelab.gobyweb.plugins.xml.Option.OptionType
+import org.campagnelab.gobyweb.plugins.xml.common.Need
+import org.campagnelab.gobyweb.plugins.xml.common.Option
+import org.campagnelab.gobyweb.plugins.xml.common.Option.OptionType
+import org.campagnelab.gobyweb.plugins.xml.common.ExecutableConfig
+import org.campagnelab.gobyweb.plugins.xml.common.PluginFile
+import org.campagnelab.gobyweb.plugins.xml.common.Resource
+import org.campagnelab.gobyweb.plugins.xml.common.ResourceConsumerConfig
+import org.campagnelab.gobyweb.plugins.xml.resources.Artifact
+import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig
 import scala.tools.nsc.dependencies.Files
 
 import javax.xml.XMLConstants
@@ -65,7 +73,7 @@ public class Plugins {
 
     private static Logger LOG = Logger.getLogger(Plugins.class);
 
-    private ArrayList<PluginConfig> pluginConfigs = new ArrayList<PluginConfig>();
+    private PluginRegistry pluginConfigs = PluginRegistry.getRegistry();
 
     /**
      * indicates whether the configuration has been already loaded.
@@ -93,24 +101,6 @@ public class Plugins {
         }
     }
 
-    public ArrayList<PluginConfig> getAlignerPluginConfigs() {
-        return pluginConfigs.findAll({ i ->
-            i instanceof AlignerConfig;
-        });
-    }
-
-    public ArrayList<PluginConfig> getAlignmentAnalysisConfigs() {
-        return pluginConfigs.findAll({ i ->
-            i instanceof AlignmentAnalysisConfig;
-        });
-    }
-
-    public ArrayList<PluginConfig> getResourceConfigs() {
-        return pluginConfigs.findAll({ i ->
-            i instanceof ResourceConfig;
-        });
-    }
-
     /**
      * Reload the plugin configuration from disk.
      */
@@ -127,14 +117,11 @@ public class Plugins {
             readConfigurationFromLocation(serverConfDir + "/" + "plugins/resources", true);
             readConfigurationFromLocation(serverConfDir + "/" + "plugins/aligners");
             readConfigurationFromLocation(serverConfDir + "/" + "plugins/analyses");
+            //readConfigurationFromLocation(serverConfDir + "/" + "plugins/fileSets");
         }
-        // now that all plugins are defined, process file plugin imports:
-        for (PluginConfig config : pluginConfigs) {
-            for (PluginFile pluginFile : config.files) {
-
-                pluginFile.constructLocalFilename(config.pluginDirectory, this);
-
-            }
+        // now that all configurations are loaded, trigger post load activities
+        for (Config config : pluginConfigs) {
+            config.loadCompletedEvent()
         }
         // Check that plugin identifiers are unique across all types of plugins, except resource plugins:
         Object2IntMap idCount = new Object2IntArrayMap()
@@ -146,7 +133,6 @@ public class Plugins {
         pluginConfigs.each { pluginConfig ->
             def idUnique = pluginConfig.id
             if (idCount[idUnique] > 1) {
-
                 pluginConfigs.findAll { plugin ->
                     plugin.id == idUnique
                 }.each {
@@ -189,7 +175,7 @@ public class Plugins {
  * @param pluginConfig
  * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
  */
-    public File createPbRequestFile(PluginConfig pluginConfig) {
+    public File createPbRequestFile(ResourceConsumerConfig pluginConfig) {
         LOG.debug("createPbRequestFile for " + pluginConfig?.id)
         BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
 
@@ -203,7 +189,6 @@ public class Plugins {
         // resource requires (deep first search)
         pluginConfig?.requires.each {
             resource ->
-
                 def resourceConfig = lookupResource(resource.id, resource.versionAtLeast, resource.versionExactly)
                 writePbForResource(resourceConfig, requestBuilder)
         }
@@ -267,55 +252,43 @@ public class Plugins {
         }
 
     }
-/**
- * Add a default value to each plugin when key is not defined for the scope.
- * @param executablePluginConfig
- * @param scope
- * @param key
- * @param defaultValue
- */
-    void addDefaultNeed(String scope, String key, String defaultValue) {
-        pluginConfigs.each { pluginConfig ->
-            if (pluginConfig instanceof ExecutablePluginConfig) {
-                def execPlugin = pluginConfig
 
-                if (execPlugin.getRuntime().needs().findAll { need ->
-                    need.scope == scope &&
-                            need.key == key
-                }.isEmpty()) {
-                    // add default value when no value was defined for key in scope:
-
-                    execPlugin.getRuntime().needs().add(new Need(scope, key, defaultValue))
-                }
+    /**
+     * Add a default value to each plugin when key is not defined for the scope.
+     * @param executablePluginConfig
+     * @param scope
+     * @param key
+     * @param defaultValue
+     */
+    private void addDefaultNeed(String scope, String key, String defaultValue) {
+        for (ExecutableConfig executableConfig : pluginConfigs.filterConfigs(ExecutableConfig.class)) {
+            if (executableConfig.getRuntime().needs().findAll { need ->
+                need.scope == scope && need.key == key
+            }.isEmpty()) {
+                // add default value when no value was defined for key in scope:
+                executableConfig.getRuntime().needs().add(new Need(scope, key, defaultValue))
             }
         }
     }
 
     void checkPluginResourceRequirements() {
     }
-/**
- * Returns a string that describes registered plugins.
- * @return human readable plugins description.
- */
+    /**
+     * Returns a string that describes registered plugins.
+     * @return human readable plugins description.
+     */
     public String describePlugins() {
         MutableString buffer = new MutableString();
-        for (PluginConfig config : pluginConfigs) {
-            def description = []
-            description << "num-rules: ${config.options.rules().size()}"
-            if (config.hasProperty("runtime") && config.runtime?.needs) {
-                description << "num-needs: ${config.runtime.needs.size()}"
-            }
-            buffer.append(String.format(" %s/%s (%s) %s\n", getHumanReadablePluginType(config), config.name, config.version, description.join(", ")));
-        }
+        for (Config config : pluginConfigs)
+            buffer.append(String.format(" %s\n", config.toString()));
 
         return buffer.toString();
     }
     /**
-     * Read plugin configuration from the specified path.
+     * Reads plugin configuration from the specified path.
      * @param location path to load from.
      */
     public void readConfigurationFromLocation(String location, boolean scanningResources = false) {
-        //printf "-------- Reading Configuration from Location %s %n", location
 
         File directory = new File(location);
         if (directory == null || directory.list() == null) {
@@ -332,7 +305,7 @@ public class Plugins {
 
         // now check resources requirements, and remove the plugins that cannot find their resources:
         def toRemove = []
-        for (PluginConfig config : pluginConfigs) {
+        for (Config config : pluginConfigs) {
 
             def errors = new ArrayList<String>()
             errors = checkRequiredResources(config, errors)
@@ -369,7 +342,7 @@ public class Plugins {
 
         LOG.info("Scanning location ${pluginConfigFilePath}");
         javax.xml.bind.util.ValidationEventCollector validationCollector
-        org.campagnelab.gobyweb.plugins.xml.PluginConfig config
+        Config config
         java.util.List<java.lang.String> errors
         java.io.File fileToUnmarshal
         (config, validationCollector, errors, fileToUnmarshal) = parsePluginConfig(pluginConfigFilePath, this)
@@ -379,9 +352,7 @@ public class Plugins {
 
         if (!validationCollector.hasEvents()) {
             if (config != null) {
-
                 config.validate(errors);
-
             }
             if (errors.isEmpty()) {
                 def dirName = FilenameUtils.getBaseName(pluginConfigFilePath)
@@ -392,12 +363,11 @@ public class Plugins {
                     errors.add(String.format("FATAL: the plugin id %s must match the directory name where the config file resides (%s)",
                             config.id, dirName));
                 }
-                config.setPluginDirectory(pluginConfigFilePath);
+                config.setDirectory(pluginConfigFilePath);
+                config.configFileReadEvent();
 
-                addScriptFile(scanningResources, config)
-                addInstallFile(scanningResources, config)
-                addServerSidetools(scanningResources, config)
-
+                addServerSidetools(config)
+                //accept the configuration
                 pluginConfigs.add(config);
                 LOG.info(String.format("Registering plugin %s", config.id));
             }
@@ -421,7 +391,7 @@ public class Plugins {
         }
     }
 
-    public void saveToXml(PluginConfig config, OutputStream os) {
+    public void saveToXml(Config config, OutputStream os) {
 
         marshaller.marshal(config, os)
         os.flush()
@@ -432,7 +402,7 @@ public class Plugins {
         //If the message regarding validation to be customized
         ValidationEventCollector validationCollector = new ValidationEventCollector();
         unmarshaller.setEventHandler(validationCollector);
-        PluginConfig config
+        Config config
         List<String> errors = new ArrayList<String>()
         final File fileToUnmarshal = new File(pluginConfigFilePath, "config.xml");
         if (!fileToUnmarshal.exists()) {
@@ -440,9 +410,8 @@ public class Plugins {
         }
 
         try {
-            config = (PluginConfig) unmarshaller.unmarshal(fileToUnmarshal);
+            config = (Config) unmarshaller.unmarshal(fileToUnmarshal);
             if (config == null) {
-
                 errors.add("Cannot find config.xml file in plugin directory " + fileToUnmarshal);
                 LOG.error "Cannot find config.xml file in plugin directory " + fileToUnmarshal
             }
@@ -457,66 +426,34 @@ public class Plugins {
         }
         [config, validationCollector, errors, fileToUnmarshal]
     }
-    /** if scanning a resource with artifacts, and files does not contain install.sh,
-     we define the default install.sh file.          */
-    private void addInstallFile(boolean scanningResources, PluginConfig config) {
-        if (config instanceof ResourceConfig) {
-            ResourceConfig resource = config as ResourceConfig;
-            if (scanningResources && !resource.artifacts.isEmpty() &&
-                    resource.files.find({ pluginFile ->
-                        "install.sh".equals(pluginFile.filename)
-                    }) == null) {
 
-                def SCRIPT_FILE = new PluginFile()
-                SCRIPT_FILE.filename = "install.sh"
-                SCRIPT_FILE.id = "INSTALL"
-                config.files.add(SCRIPT_FILE)
-            }
-        }
-    }
-    /** Add dependency on GOBYWEB_SERVER_SIDE resource plugin on each non resource plugins.
+
+    /**
+     * Adds dependency on GOBYWEB_SERVER_SIDE resource plugin on each non resource plugins.
      */
-    private void addServerSidetools(boolean scanningResources, PluginConfig pluginConfig) {
-
-        if (!(pluginConfig instanceof ResourceConfig)) {
-
+    private void addServerSidetools(Config config) {
+        if (config instanceof ExecutableConfig) {
             ResourceConfig resource = lookupResource("GOBYWEB_SERVER_SIDE", "2.0", null)
             assert resource != null: " The GOBYWEB_SERVER_SIDE plugin resource must exist";
             Resource resourceRef = new Resource()
             resourceRef.id = resource.id
             resourceRef.versionExactly = resource.version
-
-            if (!pluginConfig.requires.contains(resourceRef)) {
-
-                pluginConfig.requires.add(0, resourceRef);
+            if (!config.requires.contains(resourceRef)) {
+                config.requires.add(0, resourceRef);
             }
-        } /*else {
-            println("${pluginConfig.id} not a resource")
-        }   */
-
-    }
-
-    private void addScriptFile(boolean scanningResources, PluginConfig config) {
-        if (!scanningResources && config.files.find({ pluginFile ->
-            "script.sh".equals(pluginFile.filename)
-        }) == null) {
-
-            // if files do not contain script.sh, we define the default script file. (not for resources, since
-            // don't have scripts.sh by default:
-            def SCRIPT_FILE = new PluginFile()
-            SCRIPT_FILE.filename = "script.sh"
-            SCRIPT_FILE.id = "SCRIPT"
-            config.files.add(SCRIPT_FILE)
         }
+
     }
 
-/**
- * Check that pluginConfig's resources are available in this instance of GobyWeb.
- * @param pluginConfig
- * @param errors
- * @return
- */
-    ArrayList<String> checkRequiredResources(PluginConfig pluginConfig, ArrayList<String> errors) {
+
+
+    /**
+     * Check that pluginConfig's resources are available in this instance of GobyWeb.
+     * @param pluginConfig
+     * @param errors
+     * @return
+     */
+    List<String> checkRequiredResources(ResourceConsumerConfig pluginConfig, ArrayList<String> errors) {
         for (Resource resourceRef : pluginConfig.requires) {
             // write resources in the format  ${ RESOURCES _ resource-id _ file-id}
             ResourceConfig resource = lookupResource(resourceRef.id, resourceRef.versionAtLeast, resourceRef.versionExactly)
@@ -533,21 +470,22 @@ public class Plugins {
         }
         return errors;
     }
+
     /**
      * Given a plugin, make a map of the plugin and resource names, to their version numbers.
      * @param pluginConfig the plugin to collect version numbers for
      * @return map of plugins to version numbers
      */
-    Map<String, String> pluginVersionsMap(PluginConfig pluginConfig) {
-        pluginVersionsMap(pluginConfig, new LinkedHashMap<String, String>())
+    Map<String, String> pluginVersionsMap(Config config) {
+        pluginVersionsMap(config, new LinkedHashMap<String, String>())
     }
     /**
      * Given a plugin, make a map of the plugin and resource names, to their version numbers.
      * @param pluginConfig the plugin to collect version numbers for
      * @return map of plugins to version numbers
      */
-    Map<String, String> pluginVersionsMap(PluginConfig pluginConfig, Map<String, String> versionsMap) {
-
+   
+    Map<String, String> pluginVersionsMap(Config pluginConfig, Map<String, String> versionsMap) {
         versionsMap["${pluginConfig.getClass().getName()}:${pluginConfig.id}:${pluginConfig.name}"] =
             pluginConfig.version
         for (Resource resource in pluginConfig.requires) {
@@ -630,35 +568,24 @@ public class Plugins {
     private Unmarshaller unmarshaller;
 
     def installSchema(File schemaFile) {
-        jaxbContext = JAXBContext.newInstance(PluginConfig.class);
+        //we install here subclasses to avoid
+        //to list in BaseConfig all its sub-classes with the XMLSeeAlso annotation
+        Class<?>[] classes = new Class<?>[CONFIGS_TO_CLASSES.values().length];
+        int i=0;
+        for (CONFIGS_TO_CLASSES value : CONFIGS_TO_CLASSES.values())  {
+            classes[i++] = value.register()
+        }
+        jaxbContext = JAXBContext.newInstance(classes);
+
         Schema schema;
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        // def url = new URL("http://campagnelab.org/schemas/gobyweb/plugins/plugins.xsd")
-
         if (schemaFile?.exists()) {
             schema = schemaFactory.newSchema(schemaFile);
             marshaller = jaxbContext.createMarshaller();
             unmarshaller = jaxbContext.createUnmarshaller();
-
             marshaller.setSchema(schema);
             unmarshaller.setSchema(schema);
         }
-    }
-/**
- * Returns the PluginConfig matching id or null if the plugin was not found.
- * @param idToFind
- * @return the PluginConfig that matches or null
- * @see Plugins#findPluginTypeById(java.lang.Class, java.lang.String)
- */
-    public PluginConfig findById(String idToFind) {
-        if (idToFind) {
-            for (PluginConfig plugin in pluginConfigs) {
-                if (plugin.id == idToFind) {
-                    return plugin
-                }
-            }
-        }
-        return null;
     }
 
     /**
@@ -667,9 +594,9 @@ public class Plugins {
      * @param idToFind the id to find
      * @return the matching PluginConfig or null
      */
-    public PluginConfig findByDbLegacyId(Class type, String idToFind) {
+    public Config findByDbLegacyId(Class type, String idToFind) {
         if (idToFind) {
-            for (PluginConfig plugin in pluginConfigs) {
+            for (Config plugin in pluginConfigs) {
                 if ((type.isAssignableFrom(plugin.getClass())) && (plugin.dbLegacyId && plugin.dbLegacyId == idToFind)) {
                     return plugin
                 }
@@ -678,69 +605,14 @@ public class Plugins {
         return null;
     }
 
-/**
- * Returns an aligner plugin config matching id or dbLegacyId or null if the plugin was not defined.
- * @param alignerId
- * @return
- * @see Plugins#findPluginTypeById(java.lang.Class, java.lang.String)
- */
-    public AlignerConfig findAlignerById(String idToFind) {
 
-        return (AlignerConfig) findPluginTypeById(AlignerConfig.class, idToFind);
-    }
-/**
- * Returns an executable plugin config matching id or dbLegacyId or null if the plugin was not defined.
- * @param alignerId
- * @return
- * @see Plugins#findPluginTypeById(java.lang.Class, java.lang.String)
- */
-    public ExecutablePluginConfig findExecutableById(String idToFind) {
-
-        return (ExecutablePluginConfig) findPluginTypeById(ExecutablePluginConfig.class, idToFind);
-    }
-/**
- * Returns an alignment analysis plugin config matching id or dbLegacyId or null if the plugin was not defined.
- * @param alignerId
- * @return
- * @see Plugins#findPluginTypeById(java.lang.Class, java.lang.String)
- */
-    public AlignmentAnalysisConfig findAlignmentAnalysisById(String idToFind) {
-
-        return (AlignmentAnalysisConfig) findPluginTypeById(AlignmentAnalysisConfig.class, idToFind);
-    }
-/**
- * Returns an plugin config of the specified type, matching id. The parameter idToFind may be null, in which
- * case null is returned.
- * @param idToFind PluginConfig identifier or dbLegacyId.
- * @param type Type of plugin config that should be returned (either AlignerConfig.class, AlignmentAnalysisConfig.class, ResourceConfig.class)
- * @return an instance of PluginConfig or null.
- */
-    public PluginConfig findPluginTypeById(Class type, String idToFind) {
-        if (idToFind) {
-            for (PluginConfig plugin in pluginConfigs) {
-                if ((type.isAssignableFrom(plugin.getClass())) && (plugin.id == idToFind)) {
-                    return plugin
-                }
-            }
-        }
-        return null;
-    }
-
-    public String getHumanReadablePluginType(PluginConfig config) {
-        def name = config.class.getSimpleName()
-        name = name.replaceAll("Config\$", "")
-        // insert underscores before upper-case characters, then uppercase the result. This adds _ as first character,
-        // we remove it with substring below.
-        name = name.replaceAll("[A-Z]", "_\$0").toUpperCase();
-        name.substring(1)
-    }
 
 /**
  * Write a bash shell script with environment variable definitions for each automatic plugin option.
  * @param pluginConfig The plugin for which user-defined option values should be written.
  * @return The temporary file where options have been written.
  */
-    public File generateAutoOptionsFile(ExecutablePluginConfig pluginConfig, String attributesPrefix = null, Map<String, String> attributes = null) {
+    public File generateAutoOptionsFile(ExecutableConfig pluginConfig, String attributesPrefix = null, Map<String, String> attributes = null) {
         // call validate to force the update of user-defined values from default values.
         pluginConfig.validate()
         File autoOptionTmpFile = new File("/tmp/auto-options-${ICBStringUtils.generateRandomString(15)}.sh")
@@ -765,12 +637,12 @@ public class Plugins {
 
             def pluginId = scriptImportedFrom(pluginConfig)
             if (pluginId != null) {
-                PluginConfig fromPlugin = findExecutableById(pluginId);
+                ExecutableConfig fromPlugin = findExecutableById(pluginId);
                 // write options in the format PLUGINS _ TYPE _ PLUGIN-ID _ OPTION-ID, where plugin refers to the plugin we imported the script from:
-                writer.println("PLUGINS_${getHumanReadablePluginType(fromPlugin)}_${fromPlugin.id}_${option.id}=\"${optionValue}\"")
+                writer.println("PLUGINS_${fromPlugin.getHumanReadableConfigType()}_${fromPlugin.getId()}_${option.id}=\"${optionValue}\"")
             } else {
                 // write options in the format PLUGINS _ TYPE _ PLUGIN-ID _ OPTION-ID
-                writer.println("PLUGINS_${getHumanReadablePluginType(pluginConfig)}_${pluginConfig.id}_${option.id}=\"${optionValue}\"")
+                writer.println("PLUGINS_${pluginConfig.getHumanReadableConfigType()}_${pluginConfig.id}_${option.id}=\"${optionValue}\"")
             }
         }
         writeAutoFormatString(pluginConfig, writer, attributesPrefix, attributes);
@@ -778,9 +650,8 @@ public class Plugins {
         writer.println("# The plugin defines these files: ")
         for (PluginFile file : pluginConfig.files) {
             // write options in the format  ${PLUGINS_ TYPE _ plugin-id _ FILES _ file-id}
-            writer.println("PLUGINS_${getHumanReadablePluginType(pluginConfig)}_${pluginConfig.id}_FILES_${file.id}=\${JOB_DIR}/${file.filename}")
+            writer.println("PLUGINS_${pluginConfig.getHumanReadableConfigType()}_${pluginConfig.id}_FILES_${file.id}=\${JOB_DIR}/${file.filename}")
         }
-
 
         writer.println("# The plugin has access to the following resources: ")
         for (Resource resourceRef : pluginConfig.requires) {
@@ -806,18 +677,18 @@ public class Plugins {
             }
         }
     }
-/**
- * Write autoFormat options that are defined to the _ALL_OTHER_OPTIONS variable.
- * @param pluginConfig
- * @param writer to the auto-options.sh file.
- */
-    void writeAutoFormatString(PluginConfig pluginConfig, PrintWriter writer, String attributesPrefix, Map<String, String> attributes) {
+    /**
+     * Writes autoFormat options that are defined to the _ALL_OTHER_OPTIONS variable.
+     * @param pluginConfig
+     * @param writer to the auto-options.sh file.
+     */
+    void writeAutoFormatString(ExecutableConfig executableConfig, PrintWriter writer, String attributesPrefix, Map<String, String> attributes) {
         // source plugin id -> string buffer map. String buffer will hold the AUTOFORMAT definition for the plugin
         Object2ObjectMap<String, StringBuffer> map = new Object2ObjectArrayMap<String, StringBuffer>()
         def sb
 
         List<Option> optionsToProcess =
-            attributes == null ? pluginConfig.userSpecifiedOptions() : pluginConfig.options()
+            attributes == null ? executableConfig.userSpecifiedOptions() : executableConfig.options()
         for (Option option : optionsToProcess) {
 
             def optionValue
@@ -831,16 +702,16 @@ public class Plugins {
                 optionValue = option.categoryIdToValue(optionValue)
             }
 
-            def pluginId = scriptImportedFrom(pluginConfig)
+            def pluginId = scriptImportedFrom(executableConfig)
+            //what's that for?
             if (pluginId != null) {
-                PluginConfig fromPlugin = findById(pluginId);
+                Config fromPlugin = pluginConfigs.findById(pluginId);
             }
-            PluginConfig sourcePlugin;
+            Config sourcePlugin;
             if (pluginId != null) {
-                PluginConfig fromPlugin = findById(pluginId);
-                sourcePlugin = fromPlugin
+                sourcePlugin = pluginConfigs.findById(pluginId);
             } else {
-                sourcePlugin = pluginConfig
+                sourcePlugin = executableConfig
 
             }
             def buffer = map.get(sourcePlugin.id)
@@ -880,10 +751,10 @@ public class Plugins {
             }
         }
         for (String pluginIdentifier : map.keySet()) {
-            PluginConfig sourcePlugin = findById(pluginIdentifier)
+            Config sourcePlugin = pluginConfigs.findById(pluginIdentifier)
             sb = map.get(pluginIdentifier)
             // write _ALL_OTHER_OPTIONS in the format PLUGINS _ TYPE _ PLUGIN-ID _ _ALL_OTHER_OPTIONS
-            writer.println("PLUGINS_${getHumanReadablePluginType(sourcePlugin)}_${sourcePlugin.id}_ALL_OTHER_OPTIONS=\"${sb.toString()}\"")
+            writer.println("PLUGINS_${sourcePlugin.getHumanReadableConfigType()}_${sourcePlugin.id}_ALL_OTHER_OPTIONS=\"${sb.toString()}\"")
         }
     }
 
@@ -909,12 +780,13 @@ public class Plugins {
         resourceList = resourceList.sort { a, b -> (a.atLeastVersion(b.version) ? -1 : +1) }
         (ResourceConfig) resourceList[0]
     }
-/**
- * Return the id of the plugin this plugin's script is imported from, or null if script was not imported.
- * @param config A plugin configuration.
- * @return Id of a plugin or null.
- */
-    public String scriptImportedFrom(PluginConfig config) {
+
+    /**
+     * Returns the id of the plugin this plugin's script is imported from, or null if script was not imported.
+     * @param config A plugin configuration.
+     * @return Id of a plugin or null.
+     */
+    public String scriptImportedFrom(ExecutableConfig config) {
         def value = config.files.find({ pluginFile ->
             "SCRIPT".equals(pluginFile.id) && (pluginFile.importFromPlugin != null)
         })
@@ -943,33 +815,29 @@ public class Plugins {
         Map<String, HashMap<String, Object>> result = new HashMap<String, HashMap<String, Object>>();
         Object2BooleanOpenHashMap includeOptionInMap = new Object2BooleanOpenHashMap()
 
-        def pluginsOfType = pluginConfigs.findAll { pluginConfig ->
 
-            typeOfPlugin.isAssignableFrom(pluginConfig.getClass())
-        };
         // determine which options should be listed in the map. We include options with a hiddenWhen attribute and options
         // these attributes reference.
-        pluginsOfType.each {
-            pluginConfig ->
-                pluginConfig.options().each { option ->
-                    if (option.hiddenWhenParsed != null) {
-                        def fullId = pluginConfig.id + "_" + option.id
-                        includeOptionInMap.put(fullId, true)
-                        option.hiddenWhenParsed.get().optionIdsList().each {
-                            optionIdReferenced ->
+        List<Config> confs = pluginConfigs.filterConfigs(typeOfPlugin.getClass())
 
-                                includeOptionInMap.put(pluginConfig.id + "_" + optionIdReferenced, true)
-                        }
+        for (Config conf : confs) {
+            conf.options().each { option ->
+                if (option.hiddenWhenParsed != null) {
+                    def fullId = conf.id + "_" + option.id
+                    includeOptionInMap.put(fullId, true)
+                    option.hiddenWhenParsed.get().optionIdsList().each {
+                        optionIdReferenced ->
+                            includeOptionInMap.put(conf.id + "_" + optionIdReferenced, true)
                     }
                 }
-
+            }
         }
-        pluginsOfType.each { pluginConfig ->
-            pluginConfig.options().each { option ->
-                def fullId = pluginConfig.id + "_" + option.id
-                if (includeOptionInMap.get(fullId)) {
 
-                    result.put(fullId, getJavaScriptOptionMap(pluginConfig, option))
+        for (Config conf : confs) {
+            conf.options().each { option ->
+                def fullId = conf.id + "_" + option.id
+                if (includeOptionInMap.get(fullId)) {
+                    result.put(fullId, getJavaScriptOptionMap(conf, option))
                 }
             }
 
@@ -977,8 +845,8 @@ public class Plugins {
         result
     }
 
-    public Map<String, Object> getJavaScriptOptionMap(PluginConfig plugin, Option option) {
-        HashMap<String, Object> result = new HashMap<String, Object>();
+    public Map<String, Object> getJavaScriptOptionMap(Config plugin, Option option) {
+        Map<String, Object> result = new HashMap<String, Object>();
         def type = "text";
         if (option.type == OptionType.CATEGORY) type = "select"
         if (option.type == OptionType.SWITCH) type = "checkbox"
@@ -1013,13 +881,13 @@ public class Plugins {
      * @return the temp directory where any files the script creates will be stored
      */
     File executeScript(
-            final PluginConfig pluginConfig,
-            final org.campagnelab.gobyweb.plugins.xml.Script script,
+            final Config pluginConfig,
+            final org.campagnelab.gobyweb.plugins.xml.common.Script script,
             final Object gobywebObj,
             final Map bindings) {
         final File tempDir = null
         if (script.language == "groovy") {
-            final File pluginScriptFilename = new File(pluginConfig.pluginDirectory, script.filename)
+            final File pluginScriptFilename = new File(pluginConfig.getDirectory(), script.filename)
             if (pluginScriptFilename.exists()) {
                 tempDir = Files.createTempDir()
                 try {

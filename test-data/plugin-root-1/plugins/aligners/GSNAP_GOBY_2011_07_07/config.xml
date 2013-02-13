@@ -15,6 +15,7 @@
     <name>GSNAP (Goby output), 2011-07-07</name>
     <id>GSNAP_GOBY_2011_07_07</id>
     <help>GSNAP writing to Goby output.</help>
+    <version>1.0</version>
     <supportsColorSpace>false</supportsColorSpace>
     <supportsBisulfiteConvertedReads>false</supportsBisulfiteConvertedReads>
     <supportsGobyReads>true</supportsGobyReads>
@@ -23,7 +24,6 @@
     <supportsFastqReads>false</supportsFastqReads>
     <supportsFastaReads>false</supportsFastaReads>
     <supportsBAMAlignments>false</supportsBAMAlignments>
-    <version>1.0</version>
     <indexDirectory>%NODE_LOCAL_DATA_ROOT%/%VERSION%/%ORGANISM%/%SPACE%/gsnap</indexDirectory>
     <runtime>
         <need scope="ALIGN" key="excl" value="true"/>

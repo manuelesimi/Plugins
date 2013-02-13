@@ -1,19 +1,21 @@
 package org.campagnelab.gobyweb.plugins;
 
-import org.apache.commons.io.FilenameUtils;
-import org.campagnelab.gobyweb.artifacts.ArtifactRequestHelper;
-import org.campagnelab.gobyweb.plugins.xml.*;
+import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
+import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
+import org.campagnelab.gobyweb.plugins.xml.common.*;
+import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
+import org.campagnelab.gobyweb.plugins.xml.resources.Artifact;
+import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
+import org.campagnelab.gobyweb.plugins.xml.Config;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Iterator;
 
 import static junit.framework.Assert.*;
@@ -25,6 +27,7 @@ import static junit.framework.Assert.*;
  */
 public class PluginsTest {
     Plugins plugins;
+    PluginRegistry pluginRegistry = PluginRegistry.getRegistry();
 
     @Before
     public void configure() {
@@ -37,21 +40,45 @@ public class PluginsTest {
 
     @Test
     public void loadConfig() {
-        assertTrue("some plugins must be found", plugins.getAlignerPluginConfigs().size() > 0);
+        assertTrue("some plugins must be found", pluginRegistry.size() > 0);
+    }
+
+    @Test
+    public void loadAlignerConfigs() {
+        List<AlignerConfig> aligners = pluginRegistry.filterConfigs(AlignerConfig.class);
+        assertTrue("some aligners must be found", aligners.size() > 0);
+    }
+
+    @Test
+    public void loadAnalysisConfigs() {
+        List<AlignmentAnalysisConfig> analyses = pluginRegistry.filterConfigs(AlignmentAnalysisConfig.class);
+        assertTrue("some analyses must be found", analyses.size() > 0);
+    }
+
+    @Test
+    public void loadResourceConfigs() {
+        List<ResourceConfig> resources = pluginRegistry.filterConfigs(ResourceConfig.class);
+        assertTrue("some resources must be found", resources.size() > 0);
+    }
+
+    @Test
+    public void loadFileSetConfigs() {
+        List<FileSetConfig> fileSets = pluginRegistry.filterConfigs(FileSetConfig.class);
+        //assertTrue("some fileSets must be found", fileSets.size() > 0);
     }
 
     @Test
     public void deriveHumanReadableType() {
-        assertEquals("ALIGNMENT_ANALYSIS", plugins.getHumanReadablePluginType(new AlignmentAnalysisConfig()));
-        assertEquals("ALIGNER", plugins.getHumanReadablePluginType(new AlignerConfig()));
+        assertEquals("ALIGNMENT_ANALYSIS", new AlignmentAnalysisConfig().getHumanReadableConfigType());
+        assertEquals("ALIGNER", new AlignerConfig().getHumanReadableConfigType());
     }
 
     @Test
     public void testAutoOptionsAligner() {
         AlignerConfig config = new AlignerConfig();
-        config.id = "aligner_1";
-        config.name = "aligner 1 goby output";
-        config.help = "Some help text.";
+        config.setId("aligner_1");
+        config.setName("aligner 1 goby output");
+        config.setHelp( "Some help text.");
         config.supportsBAMAlignments = false;
         config.supportsColorSpace = true;
         config.supportsFastaReads = true;
@@ -88,9 +115,9 @@ public class PluginsTest {
     @Test
     public void testWriteArtifact() throws JAXBException {
         ResourceConfig config = new ResourceConfig();
-        config.id = "aligner_1";
-        config.name = "aligner 1 goby output";
-        config.help = "Some help text.";
+        config.setId("aligner_1");
+        config.setName("aligner 1 goby output");
+        config.setHelp("Some help text.");
 
         final Artifact artifact = new Artifact();
         config.artifacts.add(artifact);
@@ -111,9 +138,9 @@ public class PluginsTest {
     @Test
     public void testAutoOptionsDiffExp() {
         AlignmentAnalysisConfig config = new AlignmentAnalysisConfig();
-        config.id = "de";
-        config.name = "aligner 1 goby output";
-        config.help = "Some help text.";
+        config.setId("de");
+        config.setName("aligner 1 goby output");
+        config.setHelp("Some help text.");
 
 
         Option option = new Option();
@@ -142,7 +169,7 @@ public class PluginsTest {
         ref.versionAtLeast = "0.1.14";
 
         ResourceConfig resource = new ResourceConfig();
-        resource.version = "0.1.14";
+        resource.setVersion("0.1.14");
         assertTrue(resource.atLeastVersion("0.1.13"));
         assertTrue(resource.atLeastVersion("0.0.13"));
         assertTrue(resource.atLeastVersion("0.1.14"));
@@ -188,13 +215,13 @@ public class PluginsTest {
         assertNull(plugins.lookupResource("GSNAP_WITH_GOBY", null, "2011.07.07"));
         ResourceConfig resourceConfig = plugins.lookupResource("GSNAP_WITH_GOBY", null, "2011.07.08");
         assertNotNull(resourceConfig);
-        assertEquals("2011.07.08", resourceConfig.version);
+        assertEquals("2011.07.08", resourceConfig.getVersion());
     }
 
 
     @Test
     public void checkExecuteScript() {
-        final AlignmentAnalysisConfig contaminant_extract = plugins.findAlignmentAnalysisById("CONTAMINANT_EXTRACT");
+        final AlignmentAnalysisConfig contaminant_extract = PluginRegistry.getRegistry().findByTypedId("CONTAMINANT_EXTRACT",AlignmentAnalysisConfig.class);
         assertNotNull(contaminant_extract);
         assertNotNull(contaminant_extract.execute);
         ArrayList<Script> executeScripts = contaminant_extract.execute.scripts();
@@ -215,20 +242,20 @@ public class PluginsTest {
         assertNull(plugins.lookupResource("GSNAP_WITH_GOBY", "2099.12.31", null));
         ResourceConfig resourceConfig = plugins.lookupResource("GSNAP_WITH_GOBY", "2011.07.07", null);
         assertNotNull(resourceConfig);
-        assertEquals("2011.11.17", resourceConfig.version);
+        assertEquals("2011.11.17", resourceConfig.getVersion());
     }
 
 
     /**
-     * Check that the same ID can be used to retrieve a resource, or an aligner, dependending on the query method
+     * Check that the same ID can be used to retrieve a resource, or an aligner, depending on the query method
      * used.
      */
     @Test
     public void idScopes() {
-        AlignerConfig alignerById = plugins.findAlignerById("GSNAP_WITH_GOBY");
+        AlignerConfig alignerById = PluginRegistry.getRegistry().findByTypedId("GSNAP_WITH_GOBY",AlignerConfig.class);
         assertNotNull(alignerById);
-        assertNotNull(plugins.findExecutableById("GSNAP_WITH_GOBY"));
-        PluginConfig bwa_goby_resource = plugins.findPluginTypeById(ResourceConfig.class, "GSNAP_WITH_GOBY");
+        assertNotNull(PluginRegistry.getRegistry().findByTypedId("GSNAP_WITH_GOBY", ResourceConfig.class));
+        ResourceConfig bwa_goby_resource = PluginRegistry.getRegistry().findByTypedId("GSNAP_WITH_GOBY",ResourceConfig.class);
         assertNotNull(bwa_goby_resource);
         assertNotSame(alignerById, bwa_goby_resource);
     }
