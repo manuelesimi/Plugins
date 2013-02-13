@@ -118,6 +118,14 @@ public class Plugins {
     }
 
     /**
+     * Gets the registry of the valid plugin configurations loaded from the disk
+     * @return the registry
+     */
+    public PluginRegistry getRegistry() {
+        return this.pluginConfigs;
+    }
+
+    /**
      * Reload the plugin configuration from disk.
      */
     public void reload() {
@@ -874,7 +882,7 @@ public class Plugins {
      * @return the temp directory where any files the script creates will be stored
      */
     File executeScript(
-            final Config pluginConfig,
+            final ExecutableConfig pluginConfig,
             final org.campagnelab.gobyweb.plugins.xml.common.Script script,
             final Object gobywebObj,
             final Map bindings) {

@@ -13,6 +13,8 @@ import java.util.List;
  */
 public abstract class ResourceConsumerConfig extends BaseConfig {
 
+
+
     /**
      * List of resource requirements. Every required resource must be available for a plugin to be installed. Missing
      * resources generate errors at plugin definition time and prevent the plugin from being shown to the end-user.
@@ -22,4 +24,7 @@ public abstract class ResourceConsumerConfig extends BaseConfig {
     @XmlElement(name = "resource")
     public List<Resource> requires = new ArrayList<Resource>();
 
+    public List<Resource> getRequiredResources() {
+        return this.requires;
+    }
 }

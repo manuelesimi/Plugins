@@ -42,6 +42,7 @@ public class PluginRegistry extends ArrayList<Config> {
     /**
      * Gets the list of configurations for a given plugin type
      * @param configClass the type of configurations
+     * @param <T> the class to filter for
      * @return the list of configurations for the plugin type loaded from the disk
      */
     public <T extends Config> List<T> filterConfigs(Class<T> configClass) {
@@ -90,7 +91,7 @@ public class PluginRegistry extends ArrayList<Config> {
      * Returns the configuration matching id or null if the configuration was not found.
      * @param idToFind
      * @param configClass the type of configurations
-     * @param <T>
+     * @param <T> the class to filter for
      * @return the configuration that matches or null
      */
     public <T extends Config> T findByTypedId(String idToFind, Class<T> configClass ) {

@@ -56,6 +56,7 @@ import java.util.List;
  */
 public abstract class ExecutableConfig extends ResourceConsumerConfig {
 
+
     /**
      * Configurations can contain a small number of files. Such files are transparently copied to the grid nodes before
      * executing a job.
@@ -247,4 +248,21 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig {
         SCRIPT_FILE.id = "SCRIPT";
         this.files.add(SCRIPT_FILE);
     }
+
+    public List<PluginFile> getFiles() {
+        return files;
+    }
+
+    public Options getOptions() {
+        return options;
+    }
+
+    public OutputSchema getOutputSchema() {
+        return outputSchema;
+    }
+
+    public Execute getExecute() {
+        return execute;
+    }
+
 }
