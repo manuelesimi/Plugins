@@ -295,7 +295,7 @@ public class Plugins {
      * Reads plugin configuration from the specified path.
      * @param location path to load from.
      */
-    public void readConfigurationFromLocation(String location, boolean scanningResources = false) {
+    public void readConfigurationFromLocation(String location) {
 
         File directory = new File(location);
         if (directory == null || directory.list() == null) {
@@ -303,11 +303,10 @@ public class Plugins {
             return;
         }
         for (String filename : directory.list()) {
-
             if (ignoreFilenames(filename)) {
                 continue;
             }
-            readPluginConfigFile(new File(directory, filename).getAbsolutePath(), scanningResources);
+            readPluginConfigFile(new File(directory, filename).getAbsolutePath());
         }
 
         // now check resources requirements, and remove the plugins that cannot find their resources:
@@ -340,7 +339,7 @@ public class Plugins {
     }
 
 
-    private void readPluginConfigFile(String pluginConfigFilePath, boolean scanningResources) {
+    private void readPluginConfigFile(String pluginConfigFilePath) {
         // printf "Reading plugin dir: error=%b %s %n",somePluginReportedErrors(), pluginDirectory
 
         LOG.info("Scanning location ${pluginConfigFilePath}");
