@@ -2,6 +2,7 @@ package org.campagnelab.gobyweb.plugins;
 
 import org.campagnelab.gobyweb.artifacts.ArtifactRequestHelper;
 import org.campagnelab.gobyweb.artifacts.Artifacts;
+import org.campagnelab.gobyweb.plugins.xml.Config;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +33,13 @@ public class ResourceDependencyTest {
         plugins.reload();
     }
 
+    @Test
+    public void printAll() {
+        for (Config conf : pluginRegistry) {
+            System.out.println(conf);
+        }
+
+    }
     @Test
     public void noPbRequests() {
         AlignerConfig alignerById = pluginRegistry.findByTypedId("GSNAP_WITH_GOBY",AlignerConfig.class);

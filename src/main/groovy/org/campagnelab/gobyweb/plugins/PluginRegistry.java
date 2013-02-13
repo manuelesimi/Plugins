@@ -50,7 +50,7 @@ public class PluginRegistry extends ArrayList<Config> {
             if (p.getClass().isAssignableFrom(configClass))
                 returnedList.add((T) p);
         }
-        return Collections.unmodifiableList(returnedList);
+        return returnedList;
     }
 
     /**
