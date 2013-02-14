@@ -104,10 +104,10 @@ public interface Config {
     public boolean isDisabled();
 
     /**
-     * Disables the configuration. When disabled, the configuration can still have viewable objects that are made with it
+     * Disables/enables the configuration. When disabled, the configuration can still have viewable objects that are made with it
      * but no NEW objects can be created using this configuration.
      */
-    public void disable();
+    public void setDisabled(boolean disabled);
 
     /**
      * Gets a human readable description of the configuration type

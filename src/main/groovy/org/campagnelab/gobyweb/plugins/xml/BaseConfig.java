@@ -188,12 +188,12 @@ public abstract class BaseConfig implements Config {
     }
 
     /**
-     * Disables the configuration. When disabled, the configuration can still have viewable objects that are made with it
+     * Disables/enables the configuration. When disabled, the configuration can still have viewable objects that are made with it
      * but no NEW objects can be created using this configuration.
      */
     @Override
-    public void disable() {
-         this.disabled = true;
+    public void setDisabled(boolean disabled) {
+         this.disabled = disabled;
     }
 
     /**
