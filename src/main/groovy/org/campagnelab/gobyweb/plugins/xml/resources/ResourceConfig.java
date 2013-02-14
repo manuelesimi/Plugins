@@ -193,4 +193,8 @@ public class ResourceConfig extends ResourceConsumerConfig {
     public String toString() {
         return String.format("%s/%s (%s)",this.getHumanReadableConfigType(), this.name, this.version);
     }
+
+    public List<PluginFile> getFiles() {
+        return files;
+    }
 }

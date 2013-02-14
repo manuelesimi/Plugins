@@ -36,6 +36,7 @@
 
 package org.campagnelab.gobyweb.plugins
 
+import com.google.common.io.Files
 import edu.cornell.med.icb.util.ICBStringUtils
 import it.unimi.dsi.fastutil.objects.*
 import it.unimi.dsi.lang.MutableString
@@ -56,7 +57,6 @@ import org.campagnelab.gobyweb.plugins.xml.executables.Script
 import org.campagnelab.gobyweb.plugins.xml.resources.Artifact
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig
 import static org.campagnelab.gobyweb.plugins.PluginLoaderSettings.*;
-import scala.tools.nsc.dependencies.Files
 
 import javax.xml.XMLConstants
 import javax.xml.bind.*
@@ -891,7 +891,7 @@ public class Plugins {
         if (script.language == "groovy") {
             final File pluginScriptFilename = new File(pluginConfig.getDirectory(), script.filename)
             if (pluginScriptFilename.exists()) {
-                tempDir = Files.createTempDir()
+                tempDir = Files.createTempDir();
                 try {
                     final GroovyShell shell = new GroovyShell()
                     groovy.lang.Script pluginScript = shell.parse(pluginScriptFilename)
