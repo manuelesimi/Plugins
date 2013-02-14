@@ -38,7 +38,9 @@ package org.campagnelab.gobyweb.plugins.xml;
 
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
-import org.campagnelab.gobyweb.plugins.xml.common.*;
+import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
+import org.campagnelab.gobyweb.plugins.xml.executables.*;
+import static org.campagnelab.gobyweb.plugins.PluginLoaderSettings.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

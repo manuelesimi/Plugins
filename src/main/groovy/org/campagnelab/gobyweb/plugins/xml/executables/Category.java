@@ -34,38 +34,55 @@
  * WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
  */
 
-package org.campagnelab.gobyweb.plugins.xml.common;
-
-import org.campagnelab.gobyweb.plugins.xml.common.ValidationRule;
-
-import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
+package org.campagnelab.gobyweb.plugins.xml.executables;
 
 /**
+ * Describes a category value. Used to describe individual categorical values of a CATEGORY type option.
  * @author Fabien Campagne
- *         Date: 11/6/11
- *         Time: 4:04 PM
+ *         Date: 10/9/11
+ *         Time: 12:52 PM
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement
-public class Options {
-    @XmlElementWrapper(name = "validation")
-    @XmlElement(name = "rule")
-    public ArrayList<ValidationRule> rules = new ArrayList<ValidationRule>();
+public class Category {
+    /**
+     * Identifier to use in shell scripts and config files to refer to this category value.
+     * When a value for a category is stored in the database, it is the id that is stored.
+     */
+    public String id;
 
-    @XmlElement(name = "option")
-    public ArrayList<Option> option = new ArrayList<Option>();
+    /**
+     * Name to display in the GobyWeb user interface.
+     */
+    public String name;
 
-    public ArrayList<Option> items() {
-        return option;
+    /**
+     * When a value is needed to generate command line options, etc. it is value that is used.
+     * Value, itself, is never displayed to the user, stored in the database, etc.
+     */
+    public String value;
+
+    /**
+     * Text that describes the specific category to end-users.
+     */
+    public String help;
+
+    /**
+     * If exists, previously in the database we stored this value instead of id. During the conversion of
+     * legacy to plugin, if a value equalling dbLegacyValue is encountered for a category, id will be stored
+     * instead.
+     */
+    public String dbLegacyValue;
+
+    public Category(String id, String name, String help) {
+        this(id, name, help, (String) null);
     }
-    public ArrayList<ValidationRule> rules() {
-            return rules;
-        }
 
-
-    public void add(ValidationRule validationRule) {
-            rules.add(validationRule );
+    public Category(String id, String name, String help, String dbLegacyValue) {
+        this.id=id;
+        this.name=name;
+        this.help=help;
+        this.dbLegacyValue=dbLegacyValue;
     }
 
+    public Category() {
+    }
 }

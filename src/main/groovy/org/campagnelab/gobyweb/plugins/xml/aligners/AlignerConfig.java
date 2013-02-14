@@ -36,10 +36,9 @@
 
 package org.campagnelab.gobyweb.plugins.xml.aligners;
 
-import org.campagnelab.gobyweb.plugins.xml.common.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 
 import javax.xml.bind.annotation.*;
-import java.util.List;
 
 /**
  * Configuration information needed to describe a GobyWeb aligner plugin.

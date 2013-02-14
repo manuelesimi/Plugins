@@ -34,38 +34,43 @@
  * WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
  */
 
-package org.campagnelab.gobyweb.plugins.xml.common;
+package org.campagnelab.gobyweb.plugins.xml.executables;
 
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import it.unimi.dsi.fastutil.objects.ObjectSet;
+
+import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Fabien Campagne
- *         Date: 11/8/11
- *         Time: 12:54 PM
+ * @author campagne
+ *         Date: 10/13/11
+ *         Time: 2:48 PM
  */
-public class OptionErrors {
-    /**
-     * The list of option identifiers involved in an error. Can be multiple ids when a validation rule is triggered
-     * that references multiple options.
-     */
-    public List<String> optionIdsInvolved = new ArrayList<String>();
-    /**
-     * The list of options that triggered an error and whose value should be reset.
-     */
-    public List<OptionError> optionsToReset = new ArrayList<OptionError>();
+public class OutputSchema {
+    @XmlElement(name = "outputFile")
+    public ArrayList<OutputFile> files = new ArrayList<OutputFile>();
 
     /**
-     * Determine if errors were found during validation.
-     * @return
+     * Validate the output schema.
+     * @param errors null, or a list of errors messages previously generated.
+     * @return null, or errors, list of error messages.
      */
-    public boolean hasErrors() {
-        return optionsToReset.size() > 0 || optionIdsInvolved.size() > 0;
+    public List<String> validate(List<String> errors) {
+
+        final ObjectSet<String> previousIds = new ObjectOpenHashSet<String>();
+        for (OutputFile file : files) {
+            if (previousIds.contains(file.id)) {
+                if (errors == null) {
+                    errors = new ArrayList<String>();
+                }
+                errors.add(String.format("The output file identifiers must be unique. The id %s repeats.", file.id));
+
+            }
+            previousIds.add(file.id);
+        }
+        return errors;
     }
-
-    /**
-     * Error messages generated when rules fail to validate.
-     */
-    public List<String>ruleErrorMessages=new ArrayList<String>();
 
 }

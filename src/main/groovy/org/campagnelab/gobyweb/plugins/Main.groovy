@@ -6,9 +6,9 @@ import org.apache.commons.io.FilenameUtils
 import org.apache.log4j.Logger
 import org.campagnelab.gobyweb.artifacts.util.CommandExecutor
 import org.campagnelab.gobyweb.plugins.xml.ConfigRef
-import org.campagnelab.gobyweb.plugins.xml.common.ExecutableConfig
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig
 import org.campagnelab.gobyweb.plugins.xml.Config
-import org.campagnelab.gobyweb.plugins.xml.common.Resource
+import org.campagnelab.gobyweb.plugins.xml.resources.Resource
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig
 
 /**

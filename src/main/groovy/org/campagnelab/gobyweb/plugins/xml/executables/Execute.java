@@ -1,6 +1,4 @@
-package org.campagnelab.gobyweb.plugins.xml.common;
-
-import org.campagnelab.gobyweb.plugins.xml.common.Script;
+package org.campagnelab.gobyweb.plugins.xml.executables;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
@@ -13,10 +11,11 @@ import java.util.ArrayList;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
 public class Execute {
-    public ArrayList<Script> scripts() {
-        return scripts;
-    }
 
     @XmlElement(name = "script")
     public ArrayList<Script> scripts = new ArrayList<Script>();
+
+    public ArrayList<Script> scripts() {
+        return scripts;
+    }
 }

@@ -34,7 +34,7 @@
  * WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
  */
 
-package org.campagnelab.gobyweb.plugins.xml.common;
+package org.campagnelab.gobyweb.plugins.xml.executables;
 
 import org.campagnelab.optval.OptionValidationExpression;
 import scala.util.parsing.combinator.Parsers;

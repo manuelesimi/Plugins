@@ -34,43 +34,36 @@
  * WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
  */
 
-package org.campagnelab.gobyweb.plugins.xml.common;
+package org.campagnelab.gobyweb.plugins.xml.executables;
 
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-import it.unimi.dsi.fastutil.objects.ObjectSet;
-
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * @author campagne
- *         Date: 10/13/11
- *         Time: 2:48 PM
+ * @author Fabien Campagne
+ *         Date: 11/6/11
+ *         Time: 4:04 PM
  */
-public class OutputSchema {
-    @XmlElement(name = "outputFile")
-    public ArrayList<OutputFile> files = new ArrayList<OutputFile>();
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
+public class Options {
+    @XmlElementWrapper(name = "validation")
+    @XmlElement(name = "rule")
+    public ArrayList<ValidationRule> rules = new ArrayList<ValidationRule>();
 
-    /**
-     * Validate the output schema.
-     * @param errors null, or a list of errors messages previously generated.
-     * @return null, or errors, list of error messages.
-     */
-    public List<String> validate(List<String> errors) {
+    @XmlElement(name = "option")
+    public ArrayList<Option> option = new ArrayList<Option>();
 
-        final ObjectSet<String> previousIds = new ObjectOpenHashSet<String>();
-        for (OutputFile file : files) {
-            if (previousIds.contains(file.id)) {
-                if (errors == null) {
-                    errors = new ArrayList<String>();
-                }
-                errors.add(String.format("The output file identifiers must be unique. The id %s repeats.", file.id));
-
-            }
-            previousIds.add(file.id);
+    public ArrayList<Option> items() {
+        return option;
+    }
+    public ArrayList<ValidationRule> rules() {
+            return rules;
         }
-        return errors;
+
+
+    public void add(ValidationRule validationRule) {
+            rules.add(validationRule );
     }
 
 }

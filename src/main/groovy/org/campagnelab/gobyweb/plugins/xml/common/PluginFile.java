@@ -38,7 +38,6 @@ package org.campagnelab.gobyweb.plugins.xml.common;
 
 
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
-import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.Config;
 
 import javax.xml.bind.annotation.XmlTransient;

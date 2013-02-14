@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.plugins.xml
 
 import org.campagnelab.gobyweb.plugins.PluginRegistry
+import static org.campagnelab.gobyweb.plugins.PluginLoaderSettings.*;
 
 /**
  * Reference to a configuration.

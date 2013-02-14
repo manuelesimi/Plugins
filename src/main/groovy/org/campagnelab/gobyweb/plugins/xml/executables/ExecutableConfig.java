@@ -34,9 +34,11 @@
  * WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
  */
 
-package org.campagnelab.gobyweb.plugins.xml.common;
+package org.campagnelab.gobyweb.plugins.xml.executables;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
+import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConsumerConfig;
 import org.campagnelab.optval.OptionCallback;
 import org.campagnelab.optval.OptionValidationExpression;
 import org.campagnelab.optval.OptionValidationParser;
@@ -71,7 +73,7 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig {
     public Options options = new Options();
 
     /**
-     * The runtime requirements for this executable plugin.
+     * The runtime requirements for this executables plugin.
      */
     public RuntimeRequirements runtime = new RuntimeRequirements();
 

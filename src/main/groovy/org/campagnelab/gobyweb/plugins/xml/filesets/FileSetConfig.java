@@ -1,6 +1,6 @@
 package org.campagnelab.gobyweb.plugins.xml.filesets;
 
-import org.campagnelab.gobyweb.plugins.xml.common.ResourceConsumerConfig;
+import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConsumerConfig;
 import org.campagnelab.gobyweb.plugins.xml.common.Attribute;
 
 import javax.xml.bind.annotation.*;

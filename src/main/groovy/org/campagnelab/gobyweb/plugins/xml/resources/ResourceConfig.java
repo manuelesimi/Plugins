@@ -39,7 +39,6 @@ package org.campagnelab.gobyweb.plugins.xml.resources;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
-import org.campagnelab.gobyweb.plugins.xml.common.ResourceConsumerConfig;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;

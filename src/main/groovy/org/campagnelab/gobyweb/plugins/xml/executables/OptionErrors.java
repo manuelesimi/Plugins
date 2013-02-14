@@ -34,55 +34,38 @@
  * WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
  */
 
-package org.campagnelab.gobyweb.plugins.xml.common;
+package org.campagnelab.gobyweb.plugins.xml.executables;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Describes a category value. Used to describe individual categorical values of a CATEGORY type option.
  * @author Fabien Campagne
- *         Date: 10/9/11
- *         Time: 12:52 PM
+ *         Date: 11/8/11
+ *         Time: 12:54 PM
  */
-public class Category {
+public class OptionErrors {
     /**
-     * Identifier to use in shell scripts and config files to refer to this category value.
-     * When a value for a category is stored in the database, it is the id that is stored.
+     * The list of option identifiers involved in an error. Can be multiple ids when a validation rule is triggered
+     * that references multiple options.
      */
-    public String id;
+    public List<String> optionIdsInvolved = new ArrayList<String>();
+    /**
+     * The list of options that triggered an error and whose value should be reset.
+     */
+    public List<OptionError> optionsToReset = new ArrayList<OptionError>();
 
     /**
-     * Name to display in the GobyWeb user interface.
+     * Determine if errors were found during validation.
+     * @return
      */
-    public String name;
-
-    /**
-     * When a value is needed to generate command line options, etc. it is value that is used.
-     * Value, itself, is never displayed to the user, stored in the database, etc.
-     */
-    public String value;
-
-    /**
-     * Text that describes the specific category to end-users.
-     */
-    public String help;
-
-    /**
-     * If exists, previously in the database we stored this value instead of id. During the conversion of
-     * legacy to plugin, if a value equalling dbLegacyValue is encountered for a category, id will be stored
-     * instead.
-     */
-    public String dbLegacyValue;
-
-    public Category(String id, String name, String help) {
-        this(id, name, help, (String) null);
+    public boolean hasErrors() {
+        return optionsToReset.size() > 0 || optionIdsInvolved.size() > 0;
     }
 
-    public Category(String id, String name, String help, String dbLegacyValue) {
-        this.id=id;
-        this.name=name;
-        this.help=help;
-        this.dbLegacyValue=dbLegacyValue;
-    }
+    /**
+     * Error messages generated when rules fail to validate.
+     */
+    public List<String>ruleErrorMessages=new ArrayList<String>();
 
-    public Category() {
-    }
 }

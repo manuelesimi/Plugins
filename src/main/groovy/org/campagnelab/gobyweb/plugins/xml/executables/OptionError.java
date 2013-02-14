@@ -34,9 +34,7 @@
  * WILL NOT INFRINGE ANY PATENT, TRADEMARK OR OTHER RIGHTS.
  */
 
-package org.campagnelab.gobyweb.plugins.xml.common;
-
-import org.campagnelab.gobyweb.plugins.xml.common.Option;
+package org.campagnelab.gobyweb.plugins.xml.executables;
 
 /**
  * Describes an option error.

@@ -1,4 +1,4 @@
-package org.campagnelab.gobyweb.plugins.xml.common;
+package org.campagnelab.gobyweb.plugins.xml.resources;
 
 import org.campagnelab.gobyweb.plugins.xml.BaseConfig;
 

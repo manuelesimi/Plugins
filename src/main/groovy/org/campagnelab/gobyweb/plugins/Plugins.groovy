@@ -45,13 +45,14 @@ import org.apache.log4j.Logger
 import org.campagnelab.gobyweb.artifacts.Artifacts
 import org.campagnelab.gobyweb.artifacts.BuildArtifactRequest
 import org.campagnelab.gobyweb.plugins.xml.*
-import org.campagnelab.gobyweb.plugins.xml.common.Need
-import org.campagnelab.gobyweb.plugins.xml.common.Option
-import org.campagnelab.gobyweb.plugins.xml.common.Option.OptionType
-import org.campagnelab.gobyweb.plugins.xml.common.ExecutableConfig
+import org.campagnelab.gobyweb.plugins.xml.executables.Need
+import org.campagnelab.gobyweb.plugins.xml.executables.Option
+import org.campagnelab.gobyweb.plugins.xml.executables.Option.OptionType
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile
-import org.campagnelab.gobyweb.plugins.xml.common.Resource
-import org.campagnelab.gobyweb.plugins.xml.common.ResourceConsumerConfig
+import org.campagnelab.gobyweb.plugins.xml.resources.Resource
+import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConsumerConfig
+import org.campagnelab.gobyweb.plugins.xml.executables.Script
 import org.campagnelab.gobyweb.plugins.xml.resources.Artifact
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig
 import static org.campagnelab.gobyweb.plugins.PluginLoaderSettings.*;
@@ -883,7 +884,7 @@ public class Plugins {
      */
     File executeScript(
             final ExecutableConfig pluginConfig,
-            final org.campagnelab.gobyweb.plugins.xml.common.Script script,
+            final Script script,
             final Object gobywebObj,
             final Map bindings) {
         final File tempDir = null

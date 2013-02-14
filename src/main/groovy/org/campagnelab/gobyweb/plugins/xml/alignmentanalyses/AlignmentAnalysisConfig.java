@@ -36,10 +36,9 @@
 
 package org.campagnelab.gobyweb.plugins.xml.alignmentanalyses;
 
-import org.campagnelab.gobyweb.plugins.xml.common.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

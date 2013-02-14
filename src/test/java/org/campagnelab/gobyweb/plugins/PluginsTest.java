@@ -3,10 +3,14 @@ package org.campagnelab.gobyweb.plugins;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.common.*;
+import org.campagnelab.gobyweb.plugins.xml.executables.Category;
+import org.campagnelab.gobyweb.plugins.xml.executables.Option;
+import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
+import org.campagnelab.gobyweb.plugins.xml.executables.Script;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Artifact;
+import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
-import org.campagnelab.gobyweb.plugins.xml.Config;
 
 import org.junit.Before;
 import org.junit.Test;
