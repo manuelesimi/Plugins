@@ -38,6 +38,7 @@ public class PluginsTest {
     public void configure() {
 
         plugins = new Plugins();
+        plugins.replaceDefaultSchemaConfig(".");
         plugins.addServerConf( "test-data/plugin-root-1");
         plugins.setWebServerHostname("localhost");
         plugins.reload();

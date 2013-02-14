@@ -10,21 +10,28 @@
   ~ When a plugin is not released under the LGPL3 license,  the comments  at the top  of
   ~ the plugin's config.xml will indicate how that specific plugin is released/licensed.
   -->
-<alignerConfig xsi:noNamespaceSchemaLocation="../../../schemas/plugins.xsd"
+<alignerConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <name>GSNAP (Goby output), 2011-07-07</name>
     <id>GSNAP_GOBY_2011_07_07</id>
     <help>GSNAP writing to Goby output.</help>
     <version>1.0</version>
     <supportsColorSpace>false</supportsColorSpace>
-    <supportsBisulfiteConvertedReads>false</supportsBisulfiteConvertedReads>
-    <supportsGobyReads>true</supportsGobyReads>
     <supportsGobyAlignments>true</supportsGobyAlignments>
     <supportsPairedEndAlignments>true</supportsPairedEndAlignments>
+    <supportsBAMAlignments>false</supportsBAMAlignments>
+    <supportsBisulfiteConvertedReads>false</supportsBisulfiteConvertedReads>
+    <supportsGobyReads>true</supportsGobyReads>
     <supportsFastqReads>false</supportsFastqReads>
     <supportsFastaReads>false</supportsFastaReads>
-    <supportsBAMAlignments>false</supportsBAMAlignments>
     <indexDirectory>%NODE_LOCAL_DATA_ROOT%/%VERSION%/%ORGANISM%/%SPACE%/gsnap</indexDirectory>
+    <requires>
+        <resource>
+            <id>GSNAP_WITH_GOBY</id>
+            <versionExactly>2011.07.08</versionExactly>
+        </resource>
+
+    </requires>
     <runtime>
         <need scope="ALIGN" key="excl" value="true"/>
         <need scope="ALIGN" key="h_vmem" value="25g"/>
@@ -36,13 +43,7 @@
         <need scope="ALIGNMENT_POST_PROCESSING" key="virtual_free" value="12g" />
 
     </runtime>
-    <requires>
-        <resource>
-            <id>GSNAP_WITH_GOBY</id>
-            <versionExactly>2011.07.08</versionExactly>
-        </resource>
 
-    </requires>
     <options>
         <option>
             <id>ALIGNER_OPTIONS</id>

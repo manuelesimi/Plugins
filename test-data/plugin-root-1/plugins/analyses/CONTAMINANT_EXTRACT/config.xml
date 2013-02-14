@@ -10,7 +10,7 @@
   ~ When a plugin is not released under the LGPL3 license,  the comments  at the top  of
   ~ the plugin's config.xml will indicate how that specific plugin is released/licensed.
   -->
-<alignmentAnalysisConfig xsi:noNamespaceSchemaLocation="../../../schemas/plugins.xsd"
+<alignmentAnalysisConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <name>Contaminant identification</name>
     <id>CONTAMINANT_EXTRACT</id>
@@ -18,9 +18,9 @@
     <help>Finds potential contaminants based on the unmapped reads in the alignments. This plugin will create contigs from unmapped reads, and try to align these contigs to viral and bacterial nucleotide sequences to identify potential sample contaminants.
     </help>
     <version>1.7</version>
+    <analysisType>DiffExp</analysisType>
     <minimumNumberOfGroups>1</minimumNumberOfGroups>
     <maximumNumberOfGroups>10</maximumNumberOfGroups>
-    <analysisType>DiffExp</analysisType>
     <supportsTranscriptAlignments>false</supportsTranscriptAlignments>
     <splitProcessCombine>true</splitProcessCombine>
     <producesTabDelimitedOutput>true</producesTabDelimitedOutput>
@@ -75,69 +75,7 @@
     <execute>
         <script phase="pre-deployment" language="groovy" filename="makePluginConstants.groovy"/>
     </execute>
-    <outputSchema>
-        <outputFile>
-            <id>CONTAMINANT_RESULTS_DB</id>
-            <name>table with full results of analysis</name>
-            <required>true</required>
-            <mimeType>application/x-sqlite3</mimeType>
-            <filename>contaminants.db</filename>
-            <tableName>contaminants</tableName>
-            <help>View the table of results in the interactive GobyWeb table browser. Table contains found
-                contaminants.
-            </help>
-        </outputFile>
-        <outputFile>
-            <id>CONTAMINANT_RESULTS</id>
-            <name>TSV file with full results of analysis</name>
-            <required>true</required>
-            <mimeType>text/tab-separated-values</mimeType>
-            <filename>contaminants.tsv</filename>
-            <help>TSV file with results of contaminant extraction.</help>
-        </outputFile>
-        <outputFile>
-            <id>CONTAMINANT_SUMMARY_DB</id>
-            <name>table with summary of analysis</name>
-            <required>true</required>
-            <mimeType>application/x-sqlite3</mimeType>
-            <filename>summary.db</filename>
-            <tableName>summary</tableName>
-            <help>View the table of results in the interactive GobyWeb table browser. Table contains summary of found contaminants.</help>
-        </outputFile>
-        <outputFile>
-            <id>CONTAMINANT_SUMMARY</id>
-            <name>TSV file with summary results of analysis</name>
-            <required>true</required>
-            <mimeType>text/tab-separated-values</mimeType>
-            <filename>summary.tsv</filename>
-            <help>TSV file with a summary of contaminant extraction.</help>
-        </outputFile>
-        <outputFile>
-            <id>REALIGNED_UNMAPPED_DB</id>
-            <name>table with match counts of contigs to unmapped reads</name>
-            <required>true</required>
-            <mimeType>application/x-sqlite3</mimeType>
-            <filename>realigned.db</filename>
-            <tableName>realigned</tableName>
-            <help>View the table of results in the interactive GobyWeb table browser. Table contains counts of contigs matched to unmapped reads.</help>
-        </outputFile>
-        <outputFile>
-            <id>REALIGNED_UNMAPPED</id>
-            <name>TSV file with match counts of contigs to unmapped reads</name>
-            <required>true</required>
-            <mimeType>text/tab-separated-values</mimeType>
-            <filename>realigned.tsv</filename>
-            <help>TSV file with match counts of contigs to unmapped reads.</help>
-        </outputFile>
-        <outputFile>
-            <id>ASSEMBLED_READS</id>
-            <name>Assembled Reads</name>
-            <required>true</required>
-            <mimeType>application/x-tar</mimeType>
-            <filename>assembled-reads.tar.gz</filename>
-            <help>GZIP archive with the assembled reads from each sample</help>
-        </outputFile>
-    </outputSchema>
+
     <options>
     	<option>
     		<id>ASSEMBLER</id>
@@ -254,4 +192,67 @@
             <autoFormat>false</autoFormat>
         </option>
     </options>
+    <outputSchema>
+        <outputFile>
+            <id>CONTAMINANT_RESULTS_DB</id>
+            <name>table with full results of analysis</name>
+            <required>true</required>
+            <mimeType>application/x-sqlite3</mimeType>
+            <filename>contaminants.db</filename>
+            <tableName>contaminants</tableName>
+            <help>View the table of results in the interactive GobyWeb table browser. Table contains found
+                contaminants.
+            </help>
+        </outputFile>
+        <outputFile>
+            <id>CONTAMINANT_RESULTS</id>
+            <name>TSV file with full results of analysis</name>
+            <required>true</required>
+            <mimeType>text/tab-separated-values</mimeType>
+            <filename>contaminants.tsv</filename>
+            <help>TSV file with results of contaminant extraction.</help>
+        </outputFile>
+        <outputFile>
+            <id>CONTAMINANT_SUMMARY_DB</id>
+            <name>table with summary of analysis</name>
+            <required>true</required>
+            <mimeType>application/x-sqlite3</mimeType>
+            <filename>summary.db</filename>
+            <tableName>summary</tableName>
+            <help>View the table of results in the interactive GobyWeb table browser. Table contains summary of found contaminants.</help>
+        </outputFile>
+        <outputFile>
+            <id>CONTAMINANT_SUMMARY</id>
+            <name>TSV file with summary results of analysis</name>
+            <required>true</required>
+            <mimeType>text/tab-separated-values</mimeType>
+            <filename>summary.tsv</filename>
+            <help>TSV file with a summary of contaminant extraction.</help>
+        </outputFile>
+        <outputFile>
+            <id>REALIGNED_UNMAPPED_DB</id>
+            <name>table with match counts of contigs to unmapped reads</name>
+            <required>true</required>
+            <mimeType>application/x-sqlite3</mimeType>
+            <filename>realigned.db</filename>
+            <tableName>realigned</tableName>
+            <help>View the table of results in the interactive GobyWeb table browser. Table contains counts of contigs matched to unmapped reads.</help>
+        </outputFile>
+        <outputFile>
+            <id>REALIGNED_UNMAPPED</id>
+            <name>TSV file with match counts of contigs to unmapped reads</name>
+            <required>true</required>
+            <mimeType>text/tab-separated-values</mimeType>
+            <filename>realigned.tsv</filename>
+            <help>TSV file with match counts of contigs to unmapped reads.</help>
+        </outputFile>
+        <outputFile>
+            <id>ASSEMBLED_READS</id>
+            <name>Assembled Reads</name>
+            <required>true</required>
+            <mimeType>application/x-tar</mimeType>
+            <filename>assembled-reads.tar.gz</filename>
+            <help>GZIP archive with the assembled reads from each sample</help>
+        </outputFile>
+    </outputSchema>
 </alignmentAnalysisConfig>

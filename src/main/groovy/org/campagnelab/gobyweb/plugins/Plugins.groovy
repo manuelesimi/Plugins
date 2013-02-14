@@ -137,6 +137,8 @@ public class Plugins {
     }
 
     private void readConfiguration() {
+        if (schemaFile == null)
+            throw new IllegalStateException("No valid schema file is available for validating plugin configuration")
         for (String serverConfDir : serverConfDirectories) {
             for (String dir : SCANNED_DIRS)
                 readConfigurationFromLocation(serverConfDir + dir);
@@ -551,6 +553,19 @@ public class Plugins {
             locateSchema()
         } else {
             LOG.warn("serverConf does not exist or is not a directory: " + serverConfDirectory)
+        }
+    }
+
+    /**
+     *
+     * @param schemaConfigDirectory
+     */
+    public void replaceDefaultSchemaConfig(String schemaConfigDirectory) {
+        final File currentSchemaFile = new File(schemaConfigDirectory + SCHEMA);
+        if (currentSchemaFile.exists()) {
+            schemaFile = currentSchemaFile
+            LOG.info "Installing schema file ${schemaFile} for plugins XML validation."
+            installSchema(currentSchemaFile)
         }
     }
 

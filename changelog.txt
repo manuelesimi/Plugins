@@ -1,7 +1,6 @@
-2.2
-- Add FileSets
 
-2.1
+2.0
 - Collect loaded Configs in the PluginRegistry
 - Refactor the class hierarchy for Configs
 - Split plugin.xsd in smaller schemas, one per each Plugin type
+- Separate the project from GobyWeb
