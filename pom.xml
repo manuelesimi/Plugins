@@ -30,7 +30,6 @@
                         </goals>
                         <configuration>
                             <classifier>schemas</classifier>
-                            <!--finalName>artifacts-api</finalName-->
                             <includes>
                                 <include>schemas/.*xsd</include>
                             </includes>
