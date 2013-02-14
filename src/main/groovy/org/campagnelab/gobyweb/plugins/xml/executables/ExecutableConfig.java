@@ -49,6 +49,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A configuration that can be executed on the grid.
@@ -249,6 +250,31 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig {
         SCRIPT_FILE.filename = "script.sh";
         SCRIPT_FILE.id = "SCRIPT";
         this.files.add(SCRIPT_FILE);
+    }
+
+    public List<OptionError> validateOptionValues() {
+        List<OptionError> errors = new ArrayList<OptionError>();
+        for (Option anOption : options.items()) {
+            final OptionError error = anOption.validateOptionValue();
+            if (error != null) {
+                errors.add(error);
+            }
+        }
+        return errors;
+    }
+
+
+    public OptionErrors validateOptionValues(final String prefix, final Map<String, String> attributes) {
+        OptionErrors oe=new OptionErrors();
+        for (Option anOption : options.items()) {
+            String attributeName = ((prefix == null) ? "" : prefix) + anOption.id;
+            final OptionError error = anOption.validateOptionValue(attributes.get(attributeName));
+            if (error != null) {
+                error.setFieldId(attributeName);
+                oe.optionsToReset.add(error);
+            }
+        }
+        return oe;
     }
 
     public List<PluginFile> getFiles() {

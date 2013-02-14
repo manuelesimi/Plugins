@@ -4,6 +4,7 @@ import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.common.*;
 import org.campagnelab.gobyweb.plugins.xml.executables.Category;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.Option;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.Script;
@@ -63,6 +64,11 @@ public class PluginsTest {
     public void loadResourceConfigs() {
         List<ResourceConfig> resources = pluginRegistry.filterConfigs(ResourceConfig.class);
         assertTrue("some resources must be found", resources.size() > 0);
+    }
+
+    @Test
+    public void loadConfigByTypedId() {
+        assertNotNull("GSNAP_GOBY not found",plugins.getRegistry().findByTypedId("GSNAP_GOBY", ExecutableConfig.class));
     }
 
     @Test

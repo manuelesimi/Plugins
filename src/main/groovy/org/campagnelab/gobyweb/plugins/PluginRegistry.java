@@ -48,7 +48,8 @@ public class PluginRegistry extends ArrayList<Config> {
     public <T extends Config> List<T> filterConfigs(Class<T> configClass) {
         List<T> returnedList = new ArrayList<T>();
         for (Config p : this) {
-            if (p.getClass().isAssignableFrom(configClass))
+            if ( (p.getClass().isAssignableFrom(configClass) //same class
+                || (configClass.isInstance(p))))             //or a sub-class
                 returnedList.add((T) p);
         }
         return returnedList;
@@ -98,7 +99,8 @@ public class PluginRegistry extends ArrayList<Config> {
         if (idToFind != null) {
             for (Config config: this) {
                 if ((config.getId().compareTo(idToFind)==0)
-                        && (config.getClass().isAssignableFrom(configClass))){
+                    && ((config.getClass().isAssignableFrom(configClass)) //same class
+                        ||(configClass.isInstance(config)))){  //or a sub-class
                     return (T)config;
                 }
             }

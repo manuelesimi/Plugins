@@ -2,6 +2,7 @@ package org.campagnelab.gobyweb.plugins;
 
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.Config;
@@ -89,6 +90,12 @@ public class PluginRegistryTest {
     }
 
     @Test
+    public void getExecutables() {
+        List<ExecutableConfig> executableConfigs = registry.filterConfigs(ExecutableConfig .class);
+        assertEquals("There must be 2 ExecutableConfigs", 2, executableConfigs.size());
+    }
+
+    @Test
     public void findById() {
         assertNotNull("No aligner with id=aligner_1 found",registry.findById("aligner_1"));
     }
@@ -96,8 +103,10 @@ public class PluginRegistryTest {
 
     @Test
     public void findByTypedId() {
-        assertNotNull("No aligner with id=aligner_1 found",registry.findByTypedId("aligner_1", AlignerConfig.class));
+        assertNotNull("Aligner with id=aligner_1 found",registry.findByTypedId("aligner_1", AlignerConfig.class));
         assertNull("Aligner with id=aligner_1 found, but it is an AlignmentAnalysisConfig", registry.findByTypedId("aligner_1", AlignmentAnalysisConfig.class));
+        assertNotNull("Executable with id=aligner_1 found",registry.findByTypedId("aligner_1", ExecutableConfig.class));
+
     }
 
     @Test
