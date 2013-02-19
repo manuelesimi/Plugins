@@ -8,7 +8,6 @@ import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.Option;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.Script;
-import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Artifact;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
@@ -70,12 +69,6 @@ public class PluginsTest {
     @Test
     public void loadConfigByTypedId() {
         assertNotNull("GSNAP_GOBY not found",plugins.getRegistry().findByTypedId("GSNAP_GOBY", ExecutableConfig.class));
-    }
-
-    @Test
-    public void loadFileSetConfigs() {
-        List<FileSetConfig> fileSets = pluginRegistry.filterConfigs(FileSetConfig.class);
-        //assertTrue("some fileSets must be found", fileSets.size() > 0);
     }
 
     @Test

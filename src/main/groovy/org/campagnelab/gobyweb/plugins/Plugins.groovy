@@ -323,13 +323,16 @@ public class Plugins {
         // now check resources requirements, and remove the plugins that cannot find their resources:
         def toRemove = []
         for (Config config : pluginConfigs) {
-
-            def errors = new ArrayList<String>()
-            errors = checkRequiredResources(config, errors)
-            if (!errors.isEmpty()) {
-                toRemove.add(config)
-                errors.each { message ->
-                    LOG.error("An error occured resolving a plugin resource requirement: ${message}")
+            if ( (config.getClass().isAssignableFrom(ResourceConsumerConfig.class) //same class
+                    || (ResourceConsumerConfig.isInstance(config)))) {            //or a sub-class
+                LOG.trace ("Checking resources for ${config}")
+                def errors = new ArrayList<String>()
+                errors = checkRequiredResources(config, errors)
+                if (!errors.isEmpty()) {
+                    toRemove.add(config)
+                    errors.each { message ->
+                        LOG.error("An error occured resolving a plugin resource requirement: ${message}")
+                    }
                 }
             }
         }

@@ -4,7 +4,6 @@ import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
-import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.Config;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,26 +46,9 @@ public class PluginRegistryTest {
         alignmentAnalysisConfig.setVersion("1.1");
         alignmentAnalysisConfig.setHelp("Some help text.");
         registry.add(alignmentAnalysisConfig);
-        FileSetConfig fileSetConfig = new FileSetConfig();
-        fileSetConfig.setId("fe_1");
-        fileSetConfig.setName("first fileset");
-        fileSetConfig.setVersion("1.0");
-        fileSetConfig.setHelp("this is a fileset");
-        registry.add(fileSetConfig);
-        FileSetConfig fileSetConfig2 = new FileSetConfig();
-        fileSetConfig2.setId("fe_2");
-        fileSetConfig2.setVersion("2.0");
-        fileSetConfig2.setName("second fileset");
-        fileSetConfig2.setHelp("this is a fileset");
-        registry.add(fileSetConfig2);
+
     }
 
-    @Test
-    public void getFilesets() {
-        List<FileSetConfig> fileSetConfigs = registry.filterConfigs(FileSetConfig.class);
-        assertEquals("There must be only two Filesets", 2, fileSetConfigs.size());
-        assertEquals("Fileset not found", "fe_1", fileSetConfigs.get(0).getId());
-    }
     @Test
     public void getResources() {
         List<ResourceConfig> resourceConfigs = registry.filterConfigs(ResourceConfig.class);

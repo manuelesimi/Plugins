@@ -3,7 +3,6 @@ package org.campagnelab.gobyweb.plugins;
 import org.campagnelab.gobyweb.plugins.xml.Config;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
-import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 /**
@@ -53,9 +52,6 @@ public class PluginLoaderSettings {
         },
         AlignmentAnalysisConfig {
             public Class<? extends Config> register() {return AlignmentAnalysisConfig.class;}
-        },
-        FileSetConfig {
-            public Class<? extends Config> register() {return FileSetConfig.class;}
         },
         ResourceConfig {
             public Class<? extends Config> register() {return ResourceConfig.class;}
