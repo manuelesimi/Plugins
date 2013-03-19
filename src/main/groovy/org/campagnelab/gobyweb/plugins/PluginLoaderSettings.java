@@ -3,10 +3,13 @@ package org.campagnelab.gobyweb.plugins;
 import org.campagnelab.gobyweb.plugins.xml.Config;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
+import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 /**
- * Settings used during the configurations loading activities
+ * Settings used during the configuration loading activities
+ * @author manuele
  */
 public class PluginLoaderSettings {
 
@@ -21,7 +24,9 @@ public class PluginLoaderSettings {
     protected static final String[] SCANNED_DIRS = new String[] {
             "/plugins/resources",   // note that we define resources first, before any plugin that may require them.
             "/plugins/aligners",
-            "/plugins/analyses"
+            "/plugins/analyses",
+            "/plugins/fileSets", // fileSets must be loaded before tasks, as they may refer them
+            "/plugins/tasks"
     };
 
     /**
@@ -43,7 +48,7 @@ public class PluginLoaderSettings {
     };
 
     /**
-     * List the configuration classes to register when creating a new instance of {@link javax.xml.bind.JAXBContext}
+     * List the configuration classes to register when a new instance of {@link javax.xml.bind.JAXBContext} is being created
      */
     public enum CONFIGS_TO_CLASSES {
 
@@ -52,6 +57,12 @@ public class PluginLoaderSettings {
         },
         AlignmentAnalysisConfig {
             public Class<? extends Config> register() {return AlignmentAnalysisConfig.class;}
+        },
+        FileSetConfig {
+            public Class<? extends Config> register() {return FileSetConfig.class;}
+        },
+        TaskConfig {
+            public Class<? extends Config> register() {return TaskConfig.class;}
         },
         ResourceConfig {
             public Class<? extends Config> register() {return ResourceConfig.class;}

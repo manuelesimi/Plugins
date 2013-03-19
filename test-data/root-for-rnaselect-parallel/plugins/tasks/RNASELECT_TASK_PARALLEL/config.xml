@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <name>RNASELECT Task</name>
+    <id>RNASELECT_TASK</id>
+    <help>Execute RNASELECT resource as Task to process multiple reads files and produce a TSV</help>
+    <version>1.0</version>
+    <requires>
+        <resource>
+            <id>RNASELECT</id>
+            <versionAtLeast>1.0</versionAtLeast>
+        </resource>
+    </requires>
+    <options>
+        <option>
+            <id>PROCESS_N</id>
+            <dbLegacyId>process_n</dbLegacyId>
+            <name>Process N</name>
+            <help>....</help>
+            <required>false</required>
+            <defaultsTo>5</defaultsTo>
+            <type>INTEGER</type>
+            <autoFormat>true</autoFormat>
+            <flagFormat>-n %s</flagFormat>
+            <includeSpaces>true</includeSpaces>
+        </option>
+    </options>
+    <inputSchema>
+        <fileSetRef minOccurs="1" maxOccurs="unbounded">
+            <id>COMPACT_READS</id>
+            <versionAtLeast>1.0</versionAtLeast>
+        </fileSetRef>
+        <criteria/>
+    </inputSchema>
+    <outputSchema>
+        <fileSetRef minOccurs="1" maxOccurs="1">
+            <id>TSV</id>
+            <version>1.0</version>
+            <failIfNotProduced>true</failIfNotProduced>
+        </fileSetRef>
+    </outputSchema>
+    <parallelization>
+        <!-- Apply the BASE_SUBSET strategy to the input files. This results in splitting each input by a subset
+        of the bases in the read. Each strategy provides a method to obtain the total number of splits for a fileset,
+        the index of the split that the task is processing, and arguments to retrieve a slice of the fileset corresponding
+        to the index. Check the definition of the parallelization strategy for details. -->
+        <input id="COMPACT_READS" strategy="BASE_SUBSET"/>
+        <!-- Apply the GOBY_FDR_MODE strategy to the output files. This will run the Goby fdr mode on the split
+        outputs to combine the TSVs into one, preserving the headers. -->
+        <output id="TSV" strategy="GOBY_FDR_MODE"/>
+    </parallelization>
+</taskConfig>

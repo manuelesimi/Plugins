@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fileSetConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <name>Text file </name>
+    <id>TEXT</id>
+    <help>.txt is a file format for files consisting of text usually containing only ASCII-only characters.
+        It matches the format accepted by the system terminal or simple text editor.
+        Files with the .txt extension can easily be read or opened by any program that reads text and, for that reason, are considered universal (or platform independent).</help>
+    <version>1.0</version>
+    <files>
+        <selector matchAttribute="basename">
+            <id>TXT</id>
+            <pattern>*.txt</pattern>
+            <mandatory>true</mandatory>
+        </selector>
+    </files>
+    <attributes>
+        <attribute name="basename"/>
+    </attributes>
+</fileSetConfig>

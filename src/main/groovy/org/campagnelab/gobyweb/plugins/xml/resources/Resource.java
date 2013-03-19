@@ -52,6 +52,12 @@ public class Resource {
      * Minimum version number of the resource required. Any version is acceptable when version==null.
      */
     public String versionAtLeast;
+
+    /**
+     * Maximum version number of the resource required. Any version is acceptable when version==null.
+     */
+    public String versionAtMost;
+
     /**
      * Exact version number of the resource required. Any version is acceptable when version==null.
      */

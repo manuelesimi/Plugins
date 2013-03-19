@@ -37,6 +37,7 @@
 package org.campagnelab.gobyweb.plugins.xml.alignmentanalyses;
 
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.OutputSchema;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -121,6 +122,9 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
      */
     public int maximumNumberOfGroups;
 
+    public OutputSchema outputSchema = new OutputSchema();
+
+
     public enum AnalysisType {
         DiffExp,
         SequenceVariants,
@@ -150,6 +154,8 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
         if (producesTabDelimitedOutput && producesVariantCallingFormatOutput) {
             errors.add("TSV and VCF are mutually exclusive. An alignment analysis plugin cannot support both.");
         }
+        outputSchema.validate(errors);
+
     }
 
     /**

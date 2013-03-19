@@ -37,8 +37,10 @@
 package org.campagnelab.gobyweb.plugins.xml.aligners;
 
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.OutputSchema;
 
 import javax.xml.bind.annotation.*;
+import java.util.List;
 
 /**
  * Configuration information needed to describe a GobyWeb aligner plugin.
@@ -115,6 +117,7 @@ public class AlignerConfig extends ExecutableConfig {
      */
     public boolean supportsBisulfiteConvertedReads;
 
+    public OutputSchema outputSchema = new OutputSchema();
 
     /**
      * Gets a human readable description of the configuration type
@@ -126,6 +129,22 @@ public class AlignerConfig extends ExecutableConfig {
         return "ALIGNER";
     }
 
+
+    public OutputSchema getOutputSchema() {
+        return outputSchema;
+    }
+    /**
+     * Validates the plugins id
+     *
+     * @param type
+     * @param id
+     * @param errors the list of errors found during the validation
+     */
+    @Override
+    public void validateId(String type, String id, List<String> errors) {
+        super.validateId(type, id, errors);
+        outputSchema.validate(errors);
+    }
 
     @Override
     public String toString() {

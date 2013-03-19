@@ -4,7 +4,6 @@ import org.campagnelab.gobyweb.plugins.xml.Config;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -108,5 +107,33 @@ public class PluginRegistry extends ArrayList<Config> {
         return null;
     }
 
+
+    /**
+     * Return the configuration with largest version number, such that the resource has the identifier and at least the specified
+     * version number.
+     * @param resourceId
+     * @param versionAtLeast required version
+     * @param versionExactly required exact this version
+     * @return Most recent resource (by version number) with id and version>v
+     */
+//    public <T extends SupportAtLeastVersionDependency> T lookup(String resourceId, String versionAtLeast, String versionExactly, Class<T> configClass) {
+//        List<T> configList = new ArrayList<T>();
+//        for (T resource :  this.filterConfigs(configClass.class)) {
+//            if (versionExactly != null) {
+//                if (resource.getId().equalsIgnoreCase(resourceId) &&
+//                        resource.exactlyVersion(versionExactly))
+//                    configList.add(resource);
+//            } else if (versionAtLeast != null) {
+//                if (resource.getId().equalsIgnoreCase(resourceId) &&
+//                        resource.atLeastVersion(versionAtLeast))
+//                    configList.add(resource);
+//            }
+//        }
+//        if (configList.size() > 0) {
+//            Collections.sort(configList);
+//            return configList.get(0);
+//        } else
+//            return null;
+//    }
 }
 

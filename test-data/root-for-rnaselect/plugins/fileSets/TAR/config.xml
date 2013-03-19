@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fileSetConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <name>tar file format</name>
+    <id>TAR</id>
+    <help>A tar archive file contains uncompressed byte streams of the files which it contains.</help>
+    <version>1.0</version>
+    <files>
+        <selector matchAttribute="basename">
+            <id>TGZ</id>
+            <pattern>*.tgz</pattern>
+            <mandatory>false</mandatory>
+        </selector>
+        <selector matchAttribute="basename">
+            <id>TAR_GZ</id>
+            <pattern>*.tar.gz</pattern>
+            <mandatory>false</mandatory>
+        </selector>
+        <selector matchAttribute="basename">
+            <id>TAR</id>
+            <pattern>*.tar</pattern>
+            <mandatory>false</mandatory>
+        </selector>
+    </files>
+    <attributes>
+        <attribute name="basename"/>
+    </attributes>
+</fileSetConfig>

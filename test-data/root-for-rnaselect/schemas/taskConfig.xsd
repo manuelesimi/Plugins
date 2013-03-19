@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="config.xsd"/>
+
+    <xs:include schemaLocation="common.xsd"/>
+
+    <xs:simpleType name="T_occurs">
+        <xs:union memberTypes="xs:nonNegativeInteger">
+            <xs:simpleType>
+                <xs:restriction base="xs:NMTOKEN">
+                    <xs:enumeration value="unbounded"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+    <xs:complexType name="T_fileSetFilters"></xs:complexType>
+
+    <xs:complexType name="T_inFileSetRef">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:choice minOccurs="1" maxOccurs="2">
+                <xs:element ref="versionAtLeast"/>
+                <xs:element ref="versionExactly"/>
+                <xs:element ref="versionAtMost"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="minOccurs" type="xs:nonNegativeInteger" use="optional" default="1"/>
+        <xs:attribute name="maxOccurs" type="T_occurs" use="optional" default="1"/>
+    </xs:complexType>
+
+    <xs:complexType name="T_outFileSetRef">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="version" type="xs:string"/>
+            <xs:element name="failIfNotProduced" type="xs:boolean" default="true"/>
+        </xs:sequence>
+        <xs:attribute name="minOccurs" type="xs:nonNegativeInteger" use="optional" default="1"/>
+        <xs:attribute name="maxOccurs" type="T_occurs" use="optional" default="1"/>
+    </xs:complexType>
+
+    <xs:complexType name="T_task-output-schema">
+        <xs:sequence>
+            <xs:element name="fileSetRef" type="T_outFileSetRef" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="T_task-input-schema">
+        <xs:sequence>
+            <xs:element name="fileSetRef" type="T_inFileSetRef" maxOccurs="unbounded"/>
+            <xs:element name="criteria" type="T_fileSetFilters" maxOccurs="unbounded"/>
+
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="T_taskConfig">
+        <xs:complexContent>
+            <xs:extension base="BasePluginConfig">
+                <xs:sequence>
+                    <xs:element ref="requires" minOccurs="0"/>
+                    <xs:element ref="options" minOccurs="0"/>
+                    <xs:element name="inputSchema" type="T_task-input-schema"/>
+                    <xs:element name="outputSchema" type="T_task-output-schema"/>
+                    <xs:element name="parallelization" type="T_task-parallelization" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="T_task-parallelization">
+        <xs:all>
+            <xs:element name="input" type="T_task-parallelization-input"/>
+            <xs:element name="output" type="T_task-parallelization-output"/>
+        </xs:all>
+
+    </xs:complexType>
+    <xs:complexType name="T_task-parallelization-input">
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="strategy" type="xs:string"/>
+    </xs:complexType>
+    <xs:complexType name="T_task-parallelization-output">
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="strategy" type="xs:string"/>
+    </xs:complexType>
+</xs:schema>

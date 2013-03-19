@@ -8,10 +8,12 @@ import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.Option;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.Script;
+import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Artifact;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,7 +40,7 @@ public class PluginsTest {
 
         plugins = new Plugins();
         plugins.replaceDefaultSchemaConfig(".");
-        plugins.addServerConf( "test-data/plugin-root-1");
+        plugins.addServerConf( "test-data/root-for-rnaselect");
         plugins.setWebServerHostname("localhost");
         plugins.reload();
     }
@@ -69,6 +71,18 @@ public class PluginsTest {
     @Test
     public void loadConfigByTypedId() {
         assertNotNull("GSNAP_GOBY not found",plugins.getRegistry().findByTypedId("GSNAP_GOBY", ExecutableConfig.class));
+    }
+
+    @Test
+    public void loadFileSetConfigs() {
+        List<FileSetConfig> fileSets = pluginRegistry.filterConfigs(FileSetConfig.class);
+        assertTrue("some fileSets must be found", fileSets.size() > 0);
+    }
+
+    @Test
+    public void loadTaskConfigs() {
+        List<TaskConfig> taskSets = pluginRegistry.filterConfigs(TaskConfig.class);
+        assertTrue("some tasks must be found", taskSets.size() > 0);
     }
 
     @Test
@@ -188,8 +202,8 @@ public class PluginsTest {
      */
     @Test
     public void loadResources() {
-        assertNull(plugins.lookupResource("SAMTOOLS", null, "0.1.17"));
-        assertNotNull(plugins.lookupResource("SAMTOOLS", "0.1.18", null));
+        assertNull(DependencyResolver.resolveResource("SAMTOOLS", null, "0.1.17"));
+        assertNotNull(DependencyResolver.resolveResource("SAMTOOLS", "0.1.18", null));
     }
 
 
@@ -199,7 +213,7 @@ public class PluginsTest {
     @Test
     public void loadResourcesWithArtifacts() {
 
-        final ResourceConfig star = plugins.lookupResource("STAR", "2.2.0", "2.2.0");
+        final ResourceConfig star = DependencyResolver.resolveResource("STAR", "2.2.0", "2.2.0");
         assertNotNull(star);
         assertFalse(star.artifacts.isEmpty());
         //
@@ -216,8 +230,8 @@ public class PluginsTest {
      */
     @Test
     public void loadResourcesExactly() {
-        assertNull(plugins.lookupResource("GSNAP_WITH_GOBY", null, "2011.07.07"));
-        ResourceConfig resourceConfig = plugins.lookupResource("GSNAP_WITH_GOBY", null, "2011.07.08");
+        assertNull(DependencyResolver.resolveResource("GSNAP_WITH_GOBY", null, "2011.07.07"));
+        ResourceConfig resourceConfig = DependencyResolver.resolveResource("GSNAP_WITH_GOBY", null, "2011.07.08");
         assertNotNull(resourceConfig);
         assertEquals("2011.07.08", resourceConfig.getVersion());
     }
@@ -241,10 +255,9 @@ public class PluginsTest {
      * GSNAP_WITH_GOBY/atLeast=2099.12.13 cannot be satisfied as it is too big a version.
      * 2011.01.01 can be satisfied and should return the HIGHEST version GSNAP_WITH_GOBY.
      */
-    @Test
     public void loadResourcesAtLeast() {
-        assertNull(plugins.lookupResource("GSNAP_WITH_GOBY", "2099.12.31", null));
-        ResourceConfig resourceConfig = plugins.lookupResource("GSNAP_WITH_GOBY", "2011.07.07", null);
+        assertNull(DependencyResolver.resolveResource("GSNAP_WITH_GOBY", "2099.12.31", null));
+        ResourceConfig resourceConfig = DependencyResolver.resolveResource("GSNAP_WITH_GOBY", "2011.07.07", null);
         assertNotNull(resourceConfig);
         assertEquals("2011.11.17", resourceConfig.getVersion());
     }

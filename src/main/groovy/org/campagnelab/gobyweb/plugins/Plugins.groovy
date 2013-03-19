@@ -160,7 +160,7 @@ public class Plugins {
             if (idCount.getInt(idUnique) > 1) {
                 for (Config sameIdConfig : pluginConfigs.findAllById(idUnique)) {
                     if (! sameIdConfig.getClass().isAssignableFrom(ResourceConfig.class)) {
-                        LOG.error ("Plugin identifier "+ idUnique + "cannot be used more than once");
+                        LOG.error ("Plugin identifier "+ idUnique + " cannot be used more than once");
                         somePluginReportedErrors = true;
                         // decrement the counter so we don't report the error more than once
                         idCount.put(config.getId(), 1);
@@ -366,7 +366,7 @@ public class Plugins {
             return
         }
 
-        if (!validationCollector.hasEvents()) {
+        if (!validationCollector.hasEvents()) {  //the config was correctly loaded
             if (config != null) {
                 config.validate(errors);
             }

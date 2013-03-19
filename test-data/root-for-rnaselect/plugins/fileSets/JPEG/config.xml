@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fileSetConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <name>Image in the JPEG standard format</name>
+    <id>JPEG</id>
+    <help>JPEG is a commonly used method of lossy compression for digital photography (image).
+        The degree of compression can be adjusted, allowing a selectable tradeoff between storage size and image quality.
+        JPEG typically achieves 10:1 compression with little perceptible loss in image quality.</help>
+    <version>1.0</version>
+    <files>
+        <selector matchAttribute="basename">
+            <id>JPEG</id>
+            <pattern>*.jpeg</pattern>
+            <mandatory>false</mandatory>
+        </selector>
+        <selector matchAttribute="basename">
+            <id>JPG</id>
+            <pattern>*.jpg</pattern>
+            <mandatory>false</mandatory>
+        </selector>
+    </files>
+    <attributes>
+        <attribute name="basename"/>
+    </attributes>
+</fileSetConfig>

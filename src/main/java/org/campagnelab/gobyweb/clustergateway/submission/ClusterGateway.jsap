@@ -1,0 +1,115 @@
+<jsap>
+    <parameters>
+
+        <flaggedOption>
+            <id>pluginDir</id>
+            <stringParser>
+                    <classname>FileStringParser</classname>
+                    <properties>
+                        <property>
+                                <name>mustBeDirectory</name>
+                                <value>true</value>
+                        </property>
+                        <property>
+                                <name>mustExist</name>
+                                <value>true</value>
+                        </property>
+                    </properties>
+            </stringParser>
+            <required>optional</required>
+            <shortFlag>p</shortFlag>
+            <longFlag>plugins-dir</longFlag>
+            <help>The directory from which the plugin configurations are loaded.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>fileSetArea</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>optional</required>
+            <shortFlag>f</shortFlag>
+                <longFlag>fileset-area</longFlag>
+           <help>The directory where filesets are kept. Can be a local folder or a remote folder in the form of username@hostname:/path</help>
+        </flaggedOption>
+
+         <flaggedOption>
+            <id>jobArea</id>
+            <stringParser>
+                 <classname>StringStringParser</classname>
+            </stringParser>
+            <required>optional</required>
+            <shortFlag>j</shortFlag>
+            <longFlag>job-area</longFlag>
+            <help>The directory where task files are placed for execution. Can be a local folder or a remote folder in the form of username@hostname:/path</help>
+         </flaggedOption>
+
+
+        <flaggedOption>
+            <id>mode</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>m</shortFlag>
+            <longFlag>mode</longFlag>
+            <help>The mode in which the software will work. Allowed mode: local | remote</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>queue</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>optional</required>
+            <shortFlag>q</shortFlag>
+            <longFlag>queue</longFlag>
+            <help>The cluster queue to use for remote submissions</help>
+        </flaggedOption>
+
+
+        <flaggedOption>
+            <id>task</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>t</shortFlag>
+            <longFlag>task-id</longFlag>
+            <help>The identifier of the task to submit</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>owner</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>o</shortFlag>
+            <defaults>
+               <string>ClusterGateway</string>
+            </defaults>
+            <longFlag>owner</longFlag>
+            <help>The user that will own the task files and the produced filesets</help>
+        </flaggedOption>
+
+        <qualifiedSwitch>
+            <id>inputFilesets</id>
+            <shortFlag>i</shortFlag>
+            <longFlag>input-filesets</longFlag>
+            <list>true</list>
+            <listSeparator>,</listSeparator>
+            <required>optional</required>
+            <help>Tags of input filesets</help>
+        </qualifiedSwitch>
+
+        <switch>
+            <id>help</id>
+            <shortFlag>h</shortFlag>
+            <longFlag>help</longFlag>
+            <help>Print help message.</help>
+        </switch>
+
+
+    </parameters>
+</jsap>

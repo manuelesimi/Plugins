@@ -78,7 +78,6 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig {
      */
     public RuntimeRequirements runtime = new RuntimeRequirements();
 
-    public OutputSchema outputSchema = new OutputSchema();
 
     public Execute execute;
 
@@ -136,7 +135,7 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig {
         for (PluginFile file : files) {
             validateId("Plugin File", file.id, errors);
         }
-        outputSchema.validate(errors);
+
     }
 
 
@@ -283,10 +282,6 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig {
 
     public Options getOptions() {
         return options;
-    }
-
-    public OutputSchema getOutputSchema() {
-        return outputSchema;
     }
 
     public Execute getExecute() {

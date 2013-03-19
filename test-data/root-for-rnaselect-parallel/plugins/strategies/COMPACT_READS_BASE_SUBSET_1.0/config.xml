@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<strategyConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <name>Base subset strategy</name>
+    <id>BASE_SUBSET</id>
+    <help>Base subset strategy to split compact read files</help>
+    <version>1.0</version>
+    <input-split-strategy/>
+</strategyConfig>

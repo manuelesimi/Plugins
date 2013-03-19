@@ -38,6 +38,7 @@ package org.campagnelab.gobyweb.plugins.xml.resources;
 
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
+import org.campagnelab.gobyweb.plugins.xml.SupportDependencyRange;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 
 import javax.xml.bind.annotation.*;
@@ -55,7 +56,7 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-public class ResourceConfig extends ResourceConsumerConfig {
+public class ResourceConfig extends ResourceConsumerConfig implements SupportDependencyRange, Comparable<ResourceConfig> {
 
     /**
      * List of resource requirements. Every required resource must be available for a plugin to be installed. Missing
@@ -95,6 +96,27 @@ public class ResourceConfig extends ResourceConsumerConfig {
         return true;
     }
 
+
+    /**
+     * Determine if this resource is of a release equal or lesser than version.
+     * @param version Version string, in the format _long_ [. _long_ ]*, such as 2.3.1.2
+     * @return True if this resource config has a version number at most as large as the argument.
+     */
+    public boolean atMostVersion(final String version) {
+        LongList requiredVersion = makeVersionList(version);
+        LongList setActualVersion = makeVersionList(this.version);
+        int numRequired = requiredVersion.size();
+        while (setActualVersion.size() < numRequired) {
+            // Make sure we have enough pieces of version, append 0's if we don't
+            setActualVersion.add(0);
+        }
+
+        for (int i=0;i<numRequired; i++) {
+            if (setActualVersion.getLong(i) == requiredVersion.getLong(i)) continue;
+            return setActualVersion.getLong(i) < requiredVersion.getLong(i);
+        }
+        return true;
+    }
     /**
      * Convert "4.3.2.1.0" into a LongList [4,3,2,1,0]
      * @param version
@@ -196,5 +218,10 @@ public class ResourceConfig extends ResourceConsumerConfig {
 
     public List<PluginFile> getFiles() {
         return files;
+    }
+
+    @Override
+    public int compareTo(ResourceConfig o) {
+        return (this.atLeastVersion(o.version)) ? -1 : 1;
     }
 }

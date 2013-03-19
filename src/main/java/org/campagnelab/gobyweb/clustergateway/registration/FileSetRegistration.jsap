@@ -1,0 +1,108 @@
+<jsap>
+    <parameters>
+
+        <flaggedOption>
+            <id>pluginDir</id>
+            <stringParser>
+                    <classname>FileStringParser</classname>
+                    <properties>
+                        <property>
+                                <name>mustBeDirectory</name>
+                                <value>true</value>
+                        </property>
+                        <property>
+                                <name>mustExist</name>
+                                <value>true</value>
+                        </property>
+                    </properties>
+            </stringParser>
+            <required>optional</required>
+            <shortFlag>p</shortFlag>
+            <longFlag>plugins-dir</longFlag>
+            <help>The directory from which the plugin configurations are loaded.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>fileSetArea</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>optional</required>
+            <shortFlag>f</shortFlag>
+            <longFlag>fileset-area</longFlag>
+           <help>The directory where filesets are kept. Can be a local folder or a remote folder in the form of username@hostname:/path</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>mode</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>m</shortFlag>
+            <longFlag>mode</longFlag>
+            <help>The mode in which the software will work. Allowed mode: local | remote</help>
+        </flaggedOption>
+
+        <flaggedOption>
+             <id>tag</id>
+             <stringParser>
+                   <classname>StringStringParser</classname>
+             </stringParser>
+             <required>optional</required>
+             <shortFlag>t</shortFlag>
+             <longFlag>tag</longFlag>
+             <help>The tag to be assigned to the fileset. If not specified, an automatically generated tag is assigned.</help>
+         </flaggedOption>
+
+        <flaggedOption>
+             <id>id</id>
+             <stringParser>
+                  <classname>StringStringParser</classname>
+             </stringParser>
+             <required>optional</required>
+             <shortFlag>id</shortFlag>
+             <longFlag>fileset-id</longFlag>
+             <help>The identifier of the fileset as reported in its plugin configuration</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>action</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>a</shortFlag>
+            <longFlag>action</longFlag>
+            <help>The action to perform on the fileset instance. Allowed actions: register | unregister</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>owner</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>o</shortFlag>
+            <defaults>
+               <string>ClusterGateway</string>
+            </defaults>
+            <longFlag>owner</longFlag>
+            <help>The user that will own the task files and the produced filesets</help>
+        </flaggedOption>
+
+        <switch>
+            <id>help</id>
+            <shortFlag>h</shortFlag>
+            <longFlag>help</longFlag>
+            <help>Print help message.</help>
+        </switch>
+
+        <unflaggedOption>
+            <id>entries</id>
+            <required>optional</required>
+            <greedy>true</greedy>
+            <help>List of fileset entries to register in the format ENTRY_NAME:ABSOLUTE PATH.</help>
+        </unflaggedOption>
+    </parameters>
+</jsap>

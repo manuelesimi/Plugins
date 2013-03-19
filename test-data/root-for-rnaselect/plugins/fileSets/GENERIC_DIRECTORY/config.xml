@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fileSetConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <name>Generic directory</name>
+    <id>GENERIC_DIRECTORY</id>
+    <help>A directory with any content.</help>
+    <version>1.0</version>
+    <directories>
+        <selector>
+            <id>DIR</id>
+            <pattern>*/**</pattern>
+            <mandatory>true</mandatory>
+        </selector>
+    </directories>
+    <attributes>
+        <attribute name="basename"/>
+    </attributes>
+</fileSetConfig>
