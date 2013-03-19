@@ -2,9 +2,9 @@ package org.campagnelab.gobyweb.plugins
 
 import com.martiansoftware.jsap.JSAP
 import com.martiansoftware.jsap.JSAPResult
+import edu.cornell.med.icb.net.CommandExecutor
 import org.apache.commons.io.FilenameUtils
 import org.apache.log4j.Logger
-import org.campagnelab.gobyweb.artifacts.util.CommandExecutor
 import org.campagnelab.gobyweb.plugins.xml.ConfigRef
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig
 import org.campagnelab.gobyweb.plugins.xml.Config
