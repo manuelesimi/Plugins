@@ -1,4 +1,10 @@
-Developers and administrators of a GobyWeb instance can define new plugins to extends GobyWeb with new functionality. This pages describes the plugin system and provides a reference for people who write new plugins or need to maintain existing ones.
+#### The Plugins Project
+
+Developers and administrators of a GobyWeb instance can define new plugins to extends GobyWeb with new functionality. The Plugins project allows to:
+ 
+* 	load and validate plugin configurations 
+* 	create and register fileset instances
+* 	create and submit (both to a local or remote cluster) task instances.
 
 There are five categories of GobyWeb plugins:
 
@@ -7,3 +13,10 @@ There are five categories of GobyWeb plugins:
 *     **Alignment Analyses**. These plugins integrate analyses methods that work on sets of alignments. These plugins take alignment files as input, where each alignment is associated with a group, and produce output files that end-users can view.
 *     **Filesets**. …
 *     **Tasks**. …
+
+#### Usage
+
+The Plugins software can be either used programmatically (as GobyWeb does) throught its API or by mean of shell scripts provided in the /bin directory. 
+
+#### Authors and Contributors
+The Plugins project is currently being developed by the members of the [Campagne laboratory](http://campagnelab.org).
