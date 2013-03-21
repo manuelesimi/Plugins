@@ -93,7 +93,7 @@ public class Plugins {
 
     private List<String> serverConfDirectories = new ArrayList<String>();
 
-    private ObjectArrayList<String> pluginEnvironmentCollectionScripts = new ObjectArrayList<String>()
+    private ArtifactsProtoBufHelper artifactsPbHelper;
 
     private JAXBContext jaxbContext = null;
 
@@ -104,6 +104,7 @@ public class Plugins {
     private String webServerHostname;
 
     Plugins() {
+        artifactsPbHelper=new ArtifactsProtoBufHelper()
     }
 
     Plugins(String serverConf) {
@@ -134,6 +135,7 @@ public class Plugins {
         somePluginReportedErrors = false
         pluginConfigs.clear();
         readConfiguration();
+        autoOptionsFileHelper = new AutoOptionsFileHelper(pluginConfigs)
     }
 
     private void readConfiguration() {
@@ -150,17 +152,17 @@ public class Plugins {
         // Check that plugin identifiers are unique across all types of plugins, except resource plugins:
         Object2IntMap idCount = new Object2IntArrayMap();
         idCount.defaultReturnValue(0);
-        for (Config config :pluginConfigs) {
+        for (Config config : pluginConfigs) {
             String idUnique = config.getId();
-            idCount.put(idUnique,idCount.getInt(idUnique) + 1);
+            idCount.put(idUnique, idCount.getInt(idUnique) + 1);
         }
 
-        for (Config config :pluginConfigs) {
+        for (Config config : pluginConfigs) {
             String idUnique = config.getId();
             if (idCount.getInt(idUnique) > 1) {
                 for (Config sameIdConfig : pluginConfigs.findAllById(idUnique)) {
-                    if (! sameIdConfig.getClass().isAssignableFrom(ResourceConfig.class)) {
-                        LOG.error ("Plugin identifier "+ idUnique + " cannot be used more than once");
+                    if (!sameIdConfig.getClass().isAssignableFrom(ResourceConfig.class)) {
+                        LOG.error("Plugin identifier " + idUnique + " cannot be used more than once");
                         somePluginReportedErrors = true;
                         // decrement the counter so we don't report the error more than once
                         idCount.put(config.getId(), 1);
@@ -172,7 +174,7 @@ public class Plugins {
         // add GLOBAL resource definition for those plugins that don't provide it explicitly:
         addDefaultNeed("GLOBAL", "excl", "false");
         addDefaultNeed("GLOBAL", "h_vmem", "2g");
-        addDefaultNeed("GLOBAL", "virtual_free", "4g") ;
+        addDefaultNeed("GLOBAL", "virtual_free", "4g");
         addDefaultNeed("ALIGNMENT_POST_PROCESSING", "excl", "false");
         addDefaultNeed("ALIGNMENT_POST_PROCESSING", "h_vmem", "10g");
         addDefaultNeed("ALIGNMENT_POST_PROCESSING", "virtual_free", "12g");
@@ -185,78 +187,9 @@ public class Plugins {
      * @param script
      */
     void registerPluginEnvironmentCollectionScript(String script) {
-        this.pluginEnvironmentCollectionScripts.add(script);
+        artifactsPbHelper.registerPluginEnvironmentCollectionScript(script)
     }
-/**
- * Create artifacts install requests for the plugin given as argument. Traverse the graph of resource
- * dependency and order resource artifact installation such that resources that must be installed before
- * others are so. The client is responsible for deleting the result file when it is no longer needed.
- * @param pluginConfig
- * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
- */
-    public File createPbRequestFile(ResourceConsumerConfig pluginConfig) {
-        LOG.debug("createPbRequestFile for " + pluginConfig?.id)
-        BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
 
-        pluginEnvironmentCollectionScripts.each { envScript ->
-            requestBuilder.registerEnvironmentCollection(envScript)
-        }
-
-        def uniqueFile = File.createTempFile("artifacts-install-requests", ".pb");
-        // Create a single .pb file containing all resources that the plugin requires:
-        // Each .pb file will contain the artifacts needed by the resource, starting with the artifacts that the
-        // resource requires (deep first search)
-        pluginConfig?.requires.each {
-            resource ->
-                def resourceConfig = lookupResource(resource.id, resource.versionAtLeast, resource.versionExactly)
-                writePbForResource(resourceConfig, requestBuilder)
-        }
-        if (!requestBuilder.isEmpty()) {
-            requestBuilder.save(uniqueFile);
-            LOG.debug(requestBuilder.toString());
-            return uniqueFile
-
-        } else {
-            return null;
-        }
-
-    }
-    /**
-     * Write PB artifact requests for a resource, starting with the artifacts of the resources required by the argument
-     * resource.
-     * @param resourceConfig
-     * @param requestBuilder
-     */
-    def writePbForResource(ResourceConfig resourceConfig, BuildArtifactRequest requestBuilder) {
-        LOG.debug("writePbForResource for " + resourceConfig?.id + " visiting resource dependencies..")
-        if (!resourceConfig.requires.isEmpty()) {
-            // recursively generate PB requests for resources required by this resource.
-            for (Resource prerequisite : resourceConfig.requires) {
-                ResourceConfig preResourceConfig = lookupResource(prerequisite.id,
-                        prerequisite.versionAtLeast,
-                        prerequisite.versionExactly)
-                writePbForResource(preResourceConfig, requestBuilder)
-            }
-
-        }
-        LOG.debug("writePbForResource for " + resourceConfig?.id + " writing artifact requests.")
-
-        if (!resourceConfig.artifacts.isEmpty()) {
-            // resource has artifacts. Generate the "install-requests.pb" file to tell the cluster nodes
-            // how to install each artifact:
-
-            String scriptFilename = resourceConfig.files.find { f -> f.id == "INSTALL" }.localFilename
-
-            for (Artifact artifactXml : resourceConfig.artifacts) {
-                LOG.debug(String.format("PB request.add(%s:%s)", resourceConfig.id, artifactXml.id))
-                requestBuilder.addArtifactWithList(resourceConfig.id, artifactXml.id, resourceConfig.version,
-                        scriptFilename, Artifacts.RetentionPolicy.REMOVE_OLDEST, constructAvp(artifactXml)
-                )
-            }
-        }
-        LOG.debug("writePbForResource for " + resourceConfig?.id + " done.")
-
-    }
 
     static List<Artifacts.AttributeValuePair> constructAvp(Artifact artifact) {
 
@@ -290,7 +223,6 @@ public class Plugins {
         }
     }
 
-
     /**
      * Returns a string that describes registered plugins.
      * @return human readable plugins description.
@@ -323,9 +255,9 @@ public class Plugins {
         // now check resources requirements, and remove the plugins that cannot find their resources:
         def toRemove = []
         for (Config config : pluginConfigs) {
-            if ( (config.getClass().isAssignableFrom(ResourceConsumerConfig.class) //same class
+            if ((config.getClass().isAssignableFrom(ResourceConsumerConfig.class) //same class
                     || (ResourceConsumerConfig.isInstance(config)))) {            //or a sub-class
-                LOG.trace ("Checking resources for ${config}")
+                LOG.trace("Checking resources for ${config}")
                 def errors = new ArrayList<String>()
                 errors = checkRequiredResources(config, errors)
                 if (!errors.isEmpty()) {
@@ -443,7 +375,6 @@ public class Plugins {
         [config, validationCollector, errors, fileToUnmarshal]
     }
 
-
     /**
      * Adds dependency on SERVER_SIDE_TOOL resource plugin on each ExecutableConfig plugin.
      */
@@ -460,8 +391,6 @@ public class Plugins {
         }
 
     }
-
-
 
     /**
      * Check that pluginConfig's resources are available in this instance of GobyWeb.
@@ -500,7 +429,7 @@ public class Plugins {
      * @param pluginConfig the plugin to collect version numbers for
      * @return map of plugins to version numbers
      */
-   
+
     Map<String, String> pluginVersionsMap(Config pluginConfig, Map<String, String> versionsMap) {
         versionsMap["${pluginConfig.getClass().getName()}:${pluginConfig.id}:${pluginConfig.name}"] =
             pluginConfig.version
@@ -542,6 +471,7 @@ public class Plugins {
 
     public void setWebServerHostname(String webServerHostname) {
         this.webServerHostname = webServerHostname;
+        artifactsPbHelper.setWebServerHostname(webServerHostname)
     }
 /**
  * Define the location of a server-conf directory, where plugins configuration information is stored.
@@ -591,8 +521,8 @@ public class Plugins {
         //we install here subclasses to avoid
         //to list in BaseConfig all its sub-classes with the XMLSeeAlso annotation
         Class<?>[] classes = new Class<?>[CONFIGS_TO_CLASSES.values().length];
-        int i=0;
-        for (CONFIGS_TO_CLASSES value : CONFIGS_TO_CLASSES.values())  {
+        int i = 0;
+        for (CONFIGS_TO_CLASSES value : CONFIGS_TO_CLASSES.values()) {
             classes[i++] = value.register()
         }
         jaxbContext = JAXBContext.newInstance(classes);
@@ -626,156 +556,8 @@ public class Plugins {
     }
 
 
+    AutoOptionsFileHelper autoOptionsFileHelper;
 
-    /**
-     * Write a bash shell script with environment variable definitions for each automatic plugin option.
-     * @param pluginConfig The plugin for which user-defined option values should be written.
-     * @return The temporary file where options have been written.
-     */
-    public File generateAutoOptionsFile(ExecutableConfig pluginConfig, String attributesPrefix = null, Map<String, String> attributes = null) {
-        // call validate to force the update of user-defined values from default values.
-        pluginConfig.validate()
-        File autoOptionTmpFile = new File("/tmp/auto-options-${ICBStringUtils.generateRandomString(15)}.sh")
-
-        PrintWriter writer = new PrintWriter(autoOptionTmpFile);
-
-        List<Option> optionsToProcess =
-            attributes == null ? pluginConfig.userSpecifiedOptions() : pluginConfig.options()
-        for (Option option : optionsToProcess) {
-
-            def optionValue
-            if (attributes == null) {
-                optionValue = option.userDefinedValue
-            } else {
-                def attributeName = (attributesPrefix ?: "") + option.id
-                optionValue = attributes[attributeName] ?: ""
-            }
-
-            if (option.type == Option.OptionType.CATEGORY) {
-                optionValue = option.categoryIdToValue(optionValue)
-            }
-
-            def pluginId = scriptImportedFrom(pluginConfig)
-            if (pluginId != null) {
-                ExecutableConfig fromPlugin = pluginConfigs.findByTypedId(pluginId,ExecutableConfig.class);
-                // write options in the format PLUGINS _ TYPE _ PLUGIN-ID _ OPTION-ID, where plugin refers to the plugin we imported the script from:
-                writer.println("PLUGINS_${fromPlugin.getHumanReadableConfigType()}_${fromPlugin.getId()}_${option.id}=\"${optionValue}\"")
-            } else {
-                // write options in the format PLUGINS _ TYPE _ PLUGIN-ID _ OPTION-ID
-                writer.println("PLUGINS_${pluginConfig.getHumanReadableConfigType()}_${pluginConfig.id}_${option.id}=\"${optionValue}\"")
-            }
-        }
-        writeAutoFormatString(pluginConfig, writer, attributesPrefix, attributes);
-
-        writer.println("# The plugin defines these files: ")
-        for (PluginFile file : pluginConfig.files) {
-            // write options in the format  ${PLUGINS_ TYPE _ plugin-id _ FILES _ file-id}
-            writer.println("PLUGINS_${pluginConfig.getHumanReadableConfigType()}_${pluginConfig.id}_FILES_${file.id}=\${JOB_DIR}/${file.filename}")
-        }
-
-        writer.println("# The plugin has access to the following resources: ")
-        for (Resource resourceRef : pluginConfig.requires) {
-            writeResourceFileVariables(resourceRef, writer)
-        }
-        writer.flush()
-        return autoOptionTmpFile;
-    }
-
-    private void writeResourceFileVariables(Resource resourceRef, PrintWriter writer) {
-        ResourceConfig resource = lookupResource(resourceRef.id, resourceRef.versionAtLeast, resourceRef.versionExactly)
-        if (resource == null)
-            return;
-        // write variables for resource's requirements:
-        for (Resource prerequisite : resource.requires) {
-            writeResourceFileVariables(prerequisite, writer)
-        }
-
-        // write resources in the format  ${ RESOURCES _ resource-id _ file-id}
-        for (PluginFile file : resource.files) {
-                writer.println("RESOURCES_${resource.id}_${file.id}=\${JOB_DIR}/${file.filename}")
-        }
-    }
-
-    /**
-     * Writes autoFormat options that are defined to the _ALL_OTHER_OPTIONS variable.
-     * @param pluginConfig
-     * @param writer to the auto-options.sh file.
-     */
-    void writeAutoFormatString(ExecutableConfig executableConfig, PrintWriter writer, String attributesPrefix, Map<String, String> attributes) {
-        // source plugin id -> string buffer map. String buffer will hold the AUTOFORMAT definition for the plugin
-        Object2ObjectMap<String, StringBuffer> map = new Object2ObjectArrayMap<String, StringBuffer>()
-        def sb
-
-        List<Option> optionsToProcess =
-            attributes == null ? executableConfig.userSpecifiedOptions() : executableConfig.options()
-        for (Option option : optionsToProcess) {
-
-            def optionValue
-            if (attributes == null) {
-                optionValue = option.userDefinedValue
-            } else {
-                def attributeName = (attributesPrefix ?: "") + option.id
-                optionValue = attributes[attributeName]
-            }
-            if (option.type == Option.OptionType.CATEGORY) {
-                optionValue = option.categoryIdToValue(optionValue)
-            }
-
-            def pluginId = scriptImportedFrom(executableConfig)
-            //what's that for?
-            if (pluginId != null) {
-                Config fromPlugin = pluginConfigs.findById(pluginId);
-            }
-            Config sourcePlugin;
-            if (pluginId != null) {
-                sourcePlugin = pluginConfigs.findById(pluginId);
-            } else {
-                sourcePlugin = executableConfig
-
-            }
-            def buffer = map.get(sourcePlugin.id)
-            if (buffer == null) {
-                map[sourcePlugin.id] = new StringBuffer(" ")
-            }
-
-            sb = map[sourcePlugin.id]
-            // write options in the format PLUGINS _ TYPE _ PLUGIN-ID _ OPTION-ID, where plugin refers to the plugin we imported the script from:
-            if (option.autoFormat && optionValue != null) {
-
-                switch (option.type) {
-                    case Option.OptionType.BOOLEAN:
-                        sb.append(String.format(option.flagFormat, optionValue));
-                        break;
-                    case Option.OptionType.SWITCH:
-                        if (optionValue == "true") {
-                            sb.append(String.format(option.flagFormat, optionValue))
-                        };
-                        break;
-                    case Option.OptionType.STRING:
-                    case Option.OptionType.INTEGER:
-                    case Option.OptionType.DOUBLE:
-                    case Option.OptionType.CATEGORY:
-                        try {
-                            sb.append(String.format(option.flagFormat, optionValue))
-                        } catch (IllegalFormatConversionException e) {
-                            LOG.error(String.format("plugin %s was unable to autoformat option %s to string: " + optionValue, pluginId,
-                                    option.id), e);
-                        }
-                        break;
-                }
-                if (option.includeSpaces) {
-                    sb.append(" ")
-                }
-
-            }
-        }
-        for (String pluginIdentifier : map.keySet()) {
-            Config sourcePlugin = pluginConfigs.findById(pluginIdentifier)
-            sb = map.get(pluginIdentifier)
-            // write _ALL_OTHER_OPTIONS in the format PLUGINS _ TYPE _ PLUGIN-ID _ _ALL_OTHER_OPTIONS
-            writer.println("PLUGINS_${sourcePlugin.getHumanReadableConfigType()}_${sourcePlugin.id}_ALL_OTHER_OPTIONS=\"${sb.toString()}\"")
-        }
-    }
 
     /**
      * Return the resource with largest version number, such that the resource has the identifier and at least the specified
@@ -805,7 +587,7 @@ public class Plugins {
      * @param config A plugin configuration.
      * @return Id of a plugin or null.
      */
-    public String scriptImportedFrom(ExecutableConfig config) {
+    public static String scriptImportedFrom(ExecutableConfig config) {
         def value = config.files.find({ pluginFile ->
             "SCRIPT".equals(pluginFile.id) && (pluginFile.importFromPlugin != null)
         })
@@ -835,7 +617,7 @@ public class Plugins {
         Object2BooleanOpenHashMap includeOptionInMap = new Object2BooleanOpenHashMap()
 
         //only ExecutableConfigs have options
-        if (! ExecutableConfig.getClass().isAssignableFrom(typeOfPlugin.getClass()))
+        if (!ExecutableConfig.getClass().isAssignableFrom(typeOfPlugin.getClass()))
             return result;
 
         // determine which options should be listed in the map. We include options with a hiddenWhen attribute and options
@@ -933,4 +715,18 @@ public class Plugins {
         }
         return tempDir
     }
+
+    File createPbRequestFile(ResourceConsumerConfig alignerById) {
+        return artifactsPbHelper.createPbRequestFile(alignerById)
+    }
+    /**
+     * Write a bash shell script with environment variable definitions for each automatic plugin option.
+     * @param pluginConfig The plugin for which user-defined option values should be written.
+     * @return The temporary file where options have been written.
+     */
+    public File generateAutoOptionsFile(ExecutableConfig pluginConfig, String attributesPrefix = null, Map<String, String> attributes = null) {
+        autoOptionsFileHelper.generateAutoOptionsFile(pluginConfig,attributesPrefix,attributes)
+    }
+
+
 }

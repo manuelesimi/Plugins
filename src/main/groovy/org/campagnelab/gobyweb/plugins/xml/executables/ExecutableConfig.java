@@ -37,6 +37,7 @@
 package org.campagnelab.gobyweb.plugins.xml.executables;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import org.campagnelab.gobyweb.plugins.xml.PluginFileProvider;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConsumerConfig;
 import org.campagnelab.optval.OptionCallback;
@@ -57,7 +58,7 @@ import java.util.Map;
  *         Date: 10/28/11
  *         Time: 6:07 PM
  */
-public abstract class ExecutableConfig extends ResourceConsumerConfig {
+public abstract class ExecutableConfig extends ResourceConsumerConfig implements PluginFileProvider {
 
 
     /**

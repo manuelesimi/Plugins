@@ -62,7 +62,6 @@ public class TaskLocalSubmission {
         //create the reference to the job area
         try {
             jobArea = new JobArea(jobAreaDir, owner);
-            actions = new Actions(storageArea, jobArea, plugins.getRegistry());
         } catch (IOException ioe) {
             fail("failed to create the local job area");
         }
@@ -71,9 +70,12 @@ public class TaskLocalSubmission {
     @Test
     public void submit() {
         try {
-            actions.submitLocalTask(
+            Submitter submitter  = new LocalSubmitter(plugins.getRegistry());
+            actions = new Actions(submitter, storageArea, jobArea, plugins.getRegistry());
+            actions.submitTask(
                    "RNASELECT_TASK",
                    new String[]{"TESTTAG1","TESTTAG2","TESTTAG3"});
+
         } catch (Exception e) {
             e.printStackTrace();
             fail("failed to submit a local task for RNASELECT_TASK configuration");
