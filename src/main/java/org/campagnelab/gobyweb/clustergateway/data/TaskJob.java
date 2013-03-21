@@ -15,7 +15,7 @@ import java.io.File;
  * @author manuele
  */
 
-public class TaskJob extends DataObject {
+public class TaskJob extends Job {
 
     /**
      * Tags that identify the input filesets

@@ -13,7 +13,7 @@ import java.util.List;
  *         Date: 3/20/13
  *         Time: 6:10 PM
  */
-public class ResourceJob extends DataObject {
+public class ResourceJob extends Job {
     ResourceConfig config;
     private File[] files;
 

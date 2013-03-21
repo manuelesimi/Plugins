@@ -89,8 +89,8 @@ final class Actions {
 
     public void submitResourceInstall(String id, String version) throws Exception {
         //create the resourceInstance instance
-        DependencyResolver.resolveResource(id, version, version, version);
-        ResourceConfig config = registry.findByTypedId(id, ResourceConfig.class);
+
+        ResourceConfig config = DependencyResolver.resolveResource(id, version, version, version);
         ResourceJob resourceInstance = new ResourceJob(config);
         resourceInstance.setTag(ICBStringUtils.generateRandomString());
         logger.debug("Tag assigned to Task instance: " + resourceInstance.getTag());

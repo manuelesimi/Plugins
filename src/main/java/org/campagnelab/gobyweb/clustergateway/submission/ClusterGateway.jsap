@@ -90,7 +90,6 @@
             <required>false</required>
             <list>true</list>
             <listSeparator>:</listSeparator>
-            <shortFlag>r</shortFlag>
             <longFlag>resource</longFlag>
             <help>The identifier and version number of the resource to install. In the format ID:VERSION.</help>
         </flaggedOption>
@@ -126,6 +125,27 @@
             <help>Print help message.</help>
         </switch>
         <flaggedOption>
+            <id>env-script</id>
+            <stringParser>
+                <classname>FileStringParser</classname>
+                <properties>
+                    <property>
+                        <name>mustExist</name>
+                        <value>true</value>
+                    </property>
+                </properties>
+            </stringParser>
+            <required>false</required>
+            <shortFlag>e</shortFlag>
+            <longFlag>env-script</longFlag>
+            <defaults>
+                <string>env.sh</string>
+            </defaults>
+            <help>The path to a script to initialize the plugin environment. The script will be sourced when the
+                plugin executes in the runtime environment.
+            </help>
+        </flaggedOption>
+        <flaggedOption>
             <id>artifact-server</id>
             <stringParser>
                 <classname>StringStringParser</classname>
@@ -135,6 +155,18 @@
             <longFlag>artifact-server</longFlag>
             <help>The server where to the artifacts installation scripts are located.</help>
         </flaggedOption>
-
+        <flaggedOption>
+            <id>repository</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <defaults>
+                <string>/scratchLocal/gobyweb/ARTIFACT_REPOSITORY</string>
+            </defaults>
+            <shortFlag>r</shortFlag>
+            <longFlag>repository</longFlag>
+            <help>The directory that holds the artifact repository on the deployment machine.</help>
+        </flaggedOption>
     </parameters>
 </jsap>

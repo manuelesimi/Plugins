@@ -1,15 +1,8 @@
 #!/bin/sh
 
-
+# Script to trigger the installation of artifacts for a resource plugin. Does nothing after installation.
 . constants.sh
 
-function setup_task_functions {
-    # define no-op function to be overridden as needed by task script:
-    plugin_task() { echo; }
-    # include the plugin_task function for the appropriate task:
-    . ${JOB_DIR}/script.sh
-
-}
 
 function install_resource {
 
@@ -20,5 +13,5 @@ cd ${JOB_DIR}
 . artifacts.sh
 
 install_plugin_artifacts
-setup_task_functions
-install_resource
+
+

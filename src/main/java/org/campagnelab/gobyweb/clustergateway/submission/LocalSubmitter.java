@@ -60,12 +60,8 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         URL wrapperScriptURL = getClass().getClassLoader().getResource(taskWrapperScript);
         FileUtils.copyURLToFile(wrapperScriptURL, new File(taskLocalDir, taskWrapperScript));
 
-        //get the wrapper script
-        URL constantsURL = getClass().getClassLoader().getResource(constantsTemplate);
-        String constantsContent = IOUtils.toString(constantsURL);
-        constantsContent = constantsContent.replaceAll("%%JOB_DIR%%", jobArea.getBasename(taskJob.getTag()))
-                .replaceAll("%%TAG%%", taskJob.getTag());
-        FileUtils.writeStringToFile(new File(taskLocalDir, constantsTemplate), constantsContent);
+        writeConstants(jobArea, taskJob, taskLocalDir);
+
 
         copyResourceFiles(taskJob.getSourceConfig(), taskLocalDir);
 
@@ -77,6 +73,8 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         execute(taskWrapperScript, taskLocalDir);
 
     }
+
+
 
 
     /**
@@ -96,15 +94,12 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         URL wrapperScriptURL = getClass().getClassLoader().getResource(resourceInstallWrapperScript);
         FileUtils.copyURLToFile(wrapperScriptURL, new File(taskLocalDir, resourceInstallWrapperScript));
 
-        //get the constants template
-        URL constantsURL = getClass().getClassLoader().getResource(constantsTemplate);
-        String constantsContent = IOUtils.toString(constantsURL);
-        constantsContent = constantsContent.replaceAll("%%JOB_DIR%%", jobArea.getBasename(resourceJob.getTag()))
-                .replaceAll("%%TAG%%", resourceJob.getTag());
-        FileUtils.writeStringToFile(new File(taskLocalDir, constantsTemplate), constantsContent);
+        writeConstants(jobArea, resourceJob, taskLocalDir);
+
+
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
 
-        copyArtifactsPbRequests(resourceJob.getSourceConfig(), constantsTemplate, taskLocalDir);
+        copyArtifactsPbRequests(resourceJob.getSourceConfig(), null, taskLocalDir);
 
         copyResourceFiles(registry.findByTypedId("GOBYWEB_SERVER_SIDE", ResourceConfig.class),
                 taskLocalDir);

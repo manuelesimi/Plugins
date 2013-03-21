@@ -6,7 +6,7 @@ import java.util.Date;
  * Data object used for submission to the ClusterGateway.
  * @author manuele
  */
-public abstract class DataObject {
+public abstract class Job {
 
     String id;
 

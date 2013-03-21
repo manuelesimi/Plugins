@@ -81,6 +81,10 @@ public class ClusterGateway {
             }
             assert actions != null : "action cannot be null.";
             submitter.setSubmissionHostname(config.getString("artifact-server"));
+            submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
+            if (config.userSpecified("env-script")) {
+                submitter.setEnvironmentScript(config.getFile("env-script").getAbsolutePath());
+            }
 
             if (config.userSpecified("task")) {
                 actions.submitTask(

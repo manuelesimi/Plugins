@@ -40,4 +40,8 @@ public interface Submitter {
     public void submitResourceInstall(JobArea jobArea, Session session, ResourceJob resource) throws Exception;
 
     void setSubmissionHostname(String submissionHostname);
+
+    void setEnvironmentScript(String environmentScriptFilename);
+
+    void setRemoteArtifactRepositoryPath(String artifactRepositoryPath);
 }

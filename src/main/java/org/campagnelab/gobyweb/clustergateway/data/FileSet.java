@@ -14,7 +14,7 @@ import java.io.File;
  *
  * @author manuele
  */
-public class FileSet extends DataObject {
+public class FileSet extends Job {
 
     private FileSetConfig sourceConfig;
 

@@ -191,20 +191,6 @@ public class Plugins {
     }
 
 
-    static List<Artifacts.AttributeValuePair> constructAvp(Artifact artifact) {
-
-        return artifact.attributes.collect {
-
-            it ->
-                def builder = Artifacts.AttributeValuePair.newBuilder().setName(it.name)
-                if (it.value) {
-                    builder.setValue(it.value)
-                }
-                builder.build()
-        }
-
-    }
-
     /**
      * Add a default value to each plugin when key is not defined for the scope.
      * @param executablePluginConfig
