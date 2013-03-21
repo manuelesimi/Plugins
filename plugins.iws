@@ -2,251 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/READS_1/AOUGEKP-Sample_MAN1.compact-reads" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/fileSets/GENERIC_DIRECTORY_1/READS_1/AOUGEKP-Sample_MAN1.compact-reads" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/fileSets/COMPACT_READS" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/COMPACT_READS" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/strategies/COMPACT_READS_BASE_SUBSET_1.0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/analyses/CONTAMINANT_EXTRACT" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/analyses/CONTAMINANT_EXTRACT" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/STAR22_GOBY/CombineSpliceData.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/STAR22_GOBY/CombineSpliceData.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks/DIRTARBALLER" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/GENERIC_DIRECTORY" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/fileSets/GENERIC_DIRECTORY_1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GROOVY_2.0.6" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GROOVY_2.0.6" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/GSNAP_GOBY" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/GSNAP_GOBY" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GSNAP_GOBY_2011.07.08" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GSNAP_GOBY_2011.11.17" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/GSNAP_GOBY_2011_07_07" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/GSNAP_GOBY_2011_07_07" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/GSNAP_WITH_GOBY" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/GSNAP_WITH_GOBY" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/JPEG" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/JPEG_1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/JPEG_1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/JPEG_2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_2/KHYMHVM-Sample_MAN2.compact-reads" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/fileSets/READS_2/KHYMHVM-Sample_MAN2.compact-reads" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_3/OUTTRGH-Sample_MAN3.compact-reads" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/fileSets/READS_3/OUTTRGH-Sample_MAN3.compact-reads" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/READS_1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/fileSets/READS_1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/fileSets/GENERIC_DIRECTORY_1/READS_1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/fileSets/READS_2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/fileSets/READS_3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/RNASELECT" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/RNASELECT" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/tasks/RNASELECT_TASK" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks/RNASELECT_TASK" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/tasks/RNASELECT_TASK_PARALLEL" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/SAMTOOLS_0.1.18" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/STAR22_GOBY" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/STAR22_GOBY" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/STAR_2.2.0" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks/TARBALLER" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/TAR" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/TEXT" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/TEXT_1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/TEXT_1" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/TEXT_2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/fileSets/TSV" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/TSV" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/analyses" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/analyses" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/assemble" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/JPEG_1/baz.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/JPEG_1/baz.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/data" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/fileSets" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/fileSets" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/xml/filesets" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GSNAP_GOBY_2011.07.08/gsnap-icb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GSNAP_GOBY_2011.11.17/gsnap-icb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/JPEG_2/qux.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/RNASELECT/rnaselect-1.0.0-tool.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/RNASELECT/rnaselect-1.0.0-tool.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/runtime" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/SAMTOOLS_0.1.18/samtools" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/schemas" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/strategies" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/tasks" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/xml/tasks" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/tasks" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/tasks" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/Actions.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/data/DataObject.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/DependencyResolver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/DependencyResolverTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/data/FileSet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/xml/filesets/FileSetConfigTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetRegistration.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetRegistration.jsap" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/runtime/JobArea.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/analyses/CONTAMINANT_EXTRACT/OutputFormatter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/analyses/CONTAMINANT_EXTRACT/OutputFormatter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/runtime/PersistentArea.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE/ProcessSamples.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/ProcessSamples.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Session.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/SupportDependencyRange.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/data/Task.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/tasks/TaskConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/xml/tasks/TaskConfigTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/tasks/TaskInputSchema.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/tasks/TaskOutputSchema.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/schemas/alignerConfig.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/schemas/alignmentAnalysisConf.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/bar.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/TEXT_2/bar.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/cluster_gateway.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/schemas/common.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/GSNAP_GOBY/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/GSNAP_GOBY_2011_07_07/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/GSNAP_WITH_GOBY/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/STAR22_GOBY/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/analyses/CONTAMINANT_EXTRACT/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/fileSets/COMPACT_READS/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/fileSets/TSV/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GROOVY_2.0.6/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/RNASELECT/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/strategies/COMPACT_READS_BASE_SUBSET_1.0/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/tasks/RNASELECT_TASK_PARALLEL/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/GSNAP_GOBY/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/GSNAP_GOBY_2011_07_07/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/GSNAP_WITH_GOBY/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/STAR22_GOBY/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/analyses/CONTAMINANT_EXTRACT/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/COMPACT_READS/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/GENERIC_DIRECTORY/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/JPEG/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/TAR/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/TEXT/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/TSV/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GROOVY_2.0.6/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GSNAP_GOBY_2011.07.08/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GSNAP_GOBY_2011.11.17/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/RNASELECT/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/SAMTOOLS_0.1.18/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/STAR_2.2.0/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks/DIRTARBALLER/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks/RNASELECT_TASK/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks/TARBALLER/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/schemas/config.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/constants.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/tasks/RNASELECT_TASK/constants.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/assemble/distribution.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/schemas/fileSetConfig.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/schemas/fileSetConfig.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/TEXT_1/foo.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/TEXT_1/foo.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GROOVY_2.0.6/groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GROOVY_2.0.6/groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GROOVY_2.0.6/install.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GROOVY_2.0.6/install.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/STAR_2.2.0/install.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/analyses/CONTAMINANT_EXTRACT/makePluginConstants.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/analyses/CONTAMINANT_EXTRACT/makePluginConstants.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/oge_task_parallel_wrapper_script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/schemas/plugins.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/registerFileSet.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/schemas/resourceConfig.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/instances/tasks/RNASELECT_TASK/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/GSNAP_GOBY/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/GSNAP_GOBY_2011_07_07/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/GSNAP_WITH_GOBY/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/aligners/STAR22_GOBY/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/analyses/CONTAMINANT_EXTRACT/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/strategies/COMPACT_READS_BASE_SUBSET_1.0/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/tasks/RNASELECT_TASK_PARALLEL/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/GSNAP_GOBY/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/GSNAP_GOBY_2011_07_07/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/GSNAP_WITH_GOBY/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/aligners/STAR22_GOBY/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/analyses/CONTAMINANT_EXTRACT/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks/DIRTARBALLER/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks/RNASELECT_TASK/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks/TARBALLER/script.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/submitTask.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/schemas/taskConfig.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/schemas/taskConfig.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/unregisterFileSet.sh" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/EmptyClass.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$" afterPath="$PROJECT_DIR$" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/aligners/AlignerConfig.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/aligners/AlignerConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/alignmentanalyses/AlignmentAnalysisConfig.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/alignmentanalyses/AlignmentAnalysisConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/ExecutableConfig.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/ExecutableConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginRegistry.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/PluginsTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/PluginsTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/resources/Resource.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/resources/Resource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/resources/ResourceConfig.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/resources/ResourceConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/changelog.txt" afterPath="$PROJECT_DIR$/changelog.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schemas/common.xsd" afterPath="$PROJECT_DIR$/schemas/common.xsd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG1/.metadata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG2/.metadata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG3/.metadata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG1/AOUGEKP-Sample_MAN1.compact-reads" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG2/KHYMHVM-Sample_MAN2.compact-reads" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG3/OUTTRGH-Sample_MAN3.compact-reads" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmission.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG1/.metadata/metadata.pb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG2/.metadata/metadata.pb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/fileset-area-for-submission-test/filesets/ClusterGateway/TESTTAG3/.metadata/metadata.pb" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/TEXT_1/foo.txt" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/GENERIC_DIRECTORY_1/TEXT_1/foo.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/bar.txt" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/GENERIC_DIRECTORY_1/bar.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/TEXT_1/foo.txt" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/TEXT_1/foo.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/TEXT_2/bar.txt" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/TEXT_2/bar.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistration.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistration.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schemas/plugins.xsd" afterPath="$PROJECT_DIR$/schemas/plugins.xsd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/READS_1/AOUGEKP-Sample_MAN1.compact-reads" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/GENERIC_DIRECTORY_1/READS_1/AOUGEKP-Sample_MAN1.compact-reads" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/GENERIC_DIRECTORY_1" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/JPEG_1" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/JPEG_1" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/JPEG_1" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/GENERIC_DIRECTORY_1/JPEG_1" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/JPEG_2" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/JPEG_2" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_2/KHYMHVM-Sample_MAN2.compact-reads" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/READS_2/KHYMHVM-Sample_MAN2.compact-reads" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_3/OUTTRGH-Sample_MAN3.compact-reads" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/READS_3/OUTTRGH-Sample_MAN3.compact-reads" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_1" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/READS_1" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/READS_1" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/GENERIC_DIRECTORY_1/READS_1" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_2" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/READS_2" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/READS_3" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/READS_3" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/TEXT_1" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/TEXT_1" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/TEXT_1" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/GENERIC_DIRECTORY_1/TEXT_1" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/TEXT_2" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/TEXT_2" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/GENERIC_DIRECTORY_1/JPEG_1/baz.jpeg" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/GENERIC_DIRECTORY_1/JPEG_1/baz.jpeg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/JPEG_1/baz.jpeg" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/JPEG_1/baz.jpeg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/cluster-gateway/instances/fileSets/JPEG_2/qux.jpg" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/JPEG_2/qux.jpg" />
     </list>
     <ignored path="plugins.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -256,7 +54,7 @@
     <file path="$PROJECT_DIR$/../ovl-3/src/main/scala/org/campagnelab/optval/OptionValidationExpression.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358028496955" ignored="false" />
     <file path="$PROJECT_DIR$/../ovl-3/src/main/org/campagnelab/optval/OptionValidationParser.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358028496955" ignored="false" />
     <file path="$PROJECT_DIR$/../ovl-3/src/main/org/campagnelab/optval/TestSuite.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358028496956" ignored="false" />
-    <file path="/fragment.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363718759509" ignored="false" />
+    <file path="/fragment.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363894026219" ignored="false" />
     <file path="$PROJECT_DIR$/../ovl-3/src/main/scala/org/campagnelab/optval/DebugRegexParsers.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358028552497" ignored="false" />
     <file path="$PROJECT_DIR$/../ovl-3/src/main/scala/org/campagnelab/optval/OptionValidationParser.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358029733720" ignored="false" />
     <file path="$PROJECT_DIR$/../ovl-3/src/main/scala/org/campagnelab/optval/TestSuite.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358028595090" ignored="false" />
@@ -268,7 +66,7 @@
     <file path="$PROJECT_DIR$/src/main/plugins/xml/AlignerConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358052917821" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/grails-app/conf/BuildConfig.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358092685016" ignored="false" />
     <file path="/BuildConfig.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358054714635" ignored="false" />
-    <file path="/Dummy.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363719053785" ignored="false" />
+    <file path="/Dummy.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363898342102" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/src/java/org/campagnelab/gobyweb/oldplugins/xml/WriteTemplates.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358053501671" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/grails-app/domain/edu/cornell/med/icb/nga/datamodel/DiffExp.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358091428801" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/test/unit/org/campagnelab/gobyweb/oldplugins/PluginsTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358053501671" ignored="false" />
@@ -501,7 +299,7 @@
     <file path="/WriterTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363296299621" ignored="false" />
     <file path="$USER_HOME$/filesets/trunk/src/test/resources/test.pb" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362596258209" ignored="false" />
     <file path="/ReaderTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361907046436" ignored="false" />
-    <file path="/FileSetActions.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363627868337" ignored="false" />
+    <file path="/FileSetActions.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363897905924" ignored="false" />
     <file path="$USER_HOME$/filesets/trunk/.idea/workspace.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362176786520" ignored="false" />
     <file path="$USER_HOME$/filesets/trunk/src/test/java/org/campagnelab/gobyweb/filesets/ActionsTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363614638781" ignored="false" />
     <file path="/ActionsTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363614609501" ignored="false" />
@@ -536,7 +334,7 @@
     <file path="$USER_HOME$/gobyweb-serverside-dependencies/.idea/compiler.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362064097450" ignored="false" />
     <file path="$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.0/serverside-dependencies-1.0.0.jar!/META-INF/maven/org.campagnelab.gobyweb/serverside-dependencies/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362064442824" ignored="false" />
     <file path="/PBTask.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363282752756" ignored="false" />
-    <file path="/log4j.properties" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363018812912" ignored="false" />
+    <file path="/log4j.properties" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363895401434" ignored="false" />
     <file path="$USER_HOME$/filesets/trunk/src/main/java/org/campagnelab/gobyweb/filesets/Results.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362083956424" ignored="false" />
     <file path="/Results.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362083956424" ignored="false" />
     <file path="$USER_HOME$/filesets/trunk/src/main/java/org/campagnelab/gobyweb/filesets/OutputFormatter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363293848354" ignored="false" />
@@ -638,8 +436,23 @@
     <file path="$USER_HOME$/filesets/trunk/src/main/java/org/campagnelab/gobyweb/filesets/protos/ReferenceInputListWriter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363641032678" ignored="false" />
     <file path="/ReferenceInputListWriter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363641021805" ignored="false" />
     <file path="$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-SNAPSHOT.jar!/org/campagnelab/gobyweb/filesets/protos/FileSetMessages.class" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363650306374" ignored="false" />
-    <file path="$PROJECT_DIR$/../plugins2-with-tasks/plugins.iws" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363719081351" ignored="false" />
+    <file path="$PROJECT_DIR$/../plugins2-with-tasks/plugins.iws" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363719208372" ignored="false" />
     <file path="$PROJECT_DIR$/../plugins2-with-tasks/src/test/java/org/campagnelab/gobyweb/plugins/xml/filesets/FileSetConfigTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363718515986" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Git/filesets/.idea/compiler.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363721870381" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Git/filesets/.idea/workspace.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363727743737" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Git/filesets/.idea/encodings.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363721870381" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Git/filesets/.idea/modules.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363721870381" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Git/filesets/.idea/misc.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363722056963" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Git/filesets/.idea/vcs.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363721870382" ignored="false" />
+    <file path="$PROJECT_DIR$/../../GobyWeb/Software/trunk/src/java/grid-templates/oge_job_script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363727524807" ignored="false" />
+    <file path="$PROJECT_DIR$/../../GobyWeb/Software/trunk/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363727736756" ignored="false" />
+    <file path="/DependencyResolverTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363887685269" ignored="false" />
+    <file path="/FileSetLocalRegistration.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363893388378" ignored="false" />
+    <file path="/TaskLocalSubmission.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363898171650" ignored="false" />
+    <file path="$PROJECT_DIR$/../../campagnelab/filesets/trunk/src/main/resources/log4j.properties" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363895401434" ignored="false" />
+    <file path="$PROJECT_DIR$/../../campagnelab/filesets/trunk/src/main/java/org/campagnelab/gobyweb/filesets/FileSetActions.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363897942566" ignored="false" />
+    <file path="$PROJECT_DIR$/../../campagnelab/filesets/trunk/target/generated-sources/org/campagnelab/gobyweb/filesets/protos/FileSetMessages.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363897956150" ignored="false" />
+    <file path="$PROJECT_DIR$/../../campagnelab/filesets/trunk/fileset-output.log" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363897956150" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -659,6 +472,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -693,7 +507,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
@@ -704,28 +517,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PluginRegistryTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/PluginRegistryTest.java">
+      <file leaf-file-name="TaskLocalSubmission.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmission.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="13" selection-start="784" selection-end="784" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Plugins.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="428" column="0" selection-start="17329" selection-end="17329" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PluginLoaderSettings.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="124" selection-start="1801" selection-end="1801" vertical-scroll-proportion="0.0">
+            <state line="82" column="4" selection-start="2893" selection-end="2893" vertical-scroll-proportion="1.2313726">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -733,64 +528,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="changelog.txt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/changelog.txt">
+      <file leaf-file-name="Actions.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="17" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cluster_gateway.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/cluster_gateway.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="2" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fileSetConfig.xsd" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/schemas/fileSetConfig.xsd">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="36" selection-start="803" selection-end="803" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskConfigTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/xml/tasks/TaskConfigTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="13" selection-start="782" selection-end="782" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileSetConfigTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/xml/filesets/FileSetConfigTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="38" selection-start="2858" selection-end="2858" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DependencyResolverTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/DependencyResolverTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="404" selection-end="404" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PluginsTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/PluginsTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="256" column="7" selection-start="9688" selection-end="9688" vertical-scroll-proportion="1.2095915">
+            <state line="68" column="19" selection-start="2255" selection-end="2255" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -811,9 +552,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java" />
-        <option value="$PROJECT_DIR$/bin/submitTask.sh" />
-        <option value="$PROJECT_DIR$/bin/registerFileSet.sh" />
         <option value="$PROJECT_DIR$/bin/unregisterFileSet.sh" />
         <option value="$PROJECT_DIR$/src/assemble/distribution.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" />
@@ -827,6 +565,9 @@
         <option value="$PROJECT_DIR$/bin/cluster_gateway.properties" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/xml/filesets/FileSetConfigTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/PluginsTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/DependencyResolverTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistration.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmission.java" />
       </list>
     </option>
   </component>
@@ -907,6 +648,43 @@
     <option name="y" value="22" />
     <option name="width" value="2560" />
     <option name="height" value="1330" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Android Lint</id>
+          </State>
+          <State>
+            <id>Bitwise operation issues</id>
+          </State>
+          <State>
+            <id>Bitwise operation issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Error handling</id>
+          </State>
+          <State>
+            <id>Java EE issues</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>Performance issues</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Abstraction issues</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -992,7 +770,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test-results" />
+              <option name="myItemId" value="test-data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1009,118 +787,40 @@
               <option name="myItemId" value="test-data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trunk" />
+              <option name="myItemId" value="cluster-gateway" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trunk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trunk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xml" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trunk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xml" />
+              <option name="myItemId" value="fileset-area-for-submission-test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="filesets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ClusterGateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trunk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cluster-gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1136,53 +836,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trunk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="schemas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trunk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth1" value="75" />
-    <property name="project.structure.last.edited" value="Project" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="75" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth3" value="75" />
-    <property name="OverrideImplement.combined" value="false" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth2" value="75" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth2" value="75" />
+    <property name="OverrideImplement.combined" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder0" value="0" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
     <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth2" value="75" />
     <property name="MemberChooser.sorted" value="false" />
@@ -1190,43 +862,39 @@
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth1" value="75" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder4" value="4" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth0" value="75" />
-    <property name="last_opened_file_path" value="$USER_HOME$/filesets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth4" value="75" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth3" value="75" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="FullScreen" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="FullScreen" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="75" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="Downloaded.Files.Path" value="$PROJECT_DIR$/lib" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/xml/filesets" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.lastSelected" value="project.propCompiler" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
     <property name="project.structure.side.proportion" value="0.26456878" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test-results-1363894865631" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/test-data/root-for-rnaselect" />
       <recent name="$PROJECT_DIR$/test-data/root-for-rnaselect/instances/tasks/DIRTARBALLER" />
       <recent name="$PROJECT_DIR$/test-data/root-for-rnaselect/instances/fileSets/GENERIC_DIRECTORY_1" />
-      <recent name="$PROJECT_DIR$/test-data/root-for-rnaselect/instances/tasks/TARBALLER" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="org.campagnelab.gobyweb.plugins.xml" />
-      <recent name="org.campagnelab.gobyweb.plugins.xml.filesets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/test-data/cluster-gateway" />
@@ -1235,8 +903,14 @@
       <recent name="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway" />
       <recent name="$PROJECT_DIR$/bin" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.campagnelab.gobyweb.clustergateway" />
+      <recent name="org.campagnelab.gobyweb" />
+      <recent name="org.campagnelab.gobyweb.plugins.xml" />
+      <recent name="org.campagnelab.gobyweb.plugins.xml.filesets" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.FileSetRemoteUnregistrationTESTTAG1">
+  <component name="RunManager" selected="JUnit.TaskLocalSubmission">
     <configuration default="false" name="PluginsTest" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1307,6 +981,76 @@
         <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="test-compile" />
       </method>
     </configuration>
+    <configuration default="false" name="FileSetLocalRegistration" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.campagnelab.gobyweb.clustergateway.registration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="plugins" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="org.campagnelab.gobyweb.clustergateway.registration" />
+      <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.clustergateway.registration.FileSetLocalRegistration" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean" />
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="test-compile" />
+      </method>
+    </configuration>
+    <configuration default="false" name="TaskLocalSubmission" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.campagnelab.gobyweb.clustergateway.submission.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="plugins" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="org.campagnelab.gobyweb.clustergateway.submission" />
+      <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.clustergateway.submission.TaskLocalSubmission" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean" />
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="test-compile" />
+      </method>
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
@@ -1342,6 +1086,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -1368,19 +1125,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -1480,7 +1224,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="--fileset-area test-results/filesets --plugins-dir test-data/root-for-rnaselect --fileset-id COMPACT_READS --owner Manuele.FromClusterGateway --mode local --tag TESTTAG1 --action register READS_FILE:test-data/cluster-gateway/instances/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads" />
+      <option name="PROGRAM_PARAMETERS" value="--fileset-area test-results/filesets --plugins-dir test-data/root-for-rnaselect --fileset-id COMPACT_READS --owner Manuele.FromClusterGateway --mode local --tag TESTTAG1 --action register READS_FILE:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -1506,7 +1250,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="--fileset-area test-results/filesets --plugins-dir test-data/root-for-rnaselect --fileset-id COMPACT_READS --owner Manuele.FromClusterGateway --mode local --tag TESTTAG2 --action register READS_FILE:test-data/cluster-gateway/instances/fileSets/READS_2/KHYMHVM-Sample_MAN2.compact-reads" />
+      <option name="PROGRAM_PARAMETERS" value="--fileset-area test-results/filesets --plugins-dir test-data/root-for-rnaselect --fileset-id COMPACT_READS --owner Manuele.FromClusterGateway --mode local --tag TESTTAG2 --action register READS_FILE:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_2/KHYMHVM-Sample_MAN2.compact-reads " />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -1532,7 +1276,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="--fileset-area test-results/filesets --plugins-dir test-data/root-for-rnaselect --fileset-id COMPACT_READS --owner Manuele.FromClusterGateway --mode local --tag TESTTAG3 --action register READS_FILE:test-data/cluster-gateway/instances/fileSets/READS_3/OUTTRGH-Sample_MAN3.compact-reads" />
+      <option name="PROGRAM_PARAMETERS" value="--fileset-area test-results/filesets --plugins-dir test-data/root-for-rnaselect --fileset-id COMPACT_READS --owner Manuele.FromClusterGateway --mode local --tag TESTTAG3 --action register READS_FILE:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_3/OUTTRGH-Sample_MAN3.compact-reads" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -1671,7 +1415,7 @@
         <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="test-compile" />
       </method>
     </configuration>
-    <list size="11">
+    <list size="13">
       <item index="0" class="java.lang.String" itemvalue="Application.FileSetLocalUnregistrationTESTTAG1" />
       <item index="1" class="java.lang.String" itemvalue="Application.LocalClusterGateway" />
       <item index="2" class="java.lang.String" itemvalue="Application.FileSetLocalRegistrationTESTTAG1" />
@@ -1683,11 +1427,15 @@
       <item index="8" class="java.lang.String" itemvalue="JUnit.FileSetConfigTest" />
       <item index="9" class="java.lang.String" itemvalue="JUnit.PluginsTest" />
       <item index="10" class="java.lang.String" itemvalue="JUnit.TaskConfigTest" />
+      <item index="11" class="java.lang.String" itemvalue="JUnit.FileSetLocalRegistration" />
+      <item index="12" class="java.lang.String" itemvalue="JUnit.TaskLocalSubmission" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.PluginsTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TaskConfigTest" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TaskLocalSubmission" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.FileSetLocalRegistration" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.PluginsTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.TaskConfigTest" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -1710,7 +1458,7 @@
     <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
-    <option name="FORCE_UPDATE" value="false" />
+    <option name="FORCE_UPDATE" value="true" />
     <option name="IGNORE_EXTERNALS" value="false" />
     <configuration useDefault="false">$USER_HOME$/.subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
@@ -2048,7 +1796,15 @@
       <created>1363705406109</created>
       <updated>1363705406109</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Merge from temporary/plugins-with-tasks@34020">
+      <created>1363719188101</created>
+      <updated>1363719188101</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Add junit test for fileset instances (registration, check, unregistration)">
+      <created>1363890802107</created>
+      <updated>1363890802107</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2066,14 +1822,14 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289256" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48181817" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41322315" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28246754" sideWeight="0.6414763" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2830414" sideWeight="0.5181818" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28224522" sideWeight="0.22396694" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.290207" sideWeight="0.6553719" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28224522" sideWeight="0.5181818" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3446281" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28224522" sideWeight="0.42561984" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3446281" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975206" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
@@ -2123,7 +1879,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge from temporary/plugins-with-tasks@34020" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add junit test for task job submission. Add input test data for the test execution" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -2136,8 +1892,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Validate entry names, rollback failed fileset registrations" />
-    <MESSAGE value="A bit of reorganization of packages for sharing the Storage Area class" />
     <MESSAGE value="Add and manage the JobArea parameter for task submissions, introduce a hierarchy for persistent areas to avoid duplication of code" />
     <MESSAGE value="Remove some duplicated class members" />
     <MESSAGE value="Add the owner parameter to both fileset registration and task submission, manage ownership for filesets, tasks and persistent areas" />
@@ -2161,6 +1915,8 @@
     <MESSAGE value="Add more test configurations" />
     <MESSAGE value="Remove unused StorageArea class from the project" />
     <MESSAGE value="Merge from temporary/plugins-with-tasks@34020" />
+    <MESSAGE value="Add junit test for fileset instances (registration, check, unregistration)" />
+    <MESSAGE value="Add junit test for task job submission. Add input test data for the test execution" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2170,46 +1926,16 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/SupportDependencyRange.java">
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Main.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="17" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0">
+        <state line="20" column="6" selection-start="678" selection-end="678" vertical-scroll-proportion="0.14114627">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/DependencyResolver.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/DependencyResolverTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="50" selection-start="3591" selection-end="3591" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#3138#3153#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/COMPACT_READS/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="51" selection-start="636" selection-end="636" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/fileSets/TSV/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test-data/root-for-rnaselect/schemas/plugins.xsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="2612" selection-end="2654" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/schemas/plugins.xsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="42" selection-start="2654" selection-end="2654" vertical-scroll-proportion="0.0">
+        <state line="11" column="40" selection-start="436" selection-end="436" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -2217,72 +1943,71 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/PluginRegistryTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="13" selection-start="784" selection-end="784" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="428" column="0" selection-start="17329" selection-end="17329" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="124" selection-start="1801" selection-end="1801" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/changelog.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="17" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/cluster_gateway.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="2" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/schemas/fileSetConfig.xsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="36" selection-start="803" selection-end="803" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/xml/tasks/TaskConfigTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="13" selection-start="782" selection-end="782" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/xml/filesets/FileSetConfigTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="38" selection-start="2858" selection-end="2858" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/DependencyResolverTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="404" selection-end="404" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/PluginsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="256" column="7" selection-start="9688" selection-end="9688" vertical-scroll-proportion="1.2095915">
+        <state line="73" column="5" selection-start="2623" selection-end="2623" vertical-scroll-proportion="-2.7140958">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="33" selection-start="398" selection-end="438" vertical-scroll-proportion="0.27792552">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetRegistration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="60" selection-start="2336" selection-end="2380" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/Actions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="12" selection-start="684" selection-end="684" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="28" selection-start="2006" selection-end="2094" vertical-scroll-proportion="0.43137255">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="52" selection-start="1846" selection-end="1846" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="19" selection-start="2255" selection-end="2255" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="4" selection-start="2893" selection-end="2893" vertical-scroll-proportion="1.2313726">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

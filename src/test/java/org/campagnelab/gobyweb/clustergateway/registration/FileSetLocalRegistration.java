@@ -51,14 +51,14 @@ public class FileSetLocalRegistration {
     public void register() {
         try {
             actions.register("COMPACT_READS",
-                    new String[]{"READS_FILE:test-data/cluster-gateway/instances/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads"},
+                    new String[]{"READS_FILE:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads"},
                     "TESTTAG1");
         } catch (IOException e) {
             fail("fail to register fileset TESTTAG1");
         }
         try {
             actions.register("COMPACT_READS",
-                    new String[]{"READS_FILE:test-data/cluster-gateway/instances/fileSets/READS_2/KHYMHVM-Sample_MAN2.compact-reads"},
+                    new String[]{"READS_FILE:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_2/KHYMHVM-Sample_MAN2.compact-reads"},
                     "TESTTAG2");
         } catch (IOException e) {
             fail("fail to register fileset TESTTAG2");
@@ -66,7 +66,7 @@ public class FileSetLocalRegistration {
 
         try {
             actions.register("COMPACT_READS",
-                    new String[]{"READS_FILE:test-data/cluster-gateway/instances/fileSets/READS_3/OUTTRGH-Sample_MAN3.compact-reads"},
+                    new String[]{"READS_FILE:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_3/OUTTRGH-Sample_MAN3.compact-reads"},
                     "TESTTAG3");
         } catch (IOException e) {
             fail("fail to register fileset TESTTAG3");
@@ -77,7 +77,7 @@ public class FileSetLocalRegistration {
     public void duplicateRegister() {
         try {
             actions.register("COMPACT_READS",
-                    new String[]{"READS_FILE:test-data/cluster-gateway/instances/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads"},
+                    new String[]{"READS_FILE:test-data/cluster-gateway/files-for-registration-test/READS_1/AOUGEKP-Sample_MAN1.compact-reads"},
                     "TESTTAG1");
         } catch (IOException e) {
             fail("wrong exception threw by registration");
