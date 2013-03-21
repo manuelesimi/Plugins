@@ -4,14 +4,19 @@ import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 
 /**
+ *  Test dependency resolution among plugins
  *
+ *  @author manuele
  */
+@RunWith(JUnit4.class)
 public class DependencyResolverTest {
 
     Plugins plugins;
