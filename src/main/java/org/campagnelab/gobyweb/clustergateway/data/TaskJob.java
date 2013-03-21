@@ -15,7 +15,7 @@ import java.io.File;
  * @author manuele
  */
 
-public class Task extends DataObject {
+public class TaskJob extends DataObject {
 
     /**
      * Tags that identify the input filesets
@@ -33,7 +33,7 @@ public class Task extends DataObject {
      * Creates a new instance.
      * @param sourceConfig the task configuration loaded from the plugin directory
      */
-    public Task(TaskConfig sourceConfig) {
+    public TaskJob(TaskConfig sourceConfig) {
         this.sourceConfig = sourceConfig;
         for (PluginFile file : sourceConfig.getFiles()) {
             this.addFile(file.getLocalFile());

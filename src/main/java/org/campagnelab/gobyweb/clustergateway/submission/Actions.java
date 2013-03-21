@@ -3,11 +3,14 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.campagnelab.gobyweb.clustergateway.data.Task;
+import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
+import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
 import org.campagnelab.gobyweb.clustergateway.runtime.JobArea;
 
 import org.campagnelab.gobyweb.io.FileSetArea;
+import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
+import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 
 import java.io.File;
@@ -22,6 +25,7 @@ import java.util.Arrays;
  */
 final class Actions {
 
+    private Submitter submitter;
 
     private FileSetArea fileSetArea;
 
@@ -29,58 +33,46 @@ final class Actions {
 
     private PluginRegistry registry;
 
-    /**The directory where the Cluster Gateway stores results of job executions */
-    private static final File returnedJobFiles = new File (System.getProperty( "user.home" ) + "/.clustergateway/RETURNED_JOB_FILES");
+    /**
+     * The directory where the Cluster Gateway stores results of job executions
+     */
+    private static final File returnedJobFiles = new File(System.getProperty("user.home") + "/.clustergateway/RETURNED_JOB_FILES");
 
     private static Logger logger = Logger.getLogger(Actions.class);
 
-    private Actions() {}
+    private Actions(Submitter submitter) {
+        this.submitter = submitter;
+    }
 
-   /**
-    * Creates a new Actions object.
-    * @param fileSetArea
-    * @param jobArea
-    * @param registry
-    * @throws IOException if the creation of the folder where to store job results fails
-    */
-    protected Actions(FileSetArea fileSetArea, JobArea jobArea, PluginRegistry registry) throws IOException {
+    /**
+     * Creates a new Actions object.
+     *
+     * @param fileSetArea
+     * @param jobArea
+     * @param registry
+     * @throws IOException if the creation of the folder where to store job results fails
+     */
+    protected Actions(Submitter submitter, FileSetArea fileSetArea, JobArea jobArea, PluginRegistry registry) throws IOException {
         this.registry = registry;
         this.fileSetArea = fileSetArea;
         this.jobArea = jobArea;
+        this.submitter=submitter;
         if (!returnedJobFiles.exists())
             FileUtils.forceMkdir(returnedJobFiles);
     }
 
-    /**
-     * Submits the task to the cluster.
-     * @param queue the queue to use
-     * @param id the id of the task configuration
-     * @param inputFilesets the list of tags identifying the input filesets
-     */
-    protected void submitRemoteTask(String queue, String id, String[] inputFilesets) throws Exception {
-        this.submitTask(new RemoteSubmitter(queue),id,inputFilesets);
-    }
 
-    /**
-     * Submits the task to the local machine.
-     * @param id the id of the task configuration
-     * @param inputFilesets the list of tags identifying the input filesets
-     */
-    protected void submitLocalTask(String id, String[] inputFilesets) throws Exception  {
-        this.submitTask(new LocalSubmitter(),id,inputFilesets);
-    }
-
-    private void submitTask(Submitter submitter, String id, String[] inputFilesets) throws Exception  {
+    public void submitTask(String id, String[] inputFilesets) throws Exception {
         //create the task instance
         TaskConfig config = registry.findByTypedId(id, TaskConfig.class);
-        Task task = new Task(config);
-        task.setTag(ICBStringUtils.generateRandomString());
-        logger.debug("Tag assigned to Task instance: " + task.getTag());
+        TaskJob taskJob = new TaskJob(config);
+        taskJob.setTag(ICBStringUtils.generateRandomString());
+        logger.debug("Tag assigned to Task instance: " + taskJob.getTag());
 
         //add the input filesets
         logger.debug("Input filesets: " + Arrays.toString(inputFilesets));
         for (String inFileset : inputFilesets)
-                task.addInputFileSet(inFileset);
+            taskJob.addInputFileSet(inFileset);
 
         //create the directory for results
         FileUtils.forceMkdir(returnedJobFiles);
@@ -92,18 +84,41 @@ final class Actions {
         session.targetAreaOwner = fileSetArea.getOwner();
 
         //submit the task
-        submitter.submitTask(jobArea,session,task);
+        submitter.submitTask(jobArea, session, taskJob);
+    }
+
+    public void submitResourceInstall(String id, String version) throws Exception {
+        //create the resourceInstance instance
+        DependencyResolver.resolveResource(id, version, version, version);
+        ResourceConfig config = registry.findByTypedId(id, ResourceConfig.class);
+        ResourceJob resourceInstance = new ResourceJob(config);
+        resourceInstance.setTag(ICBStringUtils.generateRandomString());
+        logger.debug("Tag assigned to Task instance: " + resourceInstance.getTag());
+
+
+        //create the directory for results
+        FileUtils.forceMkdir(returnedJobFiles);
+
+        //prepare the session for the submission
+        Session session = submitter.newSession();
+        prepareCallerSession(session, returnedJobFiles);
+        session.targetAreaReferenceName = fileSetArea.getReferenceName();
+        session.targetAreaOwner = fileSetArea.getOwner();
+
+        //submit the resourceInstance
+        submitter.submitResourceInstall(jobArea, session, resourceInstance);
     }
 
     /**
      * Populates the session with the information needed by the task to send back information
+     *
      * @param session
      * @param resultsDir the local folder where results will be stored
      * @throws Exception
      */
     private void prepareCallerSession(Session session, File resultsDir) throws Exception {
         if (jobArea.isLocal()) {
-           //the job is executed locally, it just needs a local reference to the results directory
+            //the job is executed locally, it just needs a local reference to the results directory
             session.callerAreaReferenceName = resultsDir.getAbsolutePath();
         } else {
             //the job needs to contact the caller via ssh
@@ -114,7 +129,7 @@ final class Actions {
                                 java.net.InetAddress.getLocalHost().getHostName(),
                                 resultsDir.getAbsolutePath());
             } catch (UnknownHostException e) {
-                throw new Exception("failed to get the local hostname",e);
+                throw new Exception("failed to get the local hostname", e);
             }
         }
         session.callerAreaOwner = System.getProperty("user.name");

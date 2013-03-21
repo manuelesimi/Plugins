@@ -4,17 +4,17 @@
         <flaggedOption>
             <id>pluginDir</id>
             <stringParser>
-                    <classname>FileStringParser</classname>
-                    <properties>
-                        <property>
-                                <name>mustBeDirectory</name>
-                                <value>true</value>
-                        </property>
-                        <property>
-                                <name>mustExist</name>
-                                <value>true</value>
-                        </property>
-                    </properties>
+                <classname>FileStringParser</classname>
+                <properties>
+                    <property>
+                        <name>mustBeDirectory</name>
+                        <value>true</value>
+                    </property>
+                    <property>
+                        <name>mustExist</name>
+                        <value>true</value>
+                    </property>
+                </properties>
             </stringParser>
             <required>optional</required>
             <shortFlag>p</shortFlag>
@@ -29,20 +29,24 @@
             </stringParser>
             <required>optional</required>
             <shortFlag>f</shortFlag>
-                <longFlag>fileset-area</longFlag>
-           <help>The directory where filesets are kept. Can be a local folder or a remote folder in the form of username@hostname:/path</help>
+            <longFlag>fileset-area</longFlag>
+            <help>The directory where filesets are kept. Can be a local folder or a remote folder in the form of
+                username@hostname:/path
+            </help>
         </flaggedOption>
 
-         <flaggedOption>
+        <flaggedOption>
             <id>jobArea</id>
             <stringParser>
-                 <classname>StringStringParser</classname>
+                <classname>StringStringParser</classname>
             </stringParser>
             <required>optional</required>
             <shortFlag>j</shortFlag>
             <longFlag>job-area</longFlag>
-            <help>The directory where task files are placed for execution. Can be a local folder or a remote folder in the form of username@hostname:/path</help>
-         </flaggedOption>
+            <help>The directory where task files are placed for execution. Can be a local folder or a remote folder in
+                the form of username@hostname:/path
+            </help>
+        </flaggedOption>
 
 
         <flaggedOption>
@@ -73,10 +77,22 @@
             <stringParser>
                 <classname>StringStringParser</classname>
             </stringParser>
-            <required>true</required>
+            <required>false</required>
             <shortFlag>t</shortFlag>
             <longFlag>task-id</longFlag>
             <help>The identifier of the task to submit</help>
+        </flaggedOption>
+        <flaggedOption>
+            <id>resource</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <list>true</list>
+            <listSeparator>:</listSeparator>
+            <shortFlag>r</shortFlag>
+            <longFlag>resource</longFlag>
+            <help>The identifier and version number of the resource to install. In the format ID:VERSION.</help>
         </flaggedOption>
 
         <flaggedOption>
@@ -87,7 +103,7 @@
             <required>true</required>
             <shortFlag>o</shortFlag>
             <defaults>
-               <string>ClusterGateway</string>
+                <string>ClusterGateway</string>
             </defaults>
             <longFlag>owner</longFlag>
             <help>The user that will own the task files and the produced filesets</help>
@@ -109,7 +125,16 @@
             <longFlag>help</longFlag>
             <help>Print help message.</help>
         </switch>
-
+        <flaggedOption>
+            <id>artifact-server</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>a</shortFlag>
+            <longFlag>artifact-server</longFlag>
+            <help>The server where to the artifacts installation scripts are located.</help>
+        </flaggedOption>
 
     </parameters>
 </jsap>

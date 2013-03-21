@@ -38,6 +38,7 @@ package org.campagnelab.gobyweb.plugins.xml.resources;
 
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
+import org.campagnelab.gobyweb.plugins.xml.PluginFileProvider;
 import org.campagnelab.gobyweb.plugins.xml.SupportDependencyRange;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 
@@ -56,7 +57,8 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-public class ResourceConfig extends ResourceConsumerConfig implements SupportDependencyRange, Comparable<ResourceConfig> {
+public class ResourceConfig extends ResourceConsumerConfig implements SupportDependencyRange, Comparable<ResourceConfig>,
+        PluginFileProvider {
 
     /**
      * List of resource requirements. Every required resource must be available for a plugin to be installed. Missing

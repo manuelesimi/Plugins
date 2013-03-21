@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.runtime.JobArea;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
+import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.Plugins;
 
 import java.io.IOException;
@@ -16,12 +17,12 @@ import java.util.List;
 /**
  * Command line interface to the cluster gateway
  *
- *
  * @author manuele
  */
 public class ClusterGateway {
 
     protected static final org.apache.log4j.Logger logger = Logger.getLogger(ClusterGateway.class);
+
 
     public static void main(String[] args) {
         JSAPResult config = loadConfig(args);
@@ -54,40 +55,59 @@ public class ClusterGateway {
             plugins.addServerConf(config.getFile("pluginDir").getAbsolutePath());
             plugins.setWebServerHostname("localhost");
             plugins.reload();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             logger.error(e);
             System.exit(1);
         }
         try {
-            Actions actions = new Actions(storageArea, jobArea, plugins.getRegistry());
-            if (config.getString("mode").equalsIgnoreCase("remote"))   {
-                if (!jobArea.isLocal())
-                    actions.submitRemoteTask(config.getString("queue"),
-                            config.getString("task"),
-                            config.getStringArray("inputFilesets")
-                    );
-                else
+            String queue = config.getString("queue");
+            Submitter submitter = null;
+            Actions actions = null;
+            if (config.getString("mode").equalsIgnoreCase("remote")) {
+                if (!jobArea.isLocal()) {
+                    submitter = new RemoteSubmitter(plugins.getRegistry(), queue);
+                    actions = new Actions(submitter, storageArea, jobArea, plugins.getRegistry());
+                } else {
                     logger.error("Cannot use the remote submitter with a local job area");
+                }
+
             } else if (config.getString("mode").equalsIgnoreCase("local")) {
-                if (jobArea.isLocal())
-                    actions.submitLocalTask(
-                            config.getString("task"),
-                            config.getStringArray("inputFilesets")
-                    );
-                else
-                    logger.error("Cannot use the local submitter with a remote job area");
+                if (jobArea.isLocal()) {
+
+                    submitter = new LocalSubmitter(plugins.getRegistry());
+                    actions = new Actions(submitter, storageArea, jobArea, plugins.getRegistry());
+                }
             }
+            assert actions != null : "action cannot be null.";
+            submitter.setSubmissionHostname(config.getString("artifact-server"));
+
+            if (config.userSpecified("task")) {
+                actions.submitTask(
+                        config.getString("task"),
+                        config.getStringArray("inputFilesets"));
+            } else if (config.userSpecified("resource")) {
+
+                String token[] = config.getStringArray("resource");
+                String id = token[0];
+                String version = token[1];
+                actions.submitResourceInstall(id, version);
+
+            } else
+                logger.error("Cannot use the local submitter with a remote job area");
+
         } catch (Exception e) {
             logger.error("Failed to manage the requested action", e);
             System.exit(1);
 
         }
+
     }
 
 
     /**
      * Loads the parameters configuration and rules
+     *
      * @param args the command line arguments
      * @return the configuration
      */
@@ -111,11 +131,11 @@ public class ClusterGateway {
         List<String> errors = new ArrayList<String>();
         JSAPResult config = jsap.parse(args);
         if (config.userSpecified("help") || hasError(config, errors)) {
-            if (errors.size()>0) {
+            if (errors.size() > 0) {
                 for (String error : errors)
                     System.err.println("Error: " + error);
             }
-            for (java.util.Iterator errs = config.getErrorMessageIterator(); errs.hasNext();) {
+            for (java.util.Iterator errs = config.getErrorMessageIterator(); errs.hasNext(); ) {
                 System.err.println("Error: " + errs.next());
             }
             System.err.println(jsap.getHelp());
@@ -124,16 +144,19 @@ public class ClusterGateway {
             System.err.println("                " + jsap.getUsage());
             System.err.println();
             System.exit(0);
-          }
+        }
         return config;
     }
 
     private static boolean hasError(JSAPResult config, List<String> errors) {
-
+        // First, check for validation errors found by JSAP:
+        if (!config.success()) {
+            return true;
+        }
         if (config.getString("mode").equalsIgnoreCase("local"))
-              return false;
+            return false;
 
-        if (config.getString("mode").equalsIgnoreCase("remote"))   {
+        if (config.getString("mode").equalsIgnoreCase("remote")) {
             if (!config.userSpecified("queue")) {
                 errors.add("No queue has been indicated and none was found in the default configuration properties");
                 return true;
@@ -141,6 +164,7 @@ public class ClusterGateway {
             return false;
         }
         errors.add(String.format("Invalid mode %s. Allowed modes: local | remote", config.getString("mode")));
+
         return true;
     }
 

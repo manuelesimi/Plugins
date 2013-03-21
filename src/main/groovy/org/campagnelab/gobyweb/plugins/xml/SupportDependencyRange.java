@@ -3,7 +3,7 @@ package org.campagnelab.gobyweb.plugins.xml;
 /**
  * A configuration that allows its consumers to specify a dependency with "AtLeast" constraint
  */
-public interface SupportDependencyRange {
+public interface SupportDependencyRange extends Config{
 
     /**
      * Determine if this configuration is of a release equal to version.
