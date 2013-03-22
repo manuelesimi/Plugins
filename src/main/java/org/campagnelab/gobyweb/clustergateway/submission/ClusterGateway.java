@@ -25,8 +25,13 @@ public class ClusterGateway {
 
 
     public static void main(String[] args) {
-        JSAPResult config = loadConfig(args);
+        System.exit(process(args));
 
+    }
+
+    public static int process(String[] args) {
+        JSAPResult config = loadConfig(args);
+        if (config==null) return 1;
         //TODO: load pluginDir and StorageArea from the properties file if they are not specified as parameters
 
         //create the reference to the storage area
@@ -36,7 +41,7 @@ public class ClusterGateway {
                     config.getString("fileSetArea"), config.getString("owner"));
         } catch (IOException e) {
             logger.error(e.getMessage());
-            System.exit(1);
+            return 1;
         }
 
 
@@ -46,19 +51,24 @@ public class ClusterGateway {
             jobArea = new JobArea(config.getString("jobArea"), config.getString("owner"));
         } catch (IOException ioe) {
             logger.error(ioe);
-            System.exit(1);
+           return 1;
         }
         //load plugin configurations
         Plugins plugins = null;
         try {
-            plugins = new Plugins();
+            plugins = new Plugins(false);
             plugins.addServerConf(config.getFile("pluginDir").getAbsolutePath());
             plugins.setWebServerHostname("localhost");
             plugins.reload();
+            if (plugins.somePluginReportedErrors()) {
+                System.err.println("Some plugins could not be loaded. See below for details. Aborting.");
+
+                return(1);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             logger.error(e);
-            System.exit(1);
+            return(1);
         }
         try {
             String queue = config.getString("queue");
@@ -102,10 +112,10 @@ public class ClusterGateway {
 
         } catch (Exception e) {
             logger.error("Failed to manage the requested action", e);
-            System.exit(1);
+            return(1);
 
         }
-
+        return 0;
     }
 
 
@@ -119,17 +129,17 @@ public class ClusterGateway {
         if (ClusterGateway.class.getResource("ClusterGateway.jsap") == null) {
             logger.fatal("unable to find the JSAP configuration file");
             System.err.println("unable to find the JSAP configuration file");
-            System.exit(1);
+            return null;
         }
         JSAP jsap = null;
         try {
             jsap = new JSAP(ClusterGateway.class.getResource("ClusterGateway.jsap"));
         } catch (IOException e) {
             e.printStackTrace();
-            System.exit(1);
+            return null;
         } catch (JSAPException e) {
             e.printStackTrace();
-            System.exit(1);
+            return null;
 
         }
         List<String> errors = new ArrayList<String>();
@@ -147,7 +157,7 @@ public class ClusterGateway {
             System.err.println("Usage: java " + ClusterGateway.class.getName());
             System.err.println("                " + jsap.getUsage());
             System.err.println();
-            System.exit(0);
+
         }
         return config;
     }

@@ -75,8 +75,6 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
     }
 
 
-
-
     /**
      * Submits a resourceJob installation job.
      *
