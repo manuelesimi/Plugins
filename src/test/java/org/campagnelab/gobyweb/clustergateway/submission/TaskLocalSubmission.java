@@ -84,7 +84,7 @@ public class TaskLocalSubmission {
         }
     }
 
-    //@AfterClass
+    @AfterClass
     public static void clean(){
         try {
             Files.deleteRecursively(new File(rootAreaDir));
