@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.Job;
 import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
-import org.campagnelab.gobyweb.clustergateway.runtime.JobArea;
+import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.ArtifactsProtoBufHelper;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
 import org.campagnelab.gobyweb.plugins.DependencyResolver;
@@ -209,10 +209,9 @@ abstract public class AbstractSubmitter implements Submitter {
      *
      * @param jobArea
      * @param job
-     * @param taskLocalDir
      * @throws IOException
      */
-    protected void writeConstants(JobArea jobArea, Job job, File taskLocalDir) throws IOException {
+    protected void writeConstants(JobArea jobArea, Job job) throws IOException {
         //get the wrapper script
         URL constantsURL = getClass().getClassLoader().getResource(constantsTemplate);
         String constantsContent = IOUtils.toString(constantsURL);
@@ -220,11 +219,11 @@ abstract public class AbstractSubmitter implements Submitter {
                 .replaceAll("%%JOB_DIR%%", jobArea.getBasename(job.getTag()))
                 .replaceAll("%%TAG%%", job.getTag())
                 .replaceAll("%%ARTIFACT_REPOSITORY_DIR%%", artifactRepositoryPath);
-        FileUtils.writeStringToFile(new File(taskLocalDir, constantsTemplate), constantsContent);
+        FileUtils.writeStringToFile(new File(jobArea.getBasename(job.getTag()), constantsTemplate), constantsContent);
 
         if (environmentScriptFilename != null) {
             String data = IOUtils.toString(new FileReader(environmentScriptFilename));
-            FileUtils.writeStringToFile(new File(taskLocalDir, constantsTemplate),
+            FileUtils.writeStringToFile(new File(jobArea.getBasename(job.getTag()), constantsTemplate),
                     data, /* append */ true);
 
         }

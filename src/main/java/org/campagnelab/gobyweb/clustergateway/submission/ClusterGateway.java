@@ -4,10 +4,9 @@ import com.martiansoftware.jsap.JSAP;
 import com.martiansoftware.jsap.JSAPException;
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
-import org.campagnelab.gobyweb.clustergateway.runtime.JobArea;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
-import org.campagnelab.gobyweb.plugins.PluginRegistry;
+import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
 
 import java.io.IOException;
@@ -38,7 +37,8 @@ public class ClusterGateway {
         FileSetArea storageArea = null;
         try {
             storageArea = AreaFactory.createFileSetArea(
-                    config.getString("fileSetArea"), config.getString("owner"));
+                    config.getString("fileSetArea"), config.getString("owner"),
+                    AreaFactory.MODE.valueOf(config.getString("mode").toUpperCase()));
         } catch (IOException e) {
             logger.error(e.getMessage());
             return 1;
@@ -48,7 +48,9 @@ public class ClusterGateway {
         //create the reference to the job area
         JobArea jobArea = null;
         try {
-            jobArea = new JobArea(config.getString("jobArea"), config.getString("owner"));
+            jobArea = AreaFactory.createJobArea(
+                    config.getString("jobArea"), config.getString("owner"),
+                    AreaFactory.MODE.valueOf(config.getString("mode").toUpperCase()));
         } catch (IOException ioe) {
             logger.error(ioe);
            return 1;

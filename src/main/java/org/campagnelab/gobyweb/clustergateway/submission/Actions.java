@@ -5,9 +5,9 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
-import org.campagnelab.gobyweb.clustergateway.runtime.JobArea;
 
 import org.campagnelab.gobyweb.io.FileSetArea;
+import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;

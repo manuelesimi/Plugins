@@ -2,9 +2,9 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 
 import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
-import org.campagnelab.gobyweb.clustergateway.runtime.JobArea;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
+import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -61,7 +61,7 @@ public class TaskLocalSubmission {
 
         //create the reference to the job area
         try {
-            jobArea = new JobArea(jobAreaDir, owner);
+            jobArea = AreaFactory.createJobArea(jobAreaDir, owner, AreaFactory.MODE.LOCAL);
         } catch (IOException ioe) {
             fail("failed to create the local job area");
         }
@@ -71,6 +71,8 @@ public class TaskLocalSubmission {
     public void submit() {
         try {
             Submitter submitter  = new LocalSubmitter(plugins.getRegistry());
+            submitter.setSubmissionHostname("");
+            submitter.setRemoteArtifactRepositoryPath("");
             actions = new Actions(submitter, storageArea, jobArea, plugins.getRegistry());
             actions.submitTask(
                    "RNASELECT_TASK",

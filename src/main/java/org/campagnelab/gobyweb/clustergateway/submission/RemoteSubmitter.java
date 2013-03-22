@@ -7,8 +7,8 @@ import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
 
-import org.campagnelab.gobyweb.clustergateway.runtime.JobArea;
 import org.campagnelab.gobyweb.filesets.protos.ReferenceInputListWriter;
+import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 
 import java.io.File;
@@ -85,7 +85,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         logger.info("Task dir: " + jobArea.getBasename(taskJob.getTag()));
         //upload the entire folder in the job area
         logger.info("Task submitting files for execution...");
-        jobArea.upload(taskJob.getTag(), localWorkingDir);
+        jobArea.push(taskJob.getTag(), localWorkingDir);
 
         //grant execute permissions to the task's scripts
         String[] binaryFiles = new String[]{"script.sh", constantsTemplate, wrapperScript};
