@@ -41,7 +41,7 @@ public class ArtifactsProtoBufHelper {
      * @param pluginConfig Aligner, AlignmentAnalysis or Task config that uses resources.
      * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
      */
-    public File createPbRequestFile(ExecutableConfig pluginConfig) {
+    public File createPbRequestFile(ResourceConsumerConfig pluginConfig) {
         BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
         def uniqueFile = File.createTempFile(ARTIFACTS_INSTALL_REQUESTS, ".pb");
 
