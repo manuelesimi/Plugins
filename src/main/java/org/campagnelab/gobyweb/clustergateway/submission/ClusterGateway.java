@@ -6,9 +6,8 @@ import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
-import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
-
+import org.campagnelab.gobyweb.io.JobArea;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

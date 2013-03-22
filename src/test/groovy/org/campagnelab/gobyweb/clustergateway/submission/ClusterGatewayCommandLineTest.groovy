@@ -1,7 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
 import org.apache.commons.io.FileUtils;
-import org.campagnelab.gobyweb.clustergateway.runtime.JobArea;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
