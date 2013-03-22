@@ -36,6 +36,8 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String environmentScriptFilename;
     protected String artifactRepositoryPath;
 
+    private static Logger logger = Logger.getLogger(Submitter.class);
+
     public void setSubmissionHostname(String submissionHostname) {
         this.submissionHostname = submissionHostname;
     }
@@ -168,8 +170,6 @@ abstract public class AbstractSubmitter implements Submitter {
         }
         return result.toArray(new PluginFile[result.size()]);
     }
-
-    private static Logger logger = Logger.getLogger(LocalSubmitter.class);
 
 
     private void collectResourceFiles(Resource resourceRef, ObjectArrayList<PluginFile> list) {
