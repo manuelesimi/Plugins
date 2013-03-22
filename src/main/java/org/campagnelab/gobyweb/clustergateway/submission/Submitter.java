@@ -2,7 +2,7 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 
 import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
-import org.campagnelab.gobyweb.clustergateway.runtime.JobArea;
+import org.campagnelab.gobyweb.io.JobArea;
 
 /**
  * Model the behavior of a submitter in the Cluster Gateway.
