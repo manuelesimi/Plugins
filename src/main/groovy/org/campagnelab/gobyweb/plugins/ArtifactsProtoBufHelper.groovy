@@ -41,7 +41,7 @@ public class ArtifactsProtoBufHelper {
      * @param pluginConfig
      * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
      */
-    public File createPbRequestFile(ResourceConfig pluginConfig) {
+    public File createPbRequestFile(ResourceConsumerConfig pluginConfig) {
         LOG.debug("createPbRequestFile for " + pluginConfig?.id)
         BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
 
@@ -58,7 +58,7 @@ public class ArtifactsProtoBufHelper {
                         resource.versionAtMost)
                 writePbForResource(resourceConfig, requestBuilder)
         }
-        writePbForResource(pluginConfig, requestBuilder);
+        //writePbForResource(pluginConfig, requestBuilder);      //TODO: check with fabien
 
         if (!requestBuilder.isEmpty()) {
             requestBuilder.save(uniqueFile);

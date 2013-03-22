@@ -702,7 +702,7 @@ public class Plugins {
         return tempDir
     }
 
-    File createPbRequestFile(ResourceConsumerConfig alignerById) {
+    public File createPbRequestFile(ResourceConsumerConfig alignerById) {
         return artifactsPbHelper.createPbRequestFile(alignerById)
     }
     /**
