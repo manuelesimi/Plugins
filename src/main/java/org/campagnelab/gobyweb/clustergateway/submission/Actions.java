@@ -65,6 +65,9 @@ final class Actions {
     public void submitTask(String id, String[] inputFilesets) throws Exception {
         //create the task instance
         TaskConfig config = registry.findByTypedId(id, TaskConfig.class);
+        if (config==null) {
+            throw new IllegalArgumentException("Could not find task with ID="+id);
+        }
         TaskJob taskJob = new TaskJob(config);
         taskJob.setTag(ICBStringUtils.generateRandomString());
         logger.debug("Tag assigned to Task instance: " + taskJob.getTag());

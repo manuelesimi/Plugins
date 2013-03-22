@@ -78,9 +78,10 @@
                 <classname>StringStringParser</classname>
             </stringParser>
             <required>false</required>
-            <shortFlag>t</shortFlag>
-            <longFlag>task-id</longFlag>
-            <help>The identifier of the task to submit</help>
+            <longFlag>task</longFlag>
+            <list>true</list>
+            <listSeparator>:</listSeparator>
+            <help>The identifier of the task to submit, in the format ID:VERSION.</help>
         </flaggedOption>
         <flaggedOption>
             <id>resource</id>

@@ -16,7 +16,6 @@ import java.util.List;
 /**
  * Command line interface for Fileset instance registration.
  *
- *
  * @author manuele
  */
 public class FileSetRegistration {
@@ -24,8 +23,12 @@ public class FileSetRegistration {
     protected static final org.apache.log4j.Logger logger = Logger.getLogger(FileSetRegistration.class);
 
     public static void main(String[] args) {
-        JSAPResult config = loadConfig(args);
+        System.exit(process(args));
+    }
 
+    public static int process(String[] args) {
+        JSAPResult config = loadConfig(args);
+        if (config == null) return 127;
         //TODO: load pluginDir and StorageArea from the properties file if they are not specified as parameters
 
         //create the reference to the storage area
@@ -35,42 +38,51 @@ public class FileSetRegistration {
                     config.getString("fileSetArea"), config.getString("owner"),
                     AreaFactory.MODE.valueOf(config.getString("mode").toUpperCase()));
         } catch (IOException ioe) {
-           logger.error(ioe);
-           System.exit(1);
+            logger.error(ioe);
+            return (1);
         }
 
         //load plugin configurations
         Plugins plugins = null;
         try {
+           // TODO: introduce a PluginHelper to do load and validate plugins. This part is common with ClusterGateway
             plugins = new Plugins();
             plugins.addServerConf(config.getFile("pluginDir").getAbsolutePath());
             plugins.setWebServerHostname("localhost");
             plugins.reload();
-        } catch(Exception e) {
+            if (plugins.somePluginReportedErrors()) {
+                System.err.println("Some plugins could not be loaded. See below for details. Aborting.");
+
+                return (1);
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
             logger.error(e);
-            System.exit(1);
+            return (1);
         }
         try {
             Actions actions = new Actions(storageArea, plugins.getRegistry());
             if (config.getString("action").equalsIgnoreCase("register")) {
-                String assignedTag = config.userSpecified("tag")? config.getString("tag") : ICBStringUtils.generateRandomString();
-                actions.register(config.getString("id"), config.getStringArray("entries"), assignedTag);
+                String assignedTag = config.userSpecified("tag") ? config.getString("tag") : ICBStringUtils.generateRandomString();
+                String[] entryArgs = config.getStringArray("entries");
+                actions.register(config.getString("id"), entryArgs, assignedTag);
                 logger.info("Fileset instance successfully registered with tag " + assignedTag);
-            }
-            else {
+            } else {
                 actions.unregister(config.getString("tag"));
                 logger.info("Fileset instance successfully unregistered");
             }
         } catch (IOException e) {
             logger.error(e);
-            System.exit(1);
+            return (1);
 
         }
+        return 0;
     }
 
     /**
      * Loads the parameters configuration and rules
+     *
      * @param args the command line arguments
      * @return the configuration
      */
@@ -78,7 +90,7 @@ public class FileSetRegistration {
         if (FileSetRegistration.class.getResource("FileSetRegistration.jsap") == null) {
             logger.fatal("unable to find the JSAP configuration file");
             System.err.println("unable to find the JSAP configuration file");
-            System.exit(1);
+            return null;
         }
         JSAP jsap = null;
         try {
@@ -86,19 +98,19 @@ public class FileSetRegistration {
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.exit(1);
+            return null;
         } catch (JSAPException e) {
             e.printStackTrace();
-            System.exit(1);
+            return null;
         }
         JSAPResult config = jsap.parse(args);
         List<String> errors = new ArrayList<String>();
         if (!config.success() || config.getBoolean("help") || hasActionError(config, errors)) {
-            if (errors.size()>0) {
+            if (errors.size() > 0) {
                 for (String error : errors)
                     System.err.println("Error: " + error);
             }
-            for (java.util.Iterator errs = config.getErrorMessageIterator(); errs.hasNext();) {
+            for (java.util.Iterator errs = config.getErrorMessageIterator(); errs.hasNext(); ) {
                 System.err.println("Error: " + errs.next());
             }
             System.err.println(jsap.getHelp());
@@ -106,17 +118,17 @@ public class FileSetRegistration {
             System.err.println("Usage: java " + FileSetRegistration.class.getName());
             System.err.println("                " + jsap.getUsage());
             System.err.println();
-            System.exit(0);
+
         }
         return config;
     }
 
     private static boolean hasActionError(JSAPResult config, List<String> errors) {
         if (config.getString("action").equalsIgnoreCase("register"))
-            return hasRegisterError(config,errors);
+            return hasRegisterError(config, errors);
 
         if (config.getString("action").equalsIgnoreCase("unregister"))
-            return hasUnregisterError(config,errors);
+            return hasUnregisterError(config, errors);
 
         errors.add(String.format("Invalid action %s. Allowed actions: register | unregister", config.getString("action")));
         return true;
@@ -130,7 +142,7 @@ public class FileSetRegistration {
      * @return
      */
     private static boolean hasUnregisterError(JSAPResult config, List<String> errors) {
-        if (! config.getString("action").equalsIgnoreCase("register"))
+        if (!config.getString("action").equalsIgnoreCase("register"))
             return false; //nothing to check here
 
         if (!config.userSpecified("tag"))
@@ -147,7 +159,7 @@ public class FileSetRegistration {
      * @return
      */
     private static boolean hasRegisterError(JSAPResult config, List<String> errors) {
-        if (! config.getString("action").equalsIgnoreCase("unregister"))
+        if (!config.getString("action").equalsIgnoreCase("unregister"))
             return false; //nothing to check here
 
         if (!config.userSpecified("id"))

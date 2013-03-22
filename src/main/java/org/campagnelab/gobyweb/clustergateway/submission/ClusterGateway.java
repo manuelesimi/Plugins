@@ -8,6 +8,7 @@ import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.io.JobArea;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class ClusterGateway {
 
     public static int process(String[] args) {
         JSAPResult config = loadConfig(args);
-        if (config==null) return 1;
+        if (config == null) return 1;
         //TODO: load pluginDir and StorageArea from the properties file if they are not specified as parameters
 
         //create the reference to the storage area
@@ -52,7 +53,7 @@ public class ClusterGateway {
                     AreaFactory.MODE.valueOf(config.getString("mode").toUpperCase()));
         } catch (IOException ioe) {
             logger.error(ioe);
-           return 1;
+            return 1;
         }
         //load plugin configurations
         Plugins plugins = null;
@@ -64,12 +65,12 @@ public class ClusterGateway {
             if (plugins.somePluginReportedErrors()) {
                 System.err.println("Some plugins could not be loaded. See below for details. Aborting.");
 
-                return(1);
+                return (1);
             }
         } catch (Exception e) {
             e.printStackTrace();
             logger.error(e);
-            return(1);
+            return (1);
         }
         try {
             String queue = config.getString("queue");
@@ -98,8 +99,11 @@ public class ClusterGateway {
             }
 
             if (config.userSpecified("task")) {
+                String token[] = config.getStringArray("task");
+                String id = token[0];
+
                 actions.submitTask(
-                        config.getString("task"),
+                        id,
                         config.getStringArray("inputFilesets"));
             } else if (config.userSpecified("resource")) {
 
@@ -113,7 +117,7 @@ public class ClusterGateway {
 
         } catch (Exception e) {
             logger.error("Failed to manage the requested action", e);
-            return(1);
+            return (1);
 
         }
         return 0;

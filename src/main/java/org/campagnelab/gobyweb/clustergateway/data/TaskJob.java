@@ -31,17 +31,19 @@ public class TaskJob extends Job {
 
     /**
      * Creates a new instance.
+     *
      * @param sourceConfig the task configuration loaded from the plugin directory
      */
     public TaskJob(TaskConfig sourceConfig) {
         this.sourceConfig = sourceConfig;
-        for (PluginFile file : sourceConfig.getFiles()) {
-            this.addFile(file.getLocalFile());
-        }
+            for (PluginFile file : sourceConfig.getFiles()) {
+                this.addFile(file.getLocalFile());
+            }
     }
 
     /**
      * Add a new input fileset to the task instance.
+     *
      * @param fileset the tag referring the fileset
      */
     public void addInputFileSet(String fileset) {
@@ -50,6 +52,7 @@ public class TaskJob extends Job {
 
     /**
      * Gets all the input filesets.
+     *
      * @return the list of tags
      */
     public List<String> getInputFileSets() {
@@ -62,6 +65,7 @@ public class TaskJob extends Job {
 
     /**
      * Gets the list of files belonging the instance.
+     *
      * @return
      */
     public List<File> getFiles() {
@@ -70,6 +74,7 @@ public class TaskJob extends Job {
 
     /**
      * Adds a new file belonging the instance. The file will be copied in the task execution folder.
+     *
      * @param file
      */
     public void addFile(File file) {
