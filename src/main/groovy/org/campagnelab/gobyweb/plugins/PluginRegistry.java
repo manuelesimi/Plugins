@@ -40,7 +40,13 @@ public class PluginRegistry extends ArrayList<Config> {
     public static PluginRegistry getRegistry() {
         return instance;
     }
-
+    /**
+     * Gets a registry, not the singleton registry.
+     * @return the plugin registry
+     */
+    public static PluginRegistry getARegistry() {
+        return new PluginRegistry();
+    }
     /**
      * Gets the list of configurations for a given plugin type
      * @param configClass the type of configurations

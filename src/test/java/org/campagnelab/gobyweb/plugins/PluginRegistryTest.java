@@ -24,8 +24,9 @@ import static junit.framework.Assert.assertNull;
  */
 @RunWith(JUnit4.class)
 public class PluginRegistryTest {
-
-    static PluginRegistry registry = PluginRegistry.getRegistry();
+    // TODO This test is not thread safe because it relies on the Registry, which uses a singleton internally.
+    // Other tests started by Junit will alter the registry. Result will vary depending on which tests run first..
+    static PluginRegistry registry = PluginRegistry.getARegistry();
 
     @BeforeClass
     public static void add() {
