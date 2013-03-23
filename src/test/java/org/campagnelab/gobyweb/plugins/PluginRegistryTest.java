@@ -5,6 +5,7 @@ import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisCo
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.campagnelab.gobyweb.plugins.xml.Config;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -24,10 +25,10 @@ import static junit.framework.Assert.assertNull;
 @RunWith(JUnit4.class)
 public class PluginRegistryTest {
 
-    PluginRegistry registry = PluginRegistry.getRegistry();
+    static PluginRegistry registry = PluginRegistry.getRegistry();
 
-    @Test
-    public void add() {
+    @BeforeClass
+    public static void add() {
         AlignerConfig config = new AlignerConfig();
         config.setId("aligner_1");
         config.setName("aligner 1 goby output");
