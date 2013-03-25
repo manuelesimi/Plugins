@@ -3,6 +3,7 @@
 - Add ClusterGateway,
 - Add ability to test installation of resources with artifacts,
 - Migrate to git and BitBucket.
+- Fix issue with hiddenWhen option attribute not used.
 
 2.0
 - Collect loaded Configs in the PluginRegistry
