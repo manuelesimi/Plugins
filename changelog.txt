@@ -1,6 +1,7 @@
 
 2.1
-- Add ClusterGateway
+- Add ClusterGateway,
+- Add ability to test installation of resources with artifacts,
 - Migrate to git and BitBucket.
 
 2.0
