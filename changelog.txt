@@ -1,6 +1,7 @@
 
 2.1
 - Add ClusterGateway
+- Migrate to git and BitBucket.
 
 2.0
 - Collect loaded Configs in the PluginRegistry
