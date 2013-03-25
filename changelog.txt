@@ -5,6 +5,7 @@
 - Migrate to git and BitBucket,
 - Fix issue with hiddenWhen option attribute not used. 
 
+
 2.0
 - Collect loaded Configs in the PluginRegistry
 - Refactor the class hierarchy for Configs
