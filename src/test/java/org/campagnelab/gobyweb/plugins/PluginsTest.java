@@ -40,7 +40,7 @@ public class PluginsTest {
 
         plugins = new Plugins();
         plugins.replaceDefaultSchemaConfig(".");
-        plugins.addServerConf( "test-data/root-for-rnaselect");
+        plugins.addServerConf( "test-data/plugin-root-1");
         plugins.setWebServerHostname("localhost");
         plugins.reload();
     }
@@ -71,18 +71,6 @@ public class PluginsTest {
     @Test
     public void loadConfigByTypedId() {
         assertNotNull("GSNAP_GOBY not found",plugins.getRegistry().findByTypedId("GSNAP_GOBY", ExecutableConfig.class));
-    }
-
-    @Test
-    public void loadFileSetConfigs() {
-        List<FileSetConfig> fileSets = pluginRegistry.filterConfigs(FileSetConfig.class);
-        assertTrue("some fileSets must be found", fileSets.size() > 0);
-    }
-
-    @Test
-    public void loadTaskConfigs() {
-        List<TaskConfig> taskSets = pluginRegistry.filterConfigs(TaskConfig.class);
-        assertTrue("some tasks must be found", taskSets.size() > 0);
     }
 
     @Test

@@ -2,9 +2,10 @@
 
 Developers and administrators of a GobyWeb instance can define new plugins to extends GobyWeb with new functionality. The Plugins project allows to:
  
-* 	load and validate plugin configurations 
-* 	create and register fileset instances
-* 	create and submit (both to a local or remote cluster) task instances.
+* 	load and validate plugin configurations, 
+* 	create and register fileset instances,
+* 	create and submit (both to a local or remote cluster) task instances,
+*       test the installation of resources with artifacts.
 
 There are five categories of GobyWeb plugins:
 
