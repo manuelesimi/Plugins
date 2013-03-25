@@ -104,7 +104,7 @@ public class Plugins {
     private String webServerHostname;
 
     Plugins() {
-        artifactsPbHelper=new ArtifactsProtoBufHelper()
+        artifactsPbHelper = new ArtifactsProtoBufHelper()
     }
 
     Plugins(String serverConf) {
@@ -189,7 +189,6 @@ public class Plugins {
     void registerPluginEnvironmentCollectionScript(String script) {
         artifactsPbHelper.registerPluginEnvironmentCollectionScript(script)
     }
-
 
     /**
      * Add a default value to each plugin when key is not defined for the scope.
@@ -544,7 +543,6 @@ public class Plugins {
 
     AutoOptionsFileHelper autoOptionsFileHelper;
 
-
     /**
      * Return the resource with largest version number, such that the resource has the identifier and at least the specified
      * version number.
@@ -598,17 +596,18 @@ public class Plugins {
      * @param typeOfPlugin
      * @return
      */
-    public Map<String, Map<String, Object>> javaScriptMap(Class typeOfPlugin) {
-        Map<String, HashMap<String, Object>> result = new HashMap<String, HashMap<String, Object>>();
+    public HashMap<String, HashMap<String, Object>> javaScriptMap(Class typeOfPlugin) {
+        HashMap<String, HashMap<String, Object>> result = new HashMap<String, HashMap<String, Object>>();
         Object2BooleanOpenHashMap includeOptionInMap = new Object2BooleanOpenHashMap()
 
-        //only ExecutableConfigs have options
-        if (!ExecutableConfig.getClass().isAssignableFrom(typeOfPlugin.getClass()))
-            return result;
 
-        // determine which options should be listed in the map. We include options with a hiddenWhen attribute and options
+        // Determine which options should be listed in the map. We include options with a hiddenWhen attribute and options
         // these attributes reference.
-        List<ExecutableConfig> confs = pluginConfigs.filterConfigs(typeOfPlugin.getClass())
+        List<ExecutableConfig> confs = pluginConfigs.filterConfigs(typeOfPlugin)
+        if (confs.size() == 0) {
+            LOG.warn("javaScriptMap: no configuration found of type " + typeOfPlugin)
+            return
+        }
         for (ExecutableConfig conf : confs) {
             conf.options().each { option ->
                 if (option.hiddenWhenParsed != null) {
@@ -711,7 +710,7 @@ public class Plugins {
      * @return The temporary file where options have been written.
      */
     public File generateAutoOptionsFile(ExecutableConfig pluginConfig, String attributesPrefix = null, Map<String, String> attributes = null) {
-        autoOptionsFileHelper.generateAutoOptionsFile(pluginConfig,attributesPrefix,attributes)
+        autoOptionsFileHelper.generateAutoOptionsFile(pluginConfig, attributesPrefix, attributes)
     }
 
 
