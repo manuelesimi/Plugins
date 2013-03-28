@@ -56,17 +56,6 @@
          </flaggedOption>
 
         <flaggedOption>
-             <id>id</id>
-             <stringParser>
-                  <classname>StringStringParser</classname>
-             </stringParser>
-             <required>optional</required>
-             <shortFlag>id</shortFlag>
-             <longFlag>fileset-id</longFlag>
-             <help>The identifier of the fileset as reported in its plugin configuration</help>
-        </flaggedOption>
-
-        <flaggedOption>
             <id>action</id>
             <stringParser>
                 <classname>StringStringParser</classname>
@@ -102,7 +91,7 @@
             <id>entries</id>
             <required>optional</required>
             <greedy>true</greedy>
-            <help>List of fileset entries to register in the format ENTRY_NAME:ABSOLUTE PATH.</help>
+            <help>List of fileset entries to register. Accepted formats: FILESET_CONFIG_ID:pattern | FILESET_CONFIG_ID:filename | pattern | filename.</help>
         </unflaggedOption>
     </parameters>
 </jsap>

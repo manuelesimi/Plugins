@@ -233,6 +233,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.google.wildcard</groupId>
+            <artifactId>wildcard</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>edu.cornell.med.icb</groupId>
             <artifactId>icb-util</artifactId>
             <version>1.1.0-SNAPSHOT</version>
