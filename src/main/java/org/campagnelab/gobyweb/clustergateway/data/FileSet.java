@@ -18,10 +18,7 @@ public class FileSet extends Job {
 
     private FileSetConfig sourceConfig;
 
-    private String  fileSetAreaReference;
-
     private Map<String, Entry> entry2file = new HashMap<String, Entry>();
-
 
     public FileSet() {}
 
@@ -95,14 +92,6 @@ public class FileSet extends Job {
         return false;
     }
 
-
-    /**
-     * Sets the fileset area where the instance is/will be stored
-     * @param reference
-     */
-    public void setFileSetArea(String reference) {
-        this.fileSetAreaReference =reference;
-    }
 
     /**
      * An entry in the fileset
