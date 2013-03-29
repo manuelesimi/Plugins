@@ -18,7 +18,7 @@ class InputEntryFile extends File {
     }
 
     protected InputEntryFile(File f) {
-        super(f.getAbsolutePath());
+        this(f.getAbsolutePath());
     }
 
     protected InputEntryFile(String s, String s2) {

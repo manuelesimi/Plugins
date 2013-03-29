@@ -54,61 +54,65 @@ final class Actions {
         List<InputEntry> inputEntries = this.parseInputEntries(entries);
 
         for (InputEntry inputEntry : inputEntries) {
-            String tag = ICBStringUtils.generateRandomString();
-            if (inputEntry.isConsumed()) //nothing to process for this entry
-                continue;
-            FileSetConfig config = getMatchingFileSetConfig(inputEntry) ;
-            Map<String, InputEntryFile> files = getMatchingFiles(config, inputEntry);
-            if (! config.isComplete(files)) {
-                // TODO search for missing files in the other input entries (consider only files not used, yet)
+            while (!inputEntry.isConsumed()) {
+                String tag = ICBStringUtils.generateRandomString();
+                FileSetInstanceBuilder builder = new FileSetInstanceBuilder(registry,inputEntry);
+                builder.lookForMatchingConfig(inputEntry);
+                if (builder.hasError()) {
+                    //manage the error
 
-                files = completeConfig(config, inputEntry, inputEntries, files);
-                if (! config.isComplete(files)) {
-                    // exception
+                    break;
+                }
+                FileSet instance = null;
+                try {
+                    instance = builder.build();
+                } catch (FileSetInstanceBuilder.InstanceNotCompleteException e) {
+                    //the inputEntry was not enough to fulfill the requirement of the selected configuration
+                    builder.tryToComplete(inputEntries);
+                    if  (builder.hasError()) {
+                        //manage the error
+                    }
                 }
 
-            }
+                Map<String, InputEntryFile> files = builder.getMatchingFiles(config, inputEntry);
+                instance.setBasename(storageArea.createTag(tag));
+                instance.setTag(tag);
+                //prepare metadata
+                MetadataFileWriter metadataFileWriter = new MetadataFileWriter(
+                        config.getId(),instance.getTag(),instance.getOwnerId());
 
-            //create config instance
-            FileSet instance = new FileSet(config);
-            instance.setBasename(storageArea.createTag(tag));
-            instance.setTag(tag);
-            instance.setId(config.getId());
-            //prepare metadata
-            MetadataFileWriter metadataFileWriter = new MetadataFileWriter(
-                    instance.getId(),instance.getTag(),instance.getOwnerId());
+                //push the files in the storage area
+                try {
+                    for (Map.Entry<String,InputEntryFile> entry : files.entrySet()) {
+                        logger.debug(String.format("Uploading file %s as entry %s in the storage area",entry.getValue().getAbsolutePath(), entry.getKey()));
+                        storageArea.push(tag,entry.getValue());
+                        instance.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
+                        metadataFileWriter.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
+                        entry.getValue().setConsumed(true);
+                    }
 
-            //push the files in the storage area
-            try {
-                for (Map.Entry<String,InputEntryFile> entry : files.entrySet()) {
-                    logger.debug(String.format("Uploading file %s as entry %s in the storage area",entry.getValue().getAbsolutePath(), entry.getKey()));
-                    storageArea.push(tag,entry.getValue());
-                    instance.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
-                    metadataFileWriter.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
-                    entry.getValue().setConsumed(true);
+                } catch (IOException e) {
+                    this.rollback(tag);
+                    throw e;
+                } catch (IllegalArgumentException e) {
+                    this.rollback(tag);
+                    throw e;
                 }
 
-            } catch (IOException e) {
-                this.rollback(tag);
-                throw e;
-            } catch (IllegalArgumentException e) {
-                this.rollback(tag);
-                throw e;
-            }
-
-            //upload the fileset metadata for its correct consumption
-            File serializedMetadata = null;
-            try {
-                serializedMetadata = metadataFileWriter.serialize();
-                logger.debug(String.format("Uploading metadata file %s in the storage area",serializedMetadata.getAbsolutePath()));
-                storageArea.pushMetadataFile(tag,serializedMetadata);
-            } catch (Exception e) {
-                this.rollback(tag);
-                throw new IOException(String.format("Failed to create or upload metadata for the fileset instance. Reason: %s",e.getStackTrace().toString()));
-            } finally {
-                if (serializedMetadata != null)
-                    FileUtils.forceDelete(serializedMetadata);
-            }
+                //upload the fileset metadata for its correct consumption
+                File serializedMetadata = null;
+                try {
+                    serializedMetadata = metadataFileWriter.serialize();
+                    logger.debug(String.format("Uploading metadata file %s in the storage area",serializedMetadata.getAbsolutePath()));
+                    storageArea.pushMetadataFile(tag,serializedMetadata);
+                } catch (Exception e) {
+                    this.rollback(tag);
+                    throw new IOException(String.format("Failed to create or upload metadata for the fileset instance. Reason: %s",e.getStackTrace().toString()));
+                } finally {
+                    if (serializedMetadata != null)
+                        FileUtils.forceDelete(serializedMetadata);
+                }
+            }//end on isConsumed
 
         }  //end for on input entries
 
@@ -154,26 +158,5 @@ final class Actions {
     }
 
 
-    private FileSetConfig getMatchingFileSetConfig(InputEntry inputEntry) {
-        FileSetConfig config = null ;
-        if (inputEntry.isBoundToFileSet()) {
-            config = registry.findByTypedId(inputEntry.getFileSetId(), FileSetConfig.class);
-        } else {
-            List<FileSetConfig> configs = new FileSetConfigMatcher(inputEntry).getConfigurations();
-            if (configs.size() == 0) {
-                throw new IllegalArgumentException("Unable to find any fileset configuration to which the entry belong to");
-            } if (configs.size() == 1) {
-                config = configs.get(0);
-            } else {
-                logger.warn(String.format("The input entry %s matched more than one fileset configuration. Impossible to manage it.",inputEntry.getPattern()));
-                logger.warn("Compatible configurations:");
-                for (FileSetConfig fsc : configs)
-                    logger.warn("\t" + fsc.getId());
-                logger.warn("Resubmit the registration by specifying the fileset configuration id");
-                throw new IllegalArgumentException("Too many matching fileset configurations");
 
-            }
-        }
-        return config;
-    }
 }
