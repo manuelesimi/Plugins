@@ -58,7 +58,7 @@ final class Actions {
             if (inputEntry.isConsumed()) //nothing to process for this entry
                 continue;
             FileSetConfig config = getMatchingFileSetConfig(inputEntry) ;
-            Map<String, File> files = getMatchingFiles(config, inputEntry);
+            Map<String, InputEntryFile> files = getMatchingFiles(config, inputEntry);
             if (! config.isComplete(files)) {
                 // TODO search for missing files in the other input entries (consider only files not used, yet)
 
@@ -80,13 +80,12 @@ final class Actions {
 
             //push the files in the storage area
             try {
-                    for (Map.Entry<String,File> entry : files.entrySet()) {
+                for (Map.Entry<String,InputEntryFile> entry : files.entrySet()) {
                     logger.debug(String.format("Uploading file %s as entry %s in the storage area",entry.getValue().getAbsolutePath(), entry.getKey()));
                     storageArea.push(tag,entry.getValue());
                     instance.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
                     metadataFileWriter.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
-                    //TODO mark the file as used (could belong to any of the input entries )
-
+                    entry.getValue().setConsumed(true);
                 }
 
             } catch (IOException e) {

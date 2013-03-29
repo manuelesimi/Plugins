@@ -17,7 +17,7 @@ class InputEntry {
 
     private final String filesetConfigId;
     private final String pattern;
-    private final List<File> files;
+    private final List<InputEntryFile> files;
 
     /**
      * An entry with a fileset associated
@@ -44,7 +44,7 @@ class InputEntry {
      * Gets the list of files belonging this entry
      * @return
      */
-    protected List<File> getFiles() {
+    protected List<InputEntryFile> getFiles() {
         return files;
     }
 
@@ -64,6 +64,18 @@ class InputEntry {
     }
 
     /**
+     * Checks if all the files of the entry have been consumed
+     * @return
+     */
+    public boolean isConsumed() {
+        for (InputEntryFile file : this.files) {
+            if (!file.isConsumed())
+                return false;
+        }
+        return true;
+    }
+
+    /**
      * Loads the list of files matching an entry pattern
      * @author manuele
      */
@@ -74,15 +86,15 @@ class InputEntry {
         /**
          * Gets the files matching the entry pattern.
          */
-        private List<File> scan() {
-            List<File> files = new ArrayList<File>();
+        private List<InputEntryFile> scan() {
+            List<InputEntryFile> files = new ArrayList<InputEntryFile>();
             File workingDirectory = new File (System.getProperty("user.dir"));
             if (!acceptAsFile(files,workingDirectory)) {
                 InputEntry.this.logger.debug("Scanning directory " + workingDirectory.getAbsolutePath());
                 Paths paths = new Paths();
                 paths.glob(workingDirectory.getAbsolutePath(), pattern);
                 for (File file : paths.getFiles())
-                    files.add(file);
+                    files.add(new InputEntryFile(file));
             }
             return files;
         }
@@ -93,15 +105,15 @@ class InputEntry {
          * @param workingDirectory
          * @return
          */
-        private boolean acceptAsFile(List<File> inputFilesFile, File workingDirectory)  {
+        private boolean acceptAsFile(List<InputEntryFile> inputFilesFile, File workingDirectory)  {
             File file = new File(pattern);
             if (file.exists()) {
-                inputFilesFile.add(file);
+                inputFilesFile.add(new InputEntryFile(file));
                 return true;
             }
             file = new File(workingDirectory, pattern);
             if (file.exists()) {
-                inputFilesFile.add(file);
+                inputFilesFile.add(new InputEntryFile(file));
                 return true;
             }
             return false;
