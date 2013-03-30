@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
 import edu.cornell.med.icb.util.ICBStringUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.FileSet;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
@@ -54,13 +55,18 @@ class FileSetInstanceBuilder {
                 continue;
             }
             //create an instance for each entry file
-            while (!inputEntry.isConsumed()) {
+            while (inputEntry.hasNexFile()) {
                 FileSet instance = new FileSet(config);
+                InputEntryFile file = inputEntry.nextFile();
                 instance.setId(config.getId());
                 instance.setTag(ICBStringUtils.generateRandomString(7));
 
                 //TODO: build the instance
+                //assign entry file
+                instance.addEntry(name, file.getAbsolutePath(), FileUtils.sizeOf(file));
+                if (!instance.isComplete()) {
 
+                }
                 instances.add(instance);
             }
         }
@@ -84,7 +90,7 @@ class FileSetInstanceBuilder {
                 errorMessages.add("Unable to find fileset configuration: " + inputEntry.getFileSetId());
                 throw new ConfigNotFoundException();
             }
-        } else {
+        } else { //try to match the entry with the appropriate configuration
             List<FileSetConfig> configs = new ConfigMatcher(registry).match(inputEntry);
             if (configs.size() == 0) {
                 errorMessages.add(String.format("Unable to find a fileset configuration to which the entry %s could be matched", inputEntry.getPattern()));

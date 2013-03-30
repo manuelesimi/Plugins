@@ -19,6 +19,7 @@ class InputEntry {
     private final String filesetConfigId;
     private final String pattern;
     private final List<InputEntryFile> files;
+    private InputEntryFile nextFile;
 
     /**
      * An entry with a fileset associated
@@ -65,18 +66,6 @@ class InputEntry {
     }
 
     /**
-     * Checks if all the files of the entry have been consumed
-     * @return
-     */
-    public boolean isConsumed() {
-        for (InputEntryFile file : this.files) {
-            if (!file.isConsumed())
-                return false;
-        }
-        return true;
-    }
-
-    /**
      * Marks the whole entry as consumed.
      * After calling this method, the entry will not be further considered for
      * contributing to a fileset instance.
@@ -85,6 +74,30 @@ class InputEntry {
         for (InputEntryFile file : this.files) {
             file.setConsumed(true);
         }
+    }
+
+    /**
+     * Checks if all the files of the entry have been consumed
+     * @return
+     */
+    public boolean hasNexFile() {
+        for (InputEntryFile file : this.files) {
+            if (!file.isConsumed())
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * Gets the next non consumed file
+     * @return
+     */
+    public InputEntryFile nextFile() {
+        for (InputEntryFile file : this.files) {
+            if (!file.isConsumed())
+                return file;
+        }
+        return null;
     }
 
     /**
