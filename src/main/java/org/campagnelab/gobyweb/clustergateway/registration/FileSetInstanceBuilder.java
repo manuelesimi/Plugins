@@ -8,6 +8,7 @@ import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Builder for fileset instances
@@ -24,12 +25,14 @@ class FileSetInstanceBuilder {
 
     private final List<String> errorMessages = new ArrayList<String>();
 
-    private PluginRegistry registry;
+    private List<InputEntry> otherEntries;
+
+    private final PluginRegistry registry;
 
     /**
      * The initial entry from which the builder tries to create a fileset instance
      */
-    private InputEntry initialEntry;
+    private final InputEntry initialEntry;
 
     protected FileSetInstanceBuilder(PluginRegistry registry,InputEntry inputEntry) {
         this.registry = registry;
@@ -92,6 +95,7 @@ class FileSetInstanceBuilder {
             if (pattern.equalsIgnoreCase(initialEntry.getPattern())) {
                 //great, we can assign the entry files to this selector
                 initialEntry.getFiles();
+                instance.setId(config.getId());
             } else if (selector.getMandatory()) {
                 //try to complete with the other entries, if any
                 if (otherEntries.size()>0) {
@@ -107,13 +111,15 @@ class FileSetInstanceBuilder {
         return instance;
     }
 
-    /**
-     * Tries to assign an entry to a fileset configuration
-     * @return
-     */
-    private boolean assignEntryToConfig() {
+    protected FileSet tryToComplete(List<InputEntry> inputEntries) throws InstanceNotCompleteException  {
+        this.otherEntries = inputEntries;
+        return this.build();
+    }
+
+    protected Map<String,InputEntryFile> getMatchingFiles() {
 
     }
+
 
     protected static class InstanceNotCompleteException extends Exception {
 

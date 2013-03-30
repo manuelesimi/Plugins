@@ -68,18 +68,22 @@ final class Actions {
                     instance = builder.build();
                 } catch (FileSetInstanceBuilder.InstanceNotCompleteException e) {
                     //the inputEntry was not enough to fulfill the requirement of the selected configuration
-                    builder.tryToComplete(inputEntries);
+                    try {
+                        builder.tryToComplete(inputEntries);
+                    } catch (FileSetInstanceBuilder.InstanceNotCompleteException e1) {
+                           //manage the error
+                    }
                     if  (builder.hasError()) {
                         //manage the error
                     }
                 }
 
-                Map<String, InputEntryFile> files = builder.getMatchingFiles(config, inputEntry);
+                Map<String, InputEntryFile> files = builder.getMatchingFiles();
                 instance.setBasename(storageArea.createTag(tag));
                 instance.setTag(tag);
                 //prepare metadata
                 MetadataFileWriter metadataFileWriter = new MetadataFileWriter(
-                        config.getId(),instance.getTag(),instance.getOwnerId());
+                        instance.getId(),instance.getTag(),instance.getOwnerId());
 
                 //push the files in the storage area
                 try {
