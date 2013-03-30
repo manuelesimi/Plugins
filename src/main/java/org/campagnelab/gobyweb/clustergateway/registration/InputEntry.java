@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Access information about an input entry.
+ * An input entry specified by the caller.
+ *
  * @author manuele
  */
 class InputEntry {
@@ -73,6 +74,17 @@ class InputEntry {
                 return false;
         }
         return true;
+    }
+
+    /**
+     * Marks the whole entry as consumed.
+     * After calling this method, the entry will not be further considered for
+     * contributing to a fileset instance.
+     */
+    public void markAsConsumed() {
+        for (InputEntryFile file : this.files) {
+            file.setConsumed(true);
+        }
     }
 
     /**

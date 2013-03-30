@@ -37,12 +37,12 @@ final class Actions {
     }
 
     /**
-     * Registers a fileset instance with its entries.
-     * @param entries the list of entries for the fileset. They must be in one of the following forms:
-     *   FILESET_CONFIG_ID:pattern
-     *   FILESET_CONFIG_ID:filename
-     *   pattern (e.g. *.compact_reads, **, etc)
-     *   filename
+     * Registers one or more fileset instances according to the input entries
+     * @param entries the list of entries for the fileset(s). They must be in one of the following forms:
+     *   1) FILESET_CONFIG_ID:pattern
+     *   2) FILESET_CONFIG_ID:filename
+     *   3) pattern (e.g. *.compact_reads, **, etc)
+     *   4) filename
      *
      * @throws IOException if the registration fails or any of the entries is not valid
      */

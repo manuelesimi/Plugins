@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
+import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.FileSet;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
@@ -19,18 +20,17 @@ class FileSetInstanceBuilder {
 
     private static Logger logger = Logger.getLogger(FileSetInstanceBuilder.class);
 
-    private FileSet instance;
-
-    private FileSetConfig config;
-
     private final List<String> errorMessages = new ArrayList<String>();
 
     private List<InputEntry> otherEntries;
 
     private final ConfigMatcher matcher;
 
+    private final PluginRegistry registry;
+
     protected FileSetInstanceBuilder(PluginRegistry registry) {
-         matcher = new ConfigMatcher(registry);
+        matcher = new ConfigMatcher(registry);
+        this.registry = registry;
     }
 
     /**
@@ -39,37 +39,69 @@ class FileSetInstanceBuilder {
      * @return
      */
     protected List<FileSet> buildList(List<InputEntry> inputEntries) {
+        this.errorMessages.clear();
+        List<FileSet> instances = new ArrayList<FileSet>();
         for (InputEntry inputEntry : inputEntries) {
+            //get a matching configuration
+            FileSetConfig config = null;
+            try {
+                config = lookForMatchingConfig(inputEntry);
+            } catch (ConfigNotFoundException e) {
+                inputEntry.markAsConsumed();
+                continue;
+            } catch (TooManyConfigsException e) {
+                inputEntry.markAsConsumed();
+                continue;
+            }
+            //create an instance for each entry file
+            while (!inputEntry.isConsumed()) {
+                FileSet instance = new FileSet(config);
+                instance.setId(config.getId());
+                instance.setTag(ICBStringUtils.generateRandomString(7));
 
+                //TODO: build the instance
+
+                instances.add(instance);
+            }
         }
+        return Collections.unmodifiableList(instances);
     }
     /**
      * Looks for fileset configurations matching the input entry.
      * The matching configurations could be partially satisfied by the entry files.
      *
      * @param inputEntry
+     * @throws ConfigNotFoundException if no configuration was found
+     * @throws TooManyConfigsException if multiple configurations have been found
      */
-    private void lookForMatchingConfig(InputEntry inputEntry) {
-        if (inputEntry.isBoundToFileSet()) {
-            config = registry.findByTypedId(inputEntry.getFileSetId(), FileSetConfig.class);
-            instance = new FileSet(config);
+    private FileSetConfig lookForMatchingConfig(InputEntry inputEntry)
+            throws ConfigNotFoundException, TooManyConfigsException {
+        if (inputEntry.isBoundToFileSet()) { //the configuration has been specified by the user
+            FileSetConfig config = registry.findByTypedId(inputEntry.getFileSetId(), FileSetConfig.class);
+            if (config != null)
+                return config;
+            else {
+                errorMessages.add("Unable to find fileset configuration: " + inputEntry.getFileSetId());
+                throw new ConfigNotFoundException();
+            }
         } else {
             List<FileSetConfig> configs = new ConfigMatcher(registry).match(inputEntry);
             if (configs.size() == 0) {
                 errorMessages.add(String.format("Unable to find a fileset configuration to which the entry %s could be matched", inputEntry.getPattern()));
+                throw new ConfigNotFoundException();
             }
             if (configs.size() == 1) {
-                config = configs.get(0);
+                return configs.get(0);
             } else {
-                //TODO: could be smarter here and process all the configs checking the best match with the next entries?
+                //TODO: could be smarter here and process all the configs for checking the best match with the next entries?
                 errorMessages.add(String.format("Too many matching fileset configurations. The input entry %s matched more than one fileset configuration. Impossible to manage it.", inputEntry.getPattern()));
                 errorMessages.add("Compatible configurations:");
                 for (FileSetConfig fsc : configs)
                     errorMessages.add("\t" + fsc.getId());
                 errorMessages.add("The registration cannot be completed. Resubmit the registration by specifying the fileset configuration id");
+                throw new TooManyConfigsException();
             }
         }
-
     }
 
     /**
@@ -82,22 +114,11 @@ class FileSetInstanceBuilder {
     }
 
     /**
-     *
+     * Gets the error messages from the latest build operation
      * @return
      */
     protected List<String> getErrorMessages() {
         return Collections.unmodifiableList(this.errorMessages);
-    }
-
-    /**
-     * Tries to build the fileset instance with the current available information
-     * @throws InstanceNotCompleteException
-     */
-    protected FileSet build() throws InstanceNotCompleteException {
-        instance = new FileSet(config);
-        this.build(instance, initialEntry );
-
-        return instance;
     }
 
 
@@ -123,21 +144,29 @@ class FileSetInstanceBuilder {
     }
 
 
-    protected FileSet tryToComplete(List<InputEntry> inputEntries) throws InstanceNotCompleteException  {
-        this.otherEntries = inputEntries;
-        return this.build();
-    }
 
     protected Map<String,InputEntryFile> getMatchingFiles(FileSet fileSet) {
 
     }
 
 
-    protected static class InstanceNotCompleteException extends Exception {
+    /**
+     * No fileset configuration matching a pattern has been found
+     */
+    protected static class ConfigNotFoundException extends Exception {
 
-        public InstanceNotCompleteException() {
+        public ConfigNotFoundException() {
             super();
         }
     }
 
+    /**
+     * No fileset configuration matching a pattern has been found
+     */
+    protected static class TooManyConfigsException extends Exception {
+
+        public TooManyConfigsException() {
+            super();
+        }
+    }
 }
