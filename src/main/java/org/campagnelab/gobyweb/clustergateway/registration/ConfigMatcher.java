@@ -28,19 +28,31 @@ class ConfigMatcher {
    protected List<FileSetConfig> match(InputEntry inputEntry) {
        List<FileSetConfig> matchingConfigs = new ArrayList<FileSetConfig>();
        for (FileSetConfig config : configs) {
-           boolean matched = false;
-           for (FileSetConfig.ComponentSelector selector : config.getFileSelectors()) {
-              if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern()))
-                  matched = true;
-           }
-           for (FileSetConfig.ComponentSelector selector : config.getDirSelectors()) {
-               if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern()))
-                   matched = true;
-           }
-           if (matched)
+           if (check(config,inputEntry))
                matchingConfigs.add(config);
        }
-
        return Collections.unmodifiableList(matchingConfigs);
    }
+
+    /**
+     * Checks if the entry can be assigned to an instance of the fileset configuration
+     * @param config
+     * @param inputEntry
+     * @return
+     */
+   protected boolean check(FileSetConfig config, InputEntry inputEntry) {
+        for (FileSetConfig.ComponentSelector selector : config.getFileSelectors()) {
+            if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())) {
+                inputEntry.assignConfigEntry(selector.getId());
+                return true;
+            }
+        }
+        for (FileSetConfig.ComponentSelector selector : config.getDirSelectors()) {
+            if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())){
+                inputEntry.assignConfigEntry(selector.getId());
+                return true;
+            }
+        }
+        return false;
+    }
 }
