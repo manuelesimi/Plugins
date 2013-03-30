@@ -27,25 +27,29 @@ class FileSetInstanceBuilder {
 
     private List<InputEntry> otherEntries;
 
-    private final PluginRegistry registry;
+    private final ConfigMatcher matcher;
 
-    /**
-     * The initial entry from which the builder tries to create a fileset instance
-     */
-    private final InputEntry initialEntry;
-
-    protected FileSetInstanceBuilder(PluginRegistry registry,InputEntry inputEntry) {
-        this.registry = registry;
-        this.initialEntry = inputEntry;
+    protected FileSetInstanceBuilder(PluginRegistry registry) {
+         matcher = new ConfigMatcher(registry);
     }
 
+    /**
+     * Starting from the input entries, creates a list of fileset instances to be registered.
+     * @param inputEntries
+     * @return
+     */
+    protected List<FileSet> buildList(List<InputEntry> inputEntries) {
+        for (InputEntry inputEntry : inputEntries) {
+
+        }
+    }
     /**
      * Looks for fileset configurations matching the input entry.
      * The matching configurations could be partially satisfied by the entry files.
      *
      * @param inputEntry
      */
-    protected void lookForMatchingConfig(InputEntry inputEntry) {
+    private void lookForMatchingConfig(InputEntry inputEntry) {
         if (inputEntry.isBoundToFileSet()) {
             config = registry.findByTypedId(inputEntry.getFileSetId(), FileSetConfig.class);
             instance = new FileSet(config);
@@ -124,7 +128,7 @@ class FileSetInstanceBuilder {
         return this.build();
     }
 
-    protected Map<String,InputEntryFile> getMatchingFiles() {
+    protected Map<String,InputEntryFile> getMatchingFiles(FileSet fileSet) {
 
     }
 

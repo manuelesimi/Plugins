@@ -1,13 +1,11 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
-import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.filesets.protos.MetadataFileWriter;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.clustergateway.data.FileSet;
-import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
 import java.io.IOException;
 import java.io.File;
@@ -52,8 +50,49 @@ final class Actions {
        // FileSetConfig config = registry.findByTypedId(id, FileSetConfig.class);
 
         List<InputEntry> inputEntries = this.parseInputEntries(entries);
+        FileSetInstanceBuilder builder = new FileSetInstanceBuilder(registry);
+        List<FileSet> instancesToRegister = builder.buildList(inputEntries);
+        //push the files and metadata
+        for (FileSet fileSet : instancesToRegister) {
+            Map<String, InputEntryFile> files = builder.getMatchingFiles(fileSet);
+            //prepare metadata
+            MetadataFileWriter metadataFileWriter = new MetadataFileWriter(
+                    fileSet.getId(),fileSet.getTag(),fileSet.getOwnerId());
+            storageArea.createTag(fileSet.getTag());
+            //push the files in the storage area
+            try {
+                for (Map.Entry<String,InputEntryFile> entry : files.entrySet()) {
+                    logger.debug(String.format("Uploading file %s as entry %s in the storage area",entry.getValue().getAbsolutePath(), entry.getKey()));
+                    storageArea.push(fileSet.getTag(),entry.getValue());
+                    fileSet.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
+                    metadataFileWriter.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
+                    entry.getValue().setConsumed(true);
+                }
 
-        for (InputEntry inputEntry : inputEntries) {
+            } catch (IOException e) {
+                this.rollback(fileSet.getTag());
+                throw e;
+            } catch (IllegalArgumentException e) {
+                this.rollback(fileSet.getTag());
+                throw e;
+            }
+
+            //upload the fileset metadata for its correct consumption
+            File serializedMetadata = null;
+            try {
+                serializedMetadata = metadataFileWriter.serialize();
+                logger.debug(String.format("Uploading metadata file %s in the storage area",serializedMetadata.getAbsolutePath()));
+                storageArea.pushMetadataFile(fileSet.getTag(),serializedMetadata);
+            } catch (Exception e) {
+                this.rollback(fileSet.getTag());
+                throw new IOException(String.format("Failed to create or upload metadata for the fileset instance. Reason: %s",e.getStackTrace().toString()));
+            } finally {
+                if (serializedMetadata != null)
+                    FileUtils.forceDelete(serializedMetadata);
+            }
+        }
+
+      /*  for (InputEntry inputEntry : inputEntries) {
             while (!inputEntry.isConsumed()) {
                 String tag = ICBStringUtils.generateRandomString();
                 FileSetInstanceBuilder builder = new FileSetInstanceBuilder(registry,inputEntry);
@@ -81,45 +120,11 @@ final class Actions {
                 Map<String, InputEntryFile> files = builder.getMatchingFiles();
                 instance.setBasename(storageArea.createTag(tag));
                 instance.setTag(tag);
-                //prepare metadata
-                MetadataFileWriter metadataFileWriter = new MetadataFileWriter(
-                        instance.getId(),instance.getTag(),instance.getOwnerId());
 
-                //push the files in the storage area
-                try {
-                    for (Map.Entry<String,InputEntryFile> entry : files.entrySet()) {
-                        logger.debug(String.format("Uploading file %s as entry %s in the storage area",entry.getValue().getAbsolutePath(), entry.getKey()));
-                        storageArea.push(tag,entry.getValue());
-                        instance.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
-                        metadataFileWriter.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
-                        entry.getValue().setConsumed(true);
-                    }
-
-                } catch (IOException e) {
-                    this.rollback(tag);
-                    throw e;
-                } catch (IllegalArgumentException e) {
-                    this.rollback(tag);
-                    throw e;
-                }
-
-                //upload the fileset metadata for its correct consumption
-                File serializedMetadata = null;
-                try {
-                    serializedMetadata = metadataFileWriter.serialize();
-                    logger.debug(String.format("Uploading metadata file %s in the storage area",serializedMetadata.getAbsolutePath()));
-                    storageArea.pushMetadataFile(tag,serializedMetadata);
-                } catch (Exception e) {
-                    this.rollback(tag);
-                    throw new IOException(String.format("Failed to create or upload metadata for the fileset instance. Reason: %s",e.getStackTrace().toString()));
-                } finally {
-                    if (serializedMetadata != null)
-                        FileUtils.forceDelete(serializedMetadata);
-                }
             }//end on isConsumed
 
         }  //end for on input entries
-
+         */
         //check whether all the input entries have been consumed
         for (InputEntry inputEntry : inputEntries) {
             if (!inputEntry.isConsumed())
