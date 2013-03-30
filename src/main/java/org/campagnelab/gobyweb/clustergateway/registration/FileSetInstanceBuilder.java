@@ -50,13 +50,14 @@ class FileSetInstanceBuilder {
             config = registry.findByTypedId(inputEntry.getFileSetId(), FileSetConfig.class);
             instance = new FileSet(config);
         } else {
-            List<FileSetConfig> configs = new FileSetConfigMatcher(registry, inputEntry).getConfigurations();
+            List<FileSetConfig> configs = new ConfigMatcher(registry).match(inputEntry);
             if (configs.size() == 0) {
                 errorMessages.add(String.format("Unable to find a fileset configuration to which the entry %s could be matched", inputEntry.getPattern()));
             }
             if (configs.size() == 1) {
                 config = configs.get(0);
             } else {
+                //TODO: could be smarter here and process all the configs checking the best match with the next entries?
                 errorMessages.add(String.format("Too many matching fileset configurations. The input entry %s matched more than one fileset configuration. Impossible to manage it.", inputEntry.getPattern()));
                 errorMessages.add("Compatible configurations:");
                 for (FileSetConfig fsc : configs)
@@ -90,26 +91,33 @@ class FileSetInstanceBuilder {
      */
     protected FileSet build() throws InstanceNotCompleteException {
         instance = new FileSet(config);
+        this.build(instance, initialEntry );
+
+        return instance;
+    }
+
+
+    private void build(FileSet fileset, InputEntry inputEntry) throws InstanceNotCompleteException {
         for (FileSetConfig.ComponentSelector selector : config.getFileSelectors()) {
             String pattern = selector.getPattern();
             if (pattern.equalsIgnoreCase(initialEntry.getPattern())) {
-                //great, we can assign the entry files to this selector
+                //TODO great, we can assign the entry files to this selector
                 initialEntry.getFiles();
-                instance.setId(config.getId());
+                fileset.setId(config.getId());
             } else if (selector.getMandatory()) {
                 //try to complete with the other entries, if any
                 if (otherEntries.size()>0) {
+                    for (InputEntry otherEntry : otherEntries) {
 
+                    }
                 } else {
-                    instance = null;
                     throw new InstanceNotCompleteException();
                 }
 
             }
         }
-
-        return instance;
     }
+
 
     protected FileSet tryToComplete(List<InputEntry> inputEntries) throws InstanceNotCompleteException  {
         this.otherEntries = inputEntries;
@@ -127,4 +135,5 @@ class FileSetInstanceBuilder {
             super();
         }
     }
+
 }
