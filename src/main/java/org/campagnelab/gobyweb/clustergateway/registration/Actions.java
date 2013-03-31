@@ -52,6 +52,11 @@ final class Actions {
         List<InputEntry> inputEntries = this.parseInputEntries(entries);
         FileSetInstanceBuilder builder = new FileSetInstanceBuilder(registry);
         List<FileSet> instancesToRegister = builder.buildList(inputEntries);
+        if (builder.hasError()) {
+            for (String error : builder.getErrorMessages())
+                logger.error(error);
+            return;
+        }
         //push the files and metadata
         for (FileSet fileSet : instancesToRegister) {
             Map<String, InputEntryFile> files = builder.getMatchingFiles(fileSet);
