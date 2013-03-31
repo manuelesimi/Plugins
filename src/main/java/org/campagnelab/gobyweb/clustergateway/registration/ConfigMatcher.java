@@ -30,19 +30,21 @@ class ConfigMatcher {
    protected List<FileSetConfig> match(InputEntry inputEntry) {
        List<FileSetConfig> matchingConfigs = new ArrayList<FileSetConfig>();
        for (FileSetConfig config : configs) {
-           if (check(config,inputEntry))
+           if (assign(config, inputEntry))
                matchingConfigs.add(config);
        }
        return Collections.unmodifiableList(matchingConfigs);
    }
 
     /**
-     * Checks if the entry can be assigned to an instance of the fileset configuration
+     * Tries to bind the entry to the given fileset configuration.
+     * Once bound, files of this entry will be assigned only to
+     * instances of this configuration.
      * @param config
      * @param inputEntry
-     * @return
+     * @return true if the entry has been assigned
      */
-   protected boolean check(FileSetConfig config, InputEntry inputEntry) {
+   protected boolean assign(FileSetConfig config, InputEntry inputEntry) {
         for (FileSetConfig.ComponentSelector selector : config.getFileSelectors()) {
             if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())) {
                 inputEntry.assignConfigEntry(selector.getId(), ENTRY_TYPE.FILE);

@@ -62,7 +62,7 @@ class FileSetInstanceBuilder {
                     try {
                         instance.addEntry(inputEntry.getAssignedEntryName(), file.getAbsolutePath(), FileUtils.sizeOf(file));
                         if (!instance.isComplete()) {
-                            //TODO: build the instance
+                            //TODO: complete the instance
 
                         }
 
@@ -99,7 +99,7 @@ class FileSetInstanceBuilder {
             throws ConfigNotFoundException, TooManyConfigsException {
         if (inputEntry.isBoundToFileSet()) { //the configuration has been specified by the user
             FileSetConfig config = registry.findByTypedId(inputEntry.getFileSetId(), FileSetConfig.class);
-            if (config != null && (new ConfigMatcher(registry).check(config, inputEntry))) {
+            if (config != null && (new ConfigMatcher(registry).assign(config, inputEntry))) {
                 return config;
             }
             else {
