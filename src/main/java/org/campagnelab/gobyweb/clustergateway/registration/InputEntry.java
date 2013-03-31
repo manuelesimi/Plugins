@@ -81,6 +81,22 @@ class InputEntry {
     }
 
     /**
+     * Gets the assigned entry name.
+     * @return
+     */
+    protected String getAssignedEntryName() {
+        return this.fileSetEntryName;
+    }
+
+    /**
+     * Gets the assigned entry type.
+     * @return
+     */
+    public ENTRY_TYPE getFileSetEntryType() {
+        return this.fileSetEntryType;
+    }
+
+    /**
      * Marks the whole entry as consumed.
      * After calling this method, the entry will not be further considered for
      * contributing to a fileset instance.

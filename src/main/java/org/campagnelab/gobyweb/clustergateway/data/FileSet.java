@@ -73,6 +73,23 @@ public class FileSet extends Job {
         return Collections.unmodifiableSet(this.entry2file.keySet());
     }
 
+
+    /**
+     * Checks if all the mandatory entries of the fileset have been assigned to files
+     */
+    public boolean isComplete() {
+        for (FileSetConfig.ComponentSelector entry : sourceConfig.getFileSelectors()) {
+           if (entry.getMandatory() && (!entry2file.containsKey(entry.getId())))
+               return false;
+        }
+
+        for (FileSetConfig.ComponentSelector entry : sourceConfig.getDirSelectors()) {
+            if (entry.getMandatory() && (!entry2file.containsKey(entry.getId())))
+                return false;
+        }
+        return true;
+    }
+
     /**
      * Checks if the entry match the fileset configuration
      * @param name the entry name
@@ -91,6 +108,8 @@ public class FileSet extends Job {
         }
         return false;
     }
+
+
 
 
     /**

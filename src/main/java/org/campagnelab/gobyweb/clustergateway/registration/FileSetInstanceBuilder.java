@@ -7,6 +7,7 @@ import org.campagnelab.gobyweb.clustergateway.data.FileSet;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,14 +24,9 @@ class FileSetInstanceBuilder {
 
     private final List<String> errorMessages = new ArrayList<String>();
 
-    private List<InputEntry> otherEntries;
-
-    private final ConfigMatcher matcher;
-
     private final PluginRegistry registry;
 
     protected FileSetInstanceBuilder(PluginRegistry registry) {
-        matcher = new ConfigMatcher(registry);
         this.registry = registry;
     }
 
@@ -61,13 +57,20 @@ class FileSetInstanceBuilder {
                     InputEntryFile file = inputEntry.nextFile();
                     instance.setId(config.getId());
                     instance.setTag(ICBStringUtils.generateRandomString(7));
-
-                    //TODO: build the instance
+                    instance.setBasename(file.getName());
                     //assign entry file
-                    instance.addEntry(name, file.getAbsolutePath(), FileUtils.sizeOf(file));
-                    if (!instance.isComplete()) {
+                    try {
+                        instance.addEntry(inputEntry.getAssignedEntryName(), file.getAbsolutePath(), FileUtils.sizeOf(file));
+                        if (!instance.isComplete()) {
+                            //TODO: build the instance
 
+                        }
+
+                    } catch (IOException e) {
+                        errorMessages.add("Failed to create fileset instance for " + inputEntry.getPattern());
+                        inputEntry.markAsConsumed();
                     }
+
                     instances.add(instance);
                 }
             } else {
@@ -81,8 +84,6 @@ class FileSetInstanceBuilder {
                 }
                 instances.add(instance);
             }
-
-
         }
         return Collections.unmodifiableList(instances);
     }
