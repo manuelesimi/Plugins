@@ -91,43 +91,9 @@ final class Actions {
                     FileUtils.forceDelete(serializedMetadata);
             }
         }
-
-      /*  for (InputEntry inputEntry : inputEntries) {
-            while (!inputEntry.isConsumed()) {
-                String tag = ICBStringUtils.generateRandomString();
-                FileSetInstanceBuilder builder = new FileSetInstanceBuilder(registry,inputEntry);
-                builder.lookForMatchingConfig(inputEntry);
-                if (builder.hasError()) {
-                    //manage the error
-
-                    break;
-                }
-                FileSet instance = null;
-                try {
-                    instance = builder.build();
-                } catch (FileSetInstanceBuilder.InstanceNotCompleteException e) {
-                    //the inputEntry was not enough to fulfill the requirement of the selected configuration
-                    try {
-                        builder.tryToComplete(inputEntries);
-                    } catch (FileSetInstanceBuilder.InstanceNotCompleteException e1) {
-                           //manage the error
-                    }
-                    if  (builder.hasError()) {
-                        //manage the error
-                    }
-                }
-
-                Map<String, InputEntryFile> files = builder.getMatchingFiles();
-                instance.setBasename(storageArea.createTag(tag));
-                instance.setTag(tag);
-
-            }//end on isConsumed
-
-        }  //end for on input entries
-         */
         //check whether all the input entries have been consumed
         for (InputEntry inputEntry : inputEntries) {
-            if (!inputEntry.isConsumed())
+            if (inputEntry.hasNexFile())
                 logger.warn(String.format("Some files in the entry %s were not consumed because they didn't match any fileset configuration",inputEntry.getPattern()));
         }
     }
