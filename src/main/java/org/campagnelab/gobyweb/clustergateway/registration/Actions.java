@@ -55,7 +55,7 @@ final class Actions {
         if (builder.hasError()) {
             for (String error : builder.getErrorMessages())
                 logger.error(error);
-            return;
+            throw new IOException();
         }
         //push the files and metadata
         for (FileSet fileSet : instancesToRegister) {
@@ -67,7 +67,7 @@ final class Actions {
             //push the files in the storage area
             try {
                 for (Map.Entry<String,InputEntryFile> entry : files.entrySet()) {
-                    logger.debug(String.format("Uploading file %s as entry %s in the storage area",entry.getValue().getAbsolutePath(), entry.getKey()));
+                    logger.trace(String.format("Uploading file %s as entry %s in the storage area",entry.getValue().getAbsolutePath(), entry.getKey()));
                     storageArea.push(fileSet.getTag(),entry.getValue());
                     fileSet.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
                     metadataFileWriter.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
@@ -86,7 +86,7 @@ final class Actions {
             File serializedMetadata = null;
             try {
                 serializedMetadata = metadataFileWriter.serialize();
-                logger.debug(String.format("Uploading metadata file %s in the storage area",serializedMetadata.getAbsolutePath()));
+                logger.trace(String.format("Uploading metadata file %s in the storage area",serializedMetadata.getAbsolutePath()));
                 storageArea.pushMetadataFile(fileSet.getTag(),serializedMetadata);
             } catch (Exception e) {
                 this.rollback(fileSet.getTag());
