@@ -65,7 +65,7 @@ public class FileSetRegistration {
             Actions actions = new Actions(storageArea, plugins.getRegistry());
             if (config.getString("action").equalsIgnoreCase("register")) {
                 String assignedTag = config.userSpecified("tag") ? config.getString("tag") : ICBStringUtils.generateRandomString();
-                actions.register(config.getStringArray("entries"), assignedTag);
+                actions.register(config.getStringArray("entries"));
                 logger.info("Fileset instance successfully registered with tag " + assignedTag);
             } else {
                 actions.unregister(config.getString("tag"));
