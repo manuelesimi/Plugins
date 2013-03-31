@@ -13,6 +13,8 @@ import static junit.framework.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Test local registrations of fileset instances
@@ -26,6 +28,8 @@ public class FileSetLocalRegistration {
     static FileSetArea storageArea;
     static String storageAreaDir = String.format("test-results-%d/filesets", System.currentTimeMillis());
     static Actions actions;
+    private List<String> tags = new ArrayList<String>();
+
 
     @BeforeClass
     public static void configure() {
@@ -50,43 +54,46 @@ public class FileSetLocalRegistration {
     @Test
     public void register() {
         try {
-            actions.register("COMPACT_READS",
-                    new String[]{"READS_FILE:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads"},
-                    "TESTTAG1");
+            // test the case with FILESETID:absolute filename
+            tags.addAll(actions.register(
+                    new String[]{"COMPACT_READS:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads"}
+            ));
         } catch (IOException e) {
-            fail("fail to register fileset TESTTAG1");
+            fail("fail to register fileset with FILESETID:absolute filename");
         }
         try {
-            actions.register("COMPACT_READS",
-                    new String[]{"READS_FILE:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_2/KHYMHVM-Sample_MAN2.compact-reads"},
-                    "TESTTAG2");
+            // test the case with FILESETID:wildcard
+            tags.addAll(actions.register(
+                    new String[]{"COMPACT_READS:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_2/*.compact-reads"}
+                    ));
         } catch (IOException e) {
-            fail("fail to register fileset TESTTAG2");
+            fail("fail to register fileset with FILESETID:wildcard");
         }
 
         try {
-            actions.register("COMPACT_READS",
-                    new String[]{"READS_FILE:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_3/OUTTRGH-Sample_MAN3.compact-reads"},
-                    "TESTTAG3");
+            // test the case with wildcard
+            tags.addAll(actions.register(
+                    new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/READS_3/*.compact-reads"}
+                    ));
         } catch (IOException e) {
-            fail("fail to register fileset TESTTAG3");
+            fail("fail to register fileset with wildcard");
         }
+
+        try {
+            // test the case with filename
+            tags.addAll(actions.register(
+                    new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/READS_3/OUTTRGH-Sample_MAN3.compact-reads"}
+            ));
+        } catch (IOException e) {
+            fail("fail to register fileset with filename");
+        }
+        assertEquals("Register operation returned an unexpected number of tags", 4, tags.size());
     }
 
-    @Test(expected=IllegalArgumentException.class)
-    public void duplicateRegister() {
-        try {
-            actions.register("COMPACT_READS",
-                    new String[]{"READS_FILE:test-data/cluster-gateway/files-for-registration-test/READS_1/AOUGEKP-Sample_MAN1.compact-reads"},
-                    "TESTTAG1");
-        } catch (IOException e) {
-            fail("wrong exception threw by registration");
-        }
-    }
 
     @Test
     public void check() {
-        if (! new File(storageAreaDir+"/ClusterGateway/TESTTAG1/AOUGEKP-Sample_MAN1.compact-reads").exists())
+        /*if (! new File(storageAreaDir+"/ClusterGateway/TESTTAG1/AOUGEKP-Sample_MAN1.compact-reads").exists())
             fail("READS_FILE entry for TESTTAG1 not found");
         if (! new File(storageAreaDir+"/ClusterGateway/TESTTAG1/.metadata/metadata.pb").exists())
             fail("metadata file for TESTTAG1 not found");
@@ -97,32 +104,24 @@ public class FileSetLocalRegistration {
         if (! new File(storageAreaDir+"/ClusterGateway/TESTTAG3/OUTTRGH-Sample_MAN3.compact-reads").exists())
             fail("READS_FILE entry for TESTTAG3 not found");
         if (! new File(storageAreaDir+"/ClusterGateway/TESTTAG3/.metadata/metadata.pb").exists())
-            fail("metadata file for TESTTAG3 not found");
+            fail("metadata file for TESTTAG3 not found");  */
     }
 
     @Test
     public void unregister() {
-        try {
-            actions.unregister("TESTTAG1");
-        } catch (IOException e) {
-            fail("failed to unregister fileset TESTTAG1");
-        }
-        try {
-            actions.unregister("TESTTAG2");
-        } catch (IOException e) {
-            fail("failed to unregister fileset TESTTAG2");
-        }
-        try {
-            actions.unregister("TESTTAG3");
-        } catch (IOException e) {
-            fail("failed to unregister fileset TESTTAG3");
+        for (String tag : tags) {
+            try {
+                actions.unregister(tag);
+            } catch (IOException e) {
+                fail("failed to unregister fileset " + tag);
+            }
         }
 
     }
     @Test(expected=IllegalArgumentException.class)
     public void wrongUnregister() {
         try {
-            actions.unregister("TESTTAG4");
+            actions.unregister("FAKETAG");
         } catch (IOException e) {
             fail("wrong exception threw by unregistration");
         }
