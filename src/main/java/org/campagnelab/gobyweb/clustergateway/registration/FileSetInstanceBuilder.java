@@ -8,10 +8,7 @@ import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Builder for fileset instances
@@ -60,7 +57,7 @@ class FileSetInstanceBuilder {
                     instance.setBasename(file.getName());
                     //assign entry file
                     try {
-                        instance.addEntry(inputEntry.getAssignedEntryName(), file.getAbsolutePath(), FileUtils.sizeOf(file));
+                        instance.addEntry(inputEntry.getAssignedEntryName(), file);
                         if (!instance.isComplete()) {
                             //TODO: complete the instance
 
@@ -115,7 +112,7 @@ class FileSetInstanceBuilder {
             if (configs.size() == 1) {
                 return configs.get(0);
             } else {
-                //TODO: could be smarter here and process all the configs for checking the best match with the next entries?
+                //TODO: we could be smarter here and process all the configs for checking the best match with the next entries?
                 errorMessages.add(String.format("Too many matching fileset configurations. The input entry %s matched more than one fileset configuration. Impossible to manage it.", inputEntry.getPattern()));
                 errorMessages.add("Compatible configurations:");
                 for (FileSetConfig fsc : configs)
@@ -143,34 +140,36 @@ class FileSetInstanceBuilder {
         return Collections.unmodifiableList(this.errorMessages);
     }
 
-
-    private void build(FileSet fileset, InputEntry inputEntry) throws InstanceNotCompleteException {
-        for (FileSetConfig.ComponentSelector selector : config.getFileSelectors()) {
-            String pattern = selector.getPattern();
-            if (pattern.equalsIgnoreCase(initialEntry.getPattern())) {
-                //TODO great, we can assign the entry files to this selector
-                initialEntry.getFiles();
-                fileset.setId(config.getId());
-            } else if (selector.getMandatory()) {
-                //try to complete with the other entries, if any
-                if (otherEntries.size()>0) {
-                    for (InputEntry otherEntry : otherEntries) {
-
-                    }
-                } else {
-                    throw new InstanceNotCompleteException();
-                }
-
+    /**
+     * Gets all the input files that have been assigned to the fileset.
+     * @param fileSet
+     * @return
+     */
+    protected Map<String,InputEntryFile> getAssignedFiles(FileSet fileSet) throws IncompleteInstanceException {
+        Map<String,InputEntryFile> files = new HashMap<String, InputEntryFile>();
+        for (String entry: fileSet.getAllEntryNames()) {
+            try {
+                files.put(entry, (InputEntryFile) fileSet.getEntryFile(entry));
+            } catch (IOException ioe) {
+               throw new IncompleteInstanceException(String.format("Entry %s is not complete.", entry));
             }
         }
+        return files;
     }
 
+    /**
+     * The FileSet instance is not complete. There exist mandatory entries with no file(s) assigned.
+     */
+    protected static class IncompleteInstanceException extends Exception {
 
+        public IncompleteInstanceException() {
+            super();
+        }
 
-    protected Map<String,InputEntryFile> getMatchingFiles(FileSet fileSet) {
-
+        public IncompleteInstanceException(String message) {
+            super(message);
+        }
     }
-
 
     /**
      * No fileset configuration matching a pattern has been found

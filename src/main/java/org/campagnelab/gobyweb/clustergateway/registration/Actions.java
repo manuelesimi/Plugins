@@ -44,11 +44,11 @@ final class Actions {
      *   3) pattern (e.g. *.compact_reads, **, etc)
      *   4) filename
      *
+     * @return the tags of the registered instances
      * @throws IOException if the registration fails or any of the entries is not valid
      */
-    protected void register(String[] entries) throws IOException {
-       // FileSetConfig config = registry.findByTypedId(id, FileSetConfig.class);
-
+    protected List<String> register(final String[] entries) throws IOException {
+        List<String> tags = new ArrayList<String>();
         List<InputEntry> inputEntries = this.parseInputEntries(entries);
         FileSetInstanceBuilder builder = new FileSetInstanceBuilder(registry);
         List<FileSet> instancesToRegister = builder.buildList(inputEntries);
@@ -59,15 +59,17 @@ final class Actions {
         }
         //push the files and metadata
         for (FileSet fileSet : instancesToRegister) {
-            Map<String, InputEntryFile> files = builder.getMatchingFiles(fileSet);
+            logger.info(String.format("Registering an instance of FileSet %s", fileSet.getId()));
+            Map<String, InputEntryFile> files = builder.getAssignedFiles(fileSet);
             //prepare metadata
+            fileSet.setOwner(storageArea.getOwner());
             MetadataFileWriter metadataFileWriter = new MetadataFileWriter(
                     fileSet.getId(),fileSet.getTag(),fileSet.getOwnerId());
             storageArea.createTag(fileSet.getTag());
             //push the files in the storage area
             try {
                 for (Map.Entry<String,InputEntryFile> entry : files.entrySet()) {
-                    logger.trace(String.format("Uploading file %s as entry %s in the storage area",entry.getValue().getAbsolutePath(), entry.getKey()));
+                    logger.trace(String.format("Uploading file %s as entry %s in the storage area", entry.getValue().getAbsolutePath(), entry.getKey()));
                     storageArea.push(fileSet.getTag(),entry.getValue());
                     fileSet.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
                     metadataFileWriter.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
@@ -86,7 +88,7 @@ final class Actions {
             File serializedMetadata = null;
             try {
                 serializedMetadata = metadataFileWriter.serialize();
-                logger.trace(String.format("Uploading metadata file %s in the storage area",serializedMetadata.getAbsolutePath()));
+                logger.trace(String.format("Uploading metadata file %s in the storage area", serializedMetadata.getAbsolutePath()));
                 storageArea.pushMetadataFile(fileSet.getTag(),serializedMetadata);
             } catch (Exception e) {
                 this.rollback(fileSet.getTag());
@@ -95,12 +97,17 @@ final class Actions {
                 if (serializedMetadata != null)
                     FileUtils.forceDelete(serializedMetadata);
             }
+            logger.info("FileSet successfully registered");
+            //add the instance tag to the list to return
+            tags.add(fileSet.getTag());
         }
         //check whether all the input entries have been consumed
         for (InputEntry inputEntry : inputEntries) {
             if (inputEntry.hasNexFile())
                 logger.warn(String.format("Some files in the entry %s were not consumed because they didn't match any fileset configuration",inputEntry.getPattern()));
         }
+
+        return Collections.unmodifiableList(tags);
     }
 
     private void rollback(String tag) throws IOException {
@@ -124,7 +131,7 @@ final class Actions {
      * @return a map with [name -> file] for each entry
      * @throws IOException if any of the entries is not valid
      */
-    private List<InputEntry> parseInputEntries(String[] entries) throws IOException {
+    private List<InputEntry> parseInputEntries(final String[] entries) throws IOException {
         List<InputEntry> inputEntries = new ArrayList<InputEntry>();
         for (String entry : entries) {
             StringTokenizer tokenizer = new StringTokenizer(entry, ":");
@@ -134,7 +141,7 @@ final class Actions {
                 default: throw new IOException(String.format("Invalid entry format: %s. Entries must be in the form FILESET_ID:PATTERN or PATTERN", entry));
             }
         }
-        return inputEntries;
+        return Collections.unmodifiableList(inputEntries);
     }
 
 

@@ -11,6 +11,7 @@ import org.campagnelab.gobyweb.plugins.Plugins;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -64,12 +65,12 @@ public class FileSetRegistration {
         try {
             Actions actions = new Actions(storageArea, plugins.getRegistry());
             if (config.getString("action").equalsIgnoreCase("register")) {
-                String assignedTag = config.userSpecified("tag") ? config.getString("tag") : ICBStringUtils.generateRandomString();
-                actions.register(config.getStringArray("entries"));
-                logger.info("Fileset instance successfully registered with tag " + assignedTag);
+                List<String> tags = actions.register(config.getStringArray("entries"));
+                logger.info("Fileset instance(s) successfully registered with the following tag(s): ");
+                logger.info(Arrays.toString(tags.toArray()));
             } else {
                 actions.unregister(config.getString("tag"));
-                logger.info("Fileset instance successfully unregistered");
+                logger.info(String.format("Fileset instance %s successfully unregistered",config.getString("tag")));
             }
         } catch (IOException e) {
             logger.error(e);

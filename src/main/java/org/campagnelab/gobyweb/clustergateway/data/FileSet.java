@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.data;
 
+import org.apache.commons.io.FileUtils;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
 import java.io.IOException;
@@ -33,24 +34,36 @@ public class FileSet extends Job {
     /**
      * Adds an entry to the fileset.
      * @param name
-     * @param filename
-     * @param size
+     * @param file
      */
-    public void addEntry(String name, String filename, long size) throws IOException  {
-        this.entry2file.put(name, new Entry(name,filename,size));
+    public void addEntry(String name, File file) throws IOException  {
+        this.entry2file.put(name, new Entry(name,file, FileUtils.sizeOf(file)));
     }
 
     /**
      * Gets the relative path to the entry file(s). The path is relative to the fileset basename.
-     * @param name
+     * @param name the name of the entry
      * @return
      * @throws IOException
      */
     public String getEntryPath(String name) throws IOException {
        if (this.entry2file.containsKey(name)) {
-        return this.entry2file.get(name).filename;
+        return this.entry2file.get(name).file.getName();
        } else
            throw new IOException("the entry does not exist");
+    }
+
+    /**
+     * Gets the entry file.
+     * @param name  the name of the entry
+     * @return
+     * @throws IOException
+     */
+    public File getEntryFile(String name) throws IOException {
+        if (this.entry2file.containsKey(name)) {
+            return this.entry2file.get(name).file;
+        } else
+            throw new IOException("the entry does not exist");
     }
 
     /**
@@ -117,12 +130,12 @@ public class FileSet extends Job {
      */
     class Entry {
         String name;
-        String filename;
+        File file;
         long size;
 
-        Entry(String name, String filename, long size) {
+        Entry(String name, File file, long size) {
             this.name = name;
-            this.filename = filename;
+            this.file = file;
             this.size = size;
         }
     }
