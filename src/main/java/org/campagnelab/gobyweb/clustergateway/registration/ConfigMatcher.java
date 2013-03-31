@@ -46,15 +46,25 @@ class ConfigMatcher {
      */
    protected boolean assign(FileSetConfig config, InputEntry inputEntry) {
         for (FileSetConfig.ComponentSelector selector : config.getFileSelectors()) {
-            if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())) {
-                inputEntry.assignConfigEntry(selector.getId(), ENTRY_TYPE.FILE);
-                return true;
+            if (inputEntry.getPattern() == null) {
+                //a filename has been specified
+                //TODO: match the name with the selector pattern
+            } else {
+                if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())) {
+                    inputEntry.assignConfigEntry(selector.getId(), ENTRY_TYPE.FILE);
+                    return true;
+                }
             }
         }
         for (FileSetConfig.ComponentSelector selector : config.getDirSelectors()) {
-            if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())){
-                inputEntry.assignConfigEntry(selector.getId(),ENTRY_TYPE.DIR);
-                return true;
+            if (inputEntry.getPattern() == null) {
+                //a filename has been specified
+                //TODO: match the name with the selector pattern
+            } else {
+                if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())){
+                    inputEntry.assignConfigEntry(selector.getId(),ENTRY_TYPE.DIR);
+                    return true;
+                }
             }
         }
         return false;

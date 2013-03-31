@@ -67,7 +67,7 @@ class FileSetInstanceBuilder {
                         errorMessages.add("Failed to create fileset instance for " + inputEntry.getPattern());
                         inputEntry.markAsConsumed();
                     }
-
+                    file.setConsumed(true);
                     instances.add(instance);
                 }
             } else {
@@ -96,13 +96,18 @@ class FileSetInstanceBuilder {
             throws ConfigNotFoundException, TooManyConfigsException {
         if (inputEntry.isBoundToFileSet()) { //the configuration has been specified by the user
             FileSetConfig config = registry.findByTypedId(inputEntry.getFileSetId(), FileSetConfig.class);
-            if (config != null && (new ConfigMatcher(registry).assign(config, inputEntry))) {
-                return config;
-            }
-            else {
+            if (config == null) {
                 errorMessages.add("Unable to find fileset configuration: " + inputEntry.getFileSetId());
                 throw new ConfigNotFoundException();
+            } else {
+                if (new ConfigMatcher(registry).assign(config, inputEntry)) {
+                    return config;
+                } else {
+                    errorMessages.add("Failed to assign the input entry to the FileSet configuration: " + inputEntry.getFileSetId());
+                    throw new ConfigNotFoundException();
+                }
             }
+
         } else { //try to match the entry with the appropriate configuration
             List<FileSetConfig> configs = new ConfigMatcher(registry).match(inputEntry);
             if (configs.size() == 0) {

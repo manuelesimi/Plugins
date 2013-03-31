@@ -44,12 +44,14 @@ final class Actions {
      *   3) pattern (e.g. *.compact_reads, **, etc)
      *   4) filename
      *
+     * @param sourceDir the directory where files are located. if not specified, the current folder is used.
      * @return the tags of the registered instances
      * @throws IOException if the registration fails or any of the entries is not valid
      */
-    protected List<String> register(final String[] entries) throws IOException {
+    protected List<String> register(final String[] entries, String ... sourceDir) throws IOException {
         List<String> tags = new ArrayList<String>();
-        List<InputEntry> inputEntries = this.parseInputEntries(entries);
+        List<InputEntry> inputEntries = this.parseInputEntries(entries,
+                (sourceDir!=null&&sourceDir.length>0)?sourceDir[0]:System.getProperty("user.dir"));
         FileSetInstanceBuilder builder = new FileSetInstanceBuilder(registry);
         List<FileSet> instancesToRegister = builder.buildList(inputEntries);
         if (builder.hasError()) {
@@ -60,20 +62,21 @@ final class Actions {
         //push the files and metadata
         for (FileSet fileSet : instancesToRegister) {
             logger.info(String.format("Registering an instance of FileSet %s", fileSet.getId()));
-            Map<String, InputEntryFile> files = builder.getAssignedFiles(fileSet);
-            //prepare metadata
-            fileSet.setOwner(storageArea.getOwner());
-            MetadataFileWriter metadataFileWriter = new MetadataFileWriter(
-                    fileSet.getId(),fileSet.getTag(),fileSet.getOwnerId());
-            storageArea.createTag(fileSet.getTag());
-            //push the files in the storage area
+            MetadataFileWriter metadataFileWriter = null;
             try {
+                Map<String, InputEntryFile> files = builder.getAssignedFiles(fileSet);
+                //prepare metadata
+                fileSet.setOwner(storageArea.getOwner());
+                metadataFileWriter = new MetadataFileWriter(
+                        fileSet.getId(),fileSet.getTag(),fileSet.getOwnerId());
+                storageArea.createTag(fileSet.getTag());
+                //push the files in the storage area
                 for (Map.Entry<String,InputEntryFile> entry : files.entrySet()) {
                     logger.trace(String.format("Uploading file %s as entry %s in the storage area", entry.getValue().getAbsolutePath(), entry.getKey()));
                     storageArea.push(fileSet.getTag(),entry.getValue());
-                    fileSet.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
+                    fileSet.addEntry(entry.getKey(),entry.getValue());
                     metadataFileWriter.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
-                    entry.getValue().setConsumed(true);
+                    //entry.getValue().setConsumed(true);
                 }
 
             } catch (IOException e) {
@@ -82,14 +85,21 @@ final class Actions {
             } catch (IllegalArgumentException e) {
                 this.rollback(fileSet.getTag());
                 throw e;
+            } catch (FileSetInstanceBuilder.IncompleteInstanceException e) {
+                this.rollback(fileSet.getTag());
+                throw new IOException("Incomplete FileSet instance");
             }
 
             //upload the fileset metadata for its correct consumption
             File serializedMetadata = null;
             try {
-                serializedMetadata = metadataFileWriter.serialize();
-                logger.trace(String.format("Uploading metadata file %s in the storage area", serializedMetadata.getAbsolutePath()));
-                storageArea.pushMetadataFile(fileSet.getTag(),serializedMetadata);
+                if (metadataFileWriter != null) {
+                    serializedMetadata = metadataFileWriter.serialize();
+                    logger.trace(String.format("Uploading metadata file %s in the storage area", serializedMetadata.getAbsolutePath()));
+                    storageArea.pushMetadataFile(fileSet.getTag(),serializedMetadata);
+                } else {
+                    logger.warn("The FileSet instance does not have any metadata associated");
+                }
             } catch (Exception e) {
                 this.rollback(fileSet.getTag());
                 throw new IOException(String.format("Failed to create or upload metadata for the fileset instance. Reason: %s",e.getStackTrace().toString()));
@@ -131,13 +141,13 @@ final class Actions {
      * @return a map with [name -> file] for each entry
      * @throws IOException if any of the entries is not valid
      */
-    private List<InputEntry> parseInputEntries(final String[] entries) throws IOException {
+    private List<InputEntry> parseInputEntries(final String[] entries, String dir) throws IOException {
         List<InputEntry> inputEntries = new ArrayList<InputEntry>();
         for (String entry : entries) {
             StringTokenizer tokenizer = new StringTokenizer(entry, ":");
             switch (tokenizer.countTokens()) {
-                case 1: inputEntries.add(new InputEntry(tokenizer.nextToken().trim()));break;
-                case 2: inputEntries.add(new InputEntry(tokenizer.nextToken().trim(), tokenizer.nextToken().trim()));break;
+                case 1: inputEntries.add(new InputEntry(dir, tokenizer.nextToken().trim(), dir));break;
+                case 2: inputEntries.add(new InputEntry(dir, tokenizer.nextToken().trim(), tokenizer.nextToken().trim()));break;
                 default: throw new IOException(String.format("Invalid entry format: %s. Entries must be in the form FILESET_ID:PATTERN or PATTERN", entry));
             }
         }

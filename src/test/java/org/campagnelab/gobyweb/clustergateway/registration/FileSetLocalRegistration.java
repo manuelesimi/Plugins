@@ -26,7 +26,7 @@ public class FileSetLocalRegistration {
 
     static Plugins plugins;
     static FileSetArea storageArea;
-    static String storageAreaDir = String.format("test-results-%d/filesets", System.currentTimeMillis());
+    static String storageAreaDir = String.format("test-results/filesets", System.currentTimeMillis());
     static Actions actions;
     private List<String> tags = new ArrayList<String>();
 
@@ -53,25 +53,25 @@ public class FileSetLocalRegistration {
 
     @Test
     public void register() {
-        try {
-            // test the case with FILESETID:absolute filename
+        /*try {
+            // CASE1: test with FILESET:path to file
             tags.addAll(actions.register(
-                    new String[]{"COMPACT_READS:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_1/AOUGEKP-Sample_MAN1.compact-reads"}
+                    new String[]{"COMPACT_READS:test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads"}
             ));
         } catch (IOException e) {
-            fail("fail to register fileset with FILESETID:absolute filename");
-        }
-        try {
-            // test the case with FILESETID:wildcard
+            fail("fail to register fileset with FILESET:path");
+        } */
+       try {
+            // test the case with FILESET:pattern
             tags.addAll(actions.register(
-                    new String[]{"COMPACT_READS:test-data/cluster-gateway/files-for-registration-test/fileSets/READS_2/*.compact-reads"}
-                    ));
+                    new String[]{"COMPACT_READS:*.compact-reads"},
+                    "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/"));
         } catch (IOException e) {
-            fail("fail to register fileset with FILESETID:wildcard");
+            fail("fail to register fileset with FILESET:pattern");
         }
-
+        /*
         try {
-            // test the case with wildcard
+            // test the case with pattern
             tags.addAll(actions.register(
                     new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/READS_3/*.compact-reads"}
                     ));
@@ -86,8 +86,8 @@ public class FileSetLocalRegistration {
             ));
         } catch (IOException e) {
             fail("fail to register fileset with filename");
-        }
-        assertEquals("Register operation returned an unexpected number of tags", 4, tags.size());
+        } */
+        assertEquals("Register operation returned an unexpected number of tags", 1, tags.size());
     }
 
 
@@ -127,7 +127,7 @@ public class FileSetLocalRegistration {
         }
     }
 
-    @AfterClass
+    //@AfterClass
     public static void clean(){
        try {
            Files.deleteRecursively(new File(storageAreaDir).getParentFile());

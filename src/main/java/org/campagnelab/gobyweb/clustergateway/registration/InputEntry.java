@@ -31,20 +31,18 @@ class InputEntry {
      * @param filesetConfigId
      * @param pattern
      */
-    protected InputEntry(String filesetConfigId, String pattern) {
+    protected InputEntry(String sourceDir, String filesetConfigId, String pattern) {
        this.filesetConfigId= filesetConfigId;
        this.pattern = pattern;
-       files = new InputEntryScanner().scan();
+       files = new InputEntryScanner(sourceDir).scan();
     }
 
     /**
      * An entry without any fileset associated
      * @param pattern
      */
-    protected InputEntry(String pattern) {
-        this.pattern = pattern;
-        this.filesetConfigId = null;
-        files = new InputEntryScanner().scan();
+    protected InputEntry(String sourceDir, String pattern) {
+        this(sourceDir,null,pattern);
     }
 
     /**
@@ -114,9 +112,9 @@ class InputEntry {
     public boolean hasNexFile() {
         for (InputEntryFile file : this.files) {
             if (!file.isConsumed())
-                return false;
+                return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -137,14 +135,16 @@ class InputEntry {
      */
     class InputEntryScanner {
 
-        protected InputEntryScanner() {}
+        private String dir;
+
+        protected InputEntryScanner(String dir) {this.dir = dir;}
 
         /**
          * Gets the files matching the entry pattern.
          */
         private List<InputEntryFile> scan() {
             List<InputEntryFile> files = new ArrayList<InputEntryFile>();
-            File workingDirectory = new File (System.getProperty("user.dir"));
+            File workingDirectory = new File (dir);
             if (!acceptAsFile(files,workingDirectory)) {
                 InputEntry.this.logger.debug("Scanning directory " + workingDirectory.getAbsolutePath());
                 Paths paths = new Paths();
