@@ -19,7 +19,12 @@ class InputEntry {
     private final String filesetConfigId;
     private final String pattern;
     private final List<InputEntryFile> files;
-    private InputEntryFile nextFile;
+    private String fileSetEntryName;
+    private ENTRY_TYPE fileSetEntryType;
+
+    protected enum ENTRY_TYPE {
+        FILE,DIR
+    }
 
     /**
      * An entry with a fileset associated
@@ -66,11 +71,21 @@ class InputEntry {
     }
 
     /**
+     * Records the fileset's entry name assigned to this input entry
+     * @param name
+     * @param type
+     */
+    protected void assignConfigEntry(String name, ENTRY_TYPE type) {
+       this.fileSetEntryName = name;
+       this.fileSetEntryType = type;
+    }
+
+    /**
      * Marks the whole entry as consumed.
      * After calling this method, the entry will not be further considered for
      * contributing to a fileset instance.
      */
-    public void markAsConsumed() {
+    protected void markAsConsumed() {
         for (InputEntryFile file : this.files) {
             file.setConsumed(true);
         }

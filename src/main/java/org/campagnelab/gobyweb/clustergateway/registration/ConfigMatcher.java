@@ -2,6 +2,8 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
+import static org.campagnelab.gobyweb.clustergateway.registration.InputEntry.*;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,13 +45,13 @@ class ConfigMatcher {
    protected boolean check(FileSetConfig config, InputEntry inputEntry) {
         for (FileSetConfig.ComponentSelector selector : config.getFileSelectors()) {
             if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())) {
-                inputEntry.assignConfigEntry(selector.getId());
+                inputEntry.assignConfigEntry(selector.getId(), ENTRY_TYPE.FILE);
                 return true;
             }
         }
         for (FileSetConfig.ComponentSelector selector : config.getDirSelectors()) {
             if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())){
-                inputEntry.assignConfigEntry(selector.getId());
+                inputEntry.assignConfigEntry(selector.getId(),ENTRY_TYPE.DIR);
                 return true;
             }
         }

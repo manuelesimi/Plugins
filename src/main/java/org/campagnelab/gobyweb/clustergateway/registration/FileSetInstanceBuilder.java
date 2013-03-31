@@ -54,21 +54,35 @@ class FileSetInstanceBuilder {
                 inputEntry.markAsConsumed();
                 continue;
             }
-            //create an instance for each entry file
-            while (inputEntry.hasNexFile()) {
+            if (inputEntry.getFileSetEntryType() == InputEntry.ENTRY_TYPE.FILE) {
+                //create an instance for each entry file
+                while (inputEntry.hasNexFile()) {
+                    FileSet instance = new FileSet(config);
+                    InputEntryFile file = inputEntry.nextFile();
+                    instance.setId(config.getId());
+                    instance.setTag(ICBStringUtils.generateRandomString(7));
+
+                    //TODO: build the instance
+                    //assign entry file
+                    instance.addEntry(name, file.getAbsolutePath(), FileUtils.sizeOf(file));
+                    if (!instance.isComplete()) {
+
+                    }
+                    instances.add(instance);
+                }
+            } else {
                 FileSet instance = new FileSet(config);
-                InputEntryFile file = inputEntry.nextFile();
                 instance.setId(config.getId());
                 instance.setTag(ICBStringUtils.generateRandomString(7));
+                //TODO: assign all the entry files to the config
 
-                //TODO: build the instance
-                //assign entry file
-                instance.addEntry(name, file.getAbsolutePath(), FileUtils.sizeOf(file));
                 if (!instance.isComplete()) {
 
                 }
                 instances.add(instance);
             }
+
+
         }
         return Collections.unmodifiableList(instances);
     }
@@ -84,8 +98,9 @@ class FileSetInstanceBuilder {
             throws ConfigNotFoundException, TooManyConfigsException {
         if (inputEntry.isBoundToFileSet()) { //the configuration has been specified by the user
             FileSetConfig config = registry.findByTypedId(inputEntry.getFileSetId(), FileSetConfig.class);
-            if (config != null)
+            if (config != null && (new ConfigMatcher(registry).check(config, inputEntry))) {
                 return config;
+            }
             else {
                 errorMessages.add("Unable to find fileset configuration: " + inputEntry.getFileSetId());
                 throw new ConfigNotFoundException();
