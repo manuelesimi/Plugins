@@ -69,12 +69,12 @@ public class FileSetLocalRegistration {
         } catch (IOException e) {
             fail("fail to register fileset with FILESET:pattern");
         }
-        /*
+
         try {
             // test the case with pattern
-            tags.addAll(actions.register(
-                    new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/READS_3/*.compact-reads"}
-                    ));
+           tags.addAll(actions.register(
+                    new String[]{"COMPACT_READS:*.compact-reads"},
+                    "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/"));
         } catch (IOException e) {
             fail("fail to register fileset with wildcard");
         }
@@ -82,12 +82,12 @@ public class FileSetLocalRegistration {
         try {
             // test the case with filename
             tags.addAll(actions.register(
-                    new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/READS_3/OUTTRGH-Sample_MAN3.compact-reads"}
-            ));
+                    new String[]{"COMPACT_READS:CASE4_FILE1.compact-reads"},
+                    "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_4/"));
         } catch (IOException e) {
             fail("fail to register fileset with filename");
-        } */
-        assertEquals("Register operation returned an unexpected number of tags", 4, tags.size());
+        }
+        assertEquals("Register operation returned an unexpected number of tags", 7, tags.size());
     }
 
 

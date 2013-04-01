@@ -60,6 +60,7 @@ class FileSetInstanceBuilder {
                     try {
                         instance.addEntry(inputEntry.getAssignedEntryName(), file);
                         if (!instance.isComplete()) {
+                            logger.debug("the instance is not complete, yet");
                             //TODO: complete the instance using the basename as filter
 
                         }
