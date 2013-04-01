@@ -49,7 +49,7 @@ class FileSetInstanceBuilder {
                 instances.clear();
                 return instances;
             }
-            if (inputEntry.getFileSetEntryType() == InputEntry.ENTRY_TYPE.FILE) {
+            if (inputEntry.getFileSetEntryType() == FileSetConfig.SELECTOR_TYPE .FILE) {
                 //create an instance for each entry file
                 while (inputEntry.hasNextFile()) {
                     FileSet instance = new FileSet(config);
@@ -58,20 +58,16 @@ class FileSetInstanceBuilder {
                     instance.setTag(ICBStringUtils.generateRandomString(7));
                     instance.setBasename(FilenameUtils.removeExtension(file.getName()));
                     //assign entry file
-                    try {
-                        instance.addEntry(inputEntry.getAssignedEntryName(), file);
-                        if (!instance.isComplete() && !new ConfigMatcher(registry).completeInstance(instance,inputEntry,inputEntries)) {
-                            errorMessages.add(String.format("Unable to complete the FileSet instance based on file %s of entry %s",
+                    instance.addEntry(inputEntry.getAssignedEntryName(), file);
+
+                    //search the other files to complete the instance
+                    if (!instance.isComplete() && !new ConfigMatcher(registry).completeInstance(instance,inputEntry,inputEntries)) {
+                          errorMessages.add(String.format("Unable to complete the FileSet instance based on file %s of entry %s",
                                     file.getAbsolutePath(),
                                     inputEntry.getHumanReadableName()));
-                            file.setConsumed(true);
-                            continue;
-                        }
-
-                    } catch (IOException e) {
-                        errorMessages.add("Failed to create fileset instance for " + inputEntry.getPattern());
-                        inputEntry.markAsConsumed();
-                    }
+                          file.setConsumed(true);
+                          continue;
+                     }
                     file.setConsumed(true);
                     instances.add(instance);
                 }

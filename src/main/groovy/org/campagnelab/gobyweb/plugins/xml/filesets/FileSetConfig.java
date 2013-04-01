@@ -50,6 +50,11 @@ public class FileSetConfig extends BaseConfig implements SupportDependencyRange,
     @XmlElement(name = "attribute")
     protected List<Attribute> attributes;
 
+
+    public enum SELECTOR_TYPE {
+        FILE,DIR
+    }
+
     public FileSetConfig() {}
 
     public FileSetConfig(String id) {
@@ -159,10 +164,12 @@ public class FileSetConfig extends BaseConfig implements SupportDependencyRange,
      * @return the list of file selectors
      */
     public List<ComponentSelector> getFileSelectors() {
-       if (this.fileSelectors == null)
-           return Collections.EMPTY_LIST;
-        else
-           return Collections.unmodifiableList(this.fileSelectors);
+       if (this.fileSelectors != null) {
+           for (ComponentSelector selector : this.fileSelectors)
+               selector.type = SELECTOR_TYPE.FILE;//cannot be done at init time
+            return Collections.unmodifiableList(this.fileSelectors);
+       } else
+            return Collections.EMPTY_LIST;
     }
 
     /**
@@ -170,10 +177,12 @@ public class FileSetConfig extends BaseConfig implements SupportDependencyRange,
      * @return the list of file selectors
      */
     public List<ComponentSelector> getDirSelectors() {
-        if (this.dirSelectors == null)
-            return Collections.EMPTY_LIST;
-        else
+        if (this.dirSelectors != null) {
+            for (ComponentSelector selector : this.dirSelectors)
+                selector.type = SELECTOR_TYPE.DIR;//cannot be done at init time
             return Collections.unmodifiableList(this.dirSelectors);
+        } else
+            return Collections.EMPTY_LIST;
     }
 
     /**
@@ -233,6 +242,27 @@ public class FileSetConfig extends BaseConfig implements SupportDependencyRange,
         return (this.atLeastVersion(fileSetConfig.version)) ? -1 : 1;
     }
 
+    /**
+     * Gets the selector with the given id.
+     * @param id
+     * @return the selector or null if it does not exist
+     */
+    public ComponentSelector getSelector(String id) {
+        for (ComponentSelector selector : this.fileSelectors) {
+           if (selector.getId().equalsIgnoreCase(id)) {
+               selector.type = SELECTOR_TYPE.FILE;
+               return selector;
+           }
+        }
+        for (ComponentSelector selector : this.dirSelectors) {
+            if (selector.getId().equalsIgnoreCase(id)) {
+                selector.type = SELECTOR_TYPE.DIR;
+                return selector;
+            }
+        }
+        return null;
+    }
+
 
     /**
      * A file/dir selector associated to the FileSet
@@ -253,6 +283,8 @@ public class FileSetConfig extends BaseConfig implements SupportDependencyRange,
         @XmlAttribute
         protected String matchAttribute;
 
+        protected SELECTOR_TYPE type;
+
         protected ComponentSelector() {}
 
         protected ComponentSelector(String id, String pattern, Boolean mandatory, String matchAttribute) {
@@ -272,6 +304,10 @@ public class FileSetConfig extends BaseConfig implements SupportDependencyRange,
 
         public String getId() {
             return id;
+        }
+
+        public SELECTOR_TYPE getType() {
+            return type;
         }
 
         public String[] getMatches() {

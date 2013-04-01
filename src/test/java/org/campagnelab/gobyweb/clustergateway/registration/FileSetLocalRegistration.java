@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
 import com.google.common.io.Files;
+import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
@@ -25,6 +26,7 @@ import java.util.List;
 @RunWith(JUnit4.class)
 public class FileSetLocalRegistration {
 
+    private static Logger logger = Logger.getLogger(FileSetLocalRegistration.class);
     static Plugins plugins;
     static FileSetArea storageArea;
     static String storageAreaDir = String.format("test-results/filesets", System.currentTimeMillis());
@@ -54,6 +56,7 @@ public class FileSetLocalRegistration {
 
     @Test
     public void registerFILESETPATH() {
+       logger.debug("Testing registration CASE_1 (FILESET:PATH)");
        List<String> returnedTags = new ArrayList<String>();
        try {
             // CASE1: test with FILESET:path to file
@@ -70,6 +73,8 @@ public class FileSetLocalRegistration {
 
     @Test
     public void registerFILESETPATTERN() {
+        logger.debug("Testing registration CASE_2 (FILESET:PATTERN)");
+
         List<String> returnedTags = new ArrayList<String>();
         try {
             // test the case with FILESET:pattern
@@ -85,11 +90,13 @@ public class FileSetLocalRegistration {
 
     @Test
     public void registerPATTERN() {
+        logger.debug("Testing registration CASE_3 (PATTERN)");
+
         List<String> returnedTags = new ArrayList<String>();
         try {
             // test the case with pattern
             returnedTags.addAll(actions.register(
-                    new String[]{"COMPACT_READS:*.compact-reads"},
+                    new String[]{"*.compact-reads"},
                     "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/"));
         } catch (IOException e) {
             fail("fail to register fileset with wildcard");
@@ -100,16 +107,69 @@ public class FileSetLocalRegistration {
 
     @Test
     public void registerPATH() {
+        logger.debug("Testing registration CASE_4 (PATH)");
+
         List<String> returnedTags = new ArrayList<String>();
         try {
             // test the case with filename
             returnedTags.addAll(actions.register(
-                    new String[]{"COMPACT_READS:CASE4_FILE1.compact-reads"},
+                    new String[]{"CASE4_FILE1.compact-reads"},
                     "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_4/"));
         } catch (IOException e) {
             fail("fail to register fileset with filename");
         }
+        assertEquals("Register operation returned an unexpected number of tags", 0, returnedTags.size());
+        tags.addAll(returnedTags);
+    }
+
+
+    @Test
+    public void registerMULTIPLEFILESETPATHS() {
+        logger.debug("Testing registration CASE_5 (FILESET:PATHS)");
+        List<String> returnedTags = new ArrayList<String>();
+        try {
+            // test the case with pattern
+            returnedTags.addAll(actions.register(
+                    new String[]{"GOBY_ALIGNMENTS:CASE5.index","GOBY_ALIGNMENTS:CASE5.entries","GOBY_ALIGNMENTS:CASE5.header"},
+                    "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_5/"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("fail to register fileset with FILESET:PATHS");
+        }
         assertEquals("Register operation returned an unexpected number of tags", 1, returnedTags.size());
+        tags.addAll(returnedTags);
+    }
+
+    @Test
+    public void registerMULTIPLEFILESETPATHSINCOMPLETE() {
+        logger.debug("Testing registration CASE_6 (FILESET:PATHS, incomplete)");
+        List<String> returnedTags = new ArrayList<String>();
+        try {
+            // test the case with pattern
+            returnedTags.addAll(actions.register(
+                    new String[]{"GOBY_ALIGNMENTS:CASE6_FILE1.index"},
+                    "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_6/"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("fail to register fileset with incomplete FILESET:PATHS");
+        }
+        assertEquals("Register operation returned an unexpected number of tags", 0, returnedTags.size());
+    }
+
+    @Test
+    public void registerMULTIPLEFILESETPATTERNS() {
+        logger.debug("Testing registration CASE_7 (FILESET:PATTERNS)");
+        List<String> returnedTags = new ArrayList<String>();
+        try {
+            // test the case with pattern
+            returnedTags.addAll(actions.register(
+                    new String[]{"GOBY_ALIGNMENTS:*.index","GOBY_ALIGNMENTS:*.entries","GOBY_ALIGNMENTS:*.header"},
+                    "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("fail to register fileset with FILESET:PATTERNS");
+        }
+        assertEquals("Register operation returned an unexpected number of tags", 3, returnedTags.size());
         tags.addAll(returnedTags);
     }
 

@@ -67,7 +67,7 @@ final class Actions {
         for (InputEntry inputEntry : inputEntries) {
             while (inputEntry.hasNextFile()) {
                 InputEntryFile file = inputEntry.nextFile();
-                logger.error(String.format("This file in the entry %s was not consumed because it didn't match any fileset configuration: %s",
+                logger.error(String.format("This file in the entry %s was not consumed because it didn't match any FileSet configuration: %s",
                         inputEntry.getHumanReadableName(),file.getAbsolutePath()));
                 file.setConsumed(true);
                 notAllConsumed = true;

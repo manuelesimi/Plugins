@@ -33,7 +33,7 @@ public class FileSet extends Job {
      * @param name
      * @param file
      */
-    public void addEntry(String name, File file) throws IOException  {
+    public void addEntry(String name, File file) {
         this.entry2file.put(name, new Entry(name,file, FileUtils.sizeOf(file)));
     }
 
@@ -85,14 +85,14 @@ public class FileSet extends Job {
 
 
     /**
-     * Checks if all the mandatory entries of the fileset have been assigned to files
+     * Checks if all the mandatory entries of the fileset have been assigned to files.
      */
     public boolean isComplete() {
         return (this.getMissingEntries(false).size()<=0);
     }
 
     /**
-     * Gets the list of entries with no file(s) assigned
+     * Gets the list of entries with no file(s) assigned.
      * @param includeOptionalEntries
      * @return
      */
@@ -112,10 +112,9 @@ public class FileSet extends Job {
     }
 
     /**
-     * Checks if the entry match the fileset configuration
+     * Checks if the entry match the fileset configuration.
      * @param name the entry name
      * @param file the entry file
-     * TODO: to implement
      */
     public boolean validateEntry(String name, File file) {
         //validate entries
@@ -130,7 +129,13 @@ public class FileSet extends Job {
         return false;
     }
 
-
+    /**
+     * Gets the source configuration.
+     * @return
+     */
+    public FileSetConfig getSourceConfig() {
+        return this.sourceConfig;
+    }
 
 
     /**

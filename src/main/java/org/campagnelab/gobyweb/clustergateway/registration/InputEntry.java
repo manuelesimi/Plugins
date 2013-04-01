@@ -3,8 +3,11 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 import com.esotericsoftware.wildcard.Paths;
 import org.apache.log4j.Logger;
 
+import static org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig.*;
+
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,11 +25,9 @@ class InputEntry {
     private final List<InputEntryFile> files;
     private String fileSetEntryName;
     /** The type of fileset entry to which this input entry was bound to*/
-    private ENTRY_TYPE fileSetEntryType;
+    private SELECTOR_TYPE fileSetEntryType;
 
-    protected enum ENTRY_TYPE {
-        FILE,DIR
-    }
+
 
     /**
      * An entry with a fileset associated
@@ -62,7 +63,7 @@ class InputEntry {
      * @return
      */
     protected List<InputEntryFile> getFiles() {
-        return files;
+        return Collections.unmodifiableList(files);
     }
 
     protected boolean isBoundToFileSet() {
@@ -100,7 +101,7 @@ class InputEntry {
      * @param name
      * @param type
      */
-    protected void assignConfigEntry(String name, ENTRY_TYPE type) {
+    protected void assignConfigEntry(String name, SELECTOR_TYPE type) {
        this.fileSetEntryName = name;
        this.fileSetEntryType = type;
     }
@@ -117,7 +118,7 @@ class InputEntry {
      * Gets the assigned entry type.
      * @return
      */
-    public ENTRY_TYPE getFileSetEntryType() {
+    public SELECTOR_TYPE getFileSetEntryType() {
         return this.fileSetEntryType;
     }
 
