@@ -48,10 +48,9 @@ final class Actions {
      * @return the tags of the registered instances
      * @throws IOException if the registration fails or any of the entries is not valid
      */
-    protected List<String> register(final String[] entries, String ... sourceDir) throws IOException {
+    protected List<String> register(final String[] entries, File ... sourceDir) throws IOException {
         List<String> tags = new ArrayList<String>();
-        List<InputEntry> inputEntries = this.parseInputEntries(entries,
-                (sourceDir!=null&&sourceDir.length>0)?sourceDir[0]:System.getProperty("user.dir"));
+        List<InputEntry> inputEntries = this.parseInputEntries(entries,detectWorkingDir(sourceDir));
         FileSetInstanceBuilder builder = new FileSetInstanceBuilder(registry);
         List<FileSet> instancesToRegister = builder.buildList(inputEntries);
         //check for errors in the list creation
@@ -180,5 +179,15 @@ final class Actions {
     }
 
 
-
+    /**
+     * Detects the working directory.
+     * @param sourceDir the optional value specified at invocation time by the caller
+     * @return
+     */
+    private String detectWorkingDir(File[] sourceDir) {
+        if (sourceDir!=null && sourceDir.length>0) {
+                return sourceDir[0].getAbsolutePath();
+        }
+        return System.getProperty("user.dir");
+    }
 }
