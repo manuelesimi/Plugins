@@ -113,7 +113,7 @@ final class Actions {
         }
         //check whether all the input entries have been consumed
         for (InputEntry inputEntry : inputEntries) {
-            if (inputEntry.hasNexFile())
+            if (inputEntry.hasNextFile())
                 logger.warn(String.format("Some files in the entry %s were not consumed because they didn't match any fileset configuration",inputEntry.getPattern()));
         }
 
