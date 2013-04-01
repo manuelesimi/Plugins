@@ -94,8 +94,8 @@
                         </goals>
                         <configuration>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
-                            <shadedClassifierName>distro</shadedClassifierName>
-                            <finalName>plugins-distro</finalName>
+                            <shadedClassifierName>sdk</shadedClassifierName>
+                            <finalName>plugins-sdk</finalName>
                             <minimizeJar>false</minimizeJar>
                             <artifactSet>
                                 <excludes>
@@ -117,7 +117,7 @@
                 <version>2.4</version>
                 <executions>
                     <execution>
-                        <id>binary-distribution</id>
+                        <id>sdk</id>
                         <configuration>
                             <descriptors>
                                 <descriptor>src/assemble/distribution.xml</descriptor>
