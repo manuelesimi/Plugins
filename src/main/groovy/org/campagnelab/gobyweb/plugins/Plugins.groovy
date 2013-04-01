@@ -186,7 +186,7 @@ public class Plugins {
      * Register environment collection scripts.
      * @param script
      */
-    void registerPluginEnvironmentCollectionScript(String script) {
+    public void registerPluginEnvironmentCollectionScript(String script) {
         artifactsPbHelper.registerPluginEnvironmentCollectionScript(script)
     }
 
@@ -406,7 +406,7 @@ public class Plugins {
      * @param pluginConfig the plugin to collect version numbers for
      * @return map of plugins to version numbers
      */
-    Map<String, String> pluginVersionsMap(Config config) {
+    Map<String, String> pluginVersionsMap(ResourceConsumerConfig config) {
         pluginVersionsMap(config, new LinkedHashMap<String, String>())
     }
     /**
@@ -415,7 +415,7 @@ public class Plugins {
      * @return map of plugins to version numbers
      */
 
-    Map<String, String> pluginVersionsMap(Config pluginConfig, Map<String, String> versionsMap) {
+    Map<String, String> pluginVersionsMap(ResourceConsumerConfig pluginConfig, Map<String, String> versionsMap) {
         versionsMap["${pluginConfig.getClass().getName()}:${pluginConfig.id}:${pluginConfig.name}"] =
             pluginConfig.version
         for (Resource resource in pluginConfig.requires) {
