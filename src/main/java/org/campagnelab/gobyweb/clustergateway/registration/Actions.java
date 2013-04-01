@@ -54,11 +54,31 @@ final class Actions {
                 (sourceDir!=null&&sourceDir.length>0)?sourceDir[0]:System.getProperty("user.dir"));
         FileSetInstanceBuilder builder = new FileSetInstanceBuilder(registry);
         List<FileSet> instancesToRegister = builder.buildList(inputEntries);
+        //check for errors in the list creation
         if (builder.hasError()) {
             for (String error : builder.getErrorMessages())
                 logger.error(error);
-            //throw new IOException();
+            logger.error("No FileSet instance has been registered. Resolve the errors and try to submit the request again.");
+            return Collections.EMPTY_LIST;
         }
+
+        //check whether all the input entries have been consumed
+        boolean notAllConsumed = false;
+        for (InputEntry inputEntry : inputEntries) {
+            while (inputEntry.hasNextFile()) {
+                InputEntryFile file = inputEntry.nextFile();
+                logger.error(String.format("This file in the entry %s was not consumed because it didn't match any fileset configuration: %s",
+                        inputEntry.getHumanReadableName(),file.getAbsolutePath()));
+                file.setConsumed(true);
+                notAllConsumed = true;
+            }
+        }
+        if (notAllConsumed) {
+            logger.error("No FileSet instance has been registered. Resolve the errors and try to submit the request again.");
+            return Collections.EMPTY_LIST;
+        }
+
+
         //push the files and metadata
         for (FileSet fileSet : instancesToRegister) {
             logger.info(String.format("Registering an instance of FileSet %s with tag %s", fileSet.getId(),fileSet.getTag()));
@@ -77,15 +97,12 @@ final class Actions {
                     fileSet.addEntry(entry.getKey(),entry.getValue());
                     metadataFileWriter.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
                 }
-            } catch (IOException e) {
-                this.rollback(fileSet.getTag());
-                throw e;
-            } catch (IllegalArgumentException e) {
-                this.rollback(fileSet.getTag());
-                throw e;
-            } catch (FileSetInstanceBuilder.IncompleteInstanceException e) {
-                this.rollback(fileSet.getTag());
-                throw new IOException("Incomplete FileSet instance");
+            } catch (Exception e) {
+                logger.error("Failed to register the FileSet instance with id " + fileSet.getId());
+                tags.add(fileSet.getTag());
+                this.rollback(tags);
+                logger.error("No FileSet instance has been registered. Resolve the errors and try to submit the request again.");
+                throw new IOException(e);
             }
 
             //upload the fileset metadata for its correct consumption
@@ -99,7 +116,10 @@ final class Actions {
                     logger.warn("The FileSet instance does not have any metadata associated");
                 }
             } catch (Exception e) {
-                this.rollback(fileSet.getTag());
+                logger.error("Failed to register the FileSet instance with id " + fileSet.getId());
+                tags.add(fileSet.getTag());
+                this.rollback(tags);
+                logger.error("No FileSet instance has been registered. Resolve the errors and try to submit the request again.");
                 throw new IOException(String.format("Failed to create or upload metadata for the fileset instance. Reason: %s",e.getStackTrace().toString()));
             } finally {
                 if (serializedMetadata != null)
@@ -109,17 +129,24 @@ final class Actions {
             //add the instance tag to the list to return
             tags.add(fileSet.getTag());
         }
-        //check whether all the input entries have been consumed
-        for (InputEntry inputEntry : inputEntries) {
-            if (inputEntry.hasNextFile())
-                logger.warn(String.format("Some files in the entry %s were not consumed because they didn't match any fileset configuration",inputEntry.getPattern()));
-        }
+
 
         return Collections.unmodifiableList(tags);
     }
 
-    private void rollback(String tag) throws IOException {
-        this.unregister(tag);
+    /**
+     * Rollbacks the registration of all the pushed tags
+     * @param tags
+     * @throws IOException
+     */
+    private void rollback(List<String> tags) throws IOException {
+        for (String tag : tags) {
+            try {
+                this.unregister(tag);
+            } catch (IOException ioe) {
+               logger.warn("Failed to unregister FileSet instance with tag " + tag);
+            }
+        }
     }
     /**
      * Unregisters a fileset instance.

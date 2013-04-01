@@ -42,10 +42,12 @@ class FileSetInstanceBuilder {
                 config = lookForMatchingConfig(inputEntry);
             } catch (ConfigNotFoundException e) {
                 inputEntry.markAsConsumed();
-                continue;
+                instances.clear();
+                return instances;
             } catch (TooManyConfigsException e) {
                 inputEntry.markAsConsumed();
-                continue;
+                instances.clear();
+                return instances;
             }
             if (inputEntry.getFileSetEntryType() == InputEntry.ENTRY_TYPE.FILE) {
                 //create an instance for each entry file
@@ -164,7 +166,7 @@ class FileSetInstanceBuilder {
                throw new IncompleteInstanceException(String.format("Entry %s is not complete.", entry));
             }
         }
-        return files;
+        return Collections.unmodifiableMap(files);
     }
 
     /**
