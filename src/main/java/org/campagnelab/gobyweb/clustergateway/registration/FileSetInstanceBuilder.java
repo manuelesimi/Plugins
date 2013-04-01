@@ -190,7 +190,7 @@ class FileSetInstanceBuilder {
     }
 
     /**
-     * No fileset configuration matching a pattern has been found
+     * More than one configuration matching a pattern has been found
      */
     protected static class TooManyConfigsException extends Exception {
 
