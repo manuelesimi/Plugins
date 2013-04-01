@@ -47,9 +47,9 @@ class FileSetInstanceBuilder {
                 inputEntry.markAsConsumed();
                 return Collections.EMPTY_LIST;
             }
-            if (inputEntry.getFileSetEntryType() == FileSetConfig.SELECTOR_TYPE .FILE) {
-                //create an instance for each entry file
-                while (inputEntry.hasNextFile()) {
+
+            //create an instance for each entry file
+            while (inputEntry.hasNextFile()) {
                     FileSet instance = new FileSet(config);
                     InputEntryFile file = inputEntry.nextFile();
                     instance.setId(config.getId());
@@ -57,7 +57,6 @@ class FileSetInstanceBuilder {
                     instance.setBasename(FilenameUtils.removeExtension(file.getName()));
                     //assign entry file
                     instance.addEntry(inputEntry.getAssignedEntryName(), file);
-
                     //search the other files to complete the instance
                     if (!instance.isComplete() && !new ConfigMatcher(registry).completeInstance(instance,inputEntry,inputEntries)) {
                           errorMessages.add(String.format("Unable to complete the FileSet instance based on file %s of entry %s",
@@ -68,17 +67,6 @@ class FileSetInstanceBuilder {
                      }
                     file.setConsumed(true);
                     instances.add(instance);
-                }
-            } else {
-                FileSet instance = new FileSet(config);
-                instance.setId(config.getId());
-                instance.setTag(ICBStringUtils.generateRandomString(7));
-                //TODO: assign all the entry files to the config
-
-                if (!instance.isComplete()) {
-
-                }
-                instances.add(instance);
             }
         }
         return Collections.unmodifiableList(instances);
