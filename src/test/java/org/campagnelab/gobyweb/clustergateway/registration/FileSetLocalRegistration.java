@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertEquals;
 
 
 import java.io.File;
@@ -52,44 +53,65 @@ public class FileSetLocalRegistration {
     }
 
     @Test
-    public void register() {
+    public void registerFILESETPATH() {
+       List<String> returnedTags = new ArrayList<String>();
        try {
             // CASE1: test with FILESET:path to file
-            tags.addAll(actions.register(
+           returnedTags.addAll(actions.register(
                     new String[]{"COMPACT_READS:test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads"}
             ));
         } catch (IOException e) {
             fail("fail to register fileset with FILESET:path");
         }
-       try {
+        assertEquals("Register operation returned an unexpected number of tags", 1, returnedTags.size());
+        tags.addAll(returnedTags);
+
+    }
+
+    @Test
+    public void registerFILESETPATTERN() {
+        List<String> returnedTags = new ArrayList<String>();
+        try {
             // test the case with FILESET:pattern
-            tags.addAll(actions.register(
+            returnedTags.addAll(actions.register(
                     new String[]{"COMPACT_READS:*.compact-reads"},
                     "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/"));
         } catch (IOException e) {
             fail("fail to register fileset with FILESET:pattern");
         }
+        assertEquals("Register operation returned an unexpected number of tags", 3, returnedTags.size());
+        tags.addAll(returnedTags);
+    }
 
+    @Test
+    public void registerPATTERN() {
+        List<String> returnedTags = new ArrayList<String>();
         try {
             // test the case with pattern
-           tags.addAll(actions.register(
+            returnedTags.addAll(actions.register(
                     new String[]{"COMPACT_READS:*.compact-reads"},
                     "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/"));
         } catch (IOException e) {
             fail("fail to register fileset with wildcard");
         }
+        assertEquals("Register operation returned an unexpected number of tags", 2, returnedTags.size());
+        tags.addAll(returnedTags);
+    }
 
+    @Test
+    public void registerPATH() {
+        List<String> returnedTags = new ArrayList<String>();
         try {
             // test the case with filename
-            tags.addAll(actions.register(
+            returnedTags.addAll(actions.register(
                     new String[]{"COMPACT_READS:CASE4_FILE1.compact-reads"},
                     "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_4/"));
         } catch (IOException e) {
             fail("fail to register fileset with filename");
         }
-        assertEquals("Register operation returned an unexpected number of tags", 7, tags.size());
+        assertEquals("Register operation returned an unexpected number of tags", 1, returnedTags.size());
+        tags.addAll(returnedTags);
     }
-
 
     @Test
     public void check() {
