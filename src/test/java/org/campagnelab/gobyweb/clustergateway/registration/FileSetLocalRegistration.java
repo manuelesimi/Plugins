@@ -53,14 +53,14 @@ public class FileSetLocalRegistration {
 
     @Test
     public void register() {
-        /*try {
+       try {
             // CASE1: test with FILESET:path to file
             tags.addAll(actions.register(
                     new String[]{"COMPACT_READS:test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads"}
             ));
         } catch (IOException e) {
             fail("fail to register fileset with FILESET:path");
-        } */
+        }
        try {
             // test the case with FILESET:pattern
             tags.addAll(actions.register(
@@ -87,7 +87,7 @@ public class FileSetLocalRegistration {
         } catch (IOException e) {
             fail("fail to register fileset with filename");
         } */
-        assertEquals("Register operation returned an unexpected number of tags", 1, tags.size());
+        assertEquals("Register operation returned an unexpected number of tags", 4, tags.size());
     }
 
 

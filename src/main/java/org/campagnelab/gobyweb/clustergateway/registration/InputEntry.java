@@ -18,6 +18,7 @@ class InputEntry {
 
     private final String filesetConfigId;
     private final String pattern;
+    private final File file;
     private final List<InputEntryFile> files;
     private String fileSetEntryName;
     private ENTRY_TYPE fileSetEntryType;
@@ -33,7 +34,15 @@ class InputEntry {
      */
     protected InputEntry(String sourceDir, String filesetConfigId, String pattern) {
        this.filesetConfigId= filesetConfigId;
-       this.pattern = pattern;
+       File file =  new File(new File (sourceDir), pattern);
+       if (file.exists()) {
+           this.file = file;
+           this.pattern = null;
+       }
+       else {
+           this.pattern = pattern;
+           this.file = file;
+       }
        files = new InputEntryScanner(sourceDir).scan();
     }
 
@@ -66,6 +75,10 @@ class InputEntry {
 
     protected String getPattern() {
         return this.pattern;
+    }
+
+    protected File getFile() {
+        return file;
     }
 
     /**
@@ -147,7 +160,7 @@ class InputEntry {
             File workingDirectory = new File (dir);
             if (!acceptAsFile(files,workingDirectory)) {
                 InputEntry.this.logger.debug("Scanning directory " + workingDirectory.getAbsolutePath());
-                Paths paths = new Paths();
+                Paths paths = new Paths(); //see http://code.google.com/p/wildcard/
                 paths.glob(workingDirectory.getAbsolutePath(), pattern);
                 for (File file : paths.getFiles())
                     files.add(new InputEntryFile(file));
@@ -162,7 +175,7 @@ class InputEntry {
          * @return
          */
         private boolean acceptAsFile(List<InputEntryFile> inputFilesFile, File workingDirectory)  {
-            File file = new File(pattern);
+            File file = InputEntry.this.file;
             if (file.exists()) {
                 inputFilesFile.add(new InputEntryFile(file));
                 return true;

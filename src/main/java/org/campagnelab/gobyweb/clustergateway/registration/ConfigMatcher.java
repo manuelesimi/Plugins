@@ -1,10 +1,12 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
+import com.esotericsoftware.wildcard.Paths;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import static org.campagnelab.gobyweb.clustergateway.registration.InputEntry.*;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -46,25 +48,42 @@ class ConfigMatcher {
      */
    protected boolean assign(FileSetConfig config, InputEntry inputEntry) {
         for (FileSetConfig.ComponentSelector selector : config.getFileSelectors()) {
-            if (inputEntry.getPattern() == null) {
-                //a filename has been specified
-                //TODO: match the name with the selector pattern
-            } else {
-                if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())) {
-                    inputEntry.assignConfigEntry(selector.getId(), ENTRY_TYPE.FILE);
-                    return true;
-                }
-            }
+            if (assignSelector(inputEntry, selector, ENTRY_TYPE.FILE))
+                return true;
         }
         for (FileSetConfig.ComponentSelector selector : config.getDirSelectors()) {
-            if (inputEntry.getPattern() == null) {
-                //a filename has been specified
-                //TODO: match the name with the selector pattern
-            } else {
-                if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())){
-                    inputEntry.assignConfigEntry(selector.getId(),ENTRY_TYPE.DIR);
-                    return true;
-                }
+            if (assignSelector(inputEntry, selector, ENTRY_TYPE.DIR))
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Tries to assign the input entry to the given selector
+     * @param inputEntry
+     * @param selector
+     * @param type
+     * @return true if the entry was assigned, false otherwise
+     */
+    private boolean assignSelector(InputEntry inputEntry,
+                       FileSetConfig.ComponentSelector selector,  ENTRY_TYPE type) {
+        if (inputEntry.getPattern() == null) {
+            //a filename has been specified
+            Paths paths = new Paths();  //see http://code.google.com/p/wildcard/
+            paths.glob(inputEntry.getFile().getParentFile().getAbsolutePath(), selector.getPattern());
+            for (File matchedFile: paths.getFiles()) {
+               if (matchedFile.getAbsolutePath().equalsIgnoreCase(inputEntry.getFile().getAbsolutePath())) {
+                   //same file, the input entry file matched the pattern
+                   inputEntry.assignConfigEntry(selector.getId(),type);
+                   return true;
+               }
+            }
+
+
+        } else {
+            if (selector.getPattern().equalsIgnoreCase(inputEntry.getPattern())){
+                inputEntry.assignConfigEntry(selector.getId(),type);
+                return true;
             }
         }
         return false;
