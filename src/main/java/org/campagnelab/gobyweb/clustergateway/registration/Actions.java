@@ -57,7 +57,7 @@ final class Actions {
         if (builder.hasError()) {
             for (String error : builder.getErrorMessages())
                 logger.error(error);
-            throw new IOException();
+            //throw new IOException();
         }
         //push the files and metadata
         for (FileSet fileSet : instancesToRegister) {
@@ -144,7 +144,7 @@ final class Actions {
         for (String entry : entries) {
             StringTokenizer tokenizer = new StringTokenizer(entry, ":");
             switch (tokenizer.countTokens()) {
-                case 1: inputEntries.add(new InputEntry(dir, tokenizer.nextToken().trim(), dir));break;
+                case 1: inputEntries.add(new InputEntry(dir, tokenizer.nextToken().trim()));break;
                 case 2: inputEntries.add(new InputEntry(dir, tokenizer.nextToken().trim(), tokenizer.nextToken().trim()));break;
                 default: throw new IOException(String.format("Invalid entry format: %s. Entries must be in the form FILESET_ID:PATTERN or PATTERN", entry));
             }

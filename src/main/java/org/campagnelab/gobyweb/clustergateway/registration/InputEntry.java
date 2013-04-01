@@ -21,6 +21,7 @@ class InputEntry {
     private final File file;
     private final List<InputEntryFile> files;
     private String fileSetEntryName;
+    /** The type of fileset entry to which this input entry was bound to*/
     private ENTRY_TYPE fileSetEntryType;
 
     protected enum ENTRY_TYPE {
@@ -29,6 +30,7 @@ class InputEntry {
 
     /**
      * An entry with a fileset associated
+     * @param sourceDir the directory where to look for the entry files
      * @param filesetConfigId
      * @param pattern
      */
@@ -47,11 +49,12 @@ class InputEntry {
     }
 
     /**
-     * An entry without any fileset associated
+     * An entry with no fileset associated.
+     * @param sourceDir the directory where to look for the entry files
      * @param pattern
      */
     protected InputEntry(String sourceDir, String pattern) {
-        this(sourceDir,null,pattern);
+        this(sourceDir,null, pattern);
     }
 
     /**
@@ -81,6 +84,17 @@ class InputEntry {
         return file;
     }
 
+    /**
+     * Gets a string with a human readable name for the entry
+     * @return
+     */
+    protected String getHumanReadableName() {
+        StringBuilder builder = new StringBuilder();
+        if (this.isBoundToFileSet())
+            builder.append(this.filesetConfigId).append(":");
+        builder.append((this.getPattern()!=null)?this.getPattern():this.getFile().getName());
+        return builder.toString();
+    }
     /**
      * Records the fileset's entry name assigned to this input entry
      * @param name

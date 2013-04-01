@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
 import com.esotericsoftware.wildcard.Paths;
+import org.campagnelab.gobyweb.clustergateway.data.FileSet;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import static org.campagnelab.gobyweb.clustergateway.registration.InputEntry.*;
@@ -87,5 +88,16 @@ class ConfigMatcher {
             }
         }
         return false;
+    }
+
+    /**
+     * Tries to complete the fileset instance with the remaining entries.
+     * @param instance the instance to complete
+     * @param inputEntry the entry used to create the instance
+     * @param inputEntries the list of the other entries available
+     * @return  true
+     */
+    public boolean completeInstance(FileSet instance, InputEntry inputEntry, List<InputEntry> inputEntries) {
+        return false;  //TODO: to implement
     }
 }

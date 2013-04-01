@@ -1,7 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
 import edu.cornell.med.icb.util.ICBStringUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.FileSet;
@@ -59,10 +58,12 @@ class FileSetInstanceBuilder {
                     //assign entry file
                     try {
                         instance.addEntry(inputEntry.getAssignedEntryName(), file);
-                        if (!instance.isComplete()) {
-                            logger.debug("the instance is not complete, yet");
-                            //TODO: complete the instance using the basename as filter
-
+                        if (!instance.isComplete() && !new ConfigMatcher(registry).completeInstance(instance,inputEntry,inputEntries)) {
+                            errorMessages.add(String.format("Unable to complete the FileSet instance based on file %s of entry %s",
+                                    file.getAbsolutePath(),
+                                    inputEntry.getHumanReadableName()));
+                            file.setConsumed(true);
+                            continue;
                         }
 
                     } catch (IOException e) {
@@ -99,13 +100,13 @@ class FileSetInstanceBuilder {
         if (inputEntry.isBoundToFileSet()) { //the configuration has been specified by the user
             FileSetConfig config = registry.findByTypedId(inputEntry.getFileSetId(), FileSetConfig.class);
             if (config == null) {
-                errorMessages.add("Unable to find fileset configuration: " + inputEntry.getFileSetId());
+                errorMessages.add("Unable to find fileset configuration for " + inputEntry.getHumanReadableName());
                 throw new ConfigNotFoundException();
             } else {
                 if (new ConfigMatcher(registry).assign(config, inputEntry)) {
                     return config;
                 } else {
-                    errorMessages.add("Failed to assign the input entry to the FileSet configuration: " + inputEntry.getFileSetId());
+                    errorMessages.add("Failed to assign the input entry to the FileSet configuration: " + inputEntry.getHumanReadableName());
                     throw new ConfigNotFoundException();
                 }
             }
@@ -113,14 +114,16 @@ class FileSetInstanceBuilder {
         } else { //try to match the entry with the appropriate configuration
             List<FileSetConfig> configs = new ConfigMatcher(registry).match(inputEntry);
             if (configs.size() == 0) {
-                errorMessages.add(String.format("Unable to find a fileset configuration to which the entry %s could be matched", inputEntry.getPattern()));
+                errorMessages.add(String.format("Unable to find a fileset configuration to which the entry %s could be matched",
+                        inputEntry.getHumanReadableName()));
                 throw new ConfigNotFoundException();
             }
             if (configs.size() == 1) {
                 return configs.get(0);
             } else {
                 //TODO: we could be smarter here and process all the configs for checking the best match with the next entries?
-                errorMessages.add(String.format("Too many matching fileset configurations. The input entry %s matched more than one fileset configuration. Impossible to manage it.", inputEntry.getPattern()));
+                errorMessages.add(String.format("Too many matching fileset configurations. The input entry %s matched more than one fileset configuration. Impossible to manage it.",
+                        inputEntry.getHumanReadableName()));
                 errorMessages.add("Compatible configurations:");
                 for (FileSetConfig fsc : configs)
                     errorMessages.add("\t" + fsc.getId());
