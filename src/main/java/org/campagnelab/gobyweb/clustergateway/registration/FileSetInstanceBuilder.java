@@ -50,7 +50,7 @@ class FileSetInstanceBuilder {
             }
             if (inputEntry.getFileSetEntryType() == InputEntry.ENTRY_TYPE.FILE) {
                 //create an instance for each entry file
-                while (inputEntry.hasNexFile()) {
+                while (inputEntry.hasNextFile()) {
                     FileSet instance = new FileSet(config);
                     InputEntryFile file = inputEntry.nextFile();
                     instance.setId(config.getId());

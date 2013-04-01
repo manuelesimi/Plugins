@@ -120,9 +120,9 @@ class InputEntry {
 
     /**
      * Checks if all the files of the entry have been consumed
-     * @return
+     * @return true if there is at least one more file to consume
      */
-    public boolean hasNexFile() {
+    public boolean hasNextFile() {
         for (InputEntryFile file : this.files) {
             if (!file.isConsumed())
                 return true;
