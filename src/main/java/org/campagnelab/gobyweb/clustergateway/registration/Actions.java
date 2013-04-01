@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.filesets.protos.MetadataFileWriter;
 import org.campagnelab.gobyweb.io.FileSetArea;
@@ -160,22 +161,31 @@ final class Actions {
     }
 
     /**
-     * Parses the input entries.
+     * Creates the entry object for each entry specified by the caller
      * @param entries the list of entries in the form of FILESET_ID:PATTERN or PATTERN
-     * @return a map with [name -> file] for each entry
-     * @throws IOException if any of the entries is not valid
+     * @return the list of entry objects
      */
-    private List<InputEntry> parseInputEntries(final String[] entries, String dir) throws IOException {
+    private List<InputEntry> parseInputEntries(final String[] entries, String dir) {
         List<InputEntry> inputEntries = new ArrayList<InputEntry>();
+        String currentFilesetId = null;
         for (String entry : entries) {
-            StringTokenizer tokenizer = new StringTokenizer(entry, ":");
-            switch (tokenizer.countTokens()) {
-                case 1: inputEntries.add(new InputEntry(dir, tokenizer.nextToken().trim()));break;
-                case 2: inputEntries.add(new InputEntry(dir, tokenizer.nextToken().trim(), tokenizer.nextToken().trim()));break;
-                default: throw new IOException(String.format("Invalid entry format: %s. Entries must be in the form FILESET_ID:PATTERN or PATTERN", entry));
+            if (entry.endsWith(":")) {
+                //move the current fileset id to this
+                currentFilesetId = StringUtils.strip(entry,":");
+                continue;
             }
+            if (currentFilesetId == null || currentFilesetId.matches("guess")) {
+                inputEntries.add(new InputEntry(dir, entry));
+            } else {
+                inputEntries.add(new InputEntry(dir, currentFilesetId, entry));
+            }
+
         }
         return Collections.unmodifiableList(inputEntries);
+    }
+
+    private String[] toPatterns(String patterns) {
+       return patterns.split(" ");
     }
 
 

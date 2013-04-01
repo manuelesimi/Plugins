@@ -4,7 +4,9 @@ import java.io.File;
 import java.net.URI;
 
 /**
- * A file registered as part of an {@link InputEntry}
+ * A file registered as part of an {@link InputEntry}.
+ *
+ * @author manuele
  */
 class InputEntryFile extends File {
 

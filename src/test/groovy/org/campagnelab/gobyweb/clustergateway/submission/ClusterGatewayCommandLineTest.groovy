@@ -46,11 +46,11 @@ public class ClusterGatewayCommandLineTest {
     public void runLocalTaskRNASelect() {
 
        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs("local",
-               "COMPACT_READS:CASE_1/CASE1_FILE1.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/")));
+               "COMPACT_READS: CASE_1/CASE1_FILE1.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/")));
        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs("local",
-                "COMPACT_READS:*.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/")));
+                "COMPACT_READS: *.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/")));
        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs("local",
-                "COMPACT_READS:CASE3_FILE1.compact-reads","test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/")));
+                "COMPACT_READS: CASE3_FILE1.compact-reads","test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/")));
 
        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("local",
                "--input-filesets:TESTTAG1,TESTTAG2,TESTTAG3 --task RNASELECT_TASK",
