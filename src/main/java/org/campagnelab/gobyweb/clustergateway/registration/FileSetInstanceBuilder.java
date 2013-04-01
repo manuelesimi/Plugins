@@ -42,12 +42,10 @@ class FileSetInstanceBuilder {
                 config = lookForMatchingConfig(inputEntry);
             } catch (ConfigNotFoundException e) {
                 inputEntry.markAsConsumed();
-                instances.clear();
-                return instances;
+                return Collections.EMPTY_LIST;
             } catch (TooManyConfigsException e) {
                 inputEntry.markAsConsumed();
-                instances.clear();
-                return instances;
+                return Collections.EMPTY_LIST;
             }
             if (inputEntry.getFileSetEntryType() == FileSetConfig.SELECTOR_TYPE .FILE) {
                 //create an instance for each entry file
@@ -66,7 +64,7 @@ class FileSetInstanceBuilder {
                                     file.getAbsolutePath(),
                                     inputEntry.getHumanReadableName()));
                           file.setConsumed(true);
-                          continue;
+                        return Collections.EMPTY_LIST;
                      }
                     file.setConsumed(true);
                     instances.add(instance);
