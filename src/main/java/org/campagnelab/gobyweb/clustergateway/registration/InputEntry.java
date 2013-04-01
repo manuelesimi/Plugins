@@ -158,7 +158,7 @@ class InputEntry {
         private List<InputEntryFile> scan() {
             List<InputEntryFile> files = new ArrayList<InputEntryFile>();
             File workingDirectory = new File (dir);
-            if (!acceptAsFile(files,workingDirectory)) {
+            if (!acceptAsFile(files)) {
                 InputEntry.this.logger.debug("Scanning directory " + workingDirectory.getAbsolutePath());
                 Paths paths = new Paths(); //see http://code.google.com/p/wildcard/
                 paths.glob(workingDirectory.getAbsolutePath(), pattern);
@@ -171,16 +171,10 @@ class InputEntry {
         /**
          * Checks if the pattern is a valid filename.
          * @param inputFilesFile list to populate if the file is accepted
-         * @param workingDirectory
          * @return
          */
-        private boolean acceptAsFile(List<InputEntryFile> inputFilesFile, File workingDirectory)  {
+        private boolean acceptAsFile(List<InputEntryFile> inputFilesFile)  {
             File file = InputEntry.this.file;
-            if (file.exists()) {
-                inputFilesFile.add(new InputEntryFile(file));
-                return true;
-            }
-            file = new File(workingDirectory, pattern);
             if (file.exists()) {
                 inputFilesFile.add(new InputEntryFile(file));
                 return true;
