@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -173,6 +174,19 @@ public class FileSetConfig extends BaseConfig implements SupportDependencyRange,
             return Collections.EMPTY_LIST;
         else
             return Collections.unmodifiableList(this.dirSelectors);
+    }
+
+    /**
+     * Gets all the selectors, regardless if they refer to directories or files.
+     * @return
+     */
+    public List<ComponentSelector> getAllSelectors() {
+        List<ComponentSelector> selectors = new ArrayList<ComponentSelector>();
+        if (this.fileSelectors != null)
+            selectors.addAll(this.fileSelectors);
+        if (this.dirSelectors != null)
+            selectors.addAll(this.dirSelectors);
+        return selectors;
     }
 
     /**

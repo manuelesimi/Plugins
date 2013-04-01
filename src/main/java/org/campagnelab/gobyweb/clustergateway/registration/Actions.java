@@ -61,7 +61,7 @@ final class Actions {
         }
         //push the files and metadata
         for (FileSet fileSet : instancesToRegister) {
-            logger.info(String.format("Registering an instance of FileSet %s", fileSet.getId()));
+            logger.info(String.format("Registering an instance of FileSet %s with tag %s", fileSet.getId(),fileSet.getTag()));
             MetadataFileWriter metadataFileWriter = null;
             try {
                 Map<String, InputEntryFile> files = builder.getAssignedFiles(fileSet);
@@ -76,9 +76,7 @@ final class Actions {
                     storageArea.push(fileSet.getTag(),entry.getValue());
                     fileSet.addEntry(entry.getKey(),entry.getValue());
                     metadataFileWriter.addEntry(entry.getKey(),entry.getValue().getName(), FileUtils.sizeOf(entry.getValue()));
-                    //entry.getValue().setConsumed(true);
                 }
-
             } catch (IOException e) {
                 this.rollback(fileSet.getTag());
                 throw e;

@@ -4,10 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.io.File;
 
 /**
@@ -91,16 +88,27 @@ public class FileSet extends Job {
      * Checks if all the mandatory entries of the fileset have been assigned to files
      */
     public boolean isComplete() {
-        for (FileSetConfig.ComponentSelector entry : sourceConfig.getFileSelectors()) {
-           if (entry.getMandatory() && (!entry2file.containsKey(entry.getId())))
-               return false;
-        }
+        return (this.getMissingEntries(false).size()<=0);
+    }
 
-        for (FileSetConfig.ComponentSelector entry : sourceConfig.getDirSelectors()) {
-            if (entry.getMandatory() && (!entry2file.containsKey(entry.getId())))
-                return false;
+    /**
+     * Gets the list of entries with no file(s) assigned
+     * @param includeOptionalEntries
+     * @return
+     */
+    public List<String> getMissingEntries(boolean includeOptionalEntries) {
+        List<String> entries = new ArrayList<String>();
+        for (FileSetConfig.ComponentSelector entry : sourceConfig.getAllSelectors()) {
+            if (!entry2file.containsKey(entry.getId())) {
+                if (includeOptionalEntries) {
+                    entries.add(entry.getId());
+                } else { //return it only if it was mandatory
+                    if (entry.getMandatory())
+                        entries.add(entry.getId());
+                }
+            }
         }
-        return true;
+        return entries;
     }
 
     /**
