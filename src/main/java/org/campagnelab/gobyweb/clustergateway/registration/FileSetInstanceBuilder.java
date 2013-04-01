@@ -2,6 +2,7 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 
 import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.FileSet;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
@@ -54,12 +55,12 @@ class FileSetInstanceBuilder {
                     InputEntryFile file = inputEntry.nextFile();
                     instance.setId(config.getId());
                     instance.setTag(ICBStringUtils.generateRandomString(7));
-                    instance.setBasename(file.getName());
+                    instance.setBasename(FilenameUtils.removeExtension(file.getName()));
                     //assign entry file
                     try {
                         instance.addEntry(inputEntry.getAssignedEntryName(), file);
                         if (!instance.isComplete()) {
-                            //TODO: complete the instance
+                            //TODO: complete the instance using the basename as filter
 
                         }
 
