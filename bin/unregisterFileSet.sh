@@ -20,5 +20,5 @@
 # --tag GXJAEOJ
 
 
-java -cp .../lib/plugins-distro.jar:cluster_gateway.properties:$CLASSPATH org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration --action unregister "$@"
+java -cp .../lib/plugins-sdk.jar:cluster_gateway.properties:$CLASSPATH org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration --action unregister "$@"
 

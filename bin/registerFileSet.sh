@@ -20,4 +20,4 @@
 # --action register
 # COMPACT_READS: *.compact-reads
 
-java -cp ../lib/plugins-distro.jar:cluster_gateway.properties:$CLASSPATH org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration --action register "$@"
+java -cp ../lib/plugins-sdk.jar:cluster_gateway.properties:$CLASSPATH org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration --action register "$@"

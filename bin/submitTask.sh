@@ -14,4 +14,4 @@
 # --task-id RNASELECT_TASK
 # --mode remote
 
-java -cp ../lib/plugins-distro.jar:cluster_gateway.properties:$CLASSPATH org.campagnelab.gobyweb.clustergateway.submission.ClusterGateway "$@"
+java -cp ../lib/plugins-sdk.jar:cluster_gateway.properties:$CLASSPATH org.campagnelab.gobyweb.clustergateway.submission.ClusterGateway "$@"
