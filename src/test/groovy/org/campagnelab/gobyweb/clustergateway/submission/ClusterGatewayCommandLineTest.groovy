@@ -45,12 +45,12 @@ public class ClusterGatewayCommandLineTest {
     @Test
     public void runLocalTaskRNASelect() {
 
-       assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs("local",
+       assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
                "COMPACT_READS: CASE_1/CASE1_FILE1.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/")));
-       assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs("local",
+       assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
                 "COMPACT_READS: *.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/")));
-       assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs("local",
-                "COMPACT_READS: CASE3_FILE1.compact-reads","test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/")));
+       assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
+                "COMPACT_READS:CASE3_FILE1.compact-reads","test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/")));
 
        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("local",
                "--input-filesets:TESTTAG1,TESTTAG2,TESTTAG3 --task RNASELECT_TASK",
@@ -61,11 +61,10 @@ public class ClusterGatewayCommandLineTest {
 
 
 
-    private static String[] buildFileRegistrationArgs(String remoteLocal,String filenames, String sourceDir) {
+    private static String[] buildFileRegistrationArgs(String filenames, String sourceDir) {
         ("--fileset-area ${resultsDir}/filesets "+
                 "--plugins-dir test-data/root-for-rnaselect " +
                 "--owner ${owner} "+
-                "--mode ${remoteLocal} " +
                 "--source-dir ${sourceDir} " +
                 "--action register " +
                 filenames

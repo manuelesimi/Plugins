@@ -36,8 +36,7 @@ public class FileSetRegistration {
         FileSetArea storageArea = null;
         try {
             storageArea = AreaFactory.createFileSetArea(
-                    config.getString("fileSetArea"), config.getString("owner"),
-                    AreaFactory.MODE.valueOf(config.getString("mode").toUpperCase()));
+                    config.getString("fileSetArea"), config.getString("owner"));
         } catch (IOException ioe) {
             logger.error(ioe);
             return (1);
@@ -53,7 +52,6 @@ public class FileSetRegistration {
             plugins.reload();
             if (plugins.somePluginReportedErrors()) {
                 System.err.println("Some plugins could not be loaded. See below for details. Aborting.");
-
                 return (1);
             }
 

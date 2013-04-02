@@ -38,8 +38,7 @@ public class FileSetCommandLineTest {
         try {
 
             storageArea = AreaFactory.createFileSetArea(
-                    storageAreaDir, "junit",
-                    AreaFactory.MODE.LOCAL);
+                    storageAreaDir, "junit");
         } catch (IOException ioe) {
             ioe.printStackTrace();
             fail("fail to create the local storage area");
@@ -48,23 +47,25 @@ public class FileSetCommandLineTest {
 
     @Test
     public void register() {
-        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs("local",
-                "GOBY_ALIGNMENTS: *.index *.entries *.header guess: *.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")));
+        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
+                "GOBY_ALIGNMENTS: *.index *.entries *.header guess: *.compact-reads",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")));
 
-        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs("local",
-                "*.index *.entries *.header *.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")));
+        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
+                "*.index *.entries *.header *.compact-reads",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")));
 
-        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs("local",
-                "guess: *.index guess: *.entries guess: *.header guess: *.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")));
+        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
+                "guess: *.index guess: *.entries guess: *.header guess: *.compact-reads",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")));
 
     }
 
 
-    private static String[] buildFileRegistrationArgs(String remoteLocal,String filenames, String sourceDir) {
+    private static String[] buildFileRegistrationArgs(String filenames, String sourceDir) {
         ("--fileset-area ${storageAreaDir} "+
                 "--plugins-dir test-data/root-for-rnaselect " +
                 "--owner junit "+
-                "--mode ${remoteLocal} " +
                 "--source-dir ${sourceDir} " +
                 "--action register " +
                 filenames

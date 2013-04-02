@@ -45,8 +45,7 @@ public class FileSetLocalRegistration {
         try {
 
             storageArea = AreaFactory.createFileSetArea(
-                    storageAreaDir, "junit",
-                    AreaFactory.MODE.LOCAL);
+                    storageAreaDir, "junit");
             actions = new Actions(storageArea, plugins.getRegistry());
         } catch (IOException ioe) {
             ioe.printStackTrace();
