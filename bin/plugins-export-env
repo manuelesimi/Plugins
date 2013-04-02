@@ -1,0 +1,10 @@
+
+#This script add plugins commands to the PATH.
+#It must be sourced from the folder where plugins commands will be executed or, better, sourced in the bash_profile
+
+WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [[ $OSTYPE == "cygwin" ]]; then
+    WORKING_DIR=`cygpath -m "${WORKING_DIR}"`
+fi
+
+export PATH=${WORKING_DIR}:${PATH}
