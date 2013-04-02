@@ -8,7 +8,7 @@
     <directories>
         <selector>
             <id>DIR</id>
-            <pattern>*/**</pattern>
+            <pattern>dir</pattern>
             <mandatory>true</mandatory>
         </selector>
     </directories>
