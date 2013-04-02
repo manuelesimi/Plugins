@@ -1,12 +1,13 @@
 #!/bin/sh
 
-#Usage: java org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration
+#Usage: java org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration  \
 #   [(-p|--plugins-dir) <pluginDir>] [(-d|--source-dir) <sourceDir>] [(-f|--fileset-area) <fileSetArea>] \
-#   [(-t|--tag) <tag>]  --action register (-o|--owner) <owner> [-h|--help] [entries1 entries2 ... entriesN]
+#   [(-t|--tag) <tag>]  --action register [(-o|--owner) <owner>] [-h|--help] [entries1 entries2 ... entriesN]
 
 # Sample options for a remote registration:
 # --fileset-area gobyweb@spanky.med.cornell.edu:/home/gobyweb/TRIAL-FILES/GOBYWEB_FILES/A
 # --plugins-dir /Users/mas2182/Lab/Projects/Plugins/plugins2-with-tasks/test-data/root-for-rnaselect
+# --owner plugin-sdk
 # --source-dir /Users/mas2182/Lab/Projects/Plugins/plugins2-with-tasks/test-data/...
 # --action register
 # COMPACT_READS: *.compact-reads
@@ -14,7 +15,7 @@
 # Sample options for a local registration:
 # --fileset-area test-results
 # --plugins-dir /Users/mas2182/Lab/Projects/Plugins/plugins2-with-tasks/test-data/root-for-rnaselect
-# --owner Manuele.FromClusterGateway
+# --owner plugin-sdk
 # --source-dir /Users/mas2182/Lab/Projects/Plugins/plugins2-with-tasks/test-data/...
 # --action register
 # COMPACT_READS: *.compact-reads

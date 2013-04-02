@@ -36,7 +36,8 @@ public class FileSetRegistration {
         FileSetArea storageArea = null;
         try {
             storageArea = AreaFactory.createFileSetArea(
-                    config.getString("fileSetArea"), config.getString("owner"));
+                    config.getString("fileSetArea"),
+                    config.userSpecified("owner")? config.getString("owner"): System.getProperty("user.name"));
         } catch (IOException ioe) {
             logger.error(ioe);
             return (1);

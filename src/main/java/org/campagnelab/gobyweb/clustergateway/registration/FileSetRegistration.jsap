@@ -81,13 +81,10 @@
             <stringParser>
                 <classname>StringStringParser</classname>
             </stringParser>
-            <required>true</required>
+            <required>false</required>
             <shortFlag>o</shortFlag>
-            <defaults>
-               <string>ClusterGateway</string>
-            </defaults>
             <longFlag>owner</longFlag>
-            <help>The user that will own the task files and the produced filesets</help>
+            <help>The user that owns the filesets</help>
         </flaggedOption>
 
         <switch>
