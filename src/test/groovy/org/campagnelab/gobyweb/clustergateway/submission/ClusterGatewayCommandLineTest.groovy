@@ -20,7 +20,6 @@ import static junit.framework.Assert.assertNotNull
 @RunWith(JUnit4.class)
 public class ClusterGatewayCommandLineTest {
 
-    static final String sourceStorageAreaDir = "test-data/cluster-gateway/command-line-tests";
     static final String gatewayPluginRoot = "test-data/root-for-gateway-command-line";
     static final String envScript = "test-data/env-scripts/env.sh";
 

@@ -1,6 +1,7 @@
 # JOB_DIR is defined by the caller.
 if [ -e ${JOB_DIR}/constants.sh ]; then
-    . ${JOB_DIR}/constants.sh
+    #. ${JOB_DIR}/constants.sh #this cause a loop in the local submission
+    echo ""
 else
   touch ${JOB_DIR}/constants.sh
 fi
