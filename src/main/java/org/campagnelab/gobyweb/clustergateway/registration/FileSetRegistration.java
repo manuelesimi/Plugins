@@ -120,7 +120,7 @@ public class FileSetRegistration {
             System.err.println("Usage: java " + FileSetRegistration.class.getName());
             System.err.println("                " + jsap.getUsage());
             System.err.println();
-
+            if (!config.success() ){ return null;}
         }
         return config;
     }

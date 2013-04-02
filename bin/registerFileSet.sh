@@ -19,5 +19,14 @@
 # --mode local
 # --action register
 # COMPACT_READS: *.compact-reads
-
-java -cp ../lib/plugins-sdk.jar:cluster_gateway.properties:$CLASSPATH org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration --action register "$@"
+WORKING_DIR=`dirname "$0"`
+if [[ $OSTYPE == "cygwin" ]]; then
+    WORKING_DIR=`cygpath -m "${WORKING_DIR}"`
+fi
+PARENT_DIR=`dirname ${WORKING_DIR}`
+LIB_DIR=${PARENT_DIR}/lib
+TARGET_DIR=${PARENT_DIR}/target
+SNAPSHOT_JAR="${TARGET_DIR}/plugins-sdk.jar"
+#echo "Snapshot jar: ${SNAPSHOT_JAR}"
+#echo java -cp ${LIB_DIR}/plugins-sdk.jar:${SNAPSHOT_JAR}:${WORKING_DIR}/cluster_gateway.properties org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration --action register "$@"
+java -cp ${LIB_DIR}/plugins-sdk.jar:${SNAPSHOT_JAR}:${WORKING_DIR}/cluster_gateway.properties org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration --action register "$@"
