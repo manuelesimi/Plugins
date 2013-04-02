@@ -47,17 +47,17 @@ public class FileSetCommandLineTest {
 
     @Test
     public void register() {
-        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
+        assertEquals(5, FileSetRegistration.process(buildFileRegistrationArgs(
                 "GOBY_ALIGNMENTS: *.index *.entries *.header guess: *.compact-reads",
-                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")));
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")).size());
 
-        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
+        assertEquals(5, FileSetRegistration.process(buildFileRegistrationArgs(
                 "*.index *.entries *.header *.compact-reads",
-                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")));
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")).size());
 
-        assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
+        assertEquals(5, FileSetRegistration.process(buildFileRegistrationArgs(
                 "guess: *.index guess: *.entries guess: *.header guess: *.compact-reads",
-                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")));
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")).size());
 
     }
 
