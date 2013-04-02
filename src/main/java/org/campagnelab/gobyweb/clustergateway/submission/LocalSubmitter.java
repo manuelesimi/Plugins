@@ -69,7 +69,8 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         //execute the task
         logger.info(String.format("Task %s: submitting to local cluster %s...", taskJob.getTag(), taskLocalDir.getAbsolutePath()));
-        jobArea.execute(taskJob.getTag(),taskWrapperScript);
+        logger.info("Output from the task : ");
+        logger.info(jobArea.execute(taskJob.getTag(),taskWrapperScript));
     }
 
 

@@ -83,6 +83,7 @@
             <listSeparator>:</listSeparator>
             <help>The identifier of the task to submit, in the format ID:VERSION.</help>
         </flaggedOption>
+
         <flaggedOption>
             <id>resource</id>
             <stringParser>
@@ -100,11 +101,8 @@
             <stringParser>
                 <classname>StringStringParser</classname>
             </stringParser>
-            <required>true</required>
+            <required>false</required>
             <shortFlag>o</shortFlag>
-            <defaults>
-                <string>ClusterGateway</string>
-            </defaults>
             <longFlag>owner</longFlag>
             <help>The user that will own the task files and the produced filesets</help>
         </flaggedOption>

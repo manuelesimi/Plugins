@@ -24,12 +24,20 @@ public class FileSetRegistration {
     protected static final org.apache.log4j.Logger logger = Logger.getLogger(FileSetRegistration.class);
 
     public static void main(String[] args) {
-        System.exit(process(args));
+        try {
+            process(args);
+            System.exit(0);
+        } catch (Exception e) {
+            logger.error(e);
+            System.exit(1);
+        }
     }
 
-    public static int process(String[] args) {
+    public static List<String> process(String[] args) throws Exception {
+        List<String> returned_values = new ArrayList<String>();
         JSAPResult config = loadConfig(args);
-        if (config == null) return 127;
+        if (config == null)
+            throw new Exception();
         //TODO: load pluginDir and StorageArea from the properties file if they are not specified as parameters
 
         //create the reference to the storage area
@@ -39,8 +47,8 @@ public class FileSetRegistration {
                     config.getString("fileSetArea"),
                     config.userSpecified("owner")? config.getString("owner"): System.getProperty("user.name"));
         } catch (IOException ioe) {
-            logger.error(ioe);
-            return (1);
+            throw ioe;
+
         }
 
         //load plugin configurations
@@ -53,32 +61,31 @@ public class FileSetRegistration {
             plugins.reload();
             if (plugins.somePluginReportedErrors()) {
                 System.err.println("Some plugins could not be loaded. See below for details. Aborting.");
-                return (1);
+                throw new Exception();
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            logger.error(e);
-            return (1);
+            throw new Exception();
+
         }
         try {
             Actions actions = new Actions(storageArea, plugins.getRegistry());
             if (config.getString("action").equalsIgnoreCase("register")) {
-                List<String> tags = actions.register(config.getStringArray("entries"),config.getFile("sourceDir"));
-                if (tags.size() > 0 ) {
+                returned_values = actions.register(config.getStringArray("entries"),config.getFile("sourceDir"));
+                if (returned_values.size() > 0 ) {
                     logger.info("Fileset instance(s) successfully registered with the following tag(s): ");
-                    logger.info(Arrays.toString(tags.toArray()));
+                    logger.info(Arrays.toString(returned_values.toArray()));
                 }
             } else {
                 actions.unregister(config.getString("tag"));
                 logger.info(String.format("Fileset instance %s successfully unregistered",config.getString("tag")));
             }
         } catch (IOException e) {
-            logger.error(e);
-            return (1);
+            throw new Exception();
+
 
         }
-        return 0;
+        return returned_values;
     }
 
     /**

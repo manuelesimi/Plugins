@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
 import org.apache.commons.io.FileUtils
+import org.apache.commons.lang.StringUtils
 import org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4
 
 import static junit.framework.Assert.assertEquals
+import static junit.framework.Assert.assertNotNull
 
 /**
  * This is written in groovy because it is easier to build command lines on the fly in this language.
@@ -44,16 +46,19 @@ public class ClusterGatewayCommandLineTest {
 
     @Test
     public void runLocalTaskRNASelect() {
-
-       assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
+       List<String> tags = new ArrayList<String>();
+       tags.addAll(FileSetRegistration.process(buildFileRegistrationArgs(
                "COMPACT_READS: CASE_1/CASE1_FILE1.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/")));
-       assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
+       assertNotNull(tags);
+       assertEquals(1, tags.size());
+
+       tags.addAll(FileSetRegistration.process(buildFileRegistrationArgs(
                 "COMPACT_READS: *.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/")));
-       assertEquals(0, FileSetRegistration.process(buildFileRegistrationArgs(
-                "COMPACT_READS:CASE3_FILE1.compact-reads","test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/")));
+
+       assertEquals(4, tags.size());
 
        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("local",
-               "--input-filesets:TESTTAG1,TESTTAG2,TESTTAG3 --task RNASELECT_TASK",
+               "--input-filesets:${StringUtils.join(tags, ",")} --task RNASELECT_TASK",
                "test-data/root-for-rnaselect")));
 
     }
@@ -64,7 +69,7 @@ public class ClusterGatewayCommandLineTest {
     private static String[] buildFileRegistrationArgs(String filenames, String sourceDir) {
         ("--fileset-area ${resultsDir}/filesets "+
                 "--plugins-dir test-data/root-for-rnaselect " +
-                "--owner ${owner} "+
+                //"--owner ${owner} "+
                 "--source-dir ${sourceDir} " +
                 "--action register " +
                 filenames
@@ -75,7 +80,7 @@ public class ClusterGatewayCommandLineTest {
         ("--job-area ${resultsDir}/GOBYWEB_SGE_JOBS " +
                 "--fileset-area ${resultsDir}/filesets " +
                 "--plugins-dir ${pluginRoot} " +
-                "--owner ${owner} " +
+                //"--owner ${owner} " +
                 "--env-script ${envScript} "+
                 "--mode ${remoteLocal} " +
                 "--artifact-server localhost "+

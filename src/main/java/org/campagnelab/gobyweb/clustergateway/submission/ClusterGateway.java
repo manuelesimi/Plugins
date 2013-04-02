@@ -32,12 +32,12 @@ public class ClusterGateway {
         JSAPResult config = loadConfig(args);
         if (config == null) return 1;
         //TODO: load pluginDir and StorageArea from the properties file if they are not specified as parameters
-
+        String owner = config.userSpecified("owner")? config.getString("owner"): System.getProperty("user.name");
         //create the reference to the storage area
         FileSetArea storageArea = null;
         try {
             storageArea = AreaFactory.createFileSetArea(
-                    config.getString("fileSetArea"), config.getString("owner"),
+                    config.getString("fileSetArea"), owner,
                     AreaFactory.MODE.valueOf(config.getString("mode").toUpperCase()));
         } catch (IOException e) {
             logger.error(e.getMessage());
@@ -49,7 +49,7 @@ public class ClusterGateway {
         JobArea jobArea = null;
         try {
             jobArea = AreaFactory.createJobArea(
-                    config.getString("jobArea"), config.getString("owner"),
+                    config.getString("jobArea"), owner,
                     AreaFactory.MODE.valueOf(config.getString("mode").toUpperCase()));
         } catch (IOException ioe) {
             logger.error(ioe);

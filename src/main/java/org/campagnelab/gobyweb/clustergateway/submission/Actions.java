@@ -70,7 +70,7 @@ final class Actions {
         }
         TaskJob taskJob = new TaskJob(config);
         taskJob.setTag(ICBStringUtils.generateRandomString());
-        logger.debug("Tag assigned to Task instance: " + taskJob.getTag());
+        logger.debug("Tag assigned to the Task instance: " + taskJob.getTag());
 
         //add the input filesets
         logger.debug("Input filesets: " + Arrays.toString(inputFilesets));
