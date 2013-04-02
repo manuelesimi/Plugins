@@ -39,7 +39,7 @@ public class ClusterGatewayCommandLineTest {
     @Test
     public void installResourceWithArtifacts() {
 
-       assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("local","--resource MINIA:1.4961")));
+       assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--resource MINIA:1.4961")));
 
     }
 
@@ -56,7 +56,7 @@ public class ClusterGatewayCommandLineTest {
 
        assertEquals(4, tags.size());
 
-       assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("local",
+       assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(
                "--input-filesets:${StringUtils.join(tags, ",")} --task RNASELECT_TASK",
                "test-data/root-for-rnaselect")));
 
@@ -75,13 +75,12 @@ public class ClusterGatewayCommandLineTest {
                 ).split(" ");
 
     }
-    private static String[] buildClusterGatewayArgs(String remoteLocal, String additionalCommands, String pluginRoot=gatewayPluginRoot) {
+    private static String[] buildClusterGatewayArgs(String additionalCommands, String pluginRoot=gatewayPluginRoot) {
         ("--job-area ${resultsDir}/GOBYWEB_SGE_JOBS " +
                 "--fileset-area ${resultsDir}/filesets " +
                 "--plugins-dir ${pluginRoot} " +
                 //"--owner ${owner} " +
                 "--env-script ${envScript} "+
-                "--mode ${remoteLocal} " +
                 "--artifact-server localhost "+
                 "--repository ${repoDirAbsolutePath} "+
                 additionalCommands).split(" ");

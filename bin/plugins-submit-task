@@ -2,7 +2,7 @@
 
 
 #Usage: java org.campagnelab.gobyweb.clustergateway.submission.ClusterGateway
-#   [(-p|--plugins-dir) <pluginDir>] [(-s|--storage-root-dir) <storageArea>] [(-i|--input-filesets)[:inputFilesets1,inputFilesets2,...,inputFilesetsN ]] (-t|--task-id) <task> [(-q|--queue) <queue>] [-h|--help] [(-m|--mode) <mode>]
+#   [(-p|--plugins-dir) <pluginDir>] [(-s|--storage-root-dir) <storageArea>] [(-i|--input-filesets)[:inputFilesets1,inputFilesets2,...,inputFilesetsN ]] (-t|--task-id) <task> [(-q|--queue) <queue>] [-h|--help]
 
 #Sample options:
 # --job-root-dir gobyweb@spanky.med.cornell.edu:/home/gobyweb/TRIAL-FILES/GOBYWEB_SGE_JOBS
@@ -10,15 +10,13 @@
 # --plugins-dir /Users/mas2182/Lab/Projects/Plugins/plugins2-with-tasks/test-data/root-for-rnaselect
 # --queue rascals.q
 # --input-filesets:TESTTAG,TESTTAG2,TESTTAG3
-# --owner Manuele.FromClusterGateway
+# --owner plugis-sdk
 # --task-id RNASELECT_TASK
-# --mode remote
 WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [[ $OSTYPE == "cygwin" ]]; then
     WORKING_DIR=`cygpath -m "${WORKING_DIR}"`
 fi
 PARENT_DIR=`dirname ${WORKING_DIR}`
-echo "working dir ${WORKING_DIR}"
 LIB_DIR=${PARENT_DIR}/lib
 TARGET_DIR=${PARENT_DIR}/target
 SNAPSHOT_JAR="${TARGET_DIR}/plugins-sdk.jar"

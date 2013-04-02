@@ -50,17 +50,6 @@
 
 
         <flaggedOption>
-            <id>mode</id>
-            <stringParser>
-                <classname>StringStringParser</classname>
-            </stringParser>
-            <required>true</required>
-            <shortFlag>m</shortFlag>
-            <longFlag>mode</longFlag>
-            <help>The mode in which the software will work. Allowed mode: local | remote</help>
-        </flaggedOption>
-
-        <flaggedOption>
             <id>queue</id>
             <stringParser>
                 <classname>StringStringParser</classname>

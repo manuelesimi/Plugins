@@ -37,8 +37,7 @@ public class ClusterGateway {
         FileSetArea storageArea = null;
         try {
             storageArea = AreaFactory.createFileSetArea(
-                    config.getString("fileSetArea"), owner,
-                    AreaFactory.MODE.valueOf(config.getString("mode").toUpperCase()));
+                    config.getString("fileSetArea"), owner);
         } catch (IOException e) {
             logger.error(e.getMessage());
             return 1;
@@ -49,8 +48,7 @@ public class ClusterGateway {
         JobArea jobArea = null;
         try {
             jobArea = AreaFactory.createJobArea(
-                    config.getString("jobArea"), owner,
-                    AreaFactory.MODE.valueOf(config.getString("mode").toUpperCase()));
+                    config.getString("jobArea"), owner);
         } catch (IOException ioe) {
             logger.error(ioe);
             return 1;
@@ -73,24 +71,17 @@ public class ClusterGateway {
             return (1);
         }
         try {
-            String queue = config.getString("queue");
             Submitter submitter = null;
-            Actions actions = null;
-            if (config.getString("mode").equalsIgnoreCase("remote")) {
-                if (!jobArea.isLocal()) {
-                    submitter = new RemoteSubmitter(plugins.getRegistry(), queue);
-                    actions = new Actions(submitter, storageArea, jobArea, plugins.getRegistry());
-                } else {
-                    logger.error("Cannot use the remote submitter with a local job area");
+            if (jobArea.isLocal()) {
+                 submitter = new LocalSubmitter(plugins.getRegistry());
+            } else {
+                if (!config.userSpecified("queue")) {
+                    throw new Exception("No queue has been indicated");
                 }
-
-            } else if (config.getString("mode").equalsIgnoreCase("local")) {
-                if (jobArea.isLocal()) {
-
-                    submitter = new LocalSubmitter(plugins.getRegistry());
-                    actions = new Actions(submitter, storageArea, jobArea, plugins.getRegistry());
-                }
+                submitter = new RemoteSubmitter(plugins.getRegistry(), config.getString("queue"));
             }
+            Actions actions = new Actions(submitter, storageArea, jobArea, plugins.getRegistry());
+
             assert actions != null : "action cannot be null.";
             submitter.setSubmissionHostname(config.getString("artifact-server"));
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
@@ -113,7 +104,7 @@ public class ClusterGateway {
                 actions.submitResourceInstall(id, version);
 
             } else
-                logger.error("Cannot use the local submitter with a remote job area");
+                logger.error("Unrecognized or unspecified action.");
 
         } catch (Exception e) {
             logger.error("Failed to manage the requested action", e);
@@ -149,7 +140,7 @@ public class ClusterGateway {
         }
         List<String> errors = new ArrayList<String>();
         JSAPResult config = jsap.parse(args);
-        if (config.userSpecified("help") || hasError(config, errors)) {
+        if (config.userSpecified("help") || (!config.success())) {
             if (errors.size() > 0) {
                 for (String error : errors)
                     System.err.println("Error: " + error);
@@ -165,26 +156,6 @@ public class ClusterGateway {
 
         }
         return config;
-    }
-
-    private static boolean hasError(JSAPResult config, List<String> errors) {
-        // First, check for validation errors found by JSAP:
-        if (!config.success()) {
-            return true;
-        }
-        if (config.getString("mode").equalsIgnoreCase("local"))
-            return false;
-
-        if (config.getString("mode").equalsIgnoreCase("remote")) {
-            if (!config.userSpecified("queue")) {
-                errors.add("No queue has been indicated and none was found in the default configuration properties");
-                return true;
-            }
-            return false;
-        }
-        errors.add(String.format("Invalid mode %s. Allowed modes: local | remote", config.getString("mode")));
-
-        return true;
     }
 
 }
