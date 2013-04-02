@@ -194,10 +194,12 @@ final class Actions {
      * @param sourceDir the optional value specified at invocation time by the caller
      * @return
      */
-    private String detectWorkingDir(File[] sourceDir) {
-        if (sourceDir!=null && sourceDir.length>0) {
+    private String detectWorkingDir(File[] sourceDir) throws IOException {
+        if (sourceDir!=null && sourceDir.length>0 && sourceDir[0]!=null)
+            if (sourceDir[0].exists()) {
                 return sourceDir[0].getAbsolutePath();
-        }
+            } else
+                throw new IOException(String.format("The source directory %s does not exist or is not a directory",sourceDir[0]));
         return System.getProperty("user.dir");
     }
 }

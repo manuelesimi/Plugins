@@ -66,8 +66,10 @@ public class FileSetRegistration {
             Actions actions = new Actions(storageArea, plugins.getRegistry());
             if (config.getString("action").equalsIgnoreCase("register")) {
                 List<String> tags = actions.register(config.getStringArray("entries"),config.getFile("sourceDir"));
-                logger.info("Fileset instance(s) successfully registered with the following tag(s): ");
-                logger.info(Arrays.toString(tags.toArray()));
+                if (tags.size() > 0 ) {
+                    logger.info("Fileset instance(s) successfully registered with the following tag(s): ");
+                    logger.info(Arrays.toString(tags.toArray()));
+                }
             } else {
                 actions.unregister(config.getString("tag"));
                 logger.info(String.format("Fileset instance %s successfully unregistered",config.getString("tag")));
