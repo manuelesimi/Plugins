@@ -5,7 +5,7 @@
     <formats>
         <format>tar.gz</format>
     </formats>
-    <baseDirectory>plugins-${project.version}</baseDirectory>
+    <baseDirectory>plugins-sdk-${project.version}</baseDirectory>
     <fileSets>
         <fileSet>
             <directory>./bin/</directory>
