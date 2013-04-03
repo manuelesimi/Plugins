@@ -9,6 +9,7 @@ import java.util.List;
  * Task input and output elements
  * @author manuele
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class TaskIO {
 
     protected String name;
