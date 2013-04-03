@@ -4,40 +4,36 @@
     <name>RNASELECT Task</name>
     <id>RNASELECT_TASK</id>
     <help>Execute RNASELECT resource as Task to process multiple reads files and produce a TSV</help>
-    <version>1.0</version>
+    <version>1.1</version>
     <requires>
         <resource>
             <id>RNASELECT</id>
             <versionAtLeast>1.0</versionAtLeast>
         </resource>
     </requires>
-    <options>
-        <option>
-            <id>PROCESS_N</id>
-            <dbLegacyId>process_n</dbLegacyId>
-            <name>Process N</name>
-            <help>....</help>
-            <required>false</required>
-            <defaultsTo>5</defaultsTo>
-            <type>INTEGER</type>
-            <autoFormat>true</autoFormat>
-            <flagFormat>-n %s</flagFormat>
-            <includeSpaces>true</includeSpaces>
-        </option>
-    </options>
     <inputSchema>
-        <fileSetRef minOccurs="1" maxOccurs="unbounded">
-            <id>COMPACT_READS</id>
-            <versionAtLeast>1.0</versionAtLeast>
-        </fileSetRef>
+        <parameter>
+            <name>INPUT_READS</name>
+            <type>
+                <fileSetRef minOccurs="1" maxOccurs="unbounded"> <!-- a list of tags referring this config is expected -->
+                    <id>COMPACT_READS</id>
+                    <versionAtLeast>1.0</versionAtLeast>
+                </fileSetRef>
+            </type>
+        </parameter>
         <criteria/>
     </inputSchema>
     <outputSchema>
-        <fileSetRef minOccurs="1" maxOccurs="1">
-            <id>TSV</id>
-            <version>1.0</version>
-            <failIfNotProduced>true</failIfNotProduced>
-        </fileSetRef>
+        <returnedValue>
+            <name>STATS</name>
+            <type>
+                <fileSetRef minOccurs="1" maxOccurs="1">  <!-- only one can be uploaded-->
+                    <id>TSV</id>
+                    <versionExactly>1.0</versionExactly>
+                    <mandatory>true</mandatory>
+                </fileSetRef>
+            </type>
+        </returnedValue>
     </outputSchema>
 
 </taskConfig>
