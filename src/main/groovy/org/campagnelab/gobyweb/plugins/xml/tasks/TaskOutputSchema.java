@@ -13,25 +13,6 @@ import java.util.List;
  */
 public class TaskOutputSchema {
 
-    @XmlElement(name = "fileSetRef")
-    List<OutputFileSetRef> fileSetRefs = new ArrayList<OutputFileSetRef>();
-
-    @XmlAccessorType(XmlAccessType.FIELD)
-    protected static class OutputFileSetRef {
-
-        protected String id;
-
-        protected String version;
-
-        protected boolean failIfNotProduced = true;
-
-        @XmlAttribute
-        String minOccurs;
-
-        @XmlAttribute
-        String maxOccurs;
-
-        protected OutputFileSetRef() {}
-    }
-
+    @XmlElement(name = "returnedValue")
+    List<TaskIO> returnedValues = new ArrayList<TaskIO>();
 }

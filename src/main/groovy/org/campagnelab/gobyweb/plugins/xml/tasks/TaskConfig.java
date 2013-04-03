@@ -65,21 +65,35 @@ public class TaskConfig extends ExecutableConfig {
     public void validate(List<String> errors) {
         super.validate(errors);
         //check if input fileset references are correct
-        for (TaskInputSchema.InputFileSetRef fileSetRef : inputSchema.fileSetRefs) {
-            if (DependencyResolver.resolveFileSet(fileSetRef.id,fileSetRef.versionAtLeast,fileSetRef.versionExactly,fileSetRef.versionAtMost) == null) {
-                    errors.add(String.format("Unable to resolve dependency for input fileset %s: failed to find a version matching the input criteria {versionExactly=%s,versionAtLeast=%s,versionAtMost=%s}",
-                            fileSetRef.id, fileSetRef.versionExactly, fileSetRef.versionAtLeast, fileSetRef.versionAtMost));
-
-            }
-
+        for (TaskIO parameter : inputSchema.parameters) {
+            for (TaskIO.IOFileSetRef fileSetRef : parameter.fileSetRefs)
+                validateFileSetReference(fileSetRef,errors);
         }
 
         //check if output fileset references are correct
-        for (TaskOutputSchema.OutputFileSetRef fileSetRef : outputSchema.fileSetRefs) {
-            if (DependencyResolver.resolveFileSet(fileSetRef.id,null,fileSetRef.version) == null)
-            errors.add(String.format("Unable to resolve dependency for output fileset %s: failed to find version %s",
-                    fileSetRef.id, fileSetRef.version));
+        for (TaskIO parameter : outputSchema.returnedValues) {
+            if (parameter.fileSetRefs.size() > 1) {
+                errors.add(String.format("Invalid returned value %s defined in the output schema: there must be only one fileset reference in the returned values",
+                    parameter.name));
+            }
+            validateFileSetReference(parameter.fileSetRefs.get(0),errors);
         }
 
+    }
+
+    /**
+     * Validates if the fileset exists
+     * @param fileSetRef
+     * @param errors
+     * @return
+     */
+    private boolean validateFileSetReference(TaskIO.IOFileSetRef fileSetRef, List<String> errors) {
+        if (DependencyResolver.resolveFileSet(fileSetRef.id,fileSetRef.versionAtLeast,
+                fileSetRef.versionExactly,fileSetRef.versionAtMost) == null) {
+            errors.add(String.format("Unable to resolve dependency for input fileset %s: failed to find a version matching the input criteria {versionExactly=%s,versionAtLeast=%s,versionAtMost=%s}",
+                    fileSetRef.id, fileSetRef.versionExactly, fileSetRef.versionAtLeast, fileSetRef.versionAtMost));
+            return false;
+        }
+        return true;
     }
 }
