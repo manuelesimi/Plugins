@@ -63,13 +63,13 @@
                     <xs:element ref="options" minOccurs="0"/>
                     <xs:element name="inputSchema" type="T_task-input-schema"/>
                     <xs:element name="outputSchema" type="T_task-output-schema"/>
-                    <xs:element name="parallelization" type="T_task-parallelization" minOccurs="0"/>
+                    <!--<xs:element name="parallelization" type="T_task-parallelization" minOccurs="0"/>   -->
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
 
-
+   <!--
     <xs:complexType name="T_task-parallelization">
         <xs:all>
             <xs:element name="input" type="T_task-parallelization-input"/>
@@ -84,5 +84,5 @@
     <xs:complexType name="T_task-parallelization-output">
         <xs:attribute name="id" type="xs:string"/>
         <xs:attribute name="strategy" type="xs:string"/>
-    </xs:complexType>
+    </xs:complexType>       -->
 </xs:schema>
