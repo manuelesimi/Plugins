@@ -6,22 +6,37 @@
     <help>Use GNU tar for creating TAR archives from TEXT or IMAGES files</help>
     <version>1.0</version>
     <inputSchema>
+        <parameter>
+        <name>TEXT</name>
+        <type>
         <fileSetRef maxOccurs="unbounded" minOccurs="1">
             <id>TEXT</id>
             <versionAtMost>2.0</versionAtMost>
         </fileSetRef>
-        <fileSetRef maxOccurs="unbounded" minOccurs="0">
-            <id>JPEG</id>
-            <versionAtMost>3.0</versionAtMost>
-        </fileSetRef>
+         </type>
+        </parameter>
+        <parameter>
+            <name>IMAGE</name>
+            <type>
+                <fileSetRef maxOccurs="unbounded" minOccurs="0">
+                    <id>JPEG</id>
+                    <versionAtMost>3.0</versionAtMost>
+                </fileSetRef>
+            </type>
+        </parameter>
         <criteria/>
     </inputSchema>
     <outputSchema>
+        <returnedValue>
+        <name>STATS</name>
+        <type>
         <fileSetRef maxOccurs="1" minOccurs="1">
             <id>TAR</id>
-            <version>1.0</version>
-            <failIfNotProduced>true</failIfNotProduced>
+            <versionExactly>1.0</versionExactly>
+            <mandatory>true</mandatory>
         </fileSetRef>
+        </type>
+        </returnedValue>
     </outputSchema>
 
 </taskConfig>
