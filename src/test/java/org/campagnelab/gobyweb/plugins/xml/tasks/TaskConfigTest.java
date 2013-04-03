@@ -126,7 +126,7 @@ public class TaskConfigTest {
         assertEquals("Task ID is not the one expected", "RNASELECT_TASK", deserializedTask.getId());
         assertNotNull("InputSchema cannot be null", deserializedTask.inputSchema);
         assertNotNull("OutputSchema cannot be null", deserializedTask.outputSchema);
-        assertEquals("There must be 1 parameter", 2, deserializedTask.inputSchema.parameters.size());
+        assertEquals("There must be 2 input parameters", 2, deserializedTask.inputSchema.parameters.size());
         assertEquals("There must be 2 returned values", 2, deserializedTask.outputSchema.returnedValues.size());
 
     }
