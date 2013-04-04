@@ -42,7 +42,7 @@ public class TaskJob extends Job {
     }
 
     /**
-     * Add a new input fileset to the task instance.
+     * Adds a new input fileset to the task instance.
      *
      * @param fileset the tag referring the fileset
      */
@@ -80,6 +80,5 @@ public class TaskJob extends Job {
     public void addFile(File file) {
         this.files.add(file);
     }
-
 
 }
