@@ -3,6 +3,8 @@ package org.campagnelab.gobyweb.clustergateway.data;
 
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskIO;
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskInputSchema;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,12 +17,7 @@ import java.io.File;
  * @author manuele
  */
 
-public class TaskJob extends Job {
-
-    /**
-     * Tags that identify the input filesets
-     */
-    private List<String> fileSets = new ArrayList<String>();
+public class TaskJob extends ParametrizedJob {
 
     /**
      * Files belonging to the task that need to be copied on the cluster before its execution
@@ -41,23 +38,24 @@ public class TaskJob extends Job {
             }
     }
 
-    /**
-     * Adds a new input fileset to the task instance.
-     *
-     * @param fileset the tag referring the fileset
-     */
-    public void addInputFileSet(String fileset) {
-        this.fileSets.add(fileset);
-    }
 
     /**
-     * Gets all the input filesets.
-     *
-     * @return the list of tags
+     * Validates the parameter against the input schema of the task.
+     * The validation checks if the schema defines a parameter with that name.
+     * @param parameter
+     * @return
      */
-    public List<String> getInputFileSets() {
-        return Collections.unmodifiableList(this.fileSets);
+    @Override
+    protected boolean validateParameter(InputParameter parameter) {
+        TaskInputSchema inputSchema = sourceConfig.getInputSchema();
+        for (TaskIO schemaParameter : inputSchema.getParameters()) {
+           if (schemaParameter.getName().equalsIgnoreCase(parameter.getName()))
+               return true;
+        }
+        return false;
     }
+
+
 
     public TaskConfig getSourceConfig() {
         return this.sourceConfig;
