@@ -51,8 +51,8 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         ReferenceInputListWriter inputList = new ReferenceInputListWriter();
         inputList.setPushInfo(new File(session.targetAreaReferenceName).getAbsolutePath(),
                 session.targetAreaOwner, new File(session.callerAreaReferenceName).getAbsolutePath(), session.callerAreaOwner);
-        inputList.buildFileSetReferenceList(new File(session.targetAreaReferenceName).getAbsolutePath(), session.targetAreaOwner,
-                taskJob.getInputFileSets());
+       /* inputList.buildFileSetReferenceList(new File(session.targetAreaReferenceName).getAbsolutePath(), session.targetAreaOwner,
+                taskJob.getInputFileSets());  */
 
         FileUtils.copyFileToDirectory(inputList.serialize(), taskLocalDir);
 

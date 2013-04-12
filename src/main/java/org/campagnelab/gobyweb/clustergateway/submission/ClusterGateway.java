@@ -5,15 +5,15 @@ import com.martiansoftware.jsap.JSAPException;
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.clustergateway.data.InputParameter;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.io.JobArea;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
 
 /**
  * Command line interface to the cluster gateway
@@ -94,10 +94,9 @@ public class ClusterGateway {
             if (config.userSpecified("task")) {
                 String token[] = config.getStringArray("task");
                 String id = token[0];
-                toInputParameters(config.getStringArray("parameters"));
+                //toInputParameters(config.getStringArray("parameters"));
                 actions.submitTask(
-                        id,
-                        /*toInputParameters(config.getStringArray("parameters")*/config.getStringArray("parameters"));
+                        id, toInputParameters(config.getStringArray("parameters")));
             } else if (config.userSpecified("resource")) {
 
                 String token[] = config.getStringArray("resource");
@@ -166,8 +165,8 @@ public class ClusterGateway {
      * @return
      * @throws Exception
      */
-    private static  List<InputParameter> toInputParameters(String[] parameters) throws Exception {
-        List<InputParameter> parsed = new ArrayList<InputParameter>();
+    private static  Set<InputParameter> toInputParameters(String[] parameters) throws Exception {
+        Set<InputParameter> parsed = new HashSet<InputParameter>();
         InputParameter param = null;
         if (parameters[0].endsWith(":"))
             param = new InputParameter(StringUtils.strip(parameters[0], ":"));
@@ -184,6 +183,6 @@ public class ClusterGateway {
         }
         //add the last one
         parsed.add(param);
-        return Collections.unmodifiableList(parsed);
+        return Collections.unmodifiableSet(parsed);
     }
 }

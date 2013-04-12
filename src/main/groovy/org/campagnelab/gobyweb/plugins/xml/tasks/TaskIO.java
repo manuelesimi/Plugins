@@ -3,6 +3,7 @@ package org.campagnelab.gobyweb.plugins.xml.tasks;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,14 +13,22 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TaskIO {
 
-    protected String name;
+    String name;
 
     @XmlElementWrapper(name = "type")
     @XmlElement(name = "fileSetRef")
-    protected List<IOFileSetRef> fileSetRefs = new ArrayList<IOFileSetRef>();
+    List<IOFileSetRef> fileSetRefs = new ArrayList<IOFileSetRef>();
+
+    public List<IOFileSetRef> getFileSetRefs() {
+        return Collections.unmodifiableList(fileSetRefs);
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @XmlAccessorType(XmlAccessType.FIELD)
-    protected static class IOFileSetRef {
+    public static class IOFileSetRef {
 
         protected String id;
         /**

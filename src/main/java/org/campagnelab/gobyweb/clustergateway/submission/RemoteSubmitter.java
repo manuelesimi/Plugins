@@ -54,8 +54,8 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         ReferenceInputListWriter inputList = new ReferenceInputListWriter();
         inputList.setPushInfo(session.targetAreaReferenceName,
                 session.targetAreaOwner, session.callerAreaReferenceName, session.callerAreaOwner);
-        inputList.buildFileSetReferenceList(session.targetAreaReferenceName, session.targetAreaOwner,
-                taskJob.getInputFileSets());
+       /* inputList.buildFileSetReferenceList(session.targetAreaReferenceName, session.targetAreaOwner,
+                taskJob.getInputFileSets()); */
 
         File pbfile = inputList.serialize();
         Files.copy(pbfile, new File(tempDir, pbfile.getName()));
