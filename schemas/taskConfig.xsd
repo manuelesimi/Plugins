@@ -33,13 +33,13 @@
 
     <xs:complexType name="T_task-output-schema">
         <xs:sequence>
-            <xs:element name="returnedValue" type="T_IO" maxOccurs="unbounded"/>
+            <xs:element name="outputSlot" type="T_IO" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="T_task-input-schema">
         <xs:sequence>
-            <xs:element name="parameter" type="T_IO" maxOccurs="unbounded"/>
+            <xs:element name="inputSlot" type="T_IO" maxOccurs="unbounded"/>
             <xs:element name="criteria" type="T_fileSetFilters" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>

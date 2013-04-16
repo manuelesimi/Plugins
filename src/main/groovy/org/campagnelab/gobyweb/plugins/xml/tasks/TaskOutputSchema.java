@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -13,6 +14,10 @@ import java.util.List;
  */
 public class TaskOutputSchema {
 
-    @XmlElement(name = "returnedValue")
-    List<TaskIO> returnedValues = new ArrayList<TaskIO>();
+    @XmlElement(name = "outputSlot")
+    List<TaskIO> outputSlots = new ArrayList<TaskIO>();
+
+    public List<TaskIO> getOutputSlots() {
+        return Collections.unmodifiableList(outputSlots);
+    }
 }

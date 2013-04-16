@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class TaskInputSchema {
 
-    @XmlElement(name = "parameter")
-    List<TaskIO> parameters = new ArrayList<TaskIO>();
+    @XmlElement(name = "inputSlot")
+    List<TaskIO> inputSlots = new ArrayList<TaskIO>();
 
     @XmlElement(name = "criteria")
     Criteria criteria;
 
-    public List<TaskIO> getParameters() {
-        return Collections.unmodifiableList(parameters);
+    public List<TaskIO> getInputSlots() {
+        return Collections.unmodifiableList(inputSlots);
     }
 
     @XmlAccessorType(XmlAccessType.FIELD)

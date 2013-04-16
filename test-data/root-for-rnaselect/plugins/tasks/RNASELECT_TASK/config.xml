@@ -12,7 +12,7 @@
         </resource>
     </requires>
     <inputSchema>
-        <parameter>
+        <inputSlot>
             <name>INPUT_READS</name>
             <type>
                 <fileSetRef minOccurs="1" maxOccurs="unbounded"> <!-- a list of tags referring this config is expected -->
@@ -20,11 +20,11 @@
                     <versionAtLeast>1.0</versionAtLeast>
                 </fileSetRef>
             </type>
-        </parameter>
+        </inputSlot>
         <criteria/>
     </inputSchema>
     <outputSchema>
-        <returnedValue>
+        <outputSlot>
             <name>STATS</name>
             <type>
                 <fileSetRef minOccurs="1" maxOccurs="1">  <!-- only one can be uploaded-->
@@ -33,7 +33,7 @@
                     <mandatory>true</mandatory>
                 </fileSetRef>
             </type>
-        </returnedValue>
+        </outputSlot>
     </outputSchema>
 
 </taskConfig>

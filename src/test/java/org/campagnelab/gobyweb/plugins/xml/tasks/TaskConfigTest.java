@@ -61,7 +61,7 @@ public class TaskConfigTest {
         inFileSetRef2.maxOccurs = "1";
         inFileSetRef2.minOccurs = "1";
         taskIOIN.fileSetRefs.add(inFileSetRef2);
-        inputSchema.parameters.add(taskIOIN);
+        inputSchema.inputSlots.add(taskIOIN);
         TaskOutputSchema outputSchema = new TaskOutputSchema();
         TaskIO taskIO =  new TaskIO();
         taskIO.name = "TSV_FILE";
@@ -71,7 +71,7 @@ public class TaskConfigTest {
         outFileSetRef.maxOccurs = "1";
         outFileSetRef.minOccurs = "1";
         taskIO.fileSetRefs.add(outFileSetRef);
-        outputSchema.returnedValues.add(taskIO);
+        outputSchema.outputSlots.add(taskIO);
         TaskIO taskIO2 =  new TaskIO();
         TaskIO.IOFileSetRef outFileSetRef2 = new TaskIO.IOFileSetRef();
         outFileSetRef2.id = "TSV_second_format  ";
@@ -79,7 +79,7 @@ public class TaskConfigTest {
         outFileSetRef2.maxOccurs = "unbounded";
         outFileSetRef2.minOccurs = "1";
         taskIO2.fileSetRefs.add(outFileSetRef2);
-        outputSchema.returnedValues.add(taskIO2);
+        outputSchema.outputSlots.add(taskIO2);
 
         TaskConfig task = new TaskConfig();
         task.setInputSchema(inputSchema);
@@ -126,10 +126,10 @@ public class TaskConfigTest {
         assertEquals("Task ID is not the one expected", "RNASELECT_TASK", deserializedTask.getId());
         assertNotNull("InputSchema cannot be null", deserializedTask.inputSchema);
         assertNotNull("OutputSchema cannot be null", deserializedTask.outputSchema);
-        assertEquals("There must be only 1 input parameter", 1, deserializedTask.inputSchema.parameters.size());
-        assertEquals("Input parameter must be a list of 2 values", 2, deserializedTask.inputSchema.parameters.get(0).fileSetRefs.size());
+        assertEquals("There must be only 1 input parameter", 1, deserializedTask.inputSchema.inputSlots.size());
+        assertEquals("Input parameter must be a list of 2 values", 2, deserializedTask.inputSchema.getInputSlots().get(0).fileSetRefs.size());
 
-        assertEquals("There must be 2 returned values", 2, deserializedTask.outputSchema.returnedValues.size());
+        assertEquals("There must be 2 returned values", 2, deserializedTask.outputSchema.getOutputSlots().size());
 
     }
 }
