@@ -60,7 +60,7 @@ public class FileSetLocalRegistration {
        try {
             // CASE1: test with FILESET:path to file
            returnedTags.addAll(actions.register(
-                    new String[]{"COMPACT_READS:CASE1_FILE1.compact-reads"},
+                   new String[]{"COMPACT_READS:", "CASE1_FILE1.compact-reads"},
                     new File("test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/")
             ));
         } catch (IOException e) {
@@ -79,7 +79,7 @@ public class FileSetLocalRegistration {
         try {
             // test the case with FILESET:pattern
             returnedTags.addAll(actions.register(
-                    new String[]{"COMPACT_READS:","*.compact-reads"},
+                    new String[]{"COMPACT_READS:", "*.compact-reads"},
                     new File("test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/")));
         } catch (IOException e) {
             fail("fail to register fileset with FILESET:pattern");
@@ -118,7 +118,7 @@ public class FileSetLocalRegistration {
         } catch (IOException e) {
             fail("fail to register fileset with filename");
         }
-        assertEquals("Register operation returned an unexpected number of tags", 0, returnedTags.size());
+        assertEquals("Register operation returned an unexpected number of tags", 1, returnedTags.size());
         tags.addAll(returnedTags);
     }
 
