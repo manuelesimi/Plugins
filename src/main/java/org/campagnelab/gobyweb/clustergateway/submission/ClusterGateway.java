@@ -5,7 +5,7 @@ import com.martiansoftware.jsap.JSAPException;
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.campagnelab.gobyweb.clustergateway.data.InputParameter;
+import org.campagnelab.gobyweb.clustergateway.data.InputSlotValue;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
@@ -166,11 +166,11 @@ public class ClusterGateway {
      * @return
      * @throws Exception
      */
-    public static  Set<InputParameter> toInputParameters(String[] parameters) throws Exception {
-        Set<InputParameter> parsed = new HashSet<InputParameter>();
-        InputParameter param = null;
+    public static  Set<InputSlotValue> toInputParameters(String[] parameters) throws Exception {
+        Set<InputSlotValue> parsed = new HashSet<InputSlotValue>();
+        InputSlotValue param = null;
         if (parameters[0].endsWith(":"))
-            param = new InputParameter(StringUtils.strip(parameters[0], ":"));
+            param = new InputSlotValue(StringUtils.strip(parameters[0], ":"));
         else
             throw new Exception("Cannot accept tag reference %s with no parameter name associated. Accepted form is: NAME: TAG1 TAG2 NAME2: TAG3 TAG4 TAG5");
 
@@ -178,7 +178,7 @@ public class ClusterGateway {
             if (parameters[i].endsWith(":")) {
                 //move to the new parameter
                 parsed.add(param);
-                param = new InputParameter(StringUtils.strip(parameters[i], ":"));
+                param = new InputSlotValue(StringUtils.strip(parameters[i], ":"));
             } else
                 param.addValues(parameters[i].split(","));
         }

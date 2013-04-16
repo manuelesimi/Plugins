@@ -11,6 +11,7 @@ import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
 import org.campagnelab.gobyweb.filesets.protos.JobDataWriter;
 import org.campagnelab.gobyweb.filesets.registration.ConfigurationList;
+import org.campagnelab.gobyweb.filesets.registration.Configuration;
 import org.campagnelab.gobyweb.filesets.registration.JobInputSlot;
 import org.campagnelab.gobyweb.filesets.registration.JobOutputSlot;
 import org.campagnelab.gobyweb.io.JobArea;
@@ -20,10 +21,13 @@ import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskIO;
 import org.campagnelab.gobyweb.plugins.xml.tasks.TaskInputSchema;
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskOutputSchema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -249,30 +253,81 @@ abstract public class AbstractSubmitter implements Submitter {
                 new File(session.callerAreaReferenceName).getAbsolutePath(),
                 session.callerAreaOwner);
         TaskConfig sourceConfig = taskJob.getSourceConfig();
-        //add configurations
+
         ConfigurationList configurationList = new ConfigurationList();
-        //TODO: to populate
+        List<JobInputSlot>  inputSlots = new ArrayList<JobInputSlot>();
+
         TaskInputSchema inputSchema = sourceConfig.getInputSchema();
+        for (TaskIO io : inputSchema.getInputSlots()) {
+            //look for the fileset configuration and add it to the configuration list
+            FileSetConfig filesetConfig = DependencyResolver.resolveFileSet(io.geType().id,
+                    io.geType().versionAtLeast,
+                    io.geType().versionExactly,
+                    io.geType().versionAtMost);
+            if (filesetConfig == null)
+               throw new Exception(String.format("Unable to find a FileSet configuration matching the type input slot %s", io.getName()));
+
+            this.addConfigurationToList(configurationList,filesetConfig);
+
+            //add the input slot
+            JobInputSlot inputSlot = new JobInputSlot();
+            inputSlot.name = io.getName();
+            inputSlot.tags = taskJob.getInputSlotValues(io.getName());
+            inputSlot.id = io.geType().id;
+            inputSlots.add(inputSlot);
+
+        }
+
+        List<JobOutputSlot> outputSlots = new ArrayList<JobOutputSlot>();
+        TaskOutputSchema outputSchema = sourceConfig.getOutputSchema();
+        for (TaskIO io : outputSchema.getOutputSlots()) {
+            //look for the fileset configuration and add it to the configuration list
+            FileSetConfig filesetConfig = DependencyResolver.resolveFileSet(io.geType().id,
+                    io.geType().versionAtLeast,
+                    io.geType().versionExactly,
+                    io.geType().versionAtMost);
+            if (filesetConfig == null)
+                throw new Exception(String.format("Unable to find a FileSet configuration matching the type input slot %s", io.getName()));
+
+            this.addConfigurationToList(configurationList,filesetConfig);
+            //add the output slot
+            JobOutputSlot outputSlot = new JobOutputSlot();
+            outputSlot.name = io.getName();
+            outputSlot.id = io.geType().id;
+            outputSlots.add(outputSlot);
+        }
+
+        //add the configurations visible to the job
         jobDataWriter.addConfigurations(configurationList);
 
         //add input/output slots
-        List<JobInputSlot>  inputSlots = new ArrayList<JobInputSlot>();
-        //TODO: to populate
         jobDataWriter.addInputSlotList(session.targetAreaReferenceName,
                 session.targetAreaOwner,
                 inputSlots);
-        //jobDataWriter.buildFileSetReferenceList(new File(session.targetAreaReferenceName).getAbsolutePath(), session.targetAreaOwner,
-        //        taskJob.getInputFileSets());
 
-        List<JobOutputSlot> outputSlots = new ArrayList<JobOutputSlot>();
-        //TODO: to populate
         jobDataWriter.addOutputSlotList(
                 session.targetAreaReferenceName,
                 session.targetAreaOwner,
-                outputSlots
-        );
+                outputSlots);
+
         return jobDataWriter.serialize();
 
+    }
+
+    private void addConfigurationToList(ConfigurationList configurationList, FileSetConfig filesetConfig) {
+        Configuration configuration = new Configuration(filesetConfig.getId());
+        configuration.setName(filesetConfig.getName());
+        for (FileSetConfig.ComponentSelector selector : filesetConfig.getFileSelectors()) {
+            configuration.addFileSelector(
+                    new Configuration.ComponentSelector(selector.getId(),selector.getPattern(),selector.getMandatory())
+            );
+        }
+        for (FileSetConfig.ComponentSelector selector : filesetConfig.getDirSelectors()) {
+            configuration.addDirSelector(
+                    new Configuration.ComponentSelector(selector.getId(),selector.getPattern(),selector.getMandatory())
+            );
+        }
+        configurationList.addConfiguration(configuration);
     }
 }
 

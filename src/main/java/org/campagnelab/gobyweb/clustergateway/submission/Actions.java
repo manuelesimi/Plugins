@@ -3,7 +3,7 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.campagnelab.gobyweb.clustergateway.data.InputParameter;
+import org.campagnelab.gobyweb.clustergateway.data.InputSlotValue;
 import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
 
@@ -17,7 +17,6 @@ import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 import java.io.File;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.Arrays;
 import java.util.Set;
 
 /**
@@ -64,7 +63,7 @@ final class Actions {
     }
 
 
-    public void submitTask(String id, Set<InputParameter>  inputFilesets) throws Exception {
+    public void submitTask(String id, Set<InputSlotValue> inputFilesets) throws Exception {
         //create the task instance
         TaskConfig config = registry.findByTypedId(id, TaskConfig.class);
         if (config==null) {
@@ -75,7 +74,7 @@ final class Actions {
         logger.debug("Tag assigned to the Task instance: " + taskJob.getTag());
 
         //add the input filesets
-        taskJob.addParameters(inputFilesets);
+        taskJob.addInputSlotValues(inputFilesets);
 
         //create the directory for results
         FileUtils.forceMkdir(returnedJobFiles);

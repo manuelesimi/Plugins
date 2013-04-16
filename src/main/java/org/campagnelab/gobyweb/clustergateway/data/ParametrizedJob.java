@@ -1,7 +1,8 @@
 package org.campagnelab.gobyweb.clustergateway.data;
 
-import java.util.HashSet;
-import java.util.Set;
+import com.sun.xml.internal.fastinfoset.util.CharArrayString;
+
+import java.util.*;
 
 /**
  * A Job with input slots.
@@ -10,7 +11,7 @@ import java.util.Set;
  */
 public abstract class ParametrizedJob extends Job {
 
-    Set<InputSlotValue> parameters = new HashSet<InputSlotValue>();
+     private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
 
     /**
      * Adds a new actual value for an input slot
@@ -23,7 +24,7 @@ public abstract class ParametrizedJob extends Job {
       else if (! validateInputSlotValue(value))
           throw new InvalidInputSlotValueException(String.format("Invalid parameter %s ", value.toString()));
       else
-          parameters.add(value);
+          inputSlots.add(value);
     }
 
     /**
@@ -37,11 +38,17 @@ public abstract class ParametrizedJob extends Job {
     }
 
     /**
-     *
-     * @return
+     *  Gets the values of the input slot
+     *  @param slotName the name of the input slot
+     *  @return
      */
-    public Set<InputSlotValue> getParameters() {
-        return parameters;
+    public List<String> getInputSlotValues(String slotName) {
+        List<String> values = new ArrayList<String>();
+        for (InputSlotValue inputSlotValue: inputSlots) {
+            if (inputSlotValue.getName().equalsIgnoreCase(slotName))
+                return inputSlotValue.getValues();
+        }
+        return Collections.EMPTY_LIST;
     }
 
 
