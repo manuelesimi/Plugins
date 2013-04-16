@@ -4,7 +4,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
-import org.campagnelab.gobyweb.filesets.protos.ReferenceInputListWriter;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
@@ -12,10 +11,9 @@ import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 import java.io.*;
 import java.net.URL;
-import java.util.Scanner;
 
 /**
- * Submitter for local task executions.
+ * Submitter for local job executions.
  *
  * @author manuele
  */
@@ -47,14 +45,9 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         //in the local submitter we directly access to the job area folder to avoid creating and then copying local files
         final File taskLocalDir = new File(jobArea.getBasename(taskJob.getTag()));
 
-        //create protocol buffer for filesets
-        ReferenceInputListWriter inputList = new ReferenceInputListWriter();
-        inputList.setPushInfo(new File(session.targetAreaReferenceName).getAbsolutePath(),
-                session.targetAreaOwner, new File(session.callerAreaReferenceName).getAbsolutePath(), session.callerAreaOwner);
-        inputList.buildFileSetReferenceList(new File(session.targetAreaReferenceName).getAbsolutePath(), session.targetAreaOwner,
-                taskJob.getInputFileSets());
+        File pbFile = this.createJobDataPB(session, taskJob);
 
-        FileUtils.copyFileToDirectory(inputList.serialize(), taskLocalDir);
+        FileUtils.copyFileToDirectory(pbFile, taskLocalDir);
 
         //get the wrapper script
         URL wrapperScriptURL = getClass().getClassLoader().getResource(taskWrapperScript);

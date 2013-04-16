@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
 
-import org.campagnelab.gobyweb.filesets.protos.ReferenceInputListWriter;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 
@@ -15,7 +14,7 @@ import java.io.File;
 import java.net.URL;
 
 /**
- * Submitter for cluster nodes.
+ * Submitter for remote jobs.
  *
  * @author manuele
  */
@@ -51,13 +50,13 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         File tempDir = Files.createTempDir();
 
         //create protocol buffer for filesets
-        ReferenceInputListWriter inputList = new ReferenceInputListWriter();
+       /* ReferenceInputListWriter inputList = new ReferenceInputListWriter();
         inputList.setPushInfo(session.targetAreaReferenceName,
                 session.targetAreaOwner, session.callerAreaReferenceName, session.callerAreaOwner);
         inputList.buildFileSetReferenceList(session.targetAreaReferenceName, session.targetAreaOwner,
                 taskJob.getInputFileSets());
-
-        File pbfile = inputList.serialize();
+                                          */
+        File pbfile = this.createJobDataPB(session,taskJob);
         Files.copy(pbfile, new File(tempDir, pbfile.getName()));
 
         //get the wrapper script
