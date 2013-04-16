@@ -166,7 +166,7 @@ public class ClusterGateway {
      * @return
      * @throws Exception
      */
-    private static  Set<InputParameter> toInputParameters(String[] parameters) throws Exception {
+    public static  Set<InputParameter> toInputParameters(String[] parameters) throws Exception {
         Set<InputParameter> parsed = new HashSet<InputParameter>();
         InputParameter param = null;
         if (parameters[0].endsWith(":"))

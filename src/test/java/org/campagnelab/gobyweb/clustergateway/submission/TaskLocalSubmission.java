@@ -50,7 +50,7 @@ public class TaskLocalSubmission {
         try {
             //need to clone the storage area because results will be stored there too
             FileUtils.copyDirectory(new File(sourceStorageAreaDir).getAbsoluteFile(),
-                    new File(storageAreaDir).getParentFile().getAbsoluteFile() );
+                    new File(storageAreaDir).getParentFile().getAbsoluteFile());
             storageArea = AreaFactory.createFileSetArea(
                     storageAreaDir, "ClusterGateway",
                     AreaFactory.MODE.LOCAL);
@@ -70,13 +70,13 @@ public class TaskLocalSubmission {
     @Test
     public void submit() {
         try {
-            Submitter submitter  = new LocalSubmitter(plugins.getRegistry());
+            Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             actions = new Actions(submitter, storageArea, jobArea, plugins.getRegistry());
             actions.submitTask(
-                   "RNASELECT_TASK",
-                   new String[]{"TESTTAG1","TESTTAG2","TESTTAG3"});
+                    "RNASELECT_TASK",
+                    ClusterGateway.toInputParameters(new String[]{"TESTTAG1", "TESTTAG2", "TESTTAG3"}));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class TaskLocalSubmission {
     }
 
     @AfterClass
-    public static void clean(){
+    public static void clean() {
         try {
             Files.deleteRecursively(new File(rootAreaDir));
         } catch (IOException e) {
