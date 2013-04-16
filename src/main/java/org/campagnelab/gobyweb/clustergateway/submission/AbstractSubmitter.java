@@ -317,6 +317,7 @@ abstract public class AbstractSubmitter implements Submitter {
     private void addConfigurationToList(ConfigurationList configurationList, FileSetConfig filesetConfig) {
         Configuration configuration = new Configuration(filesetConfig.getId());
         configuration.setName(filesetConfig.getName());
+        configuration.setVersion(filesetConfig.getVersion());
         for (FileSetConfig.ComponentSelector selector : filesetConfig.getFileSelectors()) {
             configuration.addFileSelector(
                     new Configuration.ComponentSelector(selector.getId(),selector.getPattern(),selector.getMandatory())
