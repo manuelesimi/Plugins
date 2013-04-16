@@ -2,9 +2,6 @@ package org.campagnelab.gobyweb.plugins.xml.tasks;
 
 
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Task input and output elements
@@ -15,12 +12,10 @@ public class TaskIO {
 
     String name;
 
-    @XmlElementWrapper(name = "type")
-    @XmlElement(name = "fileSetRef")
-    List<IOFileSetRef> fileSetRefs = new ArrayList<IOFileSetRef>();
+    IOFileSetRef type;
 
-    public List<IOFileSetRef> getFileSetRefs() {
-        return Collections.unmodifiableList(fileSetRefs);
+    public IOFileSetRef geType() {
+        return this.type;
     }
 
     public String getName() {
@@ -30,29 +25,29 @@ public class TaskIO {
     @XmlAccessorType(XmlAccessType.FIELD)
     public static class IOFileSetRef {
 
-        protected String id;
+        public String id;
         /**
          * Minimum version number of the fileset required. Any version is acceptable when version==null.
          */
-        protected String versionAtLeast;
+        public String versionAtLeast;
 
         /**
          * Maximum version number of the fileset required. Any version is acceptable when version==null.
          */
-        protected String versionAtMost;
+        public String versionAtMost;
 
         /**
          * Exact version number of the fileset required. Any version is acceptable when version==null.
          */
-        protected String versionExactly;
+        public String versionExactly;
 
         @XmlAttribute
-        protected  String minOccurs;
+        public  String minOccurs;
 
         @XmlAttribute
-        protected String maxOccurs;
+        public String maxOccurs;
 
-        protected boolean mandatory = true;
+        public boolean mandatory = true;
 
 
         protected IOFileSetRef() {}

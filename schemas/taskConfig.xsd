@@ -78,13 +78,7 @@
     <xs:complexType name="T_IO">
         <xs:sequence>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="type">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="fileSetRef" type="T_fileSetRef"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
+            <xs:element name="type" type="T_fileSetRef"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

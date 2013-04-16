@@ -15,10 +15,8 @@
         <inputSlot>
             <name>INPUT_READS</name>
             <type>
-                <fileSetRef minOccurs="1" maxOccurs="unbounded"> <!-- a list of tags referring this config is expected -->
-                    <id>COMPACT_READS</id>
-                    <versionAtLeast>1.0</versionAtLeast>
-                </fileSetRef>
+                <id>COMPACT_READS</id>
+                <versionAtLeast>1.0</versionAtLeast>
             </type>
         </inputSlot>
         <criteria/>
@@ -27,11 +25,9 @@
         <outputSlot>
             <name>STATS</name>
             <type>
-                <fileSetRef minOccurs="1" maxOccurs="1">  <!-- only one can be uploaded-->
-                    <id>TSV</id>
-                    <versionExactly>1.0</versionExactly>
-                    <mandatory>true</mandatory>
-                </fileSetRef>
+                 <id>TSV</id>
+                 <versionExactly>1.0</versionExactly>
+                 <mandatory>true</mandatory>
             </type>
         </outputSlot>
     </outputSchema>
