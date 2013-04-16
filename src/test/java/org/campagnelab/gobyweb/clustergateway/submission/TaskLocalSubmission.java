@@ -32,10 +32,10 @@ public class TaskLocalSubmission {
     static FileSetArea storageArea;
     static Actions actions;
     static final String sourceStorageAreaDir = "test-data/cluster-gateway/fileset-area-for-submission-test";
-    static final String rootAreaDir = String.format("test-results-%d", System.currentTimeMillis());
+    static final String rootAreaDir = "test-results";
     static final String storageAreaDir = String.format("%s/filesets", rootAreaDir);
     static final String jobAreaDir = String.format("%s/jobs", rootAreaDir);
-    static final String owner = "ClusterGateway";
+    static final String owner = "PluginsSDK";
 
 
     @BeforeClass
@@ -45,14 +45,14 @@ public class TaskLocalSubmission {
         plugins.addServerConf("test-data/root-for-rnaselect");
         plugins.setWebServerHostname("localhost");
         plugins.reload();
-
+        String referenceSA =  new File(storageAreaDir).getAbsolutePath();
         //prepare the storage area for testing
         try {
             //need to clone the storage area because results will be stored there too
             FileUtils.copyDirectory(new File(sourceStorageAreaDir).getAbsoluteFile(),
                     new File(storageAreaDir).getParentFile().getAbsoluteFile());
             storageArea = AreaFactory.createFileSetArea(
-                    storageAreaDir, "ClusterGateway",
+                    referenceSA, owner,
                     AreaFactory.MODE.LOCAL);
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -61,7 +61,7 @@ public class TaskLocalSubmission {
 
         //create the reference to the job area
         try {
-            jobArea = AreaFactory.createJobArea(jobAreaDir, owner, AreaFactory.MODE.LOCAL);
+            jobArea = AreaFactory.createJobArea(new File(jobAreaDir).getAbsoluteFile().getAbsolutePath(), owner, AreaFactory.MODE.LOCAL);
         } catch (IOException ioe) {
             fail("failed to create the local job area");
         }
@@ -76,7 +76,7 @@ public class TaskLocalSubmission {
             actions = new Actions(submitter, storageArea, jobArea, plugins.getRegistry());
             actions.submitTask(
                     "RNASELECT_TASK",
-                    ClusterGateway.toInputParameters(new String[]{"TESTTAG1", "TESTTAG2", "TESTTAG3"}));
+                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,7 +84,7 @@ public class TaskLocalSubmission {
         }
     }
 
-    @AfterClass
+    //@AfterClass
     public static void clean() {
         try {
             Files.deleteRecursively(new File(rootAreaDir));
