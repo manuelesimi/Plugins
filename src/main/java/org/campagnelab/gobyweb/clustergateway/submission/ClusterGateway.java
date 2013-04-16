@@ -21,6 +21,8 @@ import java.util.List;
 public class ClusterGateway {
 
     protected static final org.apache.log4j.Logger logger = Logger.getLogger(ClusterGateway.class);
+    // TODO : introduce CommandLineHelper after fileset registration_with_patterns branch has been merged back
+    // TODO : into trunk.
 
 
     public static void main(String[] args) {
@@ -31,8 +33,7 @@ public class ClusterGateway {
     public static int process(String[] args) {
         JSAPResult config = loadConfig(args);
         if (config == null) return 1;
-        //TODO: load pluginDir and StorageArea from the properties file if they are not specified as parameters
-        String owner = config.userSpecified("owner")? config.getString("owner"): System.getProperty("user.name");
+        String owner = config.userSpecified("owner") ? config.getString("owner") : System.getProperty("user.name");
         //create the reference to the storage area
         FileSetArea storageArea = null;
         try {
@@ -73,7 +74,7 @@ public class ClusterGateway {
         try {
             Submitter submitter = null;
             if (jobArea.isLocal()) {
-                 submitter = new LocalSubmitter(plugins.getRegistry());
+                submitter = new LocalSubmitter(plugins.getRegistry());
             } else {
                 if (!config.userSpecified("queue")) {
                     throw new Exception("No queue has been indicated");
