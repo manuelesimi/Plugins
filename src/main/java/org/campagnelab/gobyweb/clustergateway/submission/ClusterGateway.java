@@ -3,15 +3,17 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 import com.martiansoftware.jsap.JSAP;
 import com.martiansoftware.jsap.JSAPException;
 import com.martiansoftware.jsap.JSAPResult;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.clustergateway.data.InputParameter;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.io.JobArea;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 
 /**
  * Command line interface to the cluster gateway
@@ -93,10 +95,9 @@ public class ClusterGateway {
             if (config.userSpecified("task")) {
                 String token[] = config.getStringArray("task");
                 String id = token[0];
-
+                //toInputParameters(config.getStringArray("parameters"));
                 actions.submitTask(
-                        id,
-                        config.getStringArray("inputFilesets"));
+                        id, toInputParameters(config.getStringArray("parameters")));
             } else if (config.userSpecified("resource")) {
 
                 String token[] = config.getStringArray("resource");
@@ -159,4 +160,30 @@ public class ClusterGateway {
         return config;
     }
 
+    /**
+     * Builds the list of parameters starting from the command line input
+     * @param parameters
+     * @return
+     * @throws Exception
+     */
+    private static  Set<InputParameter> toInputParameters(String[] parameters) throws Exception {
+        Set<InputParameter> parsed = new HashSet<InputParameter>();
+        InputParameter param = null;
+        if (parameters[0].endsWith(":"))
+            param = new InputParameter(StringUtils.strip(parameters[0], ":"));
+        else
+            throw new Exception("Cannot accept tag reference %s with no parameter name associated. Accepted form is: NAME: TAG1 TAG2 NAME2: TAG3 TAG4 TAG5");
+
+        for (int i=1; i<parameters.length; i++) {
+            if (parameters[i].endsWith(":")) {
+                //move to the new parameter
+                parsed.add(param);
+                param = new InputParameter(StringUtils.strip(parameters[i], ":"));
+            } else
+                param.addValues(parameters[i].split(","));
+        }
+        //add the last one
+        parsed.add(param);
+        return Collections.unmodifiableSet(parsed);
+    }
 }

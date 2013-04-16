@@ -9,6 +9,10 @@ import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.Job;
 import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
+import org.campagnelab.gobyweb.filesets.protos.JobDataWriter;
+import org.campagnelab.gobyweb.filesets.registration.ConfigurationList;
+import org.campagnelab.gobyweb.filesets.registration.JobInputSlot;
+import org.campagnelab.gobyweb.filesets.registration.JobOutputSlot;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.ArtifactsProtoBufHelper;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
@@ -18,8 +22,11 @@ import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
-import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConsumerConfig;
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskInputSchema;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -227,6 +234,45 @@ abstract public class AbstractSubmitter implements Submitter {
                     data, /* append */ true);
 
         }
+    }
+
+    /**
+     * Prepare the protocol buffer file to send to the cluster with the job
+     * @param session
+     * @param taskJob
+     */
+    protected File createJobDataPB(Session session, TaskJob taskJob) throws Exception {
+        //create protocol buffer for filesets
+        JobDataWriter jobDataWriter = new JobDataWriter();
+        jobDataWriter.addPushInfo(new File(session.targetAreaReferenceName).getAbsolutePath(),
+                session.targetAreaOwner,
+                new File(session.callerAreaReferenceName).getAbsolutePath(),
+                session.callerAreaOwner);
+        TaskConfig sourceConfig = taskJob.getSourceConfig();
+        //add configurations
+        ConfigurationList configurationList = new ConfigurationList();
+        //TODO: to populate
+        TaskInputSchema inputSchema = sourceConfig.getInputSchema();
+        jobDataWriter.addConfigurations(configurationList);
+
+        //add input/output slots
+        List<JobInputSlot>  inputSlots = new ArrayList<JobInputSlot>();
+        //TODO: to populate
+        jobDataWriter.addInputSlotList(session.targetAreaReferenceName,
+                session.targetAreaOwner,
+                inputSlots);
+        //jobDataWriter.buildFileSetReferenceList(new File(session.targetAreaReferenceName).getAbsolutePath(), session.targetAreaOwner,
+        //        taskJob.getInputFileSets());
+
+        List<JobOutputSlot> outputSlots = new ArrayList<JobOutputSlot>();
+        //TODO: to populate
+        jobDataWriter.addOutputSlotList(
+                session.targetAreaReferenceName,
+                session.targetAreaOwner,
+                outputSlots
+        );
+        return jobDataWriter.serialize();
+
     }
 }
 
