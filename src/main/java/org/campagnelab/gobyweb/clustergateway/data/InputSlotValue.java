@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Input parameter for a Job.
+ * Input slot value for a {@link ParametrizedJob}.
  *
  * @author manuele
  */
-public final class InputParameter {
+public final class InputSlotValue {
 
     private final String name;
 
@@ -19,7 +19,7 @@ public final class InputParameter {
      * Creates a new parameter with the given name
      * @param name
      */
-    public InputParameter(String name) {
+    public InputSlotValue(String name) {
         this.name = name;
     }
 
@@ -44,7 +44,7 @@ public final class InputParameter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        InputParameter that = (InputParameter) o;
+        InputSlotValue that = (InputSlotValue) o;
 
         if (!name.equals(that.name)) return false;
 
@@ -58,7 +58,7 @@ public final class InputParameter {
 
     @Override
     public String toString() {
-        return "InputParameter{" +
+        return "InputSlotValue{" +
                 "name='" + name + '\'' +
                 ", values=" + values +
                 '}';

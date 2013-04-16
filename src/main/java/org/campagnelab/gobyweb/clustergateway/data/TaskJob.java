@@ -7,7 +7,6 @@ import org.campagnelab.gobyweb.plugins.xml.tasks.TaskIO;
 import org.campagnelab.gobyweb.plugins.xml.tasks.TaskInputSchema;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.io.File;
 
@@ -40,16 +39,16 @@ public class TaskJob extends ParametrizedJob {
 
 
     /**
-     * Validates the parameter against the input schema of the task.
-     * The validation checks if the schema defines a parameter with that name.
-     * @param parameter
+     * Validates the input value against the input schema of the task.
+     * The validation checks if the schema defines an input slot with that name.
+     * @param value
      * @return
      */
     @Override
-    protected boolean validateParameter(InputParameter parameter) {
+    protected boolean validateInputSlotValue(InputSlotValue value) {
         TaskInputSchema inputSchema = sourceConfig.getInputSchema();
-        for (TaskIO schemaParameter : inputSchema.getParameters()) {
-           if (schemaParameter.getName().equalsIgnoreCase(parameter.getName()))
+        for (TaskIO schemaInputSlot : inputSchema.getInputSlots()) {
+           if (schemaInputSlot.getName().equalsIgnoreCase(value.getName()))
                return true;
         }
         return false;

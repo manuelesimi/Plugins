@@ -4,50 +4,58 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A Job with input parameters.
+ * A Job with input slots.
  *
  * @author manuele
  */
 public abstract class ParametrizedJob extends Job {
 
-    Set<InputParameter> parameters = new HashSet<InputParameter>();
+    Set<InputSlotValue> parameters = new HashSet<InputSlotValue>();
 
     /**
-     * Adds a new parameter to the job
-     * @param parameter
-     * @throws InvalidParameterException if the parameter is not valid
+     * Adds a new actual value for an input slot
+     * @param value
+     * @throws org.campagnelab.gobyweb.clustergateway.data.ParametrizedJob.InvalidInputSlotValueException if the parameter is not valid
      */
-    public void addParameter(InputParameter parameter) throws InvalidParameterException{
-      if (!(parameter.getValues().size()>0))
-          throw new InvalidParameterException(String.format("Parameter %s has no value(s) " + parameter.toString()));
-      else if (! validateParameter(parameter))
-          throw new InvalidParameterException(String.format("Invalid parameter %s ", parameter.toString()));
+    public void addInputSlotValue(InputSlotValue value) throws InvalidInputSlotValueException {
+      if (!(value.getValues().size()>0))
+          throw new InvalidInputSlotValueException(String.format("Parameter %s has no value(s) " + value.toString()));
+      else if (! validateInputSlotValue(value))
+          throw new InvalidInputSlotValueException(String.format("Invalid parameter %s ", value.toString()));
       else
-          parameters.add(parameter);
+          parameters.add(value);
     }
 
     /**
-     * Adds new parameters to the job.
-     * @param parameters
-     * @throws InvalidParameterException if any f the parameters is not valid
+     * Adds new actual values for the input slots.
+     * @param values
+     * @throws org.campagnelab.gobyweb.clustergateway.data.ParametrizedJob.InvalidInputSlotValueException if any of the values is not valid
      */
-    public void addParameters(Set<InputParameter> parameters) throws InvalidParameterException{
-        for (InputParameter parameter : parameters)
-            this.addParameter(parameter);
-
+    public void addInputSlotValues(Set<InputSlotValue> values) throws InvalidInputSlotValueException {
+        for (InputSlotValue value : values)
+            this.addInputSlotValue(value);
     }
 
     /**
-     * Validates the parameter.
      *
-     * @param parameter
-     * @return true if the parameter was accepted, false otherwise
+     * @return
      */
-    protected abstract boolean validateParameter(InputParameter parameter);
+    public Set<InputSlotValue> getParameters() {
+        return parameters;
+    }
 
-    public static class InvalidParameterException extends Exception {
 
-        public InvalidParameterException(String message) {
+    /**
+     * Validates the input slot value according to the Job configuration.
+     *
+     * @param value
+     * @return true if the value is accepted, false otherwise
+     */
+    protected abstract boolean validateInputSlotValue(InputSlotValue value);
+
+    public static class InvalidInputSlotValueException extends Exception {
+
+        public InvalidInputSlotValueException(String message) {
             super(message);
         }
     }
