@@ -46,40 +46,36 @@ public class TaskConfigTest {
         }
 
         TaskInputSchema inputSchema = new TaskInputSchema();
+
         TaskIO taskIOIN = new TaskIO();
         taskIOIN.name = "READS_FILE";
-
         TaskIO.IOFileSetRef inFileSetRef =  new TaskIO.IOFileSetRef();
         inFileSetRef.id = "COMPACT_READS";
         inFileSetRef.versionExactly = "1.0";
         inFileSetRef.maxOccurs = "1";
         inFileSetRef.minOccurs = "1";
-        taskIOIN.fileSetRefs.add(inFileSetRef);
-        TaskIO.IOFileSetRef inFileSetRef2 =  new TaskIO.IOFileSetRef();
-        inFileSetRef2.id = "COMPACT_READS2";
-        inFileSetRef2.versionAtMost = "2.0";
-        inFileSetRef2.maxOccurs = "1";
-        inFileSetRef2.minOccurs = "1";
-        taskIOIN.fileSetRefs.add(inFileSetRef2);
+        taskIOIN.type = inFileSetRef;
         inputSchema.inputSlots.add(taskIOIN);
         TaskOutputSchema outputSchema = new TaskOutputSchema();
-        TaskIO taskIO =  new TaskIO();
-        taskIO.name = "TSV_FILE";
+
+        TaskIO taskIOOUT =  new TaskIO();
+        taskIOOUT.name = "TSV_FILE";
         TaskIO.IOFileSetRef outFileSetRef = new TaskIO.IOFileSetRef();
         outFileSetRef.id = "TSV";
         outFileSetRef.versionExactly = "1.0";
         outFileSetRef.maxOccurs = "1";
         outFileSetRef.minOccurs = "1";
-        taskIO.fileSetRefs.add(outFileSetRef);
-        outputSchema.outputSlots.add(taskIO);
-        TaskIO taskIO2 =  new TaskIO();
+        taskIOOUT.type = outFileSetRef;
+        outputSchema.outputSlots.add(taskIOOUT);
+
+        TaskIO taskIOOUT2 =  new TaskIO();
         TaskIO.IOFileSetRef outFileSetRef2 = new TaskIO.IOFileSetRef();
         outFileSetRef2.id = "TSV_second_format  ";
         outFileSetRef2.versionExactly = "1.5";
         outFileSetRef2.maxOccurs = "unbounded";
         outFileSetRef2.minOccurs = "1";
-        taskIO2.fileSetRefs.add(outFileSetRef2);
-        outputSchema.outputSlots.add(taskIO2);
+        taskIOOUT2.type = outFileSetRef2;
+        outputSchema.outputSlots.add(taskIOOUT2);
 
         TaskConfig task = new TaskConfig();
         task.setInputSchema(inputSchema);
@@ -122,14 +118,12 @@ public class TaskConfigTest {
             e.printStackTrace();
             fail("Failed at unmarshalling FileSetConfig");
         }
-        assertNotNull("deserializedTask cannot be null", deserializedTask);
+        assertNotNull("DeserializedTask cannot be null", deserializedTask);
         assertEquals("Task ID is not the one expected", "RNASELECT_TASK", deserializedTask.getId());
         assertNotNull("InputSchema cannot be null", deserializedTask.inputSchema);
         assertNotNull("OutputSchema cannot be null", deserializedTask.outputSchema);
-        assertEquals("There must be only 1 input parameter", 1, deserializedTask.inputSchema.inputSlots.size());
-        assertEquals("Input parameter must be a list of 2 values", 2, deserializedTask.inputSchema.getInputSlots().get(0).fileSetRefs.size());
-
-        assertEquals("There must be 2 returned values", 2, deserializedTask.outputSchema.getOutputSlots().size());
+        assertEquals("There must be only 1 input slot", 1, deserializedTask.inputSchema.inputSlots.size());
+        assertEquals("There must be 2 output slots", 2, deserializedTask.outputSchema.getOutputSlots().size());
 
     }
 }
