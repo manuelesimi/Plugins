@@ -28,9 +28,6 @@ public class TaskConfig extends ExecutableConfig {
 
     protected TaskConfig(String id) { this.setId(id);}
 
-
-
-
     @Override
     public String toString() {
         return String.format("%s/%s (%s)",this.getHumanReadableConfigType(), this.name, this.version);
@@ -72,19 +69,13 @@ public class TaskConfig extends ExecutableConfig {
     public void validate(List<String> errors) {
         super.validate(errors);
         //check if input fileset references are correct
-        for (TaskIO parameter : inputSchema.parameters) {
-            for (TaskIO.IOFileSetRef fileSetRef : parameter.fileSetRefs)
-                validateFileSetReference(fileSetRef,errors);
-        }
+        for (TaskIO parameter : inputSchema.getInputSlots())
+                validateFileSetReference(parameter.geType(),errors);
 
         //check if output fileset references are correct
-        for (TaskIO parameter : outputSchema.returnedValues) {
-            if (parameter.fileSetRefs.size() > 1) {
-                errors.add(String.format("Invalid returned value %s defined in the output schema: there must be only one fileset reference in the returned values",
-                    parameter.name));
-            }
-            validateFileSetReference(parameter.fileSetRefs.get(0),errors);
-        }
+        for (TaskIO parameter : outputSchema.getOutputSlots())
+            validateFileSetReference(parameter.geType(),errors);
+
 
     }
 
