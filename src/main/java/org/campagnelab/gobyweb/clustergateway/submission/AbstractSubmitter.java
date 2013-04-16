@@ -22,6 +22,8 @@ import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskInputSchema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -246,10 +248,11 @@ abstract public class AbstractSubmitter implements Submitter {
                 session.targetAreaOwner,
                 new File(session.callerAreaReferenceName).getAbsolutePath(),
                 session.callerAreaOwner);
-
+        TaskConfig sourceConfig = taskJob.getSourceConfig();
         //add configurations
         ConfigurationList configurationList = new ConfigurationList();
         //TODO: to populate
+        TaskInputSchema inputSchema = sourceConfig.getInputSchema();
         jobDataWriter.addConfigurations(configurationList);
 
         //add input/output slots

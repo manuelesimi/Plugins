@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
- * Describes a task that can be submitted on the cluster.
+ * Configuration of a Task plugin.
  * @author manuele
  */
 @XmlRootElement
@@ -23,12 +23,9 @@ public class TaskConfig extends ExecutableConfig {
     @XmlElement(name = "outputSchema")
     protected TaskOutputSchema outputSchema;
 
-
     protected TaskConfig() {}
 
     protected TaskConfig(String id) { this.setId(id);}
-
-
 
 
     @Override
@@ -54,6 +51,13 @@ public class TaskConfig extends ExecutableConfig {
         this.outputSchema = outputSchema;
     }
 
+    public TaskInputSchema getInputSchema() {
+        return this.inputSchema;
+    }
+
+    public TaskOutputSchema getOutputSchema() {
+        return  this.outputSchema;
+    }
     /**
      * Validates the configuration. Call this method after unmarshalling a config to check that the configuration
      * is semantically valid. Returns null when no errors are found in the configuration, or a list of errors encountered.
@@ -96,4 +100,5 @@ public class TaskConfig extends ExecutableConfig {
         }
         return true;
     }
+
 }
