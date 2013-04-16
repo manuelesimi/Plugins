@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
- * Configuration of a Task plugin.
+ * Describes a task that can be submitted on the cluster.
  * @author manuele
  */
 @XmlRootElement
@@ -23,9 +23,12 @@ public class TaskConfig extends ExecutableConfig {
     @XmlElement(name = "outputSchema")
     protected TaskOutputSchema outputSchema;
 
+
     protected TaskConfig() {}
 
     protected TaskConfig(String id) { this.setId(id);}
+
+
 
 
     @Override
@@ -100,5 +103,4 @@ public class TaskConfig extends ExecutableConfig {
         }
         return true;
     }
-
 }

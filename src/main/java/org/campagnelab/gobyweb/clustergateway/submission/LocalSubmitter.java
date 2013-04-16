@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
+import org.campagnelab.gobyweb.filesets.protos.ReferenceInputListWriter;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
@@ -11,9 +12,10 @@ import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 import java.io.*;
 import java.net.URL;
+import java.util.Scanner;
 
 /**
- * Submitter for local job executions.
+ * Submitter for local task executions.
  *
  * @author manuele
  */

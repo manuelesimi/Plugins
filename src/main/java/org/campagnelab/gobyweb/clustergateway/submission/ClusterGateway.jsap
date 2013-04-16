@@ -96,16 +96,6 @@
             <help>The user that will own the task files and the produced filesets</help>
         </flaggedOption>
 
-        <qualifiedSwitch>
-            <id>inputFilesets</id>
-            <shortFlag>i</shortFlag>
-            <longFlag>input-filesets</longFlag>
-            <list>true</list>
-            <listSeparator>,</listSeparator>
-            <required>optional</required>
-            <help>Tags of input filesets</help>
-        </qualifiedSwitch>
-
         <switch>
             <id>help</id>
             <shortFlag>h</shortFlag>
@@ -156,5 +146,13 @@
             <longFlag>repository</longFlag>
             <help>The directory that holds the artifact repository on the deployment machine.</help>
         </flaggedOption>
+
+        <unflaggedOption>
+            <id>parameters</id>
+            <required>optional</required>
+            <greedy>true</greedy>
+            <help>List of input parameters. Each parameter has to refer one or more FileSet instances.
+             The list must be in the form: PARAMETER_NAME1: TAG1, TAG2, TAGN PARAMETER_NAME2: TAGX, TAGY</help>
+        </unflaggedOption>
     </parameters>
 </jsap>
