@@ -66,7 +66,7 @@ public class ClusterGatewayCommandLineTest {
 
 
     private static String[] buildFileRegistrationArgs(String filenames, String sourceDir) {
-        ("--fileset-area ${resultsDir}/filesets "+
+        ("--fileset-area ${new File(resultsDir).getAbsolutePath()}/filesets "+
                 "--plugins-dir test-data/root-for-rnaselect " +
                 //"--owner ${owner} "+
                 "--source-dir ${sourceDir} " +
@@ -76,8 +76,8 @@ public class ClusterGatewayCommandLineTest {
 
     }
     private static String[] buildClusterGatewayArgs(String additionalCommands, String pluginRoot=gatewayPluginRoot) {
-        ("--job-area ${resultsDir}/GOBYWEB_SGE_JOBS " +
-                "--fileset-area ${resultsDir}/filesets " +
+        ("--job-area ${new File(resultsDir).getAbsolutePath()}/GOBYWEB_SGE_JOBS " +
+                "--fileset-area ${new File(resultsDir).getAbsolutePath()}/filesets " +
                 "--plugins-dir ${pluginRoot} " +
                 //"--owner ${owner} " +
                 "--env-script ${envScript} "+
