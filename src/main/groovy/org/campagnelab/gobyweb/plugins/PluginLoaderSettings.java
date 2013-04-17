@@ -25,7 +25,7 @@ public class PluginLoaderSettings {
             "/plugins/resources",   // note that we define resources first, before any plugin that may require them.
             "/plugins/aligners",
             "/plugins/analyses",
-            "/plugins/fileSets", // fileSets must be loaded before tasks, as they may refer them
+            "/plugins/filesets", // fileSets must be loaded before tasks, as they may refer them
             "/plugins/tasks"
     };
 
