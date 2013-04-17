@@ -37,14 +37,14 @@ public class FileSetRegistration {
         List<String> returned_values = new ArrayList<String>();
         JSAPResult config = loadConfig(args);
         if (config == null)
-            throw new Exception();
+            System.exit(1);
         //TODO: load pluginDir and StorageArea from the properties file if they are not specified as parameters
 
         //create the reference to the storage area
         FileSetArea storageArea = null;
         try {
             storageArea = AreaFactory.createFileSetArea(
-                    config.getString("fileSetArea"),
+                    config.getString("fileset-area"),
                     config.userSpecified("owner")? config.getString("owner"): System.getProperty("user.name"));
         } catch (IOException ioe) {
             throw ioe;
@@ -56,7 +56,7 @@ public class FileSetRegistration {
         try {
            // TODO: introduce a PluginHelper to do load and validate plugins. This part is common with ClusterGateway
             plugins = new Plugins();
-            plugins.addServerConf(config.getFile("pluginDir").getAbsolutePath());
+            plugins.addServerConf(config.getFile("plugins-dir").getAbsolutePath());
             plugins.setWebServerHostname("localhost");
             plugins.reload();
             if (plugins.somePluginReportedErrors()) {
@@ -71,9 +71,9 @@ public class FileSetRegistration {
         try {
             Actions actions = new Actions(storageArea, plugins.getRegistry());
             if (config.getString("action").equalsIgnoreCase("register")) {
-                returned_values = actions.register(config.getStringArray("entries"),config.getFile("sourceDir"));
+                returned_values = actions.register(config.getStringArray("entries"),config.getFile("source-dir"));
                 if (returned_values.size() > 0 ) {
-                    logger.info("Fileset instance(s) successfully registered with the following tag(s): ");
+                    logger.info(String.format("%d Fileset instance(s) successfully registered with the following tag(s): ", returned_values.size()));
                     logger.info(Arrays.toString(returned_values.toArray()));
                 }
             } else {
@@ -132,6 +132,7 @@ public class FileSetRegistration {
     }
 
     private static boolean hasActionError(JSAPResult config, List<String> errors) {
+
         if (config.getString("action").equalsIgnoreCase("register"))
             return hasRegisterError(config, errors);
 
@@ -174,7 +175,7 @@ public class FileSetRegistration {
             errors.add("Missing --id parameter. Id must match the id reported in the configuration of the fileset.");
 
         if (config.getStringArray("entries").length < 1)
-            errors.add("Missing entry list at the end of the input command. At least one entry must be registered for the fileset. An entry must be in the form ENTRY_NAME:ABSOLUTE PATH");
+            errors.add("Missing the list of fileset entries to register. At least one entry must be registered.");
 
         return errors.size() > 0 ? true : false;
     }
