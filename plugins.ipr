@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AntConfiguration">
-    <defaultAnt bundledAnt="true" />
-  </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <excludeFromCompile>
@@ -50,6 +47,11 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+  <component name="GroovyCompilerProjectConfiguration">
+    <excludes>
+      <file url="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
+    </excludes>
+  </component>
   <component name="IdProvider" IDEtalkID="B10C822089469D4C4FCA986F20F8EDCE" />
   <component name="InspectionProjectProfileManager">
     <profiles>
@@ -75,11 +77,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../artifacts/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/../artifacts/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="Palette2">
@@ -240,6 +237,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/colt/colt/1.2.0/colt-1.2.0-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: com.esotericsoftware.wildcard:wildcard:1.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/esotericsoftware/wildcard/wildcard/1.0/wildcard-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/esotericsoftware/wildcard/wildcard/1.0/wildcard-1.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/esotericsoftware/wildcard/wildcard/1.0/wildcard-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: com.google.guava:guava-annotations:r03">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava-annotations/r03/guava-annotations-r03.jar!/" />
@@ -284,17 +292,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/2.4.1/protobuf-java-2.4.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.google.wildcard:wildcard:1.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/wildcard/wildcard/1.0/wildcard-1.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/wildcard/wildcard/1.0/wildcard-1.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/wildcard/wildcard/1.0/wildcard-1.0-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: com.ibm.icu:icu4j:3.4.4">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/com/ibm/icu/icu4j/3.4.4/icu4j-3.4.4.jar!/" />
@@ -317,15 +314,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/com/martiansoftware/jsap/2.1/jsap-2.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.thoughtworks.xstream:xstream:1.4.4">
+    <library name="Maven: com.thoughtworks.xstream:xstream:1.2.2">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.4.4/xstream-1.4.4.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.2.2/xstream-1.2.2.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.4.4/xstream-1.4.4-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.2.2/xstream-1.2.2-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.4.4/xstream-1.4.4-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.2.2/xstream-1.2.2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: commons-beanutils:commons-beanutils:1.8.3">
@@ -427,15 +424,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-stats/1.0.0/icb-stats-1.0.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: edu.cornell.med.icb:icb-util:1.1.0-SNAPSHOT">
+    <library name="Maven: edu.cornell.med.icb:icb-util:1.1.0">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.0-SNAPSHOT/icb-util-1.1.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.0/icb-util-1.1.0.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.0-SNAPSHOT/icb-util-1.1.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.0/icb-util-1.1.0-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.0-SNAPSHOT/icb-util-1.1.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.0/icb-util-1.1.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: it.unimi.dsi:dsiutils:2.0.7">
@@ -517,13 +514,13 @@
     </library>
     <library name="Maven: org.campagnelab.gobyweb:icb-groovy-support:2.0.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-20130118.202112-1.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-20130118.202112-1-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-20130118.202112-1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:option-validation-language:2.1.0">
@@ -614,26 +611,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/scalatest/scalatest_2.9.2/1.6.1/scalatest_2.9.2-1.6.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: xmlpull:xmlpull:1.1.3.1">
+    <library name="Maven: xpp3:xpp3_min:1.1.3.4.O">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/xpp3/xpp3_min/1.1.3.4.O/xpp3_min-1.1.3.4.O.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/xpp3/xpp3_min/1.1.3.4.O/xpp3_min-1.1.3.4.O-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: xpp3:xpp3_min:1.1.4c">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/xpp3/xpp3_min/1.1.3.4.O/xpp3_min-1.1.3.4.O-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

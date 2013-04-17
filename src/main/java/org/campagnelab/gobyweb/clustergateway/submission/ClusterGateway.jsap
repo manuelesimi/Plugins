@@ -2,7 +2,7 @@
     <parameters>
 
         <flaggedOption>
-            <id>pluginDir</id>
+            <id>plugins-dir</id>
             <stringParser>
                 <classname>FileStringParser</classname>
                 <properties>
@@ -23,11 +23,11 @@
         </flaggedOption>
 
         <flaggedOption>
-            <id>fileSetArea</id>
+            <id>fileset-area</id>
             <stringParser>
                 <classname>StringStringParser</classname>
             </stringParser>
-            <required>optional</required>
+            <required>true</required>
             <shortFlag>f</shortFlag>
             <longFlag>fileset-area</longFlag>
             <help>The directory where filesets are kept. Can be a local folder or a remote folder in the form of
@@ -36,11 +36,11 @@
         </flaggedOption>
 
         <flaggedOption>
-            <id>jobArea</id>
+            <id>job-area</id>
             <stringParser>
                 <classname>StringStringParser</classname>
             </stringParser>
-            <required>optional</required>
+            <required>true</required>
             <shortFlag>j</shortFlag>
             <longFlag>job-area</longFlag>
             <help>The directory where task files are placed for execution. Can be a local folder or a remote folder in
@@ -54,7 +54,7 @@
             <stringParser>
                 <classname>StringStringParser</classname>
             </stringParser>
-            <required>optional</required>
+            <required>true</required>
             <shortFlag>q</shortFlag>
             <longFlag>queue</longFlag>
             <help>The cluster queue to use for remote submissions</help>
@@ -93,7 +93,7 @@
             <required>false</required>
             <shortFlag>o</shortFlag>
             <longFlag>owner</longFlag>
-            <help>The user that will own the task files and the produced filesets</help>
+            <help>The user that will own the task files and the produced filesets. If not specified, the current logged user is used.</help>
         </flaggedOption>
 
         <switch>
@@ -123,6 +123,7 @@
                 plugin executes in the runtime environment.
             </help>
         </flaggedOption>
+
         <flaggedOption>
             <id>artifact-server</id>
             <stringParser>
@@ -133,6 +134,7 @@
             <longFlag>artifact-server</longFlag>
             <help>The server where to the artifacts installation scripts are located.</help>
         </flaggedOption>
+
         <flaggedOption>
             <id>repository</id>
             <stringParser>

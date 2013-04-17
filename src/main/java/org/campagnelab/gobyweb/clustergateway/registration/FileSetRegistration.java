@@ -73,7 +73,7 @@ public class FileSetRegistration {
             if (config.getString("action").equalsIgnoreCase("register")) {
                 returned_values = actions.register(config.getStringArray("entries"),config.getFile("source-dir"));
                 if (returned_values.size() > 0 ) {
-                    logger.info(String.format("%d Fileset instance(s) successfully registered with the following tag(s): ", returned_values.size()));
+                    logger.info(String.format("%d fileset instances have been successfully registered with the following tags: ", returned_values.size()));
                     logger.info(Arrays.toString(returned_values.toArray()));
                 }
             } else {

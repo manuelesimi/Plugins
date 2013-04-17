@@ -40,7 +40,7 @@ public class ClusterGateway {
         FileSetArea storageArea = null;
         try {
             storageArea = AreaFactory.createFileSetArea(
-                    config.getString("fileSetArea"), owner);
+                    config.getString("fileset-area"), owner);
         } catch (IOException e) {
             logger.error(e.getMessage());
             return 1;
@@ -51,7 +51,7 @@ public class ClusterGateway {
         JobArea jobArea = null;
         try {
             jobArea = AreaFactory.createJobArea(
-                    config.getString("jobArea"), owner);
+                    config.getString("job-area"), owner);
         } catch (IOException ioe) {
             logger.error(ioe);
             return 1;
@@ -60,7 +60,7 @@ public class ClusterGateway {
         Plugins plugins = null;
         try {
             plugins = new Plugins(false);
-            plugins.addServerConf(config.getFile("pluginDir").getAbsolutePath());
+            plugins.addServerConf(config.getFile("plugins-dir").getAbsolutePath());
             plugins.setWebServerHostname("localhost");
             plugins.reload();
             if (plugins.somePluginReportedErrors()) {
