@@ -96,7 +96,7 @@ public class ClusterGateway {
                 String token[] = config.getStringArray("job");
                 String id = token[0];
                 actions.submitTask(
-                        id, toInputParameters(config.getStringArray("parameters")));
+                        id, toInputParameters(config.getStringArray("slots")));
             } else if (config.userSpecified("resource")) {
 
                 String token[] = config.getStringArray("resource");

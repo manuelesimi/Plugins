@@ -148,11 +148,12 @@
         </flaggedOption>
 
         <unflaggedOption>
-            <id>parameters</id>
+            <id>slots</id>
             <required>optional</required>
             <greedy>true</greedy>
-            <help>List of input parameters. Each parameter has to refer one or more FileSet instances.
-             The list must be in the form: PARAMETER_NAME1: TAG1, TAG2, TAGN PARAMETER_NAME2: TAGX, TAGY</help>
+            <help>List of input slots.
+             The list must be in the form: INPUT_SLOT_NAME1: TAG1, TAG2, TAGN PARAMETER_NAME2: TAGX, TAGY.
+             Tags must refer registered FileSet instances.</help>
         </unflaggedOption>
     </parameters>
 </jsap>
