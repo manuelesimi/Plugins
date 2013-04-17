@@ -57,7 +57,7 @@ public class ClusterGatewayCommandLineTest {
        assertEquals(4, tags.size());
 
        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(
-               "--task RNASELECT_TASK",
+               "--job RNASELECT_TASK",
                "test-data/root-for-rnaselect INPUT_READS: ${StringUtils.join(tags, ",")}")));
 
     }

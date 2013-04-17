@@ -92,10 +92,9 @@ public class ClusterGateway {
                 submitter.setEnvironmentScript(config.getFile("env-script").getAbsolutePath());
             }
 
-            if (config.userSpecified("task")) {
-                String token[] = config.getStringArray("task");
+            if (config.userSpecified("job")) {
+                String token[] = config.getStringArray("job");
                 String id = token[0];
-                //toInputParameters(config.getStringArray("parameters"));
                 actions.submitTask(
                         id, toInputParameters(config.getStringArray("parameters")));
             } else if (config.userSpecified("resource")) {

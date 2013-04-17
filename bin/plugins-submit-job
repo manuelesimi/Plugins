@@ -11,7 +11,7 @@
 # --queue rascals.q
 # --input-filesets:TESTTAG,TESTTAG2,TESTTAG3
 # --owner plugis-sdk
-# --task-id RNASELECT_TASK
+# --job RNASELECT_TASK
 WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [[ $OSTYPE == "cygwin" ]]; then
     WORKING_DIR=`cygpath -m "${WORKING_DIR}"`
