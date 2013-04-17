@@ -45,8 +45,8 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         //in the local submitter we directly access to the job area folder to avoid creating and then copying local files
         final File taskLocalDir = new File(jobArea.getBasename(taskJob.getTag()));
 
+        //prepare the protocol buffer with the job data
         File pbFile = this.createJobDataPB(session, taskJob);
-
         FileUtils.copyFileToDirectory(pbFile, taskLocalDir);
 
         //get the wrapper script

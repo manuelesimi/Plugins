@@ -49,13 +49,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         //create the temp dir with the submission files to move on the cluster
         File tempDir = Files.createTempDir();
 
-        //create protocol buffer for filesets
-       /* ReferenceInputListWriter inputList = new ReferenceInputListWriter();
-        inputList.setPushInfo(session.targetAreaReferenceName,
-                session.targetAreaOwner, session.callerAreaReferenceName, session.callerAreaOwner);
-        inputList.buildFileSetReferenceList(session.targetAreaReferenceName, session.targetAreaOwner,
-                taskJob.getInputFileSets());
-                                          */
+        //prepare the protocol buffer with the job data
         File pbfile = this.createJobDataPB(session,taskJob);
         Files.copy(pbfile, new File(tempDir, pbfile.getName()));
 
