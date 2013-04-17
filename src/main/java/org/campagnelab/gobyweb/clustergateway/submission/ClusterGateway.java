@@ -36,16 +36,6 @@ public class ClusterGateway {
         JSAPResult config = loadConfig(args);
         if (config == null) return 1;
         String owner = config.userSpecified("owner") ? config.getString("owner") : System.getProperty("user.name");
-        //create the reference to the storage area
-        FileSetArea storageArea = null;
-        try {
-            storageArea = AreaFactory.createFileSetArea(
-                    config.getString("fileset-area"), owner);
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-            return 1;
-        }
-
 
         //create the reference to the job area
         JobArea jobArea = null;
@@ -83,7 +73,7 @@ public class ClusterGateway {
                 }
                 submitter = new RemoteSubmitter(plugins.getRegistry(), config.getString("queue"));
             }
-            Actions actions = new Actions(submitter, storageArea, jobArea, plugins.getRegistry());
+            Actions actions = new Actions(submitter, config.getString("fileset-area"), jobArea, plugins.getRegistry());
 
             assert actions != null : "action cannot be null.";
             submitter.setSubmissionHostname(config.getString("artifact-server"));

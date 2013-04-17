@@ -28,7 +28,7 @@ final class Actions {
 
     private Submitter submitter;
 
-    private FileSetArea fileSetArea;
+    private String fileSetAreaReference;
 
     private JobArea jobArea;
 
@@ -48,14 +48,14 @@ final class Actions {
     /**
      * Creates a new Actions object.
      *
-     * @param fileSetArea
+     * @param fileSetAreaReference
      * @param jobArea
      * @param registry
      * @throws IOException if the creation of the folder where to store job results fails
      */
-    protected Actions(Submitter submitter, FileSetArea fileSetArea, JobArea jobArea, PluginRegistry registry) throws IOException {
+    protected Actions(Submitter submitter, String fileSetAreaReference, JobArea jobArea, PluginRegistry registry) throws IOException {
         this.registry = registry;
-        this.fileSetArea = fileSetArea;
+        this.fileSetAreaReference = fileSetAreaReference;
         this.jobArea = jobArea;
         this.submitter=submitter;
         if (!returnedJobFiles.exists())
@@ -82,8 +82,8 @@ final class Actions {
         //prepare the session for the submission
         Session session = submitter.newSession();
         prepareCallerSession(session, returnedJobFiles);
-        session.targetAreaReferenceName = fileSetArea.getReferenceName();
-        session.targetAreaOwner = fileSetArea.getOwner();
+        session.targetAreaReferenceName = fileSetAreaReference;
+        session.targetAreaOwner = jobArea.getOwner();
 
         //submit the task
         submitter.submitTask(jobArea, session, taskJob);
@@ -104,8 +104,8 @@ final class Actions {
         //prepare the session for the submission
         Session session = submitter.newSession();
         prepareCallerSession(session, returnedJobFiles);
-        session.targetAreaReferenceName = fileSetArea.getReferenceName();
-        session.targetAreaOwner = fileSetArea.getOwner();
+        session.targetAreaReferenceName = fileSetAreaReference;
+        session.targetAreaOwner = jobArea.getOwner();
 
         //submit the resourceInstance
         submitter.submitResourceInstall(jobArea, session, resourceInstance);
@@ -119,6 +119,7 @@ final class Actions {
      * @throws Exception
      */
     private void prepareCallerSession(Session session, File resultsDir) throws Exception {
+        FileUtils.forceMkdir(resultsDir);
         if (jobArea.isLocal()) {
             //the job is executed locally, it just needs a local reference to the results directory
             session.callerAreaReferenceName = resultsDir.getAbsolutePath();
