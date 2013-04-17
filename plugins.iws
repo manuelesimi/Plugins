@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetRegistration.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetRegistration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Adjusting option names and constraints in the ClusterGateway interface.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/filesets.jar" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE/filesets.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -29,7 +25,7 @@
     <file path="$PROJECT_DIR$/src/main/plugins/xml/AlignerConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358052917821" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/grails-app/conf/BuildConfig.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358092685016" ignored="false" />
     <file path="/BuildConfig.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358054714635" ignored="false" />
-    <file path="/Dummy.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366216491327" ignored="false" />
+    <file path="/Dummy.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366223628811" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/src/java/org/campagnelab/gobyweb/oldplugins/xml/WriteTemplates.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358053501671" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/grails-app/domain/edu/cornell/med/icb/nga/datamodel/DiffExp.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358091428801" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/test/unit/org/campagnelab/gobyweb/oldplugins/PluginsTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358053501671" ignored="false" />
@@ -357,7 +353,7 @@
     <file path="/cluster_gateway.properties" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363625578709" ignored="false" />
     <file path="/FilesSetRegistration.jsap" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362781274044" ignored="false" />
     <file path="/FileSetRegistration.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366215977776" ignored="false" />
-    <file path="/Actions.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363984093215" ignored="false" />
+    <file path="/Actions.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366222685663" ignored="false" />
     <file path="/StorageArea.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363191363811" ignored="false" />
     <file path="/FileSetRegistration.jsap" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366215872624" ignored="false" />
     <file path="/registerFileSet.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363621615991" ignored="false" />
@@ -408,7 +404,7 @@
     <file path="/AutoOptionsFileHelper.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363882489704" ignored="false" />
     <file path="/ArtifactsProtoBufHelper.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363960620484" ignored="false" />
     <file path="/TaskLocalSubmission.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366140974849" ignored="false" />
-    <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/io/VirtualArea.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366212020838" ignored="false" />
+    <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/io/VirtualArea.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366219537061" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/io/FileSetArea.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366142721045" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/io/AreaFactory.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366142721046" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/io/protocols/SSH.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363976167104" ignored="false" />
@@ -435,7 +431,7 @@
     <file path="$PROJECT_DIR$/../../campagnelab/OptionValidationLanguage/.idea/workspace.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1364992012404" ignored="false" />
     <file path="$PROJECT_DIR$/../../GobyWeb/Software/trunk/gobyweb_home/conf/plugins/resources/MUTECT_HOMO_SAPIENS_DATA/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1365780027488" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/test/java/org/campagnelab/gobyweb/filesets/ActionsTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366212431191" ignored="false" />
-    <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/filesets/ActionsMapper.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366213248260" ignored="false" />
+    <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/filesets/ActionsMapper.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366223339491" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/test/java/org/campagnelab/gobyweb/filesets/protos/JobDataWriterTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366213415813" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/test/java/org/campagnelab/gobyweb/filesets/HasFileSetActionTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366212431191" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/test-data/LOCAL_FILESETS_AREA/junit/CKJYMAO/.metadata/metadata.pb" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1365786377816" ignored="false" />
@@ -454,10 +450,10 @@
     <file path="/FileSetInstanceActions.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366059347026" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/filesets/registration/InputEntry.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366212431191" ignored="false" />
     <file path="/InputEntry.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366042828879" ignored="false" />
-    <file path="/ActionsMapper.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366212492709" ignored="false" />
-    <file path="$PROJECT_DIR$/../filesets-git/target/generated-sources/org/campagnelab/gobyweb/filesets/protos/FileSetMetadata.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366213763923" ignored="false" />
+    <file path="/ActionsMapper.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366223300828" ignored="false" />
+    <file path="$PROJECT_DIR$/../filesets-git/target/generated-sources/org/campagnelab/gobyweb/filesets/protos/FileSetMetadata.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366223358400" ignored="false" />
     <file path="/FileSetManagerCommandLineTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366045560149" ignored="false" />
-    <file path="$PROJECT_DIR$/../filesets-git/target/generated-sources/org/campagnelab/gobyweb/filesets/protos/JobData.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366213763923" ignored="false" />
+    <file path="$PROJECT_DIR$/../filesets-git/target/generated-sources/org/campagnelab/gobyweb/filesets/protos/JobData.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366223358400" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/test/java/org/campagnelab/gobyweb/filesets/FetchActionTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366212431191" ignored="false" />
     <file path="$PROJECT_DIR$/../../GobyWeb/Software/trunk/gobyweb_home/conf/plugins/analyses/MUTECT_SOMATIC_MUTATIONS/script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366055414385" ignored="false" />
     <file path="$PROJECT_DIR$/../../GobyWeb/Software/trunk/gobyweb_home/conf/plugins/analyses/MUTECT_SOMATIC_MUTATIONS/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366055405829" ignored="false" />
@@ -498,12 +494,17 @@
     <file path="$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.0/serverside-dependencies-1.0.0-full.jar!/META-INF/maven/log4j/log4j/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366142835351" ignored="false" />
     <file path="$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.0/serverside-dependencies-1.0.0-full.jar!/META-INF/maven/com.google.guava/guava-annotations/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366142835351" ignored="false" />
     <file path="$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.0/serverside-dependencies-1.0.0-full.jar!/META-INF/maven/commons-net/commons-net/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366142835351" ignored="false" />
-    <file path="$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-SNAPSHOT.jar!/org/campagnelab/gobyweb/filesets/registration/ConfigMatcher.class" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366213763924" ignored="false" />
+    <file path="$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-SNAPSHOT.jar!/org/campagnelab/gobyweb/filesets/registration/ConfigMatcher.class" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366220038259" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/test-results/serialized-files/jobDataTest.pb" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366213215080" ignored="false" />
     <file path="/JobDataReader.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366209450836" ignored="false" />
     <file path="/JobDataWriter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366212587350" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/filesets-git.iml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366211038777" ignored="false" />
     <file path="/JobDataWriterTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366213056971" ignored="false" />
+    <file path="$PROJECT_DIR$/../filesets-git/src/test/java/org/campagnelab/gobyweb/io/LocalFileSetAreaTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366218967748" ignored="false" />
+    <file path="$PROJECT_DIR$/../filesets-git/src/test/java/org/campagnelab/gobyweb/io/RemoteFileSetAreaTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366220011040" ignored="false" />
+    <file path="/LocalFileSetAreaTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366218967748" ignored="false" />
+    <file path="/RemoteFileSetAreaTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366220011040" ignored="false" />
+    <file path="/VirtualArea.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366219537061" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -595,15 +596,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plugins-register-fileset" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/plugins-register-fileset">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="32" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="plugins-unregister-fileset" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/plugins-unregister-fileset">
           <provider selected="true" editor-type-id="text-editor">
@@ -631,10 +623,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClusterGateway.jsap" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ClusterGateway.jsap" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="126" column="8" selection-start="4506" selection-end="4506" vertical-scroll-proportion="1.8615611">
+            <state line="126" column="8" selection-start="4506" selection-end="4506" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Session.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Session.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="19" selection-start="330" selection-end="330" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -643,34 +644,34 @@
       <file leaf-file-name="ClusterGateway.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="59" selection-start="2070" selection-end="2070" vertical-scroll-proportion="0.0">
+            <state line="37" column="115" selection-start="1252" selection-end="1252" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileSetRegistration.jsap" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetRegistration.jsap">
+      <file leaf-file-name="Actions.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="18" selection-start="3762" selection-end="3798" vertical-scroll-proportion="0.0">
+            <state line="88" column="21" selection-start="3107" selection-end="3107" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plugins-submit-job" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/plugins-submit-job">
+      <file leaf-file-name="Submitter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="36" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0">
+            <state line="30" column="16" selection-start="817" selection-end="817" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plugins-export-env" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/plugins-export-env">
+      <file leaf-file-name="AbstractSubmitter.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="250" column="57" selection-start="10571" selection-end="10571" vertical-scroll-proportion="0.31516936">
               <folding />
             </state>
           </provider>
@@ -694,8 +695,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks/TARBALLER/config.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
         <option value="$PROJECT_DIR$/src/main/resources/constants.sh" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistration.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmission.java" />
@@ -708,8 +707,10 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetRegistration.jsap" />
         <option value="$PROJECT_DIR$/bin/plugins-unregister-fileset" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetRegistration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
       </list>
     </option>
   </component>
@@ -849,6 +850,90 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-results" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway-command-line" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-results" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway-command-line" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GOBYWEB_SGE_JOBS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mas2182" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-results" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway-command-line" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filesets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mas2182" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-results" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1989,7 +2074,15 @@
       <created>1366216508096</created>
       <updated>1366216508096</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Adjusting option names and constraints in the ClusterGateway interface.">
+      <created>1366218223890</created>
+      <updated>1366218223890</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Remove the connection to the FileSet area before the job submission. The type of the area (local or remote) is relative to the job and therefore could not be available on the ClusterGateway side.">
+      <created>1366223633223</created>
+      <updated>1366223633224</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1999,6 +2092,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975206" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809916" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4446281" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2023,7 +2117,6 @@
       <window_info id="Inspector" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809916" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -2070,7 +2163,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjusting option names and constraints in the fileset registration interface." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove the connection to the FileSet area before the job submission. The type of the area (local or remote) is relative to the job and therefore could not be available on the ClusterGateway side." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -2084,8 +2177,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Add more test configurations" />
-    <MESSAGE value="Remove unused StorageArea class from the project" />
     <MESSAGE value="Merge &quot;Migrate to the JobArea implementation provided by filesets. Clean up submitters from methods now available there. Remove runtime package. Update filesets library.&quot; 81b4d46f752e2cf8ea60ea64af2b0631dd93c583" />
     <MESSAGE value="Now that ClusterGateway validates plugin configurations, remove GSNAP_WITH_GOBY as an aligner, it conflicts with the reosources of the same ID." />
     <MESSAGE value="Extend the JUnit to register filesets and submit a task in local mode. Not sure submission is doing anything yet." />
@@ -2109,6 +2200,8 @@
     <MESSAGE value="RNA script.sh prints out tags of the registered TSV instances." />
     <MESSAGE value="Fix integration test (command line) for local task submissions." />
     <MESSAGE value="Adjusting option names and constraints in the fileset registration interface." />
+    <MESSAGE value="Adjusting option names and constraints in the ClusterGateway interface." />
+    <MESSAGE value="Remove the connection to the FileSet area before the job submission. The type of the area (local or remote) is relative to the job and therefore could not be available on the ClusterGateway side." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2118,30 +2211,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.9/junit-4.9.jar!/org/junit/internal/runners/statements/RunBefores.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="16" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.9/junit-4.9.jar!/org/junit/runners/model/FrameworkMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-SNAPSHOT.jar!/org/campagnelab/gobyweb/filesets/registration/ConfigMatcher.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="1505" selection-end="1505" vertical-scroll-proportion="0.4460094">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Main.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="72" selection-start="3016" selection-end="3026" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -2186,7 +2255,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/plugins-register-fileset">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="32" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0">
+        <state line="12" column="0" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -2212,16 +2281,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="59" selection-start="2070" selection-end="2070" vertical-scroll-proportion="0.0">
+        <state line="126" column="8" selection-start="4506" selection-end="4506" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Session.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="8" selection-start="4506" selection-end="4506" vertical-scroll-proportion="1.8615611">
+        <state line="19" column="19" selection-start="330" selection-end="330" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="115" selection-start="1252" selection-end="1252" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="21" selection-start="3107" selection-end="3107" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="16" selection-start="817" selection-end="817" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="250" column="57" selection-start="10571" selection-end="10571" vertical-scroll-proportion="0.31516936">
           <folding />
         </state>
       </provider>
