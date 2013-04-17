@@ -36,6 +36,8 @@ public class TaskLocalSubmission {
     static final String storageAreaDir = String.format("%s/filesets", rootAreaDir);
     static final String jobAreaDir = String.format("%s/jobs", rootAreaDir);
     static final String owner = "PluginsSDK";
+    static String referenceSA =  new File(storageAreaDir).getAbsolutePath();
+
 
 
     @BeforeClass
@@ -45,7 +47,6 @@ public class TaskLocalSubmission {
         plugins.addServerConf("test-data/root-for-rnaselect");
         plugins.setWebServerHostname("localhost");
         plugins.reload();
-        String referenceSA =  new File(storageAreaDir).getAbsolutePath();
         //prepare the storage area for testing
         try {
             //need to clone the storage area because results will be stored there too
@@ -73,7 +74,7 @@ public class TaskLocalSubmission {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
-            actions = new Actions(submitter, storageArea, jobArea, plugins.getRegistry());
+            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             actions.submitTask(
                     "RNASELECT_TASK",
                     ClusterGateway.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}));
