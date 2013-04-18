@@ -54,7 +54,7 @@
             <stringParser>
                 <classname>StringStringParser</classname>
             </stringParser>
-            <required>true</required>
+            <required>optional</required>
             <shortFlag>q</shortFlag>
             <longFlag>queue</longFlag>
             <help>The cluster queue to use for remote submissions</help>
