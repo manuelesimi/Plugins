@@ -3,7 +3,6 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 import com.martiansoftware.jsap.JSAP;
 import com.martiansoftware.jsap.JSAPException;
 import com.martiansoftware.jsap.JSAPResult;
-import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
@@ -69,6 +68,7 @@ public class FileSetRegistration {
 
         }
         try {
+            //FileSetInstanceActions actions = new FileSetInstanceActions(storageArea, null);
             Actions actions = new Actions(storageArea, plugins.getRegistry());
             if (config.getString("action").equalsIgnoreCase("register")) {
                 returned_values = actions.register(config.getStringArray("entries"),config.getFile("source-dir"));
