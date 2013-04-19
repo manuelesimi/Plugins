@@ -71,7 +71,7 @@ public class FileSetRegistration {
             //FileSetInstanceActions actions = new FileSetInstanceActions(storageArea, null);
             Actions actions = new Actions(storageArea, plugins.getRegistry());
             if (config.getString("action").equalsIgnoreCase("register")) {
-                returned_values = actions.register(config.getStringArray("entries"),config.getFile("source-dir"));
+                returned_values = actions.register(config.getStringArray("entries"));
                 if (returned_values.size() > 0 ) {
                     logger.info(String.format("%d fileset instances have been successfully registered with the following tags: ", returned_values.size()));
                     logger.info(Arrays.toString(returned_values.toArray()));

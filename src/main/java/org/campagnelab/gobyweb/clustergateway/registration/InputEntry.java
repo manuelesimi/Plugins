@@ -9,6 +9,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * An input entry specified by the caller.
@@ -20,7 +22,7 @@ class InputEntry {
     protected final org.apache.log4j.Logger logger = Logger.getLogger(InputEntry.class);
 
     private final String filesetConfigId;
-    private final String pattern;
+    private String pattern;
     private final File file;
     private final List<InputEntryFile> files;
     private String fileSetEntryName;
@@ -31,37 +33,29 @@ class InputEntry {
 
     /**
      * An entry with a fileset associated
-     * @param sourceDir the directory where to look for the entry files
      * @param filesetConfigId
      * @param pattern
      */
-    protected InputEntry(String sourceDir, String filesetConfigId, String pattern) {
+    protected InputEntry(String filesetConfigId, String pattern) {
        this.filesetConfigId= filesetConfigId;
        File file =  new File(pattern);
        if (file.exists()) {
            this.file = file;
            this.pattern = null;
        } else {
-           file = new File(new File (sourceDir), pattern);
-           if (file.exists()) {
-               this.file = file;
-               this.pattern = null;
-           }
-           else {
-               this.pattern = pattern;
-               this.file = file;
-           }
+           this.pattern = pattern;
+           this.file = file;
+
        }
-       files = new InputEntryScanner(sourceDir).scan();
+       files = new InputEntryScanner(pattern).scan();
     }
 
     /**
      * An entry with no fileset associated.
-     * @param sourceDir the directory where to look for the entry files
      * @param pattern
      */
-    protected InputEntry(String sourceDir, String pattern) {
-        this(sourceDir,null, pattern);
+    protected InputEntry(String pattern) {
+        this(null, pattern);
     }
 
     /**
@@ -169,24 +163,39 @@ class InputEntry {
      */
     class InputEntryScanner {
 
-        private String dir;
+        private String pattern;
 
-        protected InputEntryScanner(String dir) {this.dir = dir;}
+        protected InputEntryScanner(String pattern) {this.pattern = pattern;}
 
         /**
          * Gets the files matching the entry pattern.
          */
         private List<InputEntryFile> scan() {
             List<InputEntryFile> files = new ArrayList<InputEntryFile>();
-            File workingDirectory = new File (dir);
             if (!acceptAsFile(files)) {
-                InputEntry.this.logger.debug("Scanning directory " + workingDirectory.getAbsolutePath());
+                String filePattern = extractFilePattern(this.pattern);
+                String searchDir = this.pattern.replace(filePattern,"");
+                InputEntry.this.pattern = filePattern;
+                InputEntry.this.logger.debug(String.format("Scanning dir %s with pattern %s",searchDir,filePattern));
                 Paths paths = new Paths(); //see http://code.google.com/p/wildcard/
-                paths.glob(workingDirectory.getAbsolutePath(), pattern);
-                for (File file : paths.getFiles())
+                paths.glob(searchDir,filePattern);
+                for (File file : paths.getFiles()) {
+                    InputEntry.this.logger.debug("Found matching file:" + file.getName());
                     files.add(new InputEntryFile(file));
+                }
             }
             return files;
+        }
+
+        /**
+         * Given a pattern in the form of SOME/PATH/PATTERN, return PATTERN
+         * @param fullPattern
+         * @return
+         */
+        private String extractFilePattern (String fullPattern) {
+            Pattern p = Pattern.compile(".*?([^\\\\/]+)$");
+            Matcher m = p.matcher(fullPattern);
+            return (m.find()) ? m.group(1) : "";
         }
 
         /**

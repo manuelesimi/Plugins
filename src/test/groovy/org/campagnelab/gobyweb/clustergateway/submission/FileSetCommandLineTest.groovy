@@ -47,29 +47,32 @@ public class FileSetCommandLineTest {
     @Test
     public void register() {
         assertEquals(5, FileSetRegistration.process(buildFileRegistrationArgs(
-                "GOBY_ALIGNMENTS: *.index *.entries *.header guess: *.compact-reads",
-                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")).size());
+                "GOBY_ALIGNMENTS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.index "
+                        + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.entries "
+                        + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.header "
+                        + "guess: "
+                        + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads"
+                )).size());
 
         assertEquals(5, FileSetRegistration.process(buildFileRegistrationArgs(
-                "*.index *.entries *.header *.compact-reads",
-                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")).size());
-
-        assertEquals(5, FileSetRegistration.process(buildFileRegistrationArgs(
-                "guess: *.index guess: *.entries guess: *.header guess: *.compact-reads",
-                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")).size());
+                "guess: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.index "
+                        + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.entries "
+                        + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.header "
+                        + "guess: "
+                        + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads"
+        )).size());
 
         assertEquals(2, FileSetRegistration.process(buildFileRegistrationArgsNoSource(
                 "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads" +
-        " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads")).size());
+                " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads")).size());
 
     }
 
 
-    private static String[] buildFileRegistrationArgs(String filenames, String sourceDir) {
+    private static String[] buildFileRegistrationArgs(String filenames) {
         ("--fileset-area ${storageAreaDir} "+
                 "--plugins-dir test-data/root-for-rnaselect " +
                 "--owner junit "+
-                "--source-dir ${sourceDir} " +
                 "--action register " +
                 filenames
         ).split(" ");

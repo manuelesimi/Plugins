@@ -60,8 +60,7 @@ public class FileSetLocalRegistration {
        try {
             // CASE1: test with FILESET:path to file
            returnedTags.addAll(actions.register(
-                   new String[]{"COMPACT_READS:", "CASE1_FILE1.compact-reads"},
-                    new File("test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/")
+                   new String[]{"COMPACT_READS:", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads"}
             ));
         } catch (IOException e) {
             fail("fail to register fileset with FILESET:path");
@@ -79,8 +78,7 @@ public class FileSetLocalRegistration {
         try {
             // test the case with FILESET:pattern
             returnedTags.addAll(actions.register(
-                    new String[]{"COMPACT_READS:", "*.compact-reads"},
-                    new File("test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/")));
+                    new String[]{"COMPACT_READS:", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/*.compact-reads"}));
         } catch (IOException e) {
             fail("fail to register fileset with FILESET:pattern");
         }
@@ -96,8 +94,7 @@ public class FileSetLocalRegistration {
         try {
             // test the case with pattern
             returnedTags.addAll(actions.register(
-                    new String[]{"*.compact-reads"},
-                    new File("test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/")));
+                    new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/*.compact-reads"}));
         } catch (IOException e) {
             fail("fail to register fileset with wildcard");
         }
@@ -113,8 +110,7 @@ public class FileSetLocalRegistration {
         try {
             // test the case with filename
             returnedTags.addAll(actions.register(
-                    new String[]{"CASE4_FILE1.compact-reads"},
-                    new File("test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_4/")));
+                    new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_4/CASE4_FILE1.compact-reads"}));
         } catch (IOException e) {
             fail("fail to register fileset with filename");
         }
@@ -130,8 +126,9 @@ public class FileSetLocalRegistration {
         try {
             // test the case with pattern
             returnedTags.addAll(actions.register(
-                    new String[]{"GOBY_ALIGNMENTS:","CASE5.index","CASE5.entries","CASE5.header"},
-                    new File("test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_5/")));
+                    new String[]{"GOBY_ALIGNMENTS:","test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_5/CASE5.index",
+                            "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_5/CASE5.entries",
+                            "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_5/CASE5.header"}));
         } catch (IOException e) {
             e.printStackTrace();
             fail("fail to register fileset with FILESET:PATHS");
@@ -149,8 +146,7 @@ public class FileSetLocalRegistration {
         try {
             // test the case with pattern
             returnedTags.addAll(actions.register(
-                    new String[]{"GOBY_ALIGNMENTS:","CASE6_FILE1.index"},
-                    new File("test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_6/")));
+                    new String[]{"GOBY_ALIGNMENTS:","test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_6/CASE6_FILE1.index"}));
         } catch (IOException e) {
             e.printStackTrace();
             fail("fail to register fileset with incomplete FILESET:PATHS");
@@ -165,8 +161,12 @@ public class FileSetLocalRegistration {
         try {
             // test the case with pattern
             returnedTags.addAll(actions.register(
-                    new String[]{"GOBY_ALIGNMENTS:", "*.index",  "*.entries", "*.header", "guess:", "*.compact-reads"},
-                    new File("test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")));
+                    new String[]{"GOBY_ALIGNMENTS:",
+                       "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.index",
+                       "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.entries",
+                       "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.header",
+                       "guess:", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads"}
+                    ));
         } catch (IOException e) {
             e.printStackTrace();
             fail("fail to register fileset with FILESET:PATTERNS");
@@ -182,8 +182,12 @@ public class FileSetLocalRegistration {
         try {
             // test the case with pattern
             returnedTags.addAll(actions.register(
-                    new String[]{"GOBY_ALIGNMENTS:", "*.index","*.entries","*.header", "guess:", "*.compact-reads"},
-                    new File("test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/")));
+                    new String[]{"GOBY_ALIGNMENTS:",
+                      "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.index",
+                      "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.entries",
+                      "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.header",
+                      "guess:", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.compact-reads"}
+                    ));
         } catch (IOException e) {
             e.printStackTrace();
             fail("fail to register fileset with FILESET:PATTERNS");

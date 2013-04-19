@@ -23,27 +23,6 @@
         </flaggedOption>
 
         <flaggedOption>
-            <id>source-dir</id>
-            <stringParser>
-                    <classname>FileStringParser</classname>
-                    <properties>
-                        <property>
-                                <name>mustBeDirectory</name>
-                                <value>true</value>
-                        </property>
-                        <property>
-                                <name>mustExist</name>
-                                <value>true</value>
-                        </property>
-                    </properties>
-            </stringParser>
-            <required>optional</required>
-            <shortFlag>d</shortFlag>
-            <longFlag>source-dir</longFlag>
-            <help>The directory where the files to register are placed. If not specified, the current working directory will be used.</help>
-        </flaggedOption>
-
-        <flaggedOption>
             <id>fileset-area</id>
             <stringParser>
                 <classname>StringStringParser</classname>

@@ -47,12 +47,12 @@ public class ClusterGatewayCommandLineTest {
     public void runLocalTaskRNASelect() {
        List<String> tags = new ArrayList<String>();
        tags.addAll(FileSetRegistration.process(buildFileRegistrationArgs(
-               "COMPACT_READS: CASE_1/CASE1_FILE1.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/")));
+               "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads")));
        assertNotNull(tags);
        assertEquals(1, tags.size());
 
        tags.addAll(FileSetRegistration.process(buildFileRegistrationArgs(
-                "COMPACT_READS: *.compact-reads", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/")));
+                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/*.compact-reads")));
 
        assertEquals(4, tags.size());
 
@@ -65,11 +65,10 @@ public class ClusterGatewayCommandLineTest {
 
 
 
-    private static String[] buildFileRegistrationArgs(String filenames, String sourceDir) {
+    private static String[] buildFileRegistrationArgs(String filenames) {
         ("--fileset-area ${new File(resultsDir).getAbsolutePath()}/filesets "+
                 "--plugins-dir test-data/root-for-rnaselect " +
                 //"--owner ${owner} "+
-                "--source-dir ${sourceDir} " +
                 "--action register " +
                 filenames
                 ).split(" ");

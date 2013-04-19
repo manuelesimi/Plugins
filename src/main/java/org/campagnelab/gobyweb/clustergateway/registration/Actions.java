@@ -45,13 +45,12 @@ final class Actions {
      *   3) pattern (e.g. *.compact_reads, **, etc)
      *   4) filename
      *
-     * @param sourceDir the directory where files are located. if not specified, the current folder is used.
      * @return the tags of the registered instances
      * @throws IOException if the registration fails or any of the entries is not valid
      */
-    protected List<String> register(final String[] entries, File ... sourceDir) throws IOException {
+    protected List<String> register(final String[] entries) throws IOException {
         List<String> tags = new ArrayList<String>();
-        List<InputEntry> inputEntries = this.parseInputEntries(entries,detectWorkingDir(sourceDir));
+        List<InputEntry> inputEntries = this.parseInputEntries(entries);
         FileSetInstanceBuilder builder = new FileSetInstanceBuilder(registry);
         List<FileSet> instancesToRegister = builder.buildList(inputEntries);
         //check for errors in the list creation
@@ -165,7 +164,7 @@ final class Actions {
      * @param entries the list of entries in the form of FILESET_ID:PATTERN or PATTERN
      * @return the list of entry objects
      */
-    private List<InputEntry> parseInputEntries(final String[] entries, String dir) {
+    private List<InputEntry> parseInputEntries(final String[] entries) {
         List<InputEntry> inputEntries = new ArrayList<InputEntry>();
         String currentFilesetId = null;
         for (String entry : entries) {
@@ -175,31 +174,13 @@ final class Actions {
                 continue;
             }
             if (currentFilesetId == null || currentFilesetId.matches("guess")) {
-                inputEntries.add(new InputEntry(dir, entry));
+                inputEntries.add(new InputEntry(entry));
             } else {
-                inputEntries.add(new InputEntry(dir, currentFilesetId, entry));
+                inputEntries.add(new InputEntry(currentFilesetId, entry));
             }
 
         }
         return Collections.unmodifiableList(inputEntries);
     }
 
-    private String[] toPatterns(String patterns) {
-       return patterns.split(" ");
-    }
-
-
-    /**
-     * Detects the working directory.
-     * @param sourceDir the optional value specified at invocation time by the caller
-     * @return
-     */
-    private String detectWorkingDir(File[] sourceDir) throws IOException {
-        if (sourceDir!=null && sourceDir.length>0 && sourceDir[0]!=null)
-            if (sourceDir[0].exists()) {
-                return sourceDir[0].getAbsolutePath();
-            } else
-                throw new IOException(String.format("The source directory %s does not exist or is not a directory",sourceDir[0]));
-        return System.getProperty("user.dir");
-    }
 }
