@@ -37,14 +37,20 @@ class InputEntry {
      */
     protected InputEntry(String sourceDir, String filesetConfigId, String pattern) {
        this.filesetConfigId= filesetConfigId;
-       File file =  new File(new File (sourceDir), pattern);
+       File file =  new File(pattern);
        if (file.exists()) {
            this.file = file;
            this.pattern = null;
-       }
-       else {
-           this.pattern = pattern;
-           this.file = file;
+       } else {
+           file = new File(new File (sourceDir), pattern);
+           if (file.exists()) {
+               this.file = file;
+               this.pattern = null;
+           }
+           else {
+               this.pattern = pattern;
+               this.file = file;
+           }
        }
        files = new InputEntryScanner(sourceDir).scan();
     }

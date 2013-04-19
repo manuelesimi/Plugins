@@ -20,7 +20,6 @@ import static junit.framework.Assert.fail
  */
 
 @RunWith(JUnit4.class)
-
 public class FileSetCommandLineTest {
 
     static Plugins plugins;
@@ -59,6 +58,10 @@ public class FileSetCommandLineTest {
                 "guess: *.index guess: *.entries guess: *.header guess: *.compact-reads",
                 "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/")).size());
 
+        assertEquals(2, FileSetRegistration.process(buildFileRegistrationArgsNoSource(
+                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads" +
+        " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads")).size());
+
     }
 
 
@@ -67,6 +70,16 @@ public class FileSetCommandLineTest {
                 "--plugins-dir test-data/root-for-rnaselect " +
                 "--owner junit "+
                 "--source-dir ${sourceDir} " +
+                "--action register " +
+                filenames
+        ).split(" ");
+
+    }
+
+    private static String[] buildFileRegistrationArgsNoSource(String filenames) {
+        ("--fileset-area ${storageAreaDir} "+
+                "--plugins-dir test-data/root-for-rnaselect " +
+                "--owner junit "+
                 "--action register " +
                 filenames
         ).split(" ");
