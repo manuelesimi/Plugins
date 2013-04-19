@@ -1,6 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.submission
 
-import org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration
+import org.campagnelab.gobyweb.clustergateway.registration.FileSetManager
 import org.campagnelab.gobyweb.io.AreaFactory
 import org.campagnelab.gobyweb.io.FileSetArea
 import org.campagnelab.gobyweb.plugins.Plugins
@@ -46,7 +46,7 @@ public class FileSetCommandLineTest {
 
     @Test
     public void register() {
-        assertEquals(5, FileSetRegistration.process(buildFileRegistrationArgs(
+        assertEquals(5, FileSetManager.process(buildFileRegistrationArgs(
                 "GOBY_ALIGNMENTS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.index "
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.entries "
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.header "
@@ -54,7 +54,7 @@ public class FileSetCommandLineTest {
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads"
                 )).size());
 
-        assertEquals(5, FileSetRegistration.process(buildFileRegistrationArgs(
+        assertEquals(5, FileSetManager.process(buildFileRegistrationArgs(
                 "guess: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.index "
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.entries "
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.header "
@@ -62,7 +62,7 @@ public class FileSetCommandLineTest {
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads"
         )).size());
 
-        assertEquals(2, FileSetRegistration.process(buildFileRegistrationArgsNoSource(
+        assertEquals(2, FileSetManager.process(buildFileRegistrationArgsNoSource(
                 "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads" +
                 " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads")).size());
 

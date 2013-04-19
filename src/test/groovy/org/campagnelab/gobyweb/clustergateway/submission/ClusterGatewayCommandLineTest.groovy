@@ -2,7 +2,7 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 
 import org.apache.commons.io.FileUtils
 import org.apache.commons.lang.StringUtils
-import org.campagnelab.gobyweb.clustergateway.registration.FileSetRegistration
+import org.campagnelab.gobyweb.clustergateway.registration.FileSetManager
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,12 +46,12 @@ public class ClusterGatewayCommandLineTest {
     @Test
     public void runLocalTaskRNASelect() {
        List<String> tags = new ArrayList<String>();
-       tags.addAll(FileSetRegistration.process(buildFileRegistrationArgs(
+       tags.addAll(FileSetManager.process(buildFileRegistrationArgs(
                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads")));
        assertNotNull(tags);
        assertEquals(1, tags.size());
 
-       tags.addAll(FileSetRegistration.process(buildFileRegistrationArgs(
+       tags.addAll(FileSetManager.process(buildFileRegistrationArgs(
                 "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/*.compact-reads")));
 
        assertEquals(4, tags.size());

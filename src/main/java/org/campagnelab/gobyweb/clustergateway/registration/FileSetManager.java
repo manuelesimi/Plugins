@@ -17,11 +17,11 @@ import java.util.List;
  *
  * @author manuele
  */
-public class FileSetRegistration {
+public class FileSetManager {
 
-    protected static final org.apache.log4j.Logger logger = Logger.getLogger(FileSetRegistration.class);
+    protected static final org.apache.log4j.Logger logger = Logger.getLogger(FileSetManager.class);
 
-    private static CommandLineHelper jsapHelper = new CommandLineHelper(FileSetRegistration.class) {
+    private static CommandLineHelper jsapHelper = new CommandLineHelper(FileSetManager.class) {
         @Override
         protected boolean hasError(JSAPResult config, List<String> errors) {
             if (config.getString("action").equalsIgnoreCase("register")) {
