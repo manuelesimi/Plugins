@@ -24,5 +24,7 @@
     </files>
     <attributes>
         <attribute name="basename"/>
+        <attribute name="tag"/>
+        <attribute name="organism"/>
     </attributes>
 </fileSetConfig>
