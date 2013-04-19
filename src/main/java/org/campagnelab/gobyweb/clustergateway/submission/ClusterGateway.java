@@ -7,7 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.data.InputSlotValue;
 import org.campagnelab.gobyweb.io.AreaFactory;
-import org.campagnelab.gobyweb.io.FileSetArea;
+import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.io.JobArea;
 
@@ -23,17 +23,30 @@ import java.util.*;
 public class ClusterGateway {
 
     protected static final org.apache.log4j.Logger logger = Logger.getLogger(ClusterGateway.class);
-    // TODO : introduce CommandLineHelper after fileset registration_with_patterns branch has been merged back
-    // TODO : into trunk.
 
+    private static CommandLineHelper jsapHelper = new CommandLineHelper(ClusterGateway.class) {
+        @Override
+        protected boolean hasError(JSAPResult config, List<String> errors) {
 
+            if ((config.userSpecified("resource")?1:0) + (config.userSpecified("job")?1:0) > 1) {
+                errors.add("Only one option among resource and job has to be specified");
+                return true;
+            }
+            if ((config.userSpecified("resource")?1:0) + (config.userSpecified("job")?1:0) < 1) {
+                errors.add("One option among resource and job has to be specified");
+                return true;
+            }
+
+            return false;
+        }
+    } ;
     public static void main(String[] args) {
         System.exit(process(args));
 
     }
 
     public static int process(String[] args) {
-        JSAPResult config = loadConfig(args);
+        JSAPResult config = jsapHelper.configure(args);
         if (config == null) return 1;
         String owner = config.userSpecified("owner") ? config.getString("owner") : System.getProperty("user.name");
 
@@ -44,7 +57,7 @@ public class ClusterGateway {
                     config.getString("job-area"), owner);
         } catch (IOException ioe) {
             logger.error(ioe);
-            return 1;
+            return (1);
         }
         //load plugin configurations
         Plugins plugins = null;
@@ -55,7 +68,6 @@ public class ClusterGateway {
             plugins.reload();
             if (plugins.somePluginReportedErrors()) {
                 System.err.println("Some plugins could not be loaded. See below for details. Aborting.");
-
                 return (1);
             }
         } catch (Exception e) {
@@ -74,7 +86,6 @@ public class ClusterGateway {
                 submitter = new RemoteSubmitter(plugins.getRegistry(), config.getString("queue"));
             }
             Actions actions = new Actions(submitter, config.getString("fileset-area"), jobArea, plugins.getRegistry());
-
             assert actions != null : "action cannot be null.";
             submitter.setSubmissionHostname(config.getString("artifact-server"));
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
