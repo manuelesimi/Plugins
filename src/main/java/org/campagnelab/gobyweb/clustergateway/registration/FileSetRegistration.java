@@ -1,10 +1,9 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
-import com.martiansoftware.jsap.JSAP;
-import com.martiansoftware.jsap.JSAPException;
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.io.AreaFactory;
+import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
 
@@ -14,13 +13,35 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Command line interface for Fileset instance registration.
+ * Command line interface for Fileset instance management.
  *
  * @author manuele
  */
 public class FileSetRegistration {
 
     protected static final org.apache.log4j.Logger logger = Logger.getLogger(FileSetRegistration.class);
+
+    private static CommandLineHelper jsapHelper = new CommandLineHelper(FileSetRegistration.class) {
+        @Override
+        protected boolean hasError(JSAPResult config, List<String> errors) {
+            if (config.getString("action").equalsIgnoreCase("register")) {
+                if (config.getStringArray("entries").length < 1) {
+                    errors.add("Invalid list of fileset entries to register. At least one entry must be specified.");
+                    return true;
+                }
+            } else if (config.getString("action").equalsIgnoreCase("unregister")) {
+                if (!config.userSpecified("tag"))  {
+                    errors.add("Missing --tag parameter. Tag is needed to identify the fileset instance to unregister.");
+                    return true;
+                }
+
+            }  else {
+                errors.add("One action between register and unregister has to be specified");
+                return true;
+            }
+            return false;
+        }
+     };
 
     public static void main(String[] args) {
         try {
@@ -34,10 +55,9 @@ public class FileSetRegistration {
 
     public static List<String> process(String[] args) throws Exception {
         List<String> returned_values = new ArrayList<String>();
-        JSAPResult config = loadConfig(args);
+        JSAPResult config = jsapHelper.configure(args);
         if (config == null)
             System.exit(1);
-        //TODO: load pluginDir and StorageArea from the properties file if they are not specified as parameters
 
         //create the reference to the storage area
         FileSetArea storageArea = null;
@@ -62,10 +82,8 @@ public class FileSetRegistration {
                 System.err.println("Some plugins could not be loaded. See below for details. Aborting.");
                 throw new Exception();
             }
-
         } catch (Exception e) {
             throw new Exception();
-
         }
         try {
             //FileSetInstanceActions actions = new FileSetInstanceActions(storageArea, null);
@@ -88,95 +106,4 @@ public class FileSetRegistration {
         return returned_values;
     }
 
-    /**
-     * Loads the parameters configuration and rules
-     *
-     * @param args the command line arguments
-     * @return the configuration
-     */
-    private static JSAPResult loadConfig(String[] args) {
-        if (FileSetRegistration.class.getResource("FileSetRegistration.jsap") == null) {
-            logger.fatal("unable to find the JSAP configuration file");
-            System.err.println("unable to find the JSAP configuration file");
-            return null;
-        }
-        JSAP jsap = null;
-        try {
-            jsap = new JSAP(FileSetRegistration.class.getResource("FileSetRegistration.jsap"));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        } catch (JSAPException e) {
-            e.printStackTrace();
-            return null;
-        }
-        JSAPResult config = jsap.parse(args);
-        List<String> errors = new ArrayList<String>();
-        if (!config.success() || config.getBoolean("help") || hasActionError(config, errors)) {
-            if (errors.size() > 0) {
-                for (String error : errors)
-                    System.err.println("Error: " + error);
-            }
-            for (java.util.Iterator errs = config.getErrorMessageIterator(); errs.hasNext(); ) {
-                System.err.println("Error: " + errs.next());
-            }
-            System.err.println(jsap.getHelp());
-            System.err.println();
-            System.err.println("Usage: java " + FileSetRegistration.class.getName());
-            System.err.println("                " + jsap.getUsage());
-            System.err.println();
-            if (!config.success() ){ return null;}
-        }
-        return config;
-    }
-
-    private static boolean hasActionError(JSAPResult config, List<String> errors) {
-
-        if (config.getString("action").equalsIgnoreCase("register"))
-            return hasRegisterError(config, errors);
-
-        if (config.getString("action").equalsIgnoreCase("unregister"))
-            return hasUnregisterError(config, errors);
-
-        errors.add(String.format("Invalid action %s. Allowed actions: register | unregister", config.getString("action")));
-        return true;
-    }
-
-    /**
-     * Checks consistency of the unregistration parameters
-     *
-     * @param config
-     * @param errors
-     * @return
-     */
-    private static boolean hasUnregisterError(JSAPResult config, List<String> errors) {
-        if (!config.getString("action").equalsIgnoreCase("register"))
-            return false; //nothing to check here
-
-        if (!config.userSpecified("tag"))
-            errors.add("Missing --tag parameter. Tag is needed to identify the fileset instance to unregister.");
-
-        return errors.size() > 0 ? true : false;
-    }
-
-    /**
-     * Checks consistency of the registration parameters
-     *
-     * @param config
-     * @param errors
-     * @return
-     */
-    private static boolean hasRegisterError(JSAPResult config, List<String> errors) {
-        if (!config.getString("action").equalsIgnoreCase("unregister"))
-            return false; //nothing to check here
-
-        if (!config.userSpecified("id"))
-            errors.add("Missing --id parameter. Id must match the id reported in the configuration of the fileset.");
-
-        if (config.getStringArray("entries").length < 1)
-            errors.add("Missing the list of fileset entries to register. At least one entry must be registered.");
-
-        return errors.size() > 0 ? true : false;
-    }
 }

@@ -33,7 +33,7 @@ public class ClusterGateway {
                 return true;
             }
             if ((config.userSpecified("resource")?1:0) + (config.userSpecified("job")?1:0) < 1) {
-                errors.add("One option among resource and job has to be specified");
+                errors.add("One option between resource and job has to be specified");
                 return true;
             }
 
@@ -42,7 +42,6 @@ public class ClusterGateway {
     } ;
     public static void main(String[] args) {
         System.exit(process(args));
-
     }
 
     public static int process(String[] args) {
