@@ -5,7 +5,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
-import org.campagnelab.gobyweb.filesets.configuration.Configuration;
 import org.campagnelab.gobyweb.filesets.registration.InputEntry;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
@@ -38,10 +37,9 @@ public class FileSetManager {
                 }
             } else if (config.getString("action").equalsIgnoreCase("unregister")) {
                 if (!config.userSpecified("tag"))  {
-                    errors.add("Missing --tag parameter. Tag is needed to identify the fileset instance to unregister.");
+                    errors.add("Missing tag parameter. Tag is needed to identify the fileset instance to unregister.");
                     return true;
                 }
-
             }  else {
                 errors.add("One action between register and unregister has to be specified");
                 return true;

@@ -29,11 +29,11 @@ public class ClusterGateway {
         protected boolean hasError(JSAPResult config, List<String> errors) {
 
             if ((config.userSpecified("resource")?1:0) + (config.userSpecified("job")?1:0) > 1) {
-                errors.add("Only one option among resource and job has to be specified");
+                errors.add("Only one parameter among resource and job has to be specified");
                 return true;
             }
             if ((config.userSpecified("resource")?1:0) + (config.userSpecified("job")?1:0) < 1) {
-                errors.add("One option between resource and job has to be specified");
+                errors.add("One parameter between resource and job has to be specified");
                 return true;
             }
 
