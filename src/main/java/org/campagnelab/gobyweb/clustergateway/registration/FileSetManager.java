@@ -1,15 +1,22 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
 import com.martiansoftware.jsap.JSAPResult;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.filesets.FileSetAPI;
+import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
+import org.campagnelab.gobyweb.filesets.configuration.Configuration;
+import org.campagnelab.gobyweb.filesets.registration.InputEntry;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
+import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -86,16 +93,23 @@ public class FileSetManager {
             throw new Exception();
         }
         try {
-            //FileSetInstanceActions actions = new FileSetInstanceActions(storageArea, null);
-            Actions actions = new Actions(storageArea, plugins.getRegistry());
+            List<String> errors = new ArrayList<String>();
+            //convert plugins configuration to configurations that can be consumed by FileSetAPI
+            ConfigurationList configurationList = PluginsToConfigurations.convertAsList(plugins.getRegistry().filterConfigs(FileSetConfig.class));
+            FileSetAPI fileset = new FileSetAPI(storageArea,configurationList);
             if (config.getString("action").equalsIgnoreCase("register")) {
-                returned_values = actions.register(config.getStringArray("entries"));
+                returned_values = fileset.register(parseInputEntries(config.getStringArray("entries")),errors);
                 if (returned_values.size() > 0 ) {
                     logger.info(String.format("%d fileset instances have been successfully registered with the following tags: ", returned_values.size()));
                     logger.info(Arrays.toString(returned_values.toArray()));
+                } else {
+                    logger.error("Failed to register the fileset instances");
+                    for (String message : errors) {
+                        logger.error(message);
+                    }
                 }
             } else {
-                actions.unregister(config.getString("tag"));
+                fileset.unregister(config.getString("tag"));
                 logger.info(String.format("Fileset instance %s successfully unregistered",config.getString("tag")));
             }
         } catch (IOException e) {
@@ -104,6 +118,29 @@ public class FileSetManager {
 
         }
         return returned_values;
+    }
+
+    /**
+     * Creates the entry object for each entry specified by the caller
+     * @param entries the list of entries in the form of FILESET_ID:PATTERN or PATTERN
+     * @return the list of entry objects
+     */
+    public static List<InputEntry> parseInputEntries(final String[] entries) {
+        List<InputEntry> inputEntries = new ArrayList<InputEntry>();
+        String currentFilesetId = null;
+        for (String entry : entries) {
+            if (entry.endsWith(":")) {
+                //move the current fileset id to this
+                currentFilesetId = StringUtils.strip(entry, ":");
+                continue;
+            }
+            if (currentFilesetId == null || currentFilesetId.matches("guess")) {
+                inputEntries.add(new InputEntry(entry));
+            } else {
+                inputEntries.add(new InputEntry(currentFilesetId, entry));
+            }
+        }
+        return Collections.unmodifiableList(inputEntries);
     }
 
 }

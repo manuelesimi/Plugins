@@ -5,8 +5,8 @@
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/target/generated-sources/annotations" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/target/generated-test-sources/test-annotations" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/../artifacts/target/generated-sources/annotations" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/../artifacts/target/generated-test-sources/test-annotations" includeSubdirectories="true" />
+      <directory url="file://$USER_HOME$/artifacts/target/generated-sources/annotations" includeSubdirectories="true" />
+      <directory url="file://$USER_HOME$/artifacts/target/generated-test-sources/test-annotations" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>
@@ -75,7 +75,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/../artifacts/pom.xml" />
+        <option value="$USER_HOME$/artifacts/pom.xml" />
       </list>
     </option>
   </component>
@@ -510,17 +510,20 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$USER_HOME$/CampagneLab/filesets/target/filesets-2.0.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:icb-groovy-support:2.0.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-20130118.202112-1.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
         <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-20130118.202112-1-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-20130118.202112-1-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/icb-groovy-support/2.0.0-SNAPSHOT/icb-groovy-support-2.0.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:option-validation-language:2.1.0">

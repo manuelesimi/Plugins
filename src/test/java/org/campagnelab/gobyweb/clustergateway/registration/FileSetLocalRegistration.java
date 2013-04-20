@@ -2,9 +2,12 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 
 import com.google.common.io.Files;
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
+import org.campagnelab.gobyweb.filesets.registration.InputEntry;
 import org.campagnelab.gobyweb.plugins.Plugins;
+import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -19,8 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Test local registrations of fileset instances
- *
+*  Test the compatibility of the fileset API with the FilesetManager
  * @author manuele
  */
 @RunWith(JUnit4.class)
@@ -30,7 +32,7 @@ public class FileSetLocalRegistration {
     static Plugins plugins;
     static FileSetArea storageArea;
     static String storageAreaDir = String.format("test-results/filesets", System.currentTimeMillis());
-    static Actions actions;
+    static FileSetAPI fileset;
     private List<String> tags = new ArrayList<String>();
 
 
@@ -46,7 +48,8 @@ public class FileSetLocalRegistration {
 
             storageArea = AreaFactory.createFileSetArea(
                     storageAreaDir, "junit");
-            actions = new Actions(storageArea, plugins.getRegistry());
+            fileset = new FileSetAPI(storageArea,
+                    PluginsToConfigurations.convertAsList(plugins.getRegistry().filterConfigs(FileSetConfig.class)));
         } catch (IOException ioe) {
             ioe.printStackTrace();
            fail("fail to create the local storage area");
@@ -55,168 +58,91 @@ public class FileSetLocalRegistration {
 
     @Test
     public void registerFILESETPATH() {
-       logger.debug("Testing registration CASE_1 (FILESET:PATH)");
-       List<String> returnedTags = new ArrayList<String>();
-       try {
-            // CASE1: test with FILESET:path to file
-           returnedTags.addAll(actions.register(
-                   new String[]{"COMPACT_READS:", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads"}
-            ));
-        } catch (IOException e) {
-            fail("fail to register fileset with FILESET:path");
-        }
-        assertEquals("Register operation returned an unexpected number of tags", 1, returnedTags.size());
-        tags.addAll(returnedTags);
-
+       String[] entries = new String[]{"COMPACT_READS:",
+               "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads"};
+       register(entries,"CASE_1","FILESET:PATH",1,0);
     }
 
     @Test
     public void registerFILESETPATTERN() {
-        logger.debug("Testing registration CASE_2 (FILESET:PATTERN)");
-
-        List<String> returnedTags = new ArrayList<String>();
-        try {
-            // test the case with FILESET:pattern
-            returnedTags.addAll(actions.register(
-                    new String[]{"COMPACT_READS:", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/*.compact-reads"}));
-        } catch (IOException e) {
-            fail("fail to register fileset with FILESET:pattern");
-        }
-        assertEquals("Register operation returned an unexpected number of tags", 3, returnedTags.size());
-        tags.addAll(returnedTags);
+        String[] entries =  new String[]{"COMPACT_READS:",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/*.compact-reads"};
+        register(entries,"CASE_2","FILESET:PATTERN",3,0);
     }
 
     @Test
     public void registerPATTERN() {
-        logger.debug("Testing registration CASE_3 (PATTERN)");
-
-        List<String> returnedTags = new ArrayList<String>();
-        try {
-            // test the case with pattern
-            returnedTags.addAll(actions.register(
-                    new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/*.compact-reads"}));
-        } catch (IOException e) {
-            fail("fail to register fileset with wildcard");
-        }
-        assertEquals("Register operation returned an unexpected number of tags", 2, returnedTags.size());
-        tags.addAll(returnedTags);
+        String[] entries = new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_3/*.compact-reads"};
+        register(entries,"CASE_3","PATTERN",2,0);
     }
 
     @Test
     public void registerPATH() {
-        logger.debug("Testing registration CASE_4 (PATH)");
-
-        List<String> returnedTags = new ArrayList<String>();
-        try {
-            // test the case with filename
-            returnedTags.addAll(actions.register(
-                    new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_4/CASE4_FILE1.compact-reads"}));
-        } catch (IOException e) {
-            fail("fail to register fileset with filename");
-        }
-        assertEquals("Register operation returned an unexpected number of tags", 1, returnedTags.size());
-        tags.addAll(returnedTags);
+        String[] entries = new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_4/CASE4_FILE1.compact-reads"};
+        register(entries, "CASE_4", "PATH", 1, 0);
     }
 
 
     @Test
     public void registerMULTIPLEFILESETPATHS() {
-        logger.debug("Testing registration CASE_5 (FILESET:PATHS)");
-        List<String> returnedTags = new ArrayList<String>();
-        try {
-            // test the case with pattern
-            returnedTags.addAll(actions.register(
-                    new String[]{"GOBY_ALIGNMENTS:","test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_5/CASE5.index",
-                            "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_5/CASE5.entries",
-                            "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_5/CASE5.header"}));
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail("fail to register fileset with FILESET:PATHS");
-        }
-        assertEquals("Register operation returned an unexpected number of tags", 1, returnedTags.size());
-        tags.addAll(returnedTags);
+        String[] entries =  new String[]{"GOBY_ALIGNMENTS:","test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_5/CASE5.index",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_5/CASE5.entries",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_5/CASE5.header"};
+        register(entries,"CASE_5","FILESET:PATH",1,0);
     }
-
-
 
     @Test
     public void registerMULTIPLEFILESETPATHSINCOMPLETE() {
-        logger.debug("Testing registration CASE_6 (FILESET:PATHS, incomplete)");
-        List<String> returnedTags = new ArrayList<String>();
-        try {
-            // test the case with pattern
-            returnedTags.addAll(actions.register(
-                    new String[]{"GOBY_ALIGNMENTS:","test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_6/CASE6_FILE1.index"}));
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail("fail to register fileset with incomplete FILESET:PATHS");
-        }
-        assertEquals("Register operation returned an unexpected number of tags", 0, returnedTags.size());
+        String[] entries = new String[]{"GOBY_ALIGNMENTS:",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_6/CASE6_FILE1.index"};
+        register(entries,"CASE_6","FILESET:PATHS, incomplete",0,1);
     }
 
     @Test
     public void registerMULTIPLEFILESETPATTERNS() {
-        logger.debug("Testing registration CASE_7 (FILESET:PATTERNS)");
-        List<String> returnedTags = new ArrayList<String>();
-        try {
-            // test the case with pattern
-            returnedTags.addAll(actions.register(
-                    new String[]{"GOBY_ALIGNMENTS:",
-                       "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.index",
-                       "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.entries",
-                       "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.header",
-                       "guess:", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads"}
-                    ));
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail("fail to register fileset with FILESET:PATTERNS");
-        }
-        assertEquals("Register operation returned an unexpected number of tags", 5, returnedTags.size());
-        tags.addAll(returnedTags);
+        String[] entries = new String[]{"GOBY_ALIGNMENTS:",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.index",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.entries",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.header",
+                "guess:", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads"};
+        register(entries,"CASE_7", "FILESET:PATTERNS", 5, 0);
     }
 
     @Test
     public void registerMULTIPLEFILESETPATTERNSINCOMPLETE() {
-        logger.debug("Testing registration CASE_8 (FILESET:PATTERNS)");
-        List<String> returnedTags = new ArrayList<String>();
-        try {
-            // test the case with pattern
-            returnedTags.addAll(actions.register(
-                    new String[]{"GOBY_ALIGNMENTS:",
-                      "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.index",
-                      "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.entries",
-                      "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.header",
-                      "guess:", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.compact-reads"}
-                    ));
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail("fail to register fileset with FILESET:PATTERNS");
-        }
-        assertEquals("Register operation returned an unexpected number of tags", 0, returnedTags.size());
-        tags.addAll(returnedTags);
+        String[] entries = new String[]{"GOBY_ALIGNMENTS:",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.index",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.entries",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.header",
+                "guess:", "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_8/*.compact-reads"};
+        register(entries,"CASE_7", "FILESET:PATTERNS, one incomplete", 0, 1);
     }
 
-    @Test
-    public void check() {
-        /*if (! new File(storageAreaDir+"/ClusterGateway/TESTTAG1/AOUGEKP-Sample_MAN1.compact-reads").exists())
-            fail("READS_FILE entry for TESTTAG1 not found");
-        if (! new File(storageAreaDir+"/ClusterGateway/TESTTAG1/.metadata/metadata.pb").exists())
-            fail("metadata file for TESTTAG1 not found");
-        if (! new File(storageAreaDir+"/ClusterGateway/TESTTAG2/KHYMHVM-Sample_MAN2.compact-reads").exists())
-            fail("READS_FILE entry for TESTTAG2 not found");
-        if (! new File(storageAreaDir+"/ClusterGateway/TESTTAG2/.metadata/metadata.pb").exists())
-            fail("metadata file for TESTTAG2 not found");
-        if (! new File(storageAreaDir+"/ClusterGateway/TESTTAG3/OUTTRGH-Sample_MAN3.compact-reads").exists())
-            fail("READS_FILE entry for TESTTAG3 not found");
-        if (! new File(storageAreaDir+"/ClusterGateway/TESTTAG3/.metadata/metadata.pb").exists())
-            fail("metadata file for TESTTAG3 not found");  */
+
+    private void register(String[] entries, String caseID, String format, int expectedTags, int expectedErrors) {
+        logger.debug(String.format("Testing registration %s (%s)",caseID,format));
+        List<String> errors = new ArrayList<String>();
+        List<String> returnedTags = new ArrayList<String>();
+        List<InputEntry> inputEntries = FileSetManager.parseInputEntries(entries);
+        try {
+            // test the case
+            returnedTags.addAll(fileset.register(inputEntries,errors));
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail(String.format("Fail to register fileset %s with %",caseID,format));
+        }
+        assertEquals(String.format("Register operation returned an unexpected number of tags using the format %s",format),
+                expectedTags, returnedTags.size());
+        assertEquals(String.format("Register operation returned an unexpected number of errors using the format %s",format),
+                expectedErrors, errors.size());
+        tags.addAll(returnedTags);
     }
 
     @Test
     public void unregister() {
         for (String tag : tags) {
             try {
-                actions.unregister(tag);
+                fileset.unregister(tag);
             } catch (IOException e) {
                 fail("failed to unregister fileset " + tag);
             }
@@ -226,7 +152,7 @@ public class FileSetLocalRegistration {
     @Test(expected=IllegalArgumentException.class)
     public void wrongUnregister() {
         try {
-            actions.unregister("FAKETAG");
+            fileset.unregister("FAKETAG");
         } catch (IOException e) {
             fail("wrong exception threw by unregistration");
         }
