@@ -1,6 +1,4 @@
-package org.campagnelab.gobyweb.clustergateway.data;
-
-import com.sun.xml.internal.fastinfoset.util.CharArrayString;
+package org.campagnelab.gobyweb.clustergateway.jobs;
 
 import java.util.*;
 
@@ -16,7 +14,7 @@ public abstract class ParametrizedJob extends Job {
     /**
      * Adds a new actual value for an input slot
      * @param value
-     * @throws org.campagnelab.gobyweb.clustergateway.data.ParametrizedJob.InvalidInputSlotValueException if the parameter is not valid
+     * @throws org.campagnelab.gobyweb.clustergateway.jobs.ParametrizedJob.InvalidInputSlotValueException if the parameter is not valid
      */
     public void addInputSlotValue(InputSlotValue value) throws InvalidInputSlotValueException {
       if (!(value.getValues().size()>0))
@@ -30,7 +28,7 @@ public abstract class ParametrizedJob extends Job {
     /**
      * Adds new actual values for the input slots.
      * @param values
-     * @throws org.campagnelab.gobyweb.clustergateway.data.ParametrizedJob.InvalidInputSlotValueException if any of the values is not valid
+     * @throws org.campagnelab.gobyweb.clustergateway.jobs.ParametrizedJob.InvalidInputSlotValueException if any of the values is not valid
      */
     public void addInputSlotValues(Set<InputSlotValue> values) throws InvalidInputSlotValueException {
         for (InputSlotValue value : values)

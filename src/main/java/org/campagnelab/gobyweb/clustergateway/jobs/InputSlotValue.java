@@ -1,4 +1,4 @@
-package org.campagnelab.gobyweb.clustergateway.data;
+package org.campagnelab.gobyweb.clustergateway.jobs;
 
 import java.util.Arrays;
 import java.util.ArrayList;

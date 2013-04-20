@@ -1,4 +1,4 @@
-package org.campagnelab.gobyweb.clustergateway.data;
+package org.campagnelab.gobyweb.clustergateway.jobs;
 
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;

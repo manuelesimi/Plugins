@@ -1,7 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
-import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
-import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
+import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
+import org.campagnelab.gobyweb.clustergateway.jobs.TaskJob;
 import org.campagnelab.gobyweb.io.JobArea;
 
 /**

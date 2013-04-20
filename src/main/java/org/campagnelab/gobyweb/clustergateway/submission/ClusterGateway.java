@@ -5,7 +5,7 @@ import com.martiansoftware.jsap.JSAPException;
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.campagnelab.gobyweb.clustergateway.data.InputSlotValue;
+import org.campagnelab.gobyweb.clustergateway.jobs.InputSlotValue;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.plugins.Plugins;

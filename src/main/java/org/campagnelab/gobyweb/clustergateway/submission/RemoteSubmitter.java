@@ -4,8 +4,8 @@ import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
-import org.campagnelab.gobyweb.clustergateway.data.ResourceJob;
-import org.campagnelab.gobyweb.clustergateway.data.TaskJob;
+import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
+import org.campagnelab.gobyweb.clustergateway.jobs.TaskJob;
 
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
