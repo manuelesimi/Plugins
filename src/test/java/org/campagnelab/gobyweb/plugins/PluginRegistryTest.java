@@ -76,7 +76,7 @@ public class PluginRegistryTest {
     @Test
     public void getExecutables() {
         List<ExecutableConfig> executableConfigs = registry.filterConfigs(ExecutableConfig .class);
-        assertEquals("There must be 2 ExecutableConfigs", 2, executableConfigs.size());
+        assertEquals("There must be 3 ExecutableConfigs", 3, executableConfigs.size());
     }
 
     @Test
