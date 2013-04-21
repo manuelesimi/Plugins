@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.registration.InputEntry;
+import org.campagnelab.gobyweb.filesets.registration.InputEntryListBuilder;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.FileSetArea;
@@ -112,18 +113,17 @@ public class FileSetManager {
             }
         } catch (IOException e) {
             throw new Exception();
-
-
         }
         return returned_values;
     }
 
     /**
-     * Creates the entry object for each entry specified by the caller
-     * @param entries the list of entries in the form of FILESET_ID:PATTERN or PATTERN
-     * @return the list of entry objects
+     * Creates the input entries for the FileSet API
+     * @param entries the list of entries as specified on the command line
+     * @return the list of input entry
+     * @throws Exception if any of the input entry does not have files associated
      */
-    public static List<InputEntry> parseInputEntries(final String[] entries) {
+    public static List<InputEntry> parseInputEntries(final String[] entries) throws Exception {
         List<InputEntry> inputEntries = new ArrayList<InputEntry>();
         String currentFilesetId = null;
         for (String entry : entries) {
@@ -132,10 +132,18 @@ public class FileSetManager {
                 currentFilesetId = StringUtils.strip(entry, ":");
                 continue;
             }
+            InputEntry inputEntry;
             if (currentFilesetId == null || currentFilesetId.matches("guess")) {
-                inputEntries.add(new InputEntry(entry));
+                inputEntry = new InputEntry(entry);
             } else {
-                inputEntries.add(new InputEntry(currentFilesetId, entry));
+                inputEntry = new InputEntry(currentFilesetId, entry);
+            }
+            if (inputEntry.getFiles().size() > 0)
+                inputEntries.add(inputEntry);
+            else {
+               String message = String.format("Invalid entry: %s does not have any file associated ", inputEntry.getHumanReadableName());
+               logger.fatal(message);
+               throw new Exception(message);
             }
         }
         return Collections.unmodifiableList(inputEntries);
