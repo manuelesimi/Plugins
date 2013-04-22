@@ -145,7 +145,7 @@ public class FileSetLocalRegistration {
         }
         try {
             // test the case
-            returnedTags.addAll(fileset.register(inputEntries,errors));
+            returnedTags.addAll(fileset.register(inputEntries,errors, null));
         } catch (IOException e) {
             e.printStackTrace();
             fail(String.format("Fail to register fileset %s with %",caseID,format));

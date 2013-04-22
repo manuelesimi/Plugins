@@ -97,7 +97,7 @@ public class FileSetManager {
             ConfigurationList configurationList = PluginsToConfigurations.convertAsList(plugins.getRegistry().filterConfigs(FileSetConfig.class));
             FileSetAPI fileset = new FileSetAPI(storageArea,configurationList);
             if (config.getString("action").equalsIgnoreCase("register")) {
-                returned_values = fileset.register(parseInputEntries(config.getStringArray("entries")),errors);
+                returned_values = fileset.register(parseInputEntries(config.getStringArray("entries")),errors, config.getString("tag"));
                 if (returned_values.size() > 0 ) {
                     logger.info(String.format("%d fileset instances have been successfully registered with the following tags: ", returned_values.size()));
                     logger.info(Arrays.toString(returned_values.toArray()));
