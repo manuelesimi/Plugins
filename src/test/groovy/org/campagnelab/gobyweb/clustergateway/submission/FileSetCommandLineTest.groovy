@@ -1,9 +1,8 @@
 package org.campagnelab.gobyweb.clustergateway.submission
 
+import org.apache.commons.io.FileUtils
 import org.campagnelab.gobyweb.clustergateway.registration.FileSetManager
-import org.campagnelab.gobyweb.io.AreaFactory
-import org.campagnelab.gobyweb.io.FileSetArea
-import org.campagnelab.gobyweb.plugins.Plugins
+
 import org.junit.BeforeClass
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -13,6 +12,8 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail
 
 /**
+ *
+ * Test for FileSetManager command line
  * @author manuele
  *
  * Date: 4/1/13
@@ -22,26 +23,12 @@ import static junit.framework.Assert.fail
 @RunWith(JUnit4.class)
 public class FileSetCommandLineTest {
 
-    static Plugins plugins;
-    static FileSetArea storageArea;
     static String storageAreaDir = String.format("test-results/filesets");
 
     @BeforeClass
     public static void configure() {
-        plugins = new Plugins();
-        plugins.replaceDefaultSchemaConfig(".");
-        plugins.addServerConf("test-data/root-for-rnaselect");
-        plugins.setWebServerHostname("localhost");
-        plugins.reload();
-        //create the reference to the storage area
-        try {
-
-            storageArea = AreaFactory.createFileSetArea(
-                    storageAreaDir, "junit");
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-            fail("fail to create the local storage area");
-        }
+        FileUtils.deleteDirectory(new File(storageAreaDir));
+        FileUtils.forceMkdir(new File(storageAreaDir));
     }
 
     @Test
@@ -62,11 +49,36 @@ public class FileSetCommandLineTest {
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads"
         )).size());
 
-        assertEquals(2, FileSetManager.process(buildFileRegistrationArgsNoSource(
+        assertEquals(2, FileSetManager.process(buildFileRegistrationArgs(
                 "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads" +
                 " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads")).size());
 
+        assertEquals(1, FileSetManager.process(buildFileRegistrationArgs(
+                "--tag XXXXXX7 " +
+                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads"
+        )).size());
+
+        try {
+            //this has to fail because the input tag already exists (from the previous registration)
+            assertEquals(0, FileSetManager.process(buildFileRegistrationArgs(
+                    "--tag XXXXXX7 " +
+                            "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads"
+            )).size());
+            fail("Registration of an existing tag did not fail as expected");
+        } catch (Exception e) {}
+
+        try {
+            //this has to fail because we specify a tag but we try to upload 2 fileset instances
+            assertEquals(0, FileSetManager.process(buildFileRegistrationArgs(
+                "--tag XXXXXX8 " +
+                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads" +
+                        " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads")).size());
+            fail("Registration with tag one and two instances did not fail");
+        } catch (Exception e) {}
+
     }
+
+
 
 
     private static String[] buildFileRegistrationArgs(String filenames) {
@@ -79,13 +91,4 @@ public class FileSetCommandLineTest {
 
     }
 
-    private static String[] buildFileRegistrationArgsNoSource(String filenames) {
-        ("--fileset-area ${storageAreaDir} "+
-                "--plugins-dir test-data/root-for-rnaselect " +
-                "--owner junit "+
-                "--action register " +
-                filenames
-        ).split(" ");
-
-    }
 }
