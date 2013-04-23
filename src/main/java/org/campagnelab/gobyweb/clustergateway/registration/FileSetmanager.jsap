@@ -41,7 +41,8 @@
              <required>optional</required>
              <shortFlag>t</shortFlag>
              <longFlag>tag</longFlag>
-             <help>The tag to be assigned to the fileset. If not specified, an automatically generated tag is assigned.</help>
+             <help>For action register, it is the tag to be assigned to the fileset. If not specified, an automatically generated tag is assigned.
+             For action unregister, it is the tag that identify the fileset instance to delete.</help>
          </flaggedOption>
 
         <flaggedOption>
