@@ -106,6 +106,7 @@ public class FileSetManager {
                     for (String message : errors) {
                         logger.error(message);
                     }
+                    throw new Exception();
                 }
             } else {
                 fileset.unregister(config.getString("tag"));
