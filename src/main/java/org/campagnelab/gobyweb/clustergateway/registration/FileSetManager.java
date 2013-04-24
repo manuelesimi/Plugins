@@ -89,7 +89,8 @@ public class FileSetManager {
                 throw new Exception();
             }
         } catch (Exception e) {
-            throw new Exception();
+            logger.error("Failed to load plugins definitions",e);
+            throw new Exception(e);
         }
         try {
             List<String> errors = new ArrayList<String>();
@@ -97,7 +98,11 @@ public class FileSetManager {
             ConfigurationList configurationList = PluginsToConfigurations.convertAsList(plugins.getRegistry().filterConfigs(FileSetConfig.class));
             FileSetAPI fileset = new FileSetAPI(storageArea,configurationList);
             if (config.getString("action").equalsIgnoreCase("register")) {
-                returned_values = fileset.register(parseInputEntries(config.getStringArray("entries")),errors, config.getString("tag"));
+                List<InputEntry> entries = parseInputEntries(config.getStringArray("entries"));
+                if (config.userSpecified("no-copy"))
+                    returned_values = fileset.registerNoCopy(entries,errors, config.getString("tag"));
+                else
+                    returned_values = fileset.register(entries,errors, config.getString("tag"));
                 if (returned_values.size() > 0 ) {
                     logger.info(String.format("%d fileset instances have been successfully registered with the following tags: ", returned_values.size()));
                     logger.info(Arrays.toString(returned_values.toArray()));

@@ -68,6 +68,14 @@
         </flaggedOption>
 
         <switch>
+            <id>no-copy</id>
+            <shortFlag>n</shortFlag>
+            <longFlag>no-copy</longFlag>
+            <help>If specified, files are not copied in the FileSet Area. Instead, they are linked to their original location.
+                If they are deleted or moved, they won't be accessible anymore.</help>
+        </switch>
+
+        <switch>
             <id>help</id>
             <shortFlag>h</shortFlag>
             <longFlag>help</longFlag>
