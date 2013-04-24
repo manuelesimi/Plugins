@@ -23,7 +23,7 @@ import static junit.framework.Assert.fail
 @RunWith(JUnit4.class)
 public class FileSetCommandLineTest {
 
-    static String storageAreaDir = String.format("test-results/filesets");
+    static String storageAreaDir = "test-results/filesets";
 
     @BeforeClass
     public static void configure() {
@@ -32,7 +32,7 @@ public class FileSetCommandLineTest {
     }
 
     @Test
-    public void register() {
+    public void registerWithNameAndGuess() {
         assertEquals(5, FileSetManager.process(buildFileRegistrationArgs(
                 "GOBY_ALIGNMENTS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.index "
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.entries "
@@ -53,9 +53,15 @@ public class FileSetCommandLineTest {
                 "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads" +
                 " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads")).size());
 
+
+    }
+
+    @Test
+    public void registerWithTags() {
+
         assertEquals(1, FileSetManager.process(buildFileRegistrationArgs(
                 "--tag XXXXXX7 " +
-                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads"
+                        "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads"
         )).size());
 
         try {
@@ -65,7 +71,7 @@ public class FileSetCommandLineTest {
                             "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads"
             )).size());
             fail("Registration of an existing tag did not fail as expected");
-        } catch (Exception e) {}
+        } catch (Exception e) {/*expected*/}
 
         try {
             //this has to fail because we specify a tag but we try to upload 2 fileset instances
@@ -74,17 +80,24 @@ public class FileSetCommandLineTest {
                 "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads" +
                         " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads")).size());
             fail("Registration with tag one and two instances did not fail");
-        } catch (Exception e) {}
+        } catch (Exception e) {/*expected*/}
 
     }
 
+    @Test
+    public void registerNoCopy() {
+            //this has to fail because the input tag already exists (from the previous registration)
+            assertEquals("Unexpected number of tags returned by registerNoCopy", 1, FileSetManager.process(buildFileRegistrationArgs(
+                    "--no-copy " +
+                    "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads"
+            )).size());
 
-
+    }
 
     private static String[] buildFileRegistrationArgs(String filenames) {
         ("--fileset-area ${storageAreaDir} "+
                 "--plugins-dir test-data/root-for-rnaselect " +
-                "--owner junit "+
+                "--owner PluginsSDK "+
                 "--action register " +
                 filenames
         ).split(" ");
