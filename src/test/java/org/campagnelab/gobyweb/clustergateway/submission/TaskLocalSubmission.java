@@ -6,18 +6,15 @@ import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import javax.swing.plaf.FileChooserUI;
 import java.io.File;
 import java.io.IOException;
 
 import static junit.framework.Assert.fail;
-import static junit.framework.Assert.failNotEquals;
 
 /**
  * Test local task executions
@@ -53,8 +50,7 @@ public class TaskLocalSubmission {
             FileUtils.copyDirectory(new File(sourceStorageAreaDir).getAbsoluteFile(),
                     new File(storageAreaDir).getParentFile().getAbsoluteFile());
             storageArea = AreaFactory.createFileSetArea(
-                    referenceSA, owner,
-                    AreaFactory.MODE.LOCAL);
+                    referenceSA, owner);
         } catch (IOException ioe) {
             ioe.printStackTrace();
             fail("failed to create the local storage area");
@@ -62,7 +58,7 @@ public class TaskLocalSubmission {
 
         //create the reference to the job area
         try {
-            jobArea = AreaFactory.createJobArea(new File(jobAreaDir).getAbsoluteFile().getAbsolutePath(), owner, AreaFactory.MODE.LOCAL);
+            jobArea = AreaFactory.createJobArea(new File(jobAreaDir).getAbsoluteFile().getAbsolutePath(), owner);
         } catch (IOException ioe) {
             fail("failed to create the local job area");
         }
