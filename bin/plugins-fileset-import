@@ -61,7 +61,7 @@ create_registration_info() {
         #concatenate the file to the previous list of files
         put "files" "${BASENAME}" "${value} ${FILES[$i]}"
 
-        put "options" "${BASENAME}" "${TAG_OPTION} --owner ${OWNER}"
+        put "options" "${BASENAME}" "${TAG_OPTION} --owner ${OWNER} --no-copy"
     done
 }
 
