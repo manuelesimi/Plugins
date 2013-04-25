@@ -75,10 +75,10 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         if (localWorkingDir.exists())
             FileUtils.forceDelete(localWorkingDir);
         FileUtils.moveDirectory(tempDir, localWorkingDir);
-        logger.info("Task dir: " + jobArea.getBasename(taskJob.getTag()));
         //upload the entire folder in the job area
-        logger.info("Task submitting files for execution...");
+        logger.info("Submitting files for execution...");
         jobArea.push(taskJob.getTag(), localWorkingDir);
+        logger.info(String.format("The Task has been successfully submitted to %s", jobArea.getReferenceName()));
 
         //grant execute permissions to the task's scripts
         String[] binaryFiles = new String[]{"script.sh", constantsTemplate, wrapperScript};
@@ -88,6 +88,8 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         logger.info("Requesting task execution...");
         jobArea.execute(taskJob.getTag(), wrapperScript);
         FileUtils.forceDeleteOnExit(localWorkingDir);
+        logger.info(String.format("The Task is going to be executed in the following directory: %s", jobArea.getBasename(taskJob.getTag())));
+
     }
 
 
