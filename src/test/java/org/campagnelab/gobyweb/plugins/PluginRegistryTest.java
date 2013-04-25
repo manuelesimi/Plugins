@@ -5,7 +5,7 @@ import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisCo
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.campagnelab.gobyweb.plugins.xml.Config;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -24,12 +24,11 @@ import static junit.framework.Assert.assertNull;
  */
 @RunWith(JUnit4.class)
 public class PluginRegistryTest {
-    // TODO This test is not thread safe because it relies on the Registry, which uses a singleton internally.
-    // Other tests started by Junit will alter the registry. Result will vary depending on which tests run first..
-    static PluginRegistry registry = PluginRegistry.getARegistry();
 
-    @BeforeClass
-    public static void add() {
+    PluginRegistry registry = PluginRegistry.getARegistry();
+
+    @Before
+    public void add() {
         AlignerConfig config = new AlignerConfig();
         config.setId("aligner_1");
         config.setName("aligner 1 goby output");
@@ -75,8 +74,8 @@ public class PluginRegistryTest {
 
     @Test
     public void getExecutables() {
-        List<ExecutableConfig> executableConfigs = registry.filterConfigs(ExecutableConfig .class);
-        assertEquals("There must be 3 ExecutableConfigs", 3, executableConfigs.size());
+        List<ExecutableConfig> executableConfigs = registry.filterConfigs(ExecutableConfig.class);
+        assertEquals("There must be 3 ExecutableConfigs", 2, executableConfigs.size());
     }
 
     @Test
