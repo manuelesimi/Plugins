@@ -67,7 +67,10 @@ create_registration_info() {
 
 
 output_commands() {
-
+    NOW=`date "+%Y-%m-%d-%H%M%S"`
+    OUTPUT_FILE="import-commands-${NOW}.sh"
+    echo "Generating output commands in ${OUTPUT_FILE}..."
+    echo "#!/bin/sh" > $OUTPUT_FILE
     getKeySet "files"
     for KEY in $keySet
     do
@@ -75,10 +78,11 @@ output_commands() {
       FILES_TO_REGISTER=${value}
       get "options" $KEY
       REGISTRATION_OPTIONS=${value}
-      echo "plugins-register-fileset --fileset-area ${TARGET_FILESET_AREA} --plugins-dir ${PLUGINS_DIR} ${REGISTRATION_OPTIONS} ${MATCHING_CONFIG}: ${FILES_TO_REGISTER}"
-
+      echo "plugins-register-fileset --fileset-area ${TARGET_FILESET_AREA} --plugins-dir ${PLUGINS_DIR} ${REGISTRATION_OPTIONS} ${MATCHING_CONFIG}: ${FILES_TO_REGISTER}" >> $OUTPUT_FILE
+      echo "" >> $OUTPUT_FILE
     done
-
+    chmod 777 $OUTPUT_FILE
+    echo "done"
 }
 
 # store a new key in a map, if the map is simulated, it does not need to be created
