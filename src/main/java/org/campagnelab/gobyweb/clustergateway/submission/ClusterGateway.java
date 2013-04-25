@@ -166,12 +166,14 @@ public class ClusterGateway {
      * @throws Exception
      */
     public static  Set<InputSlotValue> toInputParameters(String[] parameters) throws Exception {
+        if (parameters.length == 0)
+            return Collections.EMPTY_SET;
         Set<InputSlotValue> parsed = new HashSet<InputSlotValue>();
         InputSlotValue param = null;
         if (parameters[0].endsWith(":"))
             param = new InputSlotValue(StringUtils.strip(parameters[0], ":"));
         else
-            throw new Exception("Cannot accept tag reference %s with no parameter name associated. Accepted form is: NAME: TAG1 TAG2 NAME2: TAG3 TAG4 TAG5");
+            throw new Exception(String.format("Cannot accept tag reference %s with no parameter name associated. Accepted form is: NAME: TAG1 TAG2 NAME2: TAG3 TAG4 TAG5",parameters[0]));
 
         for (int i=1; i<parameters.length; i++) {
             if (parameters[i].endsWith(":")) {
