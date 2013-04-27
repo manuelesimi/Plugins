@@ -1,5 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
+import org.apache.log4j.Logger;
+
 import java.util.Date;
 
 /**
@@ -7,6 +9,8 @@ import java.util.Date;
  * @author manuele
  */
 public abstract class Job {
+
+    protected static final Logger logger = Logger.getLogger(Job.class);
 
     String id;
 

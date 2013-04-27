@@ -14,7 +14,7 @@
     <inputSchema>
         <inputSlot>
             <name>INPUT_READS</name>
-            <type>
+            <type maxOccurs="10" minOccurs="1">
                 <id>COMPACT_READS</id>
                 <versionAtLeast>1.0</versionAtLeast>
             </type>
