@@ -2,10 +2,12 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 
 import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
+import org.campagnelab.gobyweb.clustergateway.jobs.ParametrizedJob;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -80,6 +82,49 @@ public class TaskLocalSubmission {
             fail("failed to submit a local task for RNASELECT_TASK configuration");
         }
     }
+
+    @Test
+    public void submitExpectedToFailTooFewValues() {
+        try {
+            Submitter submitter = new LocalSubmitter(plugins.getRegistry());
+            submitter.setSubmissionHostname("");
+            submitter.setRemoteArtifactRepositoryPath("");
+            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
+            //12 values for input reads are not accepted
+            actions.submitTask(
+                    "RNASELECT_TASK",
+                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:",
+                            "TESTTAG1", "TESTTAG2", "TESTTAG3", "TESTTAG1",
+                            "TESTTAG2", "TESTTAG3", "TESTTAG1", "TESTTAG2",
+                            "TESTTAG3","TESTTAG1", "TESTTAG2", "TESTTAG3"}));
+
+        } catch (ParametrizedJob.InvalidSlotValueException is) {
+            //this is expected
+        } catch (Exception e) {
+            fail("unexpected exception received by job submission");
+        }
+    }
+
+    @Test
+    public void submitExpectedToFailTooManyValues() {
+        try {
+            Submitter submitter = new LocalSubmitter(plugins.getRegistry());
+            submitter.setSubmissionHostname("");
+            submitter.setRemoteArtifactRepositoryPath("");
+            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
+            //no values for input reads are not accepted
+            actions.submitTask(
+                    "RNASELECT_TASK",
+                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:",}));
+
+        } catch (ParametrizedJob.InvalidSlotValueException is) {
+            //this is expected
+        } catch (Exception e) {
+            fail("unexpected exception received by job submission");
+        }
+    }
+
+
 
     //@AfterClass
     public static void clean() {
