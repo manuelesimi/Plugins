@@ -84,7 +84,7 @@ public class TaskLocalSubmission {
     }
 
     @Test
-    public void submitExpectedToFailTooFewValues() {
+    public void submitExpectedToFailTooManyValues() {
         try {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
@@ -106,7 +106,7 @@ public class TaskLocalSubmission {
     }
 
     @Test
-    public void submitExpectedToFailTooManyValues() {
+    public void submitExpectedToFailTooFewValues() {
         try {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
