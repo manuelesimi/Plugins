@@ -47,9 +47,6 @@ public class TaskIO {
         @XmlAttribute
         public String maxOccurs;
 
-        public boolean mandatory = true;
-
-
         protected IOFileSetRef() {}
 
     }

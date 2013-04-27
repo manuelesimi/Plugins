@@ -25,11 +25,9 @@
         <outputSlot>
             <name>STATS</name>
             <type>
-                 <id>TSV</id>
-                 <versionExactly>1.0</versionExactly>
-                 <mandatory>true</mandatory>
+                <id>TSV</id>
+                <versionExactly>1.0</versionExactly>
             </type>
         </outputSlot>
     </outputSchema>
-
 </taskConfig>

@@ -25,7 +25,6 @@
                 <xs:element ref="versionExactly"/>
                 <xs:element ref="versionAtMost"/>
             </xs:choice>
-            <xs:element name="mandatory" type="xs:boolean" default="true" minOccurs="0"/>
         </xs:sequence>
         <xs:attribute name="minOccurs" type="xs:nonNegativeInteger" use="optional" default="1"/>
         <xs:attribute name="maxOccurs" type="T_occurs" use="optional" default="1"/>
