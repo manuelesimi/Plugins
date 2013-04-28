@@ -7,6 +7,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.Job;
+import static org.campagnelab.gobyweb.clustergateway.jobs.ParametrizedJob.*;
 import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.TaskJob;
 import org.campagnelab.gobyweb.filesets.protos.JobDataWriter;
@@ -245,19 +246,23 @@ abstract public class AbstractSubmitter implements Submitter {
      * @param session
      * @param taskJob
      */
-    protected File createJobDataPB(Session session, TaskJob taskJob) throws Exception {
-        //create protocol buffer for filesets
+    protected File createJobDataPB(Session session, TaskJob taskJob) throws InvalidJobDataException {
+
+        //validate the IO data
+        taskJob.validateMandatorySlots();
+
         JobDataWriter jobDataWriter = new JobDataWriter();
+
+        //add data used by the job for returning information (typically, the IDs of the produced filesets
         jobDataWriter.addPushInfo(new File(session.targetAreaReferenceName).getAbsolutePath(),
                 session.targetAreaOwner,
                 new File(session.callerAreaReferenceName).getAbsolutePath(),
                 session.callerAreaOwner);
         TaskConfig sourceConfig = taskJob.getSourceConfig();
-
         ConfigurationList configurationList = new ConfigurationList();
         List<JobInputSlot>  inputSlots = new ArrayList<JobInputSlot>();
-
         TaskInputSchema inputSchema = sourceConfig.getInputSchema();
+        //add the filesets and the sub-set of configurations visible to the job
         for (TaskIO io : inputSchema.getInputSlots()) {
             //look for the fileset configuration and add it to the configuration list
             FileSetConfig filesetConfig = DependencyResolver.resolveFileSet(io.geType().id,
@@ -265,7 +270,7 @@ abstract public class AbstractSubmitter implements Submitter {
                     io.geType().versionExactly,
                     io.geType().versionAtMost);
             if (filesetConfig == null)
-               throw new Exception(String.format("Unable to find a FileSet configuration matching the type input slot %s", io.getName()));
+               throw new InvalidJobDataException(String.format("Unable to find a FileSet configuration matching the type input slot %s", io.getName()));
 
             this.addConfigurationToList(configurationList,filesetConfig);
 
@@ -275,7 +280,6 @@ abstract public class AbstractSubmitter implements Submitter {
             inputSlot.tags = taskJob.getInputSlotValues(io.getName());
             inputSlot.id = io.geType().id;
             inputSlots.add(inputSlot);
-
         }
 
         List<JobOutputSlot> outputSlots = new ArrayList<JobOutputSlot>();
@@ -287,7 +291,8 @@ abstract public class AbstractSubmitter implements Submitter {
                     io.geType().versionExactly,
                     io.geType().versionAtMost);
             if (filesetConfig == null)
-                throw new Exception(String.format("Unable to find a FileSet configuration matching the type input slot %s", io.getName()));
+                throw new InvalidJobDataException(String.format("Unable to find a FileSet configuration matching the type of the input slot %s",
+                        io.getName()));
 
             this.addConfigurationToList(configurationList,filesetConfig);
             //add the output slot
@@ -301,17 +306,24 @@ abstract public class AbstractSubmitter implements Submitter {
         jobDataWriter.addConfigurations(configurationList);
 
         //add input/output slots
-        jobDataWriter.addInputSlotList(session.targetAreaReferenceName,
-                session.targetAreaOwner,
-                inputSlots);
+        try {
+            jobDataWriter.addInputSlotList(session.targetAreaReferenceName,
+                    session.targetAreaOwner,
+                    inputSlots);
+        } catch (Exception e) {
+            new InvalidJobDataException("Failed to add the input slot list to protocol buffer",e);
+        }
 
         jobDataWriter.addOutputSlotList(
                 session.targetAreaReferenceName,
                 session.targetAreaOwner,
                 outputSlots);
 
-        return jobDataWriter.serialize();
-
+        try {
+            return jobDataWriter.serialize();
+        } catch (Exception e) {
+            throw  new InvalidJobDataException("Failed to serialize the Job Data",e);
+        }
     }
 
     private void addConfigurationToList(ConfigurationList configurationList, FileSetConfig filesetConfig) {

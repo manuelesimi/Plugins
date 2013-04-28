@@ -49,6 +49,25 @@ public abstract class ParametrizedJob extends Job {
         return Collections.EMPTY_LIST;
     }
 
+    /**
+     * Validate the job I/O available for its execution against the schema
+     * @return
+     * @throws InvalidJobDataException if any of the mandatory slots is missing
+     */
+    public void validateMandatorySlots() throws InvalidJobDataException {
+        List<String> mandatorySlots = this.getMandatoryInputSlots();
+        List<String> inputSlotNames = new ArrayList<String>();
+        for (InputSlotValue inputSlotValue: inputSlots)
+            inputSlotNames.add(inputSlotValue.getName());
+        //need to create two sets with the names to have a case insensitive comparison
+        Set <String> mandatoryNameSet = new TreeSet <String> (String.CASE_INSENSITIVE_ORDER);
+        Set <String> actualNameSet = new TreeSet <String> (String.CASE_INSENSITIVE_ORDER);
+        mandatoryNameSet.addAll(mandatorySlots);
+        actualNameSet.addAll(inputSlotNames);
+
+        if (!actualNameSet.containsAll(mandatoryNameSet))
+              throw new InvalidJobDataException("Some mandatory input slots are missing");
+    }
 
     /**
      * Validates the input slot value according to the Job configuration.
@@ -73,8 +92,23 @@ public abstract class ParametrizedJob extends Job {
 
     public static class InvalidSlotValueException extends Exception {
 
+        public InvalidSlotValueException(String message, Throwable throwable) {
+            super(message, throwable);
+        }
+
         public InvalidSlotValueException(String message) {
             super(message);
+        }
+    }
+
+    public static class InvalidJobDataException extends Exception {
+
+        public InvalidJobDataException(String message) {
+            super(message);
+        }
+
+        public InvalidJobDataException(String message, Throwable throwable) {
+            super(message, throwable);
         }
     }
 }
