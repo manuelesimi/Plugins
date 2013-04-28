@@ -124,6 +124,24 @@ public class TaskLocalSubmission {
         }
     }
 
+    @Test
+    public void submitExpectedToFailMissingMandatorySlot() {
+        try {
+            Submitter submitter = new LocalSubmitter(plugins.getRegistry());
+            submitter.setSubmissionHostname("");
+            submitter.setRemoteArtifactRepositoryPath("");
+            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
+            //INPUT_READS slot is mandatory
+            actions.submitTask(
+                    "RNASELECT_TASK",
+                    ClusterGateway.toInputParameters(new String[]{}));
+
+        } catch (ParametrizedJob.InvalidJobDataException is) {
+            //this is expected
+        } catch (Exception e) {
+            fail("unexpected exception received by job submission");
+        }
+    }
 
 
     //@AfterClass
