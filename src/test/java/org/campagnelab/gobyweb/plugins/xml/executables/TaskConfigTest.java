@@ -1,11 +1,9 @@
 package org.campagnelab.gobyweb.plugins.xml.executables;
 
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
-import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
+
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
-import org.campagnelab.gobyweb.plugins.xml.tasks.TaskIO;
-import org.campagnelab.gobyweb.plugins.xml.tasks.TaskOutputSchema;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
