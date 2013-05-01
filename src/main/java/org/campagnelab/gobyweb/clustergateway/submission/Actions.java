@@ -99,6 +99,13 @@ final class Actions {
 
     }
 
+    /**
+     * Submits a task as a Job for execution
+     * @param config the task configuration
+     * @param inputFilesets the input filesets
+     * @param session the session for the submitter
+     * @throws Exception
+     */
     private void submitTask(TaskConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
         //create the task instance
         TaskJob taskJob = new TaskJob(config);
@@ -111,22 +118,40 @@ final class Actions {
         submitter.submitTask(jobArea, session, taskJob);
     }
 
-    private void submitAligner(AlignerConfig config, Set<InputSlotValue> inputFilesets, Session session){
+    /**
+     * Submits an aligner as a Job for execution
+     * @param config the aligner configuration
+     * @param inputFilesets the input filesets
+     * @param session the session for the submitter
+     * @throws Exception
+     */
+    private void submitAligner(AlignerConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
           throw new UnsupportedOperationException("Aligners cannot be submitted yet");
     }
 
-    private void submitAlignmentAnalysis(AlignmentAnalysisConfig config, Set<InputSlotValue> inputFilesets, Session session){
+    /**
+     * Submits an alignment analysis as a Job for execution
+     * @param config the analysis configuration
+     * @param inputFilesets the input filesets
+     * @param session the session for the submitter
+     * @throws Exception
+     */
+    private void submitAlignmentAnalysis(AlignmentAnalysisConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
          throw new UnsupportedOperationException("Alignment Analyses cannot be submitted yet");
     }
 
+    /**
+     * Submits a resource for installation
+     * @param id the resource id
+     * @param version the resource version
+     * @throws Exception
+     */
     public void submitResourceInstall(String id, String version) throws Exception {
         //create the resourceInstance instance
-
         ResourceConfig config = DependencyResolver.resolveResource(id, version, version, version);
         ResourceJob resourceInstance = new ResourceJob(config);
         resourceInstance.setTag(ICBStringUtils.generateRandomString());
         logger.debug("Tag assigned to Task instance: " + resourceInstance.getTag());
-
 
         //create the directory for results
         FileUtils.forceMkdir(returnedJobFiles);
