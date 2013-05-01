@@ -43,7 +43,7 @@
             <required>true</required>
             <shortFlag>j</shortFlag>
             <longFlag>job-area</longFlag>
-            <help>The directory where task files are placed for execution. Can be a local folder or a remote folder in
+            <help>The directory where plugin's files are placed for execution. Can be a local folder or a remote folder in
                 the form of username@hostname:/path
             </help>
         </flaggedOption>
@@ -70,7 +70,7 @@
             <longFlag>job</longFlag>
             <list>true</list>
             <listSeparator>:</listSeparator>
-            <help>The identifier of the task to submit, in the format ID:VERSION.</help>
+            <help>The identifier of the executable plugins to submit, in the format ID:VERSION.</help>
         </flaggedOption>
 
         <flaggedOption>
@@ -93,7 +93,7 @@
             <required>false</required>
             <shortFlag>o</shortFlag>
             <longFlag>owner</longFlag>
-            <help>The user that will own the task files and the produced filesets. If not specified, the current logged user is used.</help>
+            <help>The user that will own the job files and the produced filesets. If not specified, the current logged user is used.</help>
         </flaggedOption>
 
         <switch>

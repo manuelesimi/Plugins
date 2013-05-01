@@ -10,9 +10,11 @@ import org.campagnelab.gobyweb.clustergateway.jobs.TaskJob;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
+import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
+import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
-
+import org.campagnelab.gobyweb.plugins.xml.Config;
 import java.io.File;
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -62,21 +64,7 @@ final class Actions {
     }
 
 
-    public void submitTask(String id, Set<InputSlotValue> inputFilesets) throws Exception {
-        //create the task instance
-        TaskConfig config = registry.findByTypedId(id, TaskConfig.class);
-        if (config==null) {
-            throw new IllegalArgumentException("Could not find task with ID="+id);
-        }
-        TaskJob taskJob = new TaskJob(config);
-        taskJob.setTag(ICBStringUtils.generateRandomString());
-        logger.debug("Tag assigned to the Task instance: " + taskJob.getTag());
-
-        //add the input filesets
-        taskJob.addInputSlotValues(inputFilesets);
-
-        //create the directory for results
-        FileUtils.forceMkdir(returnedJobFiles);
+    public void submitJob(String id, Set<InputSlotValue> inputFilesets) throws Exception {
 
         //prepare the session for the submission
         Session session = submitter.newSession();
@@ -84,8 +72,51 @@ final class Actions {
         session.targetAreaReferenceName = fileSetAreaReference;
         session.targetAreaOwner = jobArea.getOwner();
 
+        //create the directory for results
+        FileUtils.forceMkdir(returnedJobFiles);
+
+        //detect the type of executable plugin we have to submit
+        Config config = registry.findByTypedId(id, TaskConfig.class);
+        if (config != null) {
+           this.submitTask((TaskConfig)config, inputFilesets, session);
+           return;
+        }
+        config = registry.findByTypedId(id, AlignerConfig.class);
+        if (config != null) {
+            this.submitAligner((AlignerConfig) config, inputFilesets, session);
+            return;
+        }
+
+        config = registry.findByTypedId(id, AlignmentAnalysisConfig.class);
+        if (config != null) {
+            this.submitAlignmentAnalysis((AlignmentAnalysisConfig)config, inputFilesets, session);
+            return;
+        }
+
+        if (config==null) {
+            throw new IllegalArgumentException("Could not find an executable plugins with ID="+id);
+        }
+
+    }
+
+    private void submitTask(TaskConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
+        //create the task instance
+        TaskJob taskJob = new TaskJob(config);
+        taskJob.setTag(ICBStringUtils.generateRandomString());
+        taskJob.addInputSlotValues(inputFilesets);
+        logger.debug("Tag assigned to the Task instance: " + taskJob.getTag());
+        //add the input filesets
+        taskJob.addInputSlotValues(inputFilesets);
         //submit the task
         submitter.submitTask(jobArea, session, taskJob);
+    }
+
+    private void submitAligner(AlignerConfig config, Set<InputSlotValue> inputFilesets, Session session){
+          throw new UnsupportedOperationException("Aligners cannot be submitted yet");
+    }
+
+    private void submitAlignmentAnalysis(AlignmentAnalysisConfig config, Set<InputSlotValue> inputFilesets, Session session){
+         throw new UnsupportedOperationException("Alignment Analyses cannot be submitted yet");
     }
 
     public void submitResourceInstall(String id, String version) throws Exception {
