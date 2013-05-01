@@ -14,7 +14,7 @@ import static junit.framework.Assert.*;
  *         Date: 10/12/11
  *         Time: 11:18 AM
  */
-public class PluginFileSetTest {
+public class PluginRegistryWithConfigsTest {
     Plugins plugins;
     PluginRegistry pluginRegistry = PluginRegistry.getRegistry();
 
