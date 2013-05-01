@@ -73,7 +73,7 @@ public class TaskLocalSubmission {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
-            actions.submitTask(
+            actions.submitJob(
                     "RNASELECT_TASK",
                     ClusterGateway.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}));
 
@@ -91,12 +91,12 @@ public class TaskLocalSubmission {
             submitter.setRemoteArtifactRepositoryPath("");
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             //12 values for input reads are not accepted
-            actions.submitTask(
+            actions.submitJob(
                     "RNASELECT_TASK",
                     ClusterGateway.toInputParameters(new String[]{"INPUT_READS:",
                             "TESTTAG1", "TESTTAG2", "TESTTAG3", "TESTTAG1",
                             "TESTTAG2", "TESTTAG3", "TESTTAG1", "TESTTAG2",
-                            "TESTTAG3","TESTTAG1", "TESTTAG2", "TESTTAG3"}));
+                            "TESTTAG3", "TESTTAG1", "TESTTAG2", "TESTTAG3"}));
 
         } catch (ParametrizedJob.InvalidSlotValueException is) {
             //this is expected
@@ -113,7 +113,7 @@ public class TaskLocalSubmission {
             submitter.setRemoteArtifactRepositoryPath("");
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             //no values for input reads are not accepted
-            actions.submitTask(
+            actions.submitJob(
                     "RNASELECT_TASK",
                     ClusterGateway.toInputParameters(new String[]{"INPUT_READS:",}));
 
@@ -132,7 +132,7 @@ public class TaskLocalSubmission {
             submitter.setRemoteArtifactRepositoryPath("");
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             //INPUT_READS slot is mandatory
-            actions.submitTask(
+            actions.submitJob(
                     "RNASELECT_TASK",
                     ClusterGateway.toInputParameters(new String[]{}));
 
