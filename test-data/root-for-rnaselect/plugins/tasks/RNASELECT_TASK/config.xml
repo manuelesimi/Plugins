@@ -19,7 +19,6 @@
                 <versionAtLeast>1.0</versionAtLeast>
             </type>
         </inputSlot>
-        <criteria/>
     </inputSchema>
     <outputSchema>
         <outputSlot>

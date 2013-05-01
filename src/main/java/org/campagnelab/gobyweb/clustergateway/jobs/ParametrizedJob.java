@@ -1,5 +1,9 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
+
 import java.util.*;
 
 /**
@@ -10,6 +14,14 @@ import java.util.*;
 public abstract class ParametrizedJob extends Job {
 
      private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
+
+     public ExecutableOutputSchema getOutputSchema() {
+        return this.getSourceConfig().getOutputSchema();
+     }
+
+     public ExecutableInputSchema getInputSchema() {
+        return this.getSourceConfig().getInputSchema();
+     }
 
     /**
      * Adds a new actual value for an input slot
@@ -88,6 +100,13 @@ public abstract class ParametrizedJob extends Job {
      * @return the names of the slots
      */
     protected abstract List<String> getMandatoryOutputSlots();
+
+
+    /**
+     *
+     * @return the plugin's source configuration of this Job
+     */
+    protected abstract ExecutableConfig getSourceConfig();
 
 
     public static class InvalidSlotValueException extends Exception {

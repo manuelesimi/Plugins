@@ -289,4 +289,7 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
         return execute;
     }
 
+    public abstract ExecutableInputSchema getInputSchema();
+
+    public abstract ExecutableOutputSchema getOutputSchema();
 }

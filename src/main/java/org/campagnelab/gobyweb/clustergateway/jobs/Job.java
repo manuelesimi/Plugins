@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 
 import java.util.Date;
 
@@ -74,4 +75,5 @@ public abstract class Job {
     public void setBasename(String basename) {
         this.basename = basename;
     }
+
 }

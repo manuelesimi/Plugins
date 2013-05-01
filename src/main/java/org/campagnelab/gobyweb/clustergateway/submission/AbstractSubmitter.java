@@ -8,6 +8,8 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.Job;
 import static org.campagnelab.gobyweb.clustergateway.jobs.ParametrizedJob.*;
+
+import org.campagnelab.gobyweb.clustergateway.jobs.ParametrizedJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.TaskJob;
 import org.campagnelab.gobyweb.filesets.protos.JobDataWriter;
@@ -22,13 +24,12 @@ import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
+import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
-import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
-import org.campagnelab.gobyweb.plugins.xml.tasks.TaskIO;
-import org.campagnelab.gobyweb.plugins.xml.tasks.TaskInputSchema;
-import org.campagnelab.gobyweb.plugins.xml.tasks.TaskOutputSchema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -244,12 +245,12 @@ abstract public class AbstractSubmitter implements Submitter {
     /**
      * Prepare the protocol buffer file to send to the cluster with the job
      * @param session
-     * @param taskJob
+     * @param job
      */
-    protected File createJobDataPB(Session session, TaskJob taskJob) throws InvalidJobDataException {
+    protected File createJobDataPB(Session session, ParametrizedJob job) throws InvalidJobDataException {
 
         //validate the IO data
-        taskJob.validateMandatorySlots();
+        job.validateMandatorySlots();
 
         JobDataWriter jobDataWriter = new JobDataWriter();
 
@@ -258,12 +259,11 @@ abstract public class AbstractSubmitter implements Submitter {
                 session.targetAreaOwner,
                 new File(session.callerAreaReferenceName).getAbsolutePath(),
                 session.callerAreaOwner);
-        TaskConfig sourceConfig = taskJob.getSourceConfig();
         ConfigurationList configurationList = new ConfigurationList();
         List<JobInputSlot>  inputSlots = new ArrayList<JobInputSlot>();
-        TaskInputSchema inputSchema = sourceConfig.getInputSchema();
+        ExecutableInputSchema inputSchema = job.getInputSchema();
         //add the filesets and the sub-set of configurations visible to the job
-        for (TaskIO io : inputSchema.getInputSlots()) {
+        for (Slot io : inputSchema.getInputSlots()) {
             //look for the fileset configuration and add it to the configuration list
             FileSetConfig filesetConfig = DependencyResolver.resolveFileSet(io.geType().id,
                     io.geType().versionAtLeast,
@@ -277,14 +277,14 @@ abstract public class AbstractSubmitter implements Submitter {
             //add the input slot
             JobInputSlot inputSlot = new JobInputSlot();
             inputSlot.name = io.getName();
-            inputSlot.tags = taskJob.getInputSlotValues(io.getName());
+            inputSlot.tags = job.getInputSlotValues(io.getName());
             inputSlot.id = io.geType().id;
             inputSlots.add(inputSlot);
         }
 
         List<JobOutputSlot> outputSlots = new ArrayList<JobOutputSlot>();
-        TaskOutputSchema outputSchema = sourceConfig.getOutputSchema();
-        for (TaskIO io : outputSchema.getOutputSlots()) {
+        ExecutableOutputSchema outputSchema = job.getOutputSchema();
+        for (Slot io : outputSchema.getOutputSlots()) {
             //look for the fileset configuration and add it to the configuration list
             FileSetConfig filesetConfig = DependencyResolver.resolveFileSet(io.geType().id,
                     io.geType().versionAtLeast,

@@ -126,7 +126,10 @@ final class Actions {
      * @throws Exception
      */
     private void submitAligner(AlignerConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
-          throw new UnsupportedOperationException("Aligners cannot be submitted yet");
+        //input filesets are COMPACTS_READS
+
+        //aligners produce GOBY or BAM alignments
+        throw new UnsupportedOperationException("Aligners cannot be submitted yet");
     }
 
     /**
@@ -137,7 +140,10 @@ final class Actions {
      * @throws Exception
      */
     private void submitAlignmentAnalysis(AlignmentAnalysisConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
-         throw new UnsupportedOperationException("Alignment Analyses cannot be submitted yet");
+        //input filesets are BAM or GOBY alignments
+
+
+        throw new UnsupportedOperationException("Alignment Analyses cannot be submitted yet");
     }
 
     /**

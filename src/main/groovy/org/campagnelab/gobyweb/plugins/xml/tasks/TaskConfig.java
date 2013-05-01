@@ -2,6 +2,9 @@ package org.campagnelab.gobyweb.plugins.xml.tasks;
 
 import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
+import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,13 +21,13 @@ import java.util.List;
 public class TaskConfig extends ExecutableConfig {
 
     @XmlElement(name = "inputSchema")
-    protected TaskInputSchema inputSchema;
+    protected ExecutableInputSchema inputSchema;
 
     @XmlElement(name = "outputSchema")
-    protected TaskOutputSchema outputSchema;
+    protected ExecutableOutputSchema outputSchema;
 
 
-    protected TaskConfig() {}
+    public TaskConfig() {}
 
     protected TaskConfig(String id) { this.setId(id);}
 
@@ -43,19 +46,21 @@ public class TaskConfig extends ExecutableConfig {
         return "TASK";
     }
 
-    public void setInputSchema(TaskInputSchema inputSchema)  {
+    public void setInputSchema(ExecutableInputSchema inputSchema)  {
         this.inputSchema = inputSchema;
     }
 
-    public void setOutputSchema(TaskOutputSchema outputSchema)  {
+    public void setOutputSchema(ExecutableOutputSchema outputSchema)  {
         this.outputSchema = outputSchema;
     }
 
-    public TaskInputSchema getInputSchema() {
+    @Override
+    public ExecutableInputSchema getInputSchema() {
         return this.inputSchema;
     }
 
-    public TaskOutputSchema getOutputSchema() {
+    @Override
+    public ExecutableOutputSchema getOutputSchema() {
         return  this.outputSchema;
     }
     /**
@@ -69,11 +74,11 @@ public class TaskConfig extends ExecutableConfig {
     public void validate(List<String> errors) {
         super.validate(errors);
         //check if input fileset references are correct
-        for (TaskIO parameter : inputSchema.getInputSlots())
+        for (Slot parameter : inputSchema.getInputSlots())
                 validateFileSetReference(parameter.geType(),errors);
 
         //check if output fileset references are correct
-        for (TaskIO parameter : outputSchema.getOutputSlots())
+        for (Slot parameter : outputSchema.getOutputSlots())
             validateFileSetReference(parameter.geType(),errors);
 
 
@@ -85,7 +90,7 @@ public class TaskConfig extends ExecutableConfig {
      * @param errors
      * @return
      */
-    private boolean validateFileSetReference(TaskIO.IOFileSetRef fileSetRef, List<String> errors) {
+    private boolean validateFileSetReference(Slot.IOFileSetRef fileSetRef, List<String> errors) {
         if (DependencyResolver.resolveFileSet(fileSetRef.id,fileSetRef.versionAtLeast,
                 fileSetRef.versionExactly,fileSetRef.versionAtMost) == null) {
             errors.add(String.format("Unable to resolve dependency for input fileset %s: failed to find a version matching the input criteria {versionExactly=%s,versionAtLeast=%s,versionAtMost=%s}",

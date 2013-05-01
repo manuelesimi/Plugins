@@ -15,8 +15,6 @@
         </xs:union>
     </xs:simpleType>
 
-    <xs:complexType name="T_fileSetFilters"></xs:complexType>
-
     <xs:complexType name="T_fileSetRef">
         <xs:sequence>
             <xs:element name="id" type="xs:string"/>
@@ -39,7 +37,6 @@
     <xs:complexType name="T_task-input-schema">
         <xs:sequence>
             <xs:element name="inputSlot" type="T_IO" maxOccurs="unbounded"/>
-            <xs:element name="criteria" type="T_fileSetFilters" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 

@@ -1,4 +1,5 @@
-package org.campagnelab.gobyweb.plugins.xml.tasks;
+package org.campagnelab.gobyweb.plugins.xml.executables;
+
 
 import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
@@ -6,15 +7,16 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Task output schema
+ * Output schema for executable plugins.
+ *
  * @author manuele
  */
-public class TaskOutputSchema {
+public class ExecutableOutputSchema {
 
     @XmlElement(name = "outputSlot")
-    List<TaskIO> outputSlots = new ArrayList<TaskIO>();
+    protected List<Slot> outputSlots = new ArrayList<Slot>();
 
-    public List<TaskIO> getOutputSlots() {
+    public List<Slot> getOutputSlots() {
         return Collections.unmodifiableList(outputSlots);
     }
 }

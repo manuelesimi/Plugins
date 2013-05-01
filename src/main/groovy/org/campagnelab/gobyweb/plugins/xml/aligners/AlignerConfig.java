@@ -37,6 +37,8 @@
 package org.campagnelab.gobyweb.plugins.xml.aligners;
 
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
 import org.campagnelab.gobyweb.plugins.xml.executables.OutputSchema;
 
 import javax.xml.bind.annotation.*;
@@ -130,7 +132,7 @@ public class AlignerConfig extends ExecutableConfig {
     }
 
 
-    public OutputSchema getOutputSchema() {
+    public OutputSchema getOriginalOutputSchema() {
         return outputSchema;
     }
     /**
@@ -149,5 +151,15 @@ public class AlignerConfig extends ExecutableConfig {
     @Override
     public String toString() {
         return String.format("%s/%s (%s) num-rules: %d, num-needs: %d", this.getHumanReadableConfigType(), this.name, this.version, this.options.rules().size(), this.runtime.needs.size());
+    }
+
+    @Override
+    public ExecutableInputSchema getInputSchema() {
+        return null;
+    }
+
+    @Override
+    public ExecutableOutputSchema getOutputSchema() {
+        return  null;
     }
 }

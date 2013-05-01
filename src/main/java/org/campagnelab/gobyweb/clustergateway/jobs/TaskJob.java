@@ -2,9 +2,9 @@ package org.campagnelab.gobyweb.clustergateway.jobs;
 
 
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
+import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
 import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
-import org.campagnelab.gobyweb.plugins.xml.tasks.TaskIO;
-import org.campagnelab.gobyweb.plugins.xml.tasks.TaskInputSchema;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class TaskJob extends ParametrizedJob {
     @Override
     protected List<String> getMandatoryInputSlots() {
         List<String> mandatorySlots = new ArrayList<String>();
-        for (TaskIO schemaInputSlot : sourceConfig.getInputSchema().getInputSlots()) {
+        for (Slot schemaInputSlot : sourceConfig.getInputSchema().getInputSlots()) {
             String minOccurs = schemaInputSlot.geType().minOccurs;
             if ((minOccurs != null) || (Integer.valueOf(minOccurs) > 0))
                 mandatorySlots.add(schemaInputSlot.getName());
@@ -57,7 +57,7 @@ public class TaskJob extends ParametrizedJob {
     @Override
     protected List<String> getMandatoryOutputSlots() {
         List<String> mandatorySlots = new ArrayList<String>();
-        for (TaskIO schemaOutputSlot : sourceConfig.getOutputSchema().getOutputSlots()) {
+        for (Slot schemaOutputSlot : sourceConfig.getOutputSchema().getOutputSlots()) {
             String minOccurs = schemaOutputSlot.geType().minOccurs;
             if ((minOccurs != null) || (Integer.valueOf(minOccurs) > 0))
                 mandatorySlots.add(schemaOutputSlot.getName());
@@ -75,12 +75,12 @@ public class TaskJob extends ParametrizedJob {
      */
     @Override
     protected boolean validateInputSlotValue(InputSlotValue value) {
-        TaskInputSchema inputSchema = sourceConfig.getInputSchema();
-        for (TaskIO schemaInputSlot : inputSchema.getInputSlots()) {
+        ExecutableInputSchema inputSchema = sourceConfig.getInputSchema();
+        for (Slot schemaInputSlot : inputSchema.getInputSlots()) {
            if (schemaInputSlot.getName().equalsIgnoreCase(value.getName())) {
                //check the cardinality of the values
                List<String> actualValues = value.getValues();
-               TaskIO.IOFileSetRef type = schemaInputSlot.geType();
+               Slot.IOFileSetRef type = schemaInputSlot.geType();
                if (type.minOccurs !=null) {
                    if (Integer.valueOf(type.minOccurs) > actualValues.size()) {
                        logger.error(String.format("Input slot %s is not valid: at least %d values are expected (%d found)",
