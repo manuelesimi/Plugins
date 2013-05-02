@@ -11,11 +11,10 @@ import java.util.List;
 import java.io.File;
 
 /**
- * A task instance.
+ * A task job.
  *
  * @author manuele
  */
-
 public class TaskJob extends ParametrizedJob {
 
     /**
@@ -23,7 +22,7 @@ public class TaskJob extends ParametrizedJob {
      */
     private List<File> files = new ArrayList<File>();
 
-    private TaskConfig sourceConfig;
+    private final TaskConfig sourceConfig;
 
     /**
      * Creates a new instance.
