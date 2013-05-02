@@ -36,10 +36,7 @@
 
 package org.campagnelab.gobyweb.plugins.xml.alignmentanalyses;
 
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
-import org.campagnelab.gobyweb.plugins.xml.executables.OutputSchema;
+import org.campagnelab.gobyweb.plugins.xml.executables.*;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -126,6 +123,9 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
 
     public OutputSchema outputSchema = new OutputSchema();
 
+    protected ExecutableInputSchema executableInputSchema;
+
+    protected ExecutableOutputSchema executableOutputSchema;
 
     public enum AnalysisType {
         DiffExp,
@@ -177,11 +177,21 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
 
     @Override
     public ExecutableInputSchema getInputSchema() {
-        return null;
+        this.executableInputSchema = new ExecutableInputSchema();
+        List<Slot> slots = this.executableInputSchema.getInputSlots();
+        slots.clear(); //needed in case the method is called twice
+        //TODO populate the slots with alignments
+
+        return this.executableInputSchema;
     }
 
     @Override
     public ExecutableOutputSchema getOutputSchema() {
-        return  null;
+        this.executableOutputSchema = new ExecutableOutputSchema();
+        List<Slot> slots = this.executableOutputSchema.getOutputSlots();
+        slots.clear(); //needed in case the method is called twice
+        //TODO populate the slots with ...
+
+        return  this.executableOutputSchema;
     }
 }

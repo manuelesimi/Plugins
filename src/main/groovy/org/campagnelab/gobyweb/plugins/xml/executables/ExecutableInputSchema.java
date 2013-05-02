@@ -17,7 +17,7 @@ public class ExecutableInputSchema {
     protected List<Slot> inputSlots = new ArrayList<Slot>();
 
     public List<Slot> getInputSlots() {
-        return Collections.unmodifiableList(inputSlots);
+        return inputSlots;
     }
 
 }

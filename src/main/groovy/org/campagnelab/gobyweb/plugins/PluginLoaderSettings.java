@@ -48,6 +48,37 @@ public class PluginLoaderSettings {
     };
 
     /**
+     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     */
+    public static final String[] COMPACT_READS = new String[] {
+            "COMPACT_READS", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+    /**
+     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     */
+    public static final String[] GOBY_ALIGNMENTS = new String[] {
+            "GOBY_ALIGNMENTS", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+
+    /**
+     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     */
+    public static final String[] BAM_ALIGNMENTS = new String[] {
+            "BAM_ALIGNMENTS", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+    /**
      * List the configuration classes to register when a new instance of {@link javax.xml.bind.JAXBContext} is being created
      */
     public enum CONFIGS_TO_CLASSES {

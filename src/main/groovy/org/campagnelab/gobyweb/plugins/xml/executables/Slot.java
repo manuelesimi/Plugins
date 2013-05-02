@@ -24,6 +24,14 @@ public class Slot {
         return name;
     }
 
+    public void seType(IOFileSetRef type) {
+        this.type = type;
+    }
+
+    public void setName(String name) {
+        this.name=name;
+    }
+
     @XmlAccessorType(XmlAccessType.FIELD)
     public static class IOFileSetRef {
 
@@ -49,7 +57,7 @@ public class Slot {
         @XmlAttribute
         public String maxOccurs;
 
-        protected IOFileSetRef() {}
+        public IOFileSetRef() {}
 
     }
 

@@ -36,10 +36,8 @@
 
 package org.campagnelab.gobyweb.plugins.xml.aligners;
 
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
-import org.campagnelab.gobyweb.plugins.xml.executables.OutputSchema;
+import org.campagnelab.gobyweb.plugins.PluginLoaderSettings;
+import org.campagnelab.gobyweb.plugins.xml.executables.*;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -54,6 +52,11 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
 public class AlignerConfig extends ExecutableConfig {
+
+    protected ExecutableInputSchema executableInputSchema;
+
+    protected ExecutableOutputSchema executableOutputSchema;
+
 
     public AlignerConfig() {
     }
@@ -155,11 +158,54 @@ public class AlignerConfig extends ExecutableConfig {
 
     @Override
     public ExecutableInputSchema getInputSchema() {
-        return null;
+        this.executableInputSchema = new ExecutableInputSchema();
+        List<Slot> slots = this.executableInputSchema.getInputSlots();
+        slots.clear(); //needed in case the method is called twice
+        Slot readsSlot = new Slot();
+        readsSlot.setName("INPUT_READS");
+        Slot.IOFileSetRef type = new Slot.IOFileSetRef();
+        type.id = PluginLoaderSettings.COMPACT_READS[0];
+        type.versionAtLeast = PluginLoaderSettings.COMPACT_READS[1];
+        type.versionExactly = PluginLoaderSettings.COMPACT_READS[2];
+        type.versionAtMost = PluginLoaderSettings.COMPACT_READS[3];
+        type.minOccurs = Integer.toString(1);
+        type.maxOccurs = "unbounded";
+        readsSlot.seType(type);
+        slots.add(readsSlot);
+        return this.executableInputSchema;
     }
 
     @Override
     public ExecutableOutputSchema getOutputSchema() {
-        return  null;
+        this.executableOutputSchema = new ExecutableOutputSchema();
+        List<Slot> slots = this.executableOutputSchema.getOutputSlots();
+        slots.clear(); //needed in case the method is called twice
+        if (supportsGobyAlignments){
+            Slot gobySlot = new Slot();
+            gobySlot.setName("GOBY_ALIGNMENT");
+            Slot.IOFileSetRef gobyType = new Slot.IOFileSetRef();
+            gobyType.id = PluginLoaderSettings.GOBY_ALIGNMENTS[0];
+            gobyType.versionAtLeast = PluginLoaderSettings.GOBY_ALIGNMENTS[1];
+            gobyType.versionExactly = PluginLoaderSettings.GOBY_ALIGNMENTS[2];
+            gobyType.versionAtMost = PluginLoaderSettings.GOBY_ALIGNMENTS[3];
+            gobyType.minOccurs = Integer.toString(1);
+            gobyType.maxOccurs = "unbounded";
+            gobySlot.seType(gobyType);
+            slots.add(gobySlot);
+        }
+        if (supportsBAMAlignments) {
+            Slot bamSlot = new Slot();
+            bamSlot.setName("BAM_ALIGNMENT");
+            Slot.IOFileSetRef bamType = new Slot.IOFileSetRef();
+            bamType.id = PluginLoaderSettings.BAM_ALIGNMENTS[0];
+            bamType.versionAtLeast = PluginLoaderSettings.BAM_ALIGNMENTS[1];
+            bamType.versionExactly = PluginLoaderSettings.BAM_ALIGNMENTS[2];
+            bamType.versionAtMost = PluginLoaderSettings.BAM_ALIGNMENTS[3];
+            bamType.minOccurs = Integer.toString(1);
+            bamType.maxOccurs = "unbounded";
+            bamSlot.seType(bamType);
+            slots.add(bamSlot);
+        }
+        return  this.executableOutputSchema;
     }
 }
