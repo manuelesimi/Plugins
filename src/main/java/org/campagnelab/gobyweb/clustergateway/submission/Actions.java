@@ -3,18 +3,16 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.campagnelab.gobyweb.clustergateway.jobs.InputSlotValue;
-import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
-import org.campagnelab.gobyweb.clustergateway.jobs.TaskJob;
+import org.campagnelab.gobyweb.clustergateway.jobs.*;
 
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
-import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
-import org.campagnelab.gobyweb.plugins.xml.Config;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -75,25 +73,12 @@ final class Actions {
         //create the directory for results
         FileUtils.forceMkdir(returnedJobFiles);
 
-        //detect the type of executable plugin we have to submit
-        Config config = registry.findByTypedId(id, TaskConfig.class);
-        if (config != null) {
-           this.submitTask((TaskConfig)config, inputFilesets, session);
-           return;
-        }
-        config = registry.findByTypedId(id, AlignerConfig.class);
-        if (config != null) {
-            this.submitAligner((AlignerConfig) config, inputFilesets, session);
-            return;
-        }
 
-        config = registry.findByTypedId(id, AlignmentAnalysisConfig.class);
+        ExecutableConfig config = registry.findByTypedId(id, ExecutableConfig.class);
         if (config != null) {
-            this.submitAlignmentAnalysis((AlignmentAnalysisConfig)config, inputFilesets, session);
+            this.submit(config, inputFilesets, session);
             return;
-        }
-
-        if (config==null) {
+        } else {
             throw new IllegalArgumentException("Could not find an executable plugins with ID="+id);
         }
 
@@ -106,44 +91,15 @@ final class Actions {
      * @param session the session for the submitter
      * @throws Exception
      */
-    private void submitTask(TaskConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
+    private void submit(ExecutableConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
         //create the task instance
-        TaskJob taskJob = new TaskJob(config);
-        taskJob.setTag(ICBStringUtils.generateRandomString());
-        taskJob.addInputSlotValues(inputFilesets);
-        logger.debug("Tag assigned to the Task instance: " + taskJob.getTag());
+        ExecutableJob job = new ExecutableJob(config);
+        job.setTag(ICBStringUtils.generateRandomString());
+        logger.debug("Tag assigned to the job: " + job.getTag());
         //add the input filesets
-        taskJob.addInputSlotValues(inputFilesets);
+        job.addInputSlotValues(inputFilesets);
         //submit the task
-        submitter.submitTask(jobArea, session, taskJob);
-    }
-
-    /**
-     * Submits an aligner as a Job for execution
-     * @param config the aligner configuration
-     * @param inputFilesets the input filesets
-     * @param session the session for the submitter
-     * @throws Exception
-     */
-    private void submitAligner(AlignerConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
-        //input filesets are COMPACTS_READS
-
-        //aligners produce GOBY or BAM alignments
-        throw new UnsupportedOperationException("Aligners cannot be submitted yet");
-    }
-
-    /**
-     * Submits an alignment analysis as a Job for execution
-     * @param config the analysis configuration
-     * @param inputFilesets the input filesets
-     * @param session the session for the submitter
-     * @throws Exception
-     */
-    private void submitAlignmentAnalysis(AlignmentAnalysisConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
-        //input filesets are BAM or GOBY alignments
-
-
-        throw new UnsupportedOperationException("Alignment Analyses cannot be submitted yet");
+        submitter.submitJob(jobArea, session, job);
     }
 
     /**

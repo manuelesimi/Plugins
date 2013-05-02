@@ -2,7 +2,7 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 
 import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
-import org.campagnelab.gobyweb.clustergateway.jobs.ParametrizedJob;
+import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
@@ -98,7 +98,7 @@ public class TaskLocalSubmission {
                             "TESTTAG2", "TESTTAG3", "TESTTAG1", "TESTTAG2",
                             "TESTTAG3", "TESTTAG1", "TESTTAG2", "TESTTAG3"}));
 
-        } catch (ParametrizedJob.InvalidSlotValueException is) {
+        } catch (ExecutableJob.InvalidSlotValueException is) {
             //this is expected
         } catch (Exception e) {
             fail("unexpected exception received by job submission");
@@ -117,7 +117,7 @@ public class TaskLocalSubmission {
                     "RNASELECT_TASK",
                     ClusterGateway.toInputParameters(new String[]{"INPUT_READS:",}));
 
-        } catch (ParametrizedJob.InvalidSlotValueException is) {
+        } catch (ExecutableJob.InvalidSlotValueException is) {
             //this is expected
         } catch (Exception e) {
             fail("unexpected exception received by job submission");
@@ -136,7 +136,7 @@ public class TaskLocalSubmission {
                     "RNASELECT_TASK",
                     ClusterGateway.toInputParameters(new String[]{}));
 
-        } catch (ParametrizedJob.InvalidJobDataException is) {
+        } catch (ExecutableJob.InvalidJobDataException is) {
             //this is expected
         } catch (Exception e) {
             fail("unexpected exception received by job submission");

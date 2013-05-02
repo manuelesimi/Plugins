@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Input slot value for a {@link ParametrizedJob}.
+ * Input slot value for a {@link ExecutableJob}.
  *
  * @author manuele
  */

@@ -6,12 +6,10 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.Job;
-import static org.campagnelab.gobyweb.clustergateway.jobs.ParametrizedJob.*;
+import static org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob.*;
 
-import org.campagnelab.gobyweb.clustergateway.jobs.ParametrizedJob;
-import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
-import org.campagnelab.gobyweb.clustergateway.jobs.TaskJob;
 import org.campagnelab.gobyweb.filesets.protos.JobDataWriter;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.configuration.Configuration;
@@ -75,11 +73,6 @@ abstract public class AbstractSubmitter implements Submitter {
     @Override
     public abstract Session newSession();
 
-    @Override
-    public abstract void submitTask(JobArea jobArea, Session session, TaskJob taskJob) throws Exception;
-
-    @Override
-    public abstract void submitResourceInstall(JobArea jobArea, Session session, ResourceJob resource) throws Exception;
 
     /**
      * Collect resource files for a resource and its dependencies.
@@ -247,7 +240,7 @@ abstract public class AbstractSubmitter implements Submitter {
      * @param session
      * @param job
      */
-    protected File createJobDataPB(Session session, ParametrizedJob job) throws InvalidJobDataException {
+    protected File createJobDataPB(Session session, ExecutableJob job) throws InvalidJobDataException {
 
         //validate the IO data
         job.validateMandatorySlots();

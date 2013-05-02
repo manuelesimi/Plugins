@@ -3,10 +3,14 @@ package org.campagnelab.gobyweb.clustergateway.jobs;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
- * Data object used for submission to the ClusterGateway.
+ * Base Job configuration for submission to the ClusterGateway.
+ *
  * @author manuele
  */
 public abstract class Job {
@@ -27,6 +31,12 @@ public abstract class Job {
      * Folder where the data belonging this object are stored
      */
     String basename;
+
+    /**
+     * Files belonging to the task that need to be copied on the cluster before its execution
+     */
+    private List<File> files = new ArrayList<File>();
+
 
     public String getId() {
         return id;
@@ -76,4 +86,21 @@ public abstract class Job {
         this.basename = basename;
     }
 
+    /**
+     * Gets the list of files belonging the instance.
+     *
+     * @return
+     */
+    public List<File> getFiles() {
+        return this.files;
+    }
+
+    /**
+     * Adds a new file belonging the instance. The file will be copied in the task execution folder.
+     *
+     * @param file
+     */
+    public void addFile(File file) {
+        this.files.add(file);
+    }
 }

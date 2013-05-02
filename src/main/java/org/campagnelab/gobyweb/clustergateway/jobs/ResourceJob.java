@@ -9,16 +9,20 @@ import java.util.List;
 /**
  *
  * A resource installation job.
+ *
  * @author Fabien Campagne
  *         Date: 3/20/13
  *         Time: 6:10 PM
  */
 public class ResourceJob extends Job {
-    ResourceConfig config;
-    private File[] files;
+
+    private ResourceConfig config;
 
     public ResourceJob(ResourceConfig config) {
         this.config = config;
+        for (PluginFile file : config.getFiles())
+            this.addFile(file.getLocalFile());
+
     }
 
     public ResourceConfig getSourceConfig() {
@@ -26,7 +30,7 @@ public class ResourceJob extends Job {
     }
 
 
-    public File[] getFiles() {
+    /*public File[] getFiles() {
         List<PluginFile> files= getSourceConfig().getFiles();
         File[] result=new File[files.size()];
         int i=0;
@@ -34,5 +38,5 @@ public class ResourceJob extends Job {
             result[i++]=rFile.getLocalFile();
         }
         return result;
-    }
+    }   */
 }

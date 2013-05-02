@@ -2,8 +2,8 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
-import org.campagnelab.gobyweb.clustergateway.jobs.TaskJob;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
@@ -36,34 +36,35 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
      * Submits local tasks
      *
      * @param session
-     * @param taskJob
+     * @param job
      * @throws Exception
      */
-    public void submitTask(JobArea jobArea, Session session, TaskJob taskJob) throws Exception {
+    @Override
+    public void submitJob(JobArea jobArea, Session session, ExecutableJob job) throws Exception {
 
-        jobArea.createTag(taskJob.getTag());
+        jobArea.createTag(job.getTag());
         //in the local submitter we directly access to the job area folder to avoid creating and then copying local files
-        final File taskLocalDir = new File(jobArea.getBasename(taskJob.getTag()));
+        final File taskLocalDir = new File(jobArea.getBasename(job.getTag()));
 
         //prepare the protocol buffer with the job data
-        File pbFile = this.createJobDataPB(session, taskJob);
+        File pbFile = this.createJobDataPB(session, job);
         FileUtils.copyFileToDirectory(pbFile, taskLocalDir);
 
         //get the wrapper script
         URL wrapperScriptURL = getClass().getClassLoader().getResource(taskWrapperScript);
         FileUtils.copyURLToFile(wrapperScriptURL, new File(taskLocalDir, taskWrapperScript));
 
-        writeConstants(jobArea, taskJob);
+        writeConstants(jobArea, job);
 
-        copyResourceFiles(taskJob.getSourceConfig(), taskLocalDir);
+        copyResourceFiles(job.getSourceConfig(), taskLocalDir);
 
         //give execute permission to task scripts
-        jobArea.grantExecutePermissions(taskJob.getTag(), new String[]{taskWrapperScript});
+        jobArea.grantExecutePermissions(job.getTag(), new String[]{taskWrapperScript});
 
         //execute the task
-        logger.info(String.format("Task %s: submitting to local cluster %s...", taskJob.getTag(), taskLocalDir.getAbsolutePath()));
+        logger.info(String.format("Task %s: submitting to local cluster %s...", job.getTag(), taskLocalDir.getAbsolutePath()));
         logger.info("Output from the task : ");
-        logger.info(jobArea.execute(taskJob.getTag(),taskWrapperScript));
+        logger.info(jobArea.execute(job.getTag(),taskWrapperScript));
     }
 
 

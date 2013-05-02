@@ -4,8 +4,8 @@ import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
-import org.campagnelab.gobyweb.clustergateway.jobs.TaskJob;
 
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
@@ -41,16 +41,17 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
      *
      * @param jobArea the persistent area where task files will be placed for execution
      * @param session
-     * @param taskJob
+     * @param job
      * @throws Exception
      */
-    public void submitTask(JobArea jobArea, Session session, TaskJob taskJob) throws Exception {
+    @Override
+    public void submitJob(JobArea jobArea, Session session, ExecutableJob job) throws Exception {
 
         //create the temp dir with the submission files to move on the cluster
         File tempDir = Files.createTempDir();
 
         //prepare the protocol buffer with the job data
-        File pbfile = this.createJobDataPB(session,taskJob);
+        File pbfile = this.createJobDataPB(session,job);
         Files.copy(pbfile, new File(tempDir, pbfile.getName()));
 
         //get the wrapper script
@@ -62,33 +63,33 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         //get the wrapper script
         URL constantsURL = getClass().getClassLoader().getResource(constantsTemplate);
         String constantsContent = IOUtils.toString(constantsURL);
-        constantsContent = constantsContent.replaceAll("%%JOB_DIR%%", jobArea.getBasename(taskJob.getTag()))
-                .replaceAll("%%TAG%%", taskJob.getTag());
+        constantsContent = constantsContent.replaceAll("%%JOB_DIR%%", jobArea.getBasename(job.getTag()))
+                .replaceAll("%%TAG%%", job.getTag());
         FileUtils.writeStringToFile(new File(tempDir, constantsTemplate), constantsContent);
 
 
-        copyResourceFiles(taskJob.getSourceConfig(), tempDir);
+        copyResourceFiles(job.getSourceConfig(), tempDir);
 
         //we need to rename the local temp dir with the tag of the task before we copy it on the cluster node
-        File localWorkingDir = new File(tempDir.getParentFile(), taskJob.getTag());
-        logger.trace(String.format("Task %s: moving %s to %s", taskJob.getTag(), tempDir.getAbsolutePath(), localWorkingDir.getAbsolutePath()));
+        File localWorkingDir = new File(tempDir.getParentFile(), job.getTag());
+        logger.trace(String.format("job %s: moving %s to %s", job.getTag(), tempDir.getAbsolutePath(), localWorkingDir.getAbsolutePath()));
         if (localWorkingDir.exists())
             FileUtils.forceDelete(localWorkingDir);
         FileUtils.moveDirectory(tempDir, localWorkingDir);
         //upload the entire folder in the job area
         logger.info("Submitting files for execution...");
-        jobArea.push(taskJob.getTag(), localWorkingDir);
-        logger.info(String.format("The Task has been successfully submitted to %s", jobArea.getReferenceName()));
+        jobArea.push(job.getTag(), localWorkingDir);
+        logger.info(String.format("The job has been successfully submitted to %s", jobArea.getReferenceName()));
 
         //grant execute permissions to the task's scripts
         String[] binaryFiles = new String[]{"script.sh", constantsTemplate, wrapperScript};
-        jobArea.grantExecutePermissions(taskJob.getTag(), binaryFiles);
+        jobArea.grantExecutePermissions(job.getTag(), binaryFiles);
 
         //execute the task
-        logger.info("Requesting task execution...");
-        jobArea.execute(taskJob.getTag(), wrapperScript);
+        logger.info("Requesting job execution...");
+        jobArea.execute(job.getTag(), wrapperScript);
         FileUtils.forceDeleteOnExit(localWorkingDir);
-        logger.info(String.format("The Task is going to be executed in the following directory: %s", jobArea.getBasename(taskJob.getTag())));
+        logger.info(String.format("The job is going to be executed in the following directory: %s", jobArea.getBasename(job.getTag())));
 
     }
 

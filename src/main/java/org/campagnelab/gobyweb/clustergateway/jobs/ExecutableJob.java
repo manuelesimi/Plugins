@@ -1,8 +1,10 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
+import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
+import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
 
 import java.util.*;
 
@@ -11,22 +13,31 @@ import java.util.*;
  *
  * @author manuele
  */
-public abstract class ParametrizedJob extends Job {
+public class ExecutableJob extends Job {
+
+     private ExecutableConfig sourceConfig;
 
      private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
 
+     public ExecutableJob(ExecutableConfig sourceConfig) {
+         this.sourceConfig = sourceConfig;
+         for (PluginFile file : sourceConfig.getFiles()) {
+             this.addFile(file.getLocalFile());
+         }
+     }
+
      public ExecutableOutputSchema getOutputSchema() {
-        return this.getSourceConfig().getOutputSchema();
+        return sourceConfig.getOutputSchema();
      }
 
      public ExecutableInputSchema getInputSchema() {
-        return this.getSourceConfig().getInputSchema();
+        return sourceConfig.getInputSchema();
      }
 
     /**
      * Adds a new actual value for an input slot
      * @param value
-     * @throws org.campagnelab.gobyweb.clustergateway.jobs.ParametrizedJob.InvalidSlotValueException if the parameter is not valid
+     * @throws ExecutableJob.InvalidSlotValueException if the parameter is not valid
      */
     public void addInputSlotValue(InputSlotValue value) throws InvalidSlotValueException {
       //if (!(value.getValues().size()>0))
@@ -41,7 +52,7 @@ public abstract class ParametrizedJob extends Job {
     /**
      * Adds new actual values for the input slots.
      * @param values
-     * @throws org.campagnelab.gobyweb.clustergateway.jobs.ParametrizedJob.InvalidSlotValueException if any of the values is not valid
+     * @throws ExecutableJob.InvalidSlotValueException if any of the values is not valid
      */
     public void addInputSlotValues(Set<InputSlotValue> values) throws InvalidSlotValueException {
         for (InputSlotValue value : values)
@@ -81,32 +92,78 @@ public abstract class ParametrizedJob extends Job {
               throw new InvalidJobDataException("Some mandatory input slots are missing");
     }
 
+
     /**
-     * Validates the input slot value according to the Job configuration.
-     *
-     * @param value
+     * Validates the input value against the input schema of the task.
+     * The validation checks if the schema defines an input slot with that name
+     * and if the cardinality of its values matches the limits declared in the slot
+     * definition.
+     * @param value  the input slot value to check
      * @return true if the value is accepted, false otherwise
      */
-    protected abstract boolean validateInputSlotValue(InputSlotValue value);
-
+    protected boolean validateInputSlotValue(InputSlotValue value) {
+        ExecutableInputSchema inputSchema = sourceConfig.getInputSchema();
+        for (Slot schemaInputSlot : inputSchema.getInputSlots()) {
+            if (schemaInputSlot.getName().equalsIgnoreCase(value.getName())) {
+                //check the cardinality of the values
+                List<String> actualValues = value.getValues();
+                Slot.IOFileSetRef type = schemaInputSlot.geType();
+                if (type.minOccurs !=null) {
+                    if (Integer.valueOf(type.minOccurs) > actualValues.size()) {
+                        logger.error(String.format("Input slot %s is not valid: at least %d values are expected (%d found)",
+                                value.getName(), Integer.valueOf(type.minOccurs), actualValues.size()));
+                        return false;
+                    }
+                }
+                if (type.maxOccurs !=null) {
+                    if (type.maxOccurs.equalsIgnoreCase("unbounded")
+                            || (Integer.valueOf(type.maxOccurs) >= actualValues.size()))
+                        return true;
+                    else {
+                        logger.error(String.format("Input slot %s is not valid: at most %d values are expected (%d found)",
+                                value.getName(), Integer.valueOf(type.maxOccurs), actualValues.size()));
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Gets the list of mandatory input slots
      * @return the names of the slots
      */
-    protected abstract List<String> getMandatoryInputSlots();
-
+    protected List<String> getMandatoryInputSlots() {
+        List<String> mandatorySlots = new ArrayList<String>();
+        for (Slot schemaInputSlot : sourceConfig.getInputSchema().getInputSlots()) {
+            String minOccurs = schemaInputSlot.geType().minOccurs;
+            if ((minOccurs != null) || (Integer.valueOf(minOccurs) > 0))
+                mandatorySlots.add(schemaInputSlot.getName());
+        }
+        return mandatorySlots;
+    }
     /**
      * Gets the list of mandatory output slots
      * @return the names of the slots
      */
-    protected abstract List<String> getMandatoryOutputSlots();
-
+    protected List<String> getMandatoryOutputSlots() {
+        List<String> mandatorySlots = new ArrayList<String>();
+        for (Slot schemaOutputSlot : sourceConfig.getOutputSchema().getOutputSlots()) {
+            String minOccurs = schemaOutputSlot.geType().minOccurs;
+            if ((minOccurs != null) || (Integer.valueOf(minOccurs) > 0))
+                mandatorySlots.add(schemaOutputSlot.getName());
+        }
+        return mandatorySlots;
+    }
 
     /**
      *
-     * @return the plugin's source configuration of this Job
+     * @return the source configuration of this Job
      */
-    protected abstract ExecutableConfig getSourceConfig();
+    public ExecutableConfig getSourceConfig() {
+      return sourceConfig;
+    }
 
 
     public static class InvalidSlotValueException extends Exception {
