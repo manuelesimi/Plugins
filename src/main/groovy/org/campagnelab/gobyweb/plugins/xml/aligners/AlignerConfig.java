@@ -169,7 +169,7 @@ public class AlignerConfig extends ExecutableConfig {
         type.versionExactly = PluginLoaderSettings.COMPACT_READS[2];
         type.versionAtMost = PluginLoaderSettings.COMPACT_READS[3];
         type.minOccurs = Integer.toString(1);
-        type.maxOccurs = "unbounded";
+        type.maxOccurs = Integer.toString(1);
         readsSlot.seType(type);
         slots.add(readsSlot);
         return this.executableInputSchema;
@@ -189,7 +189,7 @@ public class AlignerConfig extends ExecutableConfig {
             gobyType.versionExactly = PluginLoaderSettings.GOBY_ALIGNMENTS[2];
             gobyType.versionAtMost = PluginLoaderSettings.GOBY_ALIGNMENTS[3];
             gobyType.minOccurs = Integer.toString(1);
-            gobyType.maxOccurs = "unbounded";
+            gobyType.maxOccurs = Integer.toString(1);
             gobySlot.seType(gobyType);
             slots.add(gobySlot);
         }
@@ -202,7 +202,7 @@ public class AlignerConfig extends ExecutableConfig {
             bamType.versionExactly = PluginLoaderSettings.BAM_ALIGNMENTS[2];
             bamType.versionAtMost = PluginLoaderSettings.BAM_ALIGNMENTS[3];
             bamType.minOccurs = Integer.toString(1);
-            bamType.maxOccurs = "unbounded";
+            bamType.maxOccurs = Integer.toString(1);
             bamSlot.seType(bamType);
             slots.add(bamSlot);
         }
