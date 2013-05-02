@@ -73,7 +73,7 @@ final class Actions {
         //create the directory for results
         FileUtils.forceMkdir(returnedJobFiles);
 
-
+        //look for the source configuration
         ExecutableConfig config = registry.findByTypedId(id, ExecutableConfig.class);
         if (config != null) {
             this.submit(config, inputFilesets, session);
@@ -85,20 +85,20 @@ final class Actions {
     }
 
     /**
-     * Submits a task as a Job for execution
-     * @param config the task configuration
+     * Submits a job for execution
+     * @param config the source configuration
      * @param inputFilesets the input filesets
      * @param session the session for the submitter
      * @throws Exception
      */
     private void submit(ExecutableConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
-        //create the task instance
+        //create the job instance
         ExecutableJob job = new ExecutableJob(config);
         job.setTag(ICBStringUtils.generateRandomString());
         logger.debug("Tag assigned to the job: " + job.getTag());
         //add the input filesets
         job.addInputSlotValues(inputFilesets);
-        //submit the task
+        //submit the job
         submitter.submitJob(jobArea, session, job);
     }
 
