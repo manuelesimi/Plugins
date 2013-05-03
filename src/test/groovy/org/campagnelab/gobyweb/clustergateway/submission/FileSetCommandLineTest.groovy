@@ -94,6 +94,28 @@ public class FileSetCommandLineTest {
 
     }
 
+    @Test
+    public void edit() {
+        //this has to fail because the input tag already exists (from the previous registration)
+        assertEquals("Unexpected results returned by edit", 0, FileSetManager.process(buildFileEditArgs(
+                        "INTAGGG",
+                        "KEY1=VALUE1,KEY2=VALUE2,KEY3=VALUE3,KEY4=VALUE4"
+        )).size());
+
+    }
+
+    private static String[] buildFileEditArgs(String tag, String attributes) {
+        ("--fileset-area ${storageAreaDir} "+
+                "--plugins-dir test-data/root-for-rnaselect " +
+                "--owner PluginsSDK "+
+                "--tag ${tag} " +
+                "--action edit " +
+                "--attributes " +
+                attributes
+        ).split(" ");
+
+    }
+
     private static String[] buildFileRegistrationArgs(String filenames) {
         ("--fileset-area ${storageAreaDir} "+
                 "--plugins-dir test-data/root-for-rnaselect " +

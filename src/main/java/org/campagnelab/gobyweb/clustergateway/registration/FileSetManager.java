@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
+import com.google.common.base.Splitter;
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -14,10 +15,7 @@ import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Command line interface for Fileset instance management.
@@ -36,13 +34,14 @@ public class FileSetManager {
                     errors.add("Invalid list of fileset entries to register. At least one entry must be specified.");
                     return true;
                 }
-            } else if (config.getString("action").equalsIgnoreCase("unregister")) {
+            } else if ((config.getString("action").equalsIgnoreCase("unregister")
+                      || (config.getString("action").equalsIgnoreCase("edit")))) {
                 if (!config.userSpecified("tag"))  {
-                    errors.add("Missing tag parameter. Tag is needed to identify the fileset instance to unregister.");
+                    errors.add("Missing tag parameter. Tag is needed to identify the fileset instance to work with.");
                     return true;
                 }
             }  else {
-                errors.add("One action between register and unregister has to be specified");
+                errors.add("One action among register, edit or unregister has to be specified");
                 return true;
             }
             return false;
@@ -113,14 +112,27 @@ public class FileSetManager {
                     }
                     throw new Exception();
                 }
-            } else {
+            } else if (config.getString("action").equalsIgnoreCase("unregister")) {
                 fileset.unregister(config.getString("tag"));
                 logger.info(String.format("Fileset instance %s successfully unregistered",config.getString("tag")));
+            } else if (config.getString("action").equalsIgnoreCase("edit")) {
+               Map<String, String> attributes = parseInputAttributes(config.getString("attributes"));
+               //fileset.edit(config.getString("tag"), attributes);
             }
         } catch (IOException e) {
             throw new Exception();
         }
         return returned_values;
+    }
+
+    private static Map<String, String> parseInputAttributes(String inputAttributes) {
+        Map<String, String> attributes = new HashMap<String, String>();
+        Splitter splitter = Splitter.on(",");
+        for (String inputAttribute: splitter.split(inputAttributes)) {
+            String[] tokens = inputAttribute.split("=");
+            attributes.put(tokens[0],tokens[1]);
+        }
+        return attributes;
     }
 
     /**

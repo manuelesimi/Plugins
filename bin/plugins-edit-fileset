@@ -1,0 +1,12 @@
+#!/bin/sh
+
+WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [[ $OSTYPE == "cygwin" ]]; then
+    WORKING_DIR=`cygpath -m "${WORKING_DIR}"`
+fi
+PARENT_DIR=`dirname ${WORKING_DIR}`
+LIB_DIR=${PARENT_DIR}/lib
+TARGET_DIR=${PARENT_DIR}/target
+SNAPSHOT_JAR="${TARGET_DIR}/plugins-sdk.jar"
+
+java -cp ${LIB_DIR}/plugins-sdk.jar:${SNAPSHOT_JAR}:${WORKING_DIR}/cluster_gateway.properties org.campagnelab.gobyweb.clustergateway.registration.FileSetManager --action edit "$@"
