@@ -42,7 +42,7 @@
              <shortFlag>t</shortFlag>
              <longFlag>tag</longFlag>
              <help>For action register, it is the tag to be assigned to the fileset. If not specified, an automatically generated tag is assigned.
-             For action unregister, it is the tag that identify the fileset instance to delete.</help>
+             For other actions, it is the tag that identify the fileset instance on which the action is applied.</help>
          </flaggedOption>
 
         <flaggedOption>
@@ -53,7 +53,7 @@
             <required>true</required>
             <shortFlag>a</shortFlag>
             <longFlag>action</longFlag>
-            <help>The action to perform on the fileset instance. Allowed actions: register | unregister</help>
+            <help>The action to perform on the fileset instance. Allowed actions: register | edit | unregister</help>
         </flaggedOption>
 
         <flaggedOption>
@@ -74,6 +74,16 @@
             <help>If specified, files are not copied in the FileSet Area. Instead, they are linked to their original location.
                 If they are deleted or moved, they won't be accessible anymore.</help>
         </switch>
+
+        <flaggedOption>
+            <id>attributes</id>
+            <stringParser>
+                      <classname>StringStringParser</classname>
+            </stringParser>
+            <required>optional</required>
+            <longFlag>attributes</longFlag>
+            <help>List of attributes to associate to the fileset instance. The list must be in the form ATTR1=VALUE1,ATTR2=VALUE2...ATTR3=VALUE3</help>
+        </flaggedOption>
 
         <switch>
             <id>help</id>
