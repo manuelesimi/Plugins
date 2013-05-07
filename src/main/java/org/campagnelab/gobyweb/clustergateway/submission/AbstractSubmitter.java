@@ -121,6 +121,7 @@ abstract public class AbstractSubmitter implements Submitter {
     protected void copyArtifactsPbRequests(ResourceConfig executableConfig, String envScriptFilename, File tempDir) throws IOException {
         ArtifactsProtoBufHelper helper = new ArtifactsProtoBufHelper();
         if (envScriptFilename != null) {
+
             helper.registerPluginEnvironmentCollectionScript(envScriptFilename);
         }
         assert submissionHostname != null : "submission hostname must be defined.";
@@ -227,12 +228,25 @@ abstract public class AbstractSubmitter implements Submitter {
                 .replaceAll("%%ARTIFACT_REPOSITORY_DIR%%", artifactRepositoryPath);
         FileUtils.writeStringToFile(new File(jobArea.getBasename(job.getTag()), constantsTemplate), constantsContent);
 
-        if (environmentScriptFilename != null) {
-            String data = IOUtils.toString(new FileReader(environmentScriptFilename));
-            FileUtils.writeStringToFile(new File(jobArea.getBasename(job.getTag()), constantsTemplate),
-                    data, /* append */ true);
+    }
 
-        }
+    /**
+     * Write a env.sh file, when running from the command line. When running from GobyWeb,
+     * write the env defined in 'replacements'.
+     *
+     * @param jobArea
+     * @param job
+     * @return the canonical path of the env.sh script to use for the submission
+     * @throws IOException
+     */
+    protected String writeEnvScript(JobArea jobArea, Job job) throws IOException {
+        //get the env script
+        File envFile = new File(this.environmentScriptFilename);
+        String envContent = FileUtils.readFileToString(envFile, "UTF-8");//IOUtils.toString(constantsURL);
+        envContent = envContent.replaceAll("%%JOB_DIR%%", jobArea.getBasename(job.getTag()));
+        File newEnvScript = new File(jobArea.getBasename(job.getTag()), FilenameUtils.getName(this.environmentScriptFilename));
+        FileUtils.writeStringToFile(newEnvScript, envContent);
+        return newEnvScript.getCanonicalPath();
     }
 
     /**

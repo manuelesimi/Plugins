@@ -1,9 +1,10 @@
 # JOB_DIR is defined by the caller.
+JOB_DIR=%%JOB_DIR%%
+
 if [ -e ${JOB_DIR}/constants.sh ]; then
-    #. ${JOB_DIR}/constants.sh #this cause a loop in the local submission
-    echo ""
+    . ${JOB_DIR}/constants.sh
 else
-  touch ${JOB_DIR}/constants.sh
+    touch ${JOB_DIR}/constants.sh
 fi
 
 if [ -e ${JOB_DIR}/auto-options.sh ]; then

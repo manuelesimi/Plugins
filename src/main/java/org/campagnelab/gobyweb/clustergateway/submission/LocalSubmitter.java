@@ -86,9 +86,11 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         writeConstants(jobArea, resourceJob);
 
+        this.environmentScriptFilename = writeEnvScript(jobArea,resourceJob);
+
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
 
-        copyArtifactsPbRequests(resourceJob.getSourceConfig(), null, taskLocalDir);
+        copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, taskLocalDir);
 
         copyResourceFiles(registry.findByTypedId("GOBYWEB_SERVER_SIDE", ResourceConfig.class), taskLocalDir);
 
@@ -98,7 +100,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{resourceInstallWrapperScript});
 
         //execute the resourceJob
-        logger.info(String.format("Task %s: submitting to local cluster %s...", resourceJob.getTag(), taskLocalDir.getAbsolutePath()));
+        logger.info(String.format("Resource %s: submitting to local cluster %s...", resourceJob.getTag(), taskLocalDir.getAbsolutePath()));
         jobArea.execute(resourceJob.getTag(), resourceInstallWrapperScript);
 
     }
