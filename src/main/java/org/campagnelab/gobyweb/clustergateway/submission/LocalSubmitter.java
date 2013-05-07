@@ -11,6 +11,8 @@ import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 import java.io.*;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Submitter for local task executions.
@@ -86,8 +88,6 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         writeConstants(jobArea, resourceJob);
 
-        this.environmentScriptFilename = writeEnvScript(jobArea,resourceJob);
-
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
 
         copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, taskLocalDir);
@@ -101,8 +101,9 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         //execute the resourceJob
         logger.info(String.format("Resource %s: submitting to local cluster %s...", resourceJob.getTag(), taskLocalDir.getAbsolutePath()));
-        jobArea.execute(resourceJob.getTag(), resourceInstallWrapperScript);
-
+        Map<String, String> env = new HashMap<String, String>();
+        env.put("JOB_DIR", taskLocalDir.getAbsolutePath());
+        jobArea.execute(resourceJob.getTag(), resourceInstallWrapperScript,env);
     }
 
 }

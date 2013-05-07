@@ -1,5 +1,4 @@
 # JOB_DIR is defined by the caller.
-JOB_DIR=%%JOB_DIR%%
 
 if [ -e ${JOB_DIR}/constants.sh ]; then
     . ${JOB_DIR}/constants.sh
