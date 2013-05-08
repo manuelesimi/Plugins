@@ -24,7 +24,6 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
     private static Logger logger = Logger.getLogger(LocalSubmitter.class);
 
     private static final String taskWrapperScript = "local_task_wrapper_script.sh";
-    private static final String resourceInstallWrapperScript = "local_resource_install_wrapper_script.sh";
 
     public LocalSubmitter(PluginRegistry registry) {
         super(registry);
@@ -56,7 +55,8 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         URL wrapperScriptURL = getClass().getClassLoader().getResource(taskWrapperScript);
         FileUtils.copyURLToFile(wrapperScriptURL, new File(taskLocalDir, taskWrapperScript));
 
-        writeConstants(jobArea, job);
+        //write constants script
+        FileUtils.writeStringToFile(new File(jobArea.getBasename(job.getTag()), constantsTemplate), writeConstants(jobArea, job));
 
         copyResourceFiles(job.getSourceConfig(), taskLocalDir);
 
@@ -86,7 +86,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         URL wrapperScriptURL = getClass().getClassLoader().getResource(resourceInstallWrapperScript);
         FileUtils.copyURLToFile(wrapperScriptURL, new File(jobArea.getBasename(resourceJob.getTag()), resourceInstallWrapperScript));
 
-        writeConstants(jobArea, resourceJob);
+        FileUtils.writeStringToFile(new File(jobArea.getBasename(resourceJob.getTag()), constantsTemplate), writeConstants(jobArea, resourceJob));
 
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
 

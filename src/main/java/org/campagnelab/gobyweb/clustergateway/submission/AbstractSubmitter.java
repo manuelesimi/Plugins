@@ -46,6 +46,8 @@ abstract public class AbstractSubmitter implements Submitter {
     protected PluginRegistry registry;
     protected String environmentScriptFilename;
     protected String artifactRepositoryPath;
+    protected static final String resourceInstallWrapperScript = "resource_install_wrapper_script.sh";
+
 
     private static Logger logger = Logger.getLogger(Submitter.class);
 
@@ -211,23 +213,22 @@ abstract public class AbstractSubmitter implements Submitter {
     }
 
     /**
-     * Write a constants.sh file, when running from the command line. When running from GobyWeb,
+     * Prepare the variables needed when running from the command line. When running from GobyWeb,
      * write the constants defined in 'replacements'.
      *
      * @param jobArea
      * @param job
+     * @return the content of the constant file
      * @throws IOException
      */
-    protected void writeConstants(JobArea jobArea, Job job) throws IOException {
+    protected String writeConstants(JobArea jobArea, Job job) throws IOException {
         //get the wrapper script
         URL constantsURL = getClass().getClassLoader().getResource(constantsTemplate);
         String constantsContent = IOUtils.toString(constantsURL);
-        constantsContent = constantsContent
+        return constantsContent
                 .replaceAll("%%JOB_DIR%%", jobArea.getBasename(job.getTag()))
                 .replaceAll("%%TAG%%", job.getTag())
                 .replaceAll("%%ARTIFACT_REPOSITORY_DIR%%", artifactRepositoryPath);
-        FileUtils.writeStringToFile(new File(jobArea.getBasename(job.getTag()), constantsTemplate), constantsContent);
-
     }
 
     /**

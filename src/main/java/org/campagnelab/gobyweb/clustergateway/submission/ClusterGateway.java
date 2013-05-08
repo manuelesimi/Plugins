@@ -79,10 +79,13 @@ public class ClusterGateway {
             if (jobArea.isLocal()) {
                 submitter = new LocalSubmitter(plugins.getRegistry());
             } else {
-                if (!config.userSpecified("queue")) {
+                if ((config.userSpecified("job") && (config.userSpecified("queue"))))
+                    submitter = new RemoteSubmitter(plugins.getRegistry(), config.getString("queue"));
+                else if (config.userSpecified("resource") )
+                    submitter = new RemoteSubmitter(plugins.getRegistry());
+                else
                     throw new Exception("No queue has been indicated");
-                }
-                submitter = new RemoteSubmitter(plugins.getRegistry(), config.getString("queue"));
+
             }
             Actions actions = new Actions(submitter, config.getString("fileset-area"), jobArea, plugins.getRegistry());
             assert actions != null : "action cannot be null.";
@@ -95,8 +98,7 @@ public class ClusterGateway {
             if (config.userSpecified("job")) {
                 String token[] = config.getStringArray("job");
                 String id = token[0];
-                actions.submitJob(
-                        id, toInputParameters(config.getStringArray("slots")));
+                actions.submitJob(id, toInputParameters(config.getStringArray("slots")));
             } else if (config.userSpecified("resource")) {
 
                 String token[] = config.getStringArray("resource");
