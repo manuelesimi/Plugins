@@ -17,4 +17,5 @@ function run_task {
 
 cd ${JOB_DIR}
 setup_task_functions
-run_task
+run_task 2>&1 |tee run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log
+
