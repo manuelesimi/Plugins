@@ -56,7 +56,7 @@ final class Actions {
         this.registry = registry;
         this.fileSetAreaReference = fileSetAreaReference;
         this.jobArea = jobArea;
-        this.submitter=submitter;
+        this.submitter = submitter;
         if (!returnedJobFiles.exists())
             FileUtils.forceMkdir(returnedJobFiles);
     }
@@ -79,19 +79,20 @@ final class Actions {
             this.submit(config, inputFilesets, session);
             return;
         } else {
-            throw new IllegalArgumentException("Could not find an executable plugins with ID="+id);
+            throw new IllegalArgumentException("Could not find an executable plugins with ID=" + id);
         }
 
     }
 
     /**
      * Submits a job for execution
-     * @param config the source configuration
+     *
+     * @param config        the source configuration
      * @param inputFilesets the input filesets
-     * @param session the session for the submitter
+     * @param session       the session for the submitter
      * @throws Exception
      */
-    private void submit(ExecutableConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception{
+    private void submit(ExecutableConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception {
         //create the job instance
         ExecutableJob job = new ExecutableJob(config);
         job.setTag(ICBStringUtils.generateRandomString());
@@ -104,13 +105,17 @@ final class Actions {
 
     /**
      * Submits a resource for installation
-     * @param id the resource id
+     *
+     * @param id      the resource id
      * @param version the resource version
      * @throws Exception
      */
     public void submitResourceInstall(String id, String version) throws Exception {
         //create the resourceInstance instance
         ResourceConfig config = DependencyResolver.resolveResource(id, version, version, version);
+        if (config == null) {
+            throw new IllegalArgumentException(String.format("Unable to locate resource with id=%s version=%s", id, version));
+        }
         ResourceJob resourceInstance = new ResourceJob(config);
         resourceInstance.setTag(ICBStringUtils.generateRandomString());
         logger.debug("Tag assigned to Task instance: " + resourceInstance.getTag());

@@ -28,18 +28,19 @@ public class ClusterGateway {
         @Override
         protected boolean hasError(JSAPResult config, List<String> errors) {
 
-            if ((config.userSpecified("resource")?1:0) + (config.userSpecified("job")?1:0) > 1) {
+            if ((config.userSpecified("resource") ? 1 : 0) + (config.userSpecified("job") ? 1 : 0) > 1) {
                 errors.add("Only one parameter among resource and job has to be specified");
                 return true;
             }
-            if ((config.userSpecified("resource")?1:0) + (config.userSpecified("job")?1:0) < 1) {
+            if ((config.userSpecified("resource") ? 1 : 0) + (config.userSpecified("job") ? 1 : 0) < 1) {
                 errors.add("One parameter between resource and job has to be specified");
                 return true;
             }
 
             return false;
         }
-    } ;
+    };
+
     public static void main(String[] args) {
         System.exit(process(args));
     }
@@ -81,7 +82,7 @@ public class ClusterGateway {
             } else {
                 if ((config.userSpecified("job") && (config.userSpecified("queue"))))
                     submitter = new RemoteSubmitter(plugins.getRegistry(), config.getString("queue"));
-                else if (config.userSpecified("resource") )
+                else if (config.userSpecified("resource"))
                     submitter = new RemoteSubmitter(plugins.getRegistry());
                 else
                     throw new Exception("No queue has been indicated");
@@ -102,8 +103,15 @@ public class ClusterGateway {
             } else if (config.userSpecified("resource")) {
 
                 String token[] = config.getStringArray("resource");
+                if (token.length == 0) {
+                    System.err.println("--resource argument must contain an ID.");
+                    System.exit(1);
+                }
                 String id = token[0];
-                String version = token[1];
+                String version = null;
+                if (token.length >= 2) {
+                    version = token[1];
+                }
                 actions.submitResourceInstall(id, version);
 
             } else
@@ -163,11 +171,12 @@ public class ClusterGateway {
 
     /**
      * Builds the list of parameters starting from the command line input
+     *
      * @param parameters
      * @return
      * @throws Exception
      */
-    public static  Set<InputSlotValue> toInputParameters(String[] parameters) throws Exception {
+    public static Set<InputSlotValue> toInputParameters(String[] parameters) throws Exception {
         if (parameters.length == 0)
             return Collections.EMPTY_SET;
         Set<InputSlotValue> parsed = new HashSet<InputSlotValue>();
@@ -175,9 +184,9 @@ public class ClusterGateway {
         if (parameters[0].endsWith(":"))
             param = new InputSlotValue(StringUtils.strip(parameters[0], ":"));
         else
-            throw new Exception(String.format("Cannot accept tag reference %s with no parameter name associated. Accepted form is: NAME: TAG1 TAG2 NAME2: TAG3 TAG4 TAG5",parameters[0]));
+            throw new Exception(String.format("Cannot accept tag reference %s with no parameter name associated. Accepted form is: NAME: TAG1 TAG2 NAME2: TAG3 TAG4 TAG5", parameters[0]));
 
-        for (int i=1; i<parameters.length; i++) {
+        for (int i = 1; i < parameters.length; i++) {
             if (parameters[i].endsWith(":")) {
                 //move to the new parameter
                 parsed.add(param);
