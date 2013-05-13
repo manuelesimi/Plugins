@@ -2,6 +2,7 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 
 import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
@@ -109,6 +110,9 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         copyResourceFiles(registry.findByTypedId("GOBYWEB_SERVER_SIDE", ResourceConfig.class), tempDir);
 
         copyResourceFiles(resourceJob.getSourceConfig(), tempDir);
+
+        File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfig()));
+        FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "auto-options.sh")));
 
         pushJobDir(tempDir,resourceJob,jobArea);
 

@@ -41,7 +41,7 @@ public class PluginLoaderSettings {
     /**
      * Resource configuration added to each non resource configuration.
      */
-    protected static final String[] SERVER_SIDE_TOOL = new String[] {
+    public static final String[] SERVER_SIDE_TOOL = new String[] {
             "GOBYWEB_SERVER_SIDE", //ID
             "2.0",  //versionAtLeast
             null //versionExactly

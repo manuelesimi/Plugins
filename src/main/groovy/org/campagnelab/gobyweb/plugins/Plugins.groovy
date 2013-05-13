@@ -365,7 +365,7 @@ public class Plugins {
      * Adds dependency on SERVER_SIDE_TOOL resource plugin on each ExecutableConfig plugin.
      */
     private void addServerSidetools(Config config) {
-        if (config instanceof ExecutableConfig) {
+        if (config instanceof ExecutableConfig ) {
             ResourceConfig resource = lookupResource(SERVER_SIDE_TOOL[0], SERVER_SIDE_TOOL[1], SERVER_SIDE_TOOL[2])
             assert resource != null: " The ${SERVER_SIDE_TOOL[0]} resource must exist";
             Resource resourceRef = new Resource()
@@ -553,19 +553,8 @@ public class Plugins {
      * @return Most recent resource (by version number) with id and version>v
      */
     ResourceConfig lookupResource(String resourceId, String versionAtLeast, String versionExactly) {
-        List<ResourceConfig> resourceList = (ArrayList<ResourceConfig>) pluginConfigs.findAll { resource ->
-            if (versionExactly != null) {
-                resource instanceof ResourceConfig &&
-                        resource.id == resourceId &&
-                        resource.exactlyVersion(versionExactly)
-            } else if (versionAtLeast != null) {
-                resource instanceof ResourceConfig &&
-                        resource.id == resourceId &&
-                        resource.atLeastVersion(versionAtLeast)
-            }
-        }
-        resourceList = resourceList.sort { a, b -> (a.atLeastVersion(b.version) ? -1 : +1) }
-        return (ResourceConfig) resourceList[0];
+        return DependencyResolver.resolveResource(resourceId, versionAtLeast, versionExactly);
+
     }
 
     /**
@@ -573,7 +562,7 @@ public class Plugins {
      * @param config A plugin configuration.
      * @return Id of a plugin or null.
      */
-    public static String scriptImportedFrom(ExecutableConfig config) {
+    public static String scriptImportedFrom(PluginFileProvider config) {
         def value = config.files.find({ pluginFile ->
             "SCRIPT".equals(pluginFile.id) && (pluginFile.importFromPlugin != null)
         })
@@ -601,7 +590,6 @@ public class Plugins {
     public HashMap<String, HashMap<String, Object>> javaScriptMap(Class typeOfPlugin) {
         HashMap<String, HashMap<String, Object>> result = new HashMap<String, HashMap<String, Object>>();
         Object2BooleanOpenHashMap includeOptionInMap = new Object2BooleanOpenHashMap()
-
 
         // Determine which options should be listed in the map. We include options with a hiddenWhen attribute and options
         // these attributes reference.

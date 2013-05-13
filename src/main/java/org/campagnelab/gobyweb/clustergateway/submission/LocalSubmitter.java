@@ -1,12 +1,14 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
+import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 import java.io.*;
@@ -59,14 +61,14 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         FileUtils.writeStringToFile(new File(jobArea.getBasename(job.getTag()), constantsTemplate), writeConstants(jobArea, job));
 
         copyResourceFiles(job.getSourceConfig(), taskLocalDir);
-
+        copyAutoOptions(job.getSourceConfig(), taskLocalDir);
         //give execute permission to task scripts
         jobArea.grantExecutePermissions(job.getTag(), new String[]{taskWrapperScript});
 
         //execute the task
         logger.info(String.format("Task %s: submitting to local cluster %s...", job.getTag(), taskLocalDir.getAbsolutePath()));
         logger.info("Output from the task : ");
-        logger.info(jobArea.execute(job.getTag(),taskWrapperScript));
+        logger.info(jobArea.execute(job.getTag(), taskWrapperScript));
     }
 
 
@@ -88,14 +90,16 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         FileUtils.writeStringToFile(new File(jobArea.getBasename(resourceJob.getTag()), constantsTemplate), writeConstants(jobArea, resourceJob));
 
-        AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
 
         copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, taskLocalDir);
 
         copyResourceFiles(registry.findByTypedId("GOBYWEB_SERVER_SIDE", ResourceConfig.class), taskLocalDir);
 
         copyResourceFiles(resourceJob.getSourceConfig(), taskLocalDir);
+        AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
 
+        File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfig()));
+        FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(taskLocalDir.getAbsolutePath(), "auto-options.sh")));
         //give execute permission to resourceJob scripts
         jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{resourceInstallWrapperScript});
 
@@ -103,7 +107,10 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         logger.info(String.format("Resource %s: submitting to local cluster %s...", resourceJob.getTag(), taskLocalDir.getAbsolutePath()));
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", taskLocalDir.getAbsolutePath());
-        jobArea.execute(resourceJob.getTag(), resourceInstallWrapperScript,env);
+        jobArea.execute(resourceJob.getTag(), resourceInstallWrapperScript, env);
     }
+
+    AutoOptionsFileHelper autoOptionsHelper = new AutoOptionsFileHelper(registry);
+
 
 }

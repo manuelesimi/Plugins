@@ -34,7 +34,7 @@ class AutoOptionsFileHelper {
  */
     public File generateAutoOptionsFile(ExecutableConfig pluginConfig, String attributesPrefix = null, Map<String, String> attributes = null) {
         // call validate to force the update of user-defined values from default values.
-        pluginConfig.validate()
+        pluginConfig.validate(new Vector<String>())
         File autoOptionTmpFile = new File("/tmp/auto-options-${ICBStringUtils.generateRandomString(15)}.sh")
 
         PrintWriter writer = new PrintWriter(autoOptionTmpFile);
@@ -68,13 +68,13 @@ class AutoOptionsFileHelper {
         writeAutoFormatString(pluginConfig, writer, attributesPrefix, attributes);
 
         writer.println("# The plugin defines these files: ")
-        for (PluginFile file : pluginConfig.files) {
+        for (PluginFile file : pluginConfig.getFiles()) {
             // write options in the format  ${PLUGINS_ TYPE _ plugin-id _ FILES _ file-id}
-            writer.println("PLUGINS_${pluginConfig.getHumanReadableConfigType()}_${pluginConfig.id}_FILES_${file.id}=\${JOB_DIR}/${file.filename}")
+            writer.println("PLUGINS_${pluginConfig.getHumanReadableConfigType()}_${pluginConfig.getId()}_FILES_${file.id}=\${JOB_DIR}/${file.filename}")
         }
 
         writer.println("# The plugin has access to the following resources: ")
-        for (Resource resourceRef : pluginConfig.requires) {
+        for (Resource resourceRef : pluginConfig.getRequiredResources()) {
             writeResourceFileVariables(resourceRef, writer)
         }
         writer.flush()

@@ -41,6 +41,9 @@ import it.unimi.dsi.fastutil.longs.LongList;
 import org.campagnelab.gobyweb.plugins.xml.PluginFileProvider;
 import org.campagnelab.gobyweb.plugins.xml.SupportDependencyRange;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
@@ -221,6 +224,8 @@ public class ResourceConfig extends ResourceConsumerConfig implements SupportDep
     public List<PluginFile> getFiles() {
         return files;
     }
+
+
 
     @Override
     public int compareTo(ResourceConfig o) {
