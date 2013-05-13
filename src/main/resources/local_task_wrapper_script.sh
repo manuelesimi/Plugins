@@ -1,7 +1,10 @@
 #!/bin/sh
 
+#in case the script is re-run from the command line, we need to set here the JOB dir
+if [ -z "$JOB_DIR" ]; then
+    export JOB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+fi
 
-. constants.sh
 
 function setup_task_functions {
     # define no-op function to be overridden as needed by task script:
@@ -16,5 +19,7 @@ function run_task {
 }
 
 cd ${JOB_DIR}
+. constants.sh
+
 setup_task_functions
 run_task
