@@ -12,9 +12,9 @@ import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 
 /**
- *  Test dependency resolution among plugins
+ * Test dependency resolution among plugins
  *
- *  @author manuele
+ * @author manuele
  */
 @RunWith(JUnit4.class)
 public class DependencyResolverTest {
@@ -26,9 +26,16 @@ public class DependencyResolverTest {
 
         plugins = new Plugins();
         plugins.replaceDefaultSchemaConfig(".");
-        plugins.addServerConf( "test-data/root-for-rnaselect");
+        plugins.addServerConf("test-data/root-for-rnaselect");
         plugins.setWebServerHostname("localhost");
         plugins.reload();
+    }
+
+    @Test
+    public void resolveResourceMostRecent() {
+        ResourceConfig resourceConfig = DependencyResolver.resolveResource("GSNAP_WITH_GOBY", null, null);
+        assertNotNull(resourceConfig);
+        assertEquals("2011.11.17", resourceConfig.getVersion());
     }
 
     @Test
@@ -47,7 +54,7 @@ public class DependencyResolverTest {
 
     @Test
     public void resolveResourceAtMostVersion() {
-        ResourceConfig resourceConfig = DependencyResolver.resolveResource("GSNAP_WITH_GOBY", null, null,"2011.11.17");
+        ResourceConfig resourceConfig = DependencyResolver.resolveResource("GSNAP_WITH_GOBY", null, null, "2011.11.17");
         assertNotNull(resourceConfig);
         assertEquals("2011.11.17", resourceConfig.getVersion());
     }
