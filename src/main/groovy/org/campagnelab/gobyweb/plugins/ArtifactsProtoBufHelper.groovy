@@ -20,7 +20,7 @@ public class ArtifactsProtoBufHelper {
 
     private static Logger LOG = Logger.getLogger(Plugins.class);
     private ObjectArrayList<String> pluginEnvironmentCollectionScripts = new ObjectArrayList<String>()
-    private webServerHostname;
+    private String webServerHostname;
 
     public final String ARTIFACTS_INSTALL_REQUESTS = "artifacts-install-requests"
 

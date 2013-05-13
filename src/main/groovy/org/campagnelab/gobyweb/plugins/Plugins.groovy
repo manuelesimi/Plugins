@@ -108,6 +108,7 @@ public class Plugins {
     }
 
     Plugins(String serverConf) {
+        this()
         addServerConf(serverConf)
     }
 
