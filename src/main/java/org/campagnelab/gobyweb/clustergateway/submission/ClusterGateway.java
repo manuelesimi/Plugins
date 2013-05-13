@@ -11,6 +11,7 @@ import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.io.JobArea;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -27,17 +28,33 @@ public class ClusterGateway {
     private static CommandLineHelper jsapHelper = new CommandLineHelper(ClusterGateway.class) {
         @Override
         protected boolean hasError(JSAPResult config, List<String> errors) {
-
+            boolean result = false;
             if ((config.userSpecified("resource") ? 1 : 0) + (config.userSpecified("job") ? 1 : 0) > 1) {
                 errors.add("Only one parameter among resource and job has to be specified");
-                return true;
+                result = true;
             }
             if ((config.userSpecified("resource") ? 1 : 0) + (config.userSpecified("job") ? 1 : 0) < 1) {
                 errors.add("One parameter between resource and job has to be specified");
-                return true;
+                result = true;
             }
+            if (config.userSpecified("job-area")) {
+                String jobAreadLocation = config.getString("job-area");
+                if (jobAreadLocation.contains(":")) {
+                    String[] tokens = jobAreadLocation.split(":");
+                    if (tokens.length != 2) {
+                        errors.add("remote job-area must contain two tokens separated by :. Second token was found missing: " + jobAreadLocation);
+                        result = true;
 
-            return false;
+                    } else {
+                        jobAreadLocation = tokens[1];
+                        if (!new File(jobAreadLocation).isAbsolute()) {
+                            errors.add("--job-area argument must be an absolute path " + jobAreadLocation);
+                            result = true;
+                        }
+                    }
+                }
+            }
+            return result;
         }
     };
 
@@ -53,8 +70,10 @@ public class ClusterGateway {
         //create the reference to the job area
         JobArea jobArea = null;
         try {
+            String jobAreadLocation = config.getString("job-area");
+
             jobArea = AreaFactory.createJobArea(
-                    config.getString("job-area"), owner);
+                    jobAreadLocation, owner);
         } catch (IOException ioe) {
             logger.error(ioe);
             return (1);

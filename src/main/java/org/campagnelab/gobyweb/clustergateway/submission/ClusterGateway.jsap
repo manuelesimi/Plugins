@@ -43,8 +43,8 @@
             <required>true</required>
             <shortFlag>j</shortFlag>
             <longFlag>job-area</longFlag>
-            <help>The directory where plugin's files are placed for execution. Can be a local folder or a remote folder in
-                the form of username@hostname:/path
+            <help>The directory where plugin files are placed for execution. Can be a local folder or a remote folder in
+                the form of username@hostname:/path. If the area is remote, the path must be absolute.
             </help>
         </flaggedOption>
 
