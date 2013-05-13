@@ -22,5 +22,8 @@ cd ${JOB_DIR}
 . constants.sh
 
 setup_task_functions
-run_task 2>&1 |tee run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log
 
+LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"
+run_task 2>&1 |tee ${LOG_FILE}
+
+echo "Task execution completed successfully." >>${LOG_FILE}

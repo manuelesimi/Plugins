@@ -16,7 +16,8 @@ fi
 cd ${JOB_DIR}
 . artifacts.sh
 
-install_plugin_artifacts 2>&1 |tee resource-install-`date "+%Y-%m-%d-%H:%M:%S"`.log
+LOG_FILE="resource-install-`date "+%Y-%m-%d-%H:%M:%S"`.log"
+install_plugin_artifacts 2>&1 |tee ${LOG_FILE}
 
-
+echo "Installation completed successfully." >>${LOG_FILE}
 
