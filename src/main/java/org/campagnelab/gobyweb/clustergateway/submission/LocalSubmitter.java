@@ -70,6 +70,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         logger.info("Exit value from the task : ");
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", taskLocalDir.getAbsolutePath());
+        env.put("PATH", System.getenv("PATH"));
         logger.info(jobArea.execute(job.getTag(),taskWrapperScript,env));
     }
 
@@ -109,6 +110,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         logger.info(String.format("Resource %s: submitting to local cluster %s...", resourceJob.getTag(), taskLocalDir.getAbsolutePath()));
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", taskLocalDir.getAbsolutePath());
+        env.put("PATH", System.getenv("PATH"));
         jobArea.execute(resourceJob.getTag(), resourceInstallWrapperScript, env);
     }
 
