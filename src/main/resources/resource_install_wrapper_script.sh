@@ -15,7 +15,7 @@ fi
 cd ${JOB_DIR}
 
 . constants.sh
-
+. auto-options.sh
 . artifacts.sh
 
 LOG_FILE="resource-install-`date "+%Y-%m-%d-%H:%M:%S"`.log"
