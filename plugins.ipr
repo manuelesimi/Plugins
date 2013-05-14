@@ -424,15 +424,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-stats/1.0.0/icb-stats-1.0.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: edu.cornell.med.icb:icb-util:1.1.0">
+    <library name="Maven: edu.cornell.med.icb:icb-util:1.1.2">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.0/icb-util-1.1.0.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.2/icb-util-1.1.2.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.0/icb-util-1.1.0-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.2/icb-util-1.1.2-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.0/icb-util-1.1.0-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.2/icb-util-1.1.2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: it.unimi.dsi:dsiutils:2.0.7">
@@ -503,14 +503,14 @@
     </library>
     <library name="Maven: org.campagnelab.gobyweb:filesets:2.0.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-20130513.211412-47.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-20130513.211412-47-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
         <root url="jar://$USER_HOME$/CampagneLab/filesets/target/filesets-2.0.0-SNAPSHOT-sources.jar!/" />
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-20130513.211412-47-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:icb-groovy-support:2.0.0-SNAPSHOT">
