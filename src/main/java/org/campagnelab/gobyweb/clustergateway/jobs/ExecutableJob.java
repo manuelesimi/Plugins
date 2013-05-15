@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
+import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
@@ -15,44 +16,48 @@ import java.util.*;
  */
 public class ExecutableJob extends Job {
 
-     private ExecutableConfig sourceConfig;
+    private ExecutableConfig sourceConfig;
 
-     private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
+    private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
 
-     public ExecutableJob(ExecutableConfig sourceConfig) {
-         this.sourceConfig = sourceConfig;
-         for (PluginFile file : sourceConfig.getFiles()) {
-             this.addFile(file.getLocalFile());
-         }
-     }
+    public ExecutableJob(ExecutableConfig sourceConfig) {
+        this.sourceConfig = sourceConfig;
+        for (PluginFile file : sourceConfig.getFiles()) {
+            this.addFile(file.getLocalFile());
+        }
+    }
 
-     public ExecutableOutputSchema getOutputSchema() {
+    public ExecutableOutputSchema getOutputSchema() {
         return sourceConfig.getOutputSchema();
-     }
+    }
 
-     public ExecutableInputSchema getInputSchema() {
+    public ExecutableInputSchema getInputSchema() {
         return sourceConfig.getInputSchema();
-     }
+    }
 
     /**
      * Adds a new actual value for an input slot
+     *
      * @param value
-     * @throws ExecutableJob.InvalidSlotValueException if the parameter is not valid
+     * @throws ExecutableJob.InvalidSlotValueException
+     *          if the parameter is not valid
      */
     public void addInputSlotValue(InputSlotValue value) throws InvalidSlotValueException {
-      //if (!(value.getValues().size()>0))
-      //    throw new InvalidSlotValueException(String.format("Parameter %s has no value(s) " + value.toString()));
-      //else
-      if (! validateInputSlotValue(value))
-          throw new InvalidSlotValueException(String.format("Input slot %s does not match the Job configuration", value.toString()));
-      else
-          inputSlots.add(value);
+        //if (!(value.getValues().size()>0))
+        //    throw new InvalidSlotValueException(String.format("Parameter %s has no value(s) " + value.toString()));
+        //else
+        if (!validateInputSlotValue(value))
+            throw new InvalidSlotValueException(String.format("Input slot %s does not match the Job configuration", value.toString()));
+        else
+            inputSlots.add(value);
     }
 
     /**
      * Adds new actual values for the input slots.
+     *
      * @param values
-     * @throws ExecutableJob.InvalidSlotValueException if any of the values is not valid
+     * @throws ExecutableJob.InvalidSlotValueException
+     *          if any of the values is not valid
      */
     public void addInputSlotValues(Set<InputSlotValue> values) throws InvalidSlotValueException {
         for (InputSlotValue value : values)
@@ -60,12 +65,13 @@ public class ExecutableJob extends Job {
     }
 
     /**
-     *  Gets the values of the input slot
-     *  @param slotName the name of the input slot
-     *  @return
+     * Gets the values of the input slot
+     *
+     * @param slotName the name of the input slot
+     * @return
      */
     public List<String> getInputSlotValues(String slotName) {
-        for (InputSlotValue inputSlotValue: inputSlots) {
+        for (InputSlotValue inputSlotValue : inputSlots) {
             if (inputSlotValue.getName().equalsIgnoreCase(slotName))
                 return inputSlotValue.getValues();
         }
@@ -74,22 +80,27 @@ public class ExecutableJob extends Job {
 
     /**
      * Validate the job I/O available for its execution against the schema
+     *
      * @return
      * @throws InvalidJobDataException if any of the mandatory slots is missing
      */
     public void validateMandatorySlots() throws InvalidJobDataException {
         List<String> mandatorySlots = this.getMandatoryInputSlots();
         List<String> inputSlotNames = new ArrayList<String>();
-        for (InputSlotValue inputSlotValue: inputSlots)
+        for (InputSlotValue inputSlotValue : inputSlots)
             inputSlotNames.add(inputSlotValue.getName());
         //need to create two sets with the names to have a case insensitive comparison
-        Set <String> mandatoryNameSet = new TreeSet <String> (String.CASE_INSENSITIVE_ORDER);
-        Set <String> actualNameSet = new TreeSet <String> (String.CASE_INSENSITIVE_ORDER);
+        Set<String> mandatoryNameSet = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
+        Set<String> actualNameSet = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
         mandatoryNameSet.addAll(mandatorySlots);
         actualNameSet.addAll(inputSlotNames);
 
-        if (!actualNameSet.containsAll(mandatoryNameSet))
-              throw new InvalidJobDataException("Some mandatory input slots are missing");
+        if (!actualNameSet.containsAll(mandatoryNameSet)) {
+            ObjectArraySet<String> missingNameSets = new ObjectArraySet<String>();
+            missingNameSets.addAll(mandatoryNameSet);
+            missingNameSets.removeAll(actualNameSet);
+            throw new InvalidJobDataException("Some mandatory input slots are missing: " + missingNameSets.toString());
+        }
     }
 
 
@@ -98,7 +109,8 @@ public class ExecutableJob extends Job {
      * The validation checks if the schema defines an input slot with that name
      * and if the cardinality of its values matches the limits declared in the slot
      * definition.
-     * @param value  the input slot value to check
+     *
+     * @param value the input slot value to check
      * @return true if the value is accepted, false otherwise
      */
     protected boolean validateInputSlotValue(InputSlotValue value) {
@@ -108,14 +120,14 @@ public class ExecutableJob extends Job {
                 //check the cardinality of the values
                 List<String> actualValues = value.getValues();
                 Slot.IOFileSetRef type = schemaInputSlot.geType();
-                if (type.minOccurs !=null) {
+                if (type.minOccurs != null) {
                     if (Integer.valueOf(type.minOccurs) > actualValues.size()) {
                         logger.error(String.format("Input slot %s is not valid: at least %d values are expected (%d found)",
                                 value.getName(), Integer.valueOf(type.minOccurs), actualValues.size()));
                         return false;
                     }
                 }
-                if (type.maxOccurs !=null) {
+                if (type.maxOccurs != null) {
                     if (type.maxOccurs.equalsIgnoreCase("unbounded")
                             || (Integer.valueOf(type.maxOccurs) >= actualValues.size()))
                         return true;
@@ -130,8 +142,10 @@ public class ExecutableJob extends Job {
         }
         return false;
     }
+
     /**
      * Gets the list of mandatory input slots
+     *
      * @return the names of the slots
      */
     protected List<String> getMandatoryInputSlots() {
@@ -143,8 +157,10 @@ public class ExecutableJob extends Job {
         }
         return mandatorySlots;
     }
+
     /**
      * Gets the list of mandatory output slots
+     *
      * @return the names of the slots
      */
     protected List<String> getMandatoryOutputSlots() {
@@ -158,11 +174,10 @@ public class ExecutableJob extends Job {
     }
 
     /**
-     *
      * @return the source configuration of this Job
      */
     public ExecutableConfig getSourceConfig() {
-      return sourceConfig;
+        return sourceConfig;
     }
 
 
