@@ -131,7 +131,12 @@ public class FileSetManager {
         return returned_values;
     }
 
-    private static Map<String, String> parseInputAttributes(String inputAttributes) {
+    /**
+     * Parses the input attributes and creates a map from them.
+     * @param inputAttributes  attributes in the form KEY=VALUE,KEY2=VALUE2
+     * @return
+     */
+    public static Map<String, String> parseInputAttributes(String inputAttributes) {
         Map<String, String> attributes = new HashMap<String, String>();
         Splitter splitter = Splitter.on(",");
         for (String inputAttribute: splitter.split(inputAttributes)) {

@@ -98,7 +98,7 @@ public class FileSetCommandLineTest {
     public void edit() {
         //this has to fail because the input tag already exists (from the previous registration)
         assertEquals("Unexpected results returned by edit", 0, FileSetManager.process(buildFileEditArgs(
-                        "INTAGGG",
+                        "XXXXXX7",
                         "KEY1=VALUE1,KEY2=VALUE2,KEY3=VALUE3,KEY4=VALUE4"
         )).size());
 
