@@ -99,9 +99,9 @@ public class FileSetManager {
             if (config.getString("action").equalsIgnoreCase("register")) {
                 List<InputEntry> entries = parseInputEntries(config.getStringArray("entries"));
                 if (config.userSpecified("no-copy"))
-                    returned_values = fileset.registerNoCopy(entries,errors, config.getString("tag"));
+                    returned_values = fileset.registerNoCopy(entries, new HashMap<String, String>(), errors, config.getString("tag"));
                 else
-                    returned_values = fileset.register(entries,errors, config.getString("tag"));
+                    returned_values = fileset.register(entries, new HashMap<String, String>(), errors, config.getString("tag"));
                 if (returned_values.size() > 0 ) {
                     logger.info(String.format("%d fileset instances have been successfully registered with the following tags: ", returned_values.size()));
                     logger.info(Arrays.toString(returned_values.toArray()));
@@ -117,7 +117,13 @@ public class FileSetManager {
                 logger.info(String.format("Fileset instance %s successfully unregistered",config.getString("tag")));
             } else if (config.getString("action").equalsIgnoreCase("edit")) {
                Map<String, String> attributes = parseInputAttributes(config.getString("attributes"));
-               //fileset.edit(config.getString("tag"), attributes);
+               if (! fileset.editAttributes(config.getString("tag"), attributes, errors)) {
+                   logger.error("Failed to edit attributes.");
+                   for (String message : errors) {
+                       logger.error(message);
+                   }
+                   throw new Exception();
+               }
             }
         } catch (IOException e) {
             throw new Exception();
