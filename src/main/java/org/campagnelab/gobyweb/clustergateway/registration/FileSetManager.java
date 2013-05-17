@@ -123,7 +123,9 @@ public class FileSetManager {
         } else if (config.getString("action").equalsIgnoreCase("edit")) {
             Map<String, String> attributes = parseInputAttributes(config.getString("attributes"));
             if (attributes.keySet().size() > 0) {
-                if (!fileset.editAttributes(config.getString("tag"), attributes, errors)) {
+                if (fileset.editAttributes(config.getString("tag"), attributes, errors)) {
+                    logger.info(String.format("Fileset attributes have been successfully updated for instance %s", config.getString("tag")));
+                } else {
                     logger.error("Failed to edit attributes.");
                     for (String message : errors) {
                         logger.error(message);
