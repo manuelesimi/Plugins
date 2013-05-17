@@ -10,4 +10,4 @@ TARGET_DIR=${PARENT_DIR}/target
 SNAPSHOT_JAR="${TARGET_DIR}/plugins-sdk.jar"
 JAVA_OPTIONS="-Xmx2g"
 
-java $JAVA_OPTIONS -cp ${LIB_DIR}/plugins-sdk.jar:${SNAPSHOT_JAR}:${WORKING_DIR}/cluster_gateway.properties org.campagnelab.gobyweb.clustergateway.submission.ClusterGateway "$@"
+java $JAVA_OPTIONS -cp ${LIB_DIR}/plugins-sdk.jar:${SNAPSHOT_JAR} org.campagnelab.gobyweb.clustergateway.submission.ClusterGateway "$@"
