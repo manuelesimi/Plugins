@@ -178,12 +178,12 @@ public class FileSetLocalRegistration {
                 "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads"};
         List<String> returnedTags = register(entries,"CASE_1","FILESET:PATH",1,0, false);
         List<String> errors = new ArrayList<String>();
-        String attributes = "KEY=VALUE,KEY2=VALUE2,KEY3=VALUE3,KEY4=VALUE4";
+        String[] attributes = new String[]{"KEY1=VALUE1", "KEY2=VALUE2", "KEY3=VALUE3", "KEY4=VALUE4"};
         try {
             if (!(fileset.editAttributes(returnedTags.get(0), FileSetManager.parseInputAttributes(attributes), errors))) {
                 fail("Failed to edit fileset");
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             fail("Failed to edit fileset");
         }
