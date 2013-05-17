@@ -58,6 +58,12 @@ public class FileSetManager {
         }
     }
 
+    /**
+     * Processes the caller requests.
+     * @param args the arguments passed on the command line
+     * @return the list of tags in case of register action, an empty list for the other operations
+     * @throws Exception
+     */
     public static List<String> process(String[] args) throws Exception {
         List<String> returned_values = new ArrayList<String>();
         JSAPResult config = jsapHelper.configure(args);
@@ -117,12 +123,16 @@ public class FileSetManager {
                 logger.info(String.format("Fileset instance %s successfully unregistered",config.getString("tag")));
             } else if (config.getString("action").equalsIgnoreCase("edit")) {
                Map<String, String> attributes = parseInputAttributes(config.getString("attributes"));
-               if (! fileset.editAttributes(config.getString("tag"), attributes, errors)) {
-                   logger.error("Failed to edit attributes.");
-                   for (String message : errors) {
-                       logger.error(message);
+               if (attributes.keySet().size() > 0) {
+                   if (! fileset.editAttributes(config.getString("tag"), attributes, errors)) {
+                       logger.error("Failed to edit attributes.");
+                       for (String message : errors) {
+                           logger.error(message);
+                       }
+                       throw new Exception();
                    }
-                   throw new Exception();
+               } else {
+                   logger.error("Failed to edit attributes: no attribute was defined in the input parameters.");
                }
             }
         } catch (IOException e) {
