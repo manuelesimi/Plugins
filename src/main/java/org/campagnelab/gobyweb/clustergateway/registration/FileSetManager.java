@@ -104,9 +104,9 @@ public class FileSetManager {
         if (config.getString("action").equalsIgnoreCase("register")) {
             List<InputEntry> entries = parseInputEntries(config.getStringArray("entries"));
             if (config.userSpecified("no-copy"))
-                returned_values = fileset.registerNoCopy(entries, new HashMap<String, String>(), errors, config.getString("tag"));
+                returned_values = fileset.registerNoCopy(entries, parseInputAttributes(config.getString("attributes")), errors, config.getString("tag"));
             else
-                returned_values = fileset.register(entries, new HashMap<String, String>(), errors, config.getString("tag"));
+                returned_values = fileset.register(entries, parseInputAttributes(config.getString("attributes")), errors, config.getString("tag"));
             if (returned_values.size() > 0) {
                 logger.info(String.format("%d fileset instances have been successfully registered with the following tags: ", returned_values.size()));
                 logger.info(Arrays.toString(returned_values.toArray()));
