@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.campagnelab.build-utils</groupId>
         <artifactId>maven-parent</artifactId>
-        <version>1.0.2-SNAPSHOT</version>
+        <version>1.0.3-SNAPSHOT</version>
     </parent>
     <groupId>org.campagnelab.gobyweb</groupId>
     <artifactId>plugins</artifactId>
@@ -14,7 +14,6 @@
     <name>plugins</name>
     <description>Software development and execution kit for GobyWeb plugins.</description>
     <url>http://gobyweb.campagnelab.org</url>
-
 
     <build>
         <plugins>
