@@ -104,9 +104,9 @@ public class FileSetManager {
         if (config.getString("action").equalsIgnoreCase("register")) {
             List<InputEntry> entries = parseInputEntries(config.getStringArray("entries"));
             if (config.userSpecified("no-copy"))
-                returned_values = fileset.registerNoCopy(entries, parseInputAttributes(config.getString("attributes")), errors, config.getString("tag"));
+                returned_values = fileset.registerNoCopy(entries, parseInputAttributes(config.getStringArray("attribute")), errors, config.getString("tag"));
             else
-                returned_values = fileset.register(entries, parseInputAttributes(config.getString("attributes")), errors, config.getString("tag"));
+                returned_values = fileset.register(entries, parseInputAttributes(config.getStringArray("attribute")), errors, config.getString("tag"));
             if (returned_values.size() > 0) {
                 logger.info(String.format("%d fileset instances have been successfully registered with the following tags: ", returned_values.size()));
                 logger.info(Arrays.toString(returned_values.toArray()));
@@ -121,7 +121,7 @@ public class FileSetManager {
             fileset.unregister(config.getString("tag"));
             logger.info(String.format("Fileset instance %s successfully unregistered", config.getString("tag")));
         } else if (config.getString("action").equalsIgnoreCase("edit")) {
-            Map<String, String> attributes = parseInputAttributes(config.getString("attributes"));
+            Map<String, String> attributes = parseInputAttributes(config.getStringArray("attribute"));
             if (attributes.keySet().size() > 0) {
                 if (fileset.editAttributes(config.getString("tag"), attributes, errors)) {
                     logger.info(String.format("Fileset attributes have been successfully updated for instance %s", config.getString("tag")));
@@ -145,14 +145,18 @@ public class FileSetManager {
      * @param inputAttributes  attributes in the form KEY=VALUE,KEY2=VALUE2
      * @return
      */
-    public static Map<String, String> parseInputAttributes(String inputAttributes) {
+    public static Map<String, String> parseInputAttributes(String[] inputAttributes) throws Exception {
         if (inputAttributes == null)
             return Collections.emptyMap();
         Map<String, String> attributes = new HashMap<String, String>();
-        Splitter splitter = Splitter.on(",");
-        for (String inputAttribute: splitter.split(inputAttributes)) {
+        for (String inputAttribute: inputAttributes) {
             String[] tokens = inputAttribute.split("=");
-            attributes.put(tokens[0],tokens[1]);
+            if (tokens.length == 2) {
+                attributes.put(tokens[0],tokens[1]);
+            } else {
+                logger.error("Invalid attribute format" + inputAttribute);
+                throw new Exception();
+            }
         }
         return attributes;
     }

@@ -51,7 +51,6 @@
                 <classname>StringStringParser</classname>
             </stringParser>
             <required>true</required>
-            <shortFlag>a</shortFlag>
             <longFlag>action</longFlag>
             <help>The action to perform on the fileset instance. Allowed actions: register | edit | unregister</help>
         </flaggedOption>
@@ -76,13 +75,14 @@
         </switch>
 
         <flaggedOption>
-            <id>attributes</id>
+            <id>attribute</id>
             <stringParser>
                       <classname>StringStringParser</classname>
             </stringParser>
             <required>optional</required>
-            <longFlag>attributes</longFlag>
-            <help>List of attributes to associate to the fileset instance. The list must be in the form ATTR1=VALUE1,ATTR2=VALUE2...ATTR3=VALUE3</help>
+            <shortFlag>a</shortFlag>
+            <allowMultipleDeclarations>true</allowMultipleDeclarations>
+            <help>Attribute to associate to the fileset instance. The attribute must be in the form ATTR1=VALUE1</help>
         </flaggedOption>
 
         <switch>
