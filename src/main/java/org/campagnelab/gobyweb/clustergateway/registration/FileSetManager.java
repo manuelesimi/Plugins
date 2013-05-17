@@ -53,7 +53,7 @@ public class FileSetManager {
             process(args);
             System.exit(0);
         } catch (Exception e) {
-            logger.error(e);
+            logger.error("FileSetManager failed to process the request.");
             System.exit(1);
         }
     }
