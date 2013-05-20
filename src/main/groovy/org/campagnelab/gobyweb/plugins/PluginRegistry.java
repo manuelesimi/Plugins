@@ -104,7 +104,7 @@ public class PluginRegistry extends ArrayList<Config> {
      * @return the configuration that matches or null
      */
     public <T extends Config> T findByTypedId(String idToFind, Class<T> configClass ) {
-        if (idToFind != null) {
+       /* if (idToFind != null) {
             for (Config config: this) {
                 if ((config.getId().compareTo(idToFind)==0)
                     && ((config.getClass().isAssignableFrom(configClass)) //same class
@@ -113,10 +113,31 @@ public class PluginRegistry extends ArrayList<Config> {
                 }
             }
         }
-        return null;
+        return null; */
+        return findByTypedIdAndVersion(idToFind, null, configClass);
     }
 
 
-
+    /**
+     * Returns the configuration matching id or null if the configuration was not found.
+     * @param idToFind
+     * @param version
+     * @param configClass the type of configurations
+     * @param <T> the class to filter for
+     * @return the configuration that matches or null
+     */
+    public <T extends Config> T findByTypedIdAndVersion(String idToFind, String version, Class<T> configClass ) {
+        if (idToFind != null) {
+            for (Config config: this) {
+                if ((config.getId().compareTo(idToFind)==0)
+                        && ((config.getClass().isAssignableFrom(configClass)) //same class
+                        ||(configClass.isInstance(config)))){  //or a sub-class
+                    if ((version == null) || (config.getVersion().equalsIgnoreCase(version)))
+                     return (T)config;
+                }
+            }
+        }
+        return null;
+    }
 }
 

@@ -8,5 +8,6 @@ PARENT_DIR=`dirname ${WORKING_DIR}`
 LIB_DIR=${PARENT_DIR}/lib
 TARGET_DIR=${PARENT_DIR}/target
 SNAPSHOT_JAR="${TARGET_DIR}/plugins-sdk.jar"
-java -cp ${LIB_DIR}/plugins-sdk.jar:${SNAPSHOT_JAR} org.campagnelab.gobyweb.clustergateway.registration.FileSetManager --action unregister "$@"
+JAVA_OPTIONS="-Xmx2g"
 
+java $JAVA_OPTIONS -cp ${LIB_DIR}/plugins-sdk.jar:${SNAPSHOT_JAR} org.campagnelab.gobyweb.plugins.util.PluginsUtil --action dependency-tree "$@"

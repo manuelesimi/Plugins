@@ -1,0 +1,54 @@
+<jsap>
+    <parameters>
+          <flaggedOption>
+            <id>plugins-dir</id>
+            <stringParser>
+                <classname>FileStringParser</classname>
+                <properties>
+                    <property>
+                        <name>mustBeDirectory</name>
+                        <value>true</value>
+                    </property>
+                    <property>
+                        <name>mustExist</name>
+                        <value>true</value>
+                    </property>
+                </properties>
+            </stringParser>
+            <required>optional</required>
+            <shortFlag>p</shortFlag>
+            <longFlag>plugins-dir</longFlag>
+            <help>The directory from which the plugin configurations are loaded.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>id</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <list>true</list>
+            <listSeparator>:</listSeparator>
+            <longFlag>id</longFlag>
+            <help>The identifier and version number of the plugin. In the format ID:VERSION.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>action</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <longFlag>action</longFlag>
+            <help>The action to perform on the plugin. Allowed actions: dependency-tree</help>
+        </flaggedOption>
+
+          <switch>
+              <id>help</id>
+              <shortFlag>h</shortFlag>
+              <longFlag>help</longFlag>
+              <help>Print help message.</help>
+          </switch>
+
+    </parameters>
+</jsap>

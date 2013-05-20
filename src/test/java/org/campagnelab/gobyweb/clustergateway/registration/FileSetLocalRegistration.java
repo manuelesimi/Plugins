@@ -19,6 +19,8 @@ import static junit.framework.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -126,7 +128,7 @@ public class FileSetLocalRegistration {
     }
 
 
-    private void register(String[] entries, String caseID, String format,
+    private List<String> register(String[] entries, String caseID, String format,
                           int expectedTags, int expectedErrors, boolean parseShouldFail) {
         logger.debug(String.format("Testing registration %s (%s)",caseID,format));
         List<String> errors = new ArrayList<String>();
@@ -136,7 +138,7 @@ public class FileSetLocalRegistration {
             inputEntries = FileSetManager.parseInputEntries(entries);
         } catch (Exception e) {
            if (parseShouldFail)
-               return;
+               return Collections.emptyList();
            else {
                e.printStackTrace();
                fail(String.format("Fail to parse input entry for fileset %s with %",caseID,format));
@@ -145,16 +147,17 @@ public class FileSetLocalRegistration {
         }
         try {
             // test the case
-            returnedTags.addAll(fileset.register(inputEntries,errors, null));
+            returnedTags.addAll(fileset.register(inputEntries, new HashMap<String, String>(), errors, null));
         } catch (IOException e) {
             e.printStackTrace();
-            fail(String.format("Fail to register fileset %s with %",caseID,format));
+            fail(String.format("Failed to register fileset %s with %",caseID,format));
         }
         assertEquals(String.format("Register operation returned an unexpected number of tags using the format %s",format),
                 expectedTags, returnedTags.size());
         assertEquals(String.format("Register operation returned an unexpected number of errors using the format %s",format),
                 expectedErrors, errors.size());
         tags.addAll(returnedTags);
+        return returnedTags;
     }
 
     @Test
@@ -163,11 +166,30 @@ public class FileSetLocalRegistration {
             try {
                 fileset.unregister(tag);
             } catch (IOException e) {
-                fail("failed to unregister fileset " + tag);
+                fail("Failed to unregister fileset " + tag);
             }
         }
 
     }
+
+    @Test
+    public void editMetadata() {
+        String[] entries = new String[]{"COMPACT_READS:",
+                "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads"};
+        List<String> returnedTags = register(entries,"CASE_1","FILESET:PATH",1,0, false);
+        List<String> errors = new ArrayList<String>();
+        String[] attributes = new String[]{"KEY1=VALUE1", "KEY2=VALUE2", "KEY3=VALUE3", "KEY4=VALUE4"};
+        try {
+            if (!(fileset.editAttributes(returnedTags.get(0), FileSetManager.parseInputAttributes(attributes), errors))) {
+                fail("Failed to edit fileset");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("Failed to edit fileset");
+        }
+
+    }
+
     @Test(expected=IllegalArgumentException.class)
     public void wrongUnregister() {
         try {

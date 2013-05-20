@@ -53,11 +53,17 @@ public class FileSetManager {
             process(args);
             System.exit(0);
         } catch (Exception e) {
-            logger.error(e);
+            logger.error("FileSetManager failed to process the request.");
             System.exit(1);
         }
     }
 
+    /**
+     * Processes the caller requests.
+     * @param args the arguments passed on the command line
+     * @return the list of tags in case of register action, an empty list for the other operations
+     * @throws Exception
+     */
     public static List<String> process(String[] args) throws Exception {
         List<String> returned_values = new ArrayList<String>();
         JSAPResult config = jsapHelper.configure(args);
@@ -72,7 +78,6 @@ public class FileSetManager {
                     config.userSpecified("owner")? config.getString("owner"): System.getProperty("user.name"));
         } catch (IOException ioe) {
             throw ioe;
-
         }
 
         //load plugin configurations
@@ -91,46 +96,67 @@ public class FileSetManager {
             logger.error("Failed to load plugins definitions",e);
             throw new Exception(e);
         }
-        try {
-            List<String> errors = new ArrayList<String>();
-            //convert plugins configuration to configurations that can be consumed by FileSetAPI
-            ConfigurationList configurationList = PluginsToConfigurations.convertAsList(plugins.getRegistry().filterConfigs(FileSetConfig.class));
-            FileSetAPI fileset = new FileSetAPI(storageArea,configurationList);
-            if (config.getString("action").equalsIgnoreCase("register")) {
-                List<InputEntry> entries = parseInputEntries(config.getStringArray("entries"));
-                if (config.userSpecified("no-copy"))
-                    returned_values = fileset.registerNoCopy(entries,errors, config.getString("tag"));
-                else
-                    returned_values = fileset.register(entries,errors, config.getString("tag"));
-                if (returned_values.size() > 0 ) {
-                    logger.info(String.format("%d fileset instances have been successfully registered with the following tags: ", returned_values.size()));
-                    logger.info(Arrays.toString(returned_values.toArray()));
+
+        List<String> errors = new ArrayList<String>();
+        //convert plugins configuration to configurations that can be consumed by FileSetAPI
+        ConfigurationList configurationList = PluginsToConfigurations.convertAsList(plugins.getRegistry().filterConfigs(FileSetConfig.class));
+        FileSetAPI fileset = new FileSetAPI(storageArea, configurationList);
+        if (config.getString("action").equalsIgnoreCase("register")) {
+            List<InputEntry> entries = parseInputEntries(config.getStringArray("entries"));
+            if (config.userSpecified("no-copy"))
+                returned_values = fileset.registerNoCopy(entries, parseInputAttributes(config.getStringArray("attribute")), errors, config.getString("tag"));
+            else
+                returned_values = fileset.register(entries, parseInputAttributes(config.getStringArray("attribute")), errors, config.getString("tag"));
+            if (returned_values.size() > 0) {
+                logger.info(String.format("%d fileset instances have been successfully registered with the following tags: ", returned_values.size()));
+                logger.info(Arrays.toString(returned_values.toArray()));
+            } else {
+                logger.error("Failed to register the fileset instances");
+                for (String message : errors) {
+                    logger.error(message);
+                }
+                throw new Exception();
+            }
+        } else if (config.getString("action").equalsIgnoreCase("unregister")) {
+            fileset.unregister(config.getString("tag"));
+            logger.info(String.format("Fileset instance %s successfully unregistered", config.getString("tag")));
+        } else if (config.getString("action").equalsIgnoreCase("edit")) {
+            Map<String, String> attributes = parseInputAttributes(config.getStringArray("attribute"));
+            if (attributes.keySet().size() > 0) {
+                if (fileset.editAttributes(config.getString("tag"), attributes, errors)) {
+                    logger.info(String.format("Fileset attributes have been successfully updated for instance %s", config.getString("tag")));
                 } else {
-                    logger.error("Failed to register the fileset instances");
+                    logger.error("Failed to edit attributes.");
                     for (String message : errors) {
                         logger.error(message);
                     }
                     throw new Exception();
                 }
-            } else if (config.getString("action").equalsIgnoreCase("unregister")) {
-                fileset.unregister(config.getString("tag"));
-                logger.info(String.format("Fileset instance %s successfully unregistered",config.getString("tag")));
-            } else if (config.getString("action").equalsIgnoreCase("edit")) {
-               Map<String, String> attributes = parseInputAttributes(config.getString("attributes"));
-               //fileset.edit(config.getString("tag"), attributes);
+            } else {
+                logger.error("Failed to edit attributes: no attribute was defined in the input parameters.");
+                throw new Exception();
             }
-        } catch (IOException e) {
-            throw new Exception();
         }
         return returned_values;
     }
 
-    private static Map<String, String> parseInputAttributes(String inputAttributes) {
+    /**
+     * Parses the input attributes and creates a map from them.
+     * @param inputAttributes  attributes in the form KEY=VALUE,KEY2=VALUE2
+     * @return
+     */
+    public static Map<String, String> parseInputAttributes(String[] inputAttributes) throws Exception {
+        if (inputAttributes == null)
+            return Collections.emptyMap();
         Map<String, String> attributes = new HashMap<String, String>();
-        Splitter splitter = Splitter.on(",");
-        for (String inputAttribute: splitter.split(inputAttributes)) {
+        for (String inputAttribute: inputAttributes) {
             String[] tokens = inputAttribute.split("=");
-            attributes.put(tokens[0],tokens[1]);
+            if (tokens.length == 2) {
+                attributes.put(tokens[0],tokens[1]);
+            } else {
+                logger.error("Invalid attribute format" + inputAttribute);
+                throw new Exception();
+            }
         }
         return attributes;
     }
