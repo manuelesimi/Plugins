@@ -2,9 +2,9 @@ package org.campagnelab.gobyweb.plugins.util;
 
 import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
+import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConsumerConfig;
 
 import java.io.PrintStream;
 
@@ -22,20 +22,24 @@ class DependencyTreeWriter {
        this.registry = registry;
     }
 
-    protected void writeTree(PrintStream stream, ExecutableConfig config) {
+    /**
+     * Writes the dependency tree in the print stream
+     * @param stream
+     * @param config
+     */
+    protected void writeTree(PrintStream stream, ResourceConsumerConfig config) {
         stream.println(String.format("%s", config.toString()));
         for (Resource resource : config.getRequiredResources()) {
             writeResourceTree(stream,resource,"\t|");
         }
     }
 
-    protected void writeTree(PrintStream stream, ResourceConfig config) {
-        stream.println(String.format("%s", config.toString()));
-        for (Resource resource : config.getRequiredResources()) {
-            writeResourceTree(stream,resource,"\t|");
-        }
-    }
-
+    /**
+     * Writes the dependency tree for the resource
+     * @param stream
+     * @param resource
+     * @param prefix
+     */
     private void writeResourceTree(PrintStream stream, Resource resource, String prefix) {
         ResourceConfig dependency = DependencyResolver.resolveResource(resource.id,
                 resource.versionAtLeast, resource.versionExactly,
