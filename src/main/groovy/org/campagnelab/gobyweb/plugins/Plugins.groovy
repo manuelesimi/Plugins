@@ -249,7 +249,7 @@ public class Plugins {
                 if (!errors.isEmpty()) {
                     toRemove.add(config)
                     errors.each { message ->
-                        LOG.error("An error occured resolving a plugin resource requirement: ${message}")
+                        LOG.error("An error occurred resolving a plugin resource requirement: ${message}")
                     }
                 }
             }
