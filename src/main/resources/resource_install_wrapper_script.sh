@@ -13,7 +13,8 @@ fi
 
 
     cd ${JOB_DIR}
-
+    # create a fake goby directory, necessary to find artifact-manager.jar in ${JOB_DIR}/goby
+    ln -s . goby
     . constants.sh
     . auto-options.sh
     . artifacts.sh

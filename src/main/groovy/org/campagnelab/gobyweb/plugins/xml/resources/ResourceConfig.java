@@ -38,6 +38,7 @@ package org.campagnelab.gobyweb.plugins.xml.resources;
 
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.longs.LongList;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.campagnelab.gobyweb.plugins.xml.PluginFileProvider;
 import org.campagnelab.gobyweb.plugins.xml.SupportDependencyRange;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
@@ -48,6 +49,7 @@ import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Describes a resource installed in GobyWeb. Resources typically represent third-party software. At this time,
@@ -79,8 +81,10 @@ public class ResourceConfig extends ResourceConsumerConfig implements SupportDep
     @XmlElementWrapper(name = "files")
     @XmlElement(name = "file")
     public List<PluginFile> files = new ArrayList<PluginFile>();
+
     /**
      * Determine if this resource is of a release equal or larger than version.
+     *
      * @param version Version string, in the format _long_ [. _long_ ]*, such as 2.3.1.2
      * @return True if this resource config has a version number at least as large as the argument.
      */
@@ -94,7 +98,7 @@ public class ResourceConfig extends ResourceConsumerConfig implements SupportDep
             resourceActualVersion.add(0);
         }
 
-        for (int i=0;i<numRequired; i++) {
+        for (int i = 0; i < numRequired; i++) {
             if (resourceActualVersion.getLong(i) == requiredVersion.getLong(i)) continue;
             return resourceActualVersion.getLong(i) > requiredVersion.getLong(i);
         }
@@ -104,6 +108,7 @@ public class ResourceConfig extends ResourceConsumerConfig implements SupportDep
 
     /**
      * Determine if this resource is of a release equal or lesser than version.
+     *
      * @param version Version string, in the format _long_ [. _long_ ]*, such as 2.3.1.2
      * @return True if this resource config has a version number at most as large as the argument.
      */
@@ -116,14 +121,16 @@ public class ResourceConfig extends ResourceConsumerConfig implements SupportDep
             setActualVersion.add(0);
         }
 
-        for (int i=0;i<numRequired; i++) {
+        for (int i = 0; i < numRequired; i++) {
             if (setActualVersion.getLong(i) == requiredVersion.getLong(i)) continue;
             return setActualVersion.getLong(i) < requiredVersion.getLong(i);
         }
         return true;
     }
+
     /**
      * Convert "4.3.2.1.0" into a LongList [4,3,2,1,0]
+     *
      * @param version
      * @return
      */
@@ -164,10 +171,27 @@ public class ResourceConfig extends ResourceConsumerConfig implements SupportDep
     @Override
     public void validate(List<String> errors) {
         this.validateArtifacts();
+
+    }
+
+    /**
+     * Check that all the resource files exist on disk
+     * @param errors
+     */
+    public void validateFiles(List<String> errors) {
+        for (PluginFile file : files) {
+            if (file.getLocalFile()==null) continue;
+      //      if ("INSTALL".equals(file.id)) continue;
+            if (!file.getLocalFile().exists()) {
+                errors.add(String.format("File is declared in resource plugin %s:%s, but could not be found on disk: %s",
+                        this.id, this.version, file.filename));
+
+            }
+        }
     }
 
     private void validateArtifacts() {
-        if (!artifacts.isEmpty())  {
+        if (!artifacts.isEmpty()) {
             // the configuration has at least one artifact, it must provide an install.sh BASH file.
         }
 
@@ -181,7 +205,9 @@ public class ResourceConfig extends ResourceConsumerConfig implements SupportDep
         super.loadCompletedEvent();
         for (PluginFile pluginFile : this.files) {
             pluginFile.constructLocalFilename(this.pluginDirectory);
+
         }
+
     }
 
     /**
@@ -218,13 +244,12 @@ public class ResourceConfig extends ResourceConsumerConfig implements SupportDep
 
     @Override
     public String toString() {
-        return String.format("%s/%s (%s)",this.getHumanReadableConfigType(), this.name, this.version);
+        return String.format("%s/%s (%s)", this.getHumanReadableConfigType(), this.name, this.version);
     }
 
     public List<PluginFile> getFiles() {
         return files;
     }
-
 
 
     @Override
