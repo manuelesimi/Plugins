@@ -37,7 +37,7 @@ public abstract class JobBuilder {
                     need.value : String.format("%s=%s", need.key,need.value);
             String key = "%" + String.format("PLUGIN_NEED_%s", need.scope) +"%";
             if (requirementsByScope.containsKey(key)) {
-                requirementsByScope.put(key, ","+needAsString);
+                requirementsByScope.put(key, requirementsByScope.get(key)+","+needAsString);
             } else {
                 requirementsByScope.put(key, needAsString);
             }
