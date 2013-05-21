@@ -46,6 +46,8 @@
             <xs:extension base="BasePluginConfig">
                 <xs:sequence>
                     <xs:element ref="requires" minOccurs="0"/>
+                    <xs:element ref="files" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="runtime" minOccurs="0" maxOccurs="1"/>
                     <xs:element ref="options" minOccurs="0"/>
                     <xs:element name="inputSchema" type="T_task-input-schema"/>
                     <xs:element name="outputSchema" type="T_task-output-schema"/>
