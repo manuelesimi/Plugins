@@ -7,7 +7,7 @@
     <version>1.0</version>
     <files>
         <file>
-            <id>rnaselect-tool</id>
+            <id>RNASELECT_TOOL</id>
             <filename>rnaselect-1.0.0-tool.jar</filename>
         </file>
     </files>

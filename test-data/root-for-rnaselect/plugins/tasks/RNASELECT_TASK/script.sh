@@ -7,6 +7,8 @@ READ_FILES_LIST=""
 
 function plugin_task {
 
+     echo "fileset command: ${FILESET_COMMAND}"
+
      ${FILESET_COMMAND} --has-fileset INPUT_READS
      if [ $? != 0 ]; then
        echo Input compact reads are not available
@@ -21,7 +23,7 @@ function plugin_task {
      fi
      echo "Localized filesets ${READ_FILES_LIST}"
 
-     java -cp rnaselect-1.0.0-tool.jar:$CLASSPATH org.campagnelab.rnaselect.App2 --output out.tsv ${READ_FILES_LIST}
+     java -cp ${RESOURCES_RNASELECT_RNASELECT_TOOL}:$CLASSPATH org.campagnelab.rnaselect.App2 --output out.tsv ${READ_FILES_LIST}
 
      #push back the generated tsv
      REGISTERED_TAGS=`${FILESET_COMMAND} --push STATS: *.tsv`
