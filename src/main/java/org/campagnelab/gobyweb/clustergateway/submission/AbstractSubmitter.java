@@ -5,11 +5,13 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.Job;
 import static org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob.*;
 
+import org.campagnelab.gobyweb.clustergateway.jobs.JobPartStatus;
 import org.campagnelab.gobyweb.filesets.protos.JobDataWriter;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.configuration.Configuration;
@@ -34,6 +36,7 @@ import java.util.List;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 
 /**
  * @author Fabien Campagne
@@ -46,12 +49,18 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String environmentScriptFilename;
     protected String artifactRepositoryPath;
     protected static final String resourceInstallWrapperScript = "resource_install_wrapper_script.sh";
-
+    protected String wrapperScript = "oge_task_wrapper_script.sh"; //default is OGE
+    protected String queue;
 
     private static Logger logger = Logger.getLogger(Submitter.class);
 
     public void setSubmissionHostname(String submissionHostname) {
         this.submissionHostname = submissionHostname;
+    }
+
+    @Override
+    public void setWrapperScript(String wrapperScript) {
+        this.wrapperScript = wrapperScript;
     }
 
     @Override
@@ -133,6 +142,48 @@ abstract public class AbstractSubmitter implements Submitter {
         }
     }
 
+    protected void completeReplacementsMap(ExecutableJob job, String jobDir) {
+        Map<String, Object> replacements = job.getReplacementsMap();
+        replacements.put("%TAG%", job.getTag());
+        replacements.put("%JOB_PART_COMPLETED_STATUS%", JobPartStatus.COMPLETED.statusName);
+        replacements.put("%JOB_PART_FAILED_STATUS%", JobPartStatus.FAILED.statusName);
+        replacements.put("%JOB_PART_SPLIT_STATUS%", JobPartStatus.SPLIT.statusName);
+        replacements.put("%JOB_PART_ALIGN_STATUS%", JobPartStatus.ALIGN.statusName);
+        replacements.put("%JOB_PART_DIFF_EXP_STATUS%", JobPartStatus.DIFF_EXP.statusName);
+        replacements.put("%JOB_START_STATUS%", JobPartStatus.START.statusName);
+        replacements.put("%JOB_PART_SORT_STATUS%",JobPartStatus.SORT.statusName);
+        replacements.put("%JOB_PART_MERGE_STATUS%", JobPartStatus.MERGE.statusName);
+        replacements.put("%JOB_PART_CONCAT_STATUS%",JobPartStatus.CONCAT.statusName);
+        replacements.put("%JOB_PART_COUNTS_STATUS%", JobPartStatus.COUNTS.statusName);
+        replacements.put("%JOB_PART_WIGGLES_STATUS%", JobPartStatus.WIGGLES.statusName);
+        replacements.put("%JOB_PART_ALIGNMENT_STATS_STATUS%", JobPartStatus.ALIGNMENT_STATS.statusName);
+        replacements.put("%JOB_PART_ALIGNMENT_SEQ_VARIATION_STATS_STATUS%", JobPartStatus.ALIGNMENT_SEQ_VARIATION_STATS.statusName);
+        replacements.put("%JOB_PART_COMPRESS_STATUS%", JobPartStatus.COMPRESS.statusName);
+        replacements.put("%JOB_PART_TRANSFER_STATUS%",JobPartStatus.TRANSFER.statusName);
+        replacements.put("%JOB_KILLED_STATUS%", JobPartStatus.KILLED.statusName);
+        replacements.put("%JOB_DIR%",jobDir);
+        replacements.put("%TMPDIR%",jobDir);
+        replacements.put("%GOBY_DIR%", jobDir);
+        replacements.put("%SGE_O_WORKDIR%", jobDir);
+        replacements.put("%KILL_FILE%", String.format("%s/kill.sh",jobDir));
+        replacements.put("%SGE_MEMORY%", String.format("%dg", job.getMemoryInGigs() + job.getMemoryOverheadInGigs()));
+        replacements.put("%GRID_JVM_FLAGS%", String.format("-Xms%dg -Xmx%dg",job.getMemoryInGigs(), job.getMemoryInGigs()));
+        replacements.put("%QUEUE_NAME%", this.queue);
+        replacements.put("%ARTIFACT_REPOSITORY_DIR%", artifactRepositoryPath);
+        replacements.put("%FILESET_COMMAND%",
+                String.format("java -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${TMPDIR} --job-tag %s",job.getTag()));
+
+        //TODO: configure the replacements below
+          /*replacements["%CLUSTER_HOME_DIR%"] = pathService.CLUSTER_HOME_DIR
+        replacements["%GOBY_JAR_DIR%"] = pathService.GOBY_JAR_DIR
+        // replacements["%JOB_STARTED_EMAIL%"]
+        /*replacements["%QUEUE_WRITER_POSTFIX%"] = " --handler-service ${handlerService} --queue-message-dir ${queueMessageDir}"
+        replacements["%WEB_SERVER_SSH_PREFIX%"] = grailsApplication.config.gobyweb.webServerSshPrefix
+        replacements["%JOB_STARTED_EMAIL%"] = emailService.createEmail("Gobyweb ${controller} job ${gobywebObj.tag} submitted", gobywebObj, grailsApplication.config.gobyweb.emailBccAddresses)
+        replacements["%JOB_COMPLETED_EMAIL%"] = emailService.createEmail("Gobyweb ${controller} job ${gobywebObj.tag} completed", gobywebObj)
+        replacements["%JOB_FAILED_EMAIL%"] = emailService.createEmail("Gobyweb ${controller} job ${gobywebObj.tag} FAILED", gobywebObj, grailsApplication.config.gobyweb.emailBccAddresses)
+         */
+    }
 
     /**
      * Copy resource files to a destination directory. Handles directories appropriately.
@@ -329,6 +380,29 @@ abstract public class AbstractSubmitter implements Submitter {
             );
         }
         configurationList.addConfiguration(configuration);
+    }
+
+    /**
+     * Prepares the wrapper script for the job and copies it in the temporary dir.
+     * @param job the job that will be executed by the submitter
+     * @param tempDir the directory where to copy the wrapper script
+     * @throws IOException
+     */
+    public void copyWrapperScript(ExecutableJob job, File tempDir) throws IOException {
+
+        //get the wrapper script
+        URL wrapperScriptURL = getClass().getClassLoader().getResource(wrapperScript);
+        String wrapperContent = IOUtils.toString(wrapperScriptURL);
+        wrapperContent = StringUtils.replace(wrapperContent, "\r", "");
+        for (int i = 0; i < 2; i++) {
+            // Do the replacements twice just in case replacements contain replacements
+            for (Map.Entry<String, Object> replacement : job.getReplacementsMap().entrySet()) {
+                wrapperContent = StringUtils.replace(wrapperContent, replacement.getKey(),
+                        (replacement.getValue() != null)? replacement.getValue().toString():"");
+            }
+        }
+        FileUtils.writeStringToFile(new File(tempDir, wrapperScript), wrapperContent);
+
     }
 }
 

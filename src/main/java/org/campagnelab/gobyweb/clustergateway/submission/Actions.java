@@ -9,9 +9,9 @@ import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
-import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -61,40 +61,19 @@ final class Actions {
             FileUtils.forceMkdir(returnedJobFiles);
     }
 
-
-    public void submitJob(String id, Set<InputSlotValue> inputFilesets) throws Exception {
-
-        //prepare the session for the submission
-        Session session = submitter.newSession();
-        prepareCallerSession(session, returnedJobFiles);
-        session.targetAreaReferenceName = fileSetAreaReference;
-        session.targetAreaOwner = jobArea.getOwner();
-
-        //create the directory for results
-        FileUtils.forceMkdir(returnedJobFiles);
-
-        //look for the source configuration
-        ExecutableConfig config = registry.findByTypedId(id, ExecutableConfig.class);
-        if (config != null) {
-            this.submit(config, inputFilesets, session);
-            return;
-        } else {
-            throw new IllegalArgumentException("Could not find an executable plugins with ID=" + id);
-        }
-
-    }
-
     /**
      * Submits a job for execution
      *
-     * @param config        the source configuration
+     * @param job           the job to submit
      * @param inputFilesets the input filesets
-     * @param session       the session for the submitter
      * @throws Exception
      */
-    private void submit(ExecutableConfig config, Set<InputSlotValue> inputFilesets, Session session) throws Exception {
-        //create the job instance
-        ExecutableJob job = new ExecutableJob(config);
+    private void submitJob(ExecutableJob job, Set<InputSlotValue> inputFilesets) throws Exception {
+        //TODO: add autoOptions
+        //executableJob.setAutoOptions(autoOptions);
+
+        //prepare the session for the submission
+        Session session = this.prepareJobSession();
         job.setTag(ICBStringUtils.generateRandomString());
         logger.debug("Tag assigned to the job: " + job.getTag());
         //add the input filesets
@@ -103,14 +82,93 @@ final class Actions {
         submitter.submitJob(jobArea, session, job);
     }
 
+
     /**
-     * Submits a resource for installation
+     * Prepares the session for the job execution.
+     *
+     * @throws Exception
+     */
+    private Session prepareJobSession() throws Exception {
+        Session session = submitter.newSession();
+        session.targetAreaReferenceName = fileSetAreaReference;
+        session.targetAreaOwner = jobArea.getOwner();
+        //create the directory for results
+        FileUtils.forceMkdir(returnedJobFiles);
+        if (jobArea.isLocal()) {
+            //the job is executed locally, it just needs a local reference to the results directory
+            session.callerAreaReferenceName = returnedJobFiles.getAbsolutePath();
+        } else {
+            //the job needs to contact the caller via ssh
+            try {
+                session.callerAreaReferenceName =
+                        String.format("%s@%s:%s",
+                                System.getProperty("user.name"),
+                                java.net.InetAddress.getLocalHost().getHostName(),
+                                returnedJobFiles.getAbsolutePath());
+            } catch (UnknownHostException e) {
+                throw new Exception("failed to get the local hostname", e);
+            }
+        }
+        session.callerAreaOwner = System.getProperty("user.name");
+        return session;
+    }
+
+    /**
+     * Submits an aligner for execution.
+     *
+     * @param id
+     * @param inputSlots
+     * @param genomeID
+     * @param chunkSize
+     * @param numParts
+     * @throws Exception
+     */
+    protected void submitAligner(String id, Set<InputSlotValue> inputSlots, String genomeID,
+                                 int chunkSize, int numParts) throws Exception {
+        AlignerConfig alignerConfig = registry.findByTypedId(id, AlignerConfig.class);
+        if (alignerConfig == null)
+            throw new IllegalArgumentException("Could not find an Aligner plugin with ID=" + id);
+        AlignerJobBuilder builder = new AlignerJobBuilder(alignerConfig, jobArea,
+                fileSetAreaReference, jobArea.getOwner(), inputSlots);
+        builder.setChunkSize(chunkSize);
+        builder.setNumParts(numParts);
+        builder.setGenomeID(genomeID);
+        if (!submitter.isLocal())
+            submitter.setWrapperScript("oge_job_script.sh");
+        else
+            throw new UnsupportedOperationException("Local submission for aligners is not supported yet");
+        this.submitJob(builder.build(), inputSlots);
+    }
+
+    /**
+     * Submits a task for execution
+     *
+     * @param id         the plugin configuration identifier
+     * @param inputSlots the input filesets
+     * @throws Exception
+     */
+    protected void submitTask(String id, Set<InputSlotValue> inputSlots) throws Exception {
+        //look for the task configuration
+        TaskConfig taskConfig = registry.findByTypedId(id, TaskConfig.class);
+        if (taskConfig == null)
+            throw new IllegalArgumentException("Could not find a Task plugin with ID=" + id);
+        TaskJobBuilder builder = new TaskJobBuilder(taskConfig);
+        if (submitter.isLocal())
+            submitter.setWrapperScript("local_task_wrapper_script.sh");
+        else
+            submitter.setWrapperScript("oge_task_wrapper_script.sh");
+
+        this.submitJob(builder.build(), inputSlots);
+    }
+
+    /**
+     * Submits a resource for installation.
      *
      * @param id      the resource id
      * @param version the resource version
      * @throws Exception
      */
-    public void submitResourceInstall(String id, String version) throws Exception {
+    protected void submitResourceInstall(String id, String version) throws Exception {
         //create the resourceInstance instance
         ResourceConfig config = DependencyResolver.resolveResource(id, version, version, version);
         if (config == null) {
@@ -120,43 +178,10 @@ final class Actions {
         resourceInstance.setTag(ICBStringUtils.generateRandomString());
         logger.debug("Tag assigned to Task instance: " + resourceInstance.getTag());
 
-        //create the directory for results
-        FileUtils.forceMkdir(returnedJobFiles);
-
         //prepare the session for the submission
-        Session session = submitter.newSession();
-        prepareCallerSession(session, returnedJobFiles);
-        session.targetAreaReferenceName = fileSetAreaReference;
-        session.targetAreaOwner = jobArea.getOwner();
+        Session session = prepareJobSession();
 
         //submit the resourceInstance
         submitter.submitResourceInstall(jobArea, session, resourceInstance);
-    }
-
-    /**
-     * Populates the session with the information needed by the task to send back information
-     *
-     * @param session
-     * @param resultsDir the local folder where results will be stored
-     * @throws Exception
-     */
-    private void prepareCallerSession(Session session, File resultsDir) throws Exception {
-        FileUtils.forceMkdir(resultsDir);
-        if (jobArea.isLocal()) {
-            //the job is executed locally, it just needs a local reference to the results directory
-            session.callerAreaReferenceName = resultsDir.getAbsolutePath();
-        } else {
-            //the job needs to contact the caller via ssh
-            try {
-                session.callerAreaReferenceName =
-                        String.format("%s@%s:%s",
-                                System.getProperty("user.name"),
-                                java.net.InetAddress.getLocalHost().getHostName(),
-                                resultsDir.getAbsolutePath());
-            } catch (UnknownHostException e) {
-                throw new Exception("failed to get the local hostname", e);
-            }
-        }
-        session.callerAreaOwner = System.getProperty("user.name");
     }
 }

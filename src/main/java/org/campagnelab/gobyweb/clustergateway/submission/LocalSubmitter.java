@@ -25,7 +25,8 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
     private static Logger logger = Logger.getLogger(LocalSubmitter.class);
 
-    private static final String taskWrapperScript = "local_task_wrapper_script.sh";
+    AutoOptionsFileHelper autoOptionsHelper = new AutoOptionsFileHelper(registry);
+
 
     public LocalSubmitter(PluginRegistry registry) {
         super(registry);
@@ -34,6 +35,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
     public Session newSession() {
         return new Session();
     }
+
 
     /**
      * Submits local tasks
@@ -47,31 +49,36 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         jobArea.createTag(job.getTag());
         //in the local submitter we directly access to the job area folder to avoid creating and then copying local files
-        final File taskLocalDir = new File(jobArea.getBasename(job.getTag()));
+        final File jobLocalDir = new File(jobArea.getBasename(job.getTag()));
+
+        //complete the replacements map with the information available in the sumbitter
+        this.completeReplacementsMap(job, jobArea.getBasename(job.getTag()));
 
         //prepare the protocol buffer with the job data
         File pbFile = this.createJobDataPB(session, job);
-        FileUtils.copyFileToDirectory(pbFile, taskLocalDir);
+        FileUtils.copyFileToDirectory(pbFile, jobLocalDir);
 
-        //get the wrapper script
-        URL wrapperScriptURL = getClass().getClassLoader().getResource(taskWrapperScript);
-        FileUtils.copyURLToFile(wrapperScriptURL, new File(taskLocalDir, taskWrapperScript));
+        //copy the wrapper script in the execution dir
+        this.copyWrapperScript(job, jobLocalDir);
 
         //write constants script
-        FileUtils.writeStringToFile(new File(jobArea.getBasename(job.getTag()), constantsTemplate), writeConstants(jobArea, job));
+        VariableHelper helper = new VariableHelper();
+        helper.writeVariables(new File(jobLocalDir, constantsTemplate), job.getReplacementsMap());
 
-        copyResourceFiles(job.getSourceConfig(), taskLocalDir);
-        copyAutoOptions(job.getSourceConfig(), taskLocalDir);
+        copyResourceFiles(job.getSourceConfig(), jobLocalDir);
+
+        copyAutoOptions(job.getSourceConfig(), jobLocalDir);
+
         //give execute permission to task scripts
-        jobArea.grantExecutePermissions(job.getTag(), new String[]{taskWrapperScript});
+        jobArea.grantExecutePermissions(job.getTag(), new String[]{this.wrapperScript});
 
         //execute the task
-        logger.info(String.format("Task %s: submitting to local cluster %s...", job.getTag(), taskLocalDir.getAbsolutePath()));
+        logger.info(String.format("Task %s: submitting to local cluster %s...", job.getTag(), jobLocalDir.getAbsolutePath()));
         logger.info("Exit value from the task : ");
         Map<String, String> env = new HashMap<String, String>();
-        env.put("JOB_DIR", taskLocalDir.getAbsolutePath());
+        env.put("JOB_DIR", jobLocalDir.getAbsolutePath());
         env.put("PATH", System.getenv("PATH"));
-        logger.info(jobArea.execute(job.getTag(),taskWrapperScript,env));
+        logger.info(jobArea.execute(job.getTag(),this.wrapperScript,env));
     }
 
 
@@ -93,7 +100,6 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         FileUtils.writeStringToFile(new File(jobArea.getBasename(resourceJob.getTag()), constantsTemplate), writeConstants(jobArea, resourceJob));
 
-
         copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, taskLocalDir);
 
         copyResourceFiles(registry.findByTypedId("GOBYWEB_SERVER_SIDE", ResourceConfig.class), taskLocalDir);
@@ -114,7 +120,16 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         jobArea.execute(resourceJob.getTag(), resourceInstallWrapperScript, env);
     }
 
-    AutoOptionsFileHelper autoOptionsHelper = new AutoOptionsFileHelper(registry);
+
+    /**
+     * Checks if this is a local or remote submitter
+     *
+     * @return
+     */
+    @Override
+    public boolean isLocal() {
+        return true;
+    }
 
 
 }

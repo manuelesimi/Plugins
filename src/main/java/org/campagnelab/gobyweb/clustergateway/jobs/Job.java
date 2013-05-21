@@ -4,9 +4,7 @@ import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Base Job configuration for submission to the ClusterGateway.
@@ -37,6 +35,11 @@ public abstract class Job {
      */
     private List<File> files = new ArrayList<File>();
 
+    private Map<String, Object> replacements = new HashMap<String, Object>();
+
+    private int memoryInGigs;
+
+    private int memoryOverheadInGigs;
 
     public String getId() {
         return id;
@@ -103,4 +106,34 @@ public abstract class Job {
     public void addFile(File file) {
         this.files.add(file);
     }
+
+
+    /**
+     * Adds the additional replacements to the Job.
+     * @param additionalReplacements
+     */
+    protected void addReplacements(Map<String, Object> additionalReplacements) {
+        this.replacements.putAll(additionalReplacements);
+    }
+
+    public Map<String, Object> getReplacementsMap() {
+        return replacements;
+    }
+
+    public void setMemoryInGigs(int memoryInGigs) {
+        this.memoryInGigs = memoryInGigs;
+    }
+
+    public int getMemoryInGigs() {
+        return memoryInGigs;
+    }
+
+    public void setMemoryOverheadInGigs(int memoryOverheadInGigs) {
+        this.memoryOverheadInGigs = memoryOverheadInGigs;
+    }
+
+    public int getMemoryOverheadInGigs() {
+        return memoryOverheadInGigs;
+    }
+
 }

@@ -4,6 +4,7 @@ import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
@@ -28,10 +29,6 @@ import java.util.Map;
 public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
     private static Logger logger = Logger.getLogger(RemoteSubmitter.class);
-
-    private static final String wrapperScript = "oge_task_wrapper_script.sh";
-
-    private String queue;
 
     public RemoteSubmitter(PluginRegistry registry, String queue) {
         super(registry);
@@ -60,29 +57,25 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         //create the temp dir with the submission files to move on the cluster
         File tempDir = Files.createTempDir();
 
+        //complete the replacements map with the information available in the submitter
+        this.completeReplacementsMap(job, jobArea.getBasename(job.getTag()));
+
         //prepare the protocol buffer with the job data
         File pbfile = this.createJobDataPB(session,job);
         Files.copy(pbfile, new File(tempDir, pbfile.getName()));
 
-        //get the wrapper script
-        URL wrapperScriptURL = getClass().getClassLoader().getResource(wrapperScript);
-        String wrapperContent = IOUtils.toString(wrapperScriptURL);
-        wrapperContent = wrapperContent.replace("%%QUEUE_NAME%%", this.queue);
-        FileUtils.writeStringToFile(new File(tempDir, wrapperScript), wrapperContent);
+        //fill the wrapper script and copy it on the temp dir
+        this.copyWrapperScript(job, tempDir);
 
-        //get the wrapper script
-        URL constantsURL = getClass().getClassLoader().getResource(constantsTemplate);
-        String constantsContent = IOUtils.toString(constantsURL);
-        constantsContent = constantsContent.replaceAll("%%JOB_DIR%%", jobArea.getBasename(job.getTag()))
-                .replaceAll("%%TAG%%", job.getTag());
-        FileUtils.writeStringToFile(new File(tempDir, constantsTemplate), constantsContent);
+        VariableHelper helper = new VariableHelper();
+        helper.writeVariables(new File(tempDir, constantsTemplate), job.getReplacementsMap());
 
         copyResourceFiles(job.getSourceConfig(), tempDir);
 
         pushJobDir(tempDir,job,jobArea);
 
         //grant execute permissions to the task's scripts
-        String[] binaryFiles = new String[]{"script.sh", constantsTemplate, wrapperScript};
+        String[] binaryFiles = new String[]{"script.sh", constantsTemplate, this.wrapperScript};
         jobArea.grantExecutePermissions(job.getTag(), binaryFiles);
 
         //execute the task
@@ -124,6 +117,16 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", jobArea.getBasename(resourceJob.getTag()));
         jobArea.execute(resourceJob.getTag(), resourceInstallWrapperScript,env);
+    }
+
+    /**
+     * Checks if this is a local or remote submitter
+     *
+     * @return
+     */
+    @Override
+    public boolean isLocal() {
+        return false;
     }
 
     private void pushJobDir(File localDir, Job job, JobArea jobArea) throws Exception {

@@ -28,15 +28,4 @@ public class ResourceJob extends Job {
     public ResourceConfig getSourceConfig() {
         return config;
     }
-
-
-    /*public File[] getFiles() {
-        List<PluginFile> files= getSourceConfig().getFiles();
-        File[] result=new File[files.size()];
-        int i=0;
-        for (PluginFile rFile: files) {
-            result[i++]=rFile.getLocalFile();
-        }
-        return result;
-    }   */
 }

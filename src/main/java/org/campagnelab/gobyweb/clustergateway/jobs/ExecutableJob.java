@@ -15,11 +15,11 @@ import java.util.*;
  */
 public class ExecutableJob extends Job {
 
-     private ExecutableConfig sourceConfig;
+    private ExecutableConfig sourceConfig;
 
-     private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
+    private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
 
-     public ExecutableJob(ExecutableConfig sourceConfig) {
+    public ExecutableJob(ExecutableConfig sourceConfig) {
          this.sourceConfig = sourceConfig;
          for (PluginFile file : sourceConfig.getFiles()) {
              this.addFile(file.getLocalFile());
@@ -35,14 +35,11 @@ public class ExecutableJob extends Job {
      }
 
     /**
-     * Adds a new actual value for an input slot
+     * Adds a new actual value for an input slot.
      * @param value
      * @throws ExecutableJob.InvalidSlotValueException if the parameter is not valid
      */
     public void addInputSlotValue(InputSlotValue value) throws InvalidSlotValueException {
-      //if (!(value.getValues().size()>0))
-      //    throw new InvalidSlotValueException(String.format("Parameter %s has no value(s) " + value.toString()));
-      //else
       if (! validateInputSlotValue(value))
           throw new InvalidSlotValueException(String.format("Input slot %s does not match the Job configuration", value.toString()));
       else

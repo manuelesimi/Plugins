@@ -8,8 +8,10 @@ import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.InputSlotValue;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
+import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.io.JobArea;
+import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +46,6 @@ public class ClusterGateway {
                     if (tokens.length != 2) {
                         errors.add("remote job-area must contain two tokens separated by :. Second token was found missing: " + jobAreadLocation);
                         result = true;
-
                     } else {
                         jobAreadLocation = tokens[1];
                         if (!new File(jobAreadLocation).isAbsolute()) {
@@ -105,7 +106,6 @@ public class ClusterGateway {
                     submitter = new RemoteSubmitter(plugins.getRegistry());
                 else
                     throw new Exception("No queue has been indicated");
-
             }
             Actions actions = new Actions(submitter, config.getString("fileset-area"), jobArea, plugins.getRegistry());
             assert actions != null : "action cannot be null.";
@@ -114,26 +114,12 @@ public class ClusterGateway {
             if (config.userSpecified("env-script")) {
                 submitter.setEnvironmentScript(config.getFile("env-script").getAbsolutePath());
             }
-
-            if (config.userSpecified("job")) {
-                String token[] = config.getStringArray("job");
-                String id = token[0];
-                actions.submitJob(id, toInputParameters(config.getStringArray("slots")));
-            } else if (config.userSpecified("resource")) {
-
-                String token[] = config.getStringArray("resource");
-                if (token.length == 0) {
-                    System.err.println("--resource argument must contain an ID.");
-                    System.exit(1);
-                }
-                String id = token[0];
-                String version = null;
-                if (token.length >= 2) {
-                    version = token[1];
-                }
-                actions.submitResourceInstall(id, version);
-
-            } else
+            //request the appropriate action
+            if (config.userSpecified("job"))
+                requestJobSubmission(config, actions, plugins.getRegistry());
+            else if (config.userSpecified("resource"))
+                requestResourceSubmission(config, actions);
+            else
                 logger.error("Unrecognized or unspecified action.");
 
         } catch (Exception e) {
@@ -144,49 +130,51 @@ public class ClusterGateway {
         return 0;
     }
 
+    private static void requestJobSubmission(JSAPResult config, Actions actions, PluginRegistry registry) throws Exception {
+        String token[] = config.getStringArray("job");
+        String id = token[0];
+        //TODO: parse additional options here
+        AlignerConfig alignerConfig = registry.findByTypedId(id, AlignerConfig.class);
+        if (alignerConfig != null) {
+            if (!config.userSpecified("genome-reference-id"))
+                throw  new IllegalArgumentException("Missing parameter genome-reference-id");
+            if (!config.userSpecified("chunk-size"))
+                throw  new IllegalArgumentException("Missing parameter chunk-size");
+            if (!config.userSpecified("number-of-align-parts"))
+                throw  new IllegalArgumentException("Missing parameter number-of-align-parts");
+
+            //TODO: check, read and validate options from aligner config
+            actions.submitAligner(id,
+                    toInputParameters(config.getStringArray("slots")),
+                    config.getString("genome-reference-id"),
+                    config.getInt("chunk-size"),
+                    config.getInt("number-of-align-parts")
+            );
+        } else {
+            actions.submitTask(id, toInputParameters(config.getStringArray("slots")));
+        }
+    }
 
     /**
-     * Loads the parameters configuration and rules
-     *
-     * @param args the command line arguments
-     * @return the configuration
+     * Requests the submission of a resource.
+     * @param config
+     * @param actions
+     * @throws Exception
      */
-    private static JSAPResult loadConfig(String[] args) {
-        if (ClusterGateway.class.getResource("ClusterGateway.jsap") == null) {
-            logger.fatal("unable to find the JSAP configuration file");
-            System.err.println("unable to find the JSAP configuration file");
-            return null;
+    private static void requestResourceSubmission(JSAPResult config, Actions actions) throws Exception {
+        String token[] = config.getStringArray("resource");
+        if (token.length == 0) {
+            System.err.println("--resource argument must contain an ID.");
+            System.exit(1);
         }
-        JSAP jsap = null;
-        try {
-            jsap = new JSAP(ClusterGateway.class.getResource("ClusterGateway.jsap"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        } catch (JSAPException e) {
-            e.printStackTrace();
-            return null;
-
+        String id = token[0];
+        String version = null;
+        if (token.length >= 2) {
+            version = token[1];
         }
-        List<String> errors = new ArrayList<String>();
-        JSAPResult config = jsap.parse(args);
-        if (config.userSpecified("help") || (!config.success())) {
-            if (errors.size() > 0) {
-                for (String error : errors)
-                    System.err.println("Error: " + error);
-            }
-            for (java.util.Iterator errs = config.getErrorMessageIterator(); errs.hasNext(); ) {
-                System.err.println("Error: " + errs.next());
-            }
-            System.err.println(jsap.getHelp());
-            System.err.println();
-            System.err.println("Usage: java " + ClusterGateway.class.getName());
-            System.err.println("                " + jsap.getUsage());
-            System.err.println();
-
-        }
-        return config;
+        actions.submitResourceInstall(id, version);
     }
+
 
     /**
      * Builds the list of parameters starting from the command line input

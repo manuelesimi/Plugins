@@ -39,9 +39,22 @@ public interface Submitter {
      */
     public void submitResourceInstall(JobArea jobArea, Session session, ResourceJob resource) throws Exception;
 
-    void setSubmissionHostname(String submissionHostname);
+    public void setSubmissionHostname(String submissionHostname);
 
-    void setEnvironmentScript(String environmentScriptFilename);
+    public void setEnvironmentScript(String environmentScriptFilename);
 
-    void setRemoteArtifactRepositoryPath(String artifactRepositoryPath);
+    public void setRemoteArtifactRepositoryPath(String artifactRepositoryPath);
+
+    /**
+     * The script to run for executing the job.
+     * @param wrapperScript
+     */
+    public void setWrapperScript(String wrapperScript);
+
+    /**
+     * Checks if this is a local or remote submitter.
+     * @return
+     */
+    public boolean isLocal();
+
 }
