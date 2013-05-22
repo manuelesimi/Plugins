@@ -39,10 +39,6 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         super(registry);
     }
 
-    public Session newSession() {
-        return new Session();
-    }
-
     /**
      * Submits a task instance for execution.
      *

@@ -32,11 +32,6 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         super(registry);
     }
 
-    public Session newSession() {
-        return new Session();
-    }
-
-
     /**
      * Submits local tasks
      *

@@ -54,6 +54,11 @@ abstract public class AbstractSubmitter implements Submitter {
 
     private static Logger logger = Logger.getLogger(Submitter.class);
 
+    @Override
+    public Session newSession() {
+        return new Session();
+    }
+
     public void setSubmissionHostname(String submissionHostname) {
         this.submissionHostname = submissionHostname;
     }
@@ -79,10 +84,6 @@ abstract public class AbstractSubmitter implements Submitter {
     protected AbstractSubmitter(PluginRegistry registry) {
         this.registry = registry;
     }
-
-    @Override
-    public abstract Session newSession();
-
 
     /**
      * Collect resource files for a resource and its dependencies.
