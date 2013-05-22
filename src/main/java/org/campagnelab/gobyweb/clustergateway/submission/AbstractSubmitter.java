@@ -206,7 +206,7 @@ abstract public class AbstractSubmitter implements Submitter {
     }
 
     /**
-     * Copy resource files to a destination directory. Handles directories appropriately.
+     * Copies resource files to a destination directory. Handles directories appropriately.
      *
      * @param resourceConfig
      * @param tempDir

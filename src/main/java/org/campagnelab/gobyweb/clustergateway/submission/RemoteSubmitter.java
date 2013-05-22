@@ -76,7 +76,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         pushJobDir(tempDir,job,jobArea);
 
         //grant execute permissions to the task's scripts
-        String[] binaryFiles = new String[]{"script.sh", "groovy", constantsTemplate, this.wrapperScript};
+        String[] binaryFiles = new String[]{"groovy", this.wrapperScript, "*.sh"};
         jobArea.grantExecutePermissions(job.getTag(), binaryFiles);
 
         //execute the task

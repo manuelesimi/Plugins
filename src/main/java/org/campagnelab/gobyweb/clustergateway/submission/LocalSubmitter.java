@@ -107,7 +107,8 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfig()));
         FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(taskLocalDir.getAbsolutePath(), "auto-options.sh")));
         //give execute permission to resourceJob scripts
-        jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{this.wrapperScript});
+        String[] binaryFiles = new String[]{"groovy", this.wrapperScript, "*.sh"};
+        jobArea.grantExecutePermissions(resourceJob.getTag(), binaryFiles);
 
         //execute the resourceJob
         logger.info(String.format("Resource %s: submitting to local cluster %s...", resourceJob.getTag(), taskLocalDir.getAbsolutePath()));
