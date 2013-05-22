@@ -59,6 +59,10 @@
             <id>PROCESS_SAMPLES</id>
             <filename>ProcessSamples.groovy</filename>
         </file>
+        <file>
+            <id>FILESET_JAR</id>
+            <filename>filesets.jar</filename>
+        </file>
 
     </files>
 </resourceConfig>
