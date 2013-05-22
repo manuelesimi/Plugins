@@ -33,8 +33,8 @@ public abstract class JobBuilder {
         for (Need need : needs) {
             // if key is present, format as key=value,
             // otherwise, just write value to PLUGIN_NEED constant.
-            String needAsString = (need.key != null || need.key.equalsIgnoreCase("")) ?
-                    need.value : String.format("%s=%s", need.key,need.value);
+            String needAsString = (need.key != null && (!need.key.equalsIgnoreCase(""))) ?
+                    String.format("%s=%s", need.key,need.value): need.value;
             String key = "%" + String.format("PLUGIN_NEED_%s", need.scope) +"%";
             if (requirementsByScope.containsKey(key)) {
                 requirementsByScope.put(key, requirementsByScope.get(key)+","+needAsString);
