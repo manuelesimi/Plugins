@@ -90,8 +90,8 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         final File taskLocalDir = new File(jobArea.getBasename(resourceJob.getTag()));
 
         //get the wrapper script
-        URL wrapperScriptURL = getClass().getClassLoader().getResource(resourceInstallWrapperScript);
-        FileUtils.copyURLToFile(wrapperScriptURL, new File(jobArea.getBasename(resourceJob.getTag()), resourceInstallWrapperScript));
+        URL wrapperScriptURL = getClass().getClassLoader().getResource(this.wrapperScript);
+        FileUtils.copyURLToFile(wrapperScriptURL, new File(jobArea.getBasename(resourceJob.getTag()), this.wrapperScript));
 
         FileUtils.writeStringToFile(new File(jobArea.getBasename(resourceJob.getTag()), constantsTemplate), writeConstants(jobArea, resourceJob));
 
@@ -105,14 +105,14 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfig()));
         FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(taskLocalDir.getAbsolutePath(), "auto-options.sh")));
         //give execute permission to resourceJob scripts
-        jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{resourceInstallWrapperScript});
+        jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{this.wrapperScript});
 
         //execute the resourceJob
         logger.info(String.format("Resource %s: submitting to local cluster %s...", resourceJob.getTag(), taskLocalDir.getAbsolutePath()));
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", taskLocalDir.getAbsolutePath());
         env.put("PATH", System.getenv("PATH"));
-        jobArea.execute(resourceJob.getTag(), resourceInstallWrapperScript, env);
+        jobArea.execute(resourceJob.getTag(), this.wrapperScript, env);
     }
 
 

@@ -180,6 +180,7 @@ final class Actions {
 
         //prepare the session for the submission
         Session session = prepareJobSession();
+        submitter.setWrapperScript("resource_install_wrapper_script.sh");
 
         //submit the resourceInstance
         submitter.submitResourceInstall(jobArea, session, resourceInstance);

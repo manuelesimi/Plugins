@@ -48,8 +48,7 @@ abstract public class AbstractSubmitter implements Submitter {
     protected PluginRegistry registry;
     protected String environmentScriptFilename;
     protected String artifactRepositoryPath;
-    protected static final String resourceInstallWrapperScript = "resource_install_wrapper_script.sh";
-    protected String wrapperScript = "oge_task_wrapper_script.sh"; //default is OGE
+    protected String wrapperScript = "oge_task_wrapper_script.sh"; //default is OGE script for aligners and analyses
     protected String queue;
 
     private static Logger logger = Logger.getLogger(Submitter.class);

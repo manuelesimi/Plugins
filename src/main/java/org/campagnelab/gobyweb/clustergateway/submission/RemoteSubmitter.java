@@ -87,8 +87,8 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         //create the temp dir with the submission files to move on the cluster
         File tempDir = Files.createTempDir();
         //get the wrapper script
-        URL wrapperScriptURL = getClass().getClassLoader().getResource(resourceInstallWrapperScript);
-        FileUtils.copyURLToFile(wrapperScriptURL, new File(tempDir, resourceInstallWrapperScript));
+        URL wrapperScriptURL = getClass().getClassLoader().getResource(this.wrapperScript);
+        FileUtils.copyURLToFile(wrapperScriptURL, new File(tempDir, this.wrapperScript));
 
         FileUtils.writeStringToFile(new File(tempDir, constantsTemplate), writeConstants(jobArea, resourceJob));
 
@@ -106,13 +106,13 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         pushJobDir(tempDir,resourceJob,jobArea);
 
         //give execute permission to resourceJob scripts
-        jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{resourceInstallWrapperScript});
+        jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{this.wrapperScript});
 
         //execute the resourceJob
         logger.info(String.format("The job is going to be executed in the following directory: %s", jobArea.getBasename(resourceJob.getTag())));
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", jobArea.getBasename(resourceJob.getTag()));
-        jobArea.execute(resourceJob.getTag(), resourceInstallWrapperScript,env);
+        jobArea.execute(resourceJob.getTag(), this.wrapperScript,env);
     }
 
     /**
