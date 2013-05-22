@@ -113,7 +113,7 @@ public class AlignerJobBuilder extends JobBuilder {
             replacements.put("%INITIAL_STATE%", "pre_align");
 
         //this value is replaced by the OGE script after querying the fileset manager with the actual reads file
-        replacements.put("%READS%", "%READS%");
+        replacements.put("%READS%", "READS_GO_HERE");
 
         return replacements;
     }
