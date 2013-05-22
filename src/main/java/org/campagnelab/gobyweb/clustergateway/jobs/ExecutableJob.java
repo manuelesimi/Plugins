@@ -162,7 +162,6 @@ public class ExecutableJob extends Job {
       return sourceConfig;
     }
 
-
     public static class InvalidSlotValueException extends Exception {
 
         public InvalidSlotValueException(String message, Throwable throwable) {

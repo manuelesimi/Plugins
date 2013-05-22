@@ -139,9 +139,10 @@ public class AlignerJobBuilder extends JobBuilder {
         // Last use 4, bwa use 2. Was 4, large concats probably take more memory so increased to 6
         // 2011-09-27 Was 6, but gsnap jobs have been partially or fully failing, upped to 8.
         executableJob.setMemoryInGigs(8);
-        if (executableJob.getReplacementsMap().containsKey("%BISULFITE_SAMPLE%"))
+        if (executableJob.getReplacementsMap().containsKey("%BISULFITE_SAMPLE%"))  {
             executableJob.setMemoryOverheadInGigs(16);
-        else
+            executableJob.setAsParallel();
+        } else
             executableJob.setMemoryOverheadInGigs(2);
     }
 }

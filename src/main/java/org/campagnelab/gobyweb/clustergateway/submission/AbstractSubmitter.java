@@ -172,7 +172,11 @@ abstract public class AbstractSubmitter implements Submitter {
         replacements.put("%ARTIFACT_REPOSITORY_DIR%", artifactRepositoryPath);
         replacements.put("%FILESET_COMMAND%",
                 String.format("java -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${TMPDIR} --job-tag %s",job.getTag()));
-
+        if (job.isParallel()) {
+            replacements.put("%CPU_REQUIREMENTS%", "#$ -l excl=true");
+        } else {
+            replacements.put("%CPU_REQUIREMENTS%", "");
+        }
         //TODO: configure the replacements below
           /*replacements["%CLUSTER_HOME_DIR%"] = pathService.CLUSTER_HOME_DIR
         replacements["%GOBY_JAR_DIR%"] = pathService.GOBY_JAR_DIR

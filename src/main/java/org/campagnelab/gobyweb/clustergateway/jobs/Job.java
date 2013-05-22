@@ -41,6 +41,9 @@ public abstract class Job {
 
     private int memoryOverheadInGigs;
 
+    private boolean parallel = false;
+
+
     public String getId() {
         return id;
     }
@@ -136,4 +139,18 @@ public abstract class Job {
         return memoryOverheadInGigs;
     }
 
+    /**
+     * Sets the job as a parallel job (i.e. can have a parallel execution in OGE)
+     */
+    public void setAsParallel() {
+        parallel = true;
+    }
+
+    /**
+     * States whether the job can have a parallel execution in OGE or not
+     * @return true of the job can be parallelized, false otherwise
+     */
+    public boolean isParallel() {
+        return parallel;
+    }
 }
