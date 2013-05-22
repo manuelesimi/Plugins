@@ -177,7 +177,8 @@ abstract public class AbstractSubmitter implements Submitter {
         replacements.put("%JOB_PART_TRANSFER_STATUS%", JobPartStatus.TRANSFER.statusName);
         replacements.put("%JOB_KILLED_STATUS%", JobPartStatus.KILLED.statusName);
         replacements.put("%JOB_DIR%", jobDir);
-        replacements.put("%TMPDIR%", jobDir);
+        //replacements.put("%TMPDIR%", jobDir);
+        replacements.put("%CONFIG_ENVIRONMENT%", "${RESOURCES_ARTIFACTS_ARTIFACTS_ENVIRONMENT_COLLECTION_SCRIPT1_ENV_SCRIPT}");
         replacements.put("%GOBY_DIR%", jobDir);
         replacements.put("%SGE_O_WORKDIR%", jobDir);
         replacements.put("%KILL_FILE%", String.format("%s/kill.sh", jobDir));
