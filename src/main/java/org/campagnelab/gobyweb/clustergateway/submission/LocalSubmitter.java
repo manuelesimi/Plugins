@@ -64,6 +64,8 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         copyAutoOptions(job.getSourceConfig(), jobLocalDir);
 
+        copyArtifactsPbRequests(job.getSourceConfig(), this.environmentScriptFilename, jobLocalDir);
+
         //give execute permission to task scripts
         jobArea.grantExecutePermissions(job.getTag(), new String[]{this.wrapperScript});
 

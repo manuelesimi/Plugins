@@ -14,6 +14,7 @@ import org.campagnelab.gobyweb.clustergateway.jobs.Job;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 import java.io.File;
@@ -70,6 +71,8 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
         copyAutoOptions(job.getSourceConfig(), tempDir);
 
+        copyArtifactsPbRequests(job.getSourceConfig(), this.environmentScriptFilename, tempDir);
+
         pushJobDir(tempDir,job,jobArea);
 
         //grant execute permissions to the task's scripts
@@ -82,7 +85,6 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         logger.info(String.format("The job is going to be executed in the following directory: %s", jobArea.getBasename(job.getTag())));
 
     }
-
 
     @Override
     public void submitResourceInstall(JobArea jobArea, Session session, ResourceJob resourceJob) throws Exception {

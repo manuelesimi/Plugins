@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.Job;
+
 import static org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob.*;
 
 import org.campagnelab.gobyweb.clustergateway.jobs.JobPartStatus;
@@ -30,6 +31,8 @@ import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
+import org.campagnelab.gobyweb.plugins.xml.Config;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +53,15 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String artifactRepositoryPath;
     protected String wrapperScript = "oge_task_wrapper_script.sh"; //default is OGE script for aligners and analyses
     protected String queue;
+    private String submissionHostname;
+
 
     private static Logger logger = Logger.getLogger(Submitter.class);
+
+
+    protected AbstractSubmitter(PluginRegistry registry) {
+        this.registry = registry;
+    }
 
     @Override
     public Session newSession() {
@@ -78,14 +88,8 @@ abstract public class AbstractSubmitter implements Submitter {
         this.artifactRepositoryPath = artifactRepositoryPath;
     }
 
-    private String submissionHostname;
-
-    protected AbstractSubmitter(PluginRegistry registry) {
-        this.registry = registry;
-    }
-
     /**
-     * Collect resource files for a resource and its dependencies.
+     * Collects resource files for a resource and its dependencies.
      *
      * @param resourceConfig The resource config for which files are sought.
      * @return List of plugin files.
@@ -120,28 +124,39 @@ abstract public class AbstractSubmitter implements Submitter {
         Files.copy(autoOptionsFile, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "auto-options.sh")));
     }
 
+
     /**
-     * Generate the artifacts PB request file and copy to destination directory.
+     * Generates the artifacts PB request file for the executable job and copies to destination directory.
      *
-     * @param executableConfig
+     * @param config
      * @param envScriptFilename
      * @param tempDir
      * @throws IOException
      */
-    protected void copyArtifactsPbRequests(ResourceConfig executableConfig, String envScriptFilename, File tempDir) throws IOException {
+    protected void copyArtifactsPbRequests(Config config, String envScriptFilename, File tempDir) throws IOException {
         ArtifactsProtoBufHelper helper = new ArtifactsProtoBufHelper();
-        if (envScriptFilename != null) {
-
+        if (envScriptFilename != null)
             helper.registerPluginEnvironmentCollectionScript(envScriptFilename);
-        }
         assert submissionHostname != null : "submission hostname must be defined.";
         helper.setWebServerHostname(submissionHostname);
-        File helperPbRequestFile = helper.createPbRequestFile(executableConfig);
-        if (helperPbRequestFile != null) {
-            Files.copy(helperPbRequestFile, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "artifacts-install-requests.pb")));
+        File installArtifactPbRequests;
+        if ((config.getClass().isAssignableFrom(ExecutableConfig.class)) //same class
+                || (ExecutableConfig.class.isInstance(config)))  //or a sub-class
+            installArtifactPbRequests = helper.createPbRequestFile((ExecutableConfig)config);
+         else
+            installArtifactPbRequests = helper.createPbRequestFile((ResourceConfig)config);
+
+        if (installArtifactPbRequests != null) {
+            Files.copy(installArtifactPbRequests, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "artifacts-install-requests.pb")));
         }
     }
 
+
+    /**
+     * Completes the replacements map for the job with the information available in the submitter.
+     * @param job the job
+     * @param jobDir the target     execution directory
+     */
     protected void completeReplacementsMap(ExecutableJob job, String jobDir) {
         Map<String, Object> replacements = job.getReplacementsMap();
         replacements.put("%TAG%", job.getTag());
@@ -151,27 +166,27 @@ abstract public class AbstractSubmitter implements Submitter {
         replacements.put("%JOB_PART_ALIGN_STATUS%", JobPartStatus.ALIGN.statusName);
         replacements.put("%JOB_PART_DIFF_EXP_STATUS%", JobPartStatus.DIFF_EXP.statusName);
         replacements.put("%JOB_START_STATUS%", JobPartStatus.START.statusName);
-        replacements.put("%JOB_PART_SORT_STATUS%",JobPartStatus.SORT.statusName);
+        replacements.put("%JOB_PART_SORT_STATUS%", JobPartStatus.SORT.statusName);
         replacements.put("%JOB_PART_MERGE_STATUS%", JobPartStatus.MERGE.statusName);
-        replacements.put("%JOB_PART_CONCAT_STATUS%",JobPartStatus.CONCAT.statusName);
+        replacements.put("%JOB_PART_CONCAT_STATUS%", JobPartStatus.CONCAT.statusName);
         replacements.put("%JOB_PART_COUNTS_STATUS%", JobPartStatus.COUNTS.statusName);
         replacements.put("%JOB_PART_WIGGLES_STATUS%", JobPartStatus.WIGGLES.statusName);
         replacements.put("%JOB_PART_ALIGNMENT_STATS_STATUS%", JobPartStatus.ALIGNMENT_STATS.statusName);
         replacements.put("%JOB_PART_ALIGNMENT_SEQ_VARIATION_STATS_STATUS%", JobPartStatus.ALIGNMENT_SEQ_VARIATION_STATS.statusName);
         replacements.put("%JOB_PART_COMPRESS_STATUS%", JobPartStatus.COMPRESS.statusName);
-        replacements.put("%JOB_PART_TRANSFER_STATUS%",JobPartStatus.TRANSFER.statusName);
+        replacements.put("%JOB_PART_TRANSFER_STATUS%", JobPartStatus.TRANSFER.statusName);
         replacements.put("%JOB_KILLED_STATUS%", JobPartStatus.KILLED.statusName);
-        replacements.put("%JOB_DIR%",jobDir);
-        replacements.put("%TMPDIR%",jobDir);
+        replacements.put("%JOB_DIR%", jobDir);
+        replacements.put("%TMPDIR%", jobDir);
         replacements.put("%GOBY_DIR%", jobDir);
         replacements.put("%SGE_O_WORKDIR%", jobDir);
-        replacements.put("%KILL_FILE%", String.format("%s/kill.sh",jobDir));
+        replacements.put("%KILL_FILE%", String.format("%s/kill.sh", jobDir));
         replacements.put("%SGE_MEMORY%", String.format("%dg", job.getMemoryInGigs() + job.getMemoryOverheadInGigs()));
-        replacements.put("%GRID_JVM_FLAGS%", String.format("-Xms%dg -Xmx%dg",job.getMemoryInGigs(), job.getMemoryInGigs()));
+        replacements.put("%GRID_JVM_FLAGS%", String.format("-Xms%dg -Xmx%dg", job.getMemoryInGigs(), job.getMemoryInGigs()));
         replacements.put("%QUEUE_NAME%", this.queue);
         replacements.put("%ARTIFACT_REPOSITORY_DIR%", artifactRepositoryPath);
         replacements.put("%FILESET_COMMAND%",
-                String.format("java -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${TMPDIR} --job-tag %s",job.getTag()));
+                String.format("java -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${TMPDIR} --job-tag %s", job.getTag()));
         if (job.isParallel()) {
             replacements.put("%CPU_REQUIREMENTS%", "#$ -l excl=true");
         } else {
@@ -250,11 +265,15 @@ abstract public class AbstractSubmitter implements Submitter {
 
     }
 
+    /**
+     * Collects files from the resource and its dependencies, if any.
+     *
+     * @param list   the list where resource files are collected
+     * @param config the resource configuration
+     */
     public void collectResourceFiles(ObjectArrayList<PluginFile> list, ResourceConfig config) {
-        for (Resource resourceRef2 : config.requires) {
-
+        for (Resource resourceRef2 : config.requires)
             collectResourceFiles(resourceRef2, list);
-        }
         for (PluginFile file : config.files) {
 
             // collect all but artifact install scripts (since they are fetched automatically)
@@ -287,6 +306,7 @@ abstract public class AbstractSubmitter implements Submitter {
 
     /**
      * Prepare the protocol buffer file to send to the cluster with the job
+     *
      * @param session
      * @param job
      */
@@ -303,7 +323,7 @@ abstract public class AbstractSubmitter implements Submitter {
                 new File(session.callerAreaReferenceName).getAbsolutePath(),
                 session.callerAreaOwner);
         ConfigurationList configurationList = new ConfigurationList();
-        List<JobInputSlot>  inputSlots = new ArrayList<JobInputSlot>();
+        List<JobInputSlot> inputSlots = new ArrayList<JobInputSlot>();
         ExecutableInputSchema inputSchema = job.getInputSchema();
         //add the filesets and the sub-set of configurations visible to the job
         for (Slot io : inputSchema.getInputSlots()) {
@@ -313,9 +333,9 @@ abstract public class AbstractSubmitter implements Submitter {
                     io.geType().versionExactly,
                     io.geType().versionAtMost);
             if (filesetConfig == null)
-               throw new InvalidJobDataException(String.format("Unable to find a FileSet configuration matching the type input slot %s", io.getName()));
+                throw new InvalidJobDataException(String.format("Unable to find a FileSet configuration matching the type input slot %s", io.getName()));
 
-            this.addConfigurationToList(configurationList,filesetConfig);
+            this.addConfigurationToList(configurationList, filesetConfig);
 
             //add the input slot
             JobInputSlot inputSlot = new JobInputSlot();
@@ -337,7 +357,7 @@ abstract public class AbstractSubmitter implements Submitter {
                 throw new InvalidJobDataException(String.format("Unable to find a FileSet configuration matching the type of the input slot %s",
                         io.getName()));
 
-            this.addConfigurationToList(configurationList,filesetConfig);
+            this.addConfigurationToList(configurationList, filesetConfig);
             //add the output slot
             JobOutputSlot outputSlot = new JobOutputSlot();
             outputSlot.name = io.getName();
@@ -354,7 +374,7 @@ abstract public class AbstractSubmitter implements Submitter {
                     session.targetAreaOwner,
                     inputSlots);
         } catch (Exception e) {
-            new InvalidJobDataException("Failed to add the input slot list to protocol buffer",e);
+            new InvalidJobDataException("Failed to add the input slot list to protocol buffer", e);
         }
 
         jobDataWriter.addOutputSlotList(
@@ -365,7 +385,7 @@ abstract public class AbstractSubmitter implements Submitter {
         try {
             return jobDataWriter.serialize();
         } catch (Exception e) {
-            throw  new InvalidJobDataException("Failed to serialize the Job Data",e);
+            throw new InvalidJobDataException("Failed to serialize the Job Data", e);
         }
     }
 
@@ -375,12 +395,12 @@ abstract public class AbstractSubmitter implements Submitter {
         configuration.setVersion(filesetConfig.getVersion());
         for (FileSetConfig.ComponentSelector selector : filesetConfig.getFileSelectors()) {
             configuration.addFileSelector(
-                    new Configuration.ComponentSelector(selector.getId(),selector.getPattern(),selector.getMandatory())
+                    new Configuration.ComponentSelector(selector.getId(), selector.getPattern(), selector.getMandatory())
             );
         }
         for (FileSetConfig.ComponentSelector selector : filesetConfig.getDirSelectors()) {
             configuration.addDirSelector(
-                    new Configuration.ComponentSelector(selector.getId(),selector.getPattern(),selector.getMandatory())
+                    new Configuration.ComponentSelector(selector.getId(), selector.getPattern(), selector.getMandatory())
             );
         }
         configurationList.addConfiguration(configuration);
@@ -388,7 +408,8 @@ abstract public class AbstractSubmitter implements Submitter {
 
     /**
      * Prepares the wrapper script for the job and copies it in the temporary dir.
-     * @param job the job that will be executed by the submitter
+     *
+     * @param job     the job that will be executed by the submitter
      * @param tempDir the directory where to copy the wrapper script
      * @throws IOException
      */
@@ -402,7 +423,7 @@ abstract public class AbstractSubmitter implements Submitter {
             // Do the replacements twice just in case replacements contain replacements
             for (Map.Entry<String, Object> replacement : job.getReplacementsMap().entrySet()) {
                 wrapperContent = StringUtils.replace(wrapperContent, replacement.getKey(),
-                        (replacement.getValue() != null)? replacement.getValue().toString():"");
+                        (replacement.getValue() != null) ? replacement.getValue().toString() : "");
             }
         }
         FileUtils.writeStringToFile(new File(tempDir, wrapperScript), wrapperContent);
