@@ -19,7 +19,7 @@ public class ExecutableJob extends Job {
 
     private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
 
-    public ExecutableJob(ExecutableConfig sourceConfig) {
+    protected ExecutableJob(ExecutableConfig sourceConfig) {
          this.sourceConfig = sourceConfig;
          for (PluginFile file : sourceConfig.getFiles()) {
              this.addFile(file.getLocalFile());
