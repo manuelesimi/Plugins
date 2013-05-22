@@ -16,7 +16,11 @@ public class ExecutableOutputSchema {
     @XmlElement(name = "outputSlot")
     protected List<Slot> outputSlots = new ArrayList<Slot>();
 
+    /**
+     * Gets the output slots for this schema.
+     * @return the list of output slots
+     */
     public List<Slot> getOutputSlots() {
-        return Collections.unmodifiableList(outputSlots);
+        return outputSlots;
     }
 }
