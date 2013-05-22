@@ -144,27 +144,34 @@ class AutoOptionsFileHelper {
 
                 switch (option.type) {
                     case Option.OptionType.BOOLEAN:
-                        sb.append(String.format(option.flagFormat, optionValue));
+                        //cannot use string format because option value is always inferred with a String object
+                        //sb.append(String.format(option.flagFormat, optionValue));
+                        sb.append(option.flagFormat.replaceAll("%.",optionValue));
                         break;
                     case Option.OptionType.SWITCH:
                         if (optionValue == "true") {
-                            sb.append(String.format(option.flagFormat, optionValue))
-                        };
+                            //cannot use string format because option value is always inferred with a String object
+                            //sb.append(String.format(option.flagFormat, optionValue));
+                            sb.append(option.flagFormat.replaceAll("%.",optionValue));
+                        }
                         break;
                     case Option.OptionType.STRING:
                     case Option.OptionType.INTEGER:
                     case Option.OptionType.DOUBLE:
                     case Option.OptionType.CATEGORY:
                         try {
-                            sb.append(String.format(option.flagFormat, optionValue))
+                            //cannot use string format because option value is always inferred with a String object
+                            //sb.append(String.format(option.flagFormat, optionValue));
+                            sb.append(option.flagFormat.replaceAll("%.",optionValue));
                         } catch (IllegalFormatConversionException e) {
-                            LOG.error(String.format("plugin %s was unable to autoformat option %s to string: " + optionValue, pluginId,
-                                    option.id), e);
+                            LOG.error(String.format("Plugin %s was unable to autoformat option %s with format %s for value: " + optionValue, pluginId,
+                                    option.id, option.flagFormat), e);
+                            throw e;
                         }
                         break;
                 }
                 if (option.includeSpaces) {
-                    sb.append(" ")
+                    sb.append(" ");
                 }
 
             }
