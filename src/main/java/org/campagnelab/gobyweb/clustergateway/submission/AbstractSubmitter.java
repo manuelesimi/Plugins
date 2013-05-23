@@ -34,6 +34,7 @@ import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.campagnelab.gobyweb.plugins.xml.Config;
 
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -181,7 +182,6 @@ abstract public class AbstractSubmitter implements Submitter {
         replacements.put("%JOB_PART_TRANSFER_STATUS%", JobPartStatus.TRANSFER.statusName);
         replacements.put("%JOB_KILLED_STATUS%", JobPartStatus.KILLED.statusName);
         replacements.put("%JOB_DIR%", jobDir);
-        //replacements.put("%TMPDIR%", jobDir);
         replacements.put("%CONFIG_ENVIRONMENT%", "${RESOURCES_ARTIFACTS_ARTIFACTS_ENVIRONMENT_COLLECTION_SCRIPT1_ENV_SCRIPT}");
         replacements.put("%GOBY_DIR%", jobDir);
         replacements.put("%SGE_O_WORKDIR%", jobDir);
@@ -201,14 +201,18 @@ abstract public class AbstractSubmitter implements Submitter {
         }
 
         replacements.put("%QUEUE_WRITER_POSTFIX%", " --handler-service PluginsSDK --queue-message-dir " + queueMessageDir.getAbsolutePath() );
+        try {
+            replacements.put("%WEB_SERVER_SSH_PREFIX%", String.format("%s@%s", System.getProperty("user.name"),
+                    java.net.InetAddress.getLocalHost().getHostName()));
+        } catch (UnknownHostException e) {
+            logger.warn("unable to detect local host: WEB_SERVER_SSH_PREFIX won't be passed to the job, the job will not be able to send feedback.");
+        }
 
 
         //TODO: configure the replacements below
           /*replacements["%CLUSTER_HOME_DIR%"] = pathService.CLUSTER_HOME_DIR
         replacements["%GOBY_JAR_DIR%"] = pathService.GOBY_JAR_DIR
         // replacements["%JOB_STARTED_EMAIL%"]
-        /*replacements["%QUEUE_WRITER_POSTFIX%"] = " --handler-service ${handlerService} --queue-message-dir ${queueMessageDir}"
-        replacements["%WEB_SERVER_SSH_PREFIX%"] = grailsApplication.config.gobyweb.webServerSshPrefix
         replacements["%JOB_STARTED_EMAIL%"] = emailService.createEmail("Gobyweb ${controller} job ${gobywebObj.tag} submitted", gobywebObj, grailsApplication.config.gobyweb.emailBccAddresses)
         replacements["%JOB_COMPLETED_EMAIL%"] = emailService.createEmail("Gobyweb ${controller} job ${gobywebObj.tag} completed", gobywebObj)
         replacements["%JOB_FAILED_EMAIL%"] = emailService.createEmail("Gobyweb ${controller} job ${gobywebObj.tag} FAILED", gobywebObj, grailsApplication.config.gobyweb.emailBccAddresses)
