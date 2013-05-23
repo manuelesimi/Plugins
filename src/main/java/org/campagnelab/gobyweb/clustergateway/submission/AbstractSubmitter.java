@@ -53,14 +53,18 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String artifactRepositoryPath;
     protected String wrapperScript = "oge_task_wrapper_script.sh"; //default is OGE script for aligners and analyses
     protected String queue;
+    private static final File queueMessageDir = new File(System.getProperty("user.home") + "/.clustergateway/queue-message-dir");
+
     private String submissionHostname;
 
 
     private static Logger logger = Logger.getLogger(Submitter.class);
 
 
-    protected AbstractSubmitter(PluginRegistry registry) {
+    protected AbstractSubmitter(PluginRegistry registry) throws IOException {
         this.registry = registry;
+        if (!queueMessageDir.exists())
+            FileUtils.forceMkdir(queueMessageDir);
     }
 
     @Override
@@ -193,6 +197,10 @@ abstract public class AbstractSubmitter implements Submitter {
         } else {
             replacements.put("%CPU_REQUIREMENTS%", "");
         }
+
+        replacements.put("%QUEUE_WRITER_POSTFIX%", " --handler-service PluginsSDK --queue-message-dir " + queueMessageDir.getAbsolutePath() );
+
+
         //TODO: configure the replacements below
           /*replacements["%CLUSTER_HOME_DIR%"] = pathService.CLUSTER_HOME_DIR
         replacements["%GOBY_JAR_DIR%"] = pathService.GOBY_JAR_DIR
