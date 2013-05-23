@@ -48,6 +48,10 @@
             <filename>log4j.properties</filename>
         </file>
         <file>
+            <id>FILESET_JAR</id>
+            <filename>filesets.jar</filename>
+        </file>
+        <file>
             <id>ARTIFACTS_MANAGER_JAR</id>
             <filename>artifact-manager.jar</filename>
         </file>
