@@ -420,6 +420,25 @@ function dieUponError {
     fi
 }
 
+function fetchInputReads {
+
+     echo "fileset command: ${FILESET_COMMAND}"
+
+     #INPUT_READS slot is declated in AlignerConfig.getInputSchema()
+     ${FILESET_COMMAND} --has-fileset INPUT_READS
+     if [ $? != 0 ]; then
+        dieUponError "Input compact reads are not available"
+     fi
+
+     READS=`${FILESET_COMMAND} --fetch INPUT_READS`
+     if [ $? != 0 ]; then
+        dieUponError "Failed to fecth compact reads ${$READS}"
+     fi
+     export $READS
+     echo "Localized filesets ${READ_FILES}"
+
+}
+
 function jobDieUponError {
     RETURN_STATUS=$?
     DESCRIPTION=$1
@@ -445,6 +464,8 @@ function run_single_align {
         CURRENT_PART=1
     fi
 
+    #fetch the input reads from the fileset area
+    fetchInputReads
 
     # Here 0 and 0 indicate FULL file
     START_POSITION=0
