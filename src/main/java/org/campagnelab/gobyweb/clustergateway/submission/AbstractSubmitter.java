@@ -191,7 +191,9 @@ abstract public class AbstractSubmitter implements Submitter {
         replacements.put("%QUEUE_NAME%", this.queue);
         replacements.put("%ARTIFACT_REPOSITORY_DIR%", artifactRepositoryPath);
         replacements.put("%FILESET_COMMAND%",
-                String.format("java -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${TMPDIR} --job-tag %s", job.getTag()));
+                String.format("java -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${TMPDIR} --pb-file %s/filesets.pb --job-tag %s",
+                        jobDir,
+                        job.getTag()));
         if (job.isParallel()) {
             replacements.put("%CPU_REQUIREMENTS%", "#$ -l excl=true");
         } else {
