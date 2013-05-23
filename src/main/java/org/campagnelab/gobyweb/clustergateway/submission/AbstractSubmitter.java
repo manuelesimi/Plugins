@@ -182,13 +182,13 @@ abstract public class AbstractSubmitter implements Submitter {
         replacements.put("%JOB_PART_TRANSFER_STATUS%", JobPartStatus.TRANSFER.statusName);
         replacements.put("%JOB_KILLED_STATUS%", JobPartStatus.KILLED.statusName);
         replacements.put("%JOB_DIR%", jobDir);
-        replacements.put("%CONFIG_ENVIRONMENT%", "${RESOURCES_ARTIFACTS_ARTIFACTS_ENVIRONMENT_COLLECTION_SCRIPT1_ENV_SCRIPT}");
         replacements.put("%GOBY_DIR%", jobDir);
         replacements.put("%SGE_O_WORKDIR%", jobDir);
         replacements.put("%KILL_FILE%", String.format("%s/kill.sh", jobDir));
         replacements.put("%SGE_MEMORY%", String.format("%dg", job.getMemoryInGigs() + job.getMemoryOverheadInGigs()));
         replacements.put("%GRID_JVM_FLAGS%", String.format("-Xms%dg -Xmx%dg", job.getMemoryInGigs(), job.getMemoryInGigs()));
         replacements.put("%QUEUE_NAME%", this.queue);
+        replacements.put("%QUEUE_WRITER%", "${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER}");
         replacements.put("%ARTIFACT_REPOSITORY_DIR%", artifactRepositoryPath);
         replacements.put("%FILESET_COMMAND%",
                 String.format("java -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${TMPDIR} --pb-file %s/filesets.pb --job-tag %s",

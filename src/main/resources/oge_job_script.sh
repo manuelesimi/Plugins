@@ -87,8 +87,7 @@ function calculate_PAD_FORMAT {
 }
 
 function setup {
-    # include grid environment. The path to the environment file is obtained from Config.groovy property gobyweb.environment
-    . %CONFIG_ENVIRONMENT%
+
     export JOB_DIR=%JOB_DIR%
     # define job specific constants:
     . %JOB_DIR%/constants.sh
