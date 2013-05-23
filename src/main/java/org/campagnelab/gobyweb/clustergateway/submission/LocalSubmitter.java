@@ -28,7 +28,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
     AutoOptionsFileHelper autoOptionsHelper = new AutoOptionsFileHelper(registry);
 
 
-    public LocalSubmitter(PluginRegistry registry) {
+    public LocalSubmitter(PluginRegistry registry) throws IOException {
         super(registry);
     }
 
@@ -107,7 +107,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfig()));
         FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(taskLocalDir.getAbsolutePath(), "auto-options.sh")));
         //give execute permission to resourceJob scripts
-        String[] binaryFiles = new String[]{"groovy", this.wrapperScript, "*.sh"};
+        String[] binaryFiles = new String[]{"groovy", this.wrapperScript, "auto-options.sh", "constants.sh"};
         jobArea.grantExecutePermissions(resourceJob.getTag(), binaryFiles);
 
         //execute the resourceJob
