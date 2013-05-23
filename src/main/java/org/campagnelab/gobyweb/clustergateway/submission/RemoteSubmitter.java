@@ -18,6 +18,7 @@ import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,12 +32,12 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
     private static Logger logger = Logger.getLogger(RemoteSubmitter.class);
 
-    public RemoteSubmitter(PluginRegistry registry, String queue) {
+    public RemoteSubmitter(PluginRegistry registry, String queue) throws IOException {
         super(registry);
         this.queue = queue;
     }
 
-    public RemoteSubmitter(PluginRegistry registry) {
+    public RemoteSubmitter(PluginRegistry registry) throws IOException {
         super(registry);
     }
 
@@ -109,8 +110,8 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
         pushJobDir(tempDir,resourceJob,jobArea);
 
-        //give execute permission to resourceJob scripts
-        jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{this.wrapperScript});
+        //give execute permission to resourceJob script and anything at top level (needed for resource files)
+        jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{this.wrapperScript, "*"});
 
         //execute the resourceJob
         logger.info(String.format("The job is going to be executed in the following directory: %s", jobArea.getBasename(resourceJob.getTag())));

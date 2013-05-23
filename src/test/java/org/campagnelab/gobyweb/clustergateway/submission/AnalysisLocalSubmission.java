@@ -1,6 +1,5 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
-import org.apache.commons.io.FileUtils;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
@@ -67,7 +66,7 @@ public class AnalysisLocalSubmission {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
-            actions.submitJob(
+            actions.submitTask(
                     "CONTAMINANT_EXTRACT",
                     ClusterGateway.toInputParameters(new String[]{}));
         }catch (UnsupportedOperationException uo) {
