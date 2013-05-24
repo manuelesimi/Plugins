@@ -29,7 +29,7 @@ public class AlignerJobBuilder extends JobBuilder {
     private final String inputReadsTag;
     private final String[] attributesFromReadsMetadata = new String[]{
             "PAIRED_END_ALIGNMENT", "BISULFITE_SAMPLE", "COLOR_SPACE", "ORGANISM", "READS_PLATFORM",
-            "PAIRED_END_DIRECTIONS", "LIB_PROTOCOL_PRESERVE_STRAND", "READS_LABEL", "BASENAME"
+            "PAIRED_END_DIRECTIONS", "LIB_PROTOCOL_PRESERVE_STRAND", "READS_LABEL", "BASENAME", "INPUT_READ_LENGTH"
     };
 
     /**
