@@ -97,8 +97,6 @@ function setup {
 
     create_kill_file
 
-    QUEUE_WRITER="${SGE_O_WORKDIR}/groovy ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} %QUEUE_WRITER_POSTFIX% "
-
 
     if [ ! -z $SGE_O_WORKDIR ]; then
         # R will be configured via the bash login
