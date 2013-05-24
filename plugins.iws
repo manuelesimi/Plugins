@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Add PATH to local submissions.">
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Give execution permissions to all the scripts in the job execution folder.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmission.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmission.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="plugins.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -15,7 +15,7 @@
     <file path="$PROJECT_DIR$/../ovl-3/src/main/scala/org/campagnelab/optval/OptionValidationExpression.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358028496955" ignored="false" />
     <file path="$PROJECT_DIR$/../ovl-3/src/main/org/campagnelab/optval/OptionValidationParser.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358028496955" ignored="false" />
     <file path="$PROJECT_DIR$/../ovl-3/src/main/org/campagnelab/optval/TestSuite.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358028496956" ignored="false" />
-    <file path="/fragment.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366832845760" ignored="false" />
+    <file path="/fragment.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369235788819" ignored="false" />
     <file path="$PROJECT_DIR$/../ovl-3/src/main/scala/org/campagnelab/optval/DebugRegexParsers.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358028552497" ignored="false" />
     <file path="$PROJECT_DIR$/../ovl-3/src/main/scala/org/campagnelab/optval/OptionValidationParser.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358029733720" ignored="false" />
     <file path="$PROJECT_DIR$/../ovl-3/src/main/scala/org/campagnelab/optval/TestSuite.scala" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358028595090" ignored="false" />
@@ -27,7 +27,7 @@
     <file path="$PROJECT_DIR$/src/main/plugins/xml/AlignerConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358052917821" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/grails-app/conf/BuildConfig.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358092685016" ignored="false" />
     <file path="/BuildConfig.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358054714635" ignored="false" />
-    <file path="/Dummy.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551806593" ignored="false" />
+    <file path="/Dummy.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369428287127" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/src/java/org/campagnelab/gobyweb/oldplugins/xml/WriteTemplates.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358053501671" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/grails-app/domain/edu/cornell/med/icb/nga/datamodel/DiffExp.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358091428801" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/test/unit/org/campagnelab/gobyweb/oldplugins/PluginsTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358053501671" ignored="false" />
@@ -103,7 +103,7 @@
     <file path="/ArtifactRequestHelper.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361808087693" ignored="false" />
     <file path="$PROJECT_DIR$/../artifacts/src/test/java/org/campagnelab/gobyweb/artifacts/BuildArtifactRequestTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358098848537" ignored="false" />
     <file path="/EmptyClass.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358100978160" ignored="false" />
-    <file path="/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368028009572" ignored="false" />
+    <file path="/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369253647181" ignored="false" />
     <file path="/PluginsTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361304121128" ignored="false" />
     <file path="/conf.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360194288476" ignored="false" />
     <file path="$PROJECT_DIR$/../GobyWeb/2.0/application.properties" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360280308239" ignored="false" />
@@ -114,7 +114,7 @@
     <file path="/PluginRegistry.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363879310867" ignored="false" />
     <file path="/Config.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360856460393" ignored="false" />
     <file path="/Plugins.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366206348508" ignored="false" />
-    <file path="/a.dummy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368028697895" ignored="false" />
+    <file path="/a.dummy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369425780414" ignored="false" />
     <file path="/FileSetConfigTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360955115100" ignored="false" />
     <file path="/PluginRegistryTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366898212731" ignored="false" />
     <file path="/FileSetConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361303074784" ignored="false" />
@@ -178,17 +178,17 @@
     <file path="/SupportAtLeastVersionDependency.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361306821427" ignored="false" />
     <file path="/common.xsd" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361369124085" ignored="false" />
     <file path="/Resource.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363818310302" ignored="false" />
-    <file path="/script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368027957665" ignored="false" />
+    <file path="/script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369170783579" ignored="false" />
     <file path="/constant.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361372555104" ignored="false" />
     <file path="/pbfile.pb" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361373458884" ignored="false" />
     <file path="/constants.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366919851746" ignored="false" />
     <file path="/SubmitTask.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362087765918" ignored="false" />
     <file path="/File.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361382703228" ignored="false" />
     <file path="$USER_HOME$/GobyWeb/Software/trunk/src/java/grid-templates/oge_job_script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362075331826" ignored="false" />
-    <file path="/oge_job_script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361462812068" ignored="false" />
+    <file path="/oge_job_script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369335096875" ignored="false" />
     <file path="/FileSet.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363199552849" ignored="false" />
     <file path="/GobyWebDataObject.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361393955673" ignored="false" />
-    <file path="/Submitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367512350685" ignored="false" />
+    <file path="/Submitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369158140921" ignored="false" />
     <file path="/Session.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362609076241" ignored="false" />
     <file path="/DataObject.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362602977651" ignored="false" />
     <file path="/Task.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363896436760" ignored="false" />
@@ -308,7 +308,7 @@
     <file path="/SubmitDIRTARBALLERTask.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362162886900" ignored="false" />
     <file path="/RemoteSubmitterTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362609134269" ignored="false" />
     <file path="/TaskInstance.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362407136681" ignored="false" />
-    <file path="/RemoteSubmitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368026425562" ignored="false" />
+    <file path="/RemoteSubmitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369323194745" ignored="false" />
     <file path="/ResourceLoader.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362411119171" ignored="false" />
     <file path="$USER_HOME$/filesets/trunk/src/main/java/org/campagnelab/gobyweb/filesets/PBWriter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362493858729" ignored="false" />
     <file path="/PBWriter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362493850279" ignored="false" />
@@ -320,7 +320,7 @@
     <file path="$USER_HOME$/GobyWeb/Software/trunk/gobyweb_home/conf/plugins/resources/GOBYWEB_SERVER_SIDE/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362503133888" ignored="false" />
     <file path="$USER_HOME$/filesets/trunk/src/main/java/org/campagnelab/gobyweb/filesets/PushRegistration.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363357728611" ignored="false" />
     <file path="/PushRegistration.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363296714315" ignored="false" />
-    <file path="/LocalSubmitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368542799599" ignored="false" />
+    <file path="/LocalSubmitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369318192906" ignored="false" />
     <file path="/filetest1.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362589522849" ignored="false" />
     <file path="$USER_HOME$/filesets/trunk/src/test/resources/filetest1.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362589522849" ignored="false" />
     <file path="$USER_HOME$/filesets/trunk/src/test/resources/filetest2.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362591047176" ignored="false" />
@@ -350,12 +350,12 @@
     <file path="$USER_HOME$/GobyWeb/Software/2.0/gobyweb_home/conf/DataSource.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362694485998" ignored="false" />
     <file path="$USER_HOME$/GobyWeb/Software/2.0/grails-app/controllers/NgUserController.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362695657391" ignored="false" />
     <file path="$USER_HOME$/GobyWeb/Software/trunk/grails-app/jobs/QueuedMessagesJob.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362759264243" ignored="false" />
-    <file path="/ClusterGateway.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368025115436" ignored="false" />
-    <file path="/ClusterGateway.jsap" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367434622839" ignored="false" />
+    <file path="/ClusterGateway.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369157708714" ignored="false" />
+    <file path="/ClusterGateway.jsap" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369085376715" ignored="false" />
     <file path="/cluster_gateway.properties" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363625578709" ignored="false" />
     <file path="/FilesSetRegistration.jsap" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362781274044" ignored="false" />
     <file path="/FileSetRegistration.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366233687494" ignored="false" />
-    <file path="/Actions.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367937744036" ignored="false" />
+    <file path="/Actions.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369166710607" ignored="false" />
     <file path="/StorageArea.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363191363811" ignored="false" />
     <file path="/FileSetRegistration.jsap" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366215872624" ignored="false" />
     <file path="/registerFileSet.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363621615991" ignored="false" />
@@ -401,12 +401,12 @@
     <file path="$PROJECT_DIR$/../gobyweb2-trunk-2/gobyweb.iws" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363897254936" ignored="false" />
     <file path="/SupportDependencyRange.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363817182018" ignored="false" />
     <file path="/local_resource_install_wrapper_script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367957480796" ignored="false" />
-    <file path="/AbstractSubmitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368023145375" ignored="false" />
+    <file path="/AbstractSubmitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369343130484" ignored="false" />
     <file path="/PluginFileProvider.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363877233351" ignored="false" />
-    <file path="/AutoOptionsFileHelper.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363882489704" ignored="false" />
+    <file path="/AutoOptionsFileHelper.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369256887005" ignored="false" />
     <file path="/ArtifactsProtoBufHelper.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363960620484" ignored="false" />
     <file path="/TaskLocalSubmission.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366140974849" ignored="false" />
-    <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/io/VirtualArea.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367955649742" ignored="false" />
+    <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/io/VirtualArea.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369083349179" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/io/FileSetArea.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367955649742" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/io/AreaFactory.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367955649742" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/io/protocols/SSH.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368547687035" ignored="false" />
@@ -453,9 +453,9 @@
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/filesets/registration/InputEntry.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367955649742" ignored="false" />
     <file path="/InputEntry.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366905423943" ignored="false" />
     <file path="/ActionsMapper.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366223300828" ignored="false" />
-    <file path="$PROJECT_DIR$/../filesets-git/target/generated-sources/org/campagnelab/gobyweb/filesets/protos/FileSetMetadata.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366837837908" ignored="false" />
+    <file path="$PROJECT_DIR$/../filesets-git/target/generated-sources/org/campagnelab/gobyweb/filesets/protos/FileSetMetadata.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369083375140" ignored="false" />
     <file path="/FileSetManagerCommandLineTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366045560149" ignored="false" />
-    <file path="$PROJECT_DIR$/../filesets-git/target/generated-sources/org/campagnelab/gobyweb/filesets/protos/JobData.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366904821226" ignored="false" />
+    <file path="$PROJECT_DIR$/../filesets-git/target/generated-sources/org/campagnelab/gobyweb/filesets/protos/JobData.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369083375140" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/test/java/org/campagnelab/gobyweb/filesets/FetchActionTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367955649742" ignored="false" />
     <file path="$PROJECT_DIR$/../../GobyWeb/Software/trunk/gobyweb_home/conf/plugins/analyses/MUTECT_SOMATIC_MUTATIONS/script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366055414385" ignored="false" />
     <file path="$PROJECT_DIR$/../../GobyWeb/Software/trunk/gobyweb_home/conf/plugins/analyses/MUTECT_SOMATIC_MUTATIONS/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366055405829" ignored="false" />
@@ -466,8 +466,8 @@
     <file path="/FileSetLocalRegistration.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366134496020" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/resources/log4j.properties" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366142721045" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/filesets-output.log" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367955665936" ignored="false" />
-    <file path="$PROJECT_DIR$/../../gobyweb-serverside-dependencies/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551788861" ignored="false" />
-    <file path="$PROJECT_DIR$/../filesets-git/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367955649742" ignored="false" />
+    <file path="$PROJECT_DIR$/../../gobyweb-serverside-dependencies/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369320087303" ignored="false" />
+    <file path="$PROJECT_DIR$/../filesets-git/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369320130210" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/io/CommandLineHelper.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367955649742" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/filesets/ItemsToString.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366212431191" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/filesets/registration/ConfigurationList.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366212431191" ignored="false" />
@@ -505,7 +505,7 @@
     <file path="$PROJECT_DIR$/../filesets-git/src/test/java/org/campagnelab/gobyweb/io/RemoteFileSetAreaTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367955649742" ignored="false" />
     <file path="/LocalFileSetAreaTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366745244584" ignored="false" />
     <file path="/RemoteFileSetAreaTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366835351829" ignored="false" />
-    <file path="/VirtualArea.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366818247442" ignored="false" />
+    <file path="/VirtualArea.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369083349179" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/filesets/configuration.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366302674530" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/filesets/configuration/Configuration.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366302699530" ignored="false" />
     <file path="$PROJECT_DIR$/../filesets-git/src/main/java/org/campagnelab/gobyweb/filesets/configuration/ConfigurationList.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366302699530" ignored="false" />
@@ -586,18 +586,18 @@
     <file path="/aligner-template.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367270305049" ignored="false" />
     <file path="/artifact-template.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367338033448" ignored="false" />
     <file path="$PROJECT_DIR$/../../GobyWeb/Software/2.1/gobyweb_home/conf/plugins/aligners/BWA_GOBY/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367415383152" ignored="false" />
-    <file path="/AlignerLocalSubmission.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367435750125" ignored="false" />
+    <file path="/AlignerLocalSubmission.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369232754485" ignored="false" />
     <file path="/AnalysisLocalSubmission.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367435765210" ignored="false" />
     <file path="/Slot.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367520088389" ignored="false" />
     <file path="/ExecutableInputSchema.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367441252900" ignored="false" />
-    <file path="/ExecutableOutputSchema.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367439365072" ignored="false" />
-    <file path="/Job.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367510525600" ignored="false" />
+    <file path="/ExecutableOutputSchema.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369236914962" ignored="false" />
+    <file path="/Job.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369238402856" ignored="false" />
     <file path="/AlignerConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367522077955" ignored="false" />
     <file path="/AlignerJob.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367511267789" ignored="false" />
     <file path="/ResourceJob.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367511216397" ignored="false" />
     <file path="/AlignmentAnalysisConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367514115954" ignored="false" />
     <file path="/aligner_script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367524144517" ignored="false" />
-    <file path="/AlignerJobBuilder.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367591326025" ignored="false" />
+    <file path="/AlignerJobBuilder.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369238551559" ignored="false" />
     <file path="/plugins-edit-fileset" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367591975068" ignored="false" />
     <file path="$PROJECT_DIR$/../../GobyWeb-assembler/trunk/ArchiveDescriptor.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367849205267" ignored="false" />
     <file path="$PROJECT_DIR$/../../GobyWeb-assembler/trunk/distribution/cluster-node-files/index-creation/create-indexes.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1367849205267" ignored="false" />
@@ -650,47 +650,18 @@
     <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/resources/ResourceConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368538988391" ignored="false" />
     <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/Slot.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368538988391" ignored="false" />
     <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/resources/Resource.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368538988391" ignored="false" />
-    <file path="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/FileSetCommandLineTest.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
     <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/common/PluginFile.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368538988391" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/BaseConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmission.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/PluginFileProvider.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/Config.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/ExecutableOutputSchema.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368538988391" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Main.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AnalysisLocalSubmission.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginRegistry.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/DependencyResolver.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/Option.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368538988391" ignored="false" />
-    <file path="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerLocalSubmission.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/ExecutableConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
     <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/ExecutableInputSchema.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368538988392" ignored="false" />
     <file path="$PROJECT_DIR$/../../GobyWeb/Software/2.1/gobyweb_home/conf/plugins/resources/FETCH_URL_1.2/fetch_url" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368542245199" ignored="false" />
     <file path="$PROJECT_DIR$/../../GobyWeb/Software/2.1/gobyweb_home/conf/plugins/resources/FETCH_URL_1.2/fetch_url_pattern" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368542240475" ignored="false" />
     <file path="$PROJECT_DIR$/../../GobyWeb/Software/2.1/gobyweb_home/conf/plugins/resources/BASH_LIBRARY_1.0/calculateMD5.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368542464179" ignored="false" />
-    <file path="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749216" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/AutoOptionsFileHelper.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/InputSlotValue.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ResourceJob.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/Job.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ExecutableJob.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
     <file path="/plugins_sandbox.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368547959004" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Session.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
-    <file path="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ResourceJobWrapper.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551749217" ignored="false" />
     <file path="$PROJECT_DIR$/../../gobyweb-serverside-dependencies/.idea/workspace.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551800865" ignored="false" />
-    <file path="$PROJECT_DIR$/../../ICB-Utils/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551724700" ignored="false" />
+    <file path="$PROJECT_DIR$/../../ICB-Utils/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369320045936" ignored="false" />
     <file path="$PROJECT_DIR$/../../ICB-Utils/build.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551724700" ignored="false" />
     <file path="$PROJECT_DIR$/../../ICB-Utils/src/edu/cornell/med/icb/identifier/IndexedIdentifier.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551724700" ignored="false" />
     <file path="$PROJECT_DIR$/../../ICB-Utils/testsupport/jdepend/build.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551724700" ignored="false" />
-    <file path="$PROJECT_DIR$/../../ICB-Utils/src/edu/cornell/med/icb/net/CommandExecutor.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551724700" ignored="false" />
+    <file path="$PROJECT_DIR$/../../ICB-Utils/src/edu/cornell/med/icb/net/CommandExecutor.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369320009263" ignored="false" />
     <file path="$PROJECT_DIR$/../../ICB-Utils/src/edu/cornell/med/icb/net/SyncPipe.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551724700" ignored="false" />
     <file path="$PROJECT_DIR$/../../ICB-Utils/src/edu/cornell/med/icb/cli/UseModality.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551724700" ignored="false" />
     <file path="$PROJECT_DIR$/../../ICB-Utils/testsupport/build.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551724700" ignored="false" />
@@ -707,6 +678,24 @@
     <file path="$PROJECT_DIR$/../../ICB-Utils/config/log4j.properties.sample" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551724700" ignored="false" />
     <file path="$PROJECT_DIR$/../../ICB-Utils/icb-utils.ipr" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551724700" ignored="false" />
     <file path="$PROJECT_DIR$/../../ICB-Utils/COPYING" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1368551724700" ignored="false" />
+    <file path="$PROJECT_DIR$/../../GobyWeb/Software/trunk/grails-app/controllers/AlignJobController.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369150558489" ignored="false" />
+    <file path="/ExecutableJob.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369238186639" ignored="false" />
+    <file path="$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-SNAPSHOT-sources.jar!/org/campagnelab/gobyweb/io/AreaFactory.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369083310289" ignored="false" />
+    <file path="/JobBuilder.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369172312460" ignored="false" />
+    <file path="/JobPartStatus.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369160499849" ignored="false" />
+    <file path="/VariableHelper.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369166013042" ignored="false" />
+    <file path="/TaskJobBuilder.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369167514162" ignored="false" />
+    <file path="/Option.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369255952722" ignored="false" />
+    <file path="/Category.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369255408211" ignored="false" />
+    <file path="/AlignerRemoteSubmission.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369339629893" ignored="false" />
+    <file path="$PROJECT_DIR$/../../GobyWeb/Software/trunk/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369407035721" ignored="false" />
+    <file path="$PROJECT_DIR$/../../GobyWeb/Software/trunk/src/groovy/org/campagnelab/gobyweb/datamodel/migration/filesets/Sample2Fileset.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369417434844" ignored="false" />
+    <file path="/Sample2Fileset.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369417400914" ignored="false" />
+    <file path="$PROJECT_DIR$/../../GobyWeb/Software/trunk/gobyweb_home/trial-edit-metadata.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369417556115" ignored="false" />
+    <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/aligners/BWA_BAM_ARTIFACT/script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369427846265" ignored="false" />
+    <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/aligners/BWA_GOBY/script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369427846265" ignored="false" />
+    <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/aligners/BWA_GOBY_ARTIFACT/script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369427846265" ignored="false" />
+    <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/aligners/BWA_HI_C_GOBY/script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369427846265" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -726,43 +715,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" line="704" class="org.campagnelab.gobyweb.plugins.Plugins" package="org.campagnelab.gobyweb.plugins">
         <option name="ENABLED" value="true" />
@@ -809,7 +761,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" line="47" class="org.campagnelab.gobyweb.clustergateway.submission.ClusterGateway$1" package="org.campagnelab.gobyweb.clustergateway.submission">
+      <breakpoint url="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/AutoOptionsFileHelper.groovy" line="112" class="org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper" package="org.campagnelab.gobyweb.plugins">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -825,6 +777,43 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -834,8 +823,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="plugins-edit-fileset" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/plugins-edit-fileset">
+      <file leaf-file-name="AbstractSubmitter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="203" column="0" selection-start="9798" selection-end="9798" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oge_job_script.sh" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="188" column="59" selection-start="6784" selection-end="6784" vertical-scroll-proportion="-3.6160877">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="script.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/aligners/BWA_GOBY_ARTIFACT/script.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="91" selection-start="1680" selection-end="1698" vertical-scroll-proportion="-7.8235292">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/BWA_WITH_GOBY_ARTIFACT_0.5.9.16.5/config.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
@@ -843,55 +859,55 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClusterGateway.jsap" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap">
+      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/aligners/BWA_GOBY_ARTIFACT/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="61" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0">
+            <state line="23" column="97" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileSetManager.jsap" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.jsap">
+      <file leaf-file-name="install.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/BWA_WITH_GOBY_ARTIFACT_0.5.9.16.5/install.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="26" selection-start="3085" selection-end="3095" vertical-scroll-proportion="0.0">
+            <state line="45" column="79" selection-start="1597" selection-end="1618" vertical-scroll-proportion="-27.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileSetManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java">
+      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/FAI_INDEXED_GENOMES_1.0/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="45" selection-start="5537" selection-end="5547" vertical-scroll-proportion="-9.884615">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RemoteSubmitter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java">
+      <file leaf-file-name="AlignerRemoteSubmission.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmission.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="37" selection-start="4330" selection-end="4330" vertical-scroll-proportion="0.0">
+            <state line="31" column="96" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="resource_install_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh">
+      <file leaf-file-name="env.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/artifacts-config/env.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="582" selection-end="582" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="env.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test-data/env-scripts/env.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="244" column="26" selection-start="9728" selection-end="9728" vertical-scroll-proportion="0.7621951">
+            <state line="17" column="60" selection-start="366" selection-end="366" vertical-scroll-proportion="-10.2">
               <folding />
             </state>
           </provider>
@@ -915,22 +931,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/assemble/distribution.xml" />
-        <option value="$PROJECT_DIR$/test-data/env-scripts/env.sh" />
-        <option value="$PROJECT_DIR$/templates/artifact-config/env.sh" />
-        <option value="$PROJECT_DIR$/src/main/resources/local_resource_install_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/bin/plugins-submit-job" />
-        <option value="$PROJECT_DIR$/src/main/resources/oge_resource_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" />
-        <option value="$PROJECT_DIR$/test-results/gateway-command-line/GOBYWEB_SGE_JOBS/mas2182/QBGDIJU/java-log-output.log" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh" />
+        <option value="$PROJECT_DIR$/test-data/root-for-aligners/plugins/filesets/COMPACT_READS/config.xml" />
+        <option value="$PROJECT_DIR$/test-data/root-for-aligners/plugins/aligners/LAST_GOBY/config.xml" />
+        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
+        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/Option.java" />
+        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/Category.java" />
+        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/AutoOptionsFileHelper.groovy" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/resources/plugins_sandbox.sh" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java" />
+        <option value="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE/config.xml" />
+        <option value="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/SAMTOOLS_0.1.18.1/install.sh" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignerJobBuilder.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmission.java" />
+        <option value="$PROJECT_DIR$/test-data/root-for-aligners/plugins/aligners/BWA_GOBY_ARTIFACT/config.xml" />
       </list>
     </option>
   </component>
@@ -1069,7 +1085,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1102,7 +1117,563 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="test-results" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-results" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway-command-line" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-results" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway-command-line" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GOBYWEB_SGE_JOBS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mas2182" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-rnaselect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-rnaselect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-rnaselect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tasks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RNASELECT_TASK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-rnaselect" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-aligners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="schemas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-aligners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-aligners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FAI_INDEXED_GENOMES_1.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-aligners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ENSEMBL_GENOMES_1.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-aligners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BWA_WITH_GOBY_ARTIFACT_0.5.9.16.5" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-aligners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-aligners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aligners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BWA_GOBY_ARTIFACT" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="root-for-aligners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artifacts-config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="env-scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gobyweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gobyweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clustergateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="submission" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gobyweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clustergateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="registration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="groovy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gobyweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="groovy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gobyweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="submission" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1153,6 +1724,36 @@
               <option name="myItemId" value="clustergateway" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="submission" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clustergateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1180,7 +1781,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="registration" />
+              <option name="myItemId" value="jobs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1201,6 +1802,14 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="groovy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1212,12 +1821,77 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="bin" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="groovy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xml" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="groovy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xml" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aligners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -1286,11 +1960,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE" />
+      <recent name="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE" />
       <recent name="$PROJECT_DIR$/templates/artifact-config" />
       <recent name="$PROJECT_DIR$/schemas" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/test-data/root-for-rnaselect" />
-      <recent name="$PROJECT_DIR$/test-data/root-for-rnaselect/instances/tasks/DIRTARBALLER" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.campagnelab.gobyweb.plugins.xml" />
@@ -1309,69 +1983,7 @@
       <recent name="org.campagnelab.gobyweb.plugins.xml.filesets" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ClusterGatewayCommandLineTest">
-    <configuration default="false" name="AnalysisLocalSubmission" type="JUnit" factoryName="JUnit" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="org.campagnelab.gobyweb.clustergateway.submission.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="plugins" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="org.campagnelab.gobyweb.clustergateway.submission" />
-      <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.clustergateway.submission.AnalysisLocalSubmission" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea -Xmx1g" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="PluginRegistryTest" type="JUnit" factoryName="JUnit" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="org.campagnelab.gobyweb.plugins.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="plugins" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="org.campagnelab.gobyweb.plugins" />
-      <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.plugins.PluginRegistryTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea -Xmx1g" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.AlignerRemoteSubmission">
     <configuration default="false" name="PluginRegistryWithConfigsTest" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1398,7 +2010,9 @@
       <patterns />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
-      <method />
+      <method>
+        <option name="Maven.BeforeRunTask" enabled="false" file="$PROJECT_DIR$/pom.xml" goal="test-compile" />
+      </method>
     </configuration>
     <configuration default="false" name="ClusterGatewayCommandLineTest" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
@@ -1432,7 +2046,9 @@
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
-      <method />
+      <method>
+        <option name="Maven.BeforeRunTask" enabled="false" file="$PROJECT_DIR$/pom.xml" goal="test-compile" />
+      </method>
     </configuration>
     <configuration default="false" name="FileSetCommandLineTest" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
@@ -1464,6 +2080,72 @@
         <option name="LOCAL" value="true" />
       </RunnerSettings>
       <ConfigurationWrapper RunnerId="Debug" />
+      <method>
+        <option name="Maven.BeforeRunTask" enabled="false" file="$PROJECT_DIR$/pom.xml" goal="test-compile" />
+      </method>
+    </configuration>
+    <configuration default="false" name="TaskLocalSubmission" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.campagnelab.gobyweb.clustergateway.submission.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="plugins" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="org.campagnelab.gobyweb.clustergateway.submission" />
+      <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.clustergateway.submission.TaskLocalSubmission" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -Xmx1g" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Maven.BeforeRunTask" enabled="false" file="$PROJECT_DIR$/pom.xml" goal="test-compile" />
+      </method>
+    </configuration>
+    <configuration default="false" name="AlignerRemoteSubmission" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.campagnelab.gobyweb.clustergateway.submission.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="plugins" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="org.campagnelab.gobyweb.clustergateway.submission" />
+      <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.clustergateway.submission.AlignerRemoteSubmission" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -Xmx1g" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -1590,22 +2272,23 @@
       <patterns />
       <method>
         <option name="Make" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="test-compile" />
       </method>
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.AnalysisLocalSubmission" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.PluginRegistryTest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.PluginRegistryWithConfigsTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.FileSetCommandLineTest" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.PluginRegistryWithConfigsTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.FileSetCommandLineTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TaskLocalSubmission" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.AlignerRemoteSubmission" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.FileSetCommandLineTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.PluginRegistryWithConfigsTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.PluginRegistryTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.AnalysisLocalSubmission" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.AlignerRemoteSubmission" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TaskLocalSubmission" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.FileSetCommandLineTest" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.PluginRegistryWithConfigsTest" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -2239,7 +2922,159 @@
       <created>1368549904981</created>
       <updated>1368549904981</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="Introduce Job builders for Tasks and Aligners. Create variables for PLUGIN_NEEDS_*. Write constants.sh with VariableHelper. More tasks moved from subclasses to AbstractSubmitter. Add aligners common parameters to ClusterGateway.jsap.">
+      <created>1369171738533</created>
+      <updated>1369171738533</updated>
+    </task>
+    <task id="LOCAL-00152" summary="Use RNASELECT resource from RNASELECT Task">
+      <created>1369171822239</created>
+      <updated>1369171822239</updated>
+    </task>
+    <task id="LOCAL-00153" summary="Fix PLUGIN_NEED_* values.">
+      <created>1369172359327</created>
+      <updated>1369172359327</updated>
+    </task>
+    <task id="LOCAL-00154" summary="Add runtime and options to Task schema.">
+      <created>1369172758641</created>
+      <updated>1369172758641</updated>
+    </task>
+    <task id="LOCAL-00155" summary="Add runtime needs to RNASelect for testing purposes.">
+      <created>1369231211831</created>
+      <updated>1369231211831</updated>
+    </task>
+    <task id="LOCAL-00156" summary="Fix PLUGIN_NEED_* values.">
+      <created>1369231232802</created>
+      <updated>1369231232802</updated>
+    </task>
+    <task id="LOCAL-00157" summary="Make ExecutableJob constructor protected: only job builders can create jobs.">
+      <created>1369231391339</created>
+      <updated>1369231391339</updated>
+    </task>
+    <task id="LOCAL-00158" summary="Move newSession() from Local/Remote submitters to AbstractSubmitter.">
+      <created>1369231601476</created>
+      <updated>1369231601476</updated>
+    </task>
+    <task id="LOCAL-00159" summary="Set wrapper script for resource installation in Actions. Remove ad-hoc resource wrapper script from AbstractSubmitter.">
+      <created>1369233549723</created>
+      <updated>1369233549723</updated>
+    </task>
+    <task id="LOCAL-00160" summary="Fix the generation of replacement keys created from metadata for aligner jobs.">
+      <created>1369236759642</created>
+      <updated>1369236759642</updated>
+    </task>
+    <task id="LOCAL-00161" summary="Remove read-only view of output slots returned by ExecutableOutputSchema (aligners and analyses need to modify it at runtime).">
+      <created>1369237037342</created>
+      <updated>1369237037342</updated>
+    </task>
+    <task id="LOCAL-00162" summary="Fix READS placeholder for job aligners.">
+      <created>1369237850460</created>
+      <updated>1369237850461</updated>
+    </task>
+    <task id="LOCAL-00163" summary="Manage parallel jobs and CPU_REQUIREMENTS for aligners.">
+      <created>1369238693541</created>
+      <updated>1369238693541</updated>
+    </task>
+    <task id="LOCAL-00164" summary="Update GOBYWEB_SERVER_SIDE resources with the latest jars.">
+      <created>1369239616217</created>
+      <updated>1369239616217</updated>
+    </task>
+    <task id="LOCAL-00165" summary="Copy auto-options in the remote job dir before execution.">
+      <created>1369247182926</created>
+      <updated>1369247182926</updated>
+    </task>
+    <task id="LOCAL-00166" summary="Attach artifacts request to jobs.">
+      <created>1369251517067</created>
+      <updated>1369251517067</updated>
+    </task>
+    <task id="LOCAL-00167" summary="Add a new plugins root for testing aligner submissions.">
+      <created>1369254668095</created>
+      <updated>1369254668096</updated>
+    </task>
+    <task id="LOCAL-00168" summary="Block job submission when auto-options generation fails. Format auto-options with regex because option values are now always inferred as Strings.">
+      <created>1369256976187</created>
+      <updated>1369256976187</updated>
+    </task>
+    <task id="LOCAL-00169" summary="Add replacement for CONFIG_ENVIRONMENT.">
+      <created>1369259610730</created>
+      <updated>1369259610730</updated>
+    </task>
+    <task id="LOCAL-00170" summary="Give execution permissions to all the scripts in the job execution folder.">
+      <created>1369261054571</created>
+      <updated>1369261054572</updated>
+    </task>
+    <task id="LOCAL-00171" summary="Add queue message directory to submitters, add QUEUE_WRITER_POSTFIX to replacements map.">
+      <created>1369319451593</created>
+      <updated>1369319451593</updated>
+    </task>
+    <task id="LOCAL-00172" summary="List binaries for local resource submissions (using &quot;*.sh&quot; does not work for local processes).">
+      <created>1369319525278</created>
+      <updated>1369319525278</updated>
+    </task>
+    <task id="LOCAL-00173" summary="Give execution permissions to all the scripts in the job execution folder. Add testers for aligner/analysis remote submission.">
+      <created>1369323744128</created>
+      <updated>1369323744128</updated>
+    </task>
+    <task id="LOCAL-00174" summary="Give execution permissions to all the scripts in the job execution folder in the RemoteSubmitter.">
+      <created>1369334189719</created>
+      <updated>1369334189719</updated>
+    </task>
+    <task id="LOCAL-00175" summary="Add and declare fileset.jar in GOBYWEB_SERVER_SIDE resource.">
+      <created>1369335877649</created>
+      <updated>1369335877649</updated>
+    </task>
+    <task id="LOCAL-00176" summary="Fetch compact reads for aligners in OGE script.">
+      <created>1369337048242</created>
+      <updated>1369337048242</updated>
+    </task>
+    <task id="LOCAL-00177" summary="Use BWA_WITH_ARTIFACT to test aligner submission instead of LAST_GOBY.">
+      <created>1369339201633</created>
+      <updated>1369339201633</updated>
+    </task>
+    <task id="LOCAL-00178" summary="Add pb file to FILESET_COMMAND for jobs.">
+      <created>1369339692457</created>
+      <updated>1369339692457</updated>
+    </task>
+    <task id="LOCAL-00179" summary="Remove READS placeholder from the replacement map. It is now set in the OGE script.">
+      <created>1369339739608</created>
+      <updated>1369339739608</updated>
+    </task>
+    <task id="LOCAL-00180" summary="Add WEB_SERVER_SSH_PREFIX to replacements maps.">
+      <created>1369342917550</created>
+      <updated>1369342917550</updated>
+    </task>
+    <task id="LOCAL-00181" summary="Remove CONFIG_ENVIRONMENT replacement.">
+      <created>1369345318631</created>
+      <updated>1369345318631</updated>
+    </task>
+    <task id="LOCAL-00182" summary="Use TMPDIR as GOBY_DIR.">
+      <created>1369406647896</created>
+      <updated>1369406647897</updated>
+    </task>
+    <task id="LOCAL-00183" summary="Fix the export of READS file in OGE script.">
+      <created>1369410199797</created>
+      <updated>1369410199798</updated>
+    </task>
+    <task id="LOCAL-00184" summary="Fix the value of QUEUE_WRITER replacement.">
+      <created>1369410820091</created>
+      <updated>1369410820091</updated>
+    </task>
+    <task id="LOCAL-00185" summary="Add INPUT_READ_LENGTH to replacements map for aligner jobs.">
+      <created>1369419173099</created>
+      <updated>1369419173100</updated>
+    </task>
+    <task id="LOCAL-00186" summary="Fix QUEUE_WRITER in both the replacements map and OGE script.">
+      <created>1369419241169</created>
+      <updated>1369419241169</updated>
+    </task>
+    <task id="LOCAL-00187" summary="Add hook for artifacts in the aligners root.">
+      <created>1369428127030</created>
+      <updated>1369428127031</updated>
+    </task>
+    <task id="LOCAL-00188" summary="Upgrade BWA_GOBY_ARTIFACT with the lastet plugin's version.">
+      <created>1369428289773</created>
+      <updated>1369428289773</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2249,6 +3084,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296371" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809916" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4446281" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2257,15 +3093,15 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3264463" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6479339" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5413223" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21576433" sideWeight="0.25123966" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30732483" sideWeight="0.70082647" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21559268" sideWeight="0.18842976" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31264916" sideWeight="0.5264463" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21576433" sideWeight="0.44958678" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29917356" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21559268" sideWeight="0.3371901" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.47355372" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975206" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -2273,7 +3109,6 @@
       <window_info id="Inspector" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809916" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2321,7 +3156,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Advance ICB-util dependency to 1.1.1." />
+    <option name="LAST_COMMIT_MESSAGE" value="Upgrade BWA_GOBY_ARTIFACT with the lastet plugin's version." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -2335,31 +3170,31 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Add script templates." />
-    <MESSAGE value="Add template for artifacts." />
-    <MESSAGE value="Prepare actions and interface for Aligners and Analyses submission." />
-    <MESSAGE value="Add JUnit tests for local submission of  Aligners and Alignment Analyses." />
-    <MESSAGE value="Update test for local Task submissions." />
-    <MESSAGE value="Add comments and formatting to class Actions." />
-    <MESSAGE value="Generalize Slot, InputSchema and OutputSchema to be used at Executable Plugin level instead of Task level. Modify ParametrizedJob to expose the I/O schema of subclasses. Change the AbstractSubmitter to handle Parametrized Jobs instead of Tasks. Remove criteria from Input Slots. Adapt JUnit tests." />
-    <MESSAGE value="Remove unused I/O related classes for Tasks." />
-    <MESSAGE value="Rename a JUnit test." />
-    <MESSAGE value="Make source config final for TaskJob." />
-    <MESSAGE value="Further abstraction on Job creation and submission. There exist ony two types of Job: Executable Job and Resource Job. Remove all task-related classes." />
-    <MESSAGE value="Updating fileset.jar (fix filesets pushing for jobs)." />
-    <MESSAGE value="Remove some task references in the source comments." />
-    <MESSAGE value="Add I/O Schema to AlignerConfig. Add fileset configuration for BAM alignments ." />
-    <MESSAGE value="Change I/O schema settings on AlignerConfig." />
-    <MESSAGE value="Add plugins-edit-fileset command. Modify the FileSetManager interface to accept the new edit action and attributes. Add a test case for the edit action." />
-    <MESSAGE value="Add new attributes option to FileSetManager.JSAP" />
-    <MESSAGE value="Manage the environment script for local resource submissions." />
-    <MESSAGE value="Add templates folder to the distribution package. Also, distribute a template of env.sh." />
-    <MESSAGE value="Fix JOB_DIR management for resource submission. Revert the environment script to be a plain script (not a template)." />
-    <MESSAGE value="Increase JVM heap size for Job submissions." />
-    <MESSAGE value="Fix resource wrapper script for local submissions." />
-    <MESSAGE value="Fix wrapper scripts." />
-    <MESSAGE value="Add PATH to local submissions." />
-    <MESSAGE value="Advance ICB-util dependency to 1.1.1." />
+    <MESSAGE value="Update GOBYWEB_SERVER_SIDE resources with the latest jars." />
+    <MESSAGE value="Copy auto-options in the remote job dir before execution." />
+    <MESSAGE value="Attach artifacts request to jobs." />
+    <MESSAGE value="Add a new plugins root for testing aligner submissions." />
+    <MESSAGE value="Block job submission when auto-options generation fails. Format auto-options with regex because option values are now always inferred as Strings." />
+    <MESSAGE value="Add replacement for CONFIG_ENVIRONMENT." />
+    <MESSAGE value="Give execution permissions to all the scripts in the job execution folder." />
+    <MESSAGE value="Add queue message directory to submitters, add QUEUE_WRITER_POSTFIX to replacements map." />
+    <MESSAGE value="List binaries for local resource submissions (using &quot;*.sh&quot; does not work for local processes)." />
+    <MESSAGE value="Give execution permissions to all the scripts in the job execution folder. Add testers for aligner/analysis remote submission." />
+    <MESSAGE value="Give execution permissions to all the scripts in the job execution folder in the RemoteSubmitter." />
+    <MESSAGE value="Add and declare fileset.jar in GOBYWEB_SERVER_SIDE resource." />
+    <MESSAGE value="Fetch compact reads for aligners in OGE script." />
+    <MESSAGE value="Use BWA_WITH_ARTIFACT to test aligner submission instead of LAST_GOBY." />
+    <MESSAGE value="Add pb file to FILESET_COMMAND for jobs." />
+    <MESSAGE value="Remove READS placeholder from the replacement map. It is now set in the OGE script." />
+    <MESSAGE value="Add WEB_SERVER_SSH_PREFIX to replacements maps." />
+    <MESSAGE value="Remove CONFIG_ENVIRONMENT replacement." />
+    <MESSAGE value="Use TMPDIR as GOBY_DIR." />
+    <MESSAGE value="Fix the export of READS file in OGE script." />
+    <MESSAGE value="Fix the value of QUEUE_WRITER replacement." />
+    <MESSAGE value="Add INPUT_READ_LENGTH to replacements map for aligner jobs." />
+    <MESSAGE value="Fix QUEUE_WRITER in both the replacements map and OGE script." />
+    <MESSAGE value="Add hook for artifacts in the aligners root." />
+    <MESSAGE value="Upgrade BWA_GOBY_ARTIFACT with the lastet plugin's version." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2369,114 +3204,116 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/Job.java">
+    <entry file="file://$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/tasks/RNASELECT_TASK/script.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="22" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0">
+        <state line="7" column="20" selection-start="58" selection-end="69" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ResourceJob.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="34" selection-start="388" selection-end="388" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="19" selection-start="4233" selection-end="4233" vertical-scroll-proportion="0.23048781">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/AutoOptionsFileHelper.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="16" selection-start="1189" selection-end="1189" vertical-scroll-proportion="-0.4097561">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ResourceJobWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="40" selection-start="1094" selection-end="1094" vertical-scroll-proportion="-0.24390244">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/constants.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="10" selection-end="10" vertical-scroll-proportion="0.01858736">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="19" selection-start="376" selection-end="376" vertical-scroll-proportion="0.29268292">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="36" selection-start="236" selection-end="236" vertical-scroll-proportion="0.14634146">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="93" selection-start="4376" selection-end="4376" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="37" selection-start="4330" selection-end="4330" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="582" selection-end="582" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/plugins-edit-fileset">
+    <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBY_CPP_API/install.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="61" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0">
+        <state line="119" column="67" selection-start="5001" selection-end="5001" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#4843#4859#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.jsap">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="26" selection-start="3085" selection-end="3095" vertical-scroll-proportion="0.0">
+        <state line="25" column="12" selection-start="817" selection-end="817" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignerJobBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="45" selection-start="5537" selection-end="5547" vertical-scroll-proportion="-9.884615">
+        <state line="40" column="49" selection-start="1488" selection-end="1488" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="244" column="26" selection-start="9728" selection-end="9728" vertical-scroll-proportion="0.7621951">
+        <state line="203" column="0" selection-start="9798" selection-end="9798" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/FAI_INDEXED_GENOMES_1.0/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-data/env-scripts/env.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="60" selection-start="366" selection-end="366" vertical-scroll-proportion="-10.2">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/BWA_WITH_GOBY_ARTIFACT_0.5.9.16.5/install.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="79" selection-start="1597" selection-end="1618" vertical-scroll-proportion="-27.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="96" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/artifacts-config/env.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/BWA_WITH_GOBY_ARTIFACT_0.5.9.16.5/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/aligners/BWA_GOBY_ARTIFACT/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="97" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/aligners/BWA_GOBY_ARTIFACT/script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="91" selection-start="1680" selection-end="1698" vertical-scroll-proportion="-7.8235292">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="188" column="59" selection-start="6784" selection-end="6784" vertical-scroll-proportion="-3.6160877">
           <folding />
         </state>
       </provider>
