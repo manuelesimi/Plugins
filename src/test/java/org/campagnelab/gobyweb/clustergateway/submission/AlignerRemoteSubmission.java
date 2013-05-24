@@ -20,7 +20,7 @@ import static junit.framework.Assert.fail;
  *
  * @author manuele
  */
-@RunWith(JUnit4.class)
+//@RunWith(JUnit4.class)
 public class AlignerRemoteSubmission {
 
     static Plugins plugins;
@@ -35,7 +35,7 @@ public class AlignerRemoteSubmission {
     //static String referenceSA =  new File(storageAreaDir).getAbsolutePath();
 
 
-    @BeforeClass
+    //@BeforeClass
     public static void configure() {
         plugins = new Plugins();
         plugins.replaceDefaultSchemaConfig(".");
@@ -51,7 +51,7 @@ public class AlignerRemoteSubmission {
         }
     }
 
-    @Test
+   // @Test
     public void submit() {
         try {
             Submitter submitter = new RemoteSubmitter(plugins.getRegistry(), "rascals.q");
