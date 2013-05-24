@@ -11,6 +11,7 @@ if [ -z "$JOB_DIR" ]; then
     export JOB_DIR=="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 fi
 
+    export TMPDIR=$JOB_DIR
 
     cd ${JOB_DIR}
     # create a fake goby directory, necessary to find artifact-manager.jar in ${JOB_DIR}/goby

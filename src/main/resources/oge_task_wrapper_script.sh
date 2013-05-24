@@ -27,6 +27,8 @@ if [ -z "$JOB_DIR" ]; then
     export JOB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 fi
 
+export TMPDIR=$JOB_DIR
+
 cd ${JOB_DIR}
 . constants.sh
 . auto-options.sh
