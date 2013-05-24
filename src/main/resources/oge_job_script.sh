@@ -431,10 +431,10 @@ function fetchInputReads {
 
      READS=`${FILESET_COMMAND} --fetch INPUT_READS`
      if [ $? != 0 ]; then
-        dieUponError "Failed to fecth compact reads ${$READS}"
+        dieUponError "Failed to fecth compact reads ${READS}"
      fi
-     export $READS
-     echo "Localized filesets ${READ_FILES}"
+     export READS
+     echo "Localized filesets ${READS}"
 
 }
 
