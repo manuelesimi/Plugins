@@ -188,7 +188,7 @@ abstract public class AbstractSubmitter implements Submitter {
         replacements.put("%SGE_MEMORY%", String.format("%dg", job.getMemoryInGigs() + job.getMemoryOverheadInGigs()));
         replacements.put("%GRID_JVM_FLAGS%", String.format("-Xms%dg -Xmx%dg", job.getMemoryInGigs(), job.getMemoryInGigs()));
         replacements.put("%QUEUE_NAME%", this.queue);
-        replacements.put("%QUEUE_WRITER%", "${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER}");
+        replacements.put("%QUEUE_WRITER%", "${RESOURCES_GROOVY_EXECUTABLE} ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER}");
         replacements.put("%ARTIFACT_REPOSITORY_DIR%", artifactRepositoryPath);
         replacements.put("%FILESET_COMMAND%",
                 String.format("java -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${TMPDIR} --pb-file %s/filesets.pb --job-tag %s",
