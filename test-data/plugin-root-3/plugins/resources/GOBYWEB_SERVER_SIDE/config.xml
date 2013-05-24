@@ -16,15 +16,5 @@
     <id>GOBYWEB_SERVER_SIDE</id>
     <help>Server side tools used by many GobyWeb plugins.</help>
     <version>2.0</version>
-    <files>
-        <file>
-            <id>ICB_GROOVY_SUPPORT_JAR</id>
-            <filename>icb-groovy-support.jar</filename>
-        </file>
-        <file>
-            <id>ARTIFACTS_MANAGER_JAR</id>
-            <filename>artifact-manager.jar</filename>
-        </file>
 
-    </files>
 </resourceConfig>

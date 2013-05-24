@@ -12,18 +12,22 @@ function run_task {
    plugin_task
 }
 
-#in case the script is re-run from the command line, we need to set here the JOB dir
-if [ -z "$JOB_DIR" ]; then
-    export JOB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-fi
+    #in case the script is re-run from the command line, we need to set here the JOB dir
+    if [ -z "$JOB_DIR" ]; then
+        export JOB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    fi
 
-cd ${JOB_DIR}
-. constants.sh
-. auto-options.sh
+    cd ${JOB_DIR}
+    . constants.sh
+    . auto-options.sh
 
-setup_task_functions
+    setup_task_functions
 
-LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"
-run_task 2>&1 |tee ${LOG_FILE}
+    LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"
+    run_task 2>&1 |tee ${LOG_FILE}
+    if [ $?==0 ]; then
+      echo "Task execution completed successfully." >>${LOG_FILE}
 
-echo "Task execution completed successfully." >>${LOG_FILE}
+    else
+      echo "An error occured"
+    fi

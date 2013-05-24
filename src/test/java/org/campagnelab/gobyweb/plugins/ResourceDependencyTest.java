@@ -102,14 +102,6 @@ public class ResourceDependencyTest {
                 "  retention: REMOVE_OLDEST\n" +
                 "}\n" +
                 "artifacts {\n" +
-                "  plugin_id: \"GSNAP_WITH_GOBY\"\n" +
-                "  artifact_id: \"GSNAP_WITH_GOBY\"\n" +
-                "  version: \"2011.07.08\"\n" +
-                "  script_install_path: \"INSTALL_PATH_OMITTED\"\n" +
-                "  ssh_web_app_host: \"localhost\"\n" +
-                "  retention: REMOVE_OLDEST\n" +
-                "}\n" +
-                "artifacts {\n" +
                 "  plugin_id: \"STAR\"\n" +
                 "  artifact_id: \"EXECUTABLE\"\n" +
                 "  version: \"2.2.0\"\n" +

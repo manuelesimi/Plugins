@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
+import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
@@ -15,11 +16,11 @@ import java.util.*;
  */
 public class ExecutableJob extends Job {
 
-    private ExecutableConfig sourceConfig;
+     private ExecutableConfig sourceConfig;
 
-    private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
+     private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
 
-    protected ExecutableJob(ExecutableConfig sourceConfig) {
+     public ExecutableJob(ExecutableConfig sourceConfig) {
          this.sourceConfig = sourceConfig;
          for (PluginFile file : sourceConfig.getFiles()) {
              this.addFile(file.getLocalFile());
@@ -71,22 +72,27 @@ public class ExecutableJob extends Job {
 
     /**
      * Validate the job I/O available for its execution against the schema
+     *
      * @return
      * @throws InvalidJobDataException if any of the mandatory slots is missing
      */
     public void validateMandatorySlots() throws InvalidJobDataException {
         List<String> mandatorySlots = this.getMandatoryInputSlots();
         List<String> inputSlotNames = new ArrayList<String>();
-        for (InputSlotValue inputSlotValue: inputSlots)
+        for (InputSlotValue inputSlotValue : inputSlots)
             inputSlotNames.add(inputSlotValue.getName());
         //need to create two sets with the names to have a case insensitive comparison
-        Set <String> mandatoryNameSet = new TreeSet <String> (String.CASE_INSENSITIVE_ORDER);
-        Set <String> actualNameSet = new TreeSet <String> (String.CASE_INSENSITIVE_ORDER);
+        Set<String> mandatoryNameSet = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
+        Set<String> actualNameSet = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
         mandatoryNameSet.addAll(mandatorySlots);
         actualNameSet.addAll(inputSlotNames);
 
-        if (!actualNameSet.containsAll(mandatoryNameSet))
-              throw new InvalidJobDataException("Some mandatory input slots are missing");
+        if (!actualNameSet.containsAll(mandatoryNameSet)) {
+            ObjectArraySet<String> missingNameSets = new ObjectArraySet<String>();
+            missingNameSets.addAll(mandatoryNameSet);
+            missingNameSets.removeAll(actualNameSet);
+            throw new InvalidJobDataException("Some mandatory input slots are missing: " + missingNameSets.toString());
+        }
     }
 
 
@@ -95,7 +101,8 @@ public class ExecutableJob extends Job {
      * The validation checks if the schema defines an input slot with that name
      * and if the cardinality of its values matches the limits declared in the slot
      * definition.
-     * @param value  the input slot value to check
+     *
+     * @param value the input slot value to check
      * @return true if the value is accepted, false otherwise
      */
     protected boolean validateInputSlotValue(InputSlotValue value) {
@@ -127,8 +134,10 @@ public class ExecutableJob extends Job {
         }
         return false;
     }
+
     /**
      * Gets the list of mandatory input slots
+     *
      * @return the names of the slots
      */
     protected List<String> getMandatoryInputSlots() {
@@ -140,8 +149,10 @@ public class ExecutableJob extends Job {
         }
         return mandatorySlots;
     }
+
     /**
      * Gets the list of mandatory output slots
+     *
      * @return the names of the slots
      */
     protected List<String> getMandatoryOutputSlots() {
@@ -155,11 +166,10 @@ public class ExecutableJob extends Job {
     }
 
     /**
-     *
      * @return the source configuration of this Job
      */
     public ExecutableConfig getSourceConfig() {
-      return sourceConfig;
+        return sourceConfig;
     }
 
     public static class InvalidSlotValueException extends Exception {

@@ -171,7 +171,17 @@ public class Plugins {
                 }
             }
         }
+        ObjectArrayList<String> errors = new ObjectArrayList<String>();
 
+
+        for (ResourceConfig resourceConfig : pluginConfigs.filterConfigs(ResourceConfig.class)) {
+            resourceConfig.validateFiles(errors);
+        }
+
+        for (String error : errors) {
+            somePluginReportedErrors = true;
+            LOG.error(String.format("plugin root=%s %s",ObjectArrayList.wrap(serverConfDirectories).toString(),error));
+        }
         // add GLOBAL resource definition for those plugins that don't provide it explicitly:
         addDefaultNeed("GLOBAL", "excl", "false");
         addDefaultNeed("GLOBAL", "h_vmem", "2g");
@@ -285,7 +295,9 @@ public class Plugins {
         }
 
         if (!validationCollector.hasEvents()) {  //the config was correctly loaded
+
             if (config != null) {
+
                 config.validate(errors);
             }
             if (errors.isEmpty()) {
@@ -365,7 +377,7 @@ public class Plugins {
      * Adds dependency on SERVER_SIDE_TOOL resource plugin on each ExecutableConfig plugin.
      */
     private void addServerSidetools(Config config) {
-        if (config instanceof ExecutableConfig ) {
+        if (config instanceof ExecutableConfig) {
             ResourceConfig resource = lookupResource(SERVER_SIDE_TOOL[0], SERVER_SIDE_TOOL[1], SERVER_SIDE_TOOL[2])
             assert resource != null: " The ${SERVER_SIDE_TOOL[0]} resource must exist";
             Resource resourceRef = new Resource()

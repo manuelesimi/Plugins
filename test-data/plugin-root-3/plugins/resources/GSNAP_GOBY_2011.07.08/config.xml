@@ -22,7 +22,5 @@
             <filename>gsnap-icb</filename>
         </file>
     </files>
-    <artifacts>
-        <artifact id="GSNAP_WITH_GOBY"></artifact>
-    </artifacts>
+
 </resourceConfig>
