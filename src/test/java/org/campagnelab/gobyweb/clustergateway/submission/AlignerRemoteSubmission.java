@@ -29,9 +29,9 @@ public class AlignerRemoteSubmission {
     static Actions actions;
     static final String filesetAreaReference = "/zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA";
     static final String jobAreaReference = "gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS";
-    static final String envScript = "test-data/env-scripts/env.sh";
+    static final String envScript = "test-data/root-for-aligners/artifacts-config/env.sh";
 
-    static final String owner = "lmesd";
+    static final String owner = "campagne";
     //static String referenceSA =  new File(storageAreaDir).getAbsolutePath();
 
 
@@ -62,11 +62,11 @@ public class AlignerRemoteSubmission {
             submitter.setEnvironmentScript(new File(envScript).getAbsolutePath());
             actions = new Actions(submitter, filesetAreaReference, jobArea, plugins.getRegistry());
             actions.submitAligner(
-                    "LAST_GOBY",
-                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:", "AXFUPOQ"}),
-                    "1000GENOMES.37",
-                    50000000,
-                    62);
+                    "BWA_GOBY_ARTIFACT",
+                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:", "SCGHGBF"}),
+                    "WBcel215.69", //genome id
+                    50000000, //chuck size
+                    2); //number of parts
         } catch (Exception e) {
             e.printStackTrace();
             fail("failed to submit a remote aligner for LAST_GOBY configuration");
