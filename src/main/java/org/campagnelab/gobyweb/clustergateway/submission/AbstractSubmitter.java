@@ -182,7 +182,7 @@ abstract public class AbstractSubmitter implements Submitter {
         replacements.put("%JOB_PART_TRANSFER_STATUS%", JobPartStatus.TRANSFER.statusName);
         replacements.put("%JOB_KILLED_STATUS%", JobPartStatus.KILLED.statusName);
         replacements.put("%JOB_DIR%", jobDir);
-        replacements.put("%GOBY_DIR%", jobDir);
+        replacements.put("%GOBY_DIR%", "${TMPDIR}");
         replacements.put("%SGE_O_WORKDIR%", jobDir);
         replacements.put("%KILL_FILE%", String.format("%s/kill.sh", jobDir));
         replacements.put("%SGE_MEMORY%", String.format("%dg", job.getMemoryInGigs() + job.getMemoryOverheadInGigs()));
