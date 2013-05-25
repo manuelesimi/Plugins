@@ -417,7 +417,7 @@ function dieUponError {
     fi
 }
 
-function fetchInputReads {
+function fetch_input_reads {
 
      echo "fileset command: ${FILESET_COMMAND}"
 
@@ -462,7 +462,7 @@ function run_single_align {
     fi
 
     #fetch the input reads from the fileset area
-    fetchInputReads
+    fetch_input_reads
 
     # Here 0 and 0 indicate FULL file
     START_POSITION=0
