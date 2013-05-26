@@ -15,6 +15,7 @@ import org.junit.runners.JUnit4;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 
 import static junit.framework.Assert.fail;
 
@@ -75,7 +76,7 @@ public class TaskLocalSubmission {
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             actions.submitTask(
                     "RNASELECT_TASK",
-                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}));
+                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}), Collections.EMPTY_MAP);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,7 +97,7 @@ public class TaskLocalSubmission {
                     ClusterGateway.toInputParameters(new String[]{"INPUT_READS:",
                             "TESTTAG1", "TESTTAG2", "TESTTAG3", "TESTTAG1",
                             "TESTTAG2", "TESTTAG3", "TESTTAG1", "TESTTAG2",
-                            "TESTTAG3", "TESTTAG1", "TESTTAG2", "TESTTAG3"}));
+                            "TESTTAG3", "TESTTAG1", "TESTTAG2", "TESTTAG3"}), Collections.EMPTY_MAP);
 
         } catch (ExecutableJob.InvalidSlotValueException is) {
             //this is expected
@@ -115,7 +116,7 @@ public class TaskLocalSubmission {
             //no values for input reads are not accepted
             actions.submitTask(
                     "RNASELECT_TASK",
-                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:",}));
+                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:",}), Collections.EMPTY_MAP);
 
         } catch (ExecutableJob.InvalidSlotValueException is) {
             //this is expected
@@ -134,7 +135,7 @@ public class TaskLocalSubmission {
             //INPUT_READS slot is mandatory
             actions.submitTask(
                     "RNASELECT_TASK",
-                    ClusterGateway.toInputParameters(new String[]{}));
+                    ClusterGateway.toInputParameters(new String[]{}), Collections.EMPTY_MAP);
 
         } catch (ExecutableJob.InvalidJobDataException is) {
             //this is expected

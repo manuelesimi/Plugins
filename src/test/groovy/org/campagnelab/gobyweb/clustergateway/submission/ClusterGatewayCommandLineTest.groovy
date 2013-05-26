@@ -63,8 +63,6 @@ public class ClusterGatewayCommandLineTest {
     }
 
 
-
-
     private static String[] buildFileRegistrationArgs(String filenames) {
         ("--fileset-area ${new File(resultsDir).getAbsolutePath()}/filesets "+
                 "--plugins-dir test-data/root-for-rnaselect " +
@@ -80,6 +78,10 @@ public class ClusterGatewayCommandLineTest {
                 "--plugins-dir ${pluginRoot} " +
                 //"--owner ${owner} " +
                 "--env-script ${envScript} "+
+                "--option FOO=foo " +
+                "--option BAR=bar " +
+                "--option BAZ=baz " +
+                "--option DEBUG=true " +
                 "--artifact-server localhost "+
                 "--repository ${repoDirAbsolutePath} "+
                 additionalCommands).split(" ");

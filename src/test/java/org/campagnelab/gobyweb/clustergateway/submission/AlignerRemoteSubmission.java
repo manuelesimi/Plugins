@@ -1,17 +1,13 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
-import org.apache.commons.io.FileUtils;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 
 import static junit.framework.Assert.fail;
 
@@ -66,7 +62,7 @@ public class AlignerRemoteSubmission {
                     ClusterGateway.toInputParameters(new String[]{"INPUT_READS:", "SCGHGBF"}),
                     "WBcel215.69", //genome id
                     50000000, //chuck size
-                    2); //number of parts
+                    2, Collections.EMPTY_MAP); //number of parts
         } catch (Exception e) {
             e.printStackTrace();
             fail("failed to submit a remote aligner for LAST_GOBY configuration");

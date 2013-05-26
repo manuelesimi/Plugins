@@ -11,6 +11,7 @@ import org.junit.runners.JUnit4;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 
 import static junit.framework.Assert.fail;
 
@@ -68,7 +69,7 @@ public class AnalysisLocalSubmission {
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             actions.submitTask(
                     "CONTAMINANT_EXTRACT",
-                    ClusterGateway.toInputParameters(new String[]{}));
+                    ClusterGateway.toInputParameters(new String[]{}), Collections.EMPTY_MAP);
         }catch (UnsupportedOperationException uo) {
             throw uo;
         } catch (Exception e) {

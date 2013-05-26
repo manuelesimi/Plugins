@@ -133,7 +133,9 @@ public class ClusterGateway {
     private static void requestJobSubmission(JSAPResult config, Actions actions, PluginRegistry registry) throws Exception {
         String token[] = config.getStringArray("job");
         String id = token[0];
-        //TODO: parse additional options here
+        Map<String, String> unclassifiedOptions = Collections.EMPTY_MAP;
+        if (config.userSpecified("option"))
+            unclassifiedOptions = parseUnclassifiedOptions(config.getStringArray("option"));
         AlignerConfig alignerConfig = registry.findByTypedId(id, AlignerConfig.class);
         if (alignerConfig != null) {
             if (!config.userSpecified("genome-reference-id"))
@@ -148,12 +150,36 @@ public class ClusterGateway {
                     toInputParameters(config.getStringArray("slots")),
                     config.getString("genome-reference-id"),
                     config.getInt("chunk-size"),
-                    config.getInt("number-of-align-parts")
+                    config.getInt("number-of-align-parts"),
+                    unclassifiedOptions
             );
         } else {
-            actions.submitTask(id, toInputParameters(config.getStringArray("slots")));
+            actions.submitTask(id, toInputParameters(config.getStringArray("slots")),
+                    unclassifiedOptions);
         }
     }
+
+    /**
+     * Parses the additional options specified on the comman line and creates a map from them.
+     * @param options option in the form KEY=VALUE,KEY2=VALUE2
+     * @return
+     */
+    public static Map<String, String> parseUnclassifiedOptions(String[] options) throws Exception {
+        if (options == null)
+            return Collections.emptyMap();
+        Map<String, String> optionsMap = new HashMap<String, String>();
+        for (String inputAttribute: options) {
+            String[] tokens = inputAttribute.split("=");
+            if (tokens.length == 2) {
+                optionsMap.put(tokens[0],tokens[1]);
+            } else {
+                logger.error("Invalid options format" + inputAttribute);
+                throw new Exception();
+            }
+        }
+        return optionsMap;
+    }
+
 
     /**
      * Requests the submission of a resource.

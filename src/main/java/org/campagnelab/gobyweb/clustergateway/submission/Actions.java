@@ -16,6 +16,7 @@ import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 import java.io.File;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -116,15 +117,17 @@ final class Actions {
     /**
      * Submits an aligner for execution.
      *
+     *
      * @param id
      * @param inputSlots
      * @param genomeID
      * @param chunkSize
      * @param numParts
+     * @param unclassifiedOptions
      * @throws Exception
      */
     protected void submitAligner(String id, Set<InputSlotValue> inputSlots, String genomeID,
-                                 int chunkSize, int numParts) throws Exception {
+                                 int chunkSize, int numParts, Map<String, String> unclassifiedOptions) throws Exception {
         AlignerConfig alignerConfig = registry.findByTypedId(id, AlignerConfig.class);
         if (alignerConfig == null)
             throw new IllegalArgumentException("Could not find an Aligner plugin with ID=" + id);
@@ -137,17 +140,20 @@ final class Actions {
             submitter.setWrapperScript("oge_job_script.sh");
         else
             throw new UnsupportedOperationException("Local submission for aligners is not supported yet");
-        this.submitJob(builder.build(), inputSlots);
+        this.submitJob(builder.build(unclassifiedOptions), inputSlots);
     }
 
     /**
      * Submits a task for execution
      *
+     *
      * @param id         the plugin configuration identifier
      * @param inputSlots the input filesets
+     * @param unclassifiedOptions additional options defined by the user
      * @throws Exception
      */
-    protected void submitTask(String id, Set<InputSlotValue> inputSlots) throws Exception {
+    protected void submitTask(String id, Set<InputSlotValue> inputSlots,
+                              Map<String, String> unclassifiedOptions) throws Exception {
         //look for the task configuration
         TaskConfig taskConfig = registry.findByTypedId(id, TaskConfig.class);
         if (taskConfig == null)
@@ -158,7 +164,7 @@ final class Actions {
         else
             submitter.setWrapperScript("oge_task_wrapper_script.sh");
 
-        this.submitJob(builder.build(), inputSlots);
+        this.submitJob(builder.build(unclassifiedOptions), inputSlots);
     }
 
     /**
