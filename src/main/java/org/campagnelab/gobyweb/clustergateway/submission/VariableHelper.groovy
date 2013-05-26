@@ -3,6 +3,7 @@ package org.campagnelab.gobyweb.clustergateway.submission
 import org.apache.log4j.Logger
 import edu.cornell.med.icb.util.ICBStringUtils
 import org.apache.commons.io.IOUtils
+import org.campagnelab.gobyweb.clustergateway.jobs.JobRuntimeEnvironment
 
 /**
  * Helps work with replacement maps.
@@ -19,7 +20,7 @@ public class VariableHelper {
      * @param replacements
      * @return
      */
-    public File writeVariables(File output, final Map<String, Object> replacements) {
+    public File writeVariables(File output, final JobRuntimeEnvironment replacements) {
         FileWriter writer = null
         try {
             writer = new FileWriter(output)

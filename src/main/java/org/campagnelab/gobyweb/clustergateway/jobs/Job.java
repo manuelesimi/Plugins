@@ -1,7 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
 import org.apache.log4j.Logger;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 
 import java.io.File;
 import java.util.*;
@@ -35,7 +34,7 @@ public abstract class Job {
      */
     private List<File> files = new ArrayList<File>();
 
-    private Map<String, Object> replacements = new HashMap<String, Object>();
+    private JobRuntimeEnvironment environment = new JobRuntimeEnvironment();
 
     private int memoryInGigs;
 
@@ -112,15 +111,15 @@ public abstract class Job {
 
 
     /**
-     * Adds the additional replacements to the Job.
-     * @param additionalReplacements
+     * Adds the additional environment settings to the Job.
+     * @param settings
      */
-    protected void addReplacements(Map<String, Object> additionalReplacements) {
-        this.replacements.putAll(additionalReplacements);
+    protected void addToEnvironment(Map<String, Object> settings) {
+        this.environment.putAll(settings);
     }
 
-    public Map<String, Object> getReplacementsMap() {
-        return replacements;
+    public JobRuntimeEnvironment getEnvironment() {
+        return environment;
     }
 
     public void setMemoryInGigs(int memoryInGigs) {

@@ -20,25 +20,13 @@ public class TaskJobBuilder extends JobBuilder {
     }
 
     /**
-     * Allows subclasses to add extra settings to the job
-     *
+     * Adds aligner-specific settings to the job.
      * @param executableJob
      */
     @Override
-    protected void addCustomSettings(ExecutableJob executableJob) {
-        //nothing to add
-    }
+    protected void customizeJob(ExecutableJob executableJob) {
+        JobRuntimeEnvironment environment = executableJob.getEnvironment();
+        environment.put("INITIAL_STATE", "task");
 
-    /**
-     * Allows subclasses to create an additional replacements map
-     *
-     * @return
-     */
-    @Override
-    protected Map<String, Object> createAdditionalReplacementMap() throws IOException {
-        Map<String, Object> replacements = new HashMap<String, Object>();
-        replacements.put("%INITIAL_STATE%", "task");
-
-        return replacements;
     }
 }

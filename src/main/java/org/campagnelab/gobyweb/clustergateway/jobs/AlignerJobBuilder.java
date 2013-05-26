@@ -64,23 +64,20 @@ public class AlignerJobBuilder extends JobBuilder {
         this.inputReadsTag = inputReads.getValues().get(0);
     }
 
-    /**
-     *  {@inheritDoc}
-     */
-    @Override
-    protected Map<String, Object> createAdditionalReplacementMap() throws IOException {
-        Map<String, Object> replacements = new HashMap<String, Object>();
+
+    private void populateJobEnvironment(JobRuntimeEnvironment environment)
+            throws IOException {
 
         //replacements from the aligner configuration
-        replacements.put("%PLUGIN_ID%", alignerConfig.getId());
-        replacements.put("%SUPPORTS_GOBY_READS%", alignerConfig.supportsGobyReads);
-        replacements.put("%SUPPORTS_GOBY_ALIGNMENTS%", alignerConfig.supportsGobyAlignments);
-        replacements.put("%SUPPORTS_FASTQ_READS%", alignerConfig.supportsFastqReads);
-        replacements.put("%SUPPORTS_FASTA_READS%", alignerConfig.supportsFastaReads);
-        replacements.put("%SUPPORTS_BAM_ALIGNMENTS%", alignerConfig.supportsBAMAlignments);
-        replacements.put("%SUPPORTS_PAIRED_END_ALIGNMENTS%", alignerConfig.supportsPairedEndAlignments);
-        replacements.put("%SUPPORTS_BISULFITE_CONVERTED_READS%", alignerConfig.supportsBisulfiteConvertedReads);
-        replacements.put("%ALIGNER%", alignerConfig.getId());
+        environment.put("PLUGIN_ID", alignerConfig.getId());
+        environment.put("SUPPORTS_GOBY_READS", alignerConfig.supportsGobyReads);
+        environment.put("SUPPORTS_GOBY_ALIGNMENTS", alignerConfig.supportsGobyAlignments);
+        environment.put("SUPPORTS_FASTQ_READS", alignerConfig.supportsFastqReads);
+        environment.put("SUPPORTS_FASTA_READS", alignerConfig.supportsFastaReads);
+        environment.put("SUPPORTS_BAM_ALIGNMENTS", alignerConfig.supportsBAMAlignments);
+        environment.put("SUPPORTS_PAIRED_END_ALIGNMENTS", alignerConfig.supportsPairedEndAlignments);
+        environment.put("SUPPORTS_BISULFITE_CONVERTED_READS", alignerConfig.supportsBisulfiteConvertedReads);
+        environment.put("ALIGNER", alignerConfig.getId());
           /*
             * If "true", Transcript Alignment this will make NUMBER_OF_ALIGN_PARTS jobs
             *     and each of those will run NUMBER _OF_TRANSCRIPT_PARTS alignments.
@@ -88,31 +85,25 @@ public class AlignerJobBuilder extends JobBuilder {
             * If "false", this will make NUM_READS * NUMBER_OF_TRANSCRIPT_PARTS jobs
             *     and each of those will run ONE alignment
             */
-        replacements.put("%TRANSCRIPT_ALIGN_FEWER_JOBS%", "true");
-        //replacements from the sample metadata
+        environment.put("TRANSCRIPT_ALIGN_FEWER_JOBS", "true");
+        //variables from the sample metadata
         File metadataFile = fileSetArea.getMetadataFile(this.inputReadsTag, MetadataFileWriter.PB_FILENAME);
         MetadataFileReader reader = new MetadataFileReader(metadataFile);
         Map<String, String> storedAttributes = reader.getAttributes();
         for (String attribute : attributesFromReadsMetadata) {
             if (storedAttributes.containsKey(attribute))
-                replacements.put("%" + attribute + "%", storedAttributes.get(attribute));
+                environment.put(attribute, storedAttributes.get(attribute));
         }
-
-        //replacements from the command line options
-        replacements.put("%CHUNK_SIZE%", this.chunkSize);
-        replacements.put("%NUMBER_OF_ALIGN_PARTS%", this.numParts);
-        replacements.put("%GENOME_REFERENCE_ID%", this.genomeID);
-
+        //variables from the command line options
+        environment.put("CHUNK_SIZE", this.chunkSize);
+        environment.put("NUMBER_OF_ALIGN_PARTS", this.numParts);
+        environment.put("GENOME_REFERENCE_ID", this.genomeID);
         // Increase total number of parts for CONCAT and POST
-        replacements.put("%NUMBER_OF_PARTS%", this.numParts + 2);
-
-
+        environment.put("NUMBER_OF_PARTS", this.numParts + 2);
         if (this.genomeID.startsWith("Transcript-"))
-            replacements.put("%INITIAL_STATE%", "pre_transcript_align");
+            environment.put("INITIAL_STATE", "pre_transcript_align");
         else
-            replacements.put("%INITIAL_STATE%", "pre_align");
-
-        return replacements;
+            environment.put("INITIAL_STATE", "pre_align");
     }
 
     public void setChunkSize(int chunkSize) {
@@ -130,13 +121,15 @@ public class AlignerJobBuilder extends JobBuilder {
 
     /**
      * Adds aligner-specific settings to the job.
+     * @param executableJob
      */
     @Override
-    protected void addCustomSettings(ExecutableJob executableJob) {
+    protected void customizeJob(ExecutableJob executableJob) throws IOException {
+        this.populateJobEnvironment(executableJob.getEnvironment());
         // Last use 4, bwa use 2. Was 4, large concats probably take more memory so increased to 6
         // 2011-09-27 Was 6, but gsnap jobs have been partially or fully failing, upped to 8.
         executableJob.setMemoryInGigs(8);
-        if (executableJob.getReplacementsMap().containsKey("%BISULFITE_SAMPLE%"))  {
+        if (executableJob.getEnvironment().containsKey("BISULFITE_SAMPLE"))  {
             executableJob.setMemoryOverheadInGigs(16);
             executableJob.setAsParallel();
         } else

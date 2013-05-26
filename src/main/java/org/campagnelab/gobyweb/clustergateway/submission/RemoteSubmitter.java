@@ -3,8 +3,6 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
@@ -14,7 +12,6 @@ import org.campagnelab.gobyweb.clustergateway.jobs.Job;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 import java.io.File;
@@ -56,7 +53,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         File tempDir = Files.createTempDir();
 
         //complete the replacements map with the information available in the submitter
-        this.completeReplacementsMap(job, jobArea.getBasename(job.getTag()));
+        this.completeJobEnvironment(job, jobArea.getBasename(job.getTag()));
 
         //prepare the protocol buffer with the job data
         File pbfile = this.createJobDataPB(session,job);
@@ -66,7 +63,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         this.copyWrapperScript(job, tempDir);
 
         VariableHelper helper = new VariableHelper();
-        helper.writeVariables(new File(tempDir, constantsTemplate), job.getReplacementsMap());
+        helper.writeVariables(new File(tempDir, constantsTemplate), job.getEnvironment());
 
         copyResourceFiles(job.getSourceConfig(), tempDir);
 

@@ -45,27 +45,24 @@ public abstract class JobBuilder {
         return requirementsByScope;
     }
 
-
+    /**
+     * Builds the job.
+     * @return the job
+     * @throws IOException
+     */
     public ExecutableJob build() throws IOException {
         ExecutableJob executableJob = new ExecutableJob(executableConfig);
-        executableJob.addReplacements(this.createAdditionalReplacementMap());
-        executableJob.addReplacements(this.buildResourceRequirements());
         //default memory settings (can be overridden by subclasses)
         executableJob.setMemoryInGigs(8);
         executableJob.setMemoryOverheadInGigs(2);
-        this.addCustomSettings(executableJob);
+        this.customizeJob(executableJob);
         return executableJob;
     }
 
     /**
-     * Allows subclasses to add custom settings to the job
+     * Allows subclasses to customize the job settings.
      * @param executableJob
      */
-    protected abstract void addCustomSettings(ExecutableJob executableJob);
+    protected abstract void customizeJob(ExecutableJob executableJob) throws IOException;
 
-    /**
-     * Allows subclasses to create an additional replacements map
-     * @return
-     */
-    protected abstract Map<String, Object> createAdditionalReplacementMap() throws IOException;
-}
+   }

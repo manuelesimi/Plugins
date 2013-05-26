@@ -8,7 +8,6 @@ import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
-import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 import java.io.*;
@@ -47,7 +46,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         final File jobLocalDir = new File(jobArea.getBasename(job.getTag()));
 
         //complete the replacements map with the information available in the sumbitter
-        this.completeReplacementsMap(job, jobArea.getBasename(job.getTag()));
+        this.completeJobEnvironment(job, jobArea.getBasename(job.getTag()));
 
         //prepare the protocol buffer with the job data
         File pbFile = this.createJobDataPB(session, job);
@@ -58,7 +57,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         //write constants script
         VariableHelper helper = new VariableHelper();
-        helper.writeVariables(new File(jobLocalDir, constantsTemplate), job.getReplacementsMap());
+        helper.writeVariables(new File(jobLocalDir, constantsTemplate), job.getEnvironment());
 
         copyResourceFiles(job.getSourceConfig(), jobLocalDir);
 

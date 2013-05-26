@@ -13,6 +13,7 @@ import org.campagnelab.gobyweb.clustergateway.jobs.Job;
 import static org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob.*;
 
 import org.campagnelab.gobyweb.clustergateway.jobs.JobPartStatus;
+import org.campagnelab.gobyweb.clustergateway.jobs.JobRuntimeEnvironment;
 import org.campagnelab.gobyweb.filesets.protos.JobDataWriter;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.configuration.Configuration;
@@ -158,51 +159,50 @@ abstract public class AbstractSubmitter implements Submitter {
 
 
     /**
-     * Completes the replacements map for the job with the information available in the submitter.
+     * Completes job environment with the information available in the submitter.
      * @param job the job
      * @param jobDir the target     execution directory
      */
-    protected void completeReplacementsMap(ExecutableJob job, String jobDir) {
-        Map<String, Object> replacements = job.getReplacementsMap();
-        replacements.put("%TAG%", job.getTag());
-        replacements.put("%JOB_PART_COMPLETED_STATUS%", JobPartStatus.COMPLETED.statusName);
-        replacements.put("%JOB_PART_FAILED_STATUS%", JobPartStatus.FAILED.statusName);
-        replacements.put("%JOB_PART_SPLIT_STATUS%", JobPartStatus.SPLIT.statusName);
-        replacements.put("%JOB_PART_ALIGN_STATUS%", JobPartStatus.ALIGN.statusName);
-        replacements.put("%JOB_PART_DIFF_EXP_STATUS%", JobPartStatus.DIFF_EXP.statusName);
-        replacements.put("%JOB_START_STATUS%", JobPartStatus.START.statusName);
-        replacements.put("%JOB_PART_SORT_STATUS%", JobPartStatus.SORT.statusName);
-        replacements.put("%JOB_PART_MERGE_STATUS%", JobPartStatus.MERGE.statusName);
-        replacements.put("%JOB_PART_CONCAT_STATUS%", JobPartStatus.CONCAT.statusName);
-        replacements.put("%JOB_PART_COUNTS_STATUS%", JobPartStatus.COUNTS.statusName);
-        replacements.put("%JOB_PART_WIGGLES_STATUS%", JobPartStatus.WIGGLES.statusName);
-        replacements.put("%JOB_PART_ALIGNMENT_STATS_STATUS%", JobPartStatus.ALIGNMENT_STATS.statusName);
-        replacements.put("%JOB_PART_ALIGNMENT_SEQ_VARIATION_STATS_STATUS%", JobPartStatus.ALIGNMENT_SEQ_VARIATION_STATS.statusName);
-        replacements.put("%JOB_PART_COMPRESS_STATUS%", JobPartStatus.COMPRESS.statusName);
-        replacements.put("%JOB_PART_TRANSFER_STATUS%", JobPartStatus.TRANSFER.statusName);
-        replacements.put("%JOB_KILLED_STATUS%", JobPartStatus.KILLED.statusName);
-        replacements.put("%JOB_DIR%", jobDir);
-        replacements.put("%GOBY_DIR%", "${TMPDIR}");
-        replacements.put("%SGE_O_WORKDIR%", jobDir);
-        replacements.put("%KILL_FILE%", String.format("%s/kill.sh", jobDir));
-        replacements.put("%SGE_MEMORY%", String.format("%dg", job.getMemoryInGigs() + job.getMemoryOverheadInGigs()));
-        replacements.put("%GRID_JVM_FLAGS%", String.format("-Xms%dg -Xmx%dg", job.getMemoryInGigs(), job.getMemoryInGigs()));
-        replacements.put("%QUEUE_NAME%", this.queue);
-        replacements.put("%QUEUE_WRITER%", "${RESOURCES_GROOVY_EXECUTABLE} ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} --handler-service PluginsSDK --queue-message-dir "
+    protected void completeJobEnvironment(ExecutableJob job, String jobDir) {
+        JobRuntimeEnvironment environment = job.getEnvironment();
+        environment.put("TAG", job.getTag());
+        environment.put("JOB_PART_COMPLETED_STATUS", JobPartStatus.COMPLETED.statusName);
+        environment.put("JOB_PART_FAILED_STATUS", JobPartStatus.FAILED.statusName);
+        environment.put("JOB_PART_SPLIT_STATUS", JobPartStatus.SPLIT.statusName);
+        environment.put("JOB_PART_ALIGN_STATUS", JobPartStatus.ALIGN.statusName);
+        environment.put("JOB_PART_DIFF_EXP_STATUS", JobPartStatus.DIFF_EXP.statusName);
+        environment.put("JOB_START_STATUS", JobPartStatus.START.statusName);
+        environment.put("JOB_PART_SORT_STATUS", JobPartStatus.SORT.statusName);
+        environment.put("JOB_PART_MERGE_STATUS", JobPartStatus.MERGE.statusName);
+        environment.put("JOB_PART_CONCAT_STATUS", JobPartStatus.CONCAT.statusName);
+        environment.put("JOB_PART_COUNTS_STATUS", JobPartStatus.COUNTS.statusName);
+        environment.put("JOB_PART_WIGGLES_STATUS", JobPartStatus.WIGGLES.statusName);
+        environment.put("JOB_PART_ALIGNMENT_STATS_STATUS", JobPartStatus.ALIGNMENT_STATS.statusName);
+        environment.put("JOB_PART_ALIGNMENT_SEQ_VARIATION_STATS_STATUS", JobPartStatus.ALIGNMENT_SEQ_VARIATION_STATS.statusName);
+        environment.put("JOB_PART_COMPRESS_STATUS", JobPartStatus.COMPRESS.statusName);
+        environment.put("JOB_PART_TRANSFER_STATUS", JobPartStatus.TRANSFER.statusName);
+        environment.put("JOB_KILLED_STATUS", JobPartStatus.KILLED.statusName);
+        environment.put("JOB_DIR", jobDir);
+        environment.put("GOBY_DIR", "${TMPDIR}");
+        environment.put("SGE_O_WORKDIR", jobDir);
+        environment.put("KILL_FILE", String.format("%s/kill.sh", jobDir));
+        environment.put("SGE_MEMORY", String.format("%dg", job.getMemoryInGigs() + job.getMemoryOverheadInGigs()));
+        environment.put("GRID_JVM_FLAGS", String.format("-Xms%dg -Xmx%dg", job.getMemoryInGigs(), job.getMemoryInGigs()));
+        environment.put("QUEUE_NAME", this.queue);
+        environment.put("QUEUE_WRITER", "${RESOURCES_GROOVY_EXECUTABLE} ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} --handler-service PluginsSDK --queue-message-dir "
                 + queueMessageDir.getAbsolutePath() );
-        replacements.put("%ARTIFACT_REPOSITORY_DIR%", artifactRepositoryPath);
-        replacements.put("%FILESET_COMMAND%",
+        environment.put("ARTIFACT_REPOSITORY_DIR", artifactRepositoryPath);
+        environment.put("FILESET_COMMAND",
                 String.format("java -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${TMPDIR} --pb-file %s/filesets.pb --job-tag %s",
                         jobDir,
                         job.getTag()));
         if (job.isParallel()) {
-            replacements.put("%CPU_REQUIREMENTS%", "#$ -l excl=true");
+            environment.put("CPU_REQUIREMENTS", "#$ -l excl=true");
         } else {
-            replacements.put("%CPU_REQUIREMENTS%", "");
+            environment.put("CPU_REQUIREMENTS", "");
         }
-
         try {
-            replacements.put("%WEB_SERVER_SSH_PREFIX%", String.format("%s@%s", System.getProperty("user.name"),
+            environment.put("WEB_SERVER_SSH_PREFIX", String.format("%s@%s", System.getProperty("user.name"),
                     java.net.InetAddress.getLocalHost().getHostName()));
         } catch (UnknownHostException e) {
             logger.warn("unable to detect local host: WEB_SERVER_SSH_PREFIX won't be passed to the job, the job will not be able to send feedback.");
@@ -436,7 +436,7 @@ abstract public class AbstractSubmitter implements Submitter {
         wrapperContent = StringUtils.replace(wrapperContent, "\r", "");
         for (int i = 0; i < 2; i++) {
             // Do the replacements twice just in case replacements contain replacements
-            for (Map.Entry<String, Object> replacement : job.getReplacementsMap().entrySet()) {
+            for (Map.Entry<String, Object> replacement : job.getEnvironment().entrySet()) {
                 wrapperContent = StringUtils.replace(wrapperContent, replacement.getKey(),
                         (replacement.getValue() != null) ? replacement.getValue().toString() : "");
             }
