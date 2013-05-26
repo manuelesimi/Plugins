@@ -25,7 +25,7 @@ public abstract class JobBuilder {
      * For each need, adds a variable to replacements for each scope in pluginConfig runtime requirements.
      * Variables are called PLUGINS_NEED_${scope}*
      */
-    protected Map<String, Object>  buildResourceRequirements() {
+    private Map<String, Object> buildResourceRequirements() {
 
         Map<String, Object> requirementsByScope = new HashMap<String, Object>();
         List<Need> needs = executableConfig.getRuntime().needs();
@@ -56,6 +56,7 @@ public abstract class JobBuilder {
         //default memory settings (can be overridden by subclasses)
         executableJob.setMemoryInGigs(8);
         executableJob.setMemoryOverheadInGigs(2);
+        executableJob.getEnvironment().putAll(this.buildResourceRequirements());
         this.customizeJob(executableJob);
         //user options have priority and eventually overwrites the others
         executableJob.getEnvironment().putAll(unclassifiedOptions);
