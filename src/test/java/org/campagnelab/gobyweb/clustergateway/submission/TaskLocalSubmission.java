@@ -98,7 +98,7 @@ public class TaskLocalSubmission {
                             "TESTTAG1", "TESTTAG2", "TESTTAG3", "TESTTAG1",
                             "TESTTAG2", "TESTTAG3", "TESTTAG1", "TESTTAG2",
                             "TESTTAG3", "TESTTAG1", "TESTTAG2", "TESTTAG3"}), Collections.EMPTY_MAP);
-
+            fail("Exception must occur");
         } catch (ExecutableJob.InvalidSlotValueException is) {
             //this is expected
         } catch (Exception e) {
@@ -117,7 +117,7 @@ public class TaskLocalSubmission {
             actions.submitTask(
                     "RNASELECT_TASK",
                     ClusterGateway.toInputParameters(new String[]{"INPUT_READS:",}), Collections.EMPTY_MAP);
-
+            fail("Exception must occur");
         } catch (ExecutableJob.InvalidSlotValueException is) {
             //this is expected
         } catch (Exception e) {
@@ -136,7 +136,7 @@ public class TaskLocalSubmission {
             actions.submitTask(
                     "RNASELECT_TASK",
                     ClusterGateway.toInputParameters(new String[]{}), Collections.EMPTY_MAP);
-
+            fail("Exception must occur");
         } catch (ExecutableJob.InvalidJobDataException is) {
             //this is expected
         } catch (Exception e) {
