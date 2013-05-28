@@ -572,7 +572,7 @@ function alignment_concat {
     COMPRESS_ALIGNMENTS=" -x MessageChunksWriter:codec=hybrid-1 "
     COMPRESS_ALIGNMENTS="  "
     # Run the concatenate, only if more than one align part
-    if [ $NUMBER_OF_ALIGN_PARTS -gt 1 ]; then
+     if [ ${NUMBER_OF_ALIGN_PARTS} -gt 1 ]; then
         # Each sub-concat contains at most 50 parts, the +49 helps with integer rounding
         # 100 goes to 2 sub-concats, 151 goes to 3 sub-concats.
         NUM_SUB_CONCATS=$(( ($NUMBER_OF_ALIGN_PARTS + 49) / 50))
@@ -887,6 +887,8 @@ function diffexp {
 
       NUMBER_SEQ_VAR_SLICES=`(cd ${TMPDIR} ; plugin_alignment_analysis_num_parts ${RESULT_DIR}/${TAG}-slicing-plan.txt)`
 
+      # Introduce a synonym since some part of this script also use NUMBER_OF_ALIGN_PARTS
+      NUMBER_OF_ALIGN_PARTS=${NUMBER_SEQ_VAR_SLICES}
 
       ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Parallelization plan generated. " --index ${CURRENT_PART} --job-type job-part
 
