@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <fileSetConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <name>Goby Alignments</name>
-    <id>GOBY_ALIGNMENTS</id>
-    <help>goby alignment format</help>
+    <name>Goby Alignment</name>
+    <id>GOBY_ALIGNMENT</id>
+    <help>Goby alignment format</help>
     <version>1.0</version>
     <files>
         <selector matchAttribute="basename">
