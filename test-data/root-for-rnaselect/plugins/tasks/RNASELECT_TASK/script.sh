@@ -11,29 +11,28 @@ function plugin_task {
 
      ${FILESET_COMMAND} --has-fileset INPUT_READS
      if [ $? != 0 ]; then
-       echo Input compact reads are not available
-       return 0
+       dieUponError "Input compact reads are not available"
+
      fi
 
      READ_FILES_LIST=`${FILESET_COMMAND} --fetch INPUT_READS`
      if [ $? != 0 ]; then
-        echo Failed to fecth compact reads
+        dieUponError "Failed to fecth compact reads ${READ_FILES_LIST}"
         echo ${READ_FILES_LIST}
-        return 0
+
      fi
      echo "Localized filesets ${READ_FILES_LIST}"
 
-     java -cp ${RESOURCES_RNASELECT_RNASELECT_TOOL}:$CLASSPATH org.campagnelab.rnaselect.App2 --output out.tsv ${READ_FILES_LIST}
+     java  -jar ${RESOURCES_RNASELECT_RNASELECT_TOOL} --output out.tsv ${READ_FILES_LIST}
 
      #push back the generated tsv
      REGISTERED_TAGS=`${FILESET_COMMAND} --push STATS: *.tsv`
      if [ $? != 0 ]; then
-        echo Failed to push back the output TSV file
-        return 0
+        dieUponError "Failed to push back the output TSV file"
+
      fi
      echo "RNA-select registered the following FileSet instances: ${REGISTERED_TAGS}"
+     return 0
 }
 
 
-
-#TODO: replace return 0 with dieUponError

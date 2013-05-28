@@ -4,11 +4,11 @@
     <name>RNA Select</name>
     <id>RNASELECT</id>
     <help>Process a list of reads file and create a TSV file as output</help>
-    <version>1.0</version>
+    <version>1.0.5</version>
     <files>
         <file>
             <id>RNASELECT_TOOL</id>
-            <filename>rnaselect-1.0.0-tool.jar</filename>
+            <filename>rnaselect-1.0.5-SNAPSHOT-tool.jar</filename>
         </file>
     </files>
 </resourceConfig>

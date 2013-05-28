@@ -9,7 +9,7 @@
     <requires>
         <resource>
             <id>RNASELECT</id>
-            <versionAtLeast>1.0</versionAtLeast>
+            <versionAtLeast>1.0.5</versionAtLeast>
         </resource>
     </requires>
     <runtime>
