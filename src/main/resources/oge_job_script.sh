@@ -343,6 +343,46 @@ function copy_back {
     scp $RESULT_DIR/* ${WEB_SERVER_SSH_PREFIX}:${RESULTS_WEB_DIR}
 }
 
+
+function push_bam_alignments {
+    echo .
+    echo . Running push_bam_alignments
+    echo .
+
+    fail_when_no_results
+
+     #push back the generated alignments
+    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
+
+     REGISTERED_TAGS=`${FILESET_COMMAND} --push BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bai`
+     if [ $? != 0 ]; then
+        echo Failed to push back the alignment files
+        return 0
+     fi
+     echo "The following BAM_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
+
+}
+
+
+function push_goby_alignments {
+    echo .
+    echo . Running push_goby_alignments
+    echo .
+
+    fail_when_no_results
+
+     #push back the generated alignments
+     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
+
+     REGISTERED_TAGS=`${FILESET_COMMAND} --push GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header`
+     if [ $? != 0 ]; then
+        echo Failed to push back the alignment files
+        return 0
+     fi
+     echo "The following GOBY_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
+
+}
+
 function bam_align {
     # Set CURRENT_PART because we will need it in the dieUponError function
     CURRENT_PART=1
@@ -357,7 +397,7 @@ function bam_align {
         /bin/cp ${BASENAME}.bam  ${RESULT_DIR}/
         /bin/cp ${BASENAME}.bam.bai  ${RESULT_DIR}/
 
-        copy_back
+        push_bam_alignments
 
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index 1 --job-type job
 
@@ -961,7 +1001,12 @@ case ${STATE} in
         wiggles
         bedgraph
         compress
-        copy_back
+        if [ "${SUPPORTS_GOBY_ALIGNMENTS}" == "true" ]; then
+            push_goby_alignments
+        fi
+        if [ "${SUPPORTS_BAM_ALIGNMENTS}" == "true" ]; then
+            push_bam_alignments
+        fi
         cleanup
         job_complete
         ;;
