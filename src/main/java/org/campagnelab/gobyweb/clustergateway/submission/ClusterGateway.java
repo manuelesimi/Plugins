@@ -71,10 +71,10 @@ public class ClusterGateway {
         //create the reference to the job area
         JobArea jobArea = null;
         try {
-            String jobAreadLocation = config.getString("job-area");
+            String jobAreaLocation = config.getString("job-area");
 
             jobArea = AreaFactory.createJobArea(
-                    jobAreadLocation, owner);
+                    jobAreaLocation, owner);
         } catch (IOException ioe) {
             logger.error(ioe);
             return (1);
