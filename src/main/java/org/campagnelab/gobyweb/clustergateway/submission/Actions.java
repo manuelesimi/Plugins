@@ -10,6 +10,7 @@ import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 
+import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 
@@ -117,7 +118,6 @@ final class Actions {
     /**
      * Submits an aligner for execution.
      *
-     *
      * @param id
      * @param inputSlots
      * @param genomeID
@@ -136,6 +136,27 @@ final class Actions {
         builder.setChunkSize(chunkSize);
         builder.setNumParts(numParts);
         builder.setGenomeID(genomeID);
+        if (!submitter.isLocal())
+            submitter.setWrapperScript("oge_job_script.sh");
+        else
+            throw new UnsupportedOperationException("Local submission for aligners is not supported yet");
+        this.submitJob(builder.build(unclassifiedOptions), inputSlots);
+    }
+
+    /**
+     * Submits an alignment analysis for execution.
+     *
+     * @param id
+     * @param inputSlots
+     * @param unclassifiedOptions
+     */
+    protected void submitAnalysis(String id, Set<InputSlotValue> inputSlots, Map<String, String> unclassifiedOptions)
+            throws Exception {
+        AlignmentAnalysisConfig analysisConfig =registry.findByTypedId(id, AlignmentAnalysisConfig.class);
+        if (analysisConfig == null)
+            throw new IllegalArgumentException("Could not find an Alignment Analysis plugin with ID=" + id);
+        AnalysisJobBuilder builder = new AnalysisJobBuilder(analysisConfig, jobArea,
+                fileSetAreaReference, jobArea.getOwner(), inputSlots);
         if (!submitter.isLocal())
             submitter.setWrapperScript("oge_job_script.sh");
         else
@@ -191,4 +212,5 @@ final class Actions {
         //submit the resourceInstance
         submitter.submitResourceInstall(jobArea, session, resourceInstance);
     }
+
 }

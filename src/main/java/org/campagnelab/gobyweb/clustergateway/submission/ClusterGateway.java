@@ -12,6 +12,7 @@ import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
+import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -138,25 +139,42 @@ public class ClusterGateway {
             unclassifiedOptions = parseUnclassifiedOptions(config.getStringArray("option"));
         AlignerConfig alignerConfig = registry.findByTypedId(id, AlignerConfig.class);
         if (alignerConfig != null) {
-            if (!config.userSpecified("genome-reference-id"))
-                throw  new IllegalArgumentException("Missing parameter genome-reference-id");
-            if (!config.userSpecified("chunk-size"))
-                throw  new IllegalArgumentException("Missing parameter chunk-size");
-            if (!config.userSpecified("number-of-align-parts"))
-                throw  new IllegalArgumentException("Missing parameter number-of-align-parts");
-
-            //TODO: check, read and validate options from aligner config
-            actions.submitAligner(id,
-                    toInputParameters(config.getStringArray("slots")),
-                    config.getString("genome-reference-id"),
-                    config.getInt("chunk-size"),
-                    config.getInt("number-of-align-parts"),
-                    unclassifiedOptions
-            );
+           requestAlignerSubmission(id, config, unclassifiedOptions, actions);
         } else {
-            actions.submitTask(id, toInputParameters(config.getStringArray("slots")),
-                    unclassifiedOptions);
+            AlignmentAnalysisConfig analysisConfig = registry.findByTypedId(id, AlignmentAnalysisConfig.class);
+            if (analysisConfig != null) {
+                requestAnalysisSubmission(id, config, unclassifiedOptions, actions);
+            } else {
+                actions.submitTask(id, toInputParameters(config.getStringArray("slots")),unclassifiedOptions);
+            }
         }
+    }
+
+    private static void requestAnalysisSubmission(String id, JSAPResult config,
+                                 Map<String, String> unclassifiedOptions, Actions actions) throws Exception {
+        actions.submitAnalysis(id,
+                toInputParameters(config.getStringArray("slots")),
+                unclassifiedOptions
+        );
+    }
+
+    private static void requestAlignerSubmission(String id,
+                         JSAPResult config, Map<String, String> unclassifiedOptions, Actions actions) throws Exception {
+        if (!config.userSpecified("genome-reference-id"))
+            throw  new IllegalArgumentException("Missing parameter genome-reference-id");
+        if (!config.userSpecified("chunk-size"))
+            throw  new IllegalArgumentException("Missing parameter chunk-size");
+        if (!config.userSpecified("number-of-align-parts"))
+            throw  new IllegalArgumentException("Missing parameter number-of-align-parts");
+
+        //TODO: check, read and validate options from aligner config
+        actions.submitAligner(id,
+                toInputParameters(config.getStringArray("slots")),
+                config.getString("genome-reference-id"),
+                config.getInt("chunk-size"),
+                config.getInt("number-of-align-parts"),
+                unclassifiedOptions
+        );
     }
 
     /**

@@ -69,4 +69,4 @@ public abstract class JobBuilder {
      */
     protected abstract void customizeJob(ExecutableJob executableJob) throws IOException;
 
-   }
+}
