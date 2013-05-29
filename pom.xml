@@ -15,6 +15,10 @@
     <description>Software development and execution kit for GobyWeb plugins.</description>
     <url>http://gobyweb.campagnelab.org</url>
 
+    <properties>
+        <remote.test.skip>false</remote.test.skip>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -155,6 +159,13 @@
                 <includes>
                     <include>log4j.properties</include>
                     <include>*.sh</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>filtered.properties</include>
                 </includes>
             </resource>
         </resources>

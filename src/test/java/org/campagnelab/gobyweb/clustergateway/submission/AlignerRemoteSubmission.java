@@ -1,13 +1,18 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
 import org.campagnelab.gobyweb.io.AreaFactory;
-import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Properties;
 
 import static junit.framework.Assert.fail;
 
@@ -16,23 +21,31 @@ import static junit.framework.Assert.fail;
  *
  * @author manuele
  */
-//@RunWith(JUnit4.class)
+@RunWith(JUnit4.class)
 public class AlignerRemoteSubmission {
 
     static Plugins plugins;
     static JobArea jobArea;
-    static FileSetArea storageArea;
     static Actions actions;
     static final String filesetAreaReference = "/zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA";
     static final String jobAreaReference = "gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS";
     static final String envScript = "test-data/root-for-aligners/artifacts-config/env.sh";
-
+    static Properties prop = new Properties();
     static final String owner = "campagne";
-    //static String referenceSA =  new File(storageAreaDir).getAbsolutePath();
 
 
-    //@BeforeClass
+    @BeforeClass
     public static void configure() {
+        try {
+            prop.load(new FileInputStream("/filtered.properties"));
+        } catch (IOException e) {
+            //assume we go ahead with the remote tests
+            prop.setProperty("remoteTestSkip", "false");
+        }
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping AlignerRemoteSubmission test");
+            return;
+        }
         plugins = new Plugins();
         plugins.replaceDefaultSchemaConfig(".");
         plugins.addServerConf("test-data/root-for-aligners");
@@ -47,8 +60,12 @@ public class AlignerRemoteSubmission {
         }
     }
 
-   // @Test
+    @Test
     public void submit() {
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping AlignerRemoteSubmission.submit() test");
+            return;
+        }
         try {
             Submitter submitter = new RemoteSubmitter(plugins.getRegistry(), "rascals.q");
             submitter.setSubmissionHostname(String.format("%s@%s",
