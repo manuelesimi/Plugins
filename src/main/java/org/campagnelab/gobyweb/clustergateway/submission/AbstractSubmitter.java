@@ -369,7 +369,7 @@ abstract public class AbstractSubmitter implements Submitter {
                     io.geType().versionExactly,
                     io.geType().versionAtMost);
             if (filesetConfig == null)
-                throw new InvalidJobDataException(String.format("Unable to find a FileSet configuration matching the type of the input slot %s",
+                throw new InvalidJobDataException(String.format("Unable to find a FileSet configuration matching the type of the output slot %s",
                         io.getName()));
 
             this.addConfigurationToList(configurationList, filesetConfig);
