@@ -327,22 +327,6 @@ function run_alignment_analysis_combine {
 
 }
 
-function copy_back {
-    echo .
-    echo . Running copy_back
-    echo .
-
-    fail_when_no_results
-
-    CURRENT_PART=$(( NUMBER_OF_ALIGN_PARTS + 2 ))
-    #
-    # Copy results back to web server
-    #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Copying results from cluster" --index ${CURRENT_PART} --job-type job-part
-    ssh ${WEB_SERVER_SSH_PREFIX} "mkdir -p ${RESULTS_WEB_DIR}"
-    scp $RESULT_DIR/* ${WEB_SERVER_SSH_PREFIX}:${RESULTS_WEB_DIR}
-}
-
 
 function push_bam_alignments {
     echo .
