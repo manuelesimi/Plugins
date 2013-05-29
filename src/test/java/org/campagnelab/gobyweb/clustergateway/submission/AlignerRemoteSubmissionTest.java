@@ -37,7 +37,7 @@ public class AlignerRemoteSubmissionTest {
     @BeforeClass
     public static void configure() {
         try {
-            prop.load(new FileInputStream("/filtered.properties"));
+            prop.load(AlignerRemoteSubmissionTest.class.getResourceAsStream("/filtered.properties"));
         } catch (IOException e) {
             //assume we go ahead with the remote tests
             prop.setProperty("remoteTestSkip", "false");
