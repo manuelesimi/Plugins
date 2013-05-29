@@ -28,9 +28,9 @@ import java.util.List;
  * @author manuele
  */
 @RunWith(JUnit4.class)
-public class FileSetLocalRegistration {
+public class FileSetLocalRegistrationTest {
 
-    private static Logger logger = Logger.getLogger(FileSetLocalRegistration.class);
+    private static Logger logger = Logger.getLogger(FileSetLocalRegistrationTest.class);
     static Plugins plugins;
     static FileSetArea storageArea;
     static String storageAreaDir = String.format("test-results/filesets", System.currentTimeMillis());
@@ -69,7 +69,7 @@ public class FileSetLocalRegistration {
     public void registerWRONGENTRY() {
         String[] entries = new String[]{"COMPACT_READS:",
                 "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILExx.compact-reads"};
-        register(entries,"CASE_1","FILESET:PATH, wrong entry",1,0, true);
+        register(entries,"CASE_1","FILESET:PATH, wrong entry",0,1, true);
     }
 
     @Test

@@ -22,7 +22,7 @@ import static junit.framework.Assert.fail;
  * @author manuele
  */
 @RunWith(JUnit4.class)
-public class AlignerRemoteSubmission {
+public class AlignerRemoteSubmissionTest {
 
     static Plugins plugins;
     static JobArea jobArea;
