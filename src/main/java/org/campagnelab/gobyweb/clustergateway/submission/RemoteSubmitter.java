@@ -80,7 +80,8 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         //execute the task
         logger.info("Requesting job execution...");
         jobArea.execute(job.getTag(), wrapperScript);
-        logger.info(String.format("The job is going to be executed in the following directory: %s", jobArea.getBasename(job.getTag())));
+        logger.info(String.format("The job will be executed in the Job Area at %s (tag %s)", jobArea.toString(),
+                job.getTag()));
 
     }
 
@@ -111,7 +112,8 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{this.wrapperScript, "*"});
 
         //execute the resourceJob
-        logger.info(String.format("The job is going to be executed in the following directory: %s", jobArea.getBasename(resourceJob.getTag())));
+        logger.info(String.format("The job will be executed in the Job Area at %s (tag %s)", jobArea.toString(),
+                resourceJob.getTag()));
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", jobArea.getBasename(resourceJob.getTag()));
         jobArea.execute(resourceJob.getTag(), this.wrapperScript,env);

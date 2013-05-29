@@ -69,7 +69,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         jobArea.grantExecutePermissions(job.getTag(), new String[]{this.wrapperScript});
 
         //execute the task
-        logger.info(String.format("Task %s: submitting to local cluster %s...", job.getTag(), jobLocalDir.getAbsolutePath()));
+        logger.info(String.format("Task %s: submitting to local cluster at %s...", job.getTag(), jobLocalDir.getAbsolutePath()));
         logger.info("Exit value from the task : ");
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", jobLocalDir.getAbsolutePath());
@@ -110,7 +110,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         jobArea.grantExecutePermissions(resourceJob.getTag(), binaryFiles);
 
         //execute the resourceJob
-        logger.info(String.format("Resource %s: submitting to local cluster %s...", resourceJob.getTag(), taskLocalDir.getAbsolutePath()));
+        logger.info(String.format("Resource %s: submitting to local cluster at %s...", resourceJob.getTag(), taskLocalDir.getAbsolutePath()));
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", taskLocalDir.getAbsolutePath());
         env.put("PATH", System.getenv("PATH"));
