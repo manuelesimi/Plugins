@@ -61,7 +61,7 @@ public class PluginLoaderSettings {
      * Fileset configuration configuration added to each AlignerConfig's InputSchema.
      */
     public static final String[] GOBY_ALIGNMENTS = new String[] {
-            "GOBY_ALIGNMENTS", //ID
+            "GOBY_ALIGNMENT", //ID
             "1.0",  //versionAtLeast
             null, //versionExactly
             null //versionAtMost
@@ -72,7 +72,7 @@ public class PluginLoaderSettings {
      * Fileset configuration configuration added to each AlignerConfig's InputSchema.
      */
     public static final String[] BAM_ALIGNMENTS = new String[] {
-            "BAM_ALIGNMENTS", //ID
+            "BAM_ALIGNMENT", //ID
             "1.0",  //versionAtLeast
             null, //versionExactly
             null //versionAtMost
