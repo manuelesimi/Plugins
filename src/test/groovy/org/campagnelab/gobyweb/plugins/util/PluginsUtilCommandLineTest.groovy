@@ -16,7 +16,7 @@ class PluginsUtilCommandLineTest {
 
     @Test
     public void registerWithNameAndGuess() {
-       PluginsUtil.process(buildDependencyTreeArguments("GSNAP_GOBY:1.1"));
+       PluginsUtil.process(buildDependencyTreeArguments("GSNAP_GOBY"));
 
     }
 
@@ -24,7 +24,7 @@ class PluginsUtilCommandLineTest {
     private static String[] buildDependencyTreeArguments(String pluginID) {
         ("--plugins-dir test-data/root-for-rnaselect " +
                 "--action dependency-tree " +
-                "--id  ${pluginID} "
+                "--id ${pluginID} "
         ).split(" ");
 
     }
