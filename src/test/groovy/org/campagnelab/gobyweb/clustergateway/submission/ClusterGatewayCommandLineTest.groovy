@@ -27,13 +27,20 @@ public class ClusterGatewayCommandLineTest {
     static final String owner = "junit";
     static def repoDirAbsolutePath=new File("${resultsDir}/REPO").getAbsolutePath()
 
+    static Properties prop = new Properties();
+
 
     @BeforeClass
     public static void configure() throws IOException {
 
         FileUtils.deleteDirectory(new File(resultsDir));
         FileUtils.forceMkdir(new File(resultsDir));
-
+        try {
+            prop.load(AlignerRemoteSubmissionTest.class.getResourceAsStream("/filtered.properties"));
+        } catch (IOException e) {
+            //assume we go ahead with the remote tests
+            prop.setProperty("remoteTestSkip", "false");
+        }
     }
 
     @Test
@@ -64,6 +71,12 @@ public class ClusterGatewayCommandLineTest {
 
     @Test
     public void runRemoteAligner() {
+
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAligner() test");
+            return;
+        }
+
         String artifactServer = String.format("%s@%s",
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
