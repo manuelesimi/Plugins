@@ -21,7 +21,7 @@ import static junit.framework.Assert.assertNotNull
 public class ClusterGatewayCommandLineTest {
 
     static final String gatewayPluginRoot = "test-data/root-for-gateway-command-line";
-    static final String envScript = "test-data/env-scripts/env.sh";
+    static final String envScript = "test-data/root-for-aligners/artifacts-config/env.sh";
 
     static final String resultsDir = String.format("test-results/gateway-command-line");
     static final String owner = "junit";
@@ -62,6 +62,34 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
+    @Test
+    public void runRemoteAligner() {
+        String artifactServer = String.format("%s@%s",
+                System.getProperty("user.name"),
+                java.net.InetAddress.getLocalHost().getHostName());
+        assertEquals(0, ClusterGateway.process(
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS " +
+                        "--fileset-area /zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA " +
+                        "--plugins-dir test-data/root-for-aligners " +
+                        "--owner campagne " +
+                        "--queue rascals.q " +
+                        "--env-script ${envScript} "+
+                        "--job BWA_GOBY_ARTIFACT " +
+                        "--genome-reference-id WBcel215.69 "+
+                        "--chunk-size 50000000 "+
+                        "--number-of-align-parts 2 " +
+                        "--option FOO=foo " +
+                        "--option BAR=bar " +
+                        "--option BAZ=baz " +
+                        "--option DEBUG=true " +
+                        "--artifact-server ${artifactServer} "+
+                        "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
+                        "INPUT_READS: SCGHGBF"
+
+                ).split(" ")
+        ));
+
+    }
 
     private static String[] buildFileRegistrationArgs(String filenames) {
         ("--fileset-area ${new File(resultsDir).getAbsolutePath()}/filesets "+
