@@ -170,39 +170,5 @@
             <help>Additional option to pass to the job. The option will be available as environment variable in the job execution environment.</help>
         </flaggedOption>
 
-
-        <!-- Option for aligners -->
-        <flaggedOption>
-            <id>genome-reference-id</id>
-            <stringParser>
-                <classname>StringStringParser</classname>
-            </stringParser>
-            <required>false</required>
-            <longFlag>genome-reference-id</longFlag>
-            <help>For aligner jobs, the reference genome.</help>
-        </flaggedOption>
-
-        <flaggedOption>
-            <id>chunk-size</id>
-            <stringParser>
-                <classname>IntegerStringParser</classname>
-            </stringParser>
-            <required>false</required>
-            <longFlag>chunk-size</longFlag>
-            <help>For aligner jobs, the chunk size.</help>
-        </flaggedOption>
-
-        <flaggedOption>
-            <id>number-of-align-parts</id>
-            <stringParser>
-                <classname>IntegerStringParser</classname>
-            </stringParser>
-            <required>false</required>
-            <longFlag>number-of-align-parts</longFlag>
-            <help>For aligner jobs, the number of parts in which the job will be splitted.</help>
-        </flaggedOption>
-
-
-
     </parameters>
 </jsap>

@@ -1,8 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
-import com.martiansoftware.jsap.JSAP;
-import com.martiansoftware.jsap.JSAPException;
-import com.martiansoftware.jsap.JSAPResult;
+import com.martiansoftware.jsap.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.InputSlotValue;
@@ -117,7 +115,7 @@ public class ClusterGateway {
             }
             //request the appropriate action
             if (config.userSpecified("job"))
-                requestJobSubmission(config, actions, plugins.getRegistry());
+                requestJobSubmission(args, config, actions, plugins.getRegistry());
             else if (config.userSpecified("resource"))
                 requestResourceSubmission(config, actions);
             else
@@ -131,27 +129,32 @@ public class ClusterGateway {
         return 0;
     }
 
-    private static void requestJobSubmission(JSAPResult config, Actions actions, PluginRegistry registry) throws Exception {
+    private static void requestJobSubmission(String[] args, JSAPResult config, Actions actions, PluginRegistry registry) throws Exception {
         String token[] = config.getStringArray("job");
         String id = token[0];
         Map<String, String> unclassifiedOptions = Collections.EMPTY_MAP;
         if (config.userSpecified("option"))
             unclassifiedOptions = parseUnclassifiedOptions(config.getStringArray("option"));
+        SubmissionRequest request;
         AlignerConfig alignerConfig = registry.findByTypedId(id, AlignerConfig.class);
         if (alignerConfig != null) {
-           requestAlignerSubmission(id, config, unclassifiedOptions, actions);
+           //requestAlignerSubmission(id, args, unclassifiedOptions, actions);
+            request = new AlignerSubmissionRequest(alignerConfig);
+            request.setUnclassifiedOptions(unclassifiedOptions);
+            request.setInputSlots(toInputParameters(config.getStringArray("slots")));
+            request.submitRequest(args, actions);
         } else {
             AlignmentAnalysisConfig analysisConfig = registry.findByTypedId(id, AlignmentAnalysisConfig.class);
             if (analysisConfig != null) {
-                requestAnalysisSubmission(id, config, unclassifiedOptions, actions);
+                requestAnalysisSubmission(id, args, config, unclassifiedOptions, actions);
             } else {
                 actions.submitTask(id, toInputParameters(config.getStringArray("slots")),unclassifiedOptions);
             }
         }
     }
 
-    private static void requestAnalysisSubmission(String id, JSAPResult config,
-                                 Map<String, String> unclassifiedOptions, Actions actions) throws Exception {
+    private static void requestAnalysisSubmission(String id, String[] args, JSAPResult config,
+                                                  Map<String, String> unclassifiedOptions, Actions actions) throws Exception {
         actions.submitAnalysis(id,
                 toInputParameters(config.getStringArray("slots")),
                 unclassifiedOptions
@@ -159,13 +162,8 @@ public class ClusterGateway {
     }
 
     private static void requestAlignerSubmission(String id,
-                         JSAPResult config, Map<String, String> unclassifiedOptions, Actions actions) throws Exception {
-        if (!config.userSpecified("genome-reference-id"))
-            throw  new IllegalArgumentException("Missing parameter genome-reference-id");
-        if (!config.userSpecified("chunk-size"))
-            throw  new IllegalArgumentException("Missing parameter chunk-size");
-        if (!config.userSpecified("number-of-align-parts"))
-            throw  new IllegalArgumentException("Missing parameter number-of-align-parts");
+                                                 String[] args, JSAPResult config, Map<String, String> unclassifiedOptions, Actions actions) throws Exception {
+
 
         //TODO: check, read and validate options from aligner config
         actions.submitAligner(id,
