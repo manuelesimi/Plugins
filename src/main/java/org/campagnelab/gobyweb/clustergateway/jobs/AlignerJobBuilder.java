@@ -78,6 +78,8 @@ public class AlignerJobBuilder extends JobBuilder {
         environment.put("SUPPORTS_PAIRED_END_ALIGNMENTS", alignerConfig.supportsPairedEndAlignments);
         environment.put("SUPPORTS_BISULFITE_CONVERTED_READS", alignerConfig.supportsBisulfiteConvertedReads);
         environment.put("ALIGNER", alignerConfig.getId());
+        // TODO transcript alignments have been removed with the introduction of the plugin system, check that the
+        // TODO variable TRANSCRIPT_ALIGN_FEWER_JOBS is not used by plugins scripts, then remove this.
           /*
             * If "true", Transcript Alignment this will make NUMBER_OF_ALIGN_PARTS jobs
             *     and each of those will run NUMBER _OF_TRANSCRIPT_PARTS alignments.
@@ -128,6 +130,8 @@ public class AlignerJobBuilder extends JobBuilder {
         this.populateJobEnvironment(executableJob.getEnvironment());
         // Last use 4, bwa use 2. Was 4, large concats probably take more memory so increased to 6
         // 2011-09-27 Was 6, but gsnap jobs have been partially or fully failing, upped to 8.
+
+        // TODO These settings have not been used since the plugin system. Check that they are not used and remove.
         executableJob.setMemoryInGigs(8);
         if (executableJob.getEnvironment().containsKey("BISULFITE_SAMPLE"))  {
             executableJob.setMemoryOverheadInGigs(16);
