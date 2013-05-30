@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Properties;
@@ -76,7 +75,7 @@ public class AlignerRemoteSubmissionTest {
             actions = new Actions(submitter, filesetAreaReference, jobArea, plugins.getRegistry());
             actions.submitAligner(
                     "BWA_GOBY_ARTIFACT",
-                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:", "SCGHGBF"}),
+                    SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "SCGHGBF"}),
                     "WBcel215.69", //genome id
                     50000000, //chuck size
                     2, Collections.EMPTY_MAP); //number of parts

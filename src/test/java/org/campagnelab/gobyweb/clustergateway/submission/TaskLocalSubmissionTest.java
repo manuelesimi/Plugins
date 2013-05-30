@@ -76,7 +76,7 @@ public class TaskLocalSubmissionTest {
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             actions.submitTask(
                     "RNASELECT_TASK",
-                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}), Collections.EMPTY_MAP);
+                    SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}), Collections.EMPTY_MAP);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,7 +94,7 @@ public class TaskLocalSubmissionTest {
             //12 values for input reads are not accepted
             actions.submitTask(
                     "RNASELECT_TASK",
-                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:",
+                    SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:",
                             "TESTTAG1", "TESTTAG2", "TESTTAG3", "TESTTAG1",
                             "TESTTAG2", "TESTTAG3", "TESTTAG1", "TESTTAG2",
                             "TESTTAG3", "TESTTAG1", "TESTTAG2", "TESTTAG3"}), Collections.EMPTY_MAP);
@@ -116,7 +116,7 @@ public class TaskLocalSubmissionTest {
             //no values for input reads are not accepted
             actions.submitTask(
                     "RNASELECT_TASK",
-                    ClusterGateway.toInputParameters(new String[]{"INPUT_READS:",}), Collections.EMPTY_MAP);
+                    SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:",}), Collections.EMPTY_MAP);
             fail("Exception must occur");
         } catch (ExecutableJob.InvalidSlotValueException is) {
             //this is expected
@@ -135,7 +135,7 @@ public class TaskLocalSubmissionTest {
             //INPUT_READS slot is mandatory
             actions.submitTask(
                     "RNASELECT_TASK",
-                    ClusterGateway.toInputParameters(new String[]{}), Collections.EMPTY_MAP);
+                    SubmissionRequest.toInputParameters(new String[]{}), Collections.EMPTY_MAP);
             fail("Exception must occur");
         } catch (ExecutableJob.InvalidJobDataException is) {
             //this is expected
