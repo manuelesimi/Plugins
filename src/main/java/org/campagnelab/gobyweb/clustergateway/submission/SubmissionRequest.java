@@ -55,15 +55,16 @@ public abstract class SubmissionRequest {
         }
     };
 
-    private Map<String, String> unclassifiedOptions = Collections.EMPTY_MAP;
+    private Map<String, String> optionsMap = new HashMap<String, String>();
 
     private Set<InputSlotValue> inputSlots = Collections.EMPTY_SET;
 
     private Plugins plugins;
+
     private String[] commandLineArguments;
 
     protected Map<String, String> getUnclassifiedOptions() {
-        return unclassifiedOptions;
+        return optionsMap;
     }
 
     protected Set<InputSlotValue> getInputSlots() {
@@ -118,20 +119,18 @@ public abstract class SubmissionRequest {
      * @param options option in the form KEY=VALUE,KEY2=VALUE2
      * @return
      */
-    private Map<String, String> parseUnclassifiedOptions(String[] options) throws Exception {
+    private void parseUnclassifiedOptions(String[] options) throws Exception {
         if (options == null)
-            return Collections.EMPTY_MAP;
-        Map<String, String> optionsMap = new HashMap<String, String>();
+            return;
         for (String inputAttribute: options) {
             String[] tokens = inputAttribute.split("=");
             if (tokens.length == 2) {
                 optionsMap.put(tokens[0],tokens[1]);
             } else {
                 logger.error("Invalid options format" + inputAttribute);
-                throw new Exception();
+                throw new Exception("Invalid options format" + inputAttribute);
             }
         }
-        return optionsMap;
     }
 
     /**
@@ -147,10 +146,15 @@ public abstract class SubmissionRequest {
      * @throws Exception
      */
     protected int submitRequest() throws Exception {
-        JSAPResult config = jsapHelper.configure(commandLineArguments, this.getAdditionalParameters());
+        List<Parameter> additionalParameters = this.getAdditionalParameters();
+        JSAPResult config = jsapHelper.configure(commandLineArguments, additionalParameters);
         if (config == null)
             return 1;
 
+        //add the parameters to the options map
+        for (Parameter parameter : additionalParameters) {
+            this.optionsMap.put(parameter.getID(), config.getString(parameter.getID()));
+        }
         String owner = config.userSpecified("owner") ? config.getString("owner") : System.getProperty("user.name");
 
         //create the reference to the job area
@@ -185,7 +189,7 @@ public abstract class SubmissionRequest {
                 submitter.setEnvironmentScript(config.getFile("env-script").getAbsolutePath());
 
             if (config.userSpecified("option"))
-                this.unclassifiedOptions = parseUnclassifiedOptions(config.getStringArray("option"));
+                this.parseUnclassifiedOptions(config.getStringArray("option"));
 
             if (config.userSpecified("slots"))
                 this.inputSlots = toInputParameters(config.getStringArray("slots"));

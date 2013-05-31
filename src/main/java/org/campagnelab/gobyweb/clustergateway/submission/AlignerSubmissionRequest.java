@@ -26,6 +26,8 @@ class AlignerSubmissionRequest extends SubmissionRequest {
     @Override
     protected List<Parameter> getAdditionalParameters() {
         List<Parameter> parameters = new ArrayList<Parameter>();
+
+        //add mandatory parameters common to all aligners
         FlaggedOption genome = new FlaggedOption("genome-reference-id")
                 .setStringParser(JSAP.STRING_PARSER)
                 .setRequired(true)
@@ -35,7 +37,7 @@ class AlignerSubmissionRequest extends SubmissionRequest {
         parameters.add(genome);
 
         FlaggedOption chunk_size = new FlaggedOption("chunk-size")
-                .setStringParser(JSAP.INTEGER_PARSER)
+                .setStringParser(JSAP.STRING_PARSER)
                 .setRequired(true)
                 .setShortFlag(JSAP.NO_SHORTFLAG)
                 .setLongFlag("chunk-size");
@@ -43,14 +45,24 @@ class AlignerSubmissionRequest extends SubmissionRequest {
         parameters.add(chunk_size);
 
         FlaggedOption parts = new FlaggedOption("number-of-align-parts")
-                .setStringParser(JSAP.INTEGER_PARSER)
+                .setStringParser(JSAP.STRING_PARSER)
                 .setRequired(true)
                 .setShortFlag(JSAP.NO_SHORTFLAG)
                 .setLongFlag("number-of-align-parts");
         parts.setHelp("The number of parts in which the job will be splitted.");
         parameters.add(parts);
 
-        //TODO: check, read and validate options from aligner config
+        //add parameters from aligner configuration
+        for (org.campagnelab.gobyweb.plugins.xml.executables.Option option : alignerConfig.getOptions().option){
+            FlaggedOption jsapOption = new FlaggedOption(option.id)
+                    .setStringParser(JSAP.STRING_PARSER)
+                    .setRequired(option.required)
+                    .setShortFlag(JSAP.NO_SHORTFLAG)
+                    .setLongFlag(option.id)
+                    .setDefault(option.defaultsTo);
+            jsapOption.setHelp(option.help);
+            parameters.add(jsapOption);
+        }
 
         return parameters;
     }
@@ -67,8 +79,8 @@ class AlignerSubmissionRequest extends SubmissionRequest {
         actions.submitAligner(alignerConfig.getId(),
                 this.getInputSlots(),
                 config.getString("genome-reference-id"),
-                config.getInt("chunk-size"),
-                config.getInt("number-of-align-parts"),
+                Integer.valueOf(config.getString("chunk-size")),
+                Integer.valueOf(config.getString("number-of-align-parts")),
                 this.getUnclassifiedOptions());
        return 0;
     }
