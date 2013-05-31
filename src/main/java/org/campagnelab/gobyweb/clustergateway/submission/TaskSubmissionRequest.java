@@ -14,6 +14,7 @@ class TaskSubmissionRequest extends SubmissionRequest {
 
     protected TaskSubmissionRequest(TaskConfig taskConfig) {
         this.taskConfig = taskConfig;
+        this.executableConfig = taskConfig;
     }
 
     @Override

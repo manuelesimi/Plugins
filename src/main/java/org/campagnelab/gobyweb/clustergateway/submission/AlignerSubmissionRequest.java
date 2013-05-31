@@ -21,6 +21,7 @@ class AlignerSubmissionRequest extends SubmissionRequest {
 
     protected AlignerSubmissionRequest(AlignerConfig alignerConfig) {
        this.alignerConfig = alignerConfig;
+       this.executableConfig = alignerConfig;
     }
 
     @Override
@@ -51,18 +52,6 @@ class AlignerSubmissionRequest extends SubmissionRequest {
                 .setLongFlag("number-of-align-parts");
         parts.setHelp("The number of parts in which the job will be splitted.");
         parameters.add(parts);
-
-        //add parameters from aligner configuration
-        for (org.campagnelab.gobyweb.plugins.xml.executables.Option option : alignerConfig.getOptions().option){
-            FlaggedOption jsapOption = new FlaggedOption(option.id)
-                    .setStringParser(JSAP.STRING_PARSER)
-                    .setRequired(option.required)
-                    .setShortFlag(JSAP.NO_SHORTFLAG)
-                    .setLongFlag(option.id)
-                    .setDefault(option.defaultsTo);
-            jsapOption.setHelp(option.help);
-            parameters.add(jsapOption);
-        }
 
         return parameters;
     }

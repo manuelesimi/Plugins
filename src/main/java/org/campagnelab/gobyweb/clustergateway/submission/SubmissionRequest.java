@@ -1,5 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
+import com.martiansoftware.jsap.FlaggedOption;
+import com.martiansoftware.jsap.JSAP;
 import com.martiansoftware.jsap.JSAPResult;
 import com.martiansoftware.jsap.Parameter;
 import org.apache.commons.lang.StringUtils;
@@ -9,6 +11,7 @@ import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +25,12 @@ import java.util.*;
 public abstract class SubmissionRequest {
 
     protected static final org.apache.log4j.Logger logger = Logger.getLogger(SubmissionRequest.class);
+
+    /**
+     * The executable plugin that will be submitted
+     * If subclasses set it, some submission information are extracted by the configuration.
+     */
+    protected ExecutableConfig executableConfig = null;
 
     protected static CommandLineHelper jsapHelper = new CommandLineHelper(ClusterGateway.class) {
         @Override
@@ -147,6 +156,19 @@ public abstract class SubmissionRequest {
      */
     protected int submitRequest() throws Exception {
         List<Parameter> additionalParameters = this.getAdditionalParameters();
+        if (this.executableConfig != null) {
+            //add parameters from plugin configuration
+            for (org.campagnelab.gobyweb.plugins.xml.executables.Option option : executableConfig.getOptions().option){
+                FlaggedOption jsapOption = new FlaggedOption(option.id)
+                        .setStringParser(JSAP.STRING_PARSER)
+                        .setRequired(option.required)
+                        .setShortFlag(JSAP.NO_SHORTFLAG)
+                        .setLongFlag(option.id)
+                        .setDefault(option.defaultsTo);
+                jsapOption.setHelp(option.help);
+                additionalParameters.add(jsapOption);
+            }
+        }
         JSAPResult config = jsapHelper.configure(commandLineArguments, additionalParameters);
         if (config == null)
             return 1;
