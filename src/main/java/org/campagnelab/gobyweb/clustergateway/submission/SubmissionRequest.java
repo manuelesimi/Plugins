@@ -1,9 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
-import com.martiansoftware.jsap.FlaggedOption;
-import com.martiansoftware.jsap.JSAP;
-import com.martiansoftware.jsap.JSAPResult;
-import com.martiansoftware.jsap.Parameter;
+import com.martiansoftware.jsap.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.InputSlotValue;
@@ -12,6 +9,7 @@ import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
 
 import java.io.File;
 import java.io.IOException;
@@ -147,7 +145,7 @@ public abstract class SubmissionRequest {
      * @return
      */
     protected List<Parameter> getAdditionalParameters() {
-        return Collections.EMPTY_LIST;
+        return new ArrayList<Parameter>();
     }
     /**
      * Submits the request to the Cluster Gateway.
@@ -169,6 +167,7 @@ public abstract class SubmissionRequest {
                 additionalParameters.add(jsapOption);
             }
         }
+        this.addInputSlots(additionalParameters);
         JSAPResult config = jsapHelper.configure(commandLineArguments, additionalParameters);
         if (config == null)
             return 1;
@@ -224,6 +223,43 @@ public abstract class SubmissionRequest {
 
     }
 
+    /**
+     * Adds the input slot parameter to the interface according to the executable plugin configuration, if any
+     * @param additionalParameters
+     */
+    private void addInputSlots(List<Parameter> additionalParameters) {
+        if ((this.executableConfig == null) || (executableConfig.getInputSchema().getInputSlots().size() == 0))
+            return;
+
+        /*
+            <unflaggedOption>
+                <id>slots</id>
+                <required>optional</required>
+                <greedy>true</greedy>
+                <help>List of input slots.
+                 The list must be in the form: INPUT_SLOT_NAME1: TAG1, TAG2, TAGN PARAMETER_NAME2: TAGX, TAGY.
+                 Tags must refer registered FileSet instances.</help>
+            </unflaggedOption>
+
+         */
+        StringBuilder description = new StringBuilder("List of input slots.\n");
+        description.append(String.format("%s accepts the following input slots: \n", this.executableConfig.getId()));
+        StringBuilder formDescription = new StringBuilder();
+        for (Slot slot: executableConfig.getInputSchema().getInputSlots()){
+            description.append(String.format("\t%s (instance of fileset %s): minOccurs %s, maxOccurs %s\n",slot.getName(),
+                    slot.geType().id,slot.geType().minOccurs, slot.geType().maxOccurs));
+            if ((slot.geType().maxOccurs.equalsIgnoreCase("") || Integer.valueOf(slot.geType().maxOccurs) == 1))
+                formDescription.append(String.format("%s: TAG1, .. ,TAG%s ", slot.getName(), slot.geType().maxOccurs));
+            else
+                formDescription.append(String.format("%s: TAG ", slot.getName()));
+        }
+        description.append("The list must be in the form: SLOT_NAME1: TAG1, TAG2, TAGN SLOT_NAME2: TAGX, TAGY.");
+        UnflaggedOption option = new UnflaggedOption("slots").setRequired(true).setGreedy(true).setStringParser(JSAP.STRING_PARSER);
+        option.setHelp(description.toString() + "\n "+  formDescription.toString());
+        additionalParameters.add(option);
+    }
+
     protected abstract int submit(JSAPResult config, Actions actions) throws Exception;
+
 
 }

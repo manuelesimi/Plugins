@@ -74,5 +74,4 @@ class AlignerSubmissionRequest extends SubmissionRequest {
        return 0;
     }
 
-
 }

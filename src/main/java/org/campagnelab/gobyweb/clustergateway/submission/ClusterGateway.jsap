@@ -150,15 +150,6 @@
             <help>The directory that holds the artifact repository on the deployment machine.</help>
         </flaggedOption>
 
-        <unflaggedOption>
-            <id>slots</id>
-            <required>optional</required>
-            <greedy>true</greedy>
-            <help>List of input slots.
-             The list must be in the form: INPUT_SLOT_NAME1: TAG1, TAG2, TAGN PARAMETER_NAME2: TAGX, TAGY.
-             Tags must refer registered FileSet instances.</help>
-        </unflaggedOption>
-
         <flaggedOption>
             <id>option</id>
             <stringParser>
