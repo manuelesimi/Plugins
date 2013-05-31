@@ -248,12 +248,13 @@ public abstract class SubmissionRequest {
         for (Slot slot: executableConfig.getInputSchema().getInputSlots()){
             description.append(String.format("\t%s (instance of fileset %s): minOccurs %s, maxOccurs %s\n",slot.getName(),
                     slot.geType().id,slot.geType().minOccurs, slot.geType().maxOccurs));
-            if ((slot.geType().maxOccurs.equalsIgnoreCase("") || Integer.valueOf(slot.geType().maxOccurs) == 1))
+            if ((slot.geType().maxOccurs.equalsIgnoreCase(""))
+                    ||(slot.geType().maxOccurs.equalsIgnoreCase("unbounded")) || (Integer.valueOf(slot.geType().maxOccurs) > 1))
                 formDescription.append(String.format("%s: TAG1, .. ,TAG%s ", slot.getName(), slot.geType().maxOccurs));
             else
                 formDescription.append(String.format("%s: TAG ", slot.getName()));
         }
-        description.append("The list must be in the form: SLOT_NAME1: TAG1, TAG2, TAGN SLOT_NAME2: TAGX, TAGY.");
+        description.append(String.format("The list must be in the form: %s", formDescription.toString()));
         UnflaggedOption option = new UnflaggedOption("slots").setRequired(true).setGreedy(true).setStringParser(JSAP.STRING_PARSER);
         option.setHelp(description.toString() + "\n "+  formDescription.toString());
         additionalParameters.add(option);
