@@ -1,7 +1,12 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
 
+import com.martiansoftware.jsap.JSAP;
+import com.martiansoftware.jsap.JSAPException;
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.io.CommandLineHelper;
+
+import java.io.IOException;
 
 
 /**
@@ -28,9 +33,20 @@ public class ClusterGateway {
             SubmissionRequest request = SubmissionRequestFactory.createRequest(args);
             return request.submitRequest();
         } catch (Exception e) {
-            e.printStackTrace();
-            logger.error(e);
-            return (1);
+            //display the basic help
+            try {
+                JSAP jsap = new JSAP(ClusterGateway.class.getResource("ClusterGateway.jsap"));
+                System.err.println(jsap.getHelp());
+                System.err.println();
+                System.err.println("Usage: java " + ClusterGateway.class.getName());
+                System.err.println("                " + jsap.getUsage());
+                System.err.println();
+                return (1);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                logger.error(e1);
+                return (1);
+            }
         }
     }
 
