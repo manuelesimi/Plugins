@@ -224,43 +224,31 @@ public abstract class SubmissionRequest {
     }
 
     /**
-     * Adds the input slot parameter to the interface according to the executable plugin configuration, if any
+     * Adds the input slot parameter to the interface according to the executable plugin configuration, if any.
      * @param additionalParameters
      */
     private void addInputSlots(List<Parameter> additionalParameters) {
         if ((this.executableConfig == null) || (executableConfig.getInputSchema().getInputSlots().size() == 0))
             return;
-
-        /*
-            <unflaggedOption>
-                <id>slots</id>
-                <required>optional</required>
-                <greedy>true</greedy>
-                <help>List of input slots.
-                 The list must be in the form: INPUT_SLOT_NAME1: TAG1, TAG2, TAGN PARAMETER_NAME2: TAGX, TAGY.
-                 Tags must refer registered FileSet instances.</help>
-            </unflaggedOption>
-
-         */
-        StringBuilder description = new StringBuilder("List of input slots.\n");
+        StringBuilder description = new StringBuilder("List of input slots for the job. ");
         description.append(String.format("%s accepts the following input slots: \n", this.executableConfig.getId()));
         StringBuilder formDescription = new StringBuilder();
         for (Slot slot: executableConfig.getInputSchema().getInputSlots()){
-            description.append(String.format("\t%s (instance of fileset %s): minOccurs %s, maxOccurs %s\n",slot.getName(),
+            description.append(String.format("- %s (instance of %s): minOccurs %s, maxOccurs %s\n",slot.getName(),
                     slot.geType().id,slot.geType().minOccurs, slot.geType().maxOccurs));
-            if ((slot.geType().maxOccurs.equalsIgnoreCase(""))
-                    ||(slot.geType().maxOccurs.equalsIgnoreCase("unbounded")) || (Integer.valueOf(slot.geType().maxOccurs) > 1))
-                formDescription.append(String.format("%s: TAG1, .. ,TAG%s ", slot.getName(), slot.geType().maxOccurs));
+            if (slot.geType().maxOccurs.equalsIgnoreCase("unbounded"))
+                formDescription.append(String.format("%s: TAG1, ..., TAGN ", slot.getName()));
+            else if  (Integer.valueOf(slot.geType().maxOccurs) > 1)
+                formDescription.append(String.format("%s: TAG1, ..., TAG%s ", slot.getName(), slot.geType().maxOccurs));
             else
                 formDescription.append(String.format("%s: TAG ", slot.getName()));
         }
-        description.append(String.format("The list must be in the form: %s", formDescription.toString()));
+        description.append(String.format("\nThe list must be provided in the format:\n%s", formDescription.toString()));
         UnflaggedOption option = new UnflaggedOption("slots").setRequired(true).setGreedy(true).setStringParser(JSAP.STRING_PARSER);
-        option.setHelp(description.toString() + "\n "+  formDescription.toString());
+        option.setHelp(description.toString());
         additionalParameters.add(option);
     }
 
     protected abstract int submit(JSAPResult config, Actions actions) throws Exception;
-
 
 }
