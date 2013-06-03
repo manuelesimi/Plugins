@@ -21,6 +21,16 @@
             <pattern>*.entries</pattern>
             <mandatory>true</mandatory>
         </selector>
+        <selector matchAttribute="basename">
+            <id>STATS</id>
+            <pattern>*.alignment-stats.txt</pattern>
+            <mandatory>false</mandatory>
+        </selector>
+        <selector matchAttribute="basename">
+            <id>TMH</id>
+            <pattern>*.tmh</pattern>
+            <mandatory>false</mandatory>
+        </selector>
     </files>
     <attributes>
         <attribute name="basename"/>

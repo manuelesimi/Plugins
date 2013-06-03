@@ -338,7 +338,7 @@ function push_bam_alignments {
      #push back the generated alignments
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
 
-     REGISTERED_TAGS=`${FILESET_COMMAND} --push BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bai`
+     REGISTERED_TAGS=`${FILESET_COMMAND} --push BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bai $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
      if [ $? != 0 ]; then
         echo Failed to push back the alignment files
         return 0
@@ -358,7 +358,7 @@ function push_goby_alignments {
      #push back the generated alignments
      ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
 
-     REGISTERED_TAGS=`${FILESET_COMMAND} --push GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header`
+     REGISTERED_TAGS=`${FILESET_COMMAND} --push GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
      if [ $? != 0 ]; then
         echo Failed to push back the alignment files
         return 0
