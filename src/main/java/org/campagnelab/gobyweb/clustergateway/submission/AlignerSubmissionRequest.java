@@ -29,28 +29,28 @@ class AlignerSubmissionRequest extends SubmissionRequest {
         List<Parameter> parameters = new ArrayList<Parameter>();
 
         //add mandatory parameters common to all aligners
-        FlaggedOption genome = new FlaggedOption("genome-reference-id")
+        FlaggedOption genome = new FlaggedOption("GENOME_REFERENCE_ID")
                 .setStringParser(JSAP.STRING_PARSER)
                 .setRequired(true)
                 .setShortFlag(JSAP.NO_SHORTFLAG)
-                .setLongFlag("genome-reference-id");
+                .setLongFlag("GENOME_REFERENCE_ID");
         genome.setHelp("The reference genome.");
         parameters.add(genome);
 
-        FlaggedOption chunk_size = new FlaggedOption("chunk-size")
+        FlaggedOption chunk_size = new FlaggedOption("CHUNK_SIZE")
                 .setStringParser(JSAP.STRING_PARSER)
                 .setRequired(true)
                 .setShortFlag(JSAP.NO_SHORTFLAG)
-                .setLongFlag("chunk-size");
+                .setLongFlag("CHUNK_SIZE");
         chunk_size.setHelp("The size of each chunk.");
         parameters.add(chunk_size);
 
-        FlaggedOption parts = new FlaggedOption("number-of-align-parts")
+        FlaggedOption parts = new FlaggedOption("NUMBER_OF_ALIGN_PARTS")
                 .setStringParser(JSAP.STRING_PARSER)
                 .setRequired(true)
                 .setShortFlag(JSAP.NO_SHORTFLAG)
-                .setLongFlag("number-of-align-parts");
-        parts.setHelp("The number of parts in which the job will be splitted.");
+                .setLongFlag("NUMBER_OF_ALIGN_PARTS");
+        parts.setHelp("The number of parts in which the job will be split.");
         parameters.add(parts);
 
         return parameters;
@@ -67,9 +67,9 @@ class AlignerSubmissionRequest extends SubmissionRequest {
 
         actions.submitAligner(alignerConfig.getId(),
                 this.getInputSlots(),
-                config.getString("genome-reference-id"),
-                Integer.valueOf(config.getString("chunk-size")),
-                Integer.valueOf(config.getString("number-of-align-parts")),
+                config.getString("GENOME_REFERENCE_ID"),
+                Integer.valueOf(config.getString("CHUNK_SIZE")),
+                Integer.valueOf(config.getString("NUMBER_OF_ALIGN_PARTS")),
                 this.getUnclassifiedOptions());
        return 0;
     }

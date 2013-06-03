@@ -174,7 +174,8 @@ public abstract class SubmissionRequest {
 
         //add the parameters to the options map
         for (Parameter parameter : additionalParameters) {
-            this.optionsMap.put(parameter.getID(), config.getString(parameter.getID()));
+            if (! parameter.getID().equalsIgnoreCase("slots")) //we do not want the input slots in constants.sh
+                this.optionsMap.put(parameter.getID(), config.getString(parameter.getID()));
         }
         String owner = config.userSpecified("owner") ? config.getString("owner") : System.getProperty("user.name");
 

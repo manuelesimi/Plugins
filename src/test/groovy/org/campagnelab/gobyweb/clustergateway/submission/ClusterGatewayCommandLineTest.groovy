@@ -88,9 +88,9 @@ public class ClusterGatewayCommandLineTest {
                         "--queue rascals.q " +
                         "--env-script ${envScript} "+
                         "--job BWA_GOBY_ARTIFACT " +
-                        "--genome-reference-id WBcel215.69 "+
-                        "--chunk-size 50000000 "+
-                        "--number-of-align-parts 2 " +
+                        "--GENOME_REFERENCE_ID WBcel215.69 "+
+                        "--CHUNK_SIZE 50000000 "+
+                        "--NUMBER_OF_ALIGN_PARTS 2 " +
                         "--option FOO=foo " +
                         "--option BAR=bar " +
                         "--option BAZ=baz " +
