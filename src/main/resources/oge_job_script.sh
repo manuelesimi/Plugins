@@ -862,12 +862,6 @@ function job_complete {
 
     jobCompletedEmail
 }
-function source {
-
-%COPY_ENTRIES_FILES%
-
-}
-
 
 function diffexp {
     jobStartedEmail
@@ -1035,9 +1029,6 @@ case ${STATE} in
         push_other_alignment_results
         cleanup
         job_complete
-        ;;
-    source)
-        source
         ;;
     *)
         cd ${JOB_DIR}
