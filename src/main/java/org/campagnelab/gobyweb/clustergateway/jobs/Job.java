@@ -38,8 +38,6 @@ public abstract class Job {
 
     private int memoryInGigs;
 
-    private int memoryOverheadInGigs;
-
     private boolean parallel = false;
 
 
@@ -128,14 +126,6 @@ public abstract class Job {
 
     public int getMemoryInGigs() {
         return memoryInGigs;
-    }
-
-    public void setMemoryOverheadInGigs(int memoryOverheadInGigs) {
-        this.memoryOverheadInGigs = memoryOverheadInGigs;
-    }
-
-    public int getMemoryOverheadInGigs() {
-        return memoryOverheadInGigs;
     }
 
     /**

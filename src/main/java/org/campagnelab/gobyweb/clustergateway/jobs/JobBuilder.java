@@ -55,7 +55,6 @@ public abstract class JobBuilder {
         ExecutableJob executableJob = new ExecutableJob(executableConfig);
         //default memory settings (can be overridden by subclasses)
         executableJob.setMemoryInGigs(8);
-        executableJob.setMemoryOverheadInGigs(2);
         executableJob.getEnvironment().putAll(this.buildResourceRequirements());
         this.customizeJob(executableJob);
         //user options have priority and eventually overwrites the others

@@ -186,7 +186,6 @@ abstract public class AbstractSubmitter implements Submitter {
         environment.put("GOBY_DIR", "${TMPDIR}");
         environment.put("SGE_O_WORKDIR", jobDir);
         environment.put("KILL_FILE", String.format("%s/kill.sh", jobDir));
-        environment.put("SGE_MEMORY", String.format("%dg", job.getMemoryInGigs() + job.getMemoryOverheadInGigs()));
         environment.put("GRID_JVM_FLAGS", String.format("-Xms%dg -Xmx%dg", job.getMemoryInGigs(), job.getMemoryInGigs()));
         environment.put("QUEUE_NAME", this.queue);
         environment.put("QUEUE_WRITER", "${RESOURCES_GROOVY_EXECUTABLE} ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} --handler-service PluginsSDK --queue-message-dir "
