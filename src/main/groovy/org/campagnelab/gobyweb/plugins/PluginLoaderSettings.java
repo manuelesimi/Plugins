@@ -79,6 +79,47 @@ public class PluginLoaderSettings {
     };
 
     /**
+     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     */
+    public static final String[] COUNTS = new String[] {
+            "COUNTS", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+    /**
+     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     */
+    public static final String[] TSV = new String[] {
+            "TSV", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+    /**
+     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     */
+    public static final String[] GZ = new String[] {
+            "GZ", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+    /**
+     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     */
+    public static final String[] STATS = new String[] {
+            "STATS", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+
+    /**
      * List the configuration classes to register when a new instance of {@link javax.xml.bind.JAXBContext} is being created
      */
     public enum CONFIGS_TO_CLASSES {

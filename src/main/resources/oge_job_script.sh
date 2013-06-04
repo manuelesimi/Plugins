@@ -367,6 +367,45 @@ function push_goby_alignments {
 
 }
 
+function push_other_alignment_results {
+
+   echo .
+   echo . Running push_other_results
+   echo .
+
+   #push back TSV
+   echo Pushing TSV
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push TSV: $RESULT_DIR/*.tsv`
+   if [ $? != 0 ]; then
+        echo Failed to push back TSV files
+   fi
+   echo "The following TSV instances have been successfully registered: ${REGISTERED_TAGS}"
+
+   #push COUNTS back
+   echo Pushing COUNTS
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push COUNTS: $RESULT_DIR/*.counts`
+   if [ $? != 0 ]; then
+        echo Failed to push back COUNTS files
+   fi
+   echo "The following COUNTS instances have been successfully registered: ${REGISTERED_TAGS}"
+
+    #push GZ back
+   echo Pushing GZs
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push GZ: $RESULT_DIR/*.gz`
+   if [ $? != 0 ]; then
+        echo Failed to push back GZ files
+   fi
+   echo "The following GZ instances have been successfully registered: ${REGISTERED_TAGS}"
+
+    #push GZ back
+   echo Pushing STATS
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push STATS: $RESULT_DIR/*.stats`
+   if [ $? != 0 ]; then
+        echo Failed to push back STATS files
+   fi
+   echo "The following STATS instances have been successfully registered: ${REGISTERED_TAGS}"
+}
+
 function bam_align {
     # Set CURRENT_PART because we will need it in the dieUponError function
     CURRENT_PART=1
@@ -993,6 +1032,7 @@ case ${STATE} in
         if [ "${SUPPORTS_BAM_ALIGNMENTS}" == "true" ]; then
             push_bam_alignments
         fi
+        push_other_alignment_results
         cleanup
         job_complete
         ;;

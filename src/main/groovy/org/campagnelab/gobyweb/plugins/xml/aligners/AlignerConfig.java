@@ -206,6 +206,54 @@ public class AlignerConfig extends ExecutableConfig {
             bamSlot.seType(bamType);
             slots.add(bamSlot);
         }
+        Slot countsSlot = new Slot();
+        countsSlot.setName("COUNTS");
+        Slot.IOFileSetRef countsType = new Slot.IOFileSetRef();
+        countsType.id = PluginLoaderSettings.COUNTS[0];
+        countsType.versionAtLeast = PluginLoaderSettings.COUNTS[1];
+        countsType.versionExactly = PluginLoaderSettings.COUNTS[2];
+        countsType.versionAtMost = PluginLoaderSettings.COUNTS[3];
+        countsType.minOccurs = Integer.toString(1);
+        countsType.maxOccurs = Integer.toString(1);
+        countsSlot.seType(countsType);
+        slots.add(countsSlot);
+
+        Slot tsvSlot = new Slot();
+        tsvSlot.setName("TSV");
+        Slot.IOFileSetRef tsvType = new Slot.IOFileSetRef();
+        tsvType.id = PluginLoaderSettings.TSV[0];
+        tsvType.versionAtLeast = PluginLoaderSettings.TSV[1];
+        tsvType.versionExactly = PluginLoaderSettings.TSV[2];
+        tsvType.versionAtMost = PluginLoaderSettings.TSV[3];
+        tsvType.minOccurs = Integer.toString(1);
+        tsvType.maxOccurs = Integer.toString(1);
+        tsvSlot.seType(tsvType);
+        slots.add(tsvSlot);
+
+        Slot gzSlot = new Slot();
+        gzSlot.setName("GZ");
+        Slot.IOFileSetRef gzType = new Slot.IOFileSetRef();
+        gzType.id = PluginLoaderSettings.GZ[0];
+        gzType.versionAtLeast = PluginLoaderSettings.GZ[1];
+        gzType.versionExactly = PluginLoaderSettings.GZ[2];
+        gzType.versionAtMost = PluginLoaderSettings.GZ[3];
+        gzType.minOccurs = Integer.toString(2);
+        gzType.maxOccurs = Integer.toString(2);
+        gzSlot.seType(gzType);
+        slots.add(gzSlot);
+
+        Slot statsSlot = new Slot();
+        statsSlot.setName("STATS");
+        Slot.IOFileSetRef statsType = new Slot.IOFileSetRef();
+        statsType.id = PluginLoaderSettings.STATS[0];
+        statsType.versionAtLeast = PluginLoaderSettings.STATS[1];
+        statsType.versionExactly = PluginLoaderSettings.STATS[2];
+        statsType.versionAtMost = PluginLoaderSettings.STATS[3];
+        statsType.minOccurs = Integer.toString(0);
+        statsType.maxOccurs = Integer.toString(1);
+        statsSlot.seType(statsType);
+        slots.add(statsSlot);
+
         return  this.executableOutputSchema;
     }
 }
