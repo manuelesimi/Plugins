@@ -1,21 +1,17 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
-import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
-import org.campagnelab.gobyweb.filesets.protos.MetadataFileWriter;
+import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 
 import java.io.IOException;
-import java.io.File;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
- * Builder for aligner jobs
+ * Builder for aligner jobs.
  *
  * @author manuele
  */
@@ -79,9 +75,9 @@ public class AlignerJobBuilder extends JobBuilder {
         environment.put("SUPPORTS_BISULFITE_CONVERTED_READS", alignerConfig.supportsBisulfiteConvertedReads);
         environment.put("ALIGNER", alignerConfig.getId());
         //variables from the sample metadata
-        File metadataFile = fileSetArea.getMetadataFile(this.inputReadsTag, MetadataFileWriter.PB_FILENAME);
-        MetadataFileReader reader = new MetadataFileReader(metadataFile);
-        Map<String, String> storedAttributes = reader.getAttributes();
+        FileSetAPI api = FileSetAPI.getReadOnlyAPI(fileSetArea);
+        List<String> errors = new ArrayList<String>();
+        Map<String, String> storedAttributes = api.fetchAttributes(this.inputReadsTag,errors);
         for (String attribute : attributesFromReadsMetadata) {
             if (storedAttributes.containsKey(attribute))
                 environment.put(attribute, storedAttributes.get(attribute));
