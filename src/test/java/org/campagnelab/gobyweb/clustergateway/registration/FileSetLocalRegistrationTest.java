@@ -50,7 +50,7 @@ public class FileSetLocalRegistrationTest {
 
             storageArea = AreaFactory.createFileSetArea(
                     storageAreaDir, "junit");
-            fileset = new FileSetAPI(storageArea,
+            fileset =  FileSetAPI.getReadWriteAPI(storageArea,
                     PluginsToConfigurations.convertAsList(plugins.getRegistry().filterConfigs(FileSetConfig.class)));
         } catch (IOException ioe) {
             ioe.printStackTrace();

@@ -100,7 +100,7 @@ public class FileSetManager {
         List<String> errors = new ArrayList<String>();
         //convert plugins configuration to configurations that can be consumed by FileSetAPI
         ConfigurationList configurationList = PluginsToConfigurations.convertAsList(plugins.getRegistry().filterConfigs(FileSetConfig.class));
-        FileSetAPI fileset = new FileSetAPI(storageArea, configurationList);
+        FileSetAPI fileset = FileSetAPI.getReadWriteAPI(storageArea, configurationList);
         if (config.getString("action").equalsIgnoreCase("register")) {
             List<InputEntry> entries = parseInputEntries(config.getStringArray("entries"));
             if (config.userSpecified("no-copy"))
