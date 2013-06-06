@@ -36,6 +36,7 @@
 
 package org.campagnelab.gobyweb.plugins.xml.alignmentanalyses;
 
+import org.campagnelab.gobyweb.plugins.PluginLoaderSettings;
 import org.campagnelab.gobyweb.plugins.xml.executables.*;
 
 import javax.xml.bind.annotation.*;
@@ -177,10 +178,41 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
 
     @Override
     public ExecutableInputSchema getInputSchema() {
+
+        assert (!(supportsGobyAlignments && supportsBAMAlignments))
+                : "supportsGobyAlignments and supportsBAMAlignments cannot be both true";
+        assert (supportsGobyAlignments || supportsBAMAlignments)
+                : "supportsGobyAlignments and supportsBAMAlignments cannot be both false";
+
         this.executableInputSchema = new ExecutableInputSchema();
         List<Slot> slots = this.executableInputSchema.getInputSlots();
         slots.clear(); //needed in case the method is called twice
-        //TODO populate the slots with alignments
+        if (supportsGobyAlignments){
+            Slot gobySlot = new Slot();
+            gobySlot.setName("INPUT_ALIGNMENTS");
+            Slot.IOFileSetRef gobyType = new Slot.IOFileSetRef();
+            gobyType.id = PluginLoaderSettings.GOBY_ALIGNMENTS[0];
+            gobyType.versionAtLeast = PluginLoaderSettings.GOBY_ALIGNMENTS[1];
+            gobyType.versionExactly = PluginLoaderSettings.GOBY_ALIGNMENTS[2];
+            gobyType.versionAtMost = PluginLoaderSettings.GOBY_ALIGNMENTS[3];
+            gobyType.minOccurs = Integer.toString(1);
+            gobyType.maxOccurs = "unbounded";
+            gobySlot.seType(gobyType);
+            slots.add(gobySlot);
+        }
+        if (supportsBAMAlignments) {
+            Slot bamSlot = new Slot();
+            bamSlot.setName("INPUT_ALIGNMENTS");
+            Slot.IOFileSetRef bamType = new Slot.IOFileSetRef();
+            bamType.id = PluginLoaderSettings.BAM_ALIGNMENTS[0];
+            bamType.versionAtLeast = PluginLoaderSettings.BAM_ALIGNMENTS[1];
+            bamType.versionExactly = PluginLoaderSettings.BAM_ALIGNMENTS[2];
+            bamType.versionAtMost = PluginLoaderSettings.BAM_ALIGNMENTS[3];
+            bamType.minOccurs = Integer.toString(1);
+            bamType.maxOccurs = "unbounded";
+            bamSlot.seType(bamType);
+            slots.add(bamSlot);
+        }
 
         return this.executableInputSchema;
     }

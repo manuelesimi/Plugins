@@ -40,7 +40,7 @@ public class SubmissionRequestFactory {
 
             AlignmentAnalysisConfig analysisConfig = plugins.getRegistry().findByTypedId(pluginInfo[1], AlignmentAnalysisConfig.class);
             if (analysisConfig != null)
-                throw new Exception("AlignmentAnalysisSubmissionRequest not implemented yet");
+                request = new AlignmentAnalysisSubmissionRequest(analysisConfig);
 
             TaskConfig taskConfig = plugins.getRegistry().findByTypedId(pluginInfo[1], TaskConfig.class);
             if (taskConfig != null)

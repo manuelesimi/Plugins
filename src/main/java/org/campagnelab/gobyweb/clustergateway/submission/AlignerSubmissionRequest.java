@@ -17,7 +17,7 @@ import java.util.List;
  */
 class AlignerSubmissionRequest extends SubmissionRequest {
 
-    AlignerConfig alignerConfig;
+    private final AlignerConfig alignerConfig;
 
     protected AlignerSubmissionRequest(AlignerConfig alignerConfig) {
        this.alignerConfig = alignerConfig;

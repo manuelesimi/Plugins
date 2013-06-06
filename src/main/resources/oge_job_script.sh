@@ -278,7 +278,11 @@ function run_alignment_analysis_combine {
     (cd ${TMPDIR} ; plugin_alignment_analysis_combine ${RESULT_DIR}/${TAG}.${RESULT_FILE_EXTENSION} ${SGE_O_WORKDIR}/split-results/${TAG}/${TAG}-*.${RESULT_FILE_EXTENSION} )
     jobDieUponError "failed to combine results"
 
+
+
     %COPY_PLUGIN_OUTPUT_FILES%
+
+    #TODO: this must become a push in the fileset area
 
     mkdir ${TMPDIR}/import-db
     cp ${RESULT_DIR}/${TAG}*.tsv ${TMPDIR}/import-db/
@@ -302,19 +306,7 @@ function run_alignment_analysis_combine {
        dieUponError "Could not copy db/lucene to results directory (this disk might be full)."
     fi
 
-
-    #
-    # Copy results back to web server
-    #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Copying results from cluster" --index 1 --job-type job-part
-
-        ssh ${WEB_SERVER_SSH_PREFIX} "mkdir -p ${RESULTS_WEB_DIR}"
-    dieUponError "Could not create result directory on web app server."
-    scp -r ${RESULT_DIR}/* ${WEB_SERVER_SSH_PREFIX}:${RESULTS_WEB_DIR}
-    dieUponError "Could not copy results to web app server (this disk might be full)."
-
-    # remove intermediate results for parts:
-    # rm ${SGE_O_WORKDIR}/split-results/${TAG}/${TAG}-*.${RESULT_FILE_EXTENSION}
+    push_alignment_analysis_results
 
     #
     # Job completely done
@@ -324,10 +316,27 @@ function run_alignment_analysis_combine {
     jobCompletedEmail
 
     copy_logs diffexp 1 1
+}
+
+#pushes the results of an alignment analysis job in the fileset area
+function push_alignment_analysis_results {
+
+    echo .
+    echo . Running push_alignment_analysis_results
+    echo .
+
+    #
+    # Copy results back to web server
+    #
+    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index 1 --job-type job-part
+
+    #scp -r ${RESULT_DIR}/* ${WEB_SERVER_SSH_PREFIX}:${RESULTS_WEB_DIR}
+    echo TO IMPLEMENT!!
+    dieUponError "Failed to push results in the fileset area."
 
 }
 
-
+#pushes BAM alignments produced by an aligner job in the fileset area
 function push_bam_alignments {
     echo .
     echo . Running push_bam_alignments
@@ -338,16 +347,14 @@ function push_bam_alignments {
      #push back the generated alignments
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
 
-     REGISTERED_TAGS=`${FILESET_COMMAND} --push BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bai $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
-     if [ $? != 0 ]; then
-        echo Failed to push back the alignment files
-        return 0
-     fi
+     REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bai $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
+     dieUponError "Failed to push the alignment files in the fileset area."
+
      echo "The following BAM_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
 
 }
 
-
+#pushes Goby alignments produced by an aligner job in the fileset area
 function push_goby_alignments {
     echo .
     echo . Running push_goby_alignments
@@ -358,15 +365,14 @@ function push_goby_alignments {
      #push back the generated alignments
      ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
 
-     REGISTERED_TAGS=`${FILESET_COMMAND} --push GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
-     if [ $? != 0 ]; then
-        echo Failed to push back the alignment files
-        return 0
-     fi
+     REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
+     dieUponError "Failed to push the alignment files in the fileset area."
+
      echo "The following GOBY_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
 
 }
 
+#pushes any result (except the alignments) produced by an aligner job in the fileset area
 function push_other_alignment_results {
 
    echo .
@@ -375,7 +381,7 @@ function push_other_alignment_results {
 
    #push back TSV
    echo Pushing TSV
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push TSV: $RESULT_DIR/*.tsv`
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} TSV: $RESULT_DIR/*.tsv`
    if [ $? != 0 ]; then
         echo Failed to push back TSV files
    fi
@@ -383,7 +389,7 @@ function push_other_alignment_results {
 
    #push COUNTS back
    echo Pushing COUNTS
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push COUNTS: $RESULT_DIR/*.counts`
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} COUNTS: $RESULT_DIR/*.counts`
    if [ $? != 0 ]; then
         echo Failed to push back COUNTS files
    fi
@@ -391,7 +397,7 @@ function push_other_alignment_results {
 
     #push GZ back
    echo Pushing GZs
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push GZ: $RESULT_DIR/*.gz`
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} GZ: $RESULT_DIR/*.gz`
    if [ $? != 0 ]; then
         echo Failed to push back GZ files
    fi
@@ -399,7 +405,7 @@ function push_other_alignment_results {
 
     #push GZ back
    echo Pushing STATS
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push STATS: $RESULT_DIR/*.stats`
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} STATS: $RESULT_DIR/*.stats`
    if [ $? != 0 ]; then
         echo Failed to push back STATS files
    fi
@@ -478,6 +484,25 @@ function dieUponError {
             ${QUEUE_WRITER} --tag ${TAG} --index ${CURRENT_PART} --job-type job-part --status ${JOB_PART_FAILED_STATUS} --description "${DESCRIPTION}"
             exit
     fi
+}
+
+function fetch_input_entries {
+
+     echo "fileset command: ${FILESET_COMMAND}"
+
+     #INPUT_READS slot is declated in AlignerConfig.getInputSchema()
+     ${FILESET_COMMAND} --has-fileset INPUT_ALIGNMENTS.%ENTRIES_NAME%
+     if [ $? != 0 ]; then
+        dieUponError "%ENTRIES_NAME% input entries are not available"
+     fi
+
+     ENTRIES_FILES=`${FILESET_COMMAND} --fetch INPUT_ALIGNMENTS.%ENTRIES_NAME%`
+     if [ $? != 0 ]; then
+        dieUponError "Failed to fecth %ENTRIES_NAME% input entries ${ENTRIES_FILES}"
+     fi
+     export ENTRIES_FILES
+     echo "Localized %ENTRIES_NAME% entries ${ENTRIES_FILES}"
+
 }
 
 function fetch_input_reads {
@@ -871,14 +896,13 @@ function diffexp {
     RESULT_DIR=${SGE_O_WORKDIR}/results/${TAG}
     /bin/mkdir -p ${RESULT_DIR}
 
+    #fetch the input entries from the fileset area
+    fetch_input_entries
+
     #
     # Differential Expression Analysis
     #
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_START_STATUS} --description "-" --index ${CURRENT_PART} --job-type job
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_START_STATUS} --description "Copying alignment files to local disk." --index ${CURRENT_PART} --job-type job
-    %COPY_ENTRIES_FILES%
-    %COPY_WEIGHT_FILES%
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_START_STATUS} --description "Finished copying." --index ${CURRENT_PART} --job-type job
 
     RETURN_STATUS=0
 
@@ -918,11 +942,9 @@ function diffexp {
     fi
 
     #
-    # Copy results back to web server
+    # Push results
     #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Copying results from cluster" --index ${CURRENT_PART} --job-type job-part
-    ssh ${WEB_SERVER_SSH_PREFIX} "mkdir -p ${RESULTS_WEB_DIR}"
-    scp $RESULT_DIR/* ${WEB_SERVER_SSH_PREFIX}:${RESULTS_WEB_DIR}
+    push_alignment_analysis_results
 
     #
     # Job completely done

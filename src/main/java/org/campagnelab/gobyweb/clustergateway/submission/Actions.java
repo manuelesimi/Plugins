@@ -17,6 +17,7 @@ import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 import java.io.File;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
 
@@ -148,15 +149,20 @@ final class Actions {
      *
      * @param id
      * @param inputSlots
+     * @param groups_definitions group definition list, each definition in the form: Group_N=TAG,TAG342,TAG231...
+     * @param comparison_pairs comparison pair list, each pair in the form "Group_1/Group_2"
      * @param unclassifiedOptions
      */
-    protected void submitAnalysis(String id, Set<InputSlotValue> inputSlots, Map<String, String> unclassifiedOptions)
+    protected void submitAnalysis(String id, Set<InputSlotValue> inputSlots, String[] groups_definitions,
+                                  String[] comparison_pairs, Map<String, String> unclassifiedOptions)
             throws Exception {
         AlignmentAnalysisConfig analysisConfig =registry.findByTypedId(id, AlignmentAnalysisConfig.class);
         if (analysisConfig == null)
             throw new IllegalArgumentException("Could not find an Alignment Analysis plugin with ID=" + id);
-        AnalysisJobBuilder builder = new AnalysisJobBuilder(analysisConfig, jobArea,
+        AlignmentAnalysisJobBuilder builder = new AlignmentAnalysisJobBuilder(analysisConfig, jobArea,
                 fileSetAreaReference, jobArea.getOwner(), inputSlots);
+        builder.setGroupDefinition(Arrays.asList(groups_definitions));
+        builder.setComparisonPairs(Arrays.asList(comparison_pairs));
         if (!submitter.isLocal())
             submitter.setWrapperScript("oge_job_script.sh");
         else

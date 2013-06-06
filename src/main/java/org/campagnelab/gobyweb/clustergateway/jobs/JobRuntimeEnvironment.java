@@ -12,6 +12,9 @@ import java.util.HashMap;
  */
 public class JobRuntimeEnvironment extends HashMap<String,Object> {
 
+    public Object getFromUndecorated(Object key) {
+        return super.get(decorateKey(key));
+    }
 
     @Override
     public Object get(Object key) {
