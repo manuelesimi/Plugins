@@ -238,9 +238,9 @@ public abstract class SubmissionRequest {
             description.append(String.format("- %s (instance of %s): minOccurs %s, maxOccurs %s\n",slot.getName(),
                     slot.geType().id,slot.geType().minOccurs, slot.geType().maxOccurs));
             if (slot.geType().maxOccurs.equalsIgnoreCase("unbounded"))
-                formDescription.append(String.format("%s: TAG1, ..., TAGN ", slot.getName()));
+                formDescription.append(String.format("%s: TAG1 ... TAGN ", slot.getName()));
             else if  (Integer.valueOf(slot.geType().maxOccurs) > 1)
-                formDescription.append(String.format("%s: TAG1, ..., TAG%s ", slot.getName(), slot.geType().maxOccurs));
+                formDescription.append(String.format("%s: TAG1 ... TAG%s ", slot.getName(), slot.geType().maxOccurs));
             else
                 formDescription.append(String.format("%s: TAG ", slot.getName()));
         }
