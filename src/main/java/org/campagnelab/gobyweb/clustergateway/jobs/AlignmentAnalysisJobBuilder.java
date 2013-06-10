@@ -92,7 +92,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         environment.put("COPY_PLUGIN_OUTPUT_FILES", this.generatePluginOutputCopyStatements());
         FileSetAPI api = FileSetAPI.getReadOnlyAPI(fileSetArea);
         List<String> errors = new ArrayList<String>();
-        environment.put("ENTRIES_NAME", this.detectEntriesName());
+        environment.put("ENTRIES_EXT",this.detectEntriesExt());
         for (String inputTag : this.inputAlignmentTags) {
             Map<String, String> storedAttributes = api.fetchAttributes(inputTag, errors);
             if (errors.size() >0)
@@ -124,27 +124,21 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
             environment.put(String.format("GROUP%d_COMPARISON_PAIR",i), comparisonPairs.get(i-1));
         }
         environment.put("NUM_GROUPS",this.groupDefinitions.size());
-
-        //TODO: ENTRIES_DIRECTORY is used by 2 plugins and they expect to have all the entries files in a single folder.
-        //TODO we may need to change them in order to check if ENTRIES_DIRECTORY is available and, if not, fetch
-        //TODO the entries files from the fileset area.
-
     }
 
-    /**
-     * Detects the entries name of the alignments to fetch from the fileset area.
-     * @return the entries name
-     * @throws IOException
-     */
-    private String detectEntriesName() throws IOException {
+   /**
+    * Detects the entries extension of the alignments to fetch from the fileset area.
+    * @throws IOException
+    */
+    private String detectEntriesExt() throws IOException {
         assert (!(this.analysisConfig.supportsGobyAlignments && this.analysisConfig.supportsBAMAlignments))
                 : "supportsGobyAlignments and supportsBAMAlignments cannot be both true";
         assert (this.analysisConfig.supportsGobyAlignments || this.analysisConfig.supportsBAMAlignments)
                 : "supportsGobyAlignments and supportsBAMAlignments cannot be both false";
         if (this.analysisConfig.supportsBAMAlignments)
-            return "BAM";
+            return ".bam";
         if (this.analysisConfig.supportsGobyAlignments)
-            return "ENTRIES";
+            return ".entries";
         throw new IOException("Unable to detect the entries name for the analysis (both goby and bam are not supported");
     }
 

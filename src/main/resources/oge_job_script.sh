@@ -486,22 +486,24 @@ function dieUponError {
     fi
 }
 
-function fetch_input_entries {
+function fetch_input_alignments {
 
      echo "fileset command: ${FILESET_COMMAND}"
 
-     #INPUT_READS slot is declated in AlignerConfig.getInputSchema()
-     ${FILESET_COMMAND} --has-fileset INPUT_ALIGNMENTS.%ENTRIES_NAME%
+     #INPUT_ALIGNMENTS slot is declared in AlignmentAnalysisConfig.getInputSchema()
+     ${FILESET_COMMAND} --has-fileset INPUT_ALIGNMENTS
      if [ $? != 0 ]; then
-        dieUponError "%ENTRIES_NAME% input entries are not available"
+        dieUponError "INPUT_ALIGNMENTS input entries are not available"
      fi
-
-     ENTRIES_FILES=`${FILESET_COMMAND} --fetch INPUT_ALIGNMENTS.%ENTRIES_NAME%`
+     export FILESET_TARGET_DIR="${JOB_DIR}/alignments"
+     mkdir -p  "${FILESET_TARGET_DIR}"
+     export ENTRIES_DIRECTORY="${FILESET_TARGET_DIR}"
+     ALIGNMENT_FILES=`${FILESET_COMMAND} --fetch INPUT_ALIGNMENTS`
      if [ $? != 0 ]; then
-        dieUponError "Failed to fecth %ENTRIES_NAME% input entries ${ENTRIES_FILES}"
+        dieUponError "Failed to fecth INPUT_ALIGNMENTS: ${ALIGNMENT_FILES}"
      fi
-     export ENTRIES_FILES
-     echo "Localized %ENTRIES_NAME% entries ${ENTRIES_FILES}"
+     export ENTRIES_FILES=`ls ${FILESET_TARGET_DIR}/*${ENTRIES_EXT}`
+     echo "Localized ALIGNMENT_FILES  ${ALIGNMENT_FILES}"
 
 }
 
@@ -897,7 +899,7 @@ function diffexp {
     /bin/mkdir -p ${RESULT_DIR}
 
     #fetch the input entries from the fileset area
-    fetch_input_entries
+    fetch_input_alignments
 
     #
     # Differential Expression Analysis
