@@ -122,7 +122,7 @@ public class ClusterGatewayCommandLineTest {
                         "--owner manuele.simi " +
                         "--queue rascals.q " +
                         "--env-script ${envScript} "+
-                        "--job CONTAMINANT_EXTRACT " +
+                        "--job SEQ_VAR_GOBY_METHYLATION_REGIONS " +
                         "--COMPARISON_PAIR Group_1/Group_2 "+
                         "--GROUP_DEFINITION Group_1=DPYZURP " +
                         "--GROUP_DEFINITION Group_2=DPYZURP " +
