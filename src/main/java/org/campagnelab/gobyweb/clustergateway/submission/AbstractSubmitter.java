@@ -20,15 +20,9 @@ import org.campagnelab.gobyweb.filesets.configuration.Configuration;
 import org.campagnelab.gobyweb.filesets.jobschema.JobInputSlot;
 import org.campagnelab.gobyweb.filesets.jobschema.JobOutputSlot;
 import org.campagnelab.gobyweb.io.JobArea;
-import org.campagnelab.gobyweb.plugins.ArtifactsProtoBufHelper;
-import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
-import org.campagnelab.gobyweb.plugins.DependencyResolver;
-import org.campagnelab.gobyweb.plugins.PluginRegistry;
+import org.campagnelab.gobyweb.plugins.*;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
-import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
+import org.campagnelab.gobyweb.plugins.xml.executables.*;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
@@ -191,8 +185,9 @@ abstract public class AbstractSubmitter implements Submitter {
         environment.put("QUEUE_WRITER", "${RESOURCES_GROOVY_EXECUTABLE} ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} --handler-service PluginsSDK --queue-message-dir "
                 + queueMessageDir.getAbsolutePath() );
         environment.put("ARTIFACT_REPOSITORY_DIR", artifactRepositoryPath);
+        environment.put("FILESET_TARGET_DIR", "${TMPDIR}");
         environment.put("FILESET_COMMAND",
-                String.format("java -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${TMPDIR} --pb-file %s/filesets.pb --job-tag %s",
+                String.format("java -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${FILESET_TARGET_DIR} --pb-file %s/filesets.pb --job-tag %s",
                         jobDir,
                         job.getTag()));
         if (job.isParallel()) {
@@ -419,6 +414,8 @@ abstract public class AbstractSubmitter implements Submitter {
         }
         configurationList.addConfiguration(configuration);
     }
+
+
 
     /**
      * Prepares the wrapper script for the job and copies it in the temporary dir.
