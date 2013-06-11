@@ -306,7 +306,12 @@ function run_alignment_analysis_combine {
        dieUponError "Could not copy db/lucene to results directory (this disk might be full)."
     fi
 
-    push_alignment_analysis_results
+     if [ "${PRODUCE_TAB_DELIMITED_OUTPUT}" == "true" ]; then
+            push_tsv_results
+     fi
+     if [ "${PRODUCE_VARIANT_CALLING_FORMAT_OUTPUT}" == "true" ]; then
+            push_vcf_results
+     fi
 
     #
     # Job completely done
@@ -319,20 +324,33 @@ function run_alignment_analysis_combine {
 }
 
 #pushes the results of an alignment analysis job in the fileset area
-function push_alignment_analysis_results {
+function push_tsv_results {
 
     echo .
-    echo . Running push_alignment_analysis_results
+    echo . Running push_tsv_results
     echo .
 
-    #
-    # Copy results back to web server
-    #
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index 1 --job-type job-part
 
-    #scp -r ${RESULT_DIR}/* ${WEB_SERVER_SSH_PREFIX}:${RESULTS_WEB_DIR}
-    echo TO IMPLEMENT!!
+    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} TSV_OUTPUT: $RESULT_DIR/*.tsv`
     dieUponError "Failed to push results in the fileset area."
+    echo "The following TSV instances have been successfully registered: ${REGISTERED_TAGS}"
+
+}
+
+
+#pushes the results of an alignment analysis job in the fileset area
+function push_vcf_results {
+
+    echo .
+    echo . Running push_vcf_results
+    echo .
+
+    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index 1 --job-type job-part
+
+    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} VCF_OUTPUT: $RESULT_DIR/*.vcf`
+    dieUponError "Failed to push results in the fileset area."
+    echo "The following VCF instances have been successfully registered: ${REGISTERED_TAGS}"
 
 }
 
@@ -347,11 +365,10 @@ function push_bam_alignments {
      #push back the generated alignments
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
 
-     REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bai $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
-     dieUponError "Failed to push the alignment files in the fileset area."
+    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bai $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
+    dieUponError "Failed to push the alignment files in the fileset area."
 
-     echo "The following BAM_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
-
+    echo "The following BAM_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
 }
 
 #pushes Goby alignments produced by an aligner job in the fileset area

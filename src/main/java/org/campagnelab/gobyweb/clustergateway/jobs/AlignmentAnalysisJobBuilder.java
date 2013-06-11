@@ -83,6 +83,8 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
             throws IOException {
         environment.put("PLUGIN_ID", analysisConfig.getId());
         environment.put("DIFF_EXP_TYPE", analysisConfig.getId());
+        environment.put("PRODUCE_TAB_DELIMITED_OUTPUT", analysisConfig.producesTabDelimitedOutput);
+        environment.put("PRODUCE_VARIANT_CALLING_FORMAT_OUTPUT", analysisConfig.producesVariantCallingFormatOutput);
         environment.put("INITIAL_STATE", "diffexp");
         environment.put("SUPPORTS_TRANSCRIPT_ALIGNMENTS", analysisConfig.supportsTranscriptAlignments);
         environment.put("SPLIT_PROCESS_COMBINE", analysisConfig.splitProcessCombine);
