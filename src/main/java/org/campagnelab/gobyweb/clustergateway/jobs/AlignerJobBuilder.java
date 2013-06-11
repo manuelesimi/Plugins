@@ -82,6 +82,7 @@ public class AlignerJobBuilder extends JobBuilder {
             if (storedAttributes.containsKey(attribute))
                 environment.put(attribute, storedAttributes.get(attribute));
         }
+        environment.put("SOURCE_READS_ID", this.inputReadsTag);
         //variables from the command line options
         environment.put("CHUNK_SIZE", this.chunkSize);
         environment.put("NUMBER_OF_ALIGN_PARTS", this.numParts);

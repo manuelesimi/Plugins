@@ -365,7 +365,7 @@ function push_bam_alignments {
      #push back the generated alignments
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
 
-    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bai $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
+    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bai $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
     dieUponError "Failed to push the alignment files in the fileset area."
 
     echo "The following BAM_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
@@ -382,7 +382,7 @@ function push_goby_alignments {
      #push back the generated alignments
      ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
 
-     REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
+     REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
      dieUponError "Failed to push the alignment files in the fileset area."
 
      echo "The following GOBY_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
@@ -398,7 +398,7 @@ function push_other_alignment_results {
 
    #push back TSV
    echo Pushing TSV
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} TSV: $RESULT_DIR/*.tsv`
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} TSV: $RESULT_DIR/*.tsv`
    if [ $? != 0 ]; then
         echo Failed to push back TSV files
    fi
@@ -406,7 +406,7 @@ function push_other_alignment_results {
 
    #push COUNTS back
    echo Pushing COUNTS
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} COUNTS: $RESULT_DIR/*.counts`
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} COUNTS: $RESULT_DIR/*.counts`
    if [ $? != 0 ]; then
         echo Failed to push back COUNTS files
    fi
@@ -414,7 +414,7 @@ function push_other_alignment_results {
 
     #push GZ back
    echo Pushing GZs
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} GZ: $RESULT_DIR/*.gz`
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} GZ: $RESULT_DIR/*.gz`
    if [ $? != 0 ]; then
         echo Failed to push back GZ files
    fi
@@ -422,7 +422,7 @@ function push_other_alignment_results {
 
     #push GZ back
    echo Pushing STATS
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} STATS: $RESULT_DIR/*.stats`
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} STATS: $RESULT_DIR/*.stats`
    if [ $? != 0 ]; then
         echo Failed to push back STATS files
    fi
