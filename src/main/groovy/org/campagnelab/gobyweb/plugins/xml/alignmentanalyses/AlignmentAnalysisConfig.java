@@ -219,10 +219,43 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
 
     @Override
     public ExecutableOutputSchema getOutputSchema() {
+
+        assert (!(producesTabDelimitedOutput && producesVariantCallingFormatOutput))
+                : "producesTabDelimitedOutput and producesVariantCallingFormatOutput cannot be both true";
+        assert (producesTabDelimitedOutput || producesVariantCallingFormatOutput)
+                : "producesTabDelimitedOutput and producesVariantCallingFormatOutput cannot be both false";
         this.executableOutputSchema = new ExecutableOutputSchema();
         List<Slot> slots = this.executableOutputSchema.getOutputSlots();
         slots.clear(); //needed in case the method is called twice
-        //TODO populate the slots with ...
+
+        if (producesTabDelimitedOutput) {
+            Slot tsvSlot = new Slot();
+            tsvSlot.setName("OUTPUT_TSV");
+            Slot.IOFileSetRef tsvType = new Slot.IOFileSetRef();
+            tsvType.id = PluginLoaderSettings.TSV[0];
+            tsvType.versionAtLeast = PluginLoaderSettings.TSV[1];
+            tsvType.versionExactly = PluginLoaderSettings.TSV[2];
+            tsvType.versionAtMost = PluginLoaderSettings.TSV[3];
+            tsvType.minOccurs = Integer.toString(1);
+            tsvType.maxOccurs = "unbounded";
+            tsvSlot.seType(tsvType);
+            slots.add(tsvSlot);
+        }
+
+        if (producesVariantCallingFormatOutput) {
+            Slot vcfSlot = new Slot();
+            vcfSlot.setName("OUTPUT_VCF");
+            Slot.IOFileSetRef vcfType = new Slot.IOFileSetRef();
+            vcfType.id = PluginLoaderSettings.VCF[0];
+            vcfType.versionAtLeast = PluginLoaderSettings.VCF[1];
+            vcfType.versionExactly = PluginLoaderSettings.VCF[2];
+            vcfType.versionAtMost = PluginLoaderSettings.VCF[3];
+            vcfType.minOccurs = Integer.toString(1);
+            vcfType.maxOccurs = "unbounded";
+            vcfSlot.seType(vcfType);
+            slots.add(vcfSlot);
+        }
+
 
         return  this.executableOutputSchema;
     }

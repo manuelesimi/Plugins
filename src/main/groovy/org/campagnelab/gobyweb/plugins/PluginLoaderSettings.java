@@ -58,7 +58,7 @@ public class PluginLoaderSettings {
     };
 
     /**
-     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     * Fileset configuration configuration added to AlignerConfig's OutputSchema for aligners that support Goby.
      */
     public static final String[] GOBY_ALIGNMENTS = new String[] {
             "GOBY_ALIGNMENT", //ID
@@ -69,7 +69,7 @@ public class PluginLoaderSettings {
 
 
     /**
-     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     * Fileset configuration configuration added to AlignerConfig's OutputSchema for aligners that support BAM.
      */
     public static final String[] BAM_ALIGNMENTS = new String[] {
             "BAM_ALIGNMENT", //ID
@@ -79,7 +79,7 @@ public class PluginLoaderSettings {
     };
 
     /**
-     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     * Fileset configuration configuration added to each AlignerConfig's OutputSchema.
      */
     public static final String[] COUNTS = new String[] {
             "COUNTS", //ID
@@ -89,7 +89,8 @@ public class PluginLoaderSettings {
     };
 
     /**
-     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     * Fileset configuration configuration added to each AlignerConfig's OutputSchema and to
+     * Alignment Analysis' OutputSchema for analyses that support TSV.
      */
     public static final String[] TSV = new String[] {
             "TSV", //ID
@@ -99,7 +100,7 @@ public class PluginLoaderSettings {
     };
 
     /**
-     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     * Fileset configuration configuration added to each AlignerConfig's OutputSchema.
      */
     public static final String[] GZ = new String[] {
             "GZ", //ID
@@ -109,10 +110,20 @@ public class PluginLoaderSettings {
     };
 
     /**
-     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     * Fileset configuration configuration added to each AlignerConfig's OutputSchema.
      */
     public static final String[] STATS = new String[] {
             "STATS", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+    /**
+     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     */
+    public static final String[] VCF = new String[] {
+            "VCF    ", //ID
             "1.0",  //versionAtLeast
             null, //versionExactly
             null //versionAtMost
