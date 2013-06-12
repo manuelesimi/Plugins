@@ -119,20 +119,20 @@ public class ClusterGatewayCommandLineTest {
                 ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS " +
                         "--fileset-area /zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
-                        "--owner manuele.simi " +
+                        "--owner PM " +
                         "--queue rascals.q " +
                         "--env-script ${envScript} "+
-                        "--job SEQ_VAR_GOBY_METHYLATION_REGIONS " +
+                        "--job CONTAMINANT_EXTRACT " +
                         "--COMPARISON_PAIR Group_1/Group_2 "+
-                        "--GROUP_DEFINITION Group_1=DPYZURP " +
-                        "--GROUP_DEFINITION Group_2=DPYZURP " +
-                        "--option FOO=foo " +
+                        "--GROUP_DEFINITION Group_1=CYLHDDR " +
+                        "--GROUP_DEFINITION Group_2=CYLHDDR " +
+                        "--option ENSEMBL_RELEASE=50 " +
                         "--option BAR=bar " +
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
-                        "INPUT_ALIGNMENTS: DPYZURP"
+                        "INPUT_ALIGNMENTS: CYLHDDR"
 
                 ).split(" ")
         ));

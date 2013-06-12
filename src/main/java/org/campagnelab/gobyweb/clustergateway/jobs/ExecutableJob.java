@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
+import org.campagnelab.gobyweb.clustergateway.datamodel.DiffExp;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
@@ -19,6 +20,10 @@ public class ExecutableJob extends Job {
      private ExecutableConfig sourceConfig;
 
      private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
+
+     //a dynamic data object consumed by plugin scripts. At runtime, Groovy will resolve it with the actual object
+     //the object stored in this variable depends on the job to be executed and it is prepared in the appropriate job builder.
+     private Object dataForScripts;
 
      public ExecutableJob(ExecutableConfig sourceConfig) {
          this.sourceConfig = sourceConfig;
@@ -170,6 +175,14 @@ public class ExecutableJob extends Job {
      */
     public ExecutableConfig getSourceConfig() {
         return sourceConfig;
+    }
+
+    public Object getDataForScripts() {
+        return dataForScripts;
+    }
+
+    public void setDataForScripts(Object dataForScripts) {
+        this.dataForScripts = dataForScripts;
     }
 
     public static class InvalidSlotValueException extends Exception {
