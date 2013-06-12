@@ -65,6 +65,9 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         copyArtifactsPbRequests(job.getSourceConfig(), this.environmentScriptFilename, jobLocalDir);
 
+        //run pre-deployment scripts, if any
+        runPreDeploymentScripts(job, jobLocalDir);
+
         //give execute permission to task scripts
         jobArea.grantExecutePermissions(job.getTag(), new String[]{this.wrapperScript});
 

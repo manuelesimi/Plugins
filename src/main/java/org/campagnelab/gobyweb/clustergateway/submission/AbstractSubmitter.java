@@ -415,7 +415,21 @@ abstract public class AbstractSubmitter implements Submitter {
         configurationList.addConfiguration(configuration);
     }
 
-
+    /**
+     * Runs preDeployment scripts declared in the job plugin's configuration.
+     * @param job
+     * @param jobDir
+     */
+    protected void runPreDeploymentScripts (ExecutableJob job, File jobDir) throws Exception{
+        Execute execute = job.getSourceConfig().getExecute();
+        if (execute != null) {
+            for (Script script : execute.scripts()) {
+                if (script.phase.equalsIgnoreCase("pre-deployment")) {
+                    PluginScriptExecutor.executeScript(job,script,jobDir);
+                }
+            }
+        }
+    }
 
     /**
      * Prepares the wrapper script for the job and copies it in the temporary dir.

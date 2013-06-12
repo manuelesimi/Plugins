@@ -71,6 +71,9 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
         copyArtifactsPbRequests(job.getSourceConfig(), this.environmentScriptFilename, tempDir);
 
+        //run pre-deployment scripts, if any
+        runPreDeploymentScripts(job, tempDir);
+
         pushJobDir(tempDir,job,jobArea);
 
         //grant execute permissions to the task's scripts
