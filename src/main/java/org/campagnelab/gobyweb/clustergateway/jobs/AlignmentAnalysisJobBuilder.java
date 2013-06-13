@@ -183,14 +183,16 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         for (String groupDefinition : this.groupDefinitions) {
             String[] tokens = groupDefinition.split("=");
             String[] tags = tokens[1].split(",");
-            StringBuilder filters = new StringBuilder();
+            StringBuilder groupFilters = new StringBuilder("--filter-attribute BASENAME=");
 
             int i=0;
             for (String tag: tags) {
-                filters.append(String.format("--filter-attribute BASENAME=%s ", alignmentMap.get(tag).getBasename()));
+                groupFilters.append(String.format("%s,", alignmentMap.get(tag).getBasename()));
                 diffExp.addAlignmentToGroup(tokens[0], i++, alignmentMap.get(tag));
             }
-            environment.put(String.format("PLUGIN_GROUP_ALIGNMENTS_FILTER[%s]", tokens[0]), filters.toString().trim());
+            //remove the last comma
+            groupFilters.setLength(groupFilters.length() - 1);
+            environment.put(String.format("PLUGIN_GROUP_ALIGNMENTS_FILTER[%s]", tokens[0]), groupFilters.toString());
             diffExp.addGroup(groupNumber++,tokens[0]);
         }
 
