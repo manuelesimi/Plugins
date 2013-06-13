@@ -146,9 +146,10 @@ public class FileSetManager {
      * @return
      */
     public static Map<String, String> parseInputAttributes(String[] inputAttributes) throws Exception {
-        if (inputAttributes == null)
-            return Collections.emptyMap();
         Map<String, String> attributes = new HashMap<String, String>();
+        if (inputAttributes == null)
+            return attributes;
+
         for (String inputAttribute: inputAttributes) {
             String[] tokens = inputAttribute.split("=");
             if (tokens.length == 2) {
