@@ -97,7 +97,7 @@ public class ClusterGatewayCommandLineTest {
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
-                        "INPUT_READS: SCGHGBF"
+                        "INPUT_READS: KKHLEFC"
 
                 ).split(" ")
         ));
@@ -119,20 +119,20 @@ public class ClusterGatewayCommandLineTest {
                 ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS " +
                         "--fileset-area /zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
-                        "--owner PM " +
+                        "--owner gobywebpaper " +
                         "--queue rascals.q " +
                         "--env-script ${envScript} "+
                         "--job CONTAMINANT_EXTRACT " +
                         "--COMPARISON_PAIR Group_1/Group_2 "+
-                        "--GROUP_DEFINITION Group_1=CYLHDDR " +
-                        "--GROUP_DEFINITION Group_2=CYLHDDR " +
+                        "--GROUP_DEFINITION Group_1=ZDFTZZE,PVOVHCB " +
+                        "--GROUP_DEFINITION Group_2=KAKIMJE " +
                         "--option ENSEMBL_RELEASE=50 " +
                         "--option BAR=bar " +
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
-                        "INPUT_ALIGNMENTS: CYLHDDR"
+                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB"
 
                 ).split(" ")
         ));
