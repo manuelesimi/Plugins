@@ -69,6 +69,9 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
     @XmlElement(name = "file")
     public List<PluginFile> files = new ArrayList<PluginFile>();
 
+    @XmlElement(name = "executableIOSchema")
+    public ExecutableIOSchema executableIOSchema;
+
     /**
      * Plugins can be configured by the end-user by exposing options.
      */
@@ -287,6 +290,15 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
 
     public Execute getExecute() {
         return execute;
+    }
+
+    public class ExecutableIOSchema {
+
+        @XmlElement(name = "inputSchema")
+        public ExecutableInputSchema inputSchema;
+
+        @XmlElement(name = "outputSchema")
+        public ExecutableOutputSchema outputSchema;
     }
 
     public abstract ExecutableInputSchema getInputSchema();

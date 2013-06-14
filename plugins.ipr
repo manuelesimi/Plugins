@@ -424,15 +424,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-stats/1.0.0/icb-stats-1.0.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: edu.cornell.med.icb:icb-util:1.1.3">
+    <library name="Maven: edu.cornell.med.icb:icb-util:1.1.4">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.3/icb-util-1.1.3.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.4/icb-util-1.1.4.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.3/icb-util-1.1.3-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.4/icb-util-1.1.4-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.3/icb-util-1.1.3-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.4/icb-util-1.1.4-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: it.unimi.dsi:dsiutils:2.0.7">
@@ -490,27 +490,27 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-math3/3.0/commons-math3-3.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.campagnelab.gobyweb:artifacts:2.2-SNAPSHOT">
+    <library name="Maven: org.campagnelab.gobyweb:artifacts:2.2.3">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.2-SNAPSHOT/artifacts-2.2-20130514.173536-1.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.2.3/artifacts-2.2.3.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.2-SNAPSHOT/artifacts-2.2-20130514.173536-1-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.2.3/artifacts-2.2.3-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.2-SNAPSHOT/artifacts-2.2-20130514.173536-1-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.2.3/artifacts-2.2.3-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:filesets:2.0.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-20130514.172911-48.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-20130606.214339-68.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-20130514.172911-48-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-20130606.214339-68-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
         <root url="jar://$USER_HOME$/CampagneLab/filesets/target/filesets-2.0.0-SNAPSHOT-sources.jar!/" />
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-20130514.172911-48-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-20130606.214339-68-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:icb-groovy-support:2.0.0-SNAPSHOT">
@@ -535,15 +535,26 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/option-validation-language/2.1.0/option-validation-language-2.1.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.campagnelab.gobyweb:serverside-dependencies:full:1.0.2">
+    <library name="Maven: org.campagnelab.gobyweb:serverside-dependencies:full:1.0.5">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.2/serverside-dependencies-1.0.2-full.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.5/serverside-dependencies-1.0.5-full.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.2/serverside-dependencies-1.0.2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.5/serverside-dependencies-1.0.5-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.2/serverside-dependencies-1.0.2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.5/serverside-dependencies-1.0.5-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.campagnelab:org.campagnelab.stepslogger:1.0.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/org.campagnelab.stepslogger/1.0.1/org.campagnelab.stepslogger-1.0.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/org.campagnelab.stepslogger/1.0.1/org.campagnelab.stepslogger-1.0.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/org.campagnelab.stepslogger/1.0.1/org.campagnelab.stepslogger-1.0.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.codehaus.groovy:groovy-all:1.8.6">

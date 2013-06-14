@@ -22,7 +22,7 @@ int execute(final Object gobywebObj, final File tempDir) {
     final PrintWriter writer = outputFile.newPrintWriter()
     try {
         gobywebObj.allAlignments().eachWithIndex {alignment, index ->
-            writer.println "PLUGIN_READS[${index + 1}]=${alignment.getReads().getTag()}"
+            writer.println "PLUGIN_READS[${index + 1}]=${alignment.getReads().getBasename()}"
             writer.println "PLUGIN_BASENAMES[${index + 1}]=${alignmentFilename(alignment)}"
             writer.println "PLUGIN_GROUPS[${index + 1}]=${gobywebObj.grpToAligns.find {k, v -> v == alignment}.key}"
         }

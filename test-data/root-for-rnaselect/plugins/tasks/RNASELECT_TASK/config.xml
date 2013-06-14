@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<taskConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
+<taskConfig xsi:noNamespaceSchemaLocation="../../../schemas/plugins.xsd"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <name>RNASELECT Task</name>
     <id>RNASELECT_TASK</id>
@@ -26,23 +26,24 @@
         <need scope="ALIGNMENT_POST_PROCESSING" key="virtual_free" value="12g"/>
         <need scope="ALIGNMENT_POST_PROCESSING_JVM" value="8g"/>
     </runtime>
-
-    <inputSchema>
-        <inputSlot>
-            <name>INPUT_READS</name>
-            <type maxOccurs="10" minOccurs="1">
-                <id>COMPACT_READS</id>
-                <versionAtLeast>1.0</versionAtLeast>
-            </type>
-        </inputSlot>
-    </inputSchema>
-    <outputSchema>
-        <outputSlot>
-            <name>STATS</name>
-            <type>
-                <id>TSV</id>
-                <versionExactly>1.0</versionExactly>
-            </type>
-        </outputSlot>
-    </outputSchema>
+    <executableIOSchema>
+        <inputSchema>
+            <inputSlot>
+                <name>INPUT_READS</name>
+                <type maxOccurs="10" minOccurs="1">
+                    <id>COMPACT_READS</id>
+                    <versionAtLeast>1.0</versionAtLeast>
+                </type>
+            </inputSlot>
+        </inputSchema>
+        <outputSchema>
+            <outputSlot>
+                <name>STATS</name>
+                <type>
+                    <id>TSV</id>
+                    <versionExactly>1.0</versionExactly>
+                </type>
+            </outputSlot>
+        </outputSchema>
+    </executableIOSchema>
 </taskConfig>

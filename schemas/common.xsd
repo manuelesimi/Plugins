@@ -36,6 +36,17 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:simpleType name="T_occurs">
+        <xs:union memberTypes="xs:nonNegativeInteger">
+            <xs:simpleType>
+                <xs:restriction base="xs:NMTOKEN">
+                    <xs:enumeration value="unbounded"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+
     <xs:simpleType name="T_scope">
         <xs:restriction base="xs:string">
             <xs:enumeration value="INSTALL_ARTIFACTS"/>

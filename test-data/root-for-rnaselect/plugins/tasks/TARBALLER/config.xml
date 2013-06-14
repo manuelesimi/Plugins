@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<taskConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
+<taskConfig xsi:noNamespaceSchemaLocation="../../../schemas/plugins.xsd"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <name>Tar compression utility</name>
     <id>TARBALLER</id>
     <help>Use GNU tar for creating TAR archives from TEXT or IMAGES files</help>
     <version>1.0</version>
+    <executableIOSchema>
     <inputSchema>
         <inputSlot>
             <name>TEXT</name>
@@ -30,4 +31,5 @@
             </type>
         </outputSlot>
     </outputSchema>
+    </executableIOSchema>
 </taskConfig>

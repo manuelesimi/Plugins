@@ -184,7 +184,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
         assert (supportsGobyAlignments || supportsBAMAlignments)
                 : "supportsGobyAlignments and supportsBAMAlignments cannot be both false";
 
-        this.executableInputSchema = new ExecutableInputSchema();
+        this.executableIOSchema.inputSchema = new ExecutableInputSchema();
         List<Slot> slots = this.executableInputSchema.getInputSlots();
         slots.clear(); //needed in case the method is called twice
         if (supportsGobyAlignments){
@@ -214,7 +214,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
             slots.add(bamSlot);
         }
 
-        return this.executableInputSchema;
+        return this.executableIOSchema.inputSchema;
     }
 
     @Override
@@ -224,7 +224,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
                 : "producesTabDelimitedOutput and producesVariantCallingFormatOutput cannot be both true";
         assert (producesTabDelimitedOutput || producesVariantCallingFormatOutput)
                 : "producesTabDelimitedOutput and producesVariantCallingFormatOutput cannot be both false";
-        this.executableOutputSchema = new ExecutableOutputSchema();
+        this.executableIOSchema.outputSchema = new ExecutableOutputSchema();
         List<Slot> slots = this.executableOutputSchema.getOutputSlots();
         slots.clear(); //needed in case the method is called twice
 
@@ -257,6 +257,6 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
         }
 
 
-        return  this.executableOutputSchema;
+        return this.executableIOSchema.outputSchema;
     }
 }

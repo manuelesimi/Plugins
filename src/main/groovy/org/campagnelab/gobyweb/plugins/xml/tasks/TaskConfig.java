@@ -6,10 +6,7 @@ import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
 import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
 /**
@@ -20,11 +17,6 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TaskConfig extends ExecutableConfig {
 
-    @XmlElement(name = "inputSchema")
-    protected ExecutableInputSchema inputSchema;
-
-    @XmlElement(name = "outputSchema")
-    protected ExecutableOutputSchema outputSchema;
 
 
     public TaskConfig() {}
@@ -47,21 +39,21 @@ public class TaskConfig extends ExecutableConfig {
     }
 
     public void setInputSchema(ExecutableInputSchema inputSchema)  {
-        this.inputSchema = inputSchema;
+        this.executableIOSchema.inputSchema = inputSchema;
     }
 
     public void setOutputSchema(ExecutableOutputSchema outputSchema)  {
-        this.outputSchema = outputSchema;
+        this.executableIOSchema.outputSchema = outputSchema;
     }
 
     @Override
     public ExecutableInputSchema getInputSchema() {
-        return this.inputSchema;
+        return this.executableIOSchema.inputSchema;
     }
 
     @Override
     public ExecutableOutputSchema getOutputSchema() {
-        return  this.outputSchema;
+        return  this.executableIOSchema.outputSchema;
     }
     /**
      * Validates the configuration. Call this method after unmarshalling a config to check that the configuration
@@ -74,11 +66,11 @@ public class TaskConfig extends ExecutableConfig {
     public void validate(List<String> errors) {
         super.validate(errors);
         //check if input fileset references are correct
-        for (Slot parameter : inputSchema.getInputSlots())
+        for (Slot parameter : executableIOSchema.inputSchema.getInputSlots())
                 validateFileSetReference(parameter.geType(),errors);
 
         //check if output fileset references are correct
-        for (Slot parameter : outputSchema.getOutputSlots())
+        for (Slot parameter : executableIOSchema.outputSchema.getOutputSlots())
             validateFileSetReference(parameter.geType(),errors);
 
 
