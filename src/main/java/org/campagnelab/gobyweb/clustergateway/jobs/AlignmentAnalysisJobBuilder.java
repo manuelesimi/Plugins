@@ -167,7 +167,6 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
                 environment.put("ORGANISM", storedAttributes.get("ORGANISM"));
                 diffExp.setOrganismId( storedAttributes.get("ORGANISM"));
             }
-            errors.clear();
             alignment.setBasename(storedAttributes.get("BASENAME"));
             Reads reads = new Reads(storedAttributes.get("SOURCE_READS_ID"));
             Map<String, String> readsAttributes = api.fetchAttributes(reads.getTag(), errors);
@@ -176,6 +175,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
             alignment.setReads(reads);
             alignment.setAlignJobTag(inputTag);
             alignmentMap.put(inputTag,alignment);
+            errors.clear();
         }
 
         //for each group, we create a filter for querying only slots belonging to the group and add the alignments to the group

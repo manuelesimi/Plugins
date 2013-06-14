@@ -72,9 +72,6 @@ final class Actions {
      * @throws Exception
      */
     private void submitJob(ExecutableJob job, Set<InputSlotValue> inputFilesets) throws Exception {
-        //TODO: add autoOptions
-        //executableJob.setAutoOptions(autoOptions);
-
         //prepare the session for the submission
         Session session = this.prepareJobSession();
         job.setTag(ICBStringUtils.generateRandomString());
