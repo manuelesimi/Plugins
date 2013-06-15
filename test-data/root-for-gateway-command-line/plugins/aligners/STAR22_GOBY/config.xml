@@ -26,6 +26,24 @@
     <supportsFastqReads>true</supportsFastqReads>
     <supportsFastaReads>true</supportsFastaReads>
     <indexDirectory>%NODE_LOCAL_DATA_ROOT%/%VERSION%/%ORGANISM%/%SPACE%/star/index</indexDirectory>
+    <requires>
+        <resource>
+            <id>STAR</id>
+            <versionAtLeast>2.2.0</versionAtLeast>
+        </resource>
+
+        <resource>
+            <id>SAMTOOLS</id>
+            <versionAtLeast>0.1.18.1</versionAtLeast>
+        </resource>
+
+    </requires>
+    <files>
+        <file>
+            <id>COMBINE_SPLICE_SCRIPT</id>
+            <filename>CombineSpliceData.scala</filename>
+        </file>
+    </files>
     <runtime>
         <need scope="ALIGN" key="excl" value="true"/>
         <need scope="ALIGN" key="h_vmem" value="35g"/>
@@ -40,18 +58,7 @@
         <need scope="ALIGNMENT_POST_PROCESSING" key="virtual_free" value="12g"/>
         <need scope="ALIGNMENT_POST_PROCESSING_JVM" value="8g"/>
     </runtime>
-    <requires>
-        <resource>
-            <id>STAR</id>
-            <versionAtLeast>2.2.0</versionAtLeast>
-        </resource>
 
-        <resource>
-            <id>SAMTOOLS</id>
-            <versionAtLeast>0.1.18.1</versionAtLeast>
-        </resource>
-
-    </requires>
     <options>
         <!--option>
             <id>OUT_FILTER_MISMATCH_N_MAX</id>
@@ -102,10 +109,5 @@
             <autoFormat>false</autoFormat>
         </option>
     </options>
-    <files>
-        <file>
-            <id>COMBINE_SPLICE_SCRIPT</id>
-            <filename>CombineSpliceData.scala</filename>
-        </file>
-    </files>
+
 </alignerConfig>
