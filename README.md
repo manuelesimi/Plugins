@@ -19,7 +19,7 @@ There are five categories of GobyWeb plugins:
 
 The Plugins software can be either used programmatically (as GobyWeb does) through its API or with shell scripts provided in the /bin directory.
 
+For reference documentation, examples, best practices and usage, please visit the [Plugins SDK](http://campagnelab.org/software/gobyweb/plugins-sdk/) section of the Laboratory's website.
+
 #### Authors and Contributors
 The Plugins project is currently being developed by the members of the [Campagne laboratory](http://campagnelab.org).
-
-For reference documentation, examples, best practices and usage, please visit the [Plugins SDK](http://campagnelab.org/software/gobyweb/plugins-sdk/) section of the Laboratory's website.
