@@ -18,13 +18,13 @@
     <help>STAR writing to Goby output. See aligner information at http://gingeraslab.cshl.edu/STAR/.</help>
     <version>1.2</version>
     <supportsColorSpace>false</supportsColorSpace>
-    <supportsBisulfiteConvertedReads>true</supportsBisulfiteConvertedReads>
-    <supportsGobyReads>true</supportsGobyReads>
     <supportsGobyAlignments>true</supportsGobyAlignments>
     <supportsPairedEndAlignments>true</supportsPairedEndAlignments>
+    <supportsBAMAlignments>false</supportsBAMAlignments>
+    <supportsBisulfiteConvertedReads>true</supportsBisulfiteConvertedReads>
+    <supportsGobyReads>true</supportsGobyReads>
     <supportsFastqReads>true</supportsFastqReads>
     <supportsFastaReads>true</supportsFastaReads>
-    <supportsBAMAlignments>false</supportsBAMAlignments>
     <indexDirectory>%NODE_LOCAL_DATA_ROOT%/%VERSION%/%ORGANISM%/%SPACE%/star/index</indexDirectory>
     <runtime>
         <need scope="ALIGN" key="excl" value="true"/>
