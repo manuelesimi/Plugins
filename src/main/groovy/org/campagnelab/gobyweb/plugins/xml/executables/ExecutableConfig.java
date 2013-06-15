@@ -292,7 +292,7 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
         return execute;
     }
 
-    public class ExecutableIOSchema {
+    public static class ExecutableIOSchema {
 
         @XmlElement(name = "inputSchema")
         public ExecutableInputSchema inputSchema;
