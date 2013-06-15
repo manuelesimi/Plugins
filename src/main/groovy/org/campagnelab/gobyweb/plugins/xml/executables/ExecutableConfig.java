@@ -70,7 +70,7 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
     public List<PluginFile> files = new ArrayList<PluginFile>();
 
     @XmlElement(name = "executableIOSchema")
-    public ExecutableIOSchema executableIOSchema;
+    public ExecutableIOSchema executableIOSchema = new ExecutableIOSchema();
 
     /**
      * Plugins can be configured by the end-user by exposing options.
