@@ -122,7 +122,8 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
      */
     public int maximumNumberOfGroups;
 
-    public OutputSchema outputSchema = new OutputSchema();
+    @XmlElement(name = "outputSchema")
+    public OutputSchema output = new OutputSchema();
 
     protected ExecutableInputSchema executableInputSchema;
 
@@ -157,7 +158,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
         if (producesTabDelimitedOutput && producesVariantCallingFormatOutput) {
             errors.add("TSV and VCF are mutually exclusive. An alignment analysis plugin cannot support both.");
         }
-        outputSchema.validate(errors);
+        output.validate(errors);
 
     }
 
@@ -177,7 +178,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
     }
 
     @Override
-    public ExecutableInputSchema getInputSchema() {
+    public ExecutableInputSchema getInput() {
 
         assert (!(supportsGobyAlignments && supportsBAMAlignments))
                 : "supportsGobyAlignments and supportsBAMAlignments cannot be both true";
@@ -218,7 +219,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
     }
 
     @Override
-    public ExecutableOutputSchema getOutputSchema() {
+    public ExecutableOutputSchema getOutput() {
 
         assert (!(producesTabDelimitedOutput && producesVariantCallingFormatOutput))
                 : "producesTabDelimitedOutput and producesVariantCallingFormatOutput cannot be both true";
@@ -255,7 +256,6 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
             vcfSlot.seType(vcfType);
             slots.add(vcfSlot);
         }
-
 
         return this.executableIOSchema.outputSchema;
     }

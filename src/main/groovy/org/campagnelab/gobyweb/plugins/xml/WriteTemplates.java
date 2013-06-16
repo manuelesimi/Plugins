@@ -124,14 +124,14 @@ public class WriteTemplates {
                 outputFile.name = "statistics";
                 outputFile.help = "help";
                 outputFile.filename = "image.png";
-                aaConfig.outputSchema.files.add(outputFile);
+                aaConfig.output.files.add(outputFile);
                 OutputFile outputFile2 = new OutputFile();
                 outputFile2.id = "ID";
                 outputFile2.mimeType = "plain/tsv";
                 outputFile2.help = "help";
                 outputFile2.name = "statistics";
                 outputFile2.filename = "image.png";
-                aaConfig.outputSchema.files.add(outputFile);
+                aaConfig.output.files.add(outputFile);
 
                 m.marshal(aaConfig, writer);
                 System.out.println("AlignmentAnalysisConfig: " + writer.getBuffer().toString());

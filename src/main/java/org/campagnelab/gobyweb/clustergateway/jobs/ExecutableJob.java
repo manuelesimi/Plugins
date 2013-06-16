@@ -1,7 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
-import org.campagnelab.gobyweb.clustergateway.datamodel.DiffExp;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
@@ -33,11 +32,11 @@ public class ExecutableJob extends Job {
      }
 
      public ExecutableOutputSchema getOutputSchema() {
-        return sourceConfig.getOutputSchema();
+        return sourceConfig.getOutput();
      }
 
      public ExecutableInputSchema getInputSchema() {
-        return sourceConfig.getInputSchema();
+        return sourceConfig.getInput();
      }
 
     /**
@@ -111,7 +110,7 @@ public class ExecutableJob extends Job {
      * @return true if the value is accepted, false otherwise
      */
     protected boolean validateInputSlotValue(InputSlotValue value) {
-        ExecutableInputSchema inputSchema = sourceConfig.getInputSchema();
+        ExecutableInputSchema inputSchema = sourceConfig.getInput();
         for (Slot schemaInputSlot : inputSchema.getInputSlots()) {
             if (schemaInputSlot.getName().equalsIgnoreCase(value.getName())) {
                 //check the cardinality of the values
@@ -147,7 +146,7 @@ public class ExecutableJob extends Job {
      */
     protected List<String> getMandatoryInputSlots() {
         List<String> mandatorySlots = new ArrayList<String>();
-        for (Slot schemaInputSlot : sourceConfig.getInputSchema().getInputSlots()) {
+        for (Slot schemaInputSlot : sourceConfig.getInput().getInputSlots()) {
             String minOccurs = schemaInputSlot.geType().minOccurs;
             if ((minOccurs != null) || (Integer.valueOf(minOccurs) > 0))
                 mandatorySlots.add(schemaInputSlot.getName());
@@ -162,7 +161,7 @@ public class ExecutableJob extends Job {
      */
     protected List<String> getMandatoryOutputSlots() {
         List<String> mandatorySlots = new ArrayList<String>();
-        for (Slot schemaOutputSlot : sourceConfig.getOutputSchema().getOutputSlots()) {
+        for (Slot schemaOutputSlot : sourceConfig.getOutput().getOutputSlots()) {
             String minOccurs = schemaOutputSlot.geType().minOccurs;
             if ((minOccurs != null) || (Integer.valueOf(minOccurs) > 0))
                 mandatorySlots.add(schemaOutputSlot.getName());

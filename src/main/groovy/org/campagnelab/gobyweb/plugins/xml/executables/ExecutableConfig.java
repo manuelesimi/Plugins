@@ -292,16 +292,31 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
         return execute;
     }
 
-    public static class ExecutableIOSchema {
-
-        @XmlElement(name = "inputSchema")
-        public ExecutableInputSchema inputSchema;
-
-        @XmlElement(name = "outputSchema")
-        public ExecutableOutputSchema outputSchema;
+    public void setInput(ExecutableInputSchema inputSchema)  {
+        this.executableIOSchema.inputSchema = inputSchema;
     }
 
-    public abstract ExecutableInputSchema getInputSchema();
+    public ExecutableInputSchema getInput() {
+        return this.executableIOSchema.inputSchema;
+    }
 
-    public abstract ExecutableOutputSchema getOutputSchema();
+    public void setOutput(ExecutableOutputSchema outputSchema)  {
+        this.executableIOSchema.outputSchema = outputSchema;
+    }
+
+    public ExecutableOutputSchema getOutput() {
+        return  this.executableIOSchema.outputSchema;
+    }
+    /**
+     * The I/O Schema defining the filesets consumed and produced by
+     * the plugin when executed as job.
+     */
+    public static class ExecutableIOSchema {
+
+        @XmlElement(name = "input")
+        public ExecutableInputSchema inputSchema;
+
+        @XmlElement(name = "output")
+        public ExecutableOutputSchema outputSchema;
+    }
 }

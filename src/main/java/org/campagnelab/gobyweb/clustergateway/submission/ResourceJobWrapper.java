@@ -35,12 +35,12 @@ public class ResourceJobWrapper extends ExecutableConfig {
     }
 
     @Override
-    public ExecutableInputSchema getInputSchema() {
+    public ExecutableInputSchema getInput() {
         return new ExecutableInputSchema();
     }
 
     @Override
-    public ExecutableOutputSchema getOutputSchema() {
+    public ExecutableOutputSchema getOutput() {
         return new ExecutableOutputSchema();
     }
 

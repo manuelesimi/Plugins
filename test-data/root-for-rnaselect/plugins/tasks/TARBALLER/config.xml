@@ -6,7 +6,7 @@
     <help>Use GNU tar for creating TAR archives from TEXT or IMAGES files</help>
     <version>1.0</version>
     <executableIOSchema>
-    <inputSchema>
+    <input>
         <inputSlot>
             <name>TEXT</name>
             <type>
@@ -21,8 +21,8 @@
                 <versionAtMost>3.0</versionAtMost>
             </type>
         </inputSlot>
-    </inputSchema>
-    <outputSchema>
+    </input>
+    <output>
         <outputSlot>
             <name>STATS</name>
             <type>
@@ -30,6 +30,6 @@
                 <versionExactly>1.0</versionExactly>
             </type>
         </outputSlot>
-    </outputSchema>
+    </output>
     </executableIOSchema>
 </taskConfig>

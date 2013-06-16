@@ -229,12 +229,12 @@ public abstract class SubmissionRequest {
      * @param additionalParameters
      */
     private void addInputSlots(List<Parameter> additionalParameters) {
-        if ((this.executableConfig == null) || (executableConfig.getInputSchema().getInputSlots().size() == 0))
+        if ((this.executableConfig == null) || (executableConfig.getInput().getInputSlots().size() == 0))
             return;
         StringBuilder description = new StringBuilder("List of input slots for the job. ");
         description.append(String.format("%s accepts the following input slots: \n", this.executableConfig.getId()));
         StringBuilder formDescription = new StringBuilder();
-        for (Slot slot: executableConfig.getInputSchema().getInputSlots()){
+        for (Slot slot: executableConfig.getInput().getInputSlots()){
             description.append(String.format("- %s (instance of %s): minOccurs %s, maxOccurs %s\n",slot.getName(),
                     slot.geType().id,slot.geType().minOccurs, slot.geType().maxOccurs));
             if (slot.geType().maxOccurs.equalsIgnoreCase("unbounded"))

@@ -507,7 +507,7 @@ function fetch_input_alignments {
 
      echo "fileset command: ${FILESET_COMMAND}"
 
-     #INPUT_ALIGNMENTS slot is declared in AlignmentAnalysisConfig.getInputSchema()
+     #INPUT_ALIGNMENTS slot is declared in AlignmentAnalysisConfig.getInput()
      ${FILESET_COMMAND} --has-fileset INPUT_ALIGNMENTS
      if [ $? != 0 ]; then
         dieUponError "INPUT_ALIGNMENTS input entries are not available"
@@ -531,7 +531,7 @@ function fetch_input_reads {
 
      echo "fileset command: ${FILESET_COMMAND}"
 
-     #INPUT_READS slot is declated in AlignerConfig.getInputSchema()
+     #INPUT_READS slot is declated in AlignerConfig.getInput()
      ${FILESET_COMMAND} --has-fileset INPUT_READS
      if [ $? != 0 ]; then
         dieUponError "Input compact reads are not available"

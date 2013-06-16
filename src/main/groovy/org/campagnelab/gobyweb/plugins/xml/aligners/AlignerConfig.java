@@ -157,7 +157,7 @@ public class AlignerConfig extends ExecutableConfig {
     }
 
     @Override
-    public ExecutableInputSchema getInputSchema() {
+    public ExecutableInputSchema getInput() {
         this.executableIOSchema.inputSchema = new ExecutableInputSchema();
         List<Slot> slots = this.executableInputSchema.getInputSlots();
         slots.clear(); //needed in case the method is called twice
@@ -176,7 +176,7 @@ public class AlignerConfig extends ExecutableConfig {
     }
 
     @Override
-    public ExecutableOutputSchema getOutputSchema() {
+    public ExecutableOutputSchema getOutput() {
         this.executableIOSchema.outputSchema = new ExecutableOutputSchema();
         List<Slot> slots = this.executableOutputSchema.getOutputSlots();
         slots.clear(); //needed in case the method is called twice

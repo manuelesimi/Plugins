@@ -81,8 +81,8 @@ public class TaskConfigTest {
         outputSchema.outputSlots.add(taskIOOUT2);
 
         TaskConfig task = new TaskConfig();
-        task.setInputSchema(inputSchema);
-        task.setOutputSchema(outputSchema);
+        task.setInput(inputSchema);
+        task.setOutput(outputSchema);
         task.setId("RNASELECT_TASK");
         task.setName("RNASELECT Task_Name");
         task.setHelp("Execute RNASELECT resource as Task to process multiple reads files and produce a TSV");
@@ -123,10 +123,10 @@ public class TaskConfigTest {
         }
         assertNotNull("DeserializedTask cannot be null", deserializedTask);
         assertEquals("Task ID is not the one expected", "RNASELECT_TASK", deserializedTask.getId());
-        assertNotNull("InputSchema cannot be null", deserializedTask.getInputSchema());
-        assertNotNull("OutputSchema cannot be null", deserializedTask.getOutputSchema());
-        assertEquals("There must be only 1 input slot", 1, deserializedTask.getInputSchema().getInputSlots().size());
-        assertEquals("There must be 2 output slots", 2, deserializedTask.getOutputSchema().getOutputSlots().size());
+        assertNotNull("InputSchema cannot be null", deserializedTask.getInput());
+        assertNotNull("OutputSchema cannot be null", deserializedTask.getOutput());
+        assertEquals("There must be only 1 input slot", 1, deserializedTask.getInput().getInputSlots().size());
+        assertEquals("There must be 2 output slots", 2, deserializedTask.getOutput().getOutputSlots().size());
 
     }
 }

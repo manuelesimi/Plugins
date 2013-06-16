@@ -27,7 +27,7 @@
         <need scope="ALIGNMENT_POST_PROCESSING_JVM" value="8g"/>
     </runtime>
     <executableIOSchema>
-        <inputSchema>
+        <input>
             <inputSlot>
                 <name>INPUT_READS</name>
                 <type maxOccurs="10" minOccurs="1">
@@ -35,8 +35,8 @@
                     <versionAtLeast>1.0</versionAtLeast>
                 </type>
             </inputSlot>
-        </inputSchema>
-        <outputSchema>
+        </input>
+        <output>
             <outputSlot>
                 <name>STATS</name>
                 <type>
@@ -44,6 +44,6 @@
                     <versionExactly>1.0</versionExactly>
                 </type>
             </outputSlot>
-        </outputSchema>
+        </output>
     </executableIOSchema>
 </taskConfig>

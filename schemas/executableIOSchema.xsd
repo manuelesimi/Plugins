@@ -39,8 +39,8 @@
 
     <xs:complexType name="T_executableIOSchema">
         <xs:sequence>
-            <xs:element name="inputSchema" type="T_executableInputSchema" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="outputSchema" type="T_executableOutputSchema" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="input" type="T_executableInputSchema" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="output" type="T_executableOutputSchema" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 

@@ -2,7 +2,6 @@ package org.campagnelab.gobyweb.plugins.xml.tasks;
 
 import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableInputSchema;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableOutputSchema;
 import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
 
@@ -16,8 +15,6 @@ import java.util.List;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TaskConfig extends ExecutableConfig {
-
-
 
     public TaskConfig() {}
 
@@ -38,23 +35,6 @@ public class TaskConfig extends ExecutableConfig {
         return "TASK";
     }
 
-    public void setInputSchema(ExecutableInputSchema inputSchema)  {
-        this.executableIOSchema.inputSchema = inputSchema;
-    }
-
-    public void setOutputSchema(ExecutableOutputSchema outputSchema)  {
-        this.executableIOSchema.outputSchema = outputSchema;
-    }
-
-    @Override
-    public ExecutableInputSchema getInputSchema() {
-        return this.executableIOSchema.inputSchema;
-    }
-
-    @Override
-    public ExecutableOutputSchema getOutputSchema() {
-        return  this.executableIOSchema.outputSchema;
-    }
     /**
      * Validates the configuration. Call this method after unmarshalling a config to check that the configuration
      * is semantically valid. Returns null when no errors are found in the configuration, or a list of errors encountered.
