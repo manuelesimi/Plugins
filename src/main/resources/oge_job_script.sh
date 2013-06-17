@@ -512,17 +512,14 @@ function fetch_input_alignments {
      if [ $? != 0 ]; then
         dieUponError "INPUT_ALIGNMENTS input entries are not available"
      fi
-     export ALIGNMENT_FILES_DIR="${JOB_DIR}/alignments"
-     mkdir -p  "${ALIGNMENT_FILES_DIR}"
      ALIGNMENT_FILES=`${FILESET_COMMAND} --fetch INPUT_ALIGNMENTS`
      if [ $? != 0 ]; then
         dieUponError "Failed to fecth INPUT_ALIGNMENTS: ${ALIGNMENT_FILES}"
      fi
-     mv ${ALIGNMENT_FILES} ${ALIGNMENT_FILES_DIR}
+     mv ${ALIGNMENT_FILES} ${ENTRIES_DIRECTORY}
 
-     export ENTRIES_DIRECTORY="${ALIGNMENT_FILES_DIR}"
-     export ENTRIES_FILES=`ls ${ALIGNMENT_FILES_DIR}/*${ENTRIES_EXT}`
-     export ALIGNMENT_FILES=`ls ${ALIGNMENT_FILES_DIR}`
+     export ENTRIES_FILES=`ls ${ENTRIES_DIRECTORY}/*${ENTRIES_EXT}`
+     export ALIGNMENT_FILES=`ls ${ENTRIES_DIRECTORY}`
      echo "Localized ALIGNMENT_FILES ${ALIGNMENT_FILES}"
 
 }
@@ -999,6 +996,9 @@ function jobCompletedEmail {
 }
 
 function setup_plugin_functions {
+    #create the directory where alignments will be downloaded
+    #it needs to be created here because some plugins use it before fetching the alignments
+    mkdir -p  "${ENTRIES_DIRECTORY}"
     # define no-op function to be overridden as needed by plugin script:
     plugin_alignment_combine() { echo; }
     plugin_alignment_analysis_sequential() { echo; }

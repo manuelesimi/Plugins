@@ -23,7 +23,8 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
 
     private final AlignmentAnalysisConfig analysisConfig;
     private final FileSetArea fileSetArea;
-    private final List<String> inputAlignmentTags;
+    private List<String> inputAlignmentTags;
+    private List<String> inputReadsTags;
     private String genomeID;
     private final String[] attributesFromAlignmentsMetadata = new String[]{
             "ORGANISM", "GENOME_REFERENCE_ID", "BASENAME"
@@ -59,12 +60,29 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
                 this.fileSetArea = AreaFactory.createFileSetArea(filesetAreaReference, owner);
             }
         }
-        //input slots are validated elsewhere, we do not need to do it here
-        InputSlotValue inputAlignments = inputSlots.iterator().next();
-        this.inputAlignmentTags = inputAlignments.getValues();
-
+        this.parseInputSlots(inputSlots);
     }
 
+    /**
+     * Parses and validates the input slot values.
+     * @param inputSlots
+     * @throws IOException
+     */
+    private void parseInputSlots(Set<InputSlotValue> inputSlots) throws IOException {
+        for (InputSlotValue slotValue : inputSlots) {
+            if (slotValue.getName().equalsIgnoreCase("INPUT_ALIGNMENTS"))
+                this.inputAlignmentTags = slotValue.getValues();
+            if (slotValue.getName().equalsIgnoreCase("INPUT_READS"))
+                this.inputReadsTags = slotValue.getValues();
+        }
+        //validate the tags
+        assert this.inputReadsTags != null : "No input reads found, unable to build the analysis job";
+        assert this.inputAlignmentTags != null : "No input reads found, unable to build the analysis job";
+        if (this.inputAlignmentTags.size() != this.inputReadsTags.size()) {
+            throw new IOException(String.format("the cardinality of the input alignments (%d) does not match the cardinality of the input reads (%d)",
+                    this.inputAlignmentTags.size(), this.inputReadsTags.size()));
+        }
+    }
     /**
      * Generates the statements that copy each file produced by a plugin to the final JOB_DIR/results/TAG-filename location.
      * @return bash statements.
@@ -128,6 +146,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         environment.put("PRODUCE_TAB_DELIMITED_OUTPUT", analysisConfig.producesTabDelimitedOutput);
         environment.put("PRODUCE_VARIANT_CALLING_FORMAT_OUTPUT", analysisConfig.producesVariantCallingFormatOutput);
         environment.put("INITIAL_STATE", "diffexp");
+        environment.put("ENTRIES_DIRECTORY", "${JOB_DIR}/alignments");
         environment.put("SUPPORTS_TRANSCRIPT_ALIGNMENTS", analysisConfig.supportsTranscriptAlignments);
         environment.put("SPLIT_PROCESS_COMBINE", analysisConfig.splitProcessCombine);
         environment.put("RESULT_FILE_EXTENSION", analysisConfig.producesTabDelimitedOutput ?
@@ -142,6 +161,15 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         for (String inputTag : this.inputAlignmentTags) {
             Alignment alignment = new Alignment(inputTag);
             Map<String, String> storedAttributes = api.fetchAttributes(inputTag, errors);
+            if (! this.inputReadsTags.contains(storedAttributes.get("SOURCE_READS_ID"))) {
+               throw new IOException(String.format("Input alignment %s was created from a reads file %s not indicated in the INPUT_READS slot ",
+                       inputTag, storedAttributes.get("SOURCE_READS_ID")));
+            }
+            Reads reads = new Reads(storedAttributes.get("SOURCE_READS_ID"));
+            Map<String, String> readsAttributes = api.fetchAttributes(reads.getTag(), errors);
+            reads.setAttributes(readsAttributes);
+            reads.setBasename(readsAttributes.get("BASENAME"));
+            alignment.setReads(reads);
             alignment.setAttributes(storedAttributes);
             if (errors.size() >0)
                 throw new IOException(String.format("Failed to fetch attributes for tag %s: %s", inputTag,errors.get(0)));
@@ -163,11 +191,6 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
                 diffExp.setOrganismId( storedAttributes.get("ORGANISM"));
             }
             alignment.setBasename(storedAttributes.get("BASENAME"));
-            Reads reads = new Reads(storedAttributes.get("SOURCE_READS_ID"));
-            Map<String, String> readsAttributes = api.fetchAttributes(reads.getTag(), errors);
-            reads.setAttributes(readsAttributes);
-            reads.setBasename(readsAttributes.get("BASENAME"));
-            alignment.setReads(reads);
             alignment.setAlignJobTag(inputTag);
             alignmentMap.put(inputTag,alignment);
             errors.clear();
