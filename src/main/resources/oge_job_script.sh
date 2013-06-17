@@ -332,7 +332,7 @@ function push_tsv_results {
 
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index 1 --job-type job-part
 
-    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} TSV_OUTPUT: $RESULT_DIR/*.tsv`
+    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} OUTPUT_TSV: $RESULT_DIR/*.tsv`
     dieUponError "Failed to push results in the fileset area."
     echo "The following TSV instances have been successfully registered: ${REGISTERED_TAGS}"
 
@@ -348,7 +348,7 @@ function push_vcf_results {
 
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index 1 --job-type job-part
 
-    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} VCF_OUTPUT: $RESULT_DIR/*.vcf`
+    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} OUTPUT_VCF: $RESULT_DIR/*.vcf`
     dieUponError "Failed to push results in the fileset area."
     echo "The following VCF instances have been successfully registered: ${REGISTERED_TAGS}"
 
