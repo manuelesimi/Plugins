@@ -315,6 +315,8 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
      * @return
      */
     public ExecutableInputSchema getInput() {
+        if (this.executableIOSchema.inputSchema == null)
+            this.executableIOSchema.inputSchema = new ExecutableInputSchema();
         if (!this.isInputDecorated) {
             this.decorateInput(this.executableIOSchema.inputSchema);
             this.isInputDecorated = true;
@@ -342,6 +344,8 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
      * @return
      */
     public ExecutableOutputSchema getOutput() {
+        if (this.executableIOSchema.outputSchema == null)
+            this.executableIOSchema.outputSchema = new ExecutableOutputSchema();
         if (!this.isOutputDecorated) {
             this.decorateOutput(this.executableIOSchema.outputSchema);
             this.isOutputDecorated = true;
