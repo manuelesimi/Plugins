@@ -178,16 +178,14 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
     }
 
     @Override
-    public ExecutableInputSchema getInput() {
+    protected void decorateInput(ExecutableInputSchema inputSchema) {
 
         assert (!(supportsGobyAlignments && supportsBAMAlignments))
                 : "supportsGobyAlignments and supportsBAMAlignments cannot be both true";
         assert (supportsGobyAlignments || supportsBAMAlignments)
                 : "supportsGobyAlignments and supportsBAMAlignments cannot be both false";
 
-        this.executableIOSchema.inputSchema = new ExecutableInputSchema();
-        List<Slot> slots = this.executableInputSchema.getInputSlots();
-        slots.clear(); //needed in case the method is called twice
+        List<Slot> slots = inputSchema.getInputSlots();
         if (supportsGobyAlignments){
             Slot gobySlot = new Slot();
             gobySlot.setName("INPUT_ALIGNMENTS");
@@ -215,19 +213,16 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
             slots.add(bamSlot);
         }
 
-        return this.executableIOSchema.inputSchema;
     }
 
     @Override
-    public ExecutableOutputSchema getOutput() {
+    protected void decorateOutput(ExecutableOutputSchema outputSchema) {
 
         assert (!(producesTabDelimitedOutput && producesVariantCallingFormatOutput))
                 : "producesTabDelimitedOutput and producesVariantCallingFormatOutput cannot be both true";
         assert (producesTabDelimitedOutput || producesVariantCallingFormatOutput)
                 : "producesTabDelimitedOutput and producesVariantCallingFormatOutput cannot be both false";
-        this.executableIOSchema.outputSchema = new ExecutableOutputSchema();
-        List<Slot> slots = this.executableOutputSchema.getOutputSlots();
-        slots.clear(); //needed in case the method is called twice
+        List<Slot> slots = outputSchema.getOutputSlots();
 
         if (producesTabDelimitedOutput) {
             Slot tsvSlot = new Slot();
@@ -256,7 +251,5 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
             vcfSlot.seType(vcfType);
             slots.add(vcfSlot);
         }
-
-        return this.executableIOSchema.outputSchema;
     }
 }

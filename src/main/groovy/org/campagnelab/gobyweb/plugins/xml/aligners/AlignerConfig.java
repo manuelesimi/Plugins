@@ -157,10 +157,8 @@ public class AlignerConfig extends ExecutableConfig {
     }
 
     @Override
-    public ExecutableInputSchema getInput() {
-        this.executableIOSchema.inputSchema = new ExecutableInputSchema();
-        List<Slot> slots = this.executableInputSchema.getInputSlots();
-        slots.clear(); //needed in case the method is called twice
+    protected void decorateInput(ExecutableInputSchema inputSchema) {
+        List<Slot> slots = inputSchema.getInputSlots();
         Slot readsSlot = new Slot();
         readsSlot.setName("INPUT_READS");
         Slot.IOFileSetRef type = new Slot.IOFileSetRef();
@@ -172,14 +170,11 @@ public class AlignerConfig extends ExecutableConfig {
         type.maxOccurs = Integer.toString(1);
         readsSlot.seType(type);
         slots.add(readsSlot);
-        return this.executableIOSchema.inputSchema;
     }
 
     @Override
-    public ExecutableOutputSchema getOutput() {
-        this.executableIOSchema.outputSchema = new ExecutableOutputSchema();
-        List<Slot> slots = this.executableOutputSchema.getOutputSlots();
-        slots.clear(); //needed in case the method is called twice
+    public void decorateOutput(ExecutableOutputSchema outputSchema) {
+        List<Slot> slots = outputSchema.getOutputSlots();
         if (supportsGobyAlignments){
             Slot gobySlot = new Slot();
             gobySlot.setName("GOBY_ALIGNMENT");
@@ -253,7 +248,5 @@ public class AlignerConfig extends ExecutableConfig {
         statsType.maxOccurs = Integer.toString(1);
         statsSlot.seType(statsType);
         slots.add(statsSlot);
-
-        return  this.executableIOSchema.outputSchema;
     }
 }

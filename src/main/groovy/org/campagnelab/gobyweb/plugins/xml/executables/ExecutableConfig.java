@@ -85,6 +85,16 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
 
     public Execute execute;
 
+    /**
+     * Indicates if the input of the Executable IO Schema must be decorated.
+     */
+    private boolean isInputDecorated = false;
+
+    /**
+     * Indicates if the output of the Executable IO Schema must be decorated.
+     */
+    private boolean isOutputDecorated = false;
+
     public List<Option> options() {
         return options.option;
     }
@@ -292,21 +302,60 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
         return execute;
     }
 
+    /**
+     * Sets the input of the Executable I/O Schema.
+     * @param inputSchema
+     */
     public void setInput(ExecutableInputSchema inputSchema)  {
         this.executableIOSchema.inputSchema = inputSchema;
     }
 
+    /**
+     * Gets the output of the Executable I/O Schema.
+     * @return
+     */
     public ExecutableInputSchema getInput() {
+        if (!this.isInputDecorated) {
+            this.decorateInput(this.executableIOSchema.inputSchema);
+            this.isInputDecorated = true;
+        }
         return this.executableIOSchema.inputSchema;
     }
 
+    /**
+     * This method is a hook for subclasses that want to decorate
+     * the Executable I/O Schema's input
+     * @param inputSchema
+     */
+    protected void decorateInput(ExecutableInputSchema inputSchema) {}
+
+    /**
+     * Sets the output of the Executable I/O Schema.
+     * @param outputSchema
+     */
     public void setOutput(ExecutableOutputSchema outputSchema)  {
         this.executableIOSchema.outputSchema = outputSchema;
     }
 
+    /**
+     * Gets the output of the Executable I/O Schema.
+     * @return
+     */
     public ExecutableOutputSchema getOutput() {
+        if (!this.isOutputDecorated) {
+            this.decorateOutput(this.executableIOSchema.outputSchema);
+            this.isOutputDecorated = true;
+        }
         return  this.executableIOSchema.outputSchema;
     }
+
+    /**
+     * This method is a hook for subclasses that want to decorate
+     * the Executable I/O Schema's input.
+     * @param outputSchema
+     */
+    protected void decorateOutput(ExecutableOutputSchema outputSchema) {}
+
     /**
      * The I/O Schema defining the filesets consumed and produced by
      * the plugin when executed as job.
