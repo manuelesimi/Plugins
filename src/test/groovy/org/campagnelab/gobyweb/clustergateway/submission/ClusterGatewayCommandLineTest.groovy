@@ -132,12 +132,80 @@ public class ClusterGatewayCommandLineTest {
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
-                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB"
-
+                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB INPUT_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
         ));
 
     }
+
+    @Test
+    public void runRemoteAnalysisWithWrongCardinality() {
+
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAnalysisWithWrongCardinality() test");
+            return;
+        }
+
+        String artifactServer = String.format("%s@%s",
+                System.getProperty("user.name"),
+                java.net.InetAddress.getLocalHost().getHostName());
+        assertEquals(1, ClusterGateway.process(
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS " +
+                        "--fileset-area /zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA " +
+                        "--plugins-dir test-data/root-for-aligners " +
+                        "--owner gobywebpaper " +
+                        "--queue rascals.q " +
+                        "--env-script ${envScript} "+
+                        "--job CONTAMINANT_EXTRACT " +
+                        "--COMPARISON_PAIR Group_1/Group_2 "+
+                        "--GROUP_DEFINITION Group_1=ZDFTZZE,PVOVHCB " +
+                        "--GROUP_DEFINITION Group_2=KAKIMJE " +
+                        "--option ENSEMBL_RELEASE=50 " +
+                        "--option BAR=bar " +
+                        "--option BAZ=baz " +
+                        "--option DEBUG=true " +
+                        "--artifact-server ${artifactServer} "+
+                        "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
+                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB INPUT_READS: XJYTQZO HRFBTKJ" //slots cardinality does not match
+                ).split(" ")
+        ));
+
+    }
+
+    @Test
+    public void runRemoteAnalysisWithNotMatchingSlots() {
+
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAnalysisWithNotMatchingSlots() test");
+            return;
+        }
+
+        String artifactServer = String.format("%s@%s",
+                System.getProperty("user.name"),
+                java.net.InetAddress.getLocalHost().getHostName());
+        assertEquals(1, ClusterGateway.process(
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS " +
+                        "--fileset-area /zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA " +
+                        "--plugins-dir test-data/root-for-aligners " +
+                        "--owner gobywebpaper " +
+                        "--queue rascals.q " +
+                        "--env-script ${envScript} "+
+                        "--job CONTAMINANT_EXTRACT " +
+                        "--COMPARISON_PAIR Group_1/Group_2 "+
+                        "--GROUP_DEFINITION Group_1=ZDFTZZE,PVOVHCB " +
+                        "--GROUP_DEFINITION Group_2=KAKIMJE " +
+                        "--option ENSEMBL_RELEASE=50 " +
+                        "--option BAR=bar " +
+                        "--option BAZ=baz " +
+                        "--option DEBUG=true " +
+                        "--artifact-server ${artifactServer} "+
+                        "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
+                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB INPUT_READS: XJYTQZO HRFBTKJ KKHLEFC" //KKHLEFC does not match any source for alignments
+                ).split(" ")
+        ));
+
+    }
+
 
     private static String[] buildFileRegistrationArgs(String filenames) {
         ("--fileset-area ${new File(resultsDir).getAbsolutePath()}/filesets "+
