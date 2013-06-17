@@ -80,11 +80,6 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         return command.toString();
     }
 
-    private void populateJobEnvironment(JobRuntimeEnvironment environment)
-            throws IOException {
-
-    }
-
    /**
     * Detects the entries extension of the alignments to fetch from the fileset area.
     * @throws IOException
