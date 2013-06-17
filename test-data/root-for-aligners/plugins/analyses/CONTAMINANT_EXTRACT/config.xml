@@ -249,6 +249,15 @@
             <help>View the table of results in the interactive GobyWeb table browser. Table contains counts of contigs matched to unmapped reads.</help>
         </outputFile>
         <outputFile>
+            <id>REALIGNED_UNMAPPED_LUCENE_INDEX</id>
+            <name>table with match counts of contigs to unmapped reads</name>
+            <required>true</required>
+            <mimeType>application/lucene-index</mimeType>
+            <filename>realigned.lucene.index</filename>
+            <tableName>realigned</tableName>
+            <help>View the table of results in the interactive GobyWeb table browser. Table contains counts of contigs matched to unmapped reads.</help>
+        </outputFile>
+        <outputFile>
             <id>REALIGNED_UNMAPPED</id>
             <name>TSV file with match counts of contigs to unmapped reads</name>
             <required>true</required>

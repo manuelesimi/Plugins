@@ -72,7 +72,7 @@ function plugin_alignment_analysis_process {
         #    echo "found the unmapped reads"
         #else
 
-        echo "unmapped reads not found, running extraction now"
+        echo "Running unmapped reads extraction now"
 
         #local READS_FILE=${PLUGIN_READS[$CURRENT_PART]}
         local READS_FILE=`${FILESET_COMMAND} --fetch INPUT_READS --filter-attribute BASENAME=${PLUGIN_READS[$CURRENT_PART]}`

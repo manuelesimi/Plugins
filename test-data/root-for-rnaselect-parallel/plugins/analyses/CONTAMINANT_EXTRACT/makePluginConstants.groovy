@@ -41,11 +41,6 @@ int execute(final Object gobywebObj, final File tempDir, final Map bindings) {
     return 0
 }
 
-public String alignmentFullPath(Object alignment, final Map bindings) {
-    String resultPath = "${bindings.config.gobyweb.webServerSshPrefix}:${bindings.pathService.usersExistingWebJobResultsDir(alignment.alignJob)}"
-    return "${resultPath}/${alignmentFilename(alignment)}"
-}
-
 /**
  * This comes from alignmentService.alignmentFilename().
  * @param alignment the alignment in question

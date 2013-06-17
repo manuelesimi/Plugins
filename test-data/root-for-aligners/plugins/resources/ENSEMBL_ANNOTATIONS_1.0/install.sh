@@ -11,9 +11,9 @@ function plugin_install_artifact {
     case ${id} in
 
         'ANNOTATIONS' )
-            ORGANISM=$3
+            ORGANISM="caenorhabditis_elegans"
             GENOME_REFERENCE_ID=$4
-            ENSEMBL_RELEASE=$5
+            ENSEMBL_RELEASE=50
             echo "Organism=${ORGANISM} Reference-build=${GENOME_REFERENCE_ID} ENSEMBL_RELEASE=${ENSEMBL_RELEASE}"
             ORG_LOWERCASE=`echo  ${ORGANISM}| tr '[:upper:]' '[:lower:]'`
 
