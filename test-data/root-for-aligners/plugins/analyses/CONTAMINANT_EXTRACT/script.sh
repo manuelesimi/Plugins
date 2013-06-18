@@ -249,3 +249,11 @@ function plugin_alignment_analysis_combine {
 	
 
 }
+
+function plugin_push_results {
+
+   local OUTPUT=`${FILESET_COMMAND} --push OUTPUT_ASSEMBLED_READS: $RESULT_DIR/*assembled-reads.tar.gz`
+   dieUponError "Failed to push results: ${OUTPUT}"
+   echo "The following GZ instances have been successfully registered: ${OUTPUT}"
+
+}

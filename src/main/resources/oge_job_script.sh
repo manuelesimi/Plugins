@@ -279,10 +279,7 @@ function run_alignment_analysis_combine {
     jobDieUponError "failed to combine results"
 
 
-
     %COPY_PLUGIN_OUTPUT_FILES%
-
-    #TODO: this must become a push in the fileset area
 
     mkdir ${TMPDIR}/import-db
     cp ${RESULT_DIR}/${TAG}*.tsv ${TMPDIR}/import-db/
@@ -307,16 +304,17 @@ function run_alignment_analysis_combine {
     fi
 
     if [ "${PRODUCE_TAB_DELIMITED_OUTPUT}" == "true" ]; then
-            push_tsv_results
+            (cd ${TMPDIR} ;push_tsv_results)
     fi
     if [ "${PRODUCE_VARIANT_CALLING_FORMAT_OUTPUT}" == "true" ]; then
-            push_vcf_results
+            (cd ${TMPDIR} ;push_vcf_results)
     fi
 
     #push the lucene indexes, if any
-    push_lucene_indexes
+    (cd ${TMPDIR} ;push_lucene_indexes)
 
-
+    #push other plugin's results, if any
+    run_plugin_push_results
     #
     # Job completely done
     #
@@ -412,7 +410,7 @@ function push_goby_alignments {
 }
 
 #pushes any result (except the alignments) produced by an aligner job in the fileset area
-function push_other_alignment_results {
+function push_aligner_results {
 
    echo .
    echo . Running push_other_results
@@ -983,9 +981,14 @@ function diffexp {
     fi
 
     #
-    # Push results
+    # Push alignment default results
     #
     push_alignment_analysis_results
+
+    #
+    # Push any other result, if any
+    #
+    run_plugin_push_results
 
     #
     # Job completely done
@@ -997,6 +1000,15 @@ function diffexp {
 
 
     copy_logs diffexp 1 1
+}
+
+
+function run_plugin_push_results {
+   echo .
+   echo . Running run_plugin_push_results
+   echo .
+
+   (cd ${JOB_DIR} ; plugin_push_results)
 }
 
 function jobStartedEmail {
@@ -1027,6 +1039,7 @@ function setup_plugin_functions {
     plugin_alignment_analysis_split() { echo; }
     plugin_alignment_analysis_process() { echo; }
     plugin_alignment_analysis_combine() { echo; }
+    plugin_push_results() { echo; }
     # include the plugin_align function for the appropriate aligner:
     . ${JOB_DIR}/script.sh
 
@@ -1092,17 +1105,13 @@ case ${STATE} in
         if [ "${SUPPORTS_BAM_ALIGNMENTS}" == "true" ]; then
             push_bam_alignments
         fi
-        push_other_alignment_results
+        push_aligner_results
+        run_plugin_push_results
         cleanup
         job_complete
         ;;
     *)
         cd ${JOB_DIR}
-        #INSTALL_PLUGIN_ARTIFACTS=`qsub -N ${TAG}.ipa -terse -l ${PLUGIN_NEED_INSTALL_ARTIFACTS} -v STATE=install_plugin_artifacts oge_job_script.sh`
-        #checkSubmission INSTALL_PLUGIN_ARTIFACTS
-        #append_kill_file ${INSTALL_PLUGIN_ARTIFACTS}
-        #echo ${INSTALL_PLUGIN_ARTIFACTS}
-
         SUBMISSION=`qsub -N ${TAG}.submit -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
         checkSubmission $SUBMISSION
         append_kill_file ${SUBMISSION}

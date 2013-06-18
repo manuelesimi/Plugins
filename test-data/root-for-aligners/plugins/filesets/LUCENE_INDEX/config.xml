@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <fileSetConfig xsi:noNamespaceSchemaLocation="../../../../../schemas/plugins.xsd"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <name>Generic directory</name>
+    <name>Lucene Index directory</name>
     <id>LUCENE_INDEX</id>
     <help>A directory containing a Lucene Index.</help>
     <version>1.0</version>
