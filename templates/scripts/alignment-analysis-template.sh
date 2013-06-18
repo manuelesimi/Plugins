@@ -50,18 +50,3 @@ function plugin_alignment_analysis_combine {
 
     #function implementation
 }
-
-# This function may be used by a plugin to push additional results in the FileSet area.
-# TSVs, VCFs and lucene indexes are automatically pushed by the plugin SDK. Here a plugin can
-# push further results that depend on the plugin's logic and according to the OutputSlots declared in
-# the plugin configuration.
-#
-# The function is executed in the JOB_DIR
-#
-function plugin_push_results {
-   echo
-   #sample pushing
-   #local OUTPUT=`${FILESET_COMMAND} --push OUTPUT_SLOT_NAME: pattern`
-   #dieUponError "Failed to push OUTPUT_SLOT_NAME in the fileset area. ${OUTPUT}"
-   #echo "The following OUTPUT_SLOT_NAME instances have been successfully registered: ${OUTPUT}"
-}

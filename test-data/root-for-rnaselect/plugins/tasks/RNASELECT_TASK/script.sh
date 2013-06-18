@@ -25,13 +25,7 @@ function plugin_task {
 
      java  -jar ${RESOURCES_RNASELECT_RNASELECT_TOOL} --output out.tsv ${READ_FILES_LIST}
 
-
-}
-
-
-function plugin_push_results {
-    #push back the generated tsv
-    echo "Pushing the generated TSVs in the FileSet area..."
+     #push back the generated tsv
      REGISTERED_TAGS=`${FILESET_COMMAND} --push STATS: *.tsv`
      if [ $? != 0 ]; then
         dieUponError "Failed to push back the output TSV file"
@@ -40,3 +34,5 @@ function plugin_push_results {
      echo "RNA-select registered the following FileSet instances: ${REGISTERED_TAGS}"
      return 0
 }
+
+

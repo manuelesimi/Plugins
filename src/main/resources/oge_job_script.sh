@@ -313,8 +313,6 @@ function run_alignment_analysis_combine {
     #push the lucene indexes, if any
     (cd ${TMPDIR} ;push_lucene_indexes)
 
-    #push other plugin's results, if any
-    run_plugin_push_results
     #
     # Job completely done
     #
@@ -986,11 +984,6 @@ function diffexp {
     push_alignment_analysis_results
 
     #
-    # Push any other result, if any
-    #
-    run_plugin_push_results
-
-    #
     # Job completely done
     #
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
@@ -1000,15 +993,6 @@ function diffexp {
 
 
     copy_logs diffexp 1 1
-}
-
-
-function run_plugin_push_results {
-   echo .
-   echo . Running run_plugin_push_results
-   echo .
-
-   (cd ${JOB_DIR} ; plugin_push_results)
 }
 
 function jobStartedEmail {
@@ -1106,7 +1090,6 @@ case ${STATE} in
             push_bam_alignments
         fi
         push_aligner_results
-        run_plugin_push_results
         cleanup
         job_complete
         ;;

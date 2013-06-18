@@ -3,7 +3,6 @@
 function setup_task_functions {
     # define no-op function to be overridden as needed by task script:
     plugin_task() { echo; }
-    plugin_push_results() { echo; }
     # include the plugin_task function for the appropriate task:
     . ${JOB_DIR}/script.sh
 
@@ -11,7 +10,6 @@ function setup_task_functions {
 
 function run_task {
    plugin_task
-   (cd ${JOB_DIR} ; plugin_push_results)
 }
 
     #in case the script is re-run from the command line, we need to set here the JOB dir
