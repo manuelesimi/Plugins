@@ -251,5 +251,25 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
             vcfSlot.seType(vcfType);
             slots.add(vcfSlot);
         }
+
+        //decorate with the tables declared in the output schema
+        int indexCounter = 0;
+        for (OutputFile outputFile : this.output.files) {
+           if (outputFile.mimeType.equalsIgnoreCase("application/lucene-index"))
+               indexCounter++;
+        }
+        if (indexCounter > 0) {
+            Slot luceneSlot = new Slot();
+            luceneSlot.setName("OUTPUT_LUCENE_INDEX");
+            Slot.IOFileSetRef luceneType = new Slot.IOFileSetRef();
+            luceneType.id = PluginLoaderSettings.LUCENE_INDEX[0];
+            luceneType.versionAtLeast = PluginLoaderSettings.LUCENE_INDEX[1];
+            luceneType.versionExactly = PluginLoaderSettings.LUCENE_INDEX[2];
+            luceneType.versionAtMost = PluginLoaderSettings.LUCENE_INDEX[3];
+            luceneType.minOccurs = Integer.toString(1);
+            luceneType.maxOccurs = Integer.toString(indexCounter);
+            luceneSlot.seType(luceneType);
+            slots.add(luceneSlot);
+        }
     }
 }

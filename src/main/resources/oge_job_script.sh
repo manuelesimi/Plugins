@@ -306,12 +306,16 @@ function run_alignment_analysis_combine {
        dieUponError "Could not copy db/lucene to results directory (this disk might be full)."
     fi
 
-     if [ "${PRODUCE_TAB_DELIMITED_OUTPUT}" == "true" ]; then
+    if [ "${PRODUCE_TAB_DELIMITED_OUTPUT}" == "true" ]; then
             push_tsv_results
-     fi
-     if [ "${PRODUCE_VARIANT_CALLING_FORMAT_OUTPUT}" == "true" ]; then
+    fi
+    if [ "${PRODUCE_VARIANT_CALLING_FORMAT_OUTPUT}" == "true" ]; then
             push_vcf_results
-     fi
+    fi
+
+    #push the lucene indexes, if any
+    push_lucene_indexes
+
 
     #
     # Job completely done
@@ -352,6 +356,24 @@ function push_vcf_results {
     dieUponError "Failed to push results in the fileset area."
     echo "The following VCF instances have been successfully registered: ${REGISTERED_TAGS}"
 
+}
+
+#pushes the lucene indexes created by an alignment analysis job in the fileset area
+function push_lucene_indexes {
+
+   echo .
+   echo . Running push_lucene_indexes
+   echo .
+
+   for index in `ls $RESULT_DIR/ | grep .lucene.index`
+   do
+       #index is in the form TAG-tablename.lucene.index, we need to extract the tablename token
+       local tablename=${index##${TAG}-}  #remove the tag from front
+       tablename=${tablename%.lucene.index} #remove .lucene.index from back
+       local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_LUCENE_INDEX: $RESULT_DIR/$index`
+       dieUponError "Failed to push a lucene index in the fileset area."
+       echo "The following LUCENE_INDEX instances have been successfully registered: ${REGISTERED_TAGS}"
+  done
 }
 
 #pushes BAM alignments produced by an aligner job in the fileset area

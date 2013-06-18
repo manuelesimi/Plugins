@@ -6,20 +6,19 @@
     <help>bam alignment format</help>
     <version>1.0</version>
     <files>
-        <selector matchAttribute="basename">
+        <selector matchAttribute="BASENAME">
             <id>BAM</id>
             <pattern>*.bam</pattern>
             <mandatory>true</mandatory>
         </selector>
-        <selector matchAttribute="basename">
+        <selector matchAttribute="BASENAME">
             <id>INDEX</id>
             <pattern>*.bam.bai</pattern>
             <mandatory>false</mandatory>
         </selector>
     </files>
     <attributes>
-        <attribute name="basename"/>
-        <attribute name="tag"/>
-        <attribute name="organism"/>
+        <attribute name="BASENAME"/>
+        <attribute name="ORGANISM"/>
     </attributes>
 </fileSetConfig>

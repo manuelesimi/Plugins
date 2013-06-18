@@ -90,7 +90,7 @@ public class PluginLoaderSettings {
 
     /**
      * Fileset configuration configuration added to each AlignerConfig's OutputSchema and to
-     * Alignment Analysis' OutputSchema for analyses that support TSV.
+     * Alignment Analysis' OutputSchema for analyses that produce TSV.
      */
     public static final String[] TSV = new String[] {
             "TSV", //ID
@@ -120,10 +120,22 @@ public class PluginLoaderSettings {
     };
 
     /**
-     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     * Fileset configuration configuration added to each AlignmentAnalysis's OutputSchema
+     * for analyses that produce VCF.
      */
     public static final String[] VCF = new String[] {
             "VCF    ", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+
+    /**
+     * Fileset configuration configuration added to each AlignerConfig's InputSchema.
+     */
+    public static final String[] LUCENE_INDEX = new String[] {
+            "LUCENE_INDEX", //ID
             "1.0",  //versionAtLeast
             null, //versionExactly
             null //versionAtMost

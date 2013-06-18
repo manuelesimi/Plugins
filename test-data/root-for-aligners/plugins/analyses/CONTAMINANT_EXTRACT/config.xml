@@ -215,6 +215,17 @@
             </help>
         </outputFile>
         <outputFile>
+            <id>CONTAMINANT_RESULTS__LUCENE_INDEX</id>
+            <name>table with full results of analysis</name>
+            <required>true</required>
+            <mimeType>application/lucene-index</mimeType>
+            <filename>contaminants.lucene.index</filename>
+            <tableName>contaminants</tableName>
+            <help>View the table of results in the interactive GobyWeb table browser. Table contains found
+                contaminants.
+            </help>
+        </outputFile>
+        <outputFile>
             <id>CONTAMINANT_RESULTS</id>
             <name>TSV file with full results of analysis</name>
             <required>true</required>
@@ -228,6 +239,15 @@
             <required>true</required>
             <mimeType>application/x-sqlite3</mimeType>
             <filename>summary.db</filename>
+            <tableName>summary</tableName>
+            <help>View the table of results in the interactive GobyWeb table browser. Table contains summary of found contaminants.</help>
+        </outputFile>
+        <outputFile>
+            <id>CONTAMINANT_SUMMARY__LUCENE_INDEX</id>
+            <name>table with summary of analysis</name>
+            <required>true</required>
+            <mimeType>application/lucene-index</mimeType>
+            <filename>summary.lucene.index</filename>
             <tableName>summary</tableName>
             <help>View the table of results in the interactive GobyWeb table browser. Table contains summary of found contaminants.</help>
         </outputFile>
@@ -284,5 +304,14 @@
                 </type>
             </inputSlot>
         </input>
+        <output>
+            <outputSlot>
+                <name>OUTPUT_ASSEMBLED_READS</name>
+                <type maxOccurs="1" minOccurs="1">
+                    <id>GZ</id>
+                    <versionAtLeast>1.0</versionAtLeast>
+                </type>
+            </outputSlot>
+        </output>
     </executableIOSchema>
 </alignmentAnalysisConfig>
