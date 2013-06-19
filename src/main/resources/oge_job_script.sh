@@ -948,6 +948,12 @@ function diffexp {
     RESULT_DIR=${SGE_O_WORKDIR}/results/${TAG}
     /bin/mkdir -p ${RESULT_DIR}
 
+     if [ -z "${ENTRIES_DIRECTORY}" ]; then
+        #create the directory where alignments will be downloaded
+        #it needs to be created here because some plugins use it before fetching the alignments
+        mkdir -p  "${ENTRIES_DIRECTORY}"
+    fi
+
     #fetch the input entries from the fileset area
     fetch_input_alignments
 
@@ -1029,9 +1035,6 @@ function jobCompletedEmail {
 }
 
 function setup_plugin_functions {
-    #create the directory where alignments will be downloaded
-    #it needs to be created here because some plugins use it before fetching the alignments
-    mkdir -p  "${ENTRIES_DIRECTORY}"
     # define no-op function to be overridden as needed by plugin script:
     plugin_alignment_combine() { echo; }
     plugin_alignment_analysis_sequential() { echo; }
