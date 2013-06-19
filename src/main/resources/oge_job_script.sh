@@ -332,9 +332,19 @@ function push_tsv_results {
 
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index 1 --job-type job-part
 
-    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} OUTPUT_TSV: $RESULT_DIR/*.tsv`
-    dieUponError "Failed to push results in the fileset area."
-    echo "The following TSV instances have been successfully registered: ${REGISTERED_TAGS}"
+   for index in `ls $RESULT_DIR/ | grep .tsv`
+   do
+       #index is in the form TAG-tablename.tsv, we need to extract the tablename token
+       local tablename=${index##${TAG}-}  #remove the tag from front
+       tablename=${tablename%.tsv} #remove .tsv from back
+       local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_TSV: $RESULT_DIR/$index`
+       dieUponError "Failed to push a TSV table in the FileSet area."
+       echo "The following TSV instance has been successfully registered: ${REGISTERED_TAGS}"
+   done
+
+    #REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} OUTPUT_TSV: $RESULT_DIR/*.tsv`
+    #dieUponError "Failed to push results in the fileset area."
+    #echo "The following TSV instances have been successfully registered: ${REGISTERED_TAGS}"
 
 }
 
@@ -348,9 +358,19 @@ function push_vcf_results {
 
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index 1 --job-type job-part
 
-    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} OUTPUT_VCF: $RESULT_DIR/*.vcf`
-    dieUponError "Failed to push results in the fileset area."
-    echo "The following VCF instances have been successfully registered: ${REGISTERED_TAGS}"
+    for index in `ls $RESULT_DIR/ | grep .vcf`
+    do
+       #index is in the form TAG-tablename.vcf, we need to extract the tablename token
+       local tablename=${index##${TAG}-}  #remove the tag from front
+       tablename=${tablename%.vcf} #remove .vcf from back
+       local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_VCF: $RESULT_DIR/$index`
+       dieUponError "Failed to push a VCF table in the FileSet area."
+       echo "The following VCF instance has been successfully registered: ${REGISTERED_TAGS}"
+    done
+
+    #REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} OUTPUT_VCF: $RESULT_DIR/*.vcf`
+    #dieUponError "Failed to push results in the fileset area."
+    #echo "The following VCF instances have been successfully registered: ${REGISTERED_TAGS}"
 
 }
 
@@ -368,8 +388,8 @@ function push_lucene_indexes {
        tablename=${tablename%.lucene.index} #remove .lucene.index from back
        local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_LUCENE_INDEX: $RESULT_DIR/$index`
        dieUponError "Failed to push a lucene index in the fileset area."
-       echo "The following LUCENE_INDEX instances have been successfully registered: ${REGISTERED_TAGS}"
-  done
+       echo "The following LUCENE_INDEX instance has been successfully registered: ${REGISTERED_TAGS}"
+   done
 }
 
 #pushes BAM alignments produced by an aligner job in the fileset area
