@@ -1023,7 +1023,6 @@ function setup_plugin_functions {
     plugin_alignment_analysis_split() { echo; }
     plugin_alignment_analysis_process() { echo; }
     plugin_alignment_analysis_combine() { echo; }
-    plugin_push_results() { echo; }
     # include the plugin_align function for the appropriate aligner:
     . ${JOB_DIR}/script.sh
 
