@@ -138,9 +138,11 @@ function setup {
         fi
 
         # Copy the goby and support tools to the local node
-        /bin/cp ${GOBY_DIR}/* ${TMPDIR}
-        cd ${TMPDIR}
-        export TMPDIR
+        if [ -d ${TMPDIR} ]; then
+            /bin/cp ${GOBY_DIR}/* ${TMPDIR}
+            cd ${TMPDIR}
+            export TMPDIR
+        fi
 
         # Show the java & goby.jar version
         echo "Java version"
