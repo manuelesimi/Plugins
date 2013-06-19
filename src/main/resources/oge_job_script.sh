@@ -332,19 +332,15 @@ function push_tsv_results {
 
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index 1 --job-type job-part
 
-   for index in `ls $RESULT_DIR/ | grep .tsv`
-   do
+    for index in `ls $RESULT_DIR/ | grep .tsv`
+    do
        #index is in the form TAG-tablename.tsv, we need to extract the tablename token
        local tablename=${index##${TAG}-}  #remove the tag from front
        tablename=${tablename%.tsv} #remove .tsv from back
-       local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_TSV: $RESULT_DIR/$index`
-       dieUponError "Failed to push a TSV table in the FileSet area."
-       echo "The following TSV instance has been successfully registered: ${REGISTERED_TAGS}"
-   done
-
-    #REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} OUTPUT_TSV: $RESULT_DIR/*.tsv`
-    #dieUponError "Failed to push results in the fileset area."
-    #echo "The following TSV instances have been successfully registered: ${REGISTERED_TAGS}"
+       local REGISTERED_TAG=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_TSV: $RESULT_DIR/$index`
+       dieUponError "Failed to push a TSV table in the FileSet area: ${REGISTERED_TAG}"
+       echo "The following TSV instance has been successfully registered: ${REGISTERED_TAG}"
+    done
 
 }
 
@@ -363,15 +359,10 @@ function push_vcf_results {
        #index is in the form TAG-tablename.vcf, we need to extract the tablename token
        local tablename=${index##${TAG}-}  #remove the tag from front
        tablename=${tablename%.vcf} #remove .vcf from back
-       local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_VCF: $RESULT_DIR/$index`
-       dieUponError "Failed to push a VCF table in the FileSet area."
-       echo "The following VCF instance has been successfully registered: ${REGISTERED_TAGS}"
+       local REGISTERED_TAG=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_VCF: $RESULT_DIR/$index`
+       dieUponError "Failed to push a VCF table in the FileSet area. ${REGISTERED_TAG}"
+       echo "The following VCF instance has been successfully registered: ${REGISTERED_TAG}"
     done
-
-    #REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} OUTPUT_VCF: $RESULT_DIR/*.vcf`
-    #dieUponError "Failed to push results in the fileset area."
-    #echo "The following VCF instances have been successfully registered: ${REGISTERED_TAGS}"
-
 }
 
 #pushes the lucene indexes created by an alignment analysis job in the fileset area
@@ -386,9 +377,9 @@ function push_lucene_indexes {
        #index is in the form TAG-tablename.lucene.index, we need to extract the tablename token
        local tablename=${index##${TAG}-}  #remove the tag from front
        tablename=${tablename%.lucene.index} #remove .lucene.index from back
-       local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_LUCENE_INDEX: $RESULT_DIR/$index`
-       dieUponError "Failed to push a lucene index in the fileset area."
-       echo "The following LUCENE_INDEX instance has been successfully registered: ${REGISTERED_TAGS}"
+       local REGISTERED_TAG=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_LUCENE_INDEX: $RESULT_DIR/$index`
+       dieUponError "Failed to push a lucene index in the fileset area: ${REGISTERED_TAG}"
+       echo "The following LUCENE_INDEX instance has been successfully registered: ${REGISTERED_TAG}"
    done
 }
 
@@ -404,7 +395,7 @@ function push_bam_alignments {
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
 
     REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bai $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
-    dieUponError "Failed to push the alignment files in the fileset area."
+    dieUponError "Failed to push the alignment files in the fileset area: ${REGISTERED_TAGS}"
 
     echo "The following BAM_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
 }
@@ -421,7 +412,7 @@ function push_goby_alignments {
      ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
 
      REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
-     dieUponError "Failed to push the alignment files in the fileset area."
+     dieUponError "Failed to push the alignment files in the fileset area: ${REGISTERED_TAGS}"
 
      echo "The following GOBY_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
 
@@ -438,7 +429,7 @@ function push_aligner_results {
    echo Pushing TSV
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} TSV: $RESULT_DIR/*.tsv`
    if [ $? != 0 ]; then
-        echo Failed to push back TSV files
+        echo "Failed to push back TSV files: ${REGISTERED_TAGS}"
    fi
    echo "The following TSV instances have been successfully registered: ${REGISTERED_TAGS}"
 
@@ -446,7 +437,7 @@ function push_aligner_results {
    echo Pushing COUNTS
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} COUNTS: $RESULT_DIR/*.counts`
    if [ $? != 0 ]; then
-        echo Failed to push back COUNTS files
+        echo "Failed to push back COUNTS files: ${REGISTERED_TAGS}"
    fi
    echo "The following COUNTS instances have been successfully registered: ${REGISTERED_TAGS}"
 
@@ -454,7 +445,7 @@ function push_aligner_results {
    echo Pushing GZs
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} GZ: $RESULT_DIR/*.gz`
    if [ $? != 0 ]; then
-        echo Failed to push back GZ files
+        echo "Failed to push back GZ files: ${REGISTERED_TAGS}"
    fi
    echo "The following GZ instances have been successfully registered: ${REGISTERED_TAGS}"
 
@@ -462,7 +453,7 @@ function push_aligner_results {
    echo Pushing STATS
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} STATS: $RESULT_DIR/*.stats`
    if [ $? != 0 ]; then
-        echo Failed to push back STATS files
+        echo "Failed to push back STATS files: ${REGISTERED_TAGS}"
    fi
    echo "The following STATS instances have been successfully registered: ${REGISTERED_TAGS}"
 }
