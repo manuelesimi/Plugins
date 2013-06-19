@@ -126,7 +126,8 @@ function setup {
         echo ------------------------------------------------------
 
         GOBY_DIR=${SGE_O_WORKDIR}/goby
-        if [ ! -d ${GOBY_DIR} ]; then
+        if [ ! -d "${GOBY_DIR}" ]; then
+            echo Creating goby dir...
             mkdir -p ${GOBY_DIR}
              /bin/cp ${SGE_O_WORKDIR}/global_goby.jar ${GOBY_DIR}/goby.jar
              /bin/cp ${SGE_O_WORKDIR}/log4j.properties ${GOBY_DIR}/
@@ -138,7 +139,8 @@ function setup {
         fi
 
         # Copy the goby and support tools to the local node
-        if [ -d ${TMPDIR} ]; then
+        if [ -d "${TMPDIR}" ]; then
+            echo Copying goby dir to the local node ...
             /bin/cp ${GOBY_DIR}/* ${TMPDIR}
             cd ${TMPDIR}
             export TMPDIR
