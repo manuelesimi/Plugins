@@ -1,12 +1,9 @@
 package org.campagnelab.gobyweb.plugins;
 
-import org.campagnelab.gobyweb.plugins.xml.BaseConfig;
 import org.campagnelab.gobyweb.plugins.xml.Config;
-import org.campagnelab.gobyweb.plugins.xml.SupportDependencyRange;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -104,16 +101,6 @@ public class PluginRegistry extends ArrayList<Config> {
      * @return the configuration that matches or null
      */
     public <T extends Config> T findByTypedId(String idToFind, Class<T> configClass ) {
-       /* if (idToFind != null) {
-            for (Config config: this) {
-                if ((config.getId().compareTo(idToFind)==0)
-                    && ((config.getClass().isAssignableFrom(configClass)) //same class
-                        ||(configClass.isInstance(config)))){  //or a sub-class
-                    return (T)config;
-                }
-            }
-        }
-        return null; */
         return findByTypedIdAndVersion(idToFind, null, configClass);
     }
 
