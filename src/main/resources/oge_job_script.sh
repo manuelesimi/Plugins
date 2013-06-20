@@ -398,7 +398,7 @@ function push_bam_alignments {
      #push back the generated alignments
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
 
-    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bai $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
+    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bam.bai`
     dieUponError "Failed to push the alignment files in the fileset area: ${REGISTERED_TAGS}"
 
     echo "The following BAM_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
@@ -948,11 +948,9 @@ function diffexp {
     RESULT_DIR=${SGE_O_WORKDIR}/results/${TAG}
     /bin/mkdir -p ${RESULT_DIR}
 
-     if [ -z "${ENTRIES_DIRECTORY}" ]; then
-        #create the directory where alignments will be downloaded
-        #it needs to be created here because some plugins use it before fetching the alignments
-        mkdir -p  "${ENTRIES_DIRECTORY}"
-    fi
+    #create the directory where alignments will be downloaded
+    /bin/mkdir -p  "${ENTRIES_DIRECTORY}"
+
 
     #fetch the input entries from the fileset area
     fetch_input_alignments
