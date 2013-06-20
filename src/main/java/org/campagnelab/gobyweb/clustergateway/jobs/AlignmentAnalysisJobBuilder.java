@@ -8,8 +8,10 @@ import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
+import org.campagnelab.gobyweb.plugins.PluginLoaderSettings;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.OutputFile;
+import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
 
 import java.io.IOException;
 import java.util.*;
@@ -23,12 +25,8 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
 
     private final AlignmentAnalysisConfig analysisConfig;
     private final FileSetArea fileSetArea;
-    private List<String> inputAlignmentTags;
-    private List<String> inputReadsTags;
-    private String genomeID;
-    private final String[] attributesFromAlignmentsMetadata = new String[]{
-            "ORGANISM", "GENOME_REFERENCE_ID", "BASENAME"
-    };
+    private List<String> inputAlignmentTags = new ArrayList<String>();
+    private List<String> inputReadsTags = new ArrayList<String>();
     private List<String> groupDefinitions;
     private List<String> comparisonPairs;
 
@@ -72,15 +70,19 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         for (InputSlotValue slotValue : inputSlots) {
             if (slotValue.getName().equalsIgnoreCase("INPUT_ALIGNMENTS"))
                 this.inputAlignmentTags = slotValue.getValues();
-            if (slotValue.getName().equalsIgnoreCase("INPUT_READS"))
+
+            if (slotValue.getName().equalsIgnoreCase("ALIGNMENT_SOURCE_READS"))
                 this.inputReadsTags = slotValue.getValues();
+
         }
         //validate the tags
-        assert this.inputReadsTags != null : "No input reads found, unable to build the analysis job";
-        assert this.inputAlignmentTags != null : "No input reads found, unable to build the analysis job";
-        if (this.inputAlignmentTags.size() != this.inputReadsTags.size()) {
-            throw new IOException(String.format("the cardinality of the input alignments (%d) does not match the cardinality of the input reads (%d)",
-                    this.inputAlignmentTags.size(), this.inputReadsTags.size()));
+        assert this.inputAlignmentTags.size() != 0 : "No input alignments found, unable to build the analysis job";
+
+        if (this.inputReadsTags.size() > 0) {
+            if (this.inputAlignmentTags.size() != this.inputReadsTags.size()) {
+                throw new IOException(String.format("the cardinality of the input alignments (%d) does not match the cardinality of the input reads (%d)",
+                        this.inputAlignmentTags.size(), this.inputReadsTags.size()));
+            }
         }
     }
     /**
