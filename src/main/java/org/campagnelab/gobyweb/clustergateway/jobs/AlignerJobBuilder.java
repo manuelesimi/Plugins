@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
+import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
@@ -20,7 +21,6 @@ public class AlignerJobBuilder extends JobBuilder {
     private final AlignerConfig alignerConfig;
     private final FileSetArea fileSetArea;
     private int chunkSize;
-    private int numParts;
     private String genomeID;
     private final String inputReadsTag;
     private final String[] attributesFromReadsMetadata = new String[]{
@@ -78,7 +78,8 @@ public class AlignerJobBuilder extends JobBuilder {
         //variables from the sample metadata
         FileSetAPI api = FileSetAPI.getReadOnlyAPI(fileSetArea);
         List<String> errors = new ArrayList<String>();
-        Map<String, String> storedAttributes = api.fetchAttributes(this.inputReadsTag,errors);
+        MetadataFileReader reader = api.fetchMetadata(this.inputReadsTag, errors);
+        Map<String, String> storedAttributes = reader.getAttributes();
         for (String attribute : attributesFromReadsMetadata) {
             if (storedAttributes.containsKey(attribute))
                 environment.put(attribute, storedAttributes.get(attribute));
@@ -86,23 +87,24 @@ public class AlignerJobBuilder extends JobBuilder {
         environment.put("SOURCE_READS_ID", this.inputReadsTag);
         //variables from the command line options
         environment.put("CHUNK_SIZE", this.chunkSize);
-        environment.put("NUMBER_OF_ALIGN_PARTS", this.numParts);
+
+        double num_parts = getNumParts(reader.getEntrySize("READS_FILE"));
+        environment.put("NUMBER_OF_ALIGN_PARTS", num_parts);
         environment.put("GENOME_REFERENCE_ID", this.genomeID);
         // Increase total number of parts for CONCAT and POST
-        environment.put("NUMBER_OF_PARTS", this.numParts + 2);
+        environment.put("NUMBER_OF_PARTS", num_parts + 2);
         if (this.genomeID.startsWith("Transcript-"))
             environment.put("INITIAL_STATE", "pre_transcript_align");
         else
             environment.put("INITIAL_STATE", "pre_align");
     }
 
-    public void setChunkSize(int chunkSize) {
-        this.chunkSize = chunkSize;
+    private double getNumParts(long readsSize) {
+       return Math.ceil(readsSize / this.chunkSize);
     }
 
-
-    public void setNumParts(int numParts) {
-        this.numParts = numParts;
+    public void setChunkSize(int chunkSize) {
+        this.chunkSize = chunkSize;
     }
 
     public void setGenomeID(String genomeID) {

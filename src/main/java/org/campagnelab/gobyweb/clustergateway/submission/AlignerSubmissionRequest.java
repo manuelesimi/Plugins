@@ -46,14 +46,6 @@ class AlignerSubmissionRequest extends SubmissionRequest {
         chunk_size.setHelp("The number of bytes of compressed reads file to give to a single align part.");
         parameters.add(chunk_size);
 
-        FlaggedOption parts = new FlaggedOption("NUMBER_OF_ALIGN_PARTS")
-                .setStringParser(JSAP.STRING_PARSER)
-                .setRequired(true)
-                .setShortFlag(JSAP.NO_SHORTFLAG)
-                .setLongFlag("NUMBER_OF_ALIGN_PARTS");
-        parts.setHelp("The number of parts in which the job will be split.");
-        parameters.add(parts);
-
         return parameters;
     }
 
