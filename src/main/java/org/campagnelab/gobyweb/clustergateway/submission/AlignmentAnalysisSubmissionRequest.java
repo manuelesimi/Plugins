@@ -48,7 +48,9 @@ class AlignmentAnalysisSubmissionRequest extends SubmissionRequest {
     }
     @Override
     protected int submit(JSAPResult config, Actions actions) throws Exception {
-        actions.submitAnalysis(alignmentAnalysisConfig.getId(),
+        if (alignmentAnalysisConfig.isDisabled())
+            throw new Exception(String.format("Alignment analysis %s is currently disabled", alignmentAnalysisConfig.getId()));
+        actions.submitAnalysis(alignmentAnalysisConfig,
                 this.getInputSlots(),
                 config.getStringArray("GROUP_DEFINITION"),
                 config.getStringArray("COMPARISON_PAIR"),

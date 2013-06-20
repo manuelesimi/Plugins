@@ -116,7 +116,7 @@ final class Actions {
     /**
      * Submits an aligner for execution.
      *
-     * @param id
+     * @param alignerConfig
      * @param inputSlots
      * @param genomeID
      * @param chunkSize
@@ -124,11 +124,8 @@ final class Actions {
      * @param unclassifiedOptions
      * @throws Exception
      */
-    protected void submitAligner(String id, Set<InputSlotValue> inputSlots, String genomeID,
+    protected void submitAligner(AlignerConfig alignerConfig, Set<InputSlotValue> inputSlots, String genomeID,
                                  int chunkSize, int numParts, Map<String, String> unclassifiedOptions) throws Exception {
-        AlignerConfig alignerConfig = registry.findByTypedId(id, AlignerConfig.class);
-        if (alignerConfig == null)
-            throw new IllegalArgumentException("Could not find an Aligner plugin with ID=" + id);
         AlignerJobBuilder builder = new AlignerJobBuilder(alignerConfig, jobArea,
                 fileSetAreaReference, jobArea.getOwner(), inputSlots);
         builder.setChunkSize(chunkSize);
@@ -144,18 +141,16 @@ final class Actions {
     /**
      * Submits an alignment analysis for execution.
      *
-     * @param id
+     * @param analysisConfig
      * @param inputSlots
      * @param groups_definitions group definition list, each definition in the form: Group_N=TAG,TAG342,TAG231...
      * @param comparison_pairs comparison pair list, each pair in the form "Group_1/Group_2"
      * @param unclassifiedOptions
      */
-    protected void submitAnalysis(String id, Set<InputSlotValue> inputSlots, String[] groups_definitions,
+    protected void submitAnalysis(AlignmentAnalysisConfig analysisConfig, Set<InputSlotValue> inputSlots, String[] groups_definitions,
                                   String[] comparison_pairs, Map<String, String> unclassifiedOptions)
             throws Exception {
-        AlignmentAnalysisConfig analysisConfig =registry.findByTypedId(id, AlignmentAnalysisConfig.class);
-        if (analysisConfig == null)
-            throw new IllegalArgumentException("Could not find an Alignment Analysis plugin with ID=" + id);
+
         AlignmentAnalysisJobBuilder builder = new AlignmentAnalysisJobBuilder(analysisConfig, jobArea,
                 fileSetAreaReference, jobArea.getOwner(), inputSlots);
         builder.setGroupDefinition(Arrays.asList(groups_definitions));
@@ -171,17 +166,14 @@ final class Actions {
      * Submits a task for execution
      *
      *
-     * @param id         the plugin configuration identifier
+     * @param taskConfig         the plugin configuration
      * @param inputSlots the input filesets
      * @param unclassifiedOptions additional options defined by the user
      * @throws Exception
      */
-    protected void submitTask(String id, Set<InputSlotValue> inputSlots,
+    protected void submitTask(TaskConfig taskConfig, Set<InputSlotValue> inputSlots,
                               Map<String, String> unclassifiedOptions) throws Exception {
-        //look for the task configuration
-        TaskConfig taskConfig = registry.findByTypedId(id, TaskConfig.class);
-        if (taskConfig == null)
-            throw new IllegalArgumentException("Could not find a Task plugin with ID=" + id);
+
         TaskJobBuilder builder = new TaskJobBuilder(taskConfig);
         if (submitter.isLocal())
             submitter.setWrapperScript("local_task_wrapper_script.sh");
@@ -194,16 +186,11 @@ final class Actions {
     /**
      * Submits a resource for installation.
      *
-     * @param id      the resource id
-     * @param version the resource version
+     * @param config      the resource
      * @throws Exception
      */
-    protected void submitResourceInstall(String id, String version) throws Exception {
-        //create the resourceInstance instance
-        ResourceConfig config = DependencyResolver.resolveResource(id, version, version, version);
-        if (config == null) {
-            throw new IllegalArgumentException(String.format("Unable to locate resource with id=%s version=%s", id, version));
-        }
+    protected void submitResourceInstall( ResourceConfig config) throws Exception {
+
         ResourceJob resourceInstance = new ResourceJob(config);
         resourceInstance.setTag(ICBStringUtils.generateRandomString());
         logger.debug("Tag assigned to Task instance: " + resourceInstance.getTag());

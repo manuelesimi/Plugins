@@ -1,6 +1,8 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
 import com.martiansoftware.jsap.JSAPResult;
+import org.campagnelab.gobyweb.plugins.DependencyResolver;
+import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 /**
  * Prepare a job request for a resource.
@@ -23,7 +25,10 @@ class ResourceSubmissionRequest extends SubmissionRequest {
         if (token.length >= 2) {
             version = token[1];
         }
-        actions.submitResourceInstall(id, version);
+        ResourceConfig resourceConfig = DependencyResolver.resolveResource(id, version, version, version);
+        if (resourceConfig.isDisabled())
+            throw new Exception(String.format("Resource %s is currently disabled", resourceConfig.getId()));
+        actions.submitResourceInstall(resourceConfig);
         return 0;
     }
 }

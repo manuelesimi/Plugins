@@ -64,8 +64,9 @@ class AlignerSubmissionRequest extends SubmissionRequest {
      * @throws Exception
      */
     protected int submit(JSAPResult config, Actions actions) throws Exception {
-
-        actions.submitAligner(alignerConfig.getId(),
+        if (alignerConfig.isDisabled())
+            throw new Exception(String.format("Aligner %s is currently disabled", alignerConfig.getId()));
+        actions.submitAligner(alignerConfig,
                 this.getInputSlots(),
                 config.getString("GENOME_REFERENCE_ID"),
                 Integer.valueOf(config.getString("CHUNK_SIZE")),

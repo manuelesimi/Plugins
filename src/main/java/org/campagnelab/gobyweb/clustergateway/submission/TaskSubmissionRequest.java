@@ -19,7 +19,9 @@ class TaskSubmissionRequest extends SubmissionRequest {
 
     @Override
     protected int submit(JSAPResult config, Actions actions) throws Exception {
-        actions.submitTask(taskConfig.getId(), this.getInputSlots(), this.getUnclassifiedOptions());
+        if (taskConfig.isDisabled())
+            throw new Exception(String.format("Task %s is currently disabled", taskConfig.getId()));
+        actions.submitTask(taskConfig, this.getInputSlots(), this.getUnclassifiedOptions());
         return 0;
     }
 }
