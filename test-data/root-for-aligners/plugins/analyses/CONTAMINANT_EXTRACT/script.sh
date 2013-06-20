@@ -75,7 +75,7 @@ function plugin_alignment_analysis_process {
         echo "Running unmapped reads extraction now"
 
         #local READS_FILE=${PLUGIN_READS[$CURRENT_PART]}
-        local READS_FILE=`${FILESET_COMMAND} --fetch INPUT_READS --filter-attribute BASENAME=${PLUGIN_READS[$CURRENT_PART]}`
+        local READS_FILE=`${FILESET_COMMAND} --fetch ALIGNMENT_SOURCE_READS --filter-attribute BASENAME=${PLUGIN_READS[$CURRENT_PART]}`
         if [ $? != 0 ]; then
             dieUponError "Failed to fecth compact reads ${PLUGIN_READS[$CURRENT_PART]}"
         fi
