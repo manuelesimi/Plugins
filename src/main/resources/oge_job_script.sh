@@ -1067,6 +1067,7 @@ case ${STATE} in
     bam_align)
         install_plugin_artifacts
         setup_plugin_functions
+        fetch_input_reads
         bam_align
         ;;
     single_align)
