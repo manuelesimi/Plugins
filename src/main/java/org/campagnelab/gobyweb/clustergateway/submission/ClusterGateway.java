@@ -33,7 +33,6 @@ public class ClusterGateway {
             SubmissionRequest request = SubmissionRequestFactory.createRequest(args);
             return request.submitRequest();
         } catch (Exception e) {
-            e.printStackTrace();
             //display the basic help
             try {
                 JSAP jsap = new JSAP(ClusterGateway.class.getResource("ClusterGateway.jsap"));
@@ -42,6 +41,7 @@ public class ClusterGateway {
                 System.err.println("Usage: java " + ClusterGateway.class.getName());
                 System.err.println("                " + jsap.getUsage());
                 System.err.println();
+                System.err.println(e.getMessage());
                 return (1);
             } catch (Exception e1) {
                 e1.printStackTrace();
