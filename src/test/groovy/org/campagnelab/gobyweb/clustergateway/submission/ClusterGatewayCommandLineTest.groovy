@@ -132,7 +132,7 @@ public class ClusterGatewayCommandLineTest {
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
-                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB INPUT_READS: XJYTQZO HRFBTKJ SFQMOBF"
+                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
         ));
 
@@ -166,7 +166,7 @@ public class ClusterGatewayCommandLineTest {
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
-                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB INPUT_READS: XJYTQZO HRFBTKJ" //slots cardinality does not match
+                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ" //slots cardinality does not match
                 ).split(" ")
         ));
 
@@ -200,7 +200,7 @@ public class ClusterGatewayCommandLineTest {
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
-                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB INPUT_READS: XJYTQZO HRFBTKJ KKHLEFC" //KKHLEFC does not match any source for alignments
+                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ KKHLEFC" //KKHLEFC does not match any source for alignments
                 ).split(" ")
         ));
 
