@@ -74,6 +74,7 @@ public class AlignerJobBuilder extends JobBuilder {
         environment.put("SUPPORTS_PAIRED_END_ALIGNMENTS", alignerConfig.supportsPairedEndAlignments);
         environment.put("SUPPORTS_BISULFITE_CONVERTED_READS", alignerConfig.supportsBisulfiteConvertedReads);
         environment.put("ALIGNER", alignerConfig.getId());
+        environment.put("INDEX_PREFIX","index" );
         //variables from the sample metadata
         FileSetAPI api = FileSetAPI.getReadOnlyAPI(fileSetArea);
         List<String> errors = new ArrayList<String>();
