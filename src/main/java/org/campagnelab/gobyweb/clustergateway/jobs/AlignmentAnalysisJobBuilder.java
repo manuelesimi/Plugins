@@ -163,9 +163,11 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         for (String inputTag : this.inputAlignmentTags) {
             Alignment alignment = new Alignment(inputTag);
             Map<String, String> storedAttributes = api.fetchAttributes(inputTag, errors);
-            if (! this.inputReadsTags.contains(storedAttributes.get("SOURCE_READS_ID"))) {
-               throw new IOException(String.format("Input alignment %s was created from a reads file %s not indicated in the INPUT_READS slot ",
-                       inputTag, storedAttributes.get("SOURCE_READS_ID")));
+            if (this.inputReadsTags.size() > 0) {
+                if (! this.inputReadsTags.contains(storedAttributes.get("SOURCE_READS_ID"))) {
+                   throw new IOException(String.format("Input alignment %s was created from a reads file %s not indicated in the INPUT_READS slot ",
+                           inputTag, storedAttributes.get("SOURCE_READS_ID")));
+                }
             }
             Reads reads = new Reads(storedAttributes.get("SOURCE_READS_ID"));
             Map<String, String> readsAttributes = api.fetchAttributes(reads.getTag(), errors);
