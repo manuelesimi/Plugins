@@ -8,6 +8,7 @@ import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
 
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.fail;
 
 /**
@@ -31,12 +33,14 @@ public class TaskLocalSubmissionTest {
     static JobArea jobArea;
     static FileSetArea storageArea;
     static Actions actions;
+    static TaskConfig taskConfig;
     static final String sourceStorageAreaDir = "test-data/cluster-gateway/fileset-area-for-submission-test";
     static final String rootAreaDir = "test-results";
     static final String storageAreaDir = String.format("%s/filesets", rootAreaDir);
     static final String jobAreaDir = String.format("%s/jobs", rootAreaDir);
     static final String owner = "PluginsSDK";
     static String referenceSA =  new File(storageAreaDir).getAbsolutePath();
+
 
 
 
@@ -65,6 +69,9 @@ public class TaskLocalSubmissionTest {
         } catch (IOException ioe) {
             fail("failed to create the local job area");
         }
+
+        taskConfig = plugins.getRegistry().findByTypedId("RNASELECT_TASK", TaskConfig.class);
+        assertNotNull(taskConfig);
     }
 
     @Test
@@ -74,9 +81,9 @@ public class TaskLocalSubmissionTest {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
-            actions.submitTask(
-                    "RNASELECT_TASK",
-                    SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}), Collections.EMPTY_MAP);
+            actions.submitTask(taskConfig ,
+                    SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}),
+                    Collections.EMPTY_MAP);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,7 +100,7 @@ public class TaskLocalSubmissionTest {
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             //12 values for input reads are not accepted
             actions.submitTask(
-                    "RNASELECT_TASK",
+                    taskConfig,
                     SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:",
                             "TESTTAG1", "TESTTAG2", "TESTTAG3", "TESTTAG1",
                             "TESTTAG2", "TESTTAG3", "TESTTAG1", "TESTTAG2",
@@ -115,7 +122,7 @@ public class TaskLocalSubmissionTest {
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             //no values for input reads are not accepted
             actions.submitTask(
-                    "RNASELECT_TASK",
+                    taskConfig,
                     SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:",}), Collections.EMPTY_MAP);
             fail("Exception must occur");
         } catch (ExecutableJob.InvalidSlotValueException is) {
@@ -134,7 +141,7 @@ public class TaskLocalSubmissionTest {
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             //INPUT_READS slot is mandatory
             actions.submitTask(
-                    "RNASELECT_TASK",
+                    taskConfig,
                     SubmissionRequest.toInputParameters(new String[]{}), Collections.EMPTY_MAP);
             fail("Exception must occur");
         } catch (ExecutableJob.InvalidJobDataException is) {

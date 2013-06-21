@@ -90,7 +90,6 @@ public class ClusterGatewayCommandLineTest {
                         "--job BWA_GOBY_ARTIFACT " +
                         "--GENOME_REFERENCE_ID WBcel215.69 "+
                         "--CHUNK_SIZE 50000000 "+
-                        "--NUMBER_OF_ALIGN_PARTS 2 " +
                         "--option FOO=foo " +
                         "--option BAR=bar " +
                         "--option BAZ=baz " +

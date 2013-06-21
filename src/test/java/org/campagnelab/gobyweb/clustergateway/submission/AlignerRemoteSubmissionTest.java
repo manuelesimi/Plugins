@@ -3,6 +3,7 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
+import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Properties;
 
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.fail;
 
 /**
@@ -30,8 +32,8 @@ public class AlignerRemoteSubmissionTest {
     static final String jobAreaReference = "gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS";
     static final String envScript = "test-data/root-for-aligners/artifacts-config/env.sh";
     static Properties prop = new Properties();
-    static final String owner = "campagne";
-
+    static final String owner = "gobywebpaper";
+    static AlignerConfig alignerConfig;
 
     @BeforeClass
     public static void configure() {
@@ -57,6 +59,9 @@ public class AlignerRemoteSubmissionTest {
         } catch (IOException ioe) {
             fail("failed to connect to the job area");
         }
+
+        alignerConfig = plugins.getRegistry().findByTypedId("BWA_GOBY_ARTIFACT", AlignerConfig.class);
+        assertNotNull(alignerConfig);
     }
 
     @Test
@@ -74,11 +79,11 @@ public class AlignerRemoteSubmissionTest {
             submitter.setEnvironmentScript(new File(envScript).getAbsolutePath());
             actions = new Actions(submitter, filesetAreaReference, jobArea, plugins.getRegistry());
             actions.submitAligner(
-                    "BWA_GOBY_ARTIFACT",
-                    SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "SCGHGBF"}),
+                    alignerConfig,
+                    SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "HRFBTKJ"}),
                     "WBcel215.69", //genome id
                     50000000, //chuck size
-                    2, Collections.EMPTY_MAP); //number of parts
+                    Collections.EMPTY_MAP); //number of parts
         } catch (Exception e) {
             e.printStackTrace();
             fail("failed to submit a remote aligner for LAST_GOBY configuration");

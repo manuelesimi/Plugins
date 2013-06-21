@@ -4,6 +4,7 @@ import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
+import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.fail;
 
 /**
@@ -32,7 +34,7 @@ public class AnalysisLocalSubmission {
     static final String jobAreaDir = String.format("%s/jobs", rootAreaDir);
     static final String owner = "PluginsSDK";
     static String referenceSA =  new File(storageAreaDir).getAbsolutePath();
-
+    static AlignmentAnalysisConfig alignmentAnalysisConfig;
 
     @BeforeClass
     public static void configure() {
@@ -57,19 +59,21 @@ public class AnalysisLocalSubmission {
         } catch (IOException ioe) {
             fail("failed to create the local job area");
         }
+        alignmentAnalysisConfig = plugins.getRegistry().findByTypedId("CONTAMINANT_EXTRACT", AlignmentAnalysisConfig.class);
+        assertNotNull(alignmentAnalysisConfig);
     }
 
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void submit() {
         try {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
-            actions.submitTask(
-                    "CONTAMINANT_EXTRACT",
-                    SubmissionRequest.toInputParameters(new String[]{}), Collections.EMPTY_MAP);
+            /*actions.submitAnalysis(s
+                    alignmentAnalysisConfig,
+                    SubmissionRequest.toInputParameters(new String[]{}), Collections.EMPTY_MAP);   */
         }catch (UnsupportedOperationException uo) {
             throw uo;
         } catch (Exception e) {
