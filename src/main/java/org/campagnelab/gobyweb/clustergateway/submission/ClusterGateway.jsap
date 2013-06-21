@@ -30,8 +30,9 @@
             <required>true</required>
             <shortFlag>f</shortFlag>
             <longFlag>fileset-area</longFlag>
-            <help>The directory where filesets are kept. Can be a local folder or a remote folder in the form of
-                username@hostname:/path
+            <help>The directory where filesets are kept. Can be local or remote with respect to the job-area.
+            If the directory is on the same filesystem of the job-area, it must be specified as a local folder,
+            otherwise as a remote folder in the form of username@hostname:/path.
             </help>
         </flaggedOption>
 
@@ -47,7 +48,6 @@
                 the form of username@hostname:/path. If the area is remote, the path must be absolute.
             </help>
         </flaggedOption>
-
 
         <flaggedOption>
             <id>queue</id>
@@ -117,9 +117,6 @@
             <required>false</required>
             <shortFlag>e</shortFlag>
             <longFlag>env-script</longFlag>
-            <defaults>
-                <string>env.sh</string>
-            </defaults>
             <help>The path to a script to initialize the plugin environment. The script will be sourced when the
                 plugin executes in the runtime environment.
             </help>
@@ -158,7 +155,7 @@
             <required>optional</required>
             <longFlag>option</longFlag>
             <allowMultipleDeclarations>true</allowMultipleDeclarations>
-            <help>Additional option to pass to the job. The option will be available as environment variable in the job execution environment.</help>
+            <help>Additional option(s) to pass to the job. The option will be available as environment variable in the job execution environment.</help>
         </flaggedOption>
 
     </parameters>

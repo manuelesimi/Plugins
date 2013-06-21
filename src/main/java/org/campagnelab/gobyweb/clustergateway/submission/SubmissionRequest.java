@@ -207,9 +207,11 @@ public abstract class SubmissionRequest {
             assert actions != null : "action cannot be null.";
             submitter.setSubmissionHostname(config.getString("artifact-server"));
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
-            if (config.userSpecified("env-script"))
+            if (config.userSpecified("env-script")) {
                 submitter.setEnvironmentScript(config.getFile("env-script").getAbsolutePath());
-
+            } else {
+                submitter.setEnvironmentScript(config.getFile("plugins-dir").getAbsolutePath() + File.separator + "artifacts-config/env.sh");
+            }
             if (config.userSpecified("option"))
                 this.parseUnclassifiedOptions(config.getStringArray("option"));
 
