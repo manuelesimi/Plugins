@@ -88,7 +88,7 @@ public class AlignerJobBuilder extends JobBuilder {
         //variables from the command line options
         environment.put("CHUNK_SIZE", this.chunkSize);
 
-        double num_parts = getNumParts(reader.getEntrySize("READS_FILE"));
+        int num_parts = getNumParts(reader.getEntrySize("READS_FILE"));
         environment.put("NUMBER_OF_ALIGN_PARTS", num_parts);
         environment.put("GENOME_REFERENCE_ID", this.genomeID);
         // Increase total number of parts for CONCAT and POST
@@ -99,8 +99,8 @@ public class AlignerJobBuilder extends JobBuilder {
             environment.put("INITIAL_STATE", "pre_align");
     }
 
-    private double getNumParts(long readsSize) {
-       return Math.ceil(readsSize / this.chunkSize);
+    private int getNumParts(long readsSize) {
+        return (int) Math.ceil(readsSize / this.chunkSize);
     }
 
     public void setChunkSize(long chunkSize) {
