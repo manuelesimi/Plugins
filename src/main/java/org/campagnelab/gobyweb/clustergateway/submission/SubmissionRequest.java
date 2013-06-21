@@ -218,7 +218,7 @@ public abstract class SubmissionRequest {
 
             return this.submit(config,actions);
         } catch (Exception e) {
-            logger.error("Failed to manage the requested action" + e.getMessage());
+            logger.error("Failed to manage the requested action. " + e.getMessage());
             return (1);
         }
 

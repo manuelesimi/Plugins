@@ -202,6 +202,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
 
         //for each group, we create a filter for querying only slots belonging to the group and add the alignments to the group
         int groupNumber=0;
+        Set<String> groupNames = new HashSet<String>();
         for (String groupDefinition : this.groupDefinitions) {
             String[] tokens = groupDefinition.split("=");
             String[] tags = tokens[1].split(",");
@@ -216,6 +217,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
             groupFilters.setLength(groupFilters.length() - 1);
             environment.put(String.format("PLUGIN_GROUP_ALIGNMENTS_FILTER[%s]", tokens[0]), groupFilters.toString());
             diffExp.addGroup(groupNumber++,tokens[0]);
+            groupNames.add(tokens[0]);
         }
 
         //create a joined group definition in the form "Group_1=TAGN/Group_2=TAGX/Group_3=TAG342,TAG231"
@@ -225,9 +227,15 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
             joinedGroups=joinedGroups.replaceAll(entry.getKey(), entry.getValue().getBasename());
         //now the joined group definition is in the form "Group_1=basenameN/Group_2=basenameX/Group_3=basename342,basename231"
         environment.put("GROUPS_DEFINITION", joinedGroups);
+
+        //check comparison pairs
         for (int i=1; i <= comparisonPairs.size(); i++) {
+            String[] tokens = comparisonPairs.get(i-1).split("/");
+            if ((groupNames.contains(tokens[0]) && groupNames.contains(tokens[1])))
             //comparison pair must be in the form "Group_2/Group_3"
-            environment.put(String.format("GROUP%d_COMPARISON_PAIR",i), comparisonPairs.get(i-1));
+                 environment.put(String.format("GROUP%d_COMPARISON_PAIR",i), comparisonPairs.get(i-1));
+            else
+                throw new IOException("Invalid group name specified in the comparison pair " +comparisonPairs.get(i-1));
         }
         environment.put("NUM_GROUPS",this.groupDefinitions.size());
 
