@@ -20,7 +20,7 @@ public class AlignerJobBuilder extends JobBuilder {
 
     private final AlignerConfig alignerConfig;
     private final FileSetArea fileSetArea;
-    private int chunkSize;
+    private long chunkSize;
     private String genomeID;
     private final String inputReadsTag;
     private final String[] attributesFromReadsMetadata = new String[]{
@@ -103,7 +103,7 @@ public class AlignerJobBuilder extends JobBuilder {
        return Math.ceil(readsSize / this.chunkSize);
     }
 
-    public void setChunkSize(int chunkSize) {
+    public void setChunkSize(long chunkSize) {
         this.chunkSize = chunkSize;
     }
 

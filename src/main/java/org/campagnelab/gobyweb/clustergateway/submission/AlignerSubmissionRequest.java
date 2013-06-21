@@ -62,8 +62,7 @@ class AlignerSubmissionRequest extends SubmissionRequest {
         actions.submitAligner(alignerConfig,
                 this.getInputSlots(),
                 config.getString("GENOME_REFERENCE_ID"),
-                Integer.valueOf(config.getString("CHUNK_SIZE")),
-                Integer.valueOf(config.getString("NUMBER_OF_ALIGN_PARTS")),
+                Long.valueOf(config.getString("CHUNK_SIZE")),
                 this.getUnclassifiedOptions());
        return 0;
     }

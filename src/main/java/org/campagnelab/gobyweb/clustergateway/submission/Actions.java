@@ -120,16 +120,14 @@ final class Actions {
      * @param inputSlots
      * @param genomeID
      * @param chunkSize
-     * @param numParts
      * @param unclassifiedOptions
      * @throws Exception
      */
     protected void submitAligner(AlignerConfig alignerConfig, Set<InputSlotValue> inputSlots, String genomeID,
-                                 int chunkSize, int numParts, Map<String, String> unclassifiedOptions) throws Exception {
+                                 long chunkSize, Map<String, String> unclassifiedOptions) throws Exception {
         AlignerJobBuilder builder = new AlignerJobBuilder(alignerConfig, jobArea,
                 fileSetAreaReference, jobArea.getOwner(), inputSlots);
         builder.setChunkSize(chunkSize);
-        builder.setNumParts(numParts);
         builder.setGenomeID(genomeID);
         if (!submitter.isLocal())
             submitter.setWrapperScript("oge_job_script.sh");
