@@ -61,7 +61,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         copyResourceFiles(job.getSourceConfig(), jobLocalDir);
 
-        copyAutoOptions(job.getSourceConfig(), jobLocalDir);
+        copyAutoOptions(job.getSourceConfig(), jobLocalDir, job.getEnvironment());
 
         copyArtifactsPbRequests(job.getSourceConfig(), this.environmentScriptFilename, jobLocalDir);
 

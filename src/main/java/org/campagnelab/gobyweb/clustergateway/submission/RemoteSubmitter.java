@@ -67,7 +67,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
         copyResourceFiles(job.getSourceConfig(), tempDir);
 
-        copyAutoOptions(job.getSourceConfig(), tempDir);
+        copyAutoOptions(job.getSourceConfig(), tempDir, job.getEnvironment());
 
         copyArtifactsPbRequests(job.getSourceConfig(), this.environmentScriptFilename, tempDir);
 

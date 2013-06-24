@@ -46,6 +46,7 @@ class AlignmentAnalysisSubmissionRequest extends SubmissionRequest {
 
         return parameters;
     }
+
     @Override
     protected int submit(JSAPResult config, Actions actions) throws Exception {
         if (alignmentAnalysisConfig.isDisabled())
@@ -56,5 +57,10 @@ class AlignmentAnalysisSubmissionRequest extends SubmissionRequest {
                 config.getStringArray("COMPARISON_PAIR"),
                 this.getUnclassifiedOptions());
         return 0;
+    }
+
+    @Override
+    protected String getVariablePrefix() {
+        return String.format("PLUGINS_ALIGNMENT_ANALYSIS_%s_",this.alignmentAnalysisConfig.getId());
     }
 }

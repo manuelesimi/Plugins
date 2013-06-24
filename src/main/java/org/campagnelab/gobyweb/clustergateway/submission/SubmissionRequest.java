@@ -175,7 +175,7 @@ public abstract class SubmissionRequest {
         //add the parameters to the options map
         for (Parameter parameter : additionalParameters) {
             if (! parameter.getID().equalsIgnoreCase("slots")) //we do not want the input slots in constants.sh
-                this.optionsMap.put(parameter.getID(), config.getString(parameter.getID()));
+                this.optionsMap.put(this.getVariablePrefix() + parameter.getID(), config.getString(parameter.getID()));
         }
         String owner = config.userSpecified("owner") ? config.getString("owner") : System.getProperty("user.name");
 
@@ -251,6 +251,13 @@ public abstract class SubmissionRequest {
         option.setHelp(description.toString());
         additionalParameters.add(option);
     }
+
+    /**
+     * Returns the prefix to prepend to plugin's variables reported in constants.sh.
+     *
+     * @return the prefix
+     */
+    protected abstract String getVariablePrefix();
 
     protected abstract int submit(JSAPResult config, Actions actions) throws Exception;
 

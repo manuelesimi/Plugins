@@ -32,7 +32,7 @@ public class SubmissionRequestFactory {
         String[] pluginInfo = getPluginInfo(args);
         SubmissionRequest request = null;
         if (pluginInfo[0].equalsIgnoreCase("resource")) {
-            request = new ResourceSubmissionRequest();
+            request = new ResourceSubmissionRequest(pluginInfo[1]);
         } else if  (pluginInfo[0].equalsIgnoreCase("job")) {
             AlignerConfig alignerConfig = plugins.getRegistry().findByTypedId(pluginInfo[1], AlignerConfig.class);
             if (alignerConfig != null)

@@ -118,9 +118,9 @@ abstract public class AbstractSubmitter implements Submitter {
         }
     }
 
-    protected void copyAutoOptions(ExecutableConfig executableConfig, File tempDir) throws IOException {
+    protected void copyAutoOptions(ExecutableConfig executableConfig, File tempDir, JobRuntimeEnvironment environment) throws IOException {
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
-        File autoOptionsFile = helper.generateAutoOptionsFile(executableConfig);
+        File autoOptionsFile = helper.generateAutoOptionsFile(executableConfig,null, null, environment);
         Files.copy(autoOptionsFile, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "auto-options.sh")));
     }
 

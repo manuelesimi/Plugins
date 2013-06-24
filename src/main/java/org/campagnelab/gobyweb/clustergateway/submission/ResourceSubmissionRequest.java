@@ -11,24 +11,33 @@ import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
  */
 class ResourceSubmissionRequest extends SubmissionRequest {
 
-    protected ResourceSubmissionRequest() {}
+    private String id;
 
-    @Override
-    protected int submit(JSAPResult config, Actions actions) throws Exception {
-        String token[] = config.getStringArray("resource");
-        if (token.length == 0) {
-            System.err.println("--resource argument must contain an ID.");
-            System.exit(1);
-        }
-        String id = token[0];
-        String version = null;
+    private String version;
+    /**
+     *
+     * @param resource the resource parameter coming from the command line.
+     */
+    protected ResourceSubmissionRequest(String resource) {
+        String token[] = resource.split(":");
+        id = token[0];
+        version = null;
         if (token.length >= 2) {
             version = token[1];
         }
+    }
+
+    @Override
+    protected int submit(JSAPResult config, Actions actions) throws Exception {
         ResourceConfig resourceConfig = DependencyResolver.resolveResource(id, version, version, version);
         if (resourceConfig.isDisabled())
             throw new Exception(String.format("Resource %s is currently disabled", resourceConfig.getId()));
         actions.submitResourceInstall(resourceConfig);
         return 0;
+    }
+
+    @Override
+    protected String getVariablePrefix() {
+        return String.format("RESOURCES_%s",this.id);
     }
 }

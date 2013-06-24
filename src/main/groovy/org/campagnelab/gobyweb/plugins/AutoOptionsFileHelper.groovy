@@ -4,6 +4,7 @@ import edu.cornell.med.icb.util.ICBStringUtils
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap
 import org.apache.log4j.Logger
+import org.campagnelab.gobyweb.clustergateway.jobs.JobRuntimeEnvironment
 import org.campagnelab.gobyweb.plugins.xml.Config
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig
@@ -30,9 +31,13 @@ class AutoOptionsFileHelper {
 /**
  * Write a bash shell script with environment variable definitions for each automatic plugin option.
  * @param pluginConfig The plugin for which user-defined option values should be written.
+ * @param environment the job environment defined with the command line options. If variables are there, their value replaces
+ *          the default value defined in the plugin configuration.
+ *
  * @return The temporary file where options have been written.
  */
-    public File generateAutoOptionsFile(ExecutableConfig pluginConfig, String attributesPrefix = null, Map<String, String> attributes = null) {
+    public File generateAutoOptionsFile(ExecutableConfig pluginConfig, String attributesPrefix = null,
+                           Map<String, String> attributes = null, JobRuntimeEnvironment environment = null) {
         // call validate to force the update of user-defined values from default values.
         pluginConfig.validate(new Vector<String>())
         File autoOptionTmpFile = new File("/tmp/auto-options-${ICBStringUtils.generateRandomString(15)}.sh")
@@ -59,10 +64,23 @@ class AutoOptionsFileHelper {
             if (pluginId != null) {
                 ExecutableConfig fromPlugin = registry.findByTypedId(pluginId, ExecutableConfig.class);
                 // write options in the format PLUGINS _ TYPE _ PLUGIN-ID _ OPTION-ID, where plugin refers to the plugin we imported the script from:
-                writer.println("PLUGINS_${fromPlugin.getHumanReadableConfigType()}_${fromPlugin.getId()}_${option.id}=\"${optionValue}\"")
+                String key = "PLUGINS_${fromPlugin.getHumanReadableConfigType()}_${fromPlugin.getId()}_${option.id}";
+                if ((environment != null) && (environment.containsKey(key))) {
+                    //override the default value with the value coming from the command line
+                    writer.println("${key}=\"${environment.getFromUndecorated(key)}\"")
+                } else {
+                    writer.println("${key}=\"${optionValue}\"")
+                }
+
             } else {
                 // write options in the format PLUGINS _ TYPE _ PLUGIN-ID _ OPTION-ID
-                writer.println("PLUGINS_${pluginConfig.getHumanReadableConfigType()}_${pluginConfig.id}_${option.id}=\"${optionValue}\"")
+                String key = "PLUGINS_${pluginConfig.getHumanReadableConfigType()}_${pluginConfig.id}_${option.id}";
+                if ((environment != null) && (environment.containsKey(key))) {
+                    //override the default value with the value coming from the command line
+                    writer.println("${key}=\"${environment.getFromUndecorated(key)}\"")
+                } else {
+                    writer.println("${key}=\"${optionValue}\"")
+                }
             }
         }
         writeAutoFormatString(pluginConfig, writer, attributesPrefix, attributes);
