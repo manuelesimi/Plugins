@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskConfig xsi:noNamespaceSchemaLocation="../../../schemas/plugins.xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <name>Browser Task</name>
+    <id>BROWSER</id>
+    <help>Scan a fileset area and produce statistics based on filters.</help>
+    <version>1.0</version>
+    <options>
+        <option>
+            <id>FILTERS</id>
+            <name>Filters</name>
+            <help>Filters to apply during the scanning.</help>
+            <required>false</required>
+            <defaultsTo></defaultsTo>
+            <type>STRING</type>
+            <flagFormat>%s</flagFormat>
+            <includeSpaces>true</includeSpaces>
+        </option>
+        <option>
+            <id>OWNER</id>
+            <name>Owner</name>
+            <help>The owner of the filesets. If no owner is provided, the entire fileset area is scanned.</help>
+            <required>false</required>
+            <defaultsTo></defaultsTo>
+            <type>STRING</type>
+            <flagFormat>%s</flagFormat>
+            <includeSpaces>true</includeSpaces>
+        </option>
+        <option>
+            <id>ROOT</id>
+            <name>Root folder</name>
+            <help>The root folder of the fileset area to scan.</help>
+            <required>true</required>
+            <defaultsTo></defaultsTo>
+            <type>STRING</type>
+            <flagFormat>%s</flagFormat>
+            <includeSpaces>true</includeSpaces>
+        </option>
+    </options>
+    <executableIOSchema>
+        <output>
+            <outputSlot>
+                <name>TXT</name>
+                <type>
+                    <id>TXT</id>
+                    <versionExactly>1.0</versionExactly>
+                </type>
+            </outputSlot>
+        </output>
+    </executableIOSchema>
+</taskConfig>
