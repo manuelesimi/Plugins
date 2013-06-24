@@ -551,8 +551,6 @@ function fetch_input_alignments {
      fi
      mv ${ALIGNMENT_FILES} ${ENTRIES_DIRECTORY}
 
-     export ENTRIES_FILES=`ls ${ENTRIES_DIRECTORY}/*${ENTRIES_EXT}`
-     export ALIGNMENT_FILES=`ls ${ENTRIES_DIRECTORY}`
      echo "Localized ALIGNMENT_FILES ${ALIGNMENT_FILES}"
 
 }

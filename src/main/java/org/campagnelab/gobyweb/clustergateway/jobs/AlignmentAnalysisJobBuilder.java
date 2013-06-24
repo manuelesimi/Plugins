@@ -149,6 +149,8 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         environment.put("PRODUCE_VARIANT_CALLING_FORMAT_OUTPUT", analysisConfig.producesVariantCallingFormatOutput);
         environment.put("INITIAL_STATE", "diffexp");
         environment.put("ENTRIES_DIRECTORY", "${JOB_DIR}/alignments");
+        environment.put("ENTRIES_FILES",String.format("${ENTRIES_DIRECTORY}/*%s", this.detectEntriesExt()));
+        environment.put("ALIGNMENT_FILES", "${ENTRIES_DIRECTORY}/*");
         environment.put("SUPPORTS_TRANSCRIPT_ALIGNMENTS", analysisConfig.supportsTranscriptAlignments);
         environment.put("SPLIT_PROCESS_COMBINE", analysisConfig.splitProcessCombine);
         environment.put("RESULT_FILE_EXTENSION", analysisConfig.producesTabDelimitedOutput ?
