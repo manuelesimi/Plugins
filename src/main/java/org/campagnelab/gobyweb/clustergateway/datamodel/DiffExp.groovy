@@ -46,8 +46,8 @@ public class DiffExp {
         numberOfGroups = grpToName.keySet().size();
     }
 
-    public void addAlignmentToGroup(String groupName, int alignmentPosition, Alignment alignment) {
-        grpToAligns.put(String.format("%d",alignmentPosition),alignment);
+    public void addAlignmentToGroup(int groupIndex, int alignmentPosition, Alignment alignment) {
+        grpToAligns.put(String.format("%d-%d",groupIndex, alignmentPosition),alignment);
     }
 
     /**

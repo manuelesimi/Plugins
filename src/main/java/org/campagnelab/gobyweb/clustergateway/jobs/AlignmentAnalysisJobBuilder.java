@@ -204,19 +204,19 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         int groupNumber=0;
         Set<String> groupNames = new HashSet<String>();
         for (String groupDefinition : this.groupDefinitions) {
+            groupNumber++;
             String[] tokens = groupDefinition.split("=");
             String[] tags = tokens[1].split(",");
             StringBuilder groupFilters = new StringBuilder("--filter-attribute BASENAME=");
-
             int i=0;
             for (String tag: tags) {
                 groupFilters.append(String.format("%s,", alignmentMap.get(tag).getBasename()));
-                diffExp.addAlignmentToGroup(tokens[0], i++, alignmentMap.get(tag));
+                diffExp.addAlignmentToGroup(groupNumber, i++, alignmentMap.get(tag));
             }
             //remove the last comma
             groupFilters.setLength(groupFilters.length() - 1);
             environment.put(String.format("PLUGIN_GROUP_ALIGNMENTS_FILTER[%s]", tokens[0]), groupFilters.toString());
-            diffExp.addGroup(groupNumber++,tokens[0]);
+            diffExp.addGroup(groupNumber,tokens[0]);
             groupNames.add(tokens[0]);
         }
 
