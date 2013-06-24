@@ -1,0 +1,48 @@
+<jsap>
+    <parameters>
+
+        <flaggedOption>
+            <id>fileset-area</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>f</shortFlag>
+            <longFlag>fileset-area</longFlag>
+           <help>The directory where filesets are kept. Can be a local folder or a remote folder in the form of username@hostname:/path</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>owner</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <shortFlag>o</shortFlag>
+            <longFlag>owner</longFlag>
+            <help>The user that owns the filesets</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>filter-attribute</id>
+            <stringParser>
+                      <classname>StringStringParser</classname>
+            </stringParser>
+            <required>optional</required>
+            <longFlag>filter-attribute</longFlag>
+            <allowMultipleDeclarations>true</allowMultipleDeclarations>
+            <help>Filter on attribute. The filter must be in the form ATTR1=VALUE1.
+            It is possible to specify more than one value per filter in the form ATTR1=VALUE1,VALUE2,VALUE3.
+            If more than one value is specified, values are put in an OR relationship.
+            If more than one filter is specified, filters are put in an AND relationship. </help>
+        </flaggedOption>
+
+        <switch>
+            <id>help</id>
+            <shortFlag>h</shortFlag>
+            <longFlag>help</longFlag>
+            <help>Print help message.</help>
+        </switch>
+
+    </parameters>
+</jsap>
