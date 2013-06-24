@@ -20,7 +20,7 @@
             <required>false</required>
             <shortFlag>o</shortFlag>
             <longFlag>owner</longFlag>
-            <help>The user that owns the filesets</help>
+            <help>The user that owns the filesets. If not specified, the filesets of all users are scanned.</help>
         </flaggedOption>
 
         <flaggedOption>
