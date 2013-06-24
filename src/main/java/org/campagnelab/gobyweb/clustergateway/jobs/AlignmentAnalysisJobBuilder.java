@@ -240,7 +240,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
                 throw new IOException("Invalid group name specified in the comparison pair " +comparisonPairs.get(i-1));
         }
         environment.put("NUM_GROUPS",this.groupDefinitions.size());
-
+        environment.put("COMPARE_DEFINITION", Joiner.on(",").join(this.comparisonPairs));
         executableJob.setDataForScripts(diffExp);
 
     }
