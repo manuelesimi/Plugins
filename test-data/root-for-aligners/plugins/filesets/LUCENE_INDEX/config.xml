@@ -5,6 +5,7 @@
     <id>LUCENE_INDEX</id>
     <help>A directory containing a Lucene Index.</help>
     <version>1.0</version>
+    <mimeType>application/lucene-index</mimeType>
     <directories>
         <selector>
             <id>INDEX_DIR</id>
