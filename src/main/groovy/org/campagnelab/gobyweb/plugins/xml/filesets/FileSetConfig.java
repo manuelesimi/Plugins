@@ -50,6 +50,11 @@ public class FileSetConfig extends BaseConfig implements SupportDependencyRange,
     @XmlElement(name = "attribute")
     protected List<Attribute> attributes;
 
+    /**
+     * Describe the type of data stored in the fileset. This is a convention, not a real mime-type, as it is associated
+     * to the entire fileset (likely composed by more than one file).
+     */
+    protected String mimeType;
 
     public enum SELECTOR_TYPE {
         FILE,DIR
@@ -59,6 +64,14 @@ public class FileSetConfig extends BaseConfig implements SupportDependencyRange,
 
     public FileSetConfig(String id) {
         this.id = id;
+    }
+
+    /**
+     * Gets the mime-type
+     * @return the mime-type
+     */
+    public String getMimeType() {
+        return mimeType;
     }
 
     /**
