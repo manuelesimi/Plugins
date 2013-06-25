@@ -5,6 +5,7 @@
     <id>COMPACT_READS</id>
     <help>compact reads format</help>
     <version>1.0</version>
+    <mimeType>application/compact-reads</mimeType>
     <files>
         <selector matchAttribute="basename">
             <id>READS_FILE</id>

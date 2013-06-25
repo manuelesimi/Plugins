@@ -7,6 +7,7 @@
         The degree of compression can be adjusted, allowing a selectable tradeoff between storage size and image quality.
         JPEG typically achieves 10:1 compression with little perceptible loss in image quality.</help>
     <version>1.0</version>
+    <mimeType>img/jpeg</mimeType>
     <files>
         <selector matchAttribute="basename">
             <id>JPEG</id>

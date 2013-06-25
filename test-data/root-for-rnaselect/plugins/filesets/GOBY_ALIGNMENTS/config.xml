@@ -5,6 +5,7 @@
     <id>GOBY_ALIGNMENTS</id>
     <help>goby alignment format</help>
     <version>1.0</version>
+    <mimeType>application/goby-alignment</mimeType>
     <files>
         <selector matchAttribute="basename">
             <id>INDEX</id>

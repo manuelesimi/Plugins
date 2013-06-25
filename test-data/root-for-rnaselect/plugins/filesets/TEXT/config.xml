@@ -7,6 +7,7 @@
         It matches the format accepted by the system terminal or simple text editor.
         Files with the .txt extension can easily be read or opened by any program that reads text and, for that reason, are considered universal (or platform independent).</help>
     <version>1.0</version>
+    <mimeType>text/plain</mimeType>
     <files>
         <selector matchAttribute="basename">
             <id>TXT</id>

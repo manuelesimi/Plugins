@@ -5,6 +5,7 @@
     <id>GENERIC_DIRECTORY</id>
     <help>A directory with any content.</help>
     <version>1.0</version>
+    <mimeType>dir/plain</mimeType>
     <directories>
         <selector>
             <id>DIR</id>

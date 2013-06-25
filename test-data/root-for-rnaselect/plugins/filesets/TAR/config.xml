@@ -5,6 +5,7 @@
     <id>TAR</id>
     <help>A tar archive file contains uncompressed byte streams of the files which it contains.</help>
     <version>1.0</version>
+    <mimeType>application/x-tar</mimeType>
     <files>
         <selector matchAttribute="basename">
             <id>TGZ</id>

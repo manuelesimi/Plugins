@@ -5,6 +5,7 @@
     <id>BAM_ALIGNMENTS</id>
     <help>bam alignment format</help>
     <version>1.0</version>
+    <mimeType>application/bam-alignment</mimeType>
     <files>
         <selector matchAttribute="BASENAME">
             <id>BAM</id>
