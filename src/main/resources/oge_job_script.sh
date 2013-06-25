@@ -347,8 +347,7 @@ function push_analysis_results {
        dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAG}"
        echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAG}"
     elif [ "${mandatory}" == "true" ]; then
-       echo "Mandatory file ${file_to_push} was not produced by the job."
-       dieUponError "Mandatory file ${file_to_push} was not produced by the job."
+       echo "ERROR: Mandatory file ${file_to_push} was not produced by the job."
     fi;
 }
 
@@ -508,13 +507,11 @@ function fetch_input_alignments {
 
      #INPUT_ALIGNMENTS slot is declared in AlignmentAnalysisConfig.getInput()
      ${FILESET_COMMAND} --has-fileset INPUT_ALIGNMENTS
-     if [ $? != 0 ]; then
-        dieUponError "INPUT_ALIGNMENTS input entries are not available"
-     fi
+     dieUponError "INPUT_ALIGNMENTS input entries are not available"
+
      ALIGNMENT_FILES=`${FILESET_COMMAND} --fetch INPUT_ALIGNMENTS`
-     if [ $? != 0 ]; then
-        dieUponError "Failed to fecth INPUT_ALIGNMENTS: ${ALIGNMENT_FILES}"
-     fi
+     dieUponError "Failed to fecth INPUT_ALIGNMENTS: ${ALIGNMENT_FILES}"
+
      mv ${ALIGNMENT_FILES} ${ENTRIES_DIRECTORY}
 
      echo "Localized ALIGNMENT_FILES ${ALIGNMENT_FILES}"
@@ -527,14 +524,10 @@ function fetch_input_reads {
 
      #INPUT_READS slot is declated in AlignerConfig.getInput()
      ${FILESET_COMMAND} --has-fileset INPUT_READS
-     if [ $? != 0 ]; then
-        dieUponError "Input compact reads are not available"
-     fi
+     dieUponError "Input compact reads are not available"
 
      READS=`${FILESET_COMMAND} --fetch INPUT_READS`
-     if [ $? != 0 ]; then
-        dieUponError "Failed to fecth compact reads ${READS}"
-     fi
+     dieUponError "Failed to fecth compact reads ${READS}"
      export READS
      echo "Localized filesets ${READS}"
 
