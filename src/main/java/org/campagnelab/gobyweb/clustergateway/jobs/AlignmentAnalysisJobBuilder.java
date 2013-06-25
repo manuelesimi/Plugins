@@ -89,13 +89,13 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
      * Generates the statements that copy each file produced by a plugin to the final JOB_DIR/results/TAG-filename location.
      * @return bash statements.
      */
-    private String generatePluginOutputCopyStatements() {
+    private String generatePluginOutputPushStatements() {
         StringBuilder command = new StringBuilder();
         for (OutputFile file : this.analysisConfig.output.files) {
-           command.append(String.format("if [ -f %s ]; then\n",file.filename));
-           command.append(String.format("/bin/mv %s ${RESULT_DIR}/${TAG}-%s ; \n",
-                   file.filename,file.filename));
-           command.append("fi\n");
+            String attributes = "";
+            if ((file.tableName != null) && (file.tableName.length() > 0) )
+                attributes = String.format("--attribute TABLENAME=%s",file.tableName);
+            command.append(String.format("push_analysis_results %s %s %s \"%s\"\n", file.filename, file.id,file.required?"true":"false",attributes));
         }
         return command.toString();
     }
@@ -156,7 +156,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         environment.put("RESULT_FILE_EXTENSION", analysisConfig.producesTabDelimitedOutput ?
                 "tsv" : analysisConfig.producesVariantCallingFormatOutput ? "vcf.gz" : "unknown");
 
-        environment.put("COPY_PLUGIN_OUTPUT_FILES", this.generatePluginOutputCopyStatements());
+        environment.put("PUSH_PLUGIN_OUTPUT_FILES", this.generatePluginOutputPushStatements());
         FileSetAPI api = FileSetAPI.getReadOnlyAPI(fileSetArea);
         List<String> errors = new ArrayList<String>();
         //map an alignment tag with the alignment basename

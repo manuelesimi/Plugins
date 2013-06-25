@@ -129,4 +129,22 @@ public class DependencyResolver {
             return null;
 
     }
+
+    public static FileSetConfig resolveFileSetFromMimeType(String mimeType) {
+        //look for matching fileset configurations
+        List<FileSetConfig> matchingFileSets = new ArrayList<FileSetConfig>();
+        for (FileSetConfig fileSet : pluginConfigs.filterConfigs(FileSetConfig.class)) {
+            if (fileSet.getMimeType().equalsIgnoreCase(mimeType)) {
+               matchingFileSets.add(fileSet);
+            }
+        }
+        //pick up the matching fileset with largest version number
+        if (matchingFileSets.size() > 0) {
+            Collections.sort(matchingFileSets);
+            return matchingFileSets.get(0);
+        } else
+            return null;
+
+    }
+
 }

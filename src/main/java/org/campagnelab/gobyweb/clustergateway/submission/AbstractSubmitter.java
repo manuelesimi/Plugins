@@ -203,8 +203,8 @@ abstract public class AbstractSubmitter implements Submitter {
         }
 
 
-        //TODO: configure the replacements below
-          /*replacements["%CLUSTER_HOME_DIR%"] = pathService.CLUSTER_HOME_DIR
+        //TODO: configure the replacements below ?
+          /*
         replacements["%GOBY_JAR_DIR%"] = pathService.GOBY_JAR_DIR
         // replacements["%JOB_STARTED_EMAIL%"]
         replacements["%JOB_STARTED_EMAIL%"] = emailService.createEmail("Gobyweb ${controller} job ${gobywebObj.tag} submitted", gobywebObj, grailsApplication.config.gobyweb.emailBccAddresses)

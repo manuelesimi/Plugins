@@ -282,9 +282,6 @@ function run_alignment_analysis_combine {
     (cd ${TMPDIR} ; plugin_alignment_analysis_combine ${RESULT_DIR}/${TAG}.${RESULT_FILE_EXTENSION} ${SGE_O_WORKDIR}/split-results/${TAG}/${TAG}-*.${RESULT_FILE_EXTENSION} )
     jobDieUponError "failed to combine results"
 
-
-    %COPY_PLUGIN_OUTPUT_FILES%
-
     mkdir ${TMPDIR}/import-db
     cp ${RESULT_DIR}/${TAG}*.tsv ${TMPDIR}/import-db/
     cp ${RESULT_DIR}/${TAG}*.vcf.gz ${TMPDIR}/import-db/
@@ -299,23 +296,21 @@ function run_alignment_analysis_combine {
            --export-format lucene \
            ${TMPDIR}/import-db/${TAG}-*.tsv  ${TMPDIR}/import-db/${TAG}-*.vcf.gz
     jobDieUponError "failed to convert results to database"
-    cp ${TMPDIR}/import-db/${TAG}*.db ${RESULT_DIR}/
-    if [ ! $? -eq 0 ]; then
+    #cp ${TMPDIR}/import-db/${TAG}*.db ${RESULT_DIR}/
+
+    #if [ ! $? -eq 0 ]; then
        # remove any previous index:
-       rm -fr ${RESULT_DIR}/${TAG}*.lucene.index
-       cp -r ${TMPDIR}/import-db/${TAG}*.lucene.index ${RESULT_DIR}/
-       dieUponError "Could not copy db/lucene to results directory (this disk might be full)."
-    fi
+       #rm -fr ${TMPDIR}/${TAG}*.lucene.index
+       #cp -r ${TMPDIR}/import-db/${TAG}*.lucene.index ${TMPDIR}/
+       #dieUponError "Could not copy db/lucene to current TMPDIR directory (this disk might be full)."
+    #fi
+    ls -lrt
 
-    if [ "${PRODUCE_TAB_DELIMITED_OUTPUT}" == "true" ]; then
-            (cd ${TMPDIR} ;push_tsv_results)
-    fi
-    if [ "${PRODUCE_VARIANT_CALLING_FORMAT_OUTPUT}" == "true" ]; then
-            (cd ${TMPDIR} ;push_vcf_results)
-    fi
+    ls -lrt  ${TMPDIR}/import-db
 
-    #push the lucene indexes, if any
-    (cd ${TMPDIR} ;push_lucene_indexes)
+    ls -lrt  ${TMPDIR}/import-db/*
+
+    %PUSH_PLUGIN_OUTPUT_FILES%
 
     #
     # Job completely done
@@ -327,65 +322,36 @@ function run_alignment_analysis_combine {
     copy_logs diffexp 1 1
 }
 
-#pushes the results of an alignment analysis job in the fileset area
-function push_tsv_results {
-
-    echo .
-    echo . Running push_tsv_results
-    echo .
-
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index 1 --job-type job-part
-
-    for index in `ls $RESULT_DIR/ | grep .tsv`
-    do
-       #index is in the form TAG-tablename.tsv, we need to extract the tablename token
-       local tablename=${index##${TAG}-}  #remove the tag from front
-       tablename=${tablename%.tsv} #remove .tsv from back
-       local REGISTERED_TAG=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_TSV: $RESULT_DIR/$index`
-       dieUponError "Failed to push a TSV table in the FileSet area: ${REGISTERED_TAG}"
-       echo "The following TSV instance has been successfully registered: ${REGISTERED_TAG}"
-    done
-
-}
 
 
 #pushes the results of an alignment analysis job in the fileset area
-function push_vcf_results {
+function push_analysis_results {
 
-    echo .
-    echo . Running push_vcf_results
-    echo .
+    file_to_push=$1
+    slot=$2
+    mandatory=$3
+    additional_attributes=$4 #-a TABLENAME=$tablename
 
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index 1 --job-type job-part
+    #prefix with tag if needed
+    if [ -e "${TMPDIR}/import-db/${file_to_push}" ]; then
+       mv "${TMPDIR}/import-db/${file_to_push}" "${TMPDIR}/import-db/${TAG}-${file_to_push}"
+    elif [ -e "${TMPDIR}/${file_to_push}" ]; then
+       mv "${TMPDIR}/${file_to_push}" "${TMPDIR}/import-db/${TAG}-${file_to_push}"
+    elif [ -e "${TMPDIR}/${TAG}-${file_to_push}" ]; then
+       mv "${TMPDIR}/${TAG}-${file_to_push}" "${TMPDIR}/import-db/${TAG}-${file_to_push}"
+    fi
 
-    for index in `ls $RESULT_DIR/ | grep .vcf`
-    do
-       #index is in the form TAG-tablename.vcf, we need to extract the tablename token
-       local tablename=${index##${TAG}-}  #remove the tag from front
-       tablename=${tablename%.vcf} #remove .vcf from back
-       local REGISTERED_TAG=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_VCF: $RESULT_DIR/$index`
-       dieUponError "Failed to push a VCF table in the FileSet area. ${REGISTERED_TAG}"
-       echo "The following VCF instance has been successfully registered: ${REGISTERED_TAG}"
-    done
+    #push the file
+    if [ -e "${TMPDIR}/import-db/${TAG}-${file_to_push}" ]; then
+       local REGISTERED_TAG=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} ${slot}: ${TMPDIR}/import-db/${TAG}-${file_to_push}`
+       dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAG}"
+       echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAG}"
+    elif [ "${mandatory}" == "true" ]; then
+       echo "Mandatory file ${file_to_push} was not produced by the job."
+       dieUponError "Mandatory file ${file_to_push} was not produced by the job."
+    fi;
 }
 
-#pushes the lucene indexes created by an alignment analysis job in the fileset area
-function push_lucene_indexes {
-
-   echo .
-   echo . Running push_lucene_indexes
-   echo .
-
-   for index in `ls $RESULT_DIR/ | grep .lucene.index`
-   do
-       #index is in the form TAG-tablename.lucene.index, we need to extract the tablename token
-       local tablename=${index##${TAG}-}  #remove the tag from front
-       tablename=${tablename%.lucene.index} #remove .lucene.index from back
-       local REGISTERED_TAG=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a TABLENAME=$tablename OUTPUT_LUCENE_INDEX: $RESULT_DIR/$index`
-       dieUponError "Failed to push a lucene index in the fileset area: ${REGISTERED_TAG}"
-       echo "The following LUCENE_INDEX instance has been successfully registered: ${REGISTERED_TAG}"
-   done
-}
 
 #pushes BAM alignments produced by an aligner job in the fileset area
 function push_bam_alignments {

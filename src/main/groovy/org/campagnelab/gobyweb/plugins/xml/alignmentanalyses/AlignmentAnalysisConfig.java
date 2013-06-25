@@ -36,8 +36,10 @@
 
 package org.campagnelab.gobyweb.plugins.xml.alignmentanalyses;
 
+import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginLoaderSettings;
 import org.campagnelab.gobyweb.plugins.xml.executables.*;
+import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -223,53 +225,20 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
         assert (producesTabDelimitedOutput || producesVariantCallingFormatOutput)
                 : "producesTabDelimitedOutput and producesVariantCallingFormatOutput cannot be both false";
         List<Slot> slots = outputSchema.getOutputSlots();
-
-        if (producesTabDelimitedOutput) {
-            Slot tsvSlot = new Slot();
-            tsvSlot.setName("OUTPUT_TSV");
-            Slot.IOFileSetRef tsvType = new Slot.IOFileSetRef();
-            tsvType.id = PluginLoaderSettings.TSV[0];
-            tsvType.versionAtLeast = PluginLoaderSettings.TSV[1];
-            tsvType.versionExactly = PluginLoaderSettings.TSV[2];
-            tsvType.versionAtMost = PluginLoaderSettings.TSV[3];
-            tsvType.minOccurs = Integer.toString(1);
-            tsvType.maxOccurs = "unbounded";
-            tsvSlot.seType(tsvType);
-            slots.add(tsvSlot);
-        }
-
-        if (producesVariantCallingFormatOutput) {
-            Slot vcfSlot = new Slot();
-            vcfSlot.setName("OUTPUT_VCF");
-            Slot.IOFileSetRef vcfType = new Slot.IOFileSetRef();
-            vcfType.id = PluginLoaderSettings.VCF[0];
-            vcfType.versionAtLeast = PluginLoaderSettings.VCF[1];
-            vcfType.versionExactly = PluginLoaderSettings.VCF[2];
-            vcfType.versionAtMost = PluginLoaderSettings.VCF[3];
-            vcfType.minOccurs = Integer.toString(1);
-            vcfType.maxOccurs = "unbounded";
-            vcfSlot.seType(vcfType);
-            slots.add(vcfSlot);
-        }
-
-        //decorate with the tables declared in the output schema
-        int indexCounter = 0;
-        for (OutputFile outputFile : this.output.files) {
-           if (outputFile.mimeType.equalsIgnoreCase("application/lucene-index"))
-               indexCounter++;
-        }
-        if (indexCounter > 0) {
-            Slot luceneSlot = new Slot();
-            luceneSlot.setName("OUTPUT_LUCENE_INDEX");
-            Slot.IOFileSetRef luceneType = new Slot.IOFileSetRef();
-            luceneType.id = PluginLoaderSettings.LUCENE_INDEX[0];
-            luceneType.versionAtLeast = PluginLoaderSettings.LUCENE_INDEX[1];
-            luceneType.versionExactly = PluginLoaderSettings.LUCENE_INDEX[2];
-            luceneType.versionAtMost = PluginLoaderSettings.LUCENE_INDEX[3];
-            luceneType.minOccurs = Integer.toString(1);
-            luceneType.maxOccurs = Integer.toString(indexCounter);
-            luceneSlot.seType(luceneType);
-            slots.add(luceneSlot);
+        for (OutputFile file : this.output.files) {
+            FileSetConfig fileSetConfig = DependencyResolver.resolveFileSetFromMimeType(file.mimeType);
+            assert fileSetConfig != null : String.format("Unable to assign the output file %s to a fileset configuration. No matching mime-type found");
+            Slot slot = new Slot();
+            slot.setName(file.id);
+            Slot.IOFileSetRef ref = new Slot.IOFileSetRef();
+            ref.id = fileSetConfig.getId();
+            ref.versionExactly = fileSetConfig.getVersion();
+            ref.versionAtLeast = null;
+            ref.versionAtMost = null;
+            ref.minOccurs = Integer.toString(1);
+            ref.maxOccurs = Integer.toString(1);
+            slot.seType(ref);
+            slots.add(slot);
         }
     }
 }
