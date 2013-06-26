@@ -27,6 +27,7 @@ function plugin_alignment_analysis_split {
 	SPLICING_PLAN_RESULT=$2
 	local SPLICING_PLAN_RESULT=$2
 	shift
+	shift
 	ls -l $* >${SPLICING_PLAN_RESULT}
 }
 
@@ -35,11 +36,11 @@ function plugin_alignment_analysis_num_parts {
   SPLICING_PLAN_FILE=$1
 
   if [ $? -eq 0 ]; then
-
-	        echo `grep -v targetIdStart ${SPLICING_PLAN_FILE} | wc -l `
+	 echo `cat ${SPLICING_PLAN_FILE} | wc -l`
+	 return
+  else
+    echo 0
   fi
-
-  echo 0
 }
 
 function plugin_alignment_analysis_process {
@@ -60,7 +61,7 @@ function plugin_alignment_analysis_process {
         local SPLIT_NAME=$CURRENT_PART #todo groupname
         echo ;
     fi
-
+    echo PART_BASENAMES $PART_BASENAMES
 
     for BASENAME in $PART_BASENAMES
     do
