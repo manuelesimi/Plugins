@@ -41,6 +41,7 @@ import scala.util.parsing.combinator.Parsers;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -275,5 +276,16 @@ public class Option {
             }
         }
         return categoryId;
+    }
+
+    /**
+     * Gets the allowed values for all the categories.
+     * @return
+     */
+    public List<String> categoryValues() {
+        List<String> values = new ArrayList<String>();
+        for (Category category : categories)
+            values.add(category.value);
+        return values;
     }
 }

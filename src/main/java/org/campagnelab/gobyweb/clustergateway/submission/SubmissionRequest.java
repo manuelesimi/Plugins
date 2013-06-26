@@ -8,8 +8,7 @@ import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
-import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
+import org.campagnelab.gobyweb.plugins.xml.executables.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -157,13 +156,22 @@ public abstract class SubmissionRequest {
         if (this.executableConfig != null) {
             //add parameters from plugin configuration
             for (org.campagnelab.gobyweb.plugins.xml.executables.Option option : executableConfig.getOptions().option){
+                String defaultTo;
+                String valuesHelp = "";
+                if (option.type == org.campagnelab.gobyweb.plugins.xml.executables.Option.OptionType.CATEGORY) {
+                    defaultTo = option.categoryIdToValue(option.defaultsTo);
+                    valuesHelp = String.format(". Allowed values %s.", Arrays.toString(option.categoryValues().toArray()));
+                }
+                else
+                    defaultTo = option.defaultsTo;
+
                 FlaggedOption jsapOption = new FlaggedOption(option.id)
                         .setStringParser(JSAP.STRING_PARSER)
                         .setRequired(option.required)
                         .setShortFlag(JSAP.NO_SHORTFLAG)
                         .setLongFlag(option.id)
-                        .setDefault(option.defaultsTo);
-                jsapOption.setHelp(option.help);
+                        .setDefault(defaultTo);
+                jsapOption.setHelp(option.help + valuesHelp);
                 additionalParameters.add(jsapOption);
             }
         }
