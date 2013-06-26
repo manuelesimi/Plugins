@@ -41,6 +41,7 @@ public class PluginsTest {
         plugins.addServerConf( "test-data/plugin-root-1");
         plugins.setWebServerHostname("localhost");
         plugins.reload();
+        //assertFalse(plugins.somePluginReportedErrors());
     }
 
     @Test
