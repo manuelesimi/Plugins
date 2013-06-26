@@ -149,12 +149,18 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         this.groupDefinitions = groupDefinitions;
     }
 
+    /**
+     * Customizes the alignment analysis job.
+     * @param executableJob
+     * @param commandLineOptions
+     * @throws IOException
+     */
     @Override
-    protected void customizeJob(ExecutableJob executableJob) throws IOException {
+    protected void customizeJob(ExecutableJob executableJob, final Map<String, String> commandLineOptions) throws IOException {
 
         // the data object to pass to plugin scripts, if any
         DiffExp diffExp = new DiffExp();
-
+        diffExp.setOptions(commandLineOptions);
         JobRuntimeEnvironment environment = executableJob.getEnvironment();
 
         environment.put("PLUGIN_ID", analysisConfig.getId());
@@ -256,7 +262,6 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         environment.put("NUM_GROUPS",this.groupDefinitions.size());
         environment.put("COMPARE_DEFINITION", Joiner.on(",").join(this.comparisonPairs));
         executableJob.setDataForScripts(diffExp);
-
     }
 
 

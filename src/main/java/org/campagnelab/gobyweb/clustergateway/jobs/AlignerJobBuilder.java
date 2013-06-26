@@ -114,9 +114,10 @@ public class AlignerJobBuilder extends JobBuilder {
     /**
      * Adds aligner-specific settings to the job.
      * @param executableJob
+     * @param commandLineOptions
      */
     @Override
-    protected void customizeJob(ExecutableJob executableJob) throws IOException {
+    protected void customizeJob(ExecutableJob executableJob, final Map<String, String> commandLineOptions) throws IOException {
         this.populateJobEnvironment(executableJob.getEnvironment());
         // 2011-09-27 Was 6, but gsnap jobs have been partially or fully failing, upped to 8.
         executableJob.setMemoryInGigs(8);

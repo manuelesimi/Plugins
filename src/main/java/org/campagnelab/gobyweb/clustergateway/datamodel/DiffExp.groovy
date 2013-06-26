@@ -82,7 +82,7 @@ public class DiffExp {
         return options
     }
 
-    public void setOptions(Map<String, String> options) {
+    public void setOptions(final Map<String, String> options) {
         this.options = options
     }
 }

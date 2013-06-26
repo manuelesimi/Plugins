@@ -22,9 +22,10 @@ public class TaskJobBuilder extends JobBuilder {
     /**
      * Adds aligner-specific settings to the job.
      * @param executableJob
+     * @param commandLineOptions
      */
     @Override
-    protected void customizeJob(ExecutableJob executableJob) {
+    protected void customizeJob(ExecutableJob executableJob, final Map<String, String> commandLineOptions) {
         JobRuntimeEnvironment environment = executableJob.getEnvironment();
         environment.put("INITIAL_STATE", "task");
 

@@ -47,25 +47,26 @@ public abstract class JobBuilder {
 
     /**
      * Builds the job.
-     * @param unclassifiedOptions  options specified by the user
+     * @param commandLineOptions  options specified by the user
      * @return the job
      * @throws IOException
      */
-    public ExecutableJob build(Map<String, String> unclassifiedOptions) throws IOException {
+    public ExecutableJob build(final Map<String, String> commandLineOptions) throws IOException {
         ExecutableJob executableJob = new ExecutableJob(executableConfig);
         //default memory settings (can be overridden by subclasses)
         executableJob.setMemoryInGigs(8);
         executableJob.getEnvironment().putAll(this.buildResourceRequirements());
-        this.customizeJob(executableJob);
+        this.customizeJob(executableJob, commandLineOptions);
         //user options have priority and eventually overwrites the others
-        executableJob.getEnvironment().putAll(unclassifiedOptions);
+        executableJob.getEnvironment().putAll(commandLineOptions);
         return executableJob;
     }
 
     /**
      * Allows subclasses to customize the job settings.
      * @param executableJob
+     * @param commandLineOptions
      */
-    protected abstract void customizeJob(ExecutableJob executableJob) throws IOException;
+    protected abstract void customizeJob(ExecutableJob executableJob, final Map<String, String> commandLineOptions) throws IOException;
 
 }
