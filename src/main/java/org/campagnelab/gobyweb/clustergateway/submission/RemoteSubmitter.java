@@ -82,8 +82,9 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
         //execute the task
         logger.info("Requesting job execution...");
+        logger.info("Output from the submission process:");
         jobArea.execute(job.getTag(), wrapperScript);
-        logger.info(String.format("The job will be executed in the Job Area at %s (tag %s)", jobArea.toString(),
+        logger.info(String.format("The job will be executed in the Job Area at %s/%s", jobArea.toString(),
                 job.getTag()));
 
     }
@@ -115,7 +116,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{this.wrapperScript, "*"});
 
         //execute the resourceJob
-        logger.info(String.format("The job will be executed in the Job Area at %s (tag %s)", jobArea.toString(),
+        logger.info(String.format("The job will be executed in the Job Area at %s/%s)", jobArea.toString(),
                 resourceJob.getTag()));
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", jobArea.getBasename(resourceJob.getTag()));
@@ -142,7 +143,6 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         //upload the entire folder in the job area
         logger.info("Submitting files for execution...");
         jobArea.push(job.getTag(), localWorkingDir);
-        logger.info(String.format("The job has been successfully submitted to %s", jobArea.getReferenceName()));
         FileUtils.forceDeleteOnExit(localWorkingDir);
     }
 }

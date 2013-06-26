@@ -6,7 +6,10 @@ if [[ $OSTYPE == "cygwin" ]]; then
 fi
 PARENT_DIR=`dirname ${WORKING_DIR}`
 LIB_DIR=${PARENT_DIR}/lib
+CONFIG_DIR=${PARENT_DIR}/config
 TARGET_DIR=${PARENT_DIR}/target
 SNAPSHOT_JAR="${TARGET_DIR}/plugins-sdk.jar"
-java -cp ${LIB_DIR}/plugins-sdk.jar:${SNAPSHOT_JAR} org.campagnelab.gobyweb.clustergateway.registration.FileSetManager --action unregister "$@"
+
+java -cp ${LIB_DIR}/plugins-sdk.jar:${SNAPSHOT_JAR} -Dlog4j.configuration=file:${CONFIG_DIR}/log4j.properties \
+org.campagnelab.gobyweb.clustergateway.registration.FileSetManager --action unregister "$@"
 

@@ -72,11 +72,11 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         jobArea.grantExecutePermissions(job.getTag(), new String[]{this.wrapperScript});
 
         //execute the task
-        logger.info(String.format("Task %s: submitting to local cluster at %s...", job.getTag(), jobLocalDir.getAbsolutePath()));
-        logger.info("Exit value from the task : ");
+        logger.info(String.format("Submitting job to local cluster at %s...", job.getTag(), jobLocalDir.getAbsolutePath()));
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", jobLocalDir.getAbsolutePath());
         env.put("PATH", System.getenv("PATH"));
+        logger.info("Output from the submission process:");
         logger.info(jobArea.execute(job.getTag(),this.wrapperScript,env));
     }
 

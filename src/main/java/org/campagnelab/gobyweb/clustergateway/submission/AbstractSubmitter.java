@@ -281,13 +281,13 @@ abstract public class AbstractSubmitter implements Submitter {
      * @param config the resource configuration
      */
     public void collectResourceFiles(ObjectArrayList<PluginFile> list, ResourceConfig config) {
+        logger.debug("Collecting resource files...");
         for (Resource resourceRef2 : config.requires)
             collectResourceFiles(resourceRef2, list);
         for (PluginFile file : config.files) {
-
             // collect all but artifact install scripts (since they are fetched automatically)
             if (!"INSTALL".equals(file.id)) {
-                logger.info("Collecting " + file.getLocalFile().getAbsolutePath());
+                logger.debug("Collecting " + file.getLocalFile().getAbsolutePath());
                 list.add(file);
             }
 
