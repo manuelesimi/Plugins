@@ -157,8 +157,11 @@ public abstract class SubmissionRequest {
             //add parameters from plugin configuration
             for (org.campagnelab.gobyweb.plugins.xml.executables.Option option : executableConfig.getOptions().option){
                 String defaultTo;
-                if (option.type == org.campagnelab.gobyweb.plugins.xml.executables.Option.OptionType.CATEGORY)
+                String valuesHelp = "";
+                if (option.type == org.campagnelab.gobyweb.plugins.xml.executables.Option.OptionType.CATEGORY) {
                     defaultTo = option.categoryIdToValue(option.defaultsTo);
+                    valuesHelp = String.format(" Allowed values %s.", Arrays.toString(option.categoryValues().toArray()));
+                }
                 else
                     defaultTo = option.defaultsTo;
 
@@ -168,7 +171,7 @@ public abstract class SubmissionRequest {
                         .setShortFlag(JSAP.NO_SHORTFLAG)
                         .setLongFlag(option.id)
                         .setDefault(defaultTo);
-                jsapOption.setHelp(option.help);
+                jsapOption.setHelp(option.help + valuesHelp);
                 additionalParameters.add(jsapOption);
             }
         }
