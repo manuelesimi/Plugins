@@ -126,6 +126,7 @@ public class ClusterGatewayCommandLineTest {
                         "--GROUP_DEFINITION Group_1=ZDFTZZE,PVOVHCB " +
                         "--GROUP_DEFINITION Group_2=KAKIMJE " +
                         "--option ENSEMBL_RELEASE=50 " +
+                        //"--MERGE_GROUPS true " +
                         "--option BAR=bar " +
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +

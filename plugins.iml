@@ -33,8 +33,8 @@
     <orderEntry type="library" name="Maven: org.scala-lang:scala-compiler:2.9.2" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.9.2" level="project" />
     <orderEntry type="library" name="Maven: org.scalatest:scalatest_2.9.2:1.6.1" level="project" />
-    <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:artifacts:2.2.3" level="project" />
-    <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:serverside-dependencies:full:1.0.5" level="project" />
+    <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:artifacts:2.2.3-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:serverside-dependencies:full:1.0.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:2.4.1" level="project" />
     <orderEntry type="library" name="Maven: com.thoughtworks.xstream:xstream:1.4.4" level="project" />
     <orderEntry type="library" name="Maven: xmlpull:xmlpull:1.1.3.1" level="project" />
@@ -51,7 +51,7 @@
     <orderEntry type="library" name="Maven: com.google.guava:guava-annotations:r03" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava-base:r03" level="project" />
     <orderEntry type="library" name="Maven: com.esotericsoftware.wildcard:wildcard:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.campagnelab:org.campagnelab.stepslogger:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.campagnelab:org.campagnelab.stepslogger:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:filesets:2.0.0-SNAPSHOT" level="project" />
   </component>
 </module>

@@ -62,6 +62,11 @@ public class DiffExp {
         return result
     }
 
+    /**
+     * Returns a list of [alignment basename] for the group
+     * @param groupNum the index of the group used to build grpToAligns' keys
+     * @return
+     */
     def alignmentsListForGroupNumber(int groupNum) {
         def result = []
         def expectedOrganism = organismId
