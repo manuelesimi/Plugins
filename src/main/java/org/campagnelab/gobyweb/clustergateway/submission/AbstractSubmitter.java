@@ -109,6 +109,7 @@ abstract public class AbstractSubmitter implements Submitter {
      */
     protected void copyResourceFiles(ExecutableConfig executableConfig, File tempDir) throws IOException {
         // copy all the resources' files in the local working dir
+        logger.info("Collecting files from dependencies...");
         for (PluginFile file : collectResourceFiles(executableConfig)) {
             if (file.isDirectory) {
                 FileUtils.copyDirectory(file.getLocalFile(), new File(tempDir, file.getLocalFile().getName()));
@@ -119,6 +120,7 @@ abstract public class AbstractSubmitter implements Submitter {
     }
 
     protected void copyAutoOptions(ExecutableConfig executableConfig, File tempDir, JobRuntimeEnvironment environment) throws IOException {
+        logger.info("Generating the job environment...");
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
         File autoOptionsFile = helper.generateAutoOptionsFile(executableConfig,null, null, environment);
         Files.copy(autoOptionsFile, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "auto-options.sh")));

@@ -152,6 +152,7 @@ public abstract class SubmissionRequest {
      * @throws Exception
      */
     protected int submitRequest() throws Exception {
+        logger.info("Analysing the submission request...");
         List<Parameter> additionalParameters = this.getAdditionalParameters();
         if (this.executableConfig != null) {
             //add parameters from plugin configuration
@@ -191,9 +192,7 @@ public abstract class SubmissionRequest {
         JobArea jobArea = null;
         try {
             String jobAreaLocation = config.getString("job-area");
-
-            jobArea = AreaFactory.createJobArea(
-                    jobAreaLocation, owner);
+            jobArea = AreaFactory.createJobArea(jobAreaLocation, owner);
         } catch (IOException ioe) {
             logger.error(ioe);
             return (1);

@@ -20,6 +20,8 @@ public class SubmissionRequestFactory {
     public static SubmissionRequest createRequest(String[] args) throws Exception {
 
         //load plugin configurations
+        logger.info("Loading available plugins...");
+
         Plugins plugins = null;
         plugins = new Plugins(false);
         plugins.addServerConf(getPluginsDir(args).getAbsolutePath());
