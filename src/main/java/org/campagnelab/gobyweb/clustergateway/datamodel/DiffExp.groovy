@@ -71,7 +71,7 @@ public class DiffExp {
                 def haveOrganism = v.getAttributes().get("ORGANISM")
                 def haveReference = v.getAttributes().get("GENOME_REFERENCE_ID")
                 if (expectedOrganism == haveOrganism && expectedReference == haveReference) {
-                    result << v
+                    result << v.getBasename()
                 }
             }
         }
