@@ -205,6 +205,16 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
+    @Test
+    public void runRemoteAnalysisHelp() {
+        assertEquals(1, ClusterGateway.process(
+                ("--plugins-dir test-data/root-for-aligners "  +
+                 "--job CONTAMINANT_EXTRACT " +
+                 "--help "
+                ).split(" ")
+        ));
+
+    }
 
     private static String[] buildFileRegistrationArgs(String filenames) {
         ("--fileset-area ${new File(resultsDir).getAbsolutePath()}/filesets "+
