@@ -282,6 +282,8 @@ function run_alignment_analysis_combine {
     (cd ${TMPDIR} ; plugin_alignment_analysis_combine ${RESULT_DIR}/${TAG}.${RESULT_FILE_EXTENSION} ${SGE_O_WORKDIR}/split-results/${TAG}/${TAG}-*.${RESULT_FILE_EXTENSION} )
     jobDieUponError "failed to combine results"
 
+    %COPY_PLUGIN_OUTPUT_FILES%
+
     mkdir ${TMPDIR}/import-db
     cp ${RESULT_DIR}/${TAG}*.tsv ${TMPDIR}/import-db/
     cp ${RESULT_DIR}/${TAG}*.vcf.gz ${TMPDIR}/import-db/
@@ -296,14 +298,14 @@ function run_alignment_analysis_combine {
            --export-format lucene \
            ${TMPDIR}/import-db/${TAG}-*.tsv  ${TMPDIR}/import-db/${TAG}-*.vcf.gz
     jobDieUponError "failed to convert results to database"
-    #cp ${TMPDIR}/import-db/${TAG}*.db ${RESULT_DIR}/
+    cp ${TMPDIR}/import-db/${TAG}*.db ${RESULT_DIR}/
 
-    #if [ ! $? -eq 0 ]; then
+    if [ ! $? -eq 0 ]; then
        # remove any previous index:
-       #rm -fr ${TMPDIR}/${TAG}*.lucene.index
-       #cp -r ${TMPDIR}/import-db/${TAG}*.lucene.index ${TMPDIR}/
-       #dieUponError "Could not copy db/lucene to current TMPDIR directory (this disk might be full)."
-    #fi
+       rm -fr ${TMPDIR}/${TAG}*.lucene.index
+       cp -r ${TMPDIR}/import-db/${TAG}*.lucene.index ${RESULT_DIR}/
+       dieUponError "Could not copy db/lucene to ${RESULT_DIR} directory (this disk might be full)."
+    fi
     ls -lrt
 
     ls -lrt  ${TMPDIR}/import-db
