@@ -160,7 +160,7 @@ public abstract class SubmissionRequest {
                 String valuesHelp = "";
                 if (option.type == org.campagnelab.gobyweb.plugins.xml.executables.Option.OptionType.CATEGORY) {
                     defaultTo = option.categoryIdToValue(option.defaultsTo);
-                    valuesHelp = String.format(" Allowed values %s.", Arrays.toString(option.categoryValues().toArray()));
+                    valuesHelp = String.format(". Allowed values %s.", Arrays.toString(option.categoryValues().toArray()));
                 }
                 else
                     defaultTo = option.defaultsTo;
