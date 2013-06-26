@@ -1,0 +1,1 @@
+This file should be ignored since it is not a directory.

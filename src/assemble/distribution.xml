@@ -7,13 +7,22 @@
     </formats>
     <baseDirectory>plugins-sdk-${project.version}</baseDirectory>
     <fileSets>
+
         <fileSet>
+
             <directory>./bin/</directory>
             <outputDirectory>bin</outputDirectory>
             <excludes>
                 <exclude>.svn/</exclude>
                 <exclude>.git/</exclude>
             </excludes>
+        </fileSet>
+        <fileSet>
+            <directory>./src/assemble/</directory>
+            <includes>
+                <include>README.txt</include>
+            </includes>
+            <outputDirectory>./</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>./templates/</directory>
@@ -35,7 +44,7 @@
     <files>
         <file>
             <source>target/plugins-sdk.jar</source>
-            <outputDirectory>/lib</outputDirectory>
+            <outputDirectory>./lib</outputDirectory>
         </file>
     </files>
 </assembly>

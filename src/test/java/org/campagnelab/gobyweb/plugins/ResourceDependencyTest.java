@@ -31,6 +31,7 @@ public class ResourceDependencyTest {
         plugins.addServerConf("test-data/plugin-root-3");
         plugins.setWebServerHostname("localhost");
         plugins.reload();
+
     }
 
     @Test
@@ -40,9 +41,10 @@ public class ResourceDependencyTest {
         }
 
     }
+
     @Test
     public void noPbRequests() {
-        AlignerConfig alignerById = pluginRegistry.findByTypedId("GSNAP_WITH_GOBY",AlignerConfig.class);
+        AlignerConfig alignerById = pluginRegistry.findByTypedId("GSNAP_WITH_GOBY", AlignerConfig.class);
         File requests = plugins.createPbRequestFile(alignerById);
         assertNull("Aligner plugin GSNAP_WITH_GOBY has no artifact dependencies", requests);
 
@@ -52,7 +54,7 @@ public class ResourceDependencyTest {
     @Test
     public void writePbRequests() throws IOException {
 
-        AlignerConfig starAligner = pluginRegistry.findByTypedId("STAR22_GOBY",AlignerConfig.class);
+        AlignerConfig starAligner = pluginRegistry.findByTypedId("STAR22_GOBY", AlignerConfig.class);
         assertNotNull("STAR aligner must be found", starAligner);
         File requests = plugins.createPbRequestFile(starAligner);
         assertNotNull("Aligner plugin STAR must have some artifact dependencies", requests);
@@ -138,7 +140,7 @@ public class ResourceDependencyTest {
 
     @Test
     public void testPluginVersionMap() {
-        AlignerConfig starAligner = pluginRegistry.findByTypedId("STAR22_GOBY",AlignerConfig.class);
+        AlignerConfig starAligner = pluginRegistry.findByTypedId("STAR22_GOBY", AlignerConfig.class);
 
         Map<String, String> map = plugins.pluginVersionsMap(starAligner);
         StringBuffer buffer = new StringBuffer();
@@ -153,12 +155,12 @@ public class ResourceDependencyTest {
 
 
         assertEquals("org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig:STAR22_GOBY:STAR 2.20 (Goby output)=1.2\n" +
-            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GOBYWEB_SERVER_SIDE:GobyWeb server side tools=2.0\n" +
-            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:STAR:STAR=2.2.0\n" +
-            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:FAI_INDEXED_GENOMES:FAI indexed genomes=1.1.1\n" +
-            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:ENSEMBL_GENOMES:Ensembl Genomes=1.1\n" +
-            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:SAMTOOLS:Samtools=0.1.18.1\n" +
-            "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GSNAP_WITH_GOBY:GSNAP with Goby support=2011.07.08\n", buffer.toString());
+                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GOBYWEB_SERVER_SIDE:GobyWeb server side tools=2.0\n" +
+                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:STAR:STAR=2.2.0\n" +
+                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:FAI_INDEXED_GENOMES:FAI indexed genomes=1.1.1\n" +
+                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:ENSEMBL_GENOMES:Ensembl Genomes=1.1\n" +
+                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:SAMTOOLS:Samtools=0.1.18.1\n" +
+                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GSNAP_WITH_GOBY:GSNAP with Goby support=2011.07.08\n", buffer.toString());
 
     }
 

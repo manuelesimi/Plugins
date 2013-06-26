@@ -180,7 +180,7 @@ public class Plugins {
 
         for (String error : errors) {
             somePluginReportedErrors = true;
-            LOG.error(String.format("plugin root=%s %s",ObjectArrayList.wrap(serverConfDirectories).toString(),error));
+            LOG.error(String.format("plugin root=%s %s", ObjectArrayList.wrap(serverConfDirectories).toString(), error));
         }
         // add GLOBAL resource definition for those plugins that don't provide it explicitly:
         addDefaultNeed("GLOBAL", "excl", "false");
@@ -245,7 +245,10 @@ public class Plugins {
             if (ignoreFilenames(filename)) {
                 continue;
             }
-            readPluginConfigFile(new File(directory, filename).getAbsolutePath());
+            def pluginDir = new File(directory, filename)
+            if (pluginDir.isDirectory()) {
+                readPluginConfigFile(pluginDir.getAbsolutePath());
+            }
         }
 
         // now check resources requirements, and remove the plugins that cannot find their resources:
