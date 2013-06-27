@@ -159,10 +159,10 @@ public abstract class SubmissionRequest {
             //add parameters from plugin configuration
             for (org.campagnelab.gobyweb.plugins.xml.executables.Option option : executableConfig.getOptions().option){
                 String defaultTo;
-                String valuesHelp = String.format("Option Tpe: %s.",option.type.name());
+                String valuesHelp = String.format(" Option type: %s.",option.type.name());
                 if (option.type == org.campagnelab.gobyweb.plugins.xml.executables.Option.OptionType.CATEGORY) {
                     defaultTo = option.categoryIdToValue(option.defaultsTo);
-                    valuesHelp = String.format(" Allowed values %s.", Arrays.toString(option.categoryValues().toArray()));
+                    valuesHelp = String.format("%s Allowed values %s.", valuesHelp, Arrays.toString(option.categoryValues().toArray()));
                 }
                 else
                     defaultTo = option.defaultsTo;
