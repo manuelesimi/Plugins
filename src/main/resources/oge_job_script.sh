@@ -368,7 +368,7 @@ function push_bam_alignments {
     REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bam.bai`
     dieUponError "Failed to push the alignment files in the fileset area: ${REGISTERED_TAGS}"
 
-    echo "The following BAM_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
+    echo "The following BAM_ALIGNMENT instance has been successfully registered: ${REGISTERED_TAGS}"
 }
 
 #pushes Goby alignments produced by an aligner job in the fileset area
@@ -385,7 +385,7 @@ function push_goby_alignments {
      REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
      dieUponError "Failed to push the alignment files in the fileset area: ${REGISTERED_TAGS}"
 
-     echo "The following GOBY_ALIGNMENT instances have been successfully registered: ${REGISTERED_TAGS}"
+     echo "The following GOBY_ALIGNMENT instance has been successfully registered: ${REGISTERED_TAGS}"
 
 }
 
@@ -402,7 +402,7 @@ function push_aligner_results {
    if [ $? != 0 ]; then
         echo "Failed to push back TSV files: ${REGISTERED_TAGS}"
    fi
-   echo "The following TSV instances have been successfully registered: ${REGISTERED_TAGS}"
+   echo "The following TSV instance has been successfully registered: ${REGISTERED_TAGS}"
 
    #push COUNTS back
    echo Pushing COUNTS
@@ -410,7 +410,7 @@ function push_aligner_results {
    if [ $? != 0 ]; then
         echo "Failed to push back COUNTS files: ${REGISTERED_TAGS}"
    fi
-   echo "The following COUNTS instances have been successfully registered: ${REGISTERED_TAGS}"
+   echo "The following COUNTS instance has been successfully registered: ${REGISTERED_TAGS}"
 
     #push GZ back
    echo Pushing GZs
@@ -418,7 +418,7 @@ function push_aligner_results {
    if [ $? != 0 ]; then
         echo "Failed to push back GZ files: ${REGISTERED_TAGS}"
    fi
-   echo "The following GZ instances have been successfully registered: ${REGISTERED_TAGS}"
+   echo "The following GZ instance has been successfully registered: ${REGISTERED_TAGS}"
 
     #push GZ back
    echo Pushing STATS
@@ -426,7 +426,7 @@ function push_aligner_results {
    if [ $? != 0 ]; then
         echo "Failed to push back STATS files: ${REGISTERED_TAGS}"
    fi
-   echo "The following STATS instances have been successfully registered: ${REGISTERED_TAGS}"
+   echo "The following STATS instance has been successfully registered: ${REGISTERED_TAGS}"
 }
 
 function bam_align {
