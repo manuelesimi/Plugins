@@ -194,7 +194,7 @@ public class Option {
                 return null;
             case BOOLEAN:
             case SWITCH:
-                if (value.equals("true") || value.equals("false")) {
+                if (value.toLowerCase().equals("true") || value.toLowerCase().equals("false")) {
                     return null;
                 } else {
                     return new OptionError(this, String.format("Must be set to 'true' or 'false'."));
@@ -202,7 +202,7 @@ public class Option {
             case CATEGORY:
                 for (Category category : categories) {
                     //check if the value is the ID or the Value of a category
-                    if ((category.id.equals(value)) || (category.value.equals(value))) {
+                    if ((category.id.equals(value)) || (category.value.toLowerCase().equals(value.toLowerCase()))) {
                         return null;
                     }
                 }
