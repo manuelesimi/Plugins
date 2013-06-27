@@ -49,12 +49,6 @@ class AlignerSubmissionRequest extends SubmissionRequest {
         return parameters;
     }
 
-
-    @Override
-    protected String getVariablePrefix() {
-        return String.format("PLUGINS_ALIGNER_%s_",this.alignerConfig.getId());
-    }
-
     /**
      * Submits the aligner request.
      * @param config the parsed interface configuration

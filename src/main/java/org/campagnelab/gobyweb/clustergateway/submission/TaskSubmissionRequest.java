@@ -24,11 +24,6 @@ class TaskSubmissionRequest extends SubmissionRequest {
         actions.submitTask(taskConfig, this.getInputSlots(), this.getUnclassifiedOptions());
         return 0;
     }
-
-    @Override
-    protected String getVariablePrefix() {
-        return String.format("PLUGINS_TASK_%s_",this.taskConfig.getId());
-    }
 }
 
 

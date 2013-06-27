@@ -58,9 +58,4 @@ class AlignmentAnalysisSubmissionRequest extends SubmissionRequest {
                 this.getUnclassifiedOptions());
         return 0;
     }
-
-    @Override
-    protected String getVariablePrefix() {
-        return String.format("PLUGINS_ALIGNMENT_ANALYSIS_%s_",this.alignmentAnalysisConfig.getId());
-    }
 }

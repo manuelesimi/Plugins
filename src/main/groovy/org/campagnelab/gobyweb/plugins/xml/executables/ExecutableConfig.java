@@ -100,6 +100,19 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
     }
 
     /**
+     * Gets the option with the given id.
+     * @param id
+     * @return the option or null if there is no option matching the id
+     */
+    public Option getOption(String id) {
+        for (Option option : options.option) {
+            if (option.id.equalsIgnoreCase(id))
+                return option;
+        }
+        return null;
+    }
+
+    /**
      * Convenience method to obtain the plugin script file.
      *
      * @return File corresponding to the filename=script.sh id=SCRIPT plugin file.

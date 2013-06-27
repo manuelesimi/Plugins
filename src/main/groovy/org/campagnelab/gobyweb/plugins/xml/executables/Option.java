@@ -178,7 +178,7 @@ public class Option {
      * @return null means the value validated correctly. A non-null string describes the error.
      */
     public OptionError validateOptionValue(final String value) {
-        System.out.println("Validating value=" + value);
+        //System.out.println("Validating value=" + value);
         if (value == null || value.length() == 0) {
             if (required || type == OptionType.SWITCH || type == OptionType.BOOLEAN || type == OptionType.CATEGORY) {
                 // These types are implicitly required
@@ -201,7 +201,8 @@ public class Option {
                 }
             case CATEGORY:
                 for (Category category : categories) {
-                    if (category.id.equals(value)) {
+                    //check if the value is the ID or the Value of a category
+                    if ((category.id.equals(value)) || (category.value.equals(value))) {
                         return null;
                     }
                 }

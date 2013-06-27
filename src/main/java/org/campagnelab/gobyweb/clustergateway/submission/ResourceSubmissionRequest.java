@@ -35,9 +35,4 @@ class ResourceSubmissionRequest extends SubmissionRequest {
         actions.submitResourceInstall(resourceConfig);
         return 0;
     }
-
-    @Override
-    protected String getVariablePrefix() {
-        return String.format("RESOURCES_%s",this.id);
-    }
 }

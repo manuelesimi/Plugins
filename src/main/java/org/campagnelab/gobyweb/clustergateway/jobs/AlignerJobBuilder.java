@@ -125,4 +125,9 @@ public class AlignerJobBuilder extends JobBuilder {
             executableJob.setAsParallel();
         }
     }
+
+    @Override
+    protected String getVariablePrefix() {
+        return String.format("PLUGINS_ALIGNER_%s_",this.alignerConfig.getId());
+    }
 }

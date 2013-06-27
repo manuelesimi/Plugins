@@ -264,5 +264,8 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         executableJob.setDataForScripts(diffExp);
     }
 
-
+    @Override
+    protected String getVariablePrefix() {
+        return String.format("PLUGINS_ALIGNMENT_ANALYSIS_%s_",this.analysisConfig.getId());
+    }
 }
