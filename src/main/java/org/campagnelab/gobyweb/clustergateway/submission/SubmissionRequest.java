@@ -82,7 +82,7 @@ public abstract class SubmissionRequest {
     }
 
     /**
-     * Sets the orginal command line arguments specified by the user.
+     * Sets the original command line arguments specified by the user.
      * @param commandLineArguments
      */
     protected void setCommandLineArguments(String[] commandLineArguments) {
@@ -121,7 +121,7 @@ public abstract class SubmissionRequest {
     }
 
     /**
-     * Parses the additional options specified on the comman line and creates a map from them.
+     * Parses the additional options specified on the command line and creates a map from them.
      * @param options option in the form KEY=VALUE,KEY2=VALUE2
      * @return
      */
@@ -146,6 +146,7 @@ public abstract class SubmissionRequest {
     protected List<Parameter> getAdditionalParameters() {
         return new ArrayList<Parameter>();
     }
+
     /**
      * Submits the request to the Cluster Gateway.
      * @return 0 if the request was successfully submitted, anything else if it failed
@@ -153,7 +154,7 @@ public abstract class SubmissionRequest {
      */
     protected int submitRequest() throws Exception {
         logger.info("Analysing the submission request...");
-        List<Parameter> additionalParameters = this.getAdditionalParameters();
+        List<Parameter> interfaceParameters = new ArrayList<Parameter>();
         if (this.executableConfig != null) {
             //add parameters from plugin configuration
             for (org.campagnelab.gobyweb.plugins.xml.executables.Option option : executableConfig.getOptions().option){
@@ -173,16 +174,17 @@ public abstract class SubmissionRequest {
                         .setLongFlag(option.id)
                         .setDefault(defaultTo);
                 jsapOption.setHelp(option.help + valuesHelp);
-                additionalParameters.add(jsapOption);
+                interfaceParameters.add(jsapOption);
             }
         }
-        this.addInputSlots(additionalParameters);
-        JSAPResult config = jsapHelper.configure(commandLineArguments, additionalParameters);
+        interfaceParameters.addAll(this.getAdditionalParameters());
+        this.addInputSlots(interfaceParameters);
+        JSAPResult config = jsapHelper.configure(commandLineArguments, interfaceParameters);
         if (config == null)
             return 1;
 
         //add the parameters to the options map
-        for (Parameter parameter : additionalParameters) {
+        for (Parameter parameter : interfaceParameters) {
             if (! parameter.getID().equalsIgnoreCase("slots")) //we do not want the input slots in constants.sh
                 this.optionsMap.put(parameter.getID(), config.getString(parameter.getID()));
         }
