@@ -153,7 +153,7 @@ public abstract class SubmissionRequest {
      * @throws Exception
      */
     protected int submitRequest() throws Exception {
-        logger.info("Analysing the submission request...");
+        logger.info("Analyzing the submission request...");
         List<Parameter> interfaceParameters = new ArrayList<Parameter>();
         if (this.executableConfig != null) {
             //add parameters from plugin configuration
