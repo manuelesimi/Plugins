@@ -155,7 +155,7 @@
             <required>optional</required>
             <longFlag>option</longFlag>
             <allowMultipleDeclarations>true</allowMultipleDeclarations>
-            <help>Additional option(s) to pass to the job. The option will be available as environment variable in the job execution environment.</help>
+            <help>Additional option(s) to pass to the job in the format KEY=VALUE. The option will be available as environment variable in the job execution environment.</help>
         </flaggedOption>
 
     </parameters>
