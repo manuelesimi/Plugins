@@ -5,17 +5,14 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 /**
- * Created with IntelliJ IDEA.
- * User: manuelesimi
- * Date: 5/19/13
- * Time: 6:13 PM
- * To change this template use File | Settings | File Templates.
+ * Tester for dependency tree visualization
+ * @author manuele
  */
 @RunWith(JUnit4.class)
 class PluginsUtilCommandLineTest {
 
     @Test
-    public void registerWithNameAndGuess() {
+    public void testDependencyTreeVisualization() {
        PluginsUtil.process(buildDependencyTreeArguments("GSNAP_GOBY"));
 
     }
