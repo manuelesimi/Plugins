@@ -34,7 +34,7 @@ public abstract class SubmissionRequest {
         protected boolean hasError(JSAPResult config, List<String> errors) {
             boolean result = false;
             if ((config.userSpecified("resource") ? 1 : 0) + (config.userSpecified("job") ? 1 : 0) > 1) {
-                errors.add("Only one parameter among resource and job has to be specified");
+                errors.add("Only one parameter between resource and job has to be specified");
                 result = true;
             }
             if ((config.userSpecified("resource") ? 1 : 0) + (config.userSpecified("job") ? 1 : 0) < 1) {
