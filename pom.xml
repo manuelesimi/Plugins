@@ -8,12 +8,12 @@
     </parent>
     <groupId>org.campagnelab.gobyweb</groupId>
     <artifactId>plugins</artifactId>
-    <version>2.1</version>
+    <version>2.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>plugins</name>
     <description>Software development and execution kit for GobyWeb plugins.</description>
-    <url>http://gobyweb.campagnelab.org</url>
+    <url>http://campagnelab.org/software/gobyweb/plugins-sdk/</url>
 
     <properties>
         <remote.test.skip>false</remote.test.skip>
