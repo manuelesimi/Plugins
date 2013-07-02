@@ -1,13 +1,18 @@
+2.1 (Jun 28 2013)
 
-2.1
-- Add ClusterGateway,
-- Add ability to test installation of resources with artifacts,
-- Migrate to git and BitBucket,
-- Fix issue with hiddenWhen option attribute not used. 
+    First release bundled as Plugins SDK
+    Add two new types of plugin: Task and FileSet
+    Submission of Aligners and Alignment Analyses as Jobs on OGE
+    Local and remote installation of Resources with artifacts
+    Local and remote submission of Tasks as Jobs
+    Registration/editing/unregistration of FileSet instances
+    Integration with FileSet library 1.0
+    Migration to BitBucket
 
+2.0 (Apr 16 2013)
 
-2.0
-- Collect loaded Configs in the PluginRegistry
-- Refactor the class hierarchy for Configs
-- Split plugin.xsd in smaller schemas, one per each Plugin type
-- Separate the project from GobyWeb
+    Support library for GobyWeb: load and validate plugin configurations
+    Supported plugin types: resource, aligner, alignment analysis
+    Split plugin.xsd in smaller schemas, one per each Plugin type
+    New class hierarchy for Configs
+
