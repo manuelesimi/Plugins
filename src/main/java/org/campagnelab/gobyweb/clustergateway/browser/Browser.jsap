@@ -20,7 +20,7 @@
             <required>false</required>
             <shortFlag>o</shortFlag>
             <longFlag>owner</longFlag>
-            <help>The user that owns the filesets. If not specified, the filesets of all users are scanned.</help>
+            <help>The user that owns the filesets. If not specified, the current logged user will be used as owner.</help>
         </flaggedOption>
 
         <flaggedOption>
@@ -31,11 +31,43 @@
             <required>optional</required>
             <longFlag>filter-attribute</longFlag>
             <allowMultipleDeclarations>true</allowMultipleDeclarations>
-            <help>Filter on attribute. The filter must be in the form ATTR1=VALUE1.
-            It is possible to specify more than one value per filter in the form ATTR1=VALUE1,VALUE2,VALUE3.
+            <help>Filters on attribute. Filters must be in the format NAME=VALUE.
+            It is possible to specify more than one value per filter in the form NAME=VALUE1,VALUE2,VALUE3.
             If more than one value is specified, values are put in an OR relationship.
             If more than one filter is specified, filters are put in an AND relationship. </help>
         </flaggedOption>
+
+        <flaggedOption>
+             <id>tag</id>
+             <stringParser>
+                   <classname>StringStringParser</classname>
+             </stringParser>
+             <required>optional</required>
+             <shortFlag>t</shortFlag>
+             <longFlag>tag</longFlag>
+             <help>The tag that identifies the fileset instance to list. If a tag is specified, filters on attributes are not applied</help>
+         </flaggedOption>
+
+        <flaggedOption>
+             <id>output-format</id>
+             <stringParser>
+                   <classname>StringStringParser</classname>
+             </stringParser>
+             <required>true</required>
+             <longFlag>output-format</longFlag>
+             <help>The output format produced by the browser. Allowed formats are: [only-tags, table]</help>
+         </flaggedOption>
+
+        <flaggedOption>
+             <id>separator</id>
+             <stringParser>
+                   <classname>StringStringParser</classname>
+             </stringParser>
+             <required>false</required>
+             <shortFlag>s</shortFlag>
+             <longFlag>separator</longFlag>
+             <help>A separator used to format the output. If not specified '\t' will be used as default separator.</help>
+         </flaggedOption>
 
         <switch>
             <id>help</id>

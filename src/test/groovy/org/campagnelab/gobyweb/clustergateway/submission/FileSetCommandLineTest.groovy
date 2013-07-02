@@ -124,7 +124,7 @@ public class FileSetCommandLineTest {
 
     }
 
-    private static String[] buildFileRegistrationArgs(String filenames) {
+    public static String[] buildFileRegistrationArgs(String filenames) {
         ("--fileset-area ${storageAreaDir} "+
                 "--plugins-dir test-data/root-for-rnaselect " +
                 "--owner PluginsSDK "+
