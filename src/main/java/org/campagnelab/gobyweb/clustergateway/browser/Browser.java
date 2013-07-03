@@ -2,6 +2,8 @@ package org.campagnelab.gobyweb.clustergateway.browser;
 
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.filesets.FileSetAPI;
+import org.campagnelab.gobyweb.filesets.FileSetUtils;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.FileSetArea;
@@ -92,12 +94,13 @@ public final class Browser {
         } catch (IOException ioe) {
             throw ioe;
         }
+        FileSetBrowser browser = storageArea.isLocal()? new LocalBrowser() : new RemoteBrowser();
+        browser.setOutputFormatter(getFormatter(config));
         if (config.userSpecified("tag")) {
-           FileSetBrowser browser = storageArea.isLocal()? new LocalBrowser() : new RemoteBrowser();
-           browser.setOutputFormatter(getFormatter(config));
            browser.browseByTag(storageArea,config.getString("tag"));
         } else if (config.userSpecified("filter-attribute")) {
-
+            Map<String, List<String>> inputAttributes = parseKeyMultipleValueParameters(config.getStringArray("filter-attribute"));
+            browser.browseByFilters(storageArea, FileSetUtils.toAttributeFilters(inputAttributes));
         }
     }
 

@@ -19,7 +19,7 @@ public class LocalBrowser extends AbstractBrowser {
 
 
     /**
-     * Looks for FileSet instances matching the filters.
+     * Looks for FileSet instances matching the filters. If no filter is indicated, all the instances are returned.
      *
      * @param area
      * @param filters
@@ -29,6 +29,15 @@ public class LocalBrowser extends AbstractBrowser {
         if (this.formatter == null)
             throw new NullPointerException("OutputFormatter cannot be null. A formatter must be set before requesting any browse operation.");
         this.checksBeforeBrowse(area);
+        FileSetAPI api =FileSetAPI.getReadOnlyAPI(area);
+        List<String> errors = new ArrayList<String>();
+        List<MetadataFileReader> metadataList = api.fetchMetadataByFilters(filters,errors);
+        if (errors.size() > 0)
+            this.formatter.formatErrors(errors);
+        else
+            this.formatter.format(metadataList);
+
+        return;
     }
 
     /**
