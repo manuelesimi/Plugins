@@ -39,7 +39,7 @@ public final class TableFormatter implements OutputFormatter {
     @Override
     public void format(List<MetadataFileReader> metadataList) {
         formatter = new Formatter(System.out);
-        formatter.format("%n%-7s%s%-30s%s%-30s%s%-20s%s%-200s%n",
+        formatter.format("%n%-7s%s%-30s%s%-60s%s%-20s%s%-200s%n",
                 "TAG",separator,
                 "INSTANCE OF",separator,
                 "BASENAME", separator,
@@ -50,7 +50,7 @@ public final class TableFormatter implements OutputFormatter {
             formatter.format("%s", separator);
             formatter.format("%-30s", reader.getName());
             formatter.format("%s", separator);
-            formatter.format("%-30s", reader.getBasename());
+            formatter.format("%-60s", reader.getBasename());
             formatter.format("%s", separator);
             long size = 0;
             for (String entry : reader.listEntryNames()) {
