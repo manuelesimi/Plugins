@@ -124,11 +124,16 @@ public class FileSetCommandLineTest {
 
     }
 
-    public static String[] buildFileRegistrationArgs(String filenames) {
+    public static String[] buildFileRegistrationArgs(String filenames, String[] attributes) {
+        StringBuilder builder = new StringBuilder();
+        for(String attribute : attributes)
+            builder.append("-a ${attribute} ")
+
         ("--fileset-area ${storageAreaDir} "+
                 "--plugins-dir test-data/root-for-rnaselect " +
                 "--owner PluginsSDK "+
                 "--action register " +
+                builder.toString() +
                 filenames
         ).split(" ");
 

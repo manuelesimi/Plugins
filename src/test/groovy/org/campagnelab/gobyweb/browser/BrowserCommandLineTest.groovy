@@ -49,6 +49,56 @@ class BrowserCommandLineTest {
 
     }
 
+    @Test
+    public void testLocalBrowserByFiltersWithTable() {
+        String[] attributes = new String[4];
+        attributes[0] = "KEY1=VALUE1";
+        attributes[1] = "KEY2=VALUE2";
+        attributes[2] = "KEY3=VALUE3";
+        attributes[3] = "KEY4=VALUE4";
+        assertEquals(1, FileSetManager.process(FileSetCommandLineTest.buildFileRegistrationArgs(
+                "--tag XXXXX10 " +
+                        "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads",
+                attributes
+        )).size());
+
+        String[] attributes2 = new String[2];
+        attributes2[0] = "KEY1=VALUE1";
+        attributes2[1] = "KEY2=VALUE2";
+
+        assertEquals(1, FileSetManager.process(FileSetCommandLineTest.buildFileRegistrationArgs(
+                "--tag XXXXX11 " +
+                        "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads",
+                attributes2
+        )).size());
+
+        String[] attributes3 = new String[3];
+        attributes3[0] = "KEY1=VALUE1";
+        attributes3[1] = "KEY2=VALUE2";
+        attributes3[2] = "KEY3=VALUE3";
+
+        assertEquals(1, FileSetManager.process(FileSetCommandLineTest.buildFileRegistrationArgs(
+                "--tag XXXXX12 " +
+                        "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads",
+                attributes3
+        )).size());
+
+        Browser.process(buildBrowserFiltersArguments(["KEY1=VALUE1", "KEY3=VALUE3"] as String[],"table"));
+
+    }
+
+    private static String[] buildBrowserFiltersArguments(String[] filters, String format) {
+        StringBuilder builder = new StringBuilder();
+        for(String filter : filters)
+            builder.append("--filter-attribute ${filter} ")
+
+        ("--fileset-area ${storageAreaDir} "+
+                "--owner PluginsSDK "+
+                "--output-format ${format} " +
+                builder.toString()
+        ).split(" ");
+    }
+
     private static String[] buildBrowserArguments(String tag, String format) {
         ("--fileset-area ${storageAreaDir} "+
                 "--owner PluginsSDK "+
