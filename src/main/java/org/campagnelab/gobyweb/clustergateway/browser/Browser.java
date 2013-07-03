@@ -88,9 +88,14 @@ public final class Browser {
         //create the reference to the storage area
         FileSetArea storageArea = null;
         try {
-            storageArea = AreaFactory.createFileSetArea(
-                    config.getString("fileset-area"),
-                    config.userSpecified("owner") ? config.getString("owner") : System.getProperty("user.name"));
+            if (config.userSpecified("owner")) {
+                storageArea = AreaFactory.createFileSetArea(
+                        config.getString("fileset-area"),
+                        config.getString("owner"));
+            } else {
+                storageArea = AreaFactory.createAdminFileSetArea(config.getString("fileset-area"));
+            }
+
         } catch (IOException ioe) {
             throw ioe;
         }

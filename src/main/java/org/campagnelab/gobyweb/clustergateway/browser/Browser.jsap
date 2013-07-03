@@ -20,7 +20,7 @@
             <required>false</required>
             <shortFlag>o</shortFlag>
             <longFlag>owner</longFlag>
-            <help>The user that owns the filesets. If not specified, the current logged user will be used as owner.</help>
+            <help>The user that owns the filesets. If not specified, the entire fileset area is browsed, regardless who owns the filsets.</help>
         </flaggedOption>
 
         <flaggedOption>

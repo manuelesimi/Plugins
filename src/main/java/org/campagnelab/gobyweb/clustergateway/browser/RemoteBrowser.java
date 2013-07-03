@@ -23,7 +23,6 @@ public class RemoteBrowser extends AbstractBrowser  {
      */
     @Override
     public void browseByFilters(FileSetArea area, List<FileSetAPI.AttributeFilter> filters) throws IOException {
-        //this.checksBeforeBrowse(area);
         throw new UnsupportedOperationException("Remote browsing by filters is not allowed. Install the SDK on the remote node and perform a local browse.");
     }
 
