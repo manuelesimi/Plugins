@@ -1,0 +1,67 @@
+<jsap>
+    <parameters>
+
+        <flaggedOption>
+            <id>plugins-dir</id>
+            <stringParser>
+                <classname>FileStringParser</classname>
+                <properties>
+                    <property>
+                        <name>mustBeDirectory</name>
+                        <value>true</value>
+                    </property>
+                    <property>
+                        <name>mustExist</name>
+                        <value>true</value>
+                    </property>
+                </properties>
+            </stringParser>
+            <required>optional</required>
+            <shortFlag>p</shortFlag>
+            <longFlag>plugins-dir</longFlag>
+            <help>The directory from which the plugin configurations are loaded.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>job</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <longFlag>job</longFlag>
+            <list>true</list>
+            <listSeparator>:</listSeparator>
+            <help>The identifier of the executable plugins to submit, in the format ID:VERSION.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>resource</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <list>true</list>
+            <listSeparator>:</listSeparator>
+            <longFlag>resource</longFlag>
+            <help>The identifier and version number of the resource to install. In the format ID:VERSION.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>action</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <longFlag>action</longFlag>
+            <help>The action to simulate. Allowed actions: [view-job-env]</help>
+        </flaggedOption>
+
+        <switch>
+            <id>help</id>
+            <shortFlag>h</shortFlag>
+            <longFlag>help</longFlag>
+            <help>Print help message.</help>
+        </switch>
+
+    </parameters>
+</jsap>
