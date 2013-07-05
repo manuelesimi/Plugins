@@ -4,11 +4,10 @@ import org.apache.commons.io.FileUtils;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
+import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -21,6 +20,8 @@ public class JobBuilderSimulator {
 
     private final ExecutableConfig executableConfig;
 
+    private final ResourceConfig resourceConfig;
+
     private final PluginRegistry registry;
 
     private SortedSet<String> env = new TreeSet<String>();
@@ -30,9 +31,21 @@ public class JobBuilderSimulator {
      * @param config the plugin configuration from which the job would be created.
      * @param registry
      */
+    public JobBuilderSimulator(ResourceConfig config, PluginRegistry registry) {
+        this.resourceConfig = config;
+        this.registry = registry;
+        this.executableConfig = null;
+    }
+
+    /**
+     *
+     * @param config the plugin configuration from which the job would be created.
+     * @param registry
+     */
     public JobBuilderSimulator(ExecutableConfig config, PluginRegistry registry) {
         this.executableConfig = config;
         this.registry = registry;
+        this.resourceConfig = null;
     }
 
     /**
@@ -43,7 +56,18 @@ public class JobBuilderSimulator {
     public SortedSet<String> simulateAutoOptions() throws IOException {
         env.clear();
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
-        File autoOptionsFile = helper.generateAutoOptionsFile(executableConfig, null, null, null);
+        File autoOptionsFile;
+        if (executableConfig !=null)
+             autoOptionsFile = helper.generateAutoOptionsFile(executableConfig, null, null, null);
+        else {
+            Resource resource = new Resource();
+            resource.id = this.resourceConfig.getId();
+            resource.versionExactly = this.resourceConfig.getVersion();
+            autoOptionsFile = File.createTempFile("auto-option", "");
+            PrintWriter writer = new PrintWriter(autoOptionsFile);
+            helper.writeResourceFileVariables(resource, writer);
+            writer.close();
+        }
         BufferedReader br = new BufferedReader(new FileReader(autoOptionsFile));
         try {
             String line = br.readLine();

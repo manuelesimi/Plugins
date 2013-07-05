@@ -67,28 +67,32 @@ public class ClusterGatewaySimulator {
             logger.error("Failed to load plugins definitions",e);
             throw new Exception("Failed to load plugins definitions");
         }
+        JobBuilderSimulator builderSimulator = null;
+        String[] pluginInfoData = null;
         if (config.userSpecified("job")) {
-            String[] jobData = config.getStringArray("job");
-            ExecutableConfig executableConfig = plugins.getRegistry().findByTypedIdAndVersion(jobData[0],jobData[1], ExecutableConfig.class);
+            pluginInfoData = config.getStringArray("job");
+            ExecutableConfig executableConfig = plugins.getRegistry().findByTypedIdAndVersion(pluginInfoData[0],pluginInfoData[1], ExecutableConfig.class);
             if (executableConfig == null) {
-                throw new Exception(String.format("Cannot find plugin configuration %s",Arrays.toString(jobData)));
+                throw new Exception(String.format("Cannot find plugin configuration %s",Arrays.toString(pluginInfoData)));
             }
-            JobBuilderSimulator builderSimulator = new JobBuilderSimulator(executableConfig,plugins.getRegistry());
-            SortedSet<String> env = builderSimulator.simulateAutoOptions();
-            System.out.println(String.format("Plugin %s has access to the following environment variables:", Arrays.toString(jobData)));
-            System.out.println("");
-            for (String var : env) {
-                System.out.println(var);
-            }
+            builderSimulator = new JobBuilderSimulator(executableConfig,plugins.getRegistry());
+
 
         } if (config.userSpecified("resource")) {
-            String[] resourceData = config.getStringArray("resource");
-            ResourceConfig resourceConfig = plugins.getRegistry().findByTypedIdAndVersion(resourceData[0],resourceData[1], ResourceConfig.class);
+            pluginInfoData = config.getStringArray("resource");
+            ResourceConfig resourceConfig = plugins.getRegistry().findByTypedIdAndVersion(pluginInfoData[0],pluginInfoData[1], ResourceConfig.class);
             if (resourceConfig == null) {
-                throw new Exception(String.format("Cannot find plugin configuration %s",Arrays.toString(resourceData)));
+                throw new Exception(String.format("Cannot find plugin configuration %s",Arrays.toString(pluginInfoData)));
             }
-            logger.info(String.format("Plugin %s has access to the following environment variables:", Arrays.toString(resourceData)));
-
+            builderSimulator = new JobBuilderSimulator(resourceConfig,plugins.getRegistry());
+        }
+        assert builderSimulator != null;
+        assert pluginInfoData != null;
+        SortedSet<String> env = builderSimulator.simulateAutoOptions();
+        System.out.println(String.format("Plugin %s has access to the following environment variables:", Arrays.toString(pluginInfoData)));
+        System.out.println("");
+        for (String var : env) {
+            System.out.println(var);
         }
         return;
     }

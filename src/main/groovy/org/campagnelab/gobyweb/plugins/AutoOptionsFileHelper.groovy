@@ -100,7 +100,7 @@ class AutoOptionsFileHelper {
     }
 
 
-    private void writeResourceFileVariables(Resource resourceRef, PrintWriter writer) {
+    public void writeResourceFileVariables(Resource resourceRef, PrintWriter writer) {
         ResourceConfig resource = DependencyResolver.resolveResource(resourceRef.id, resourceRef.versionAtLeast, resourceRef.versionExactly)
         if (resource == null)
             return;
