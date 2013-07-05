@@ -24,6 +24,17 @@ class ClusterGatewaySimulatorTest {
         ClusterGatewaySimulator.process(buildClusterGatewaySimulatorArgs("--resource ANNOTATE_VCF:1.1"))
     }
 
+    @Test
+    public void testAutoOptionsNoVersion() {
+        ClusterGatewaySimulator.process(buildClusterGatewaySimulatorArgs("--job BWA_GOBY_ARTIFACT"))
+    }
+
+    @Test
+    public void testResourceAutoOptionsNoVersion() {
+        ClusterGatewaySimulator.process(buildClusterGatewaySimulatorArgs("--resource ANNOTATE_VCF"))
+    }
+
+
     private static String[] buildClusterGatewaySimulatorArgs(String job) {
 
         ("--plugins-dir ${gatewayPluginRoot} " +

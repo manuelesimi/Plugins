@@ -70,21 +70,22 @@ public class ClusterGatewaySimulator {
         JobBuilderSimulator builderSimulator = null;
         String[] pluginInfoData = null;
         if (config.userSpecified("job")) {
-            pluginInfoData = config.getStringArray("job");
+            pluginInfoData = parsePluginInfoData(config.getStringArray("job"));
             ExecutableConfig executableConfig = plugins.getRegistry().findByTypedIdAndVersion(pluginInfoData[0],pluginInfoData[1], ExecutableConfig.class);
             if (executableConfig == null) {
                 throw new Exception(String.format("Cannot find plugin configuration %s",Arrays.toString(pluginInfoData)));
             }
             builderSimulator = new JobBuilderSimulator(executableConfig,plugins.getRegistry());
-
+            pluginInfoData[1] = executableConfig.getVersion();
 
         } if (config.userSpecified("resource")) {
-            pluginInfoData = config.getStringArray("resource");
+            pluginInfoData = parsePluginInfoData(config.getStringArray("resource"));
             ResourceConfig resourceConfig = plugins.getRegistry().findByTypedIdAndVersion(pluginInfoData[0],pluginInfoData[1], ResourceConfig.class);
             if (resourceConfig == null) {
                 throw new Exception(String.format("Cannot find plugin configuration %s",Arrays.toString(pluginInfoData)));
             }
             builderSimulator = new JobBuilderSimulator(resourceConfig,plugins.getRegistry());
+            pluginInfoData[1] = resourceConfig.getVersion();
         }
         assert builderSimulator != null;
         assert pluginInfoData != null;
@@ -95,5 +96,12 @@ public class ClusterGatewaySimulator {
             System.out.println(var);
         }
         return;
+    }
+
+    private static String[] parsePluginInfoData(String[] data) {
+        String[] pluginInfoData = new String[2];
+        pluginInfoData[0] = data[0];
+        pluginInfoData[1] = (data.length == 2)? data[1] : null;
+        return pluginInfoData;
     }
 }
