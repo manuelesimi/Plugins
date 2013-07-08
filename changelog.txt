@@ -1,10 +1,9 @@
-2.2
+2.2 (Jul 08 2013)
     Add FileSet Browser
     Add command for visualizing the job environment
     Integration with FileSet library 1.1
 
 2.1 (Jun 28 2013)
-
     First release bundled as Plugins SDK
     Add two new types of plugin: Task and FileSet
     Submission of Aligners and Alignment Analyses as Jobs on OGE
@@ -15,7 +14,6 @@
     Migration to BitBucket
 
 2.0 (Apr 16 2013)
-
     Support library for GobyWeb: load and validate plugin configurations
     Supported plugin types: resource, aligner, alignment analysis
     Split plugin.xsd in smaller schemas, one per each Plugin type
