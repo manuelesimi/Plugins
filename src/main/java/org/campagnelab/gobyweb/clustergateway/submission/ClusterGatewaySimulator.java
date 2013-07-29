@@ -29,6 +29,15 @@ public class ClusterGatewaySimulator {
                 errors.add("Invalid action. 'view-job-env' has to be specified");
                 return true;
             }
+            if ((config.userSpecified("job") ? 1 : 0) + (config.userSpecified("resource") ? 1 : 0) > 1) {
+                errors.add("Only one parameter between job and resource has to be specified");
+                return true;
+            }
+            if ((config.userSpecified("job") ? 1 : 0) + (config.userSpecified("resource") ? 1 : 0) < 1) {
+                errors.add("One parameter between job and resource has to be specified");
+                return true;
+            }
+
             return false;
         }
     };
@@ -38,7 +47,8 @@ public class ClusterGatewaySimulator {
             process(args);
             System.exit(0);
         } catch (Exception e) {
-            logger.error("Failed to simulate the request.");
+            e.printStackTrace();
+            logger.error("Failed to simulate the request." + e.getMessage());
             System.exit(1);
         }
     }

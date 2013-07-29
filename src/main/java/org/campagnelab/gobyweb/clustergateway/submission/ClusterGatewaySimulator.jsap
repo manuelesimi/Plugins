@@ -16,7 +16,7 @@
                     </property>
                 </properties>
             </stringParser>
-            <required>optional</required>
+            <required>true</required>
             <shortFlag>p</shortFlag>
             <longFlag>plugins-dir</longFlag>
             <help>The directory from which the plugin configurations are loaded.</help>
