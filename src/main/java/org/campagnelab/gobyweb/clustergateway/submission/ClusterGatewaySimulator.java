@@ -10,6 +10,7 @@ import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.SortedSet;
 
 /**
@@ -99,10 +100,10 @@ public class ClusterGatewaySimulator {
         }
         assert builderSimulator != null;
         assert pluginInfoData != null;
-        SortedSet<String> env = builderSimulator.simulateAutoOptions();
+        Map<String,String> env = builderSimulator.simulateAutoOptions();
         System.out.println(String.format("Plugin %s has access to the following environment variables:", Arrays.toString(pluginInfoData)));
         System.out.println("");
-        for (String var : env) {
+        for (String var : env.keySet()) {
             System.out.println(var);
         }
         return;

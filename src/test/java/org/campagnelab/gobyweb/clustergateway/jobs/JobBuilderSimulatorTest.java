@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.util.SortedSet;
+import java.util.Map;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNotSame;
@@ -39,7 +39,7 @@ public class JobBuilderSimulatorTest {
     @Test
     public void testSimulateAutoOptions() throws Exception {
         JobBuilderSimulator builderSimulator = new JobBuilderSimulator(alignerConfig,plugins.getRegistry());
-        SortedSet<String> autoOptions = builderSimulator.simulateAutoOptions();
+        Map<String,String> autoOptions = builderSimulator.simulateAutoOptions();
         assertNotNull(autoOptions);
         assertNotSame("No auto-options generated",0,autoOptions.size());
     }

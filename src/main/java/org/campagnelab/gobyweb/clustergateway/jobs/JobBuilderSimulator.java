@@ -8,8 +8,8 @@ import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 import java.io.*;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.Map;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 /**
  * Simulate the environment that a job will see at execution time.
@@ -23,8 +23,6 @@ public class JobBuilderSimulator {
     private final ResourceConfig resourceConfig;
 
     private final PluginRegistry registry;
-
-    private SortedSet<String> env = new TreeSet<String>();
 
     /**
      *
@@ -53,7 +51,8 @@ public class JobBuilderSimulator {
      * @return the list of variables visible to the job.
      * @throws IOException
      */
-    public SortedSet<String> simulateAutoOptions() throws IOException {
+    public Map<String,String> simulateAutoOptions() throws IOException {
+        Map<String,String> env = new ConcurrentSkipListMap<String,String>();
         env.clear();
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
         File autoOptionsFile;
@@ -72,7 +71,7 @@ public class JobBuilderSimulator {
         try {
             String line = br.readLine();
             while (line != null) {
-                this.parseLine(line);
+                this.parseLine(line,env);
                 line = br.readLine();
             }
         } finally {
@@ -86,9 +85,9 @@ public class JobBuilderSimulator {
      * Extracts the variable name from a line in the format NAME=VALUE.
      * @param line
      */
-    private void parseLine(String line) {
+    private void parseLine(String line,Map env) {
         String[] tokens = line.split("=");
         if (tokens.length == 2)
-            this.env.add(tokens[0]);
+            env.put(tokens[0],tokens[1]);
     }
 }
