@@ -2,7 +2,8 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
-import org.campagnelab.gobyweb.clustergateway.jobs.JobBuilderSimulator;
+import org.campagnelab.gobyweb.clustergateway.jobs.simulator.JobBuilderSimulator;
+import org.campagnelab.gobyweb.clustergateway.jobs.simulator.Option;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
@@ -100,11 +101,11 @@ public class ClusterGatewaySimulator {
         }
         assert builderSimulator != null;
         assert pluginInfoData != null;
-        Map<String,String> env = builderSimulator.simulateAutoOptions();
+        SortedSet<Option> env = builderSimulator.simulateAutoOptions();
         System.out.println(String.format("Plugin %s has access to the following environment variables:", Arrays.toString(pluginInfoData)));
         System.out.println("");
-        for (String var : env.keySet()) {
-            System.out.println(var);
+        for (Option option : env) {
+            System.out.println(option.name);
         }
         return;
     }

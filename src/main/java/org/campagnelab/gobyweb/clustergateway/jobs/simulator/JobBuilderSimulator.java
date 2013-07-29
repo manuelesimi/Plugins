@@ -1,15 +1,19 @@
-package org.campagnelab.gobyweb.clustergateway.jobs;
+package org.campagnelab.gobyweb.clustergateway.jobs.simulator;
 
 import org.apache.commons.io.FileUtils;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
+import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
+import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
+import static org.campagnelab.gobyweb.clustergateway.jobs.simulator.Option.*;
+
 import java.io.*;
-import java.util.Map;
-import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * Simulate the environment that a job will see at execution time.
@@ -51,43 +55,43 @@ public class JobBuilderSimulator {
      * @return the list of variables visible to the job.
      * @throws IOException
      */
-    public Map<String,String> simulateAutoOptions() throws IOException {
-        Map<String,String> env = new ConcurrentSkipListMap<String,String>();
-        env.clear();
-        AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
-        File autoOptionsFile;
+    public SortedSet<Option> simulateAutoOptions() throws IOException {
+        SortedSet<Option> env = new TreeSet<Option>();
         if (executableConfig !=null)
-             autoOptionsFile = helper.generateAutoOptionsFile(executableConfig, null, null, null);
-        else {
+            this.populateJobOptions(env);
+        else  {
             Resource resource = new Resource();
             resource.id = this.resourceConfig.getId();
             resource.versionExactly = this.resourceConfig.getVersion();
-            autoOptionsFile = File.createTempFile("auto-option", "");
-            PrintWriter writer = new PrintWriter(autoOptionsFile);
-            helper.writeResourceFileVariables(resource, writer);
-            writer.close();
+            this.populateResourceOptions(resource, env);
         }
-        BufferedReader br = new BufferedReader(new FileReader(autoOptionsFile));
-        try {
-            String line = br.readLine();
-            while (line != null) {
-                this.parseLine(line,env);
-                line = br.readLine();
-            }
-        } finally {
-            br.close();
-        }
-        FileUtils.deleteQuietly(autoOptionsFile);
         return env;
     }
 
-    /**
-     * Extracts the variable name from a line in the format NAME=VALUE.
-     * @param line
-     */
-    private void parseLine(String line,Map env) {
-        String[] tokens = line.split("=");
-        if (tokens.length == 2)
-            env.put(tokens[0],tokens[1]);
+
+    private void populateResourceOptions(Resource resource, SortedSet<Option> env) throws IOException {
+       ResourceConfig resourceConfig = DependencyResolver.resolveResource(resource.id,
+                null, resource.versionExactly);
+       if (resourceConfig == null)
+           return;
+       for (Resource ref : resourceConfig.requires)
+           populateResourceOptions(ref, env);
+
+        for (PluginFile file : resourceConfig.getFiles()) {
+            String name = String.format("RESOURCES_%s_%s", resourceConfig.getId(), file.id);
+            String value = String.format("${JOB_DIR}/%s",file.filename);
+            env.add(new Option(name, value, file.isDirectory? OptionKind.DIRECTORY : OptionKind.FILE));
+        }
+
     }
+
+    private void populateJobOptions(SortedSet<Option> env) throws IOException {
+        AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
+        File autoOptionsFile = helper.generateAutoOptionsFile(executableConfig, null, null, null);
+        //TODO to implement
+
+        FileUtils.deleteQuietly(autoOptionsFile);
+
+    }
+
 }
