@@ -16,22 +16,22 @@ class ClusterGatewaySimulatorTest {
 
     @Test
     public void testAutoOptions() {
-       ClusterGatewaySimulator.process(buildClusterGatewaySimulatorArgs("--job BWA_GOBY_ARTIFACT:1.2"))
+       ClusterGatewaySimulator.process(buildClusterGatewaySimulatorArgs("--job BWA_GOBY_ARTIFACT:1.2"),true)
     }
 
     @Test
     public void testResourceAutoOptions() {
-        ClusterGatewaySimulator.process(buildClusterGatewaySimulatorArgs("--resource ANNOTATE_VCF:1.1"))
+        ClusterGatewaySimulator.process(buildClusterGatewaySimulatorArgs("--resource ANNOTATE_VCF:1.1"),true)
     }
 
     @Test
     public void testAutoOptionsNoVersion() {
-        ClusterGatewaySimulator.process(buildClusterGatewaySimulatorArgs("--job BWA_GOBY_ARTIFACT"))
+        ClusterGatewaySimulator.process(buildClusterGatewaySimulatorArgs("--job BWA_GOBY_ARTIFACT"),true)
     }
 
     @Test
     public void testResourceAutoOptionsNoVersion() {
-        ClusterGatewaySimulator.process(buildClusterGatewaySimulatorArgs("--resource ANNOTATE_VCF"))
+        ClusterGatewaySimulator.process(buildClusterGatewaySimulatorArgs("--resource ANNOTATE_VCF"),true)
     }
 
 

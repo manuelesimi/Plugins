@@ -46,7 +46,11 @@ public class ClusterGatewaySimulator {
 
     public static void main(String[] args) {
         try {
-            process(args);
+            SortedSet<Option> env = process(args, true);
+            System.out.println("");
+            for (Option option : env) {
+                System.out.println(option.name);
+            }
             System.exit(0);
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,11 +64,14 @@ public class ClusterGatewaySimulator {
      * @param args
      * @return
      */
-    public static void process(String[] args) throws Exception{
+    public static SortedSet<Option> process(String[] args, boolean fromCommandLine) throws Exception{
         JSAPResult config = jsapHelper.configure(args);
-        if (config == null)
-            System.exit(1);
-
+        if (config == null) {
+            if (fromCommandLine)
+                System.exit(1);
+            else
+                throw new Exception("Invalid input parameters");
+        }
         //load plugin configurations
         Plugins plugins = null;
         try {
@@ -101,14 +108,11 @@ public class ClusterGatewaySimulator {
         }
         assert builderSimulator != null;
         assert pluginInfoData != null;
-        SortedSet<Option> env = builderSimulator.simulateAutoOptions();
-        System.out.println(String.format("Plugin %s has access to the following environment variables:", Arrays.toString(pluginInfoData)));
-        System.out.println("");
-        for (Option option : env) {
-            System.out.println(option.name);
-        }
-        return;
+        if (fromCommandLine)
+            System.out.println(String.format("Plugin %s has access to the following environment variables:", Arrays.toString(pluginInfoData)));
+        return  builderSimulator.simulateAutoOptions();
     }
+
 
     private static String[] parsePluginInfoData(String[] data) {
         String[] pluginInfoData = new String[2];
