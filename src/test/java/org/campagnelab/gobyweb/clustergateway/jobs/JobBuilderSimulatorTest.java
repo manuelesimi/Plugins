@@ -49,8 +49,8 @@ public class JobBuilderSimulatorTest {
     public void testJobSimulateAutoOptions() throws Exception {
         JobBuilderSimulator builderSimulator = new JobBuilderSimulator(alignerConfig,plugins.getRegistry());
         SortedSet<Option> autoOptions = builderSimulator.simulateAutoOptions();
-        //assertNotNull(autoOptions);
-        //assertNotSame("No auto-options generated",0,autoOptions.size());
+        assertNotNull(autoOptions);
+        assertNotSame("No auto-options generated",0,autoOptions.size());
     }
 
     @Test

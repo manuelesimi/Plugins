@@ -7,7 +7,7 @@ package org.campagnelab.gobyweb.clustergateway.jobs.simulator;
 public class Option implements Comparable<Option> {
 
     public static enum OptionKind {
-        FILE, DIRECTORY, NUMBER, STRING
+        FILE, DIRECTORY, NUMERIC, BOOLEAN, STRING
     }
 
     public final String name;
