@@ -1,14 +1,15 @@
 package org.campagnelab.gobyweb.clustergateway.jobs.simulator;
 
-import org.apache.commons.io.FileUtils;
-import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
 import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.Plugins;
+import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
+import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
+import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 
 import static org.campagnelab.gobyweb.clustergateway.jobs.simulator.Option.*;
 
@@ -147,6 +148,18 @@ public class JobBuilderSimulator {
         for (Resource resourceRef : executableConfig.getRequiredResources()) {
             this.populateResourceOptions(resourceRef,env);
         }
+
+        //extra-options coming from the SDK or input slots
+        this.populateJobDefaultOptions(executableConfig, env);
+    }
+
+    private void populateJobDefaultOptions(ExecutableConfig executableConfig, SortedSet<Option> env) {
+        if ((executableConfig.getClass().isAssignableFrom(AlignerConfig.class)))
+            env.addAll(AlignerDefaultOptions.get());
+        else if ((executableConfig.getClass().isAssignableFrom(AlignmentAnalysisConfig.class)))
+            env.addAll(AlignmentAnalysisDefaultOptions.get());
+        else if ((executableConfig.getClass().isAssignableFrom(TaskConfig.class)))
+            env.addAll(TaskDefaultOptions.get());
     }
 
 }
