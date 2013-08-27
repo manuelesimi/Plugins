@@ -7,6 +7,7 @@ import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
+import org.campagnelab.gobyweb.plugins.xml.executables.Need;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
@@ -14,9 +15,7 @@ import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 import static org.campagnelab.gobyweb.clustergateway.jobs.simulator.Option.*;
 
 import java.io.*;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Simulate the environment that a job will see at execution time.
@@ -144,6 +143,10 @@ public class JobBuilderSimulator {
             String value = String.format("${JOB_DIR}/%s",file.filename);
             env.add(new Option(key, value, file.isDirectory? OptionKind.DIRECTORY : OptionKind.FILE));
         }
+
+        //plugin needs
+        this.populateNeedsOptions(executableConfig,env);
+
         //resource-related options
         for (Resource resourceRef : executableConfig.getRequiredResources()) {
             this.populateResourceOptions(resourceRef,env);
@@ -151,6 +154,31 @@ public class JobBuilderSimulator {
 
         //extra-options coming from the SDK or input slots
         this.populateJobDefaultOptions(executableConfig, env);
+    }
+
+    /**
+     * For each need, adds a variable to replacements for each scope in pluginConfig runtime requirements.
+     * Variables are called PLUGINS_NEED_${scope}*
+     */
+    private void populateNeedsOptions(ExecutableConfig executableConfig, SortedSet<Option> env) {
+        Map<String, String> requirementsByScope = new HashMap<String, String>();
+        List<Need> needs = executableConfig.getRuntime().needs();
+        //PLUGIN_NEED_ALIGN="excl=false,h_vmem=6g,virtual_free=6g"
+        for (Need need : needs) {
+            // if key is present, format as key=value,
+            // otherwise, just write value to PLUGIN_NEED constant.
+            String needAsString = (need.key != null && (!need.key.equalsIgnoreCase(""))) ?
+                    String.format("%s=%s", need.key, need.value) : need.value;
+            String key = String.format("PLUGIN_NEED_%s", need.scope);
+            if (requirementsByScope.containsKey(key)) {
+                requirementsByScope.put(key, requirementsByScope.get(key) + "," + needAsString);
+            } else {
+                requirementsByScope.put(key, needAsString);
+            }
+        }
+        for (Map.Entry<String,String> option : requirementsByScope.entrySet()) {
+           env.add(new Option(option.getKey(),option.getValue(),OptionKind.STRING));
+        }
     }
 
     private void populateJobDefaultOptions(ExecutableConfig executableConfig, SortedSet<Option> env) {
