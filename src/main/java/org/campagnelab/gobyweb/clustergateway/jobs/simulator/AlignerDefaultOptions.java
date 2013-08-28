@@ -11,6 +11,11 @@ class AlignerDefaultOptions {
 
    protected static SortedSet<Option> get() {
        SortedSet<Option> options = new TreeSet<Option>();
+       //added by OGE script
+       options.add(new Option("START_POSITION",null, Option.OptionKind.NUMERIC));
+       options.add(new Option("END_POSITION",null, Option.OptionKind.NUMERIC));
+       options.add(new Option("READS_FILE", null, Option.OptionKind.STRING));
+       //added by the SDK
        options.add(new Option("PAIRED_END_ALIGNMENT",null, Option.OptionKind.BOOLEAN));
        options.add(new Option("BISULFITE_SAMPLE",null, Option.OptionKind.BOOLEAN));
        options.add(new Option("COLOR_SPACE",null, Option.OptionKind.BOOLEAN));
