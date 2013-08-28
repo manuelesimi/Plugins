@@ -22,7 +22,7 @@ public class Option implements Comparable<Option> {
 
     @Override
     public int compareTo(Option option) {
-        return option.name.compareTo(this.name);
+        return this.name.compareTo(option.name);
     }
 
 }
