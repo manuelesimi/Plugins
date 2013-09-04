@@ -567,12 +567,16 @@ function run_single_align {
     START_POSITION=0
     END_POSITION=0
     READS_FILE=${READS}
-
     # The reads file to process
     if [ ! -z ${SGE_TASK_ID} ] && [ "${SGE_TASK_ID}" != "undefined" ] && [ "${SGE_TASK_ID}" != "unknown" ]; then
         START_POSITION=$(( (SGE_TASK_ID - 1) * $CHUNK_SIZE ))
         END_POSITION=$(( $START_POSITION + $CHUNK_SIZE - 1 ))
     fi
+
+    #these variables are also appended to oge-constants.sh to be visible to NYoSh-based plugins
+    echo "START_POSITION=${START_POSITION}" >> ${TMPDIR}/oge-constants.sh
+    echo "END_POSITION=${END_POSITION}" >> ${TMPDIR}/oge-constants.sh
+    echo "READS_FILE=${READS_FILE}" >> ${TMPDIR}/oge-constants.sh
 
 
     # Run the alignment
