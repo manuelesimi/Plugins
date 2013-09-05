@@ -1,3 +1,9 @@
+2.3 (Sep 05 2013)
+    Simulate artifacts, needs and SDK environments in plugins-view-job-env
+    Create a map file in oge_job_script to make the OGE variables visible to NYoSh-based plugins
+    Refactor ClusterGatewaySimulator to be an also invoked as API
+    Fix additivity properties in Log4J configuration
+
 2.2 (Jul 08 2013)
     Add FileSet Browser
     Add command for visualizing the job environment
