@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Revert version to 2.3.0 to deploy">
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewaySimulator.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewaySimulator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilderSimulatorTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilderSimulatorTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="plugins.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +26,7 @@
     <file path="$PROJECT_DIR$/src/main/plugins/xml/AlignerConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358052917821" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/grails-app/conf/BuildConfig.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358092685016" ignored="false" />
     <file path="/BuildConfig.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358054714635" ignored="false" />
-    <file path="/Dummy.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379449464268" ignored="false" />
+    <file path="/Dummy.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379450894224" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/src/java/org/campagnelab/gobyweb/oldplugins/xml/WriteTemplates.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358053501671" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/grails-app/domain/edu/cornell/med/icb/nga/datamodel/DiffExp.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358091428801" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/test/unit/org/campagnelab/gobyweb/oldplugins/PluginsTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358053501671" ignored="false" />
@@ -116,7 +112,7 @@
     <file path="/BaseConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360856369305" ignored="false" />
     <file path="/PluginRegistry.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363879310867" ignored="false" />
     <file path="/Config.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360856460393" ignored="false" />
-    <file path="/Plugins.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379450583202" ignored="false" />
+    <file path="/Plugins.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379451513802" ignored="false" />
     <file path="/a.dummy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378319323301" ignored="false" />
     <file path="/FileSetConfigTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360955115100" ignored="false" />
     <file path="/PluginRegistryTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366898212731" ignored="false" />
@@ -844,7 +840,7 @@
     <file path="$PROJECT_DIR$/../gstring-pattern-matcher/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1376333222789" ignored="false" />
     <file path="$PROJECT_DIR$/../gstring-pattern-matcher/.idea/workspace.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1375984200011" ignored="false" />
     <file path="$PROJECT_DIR$/../gstring-pattern-matcher/src/main/java/org/campagnelab/nyosh/environment/parsers/GobyWebParser.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1376333222790" ignored="false" />
-    <file path="/GobyWebParser.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379448175086" ignored="false" />
+    <file path="/GobyWebParser.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379452475449" ignored="false" />
     <file path="$PROJECT_DIR$/../gstring-pattern-matcher/src/main/java/org/campagnelab/nyosh/environment/parsers/Parser.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1376333222788" ignored="false" />
     <file path="$PROJECT_DIR$/../gstring-pattern-matcher/src/main/java/org/campagnelab/nyosh/environment/parsers/JVMEnvParser.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1376333222789" ignored="false" />
     <file path="$PROJECT_DIR$/../gstring-pattern-matcher/src/main/java/org/campagnelab/nyosh/environment/parsers/MapFileParser.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1376333222789" ignored="false" />
@@ -934,14 +930,14 @@
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/GSNAP_WITH_GOBY_ARTIFACT/install.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379447048713" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/LAST_INDEX/install.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379447048714" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/LAST_BISULFITE_INDEX/install.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379447040579" ignored="false" />
-    <file path="$PROJECT_DIR$/../nyosh-runtime-support/src/main/java/org/campagnelab/nyosh/environment/parsers/GobyWebParser.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379448175535" ignored="false" />
-    <file path="$PROJECT_DIR$/../nyosh-runtime-support/.idea/workspace.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379450796205" ignored="false" />
+    <file path="$PROJECT_DIR$/../nyosh-runtime-support/src/main/java/org/campagnelab/nyosh/environment/parsers/GobyWebParser.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379452729453" ignored="false" />
+    <file path="$PROJECT_DIR$/../nyosh-runtime-support/.idea/workspace.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379452655872" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/MPS_129.350/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378388718675" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/MPS_129.350/install.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378919203963" ignored="false" />
     <file path="$PROJECT_DIR$/../artifacts-git/CHANGES.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378390635821" ignored="false" />
     <file path="$PROJECT_DIR$/../stepslogger/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378401000329" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/GOBYWEB_SERVER_SIDE_2.3/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378395734996" ignored="false" />
-    <file path="$PROJECT_DIR$/../artifacts-git/artifacts.iws" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379450794866" ignored="false" />
+    <file path="$PROJECT_DIR$/../artifacts-git/artifacts.iws" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379451248306" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/GOBYWEB_SERVER_SIDE_2.3/artifacts.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378394932314" ignored="false" />
     <file path="/artifacts.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378394932314" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/GOBYWEB_SERVER_SIDE_2.3/artifact-manager.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378394991712" ignored="false" />
@@ -1010,7 +1006,7 @@
     <file path="/ErrorMessage.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379365221627" ignored="false" />
     <file path="$PROJECT_DIR$/../nyosh-runtime-support/src/main/java/org/campagnelab/nyosh/environment/parsers/Message.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379448138201" ignored="false" />
     <file path="/Message.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379448136093" ignored="false" />
-    <file path="$PROJECT_DIR$/../nyosh-runtime-support/src/test/java/org/campagnelab/nyosh/environment/parsers/GobyWebParserTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379450794585" ignored="false" />
+    <file path="$PROJECT_DIR$/../nyosh-runtime-support/src/test/java/org/campagnelab/nyosh/environment/parsers/GobyWebParserTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379452198708" ignored="false" />
     <file path="$PROJECT_DIR$/../nyosh-runtime-support/test-data/plugins-root/plugins/aligners/BWA_GOBY_ARTIFACT/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379366155243" ignored="false" />
     <file path="$PROJECT_DIR$/../nyosh-runtime-support/test-data/plugins-root/plugins/analyses/CONTAMINANT_EXTRACT/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379366207579" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/GOBY_CPP_API/install.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379447040579" ignored="false" />
@@ -1071,7 +1067,7 @@
       </breakpoint>
     </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" line="713" class="org.campagnelab.gobyweb.plugins.Plugins" package="org.campagnelab.gobyweb.plugins">
+      <breakpoint url="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" line="715" class="org.campagnelab.gobyweb.plugins.Plugins" package="org.campagnelab.gobyweb.plugins">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -1102,21 +1098,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/browser/Browser.java" line="81" class="org.campagnelab.gobyweb.clustergateway.browser.Browser" package="org.campagnelab.gobyweb.clustergateway.browser">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilderSimulatorTest.java" line="51" class="org.campagnelab.gobyweb.clustergateway.jobs.JobBuilderSimulatorTest" package="org.campagnelab.gobyweb.clustergateway.jobs">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -1186,10 +1167,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClusterGatewaySimulator.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ClusterGatewaySimulator.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewaySimulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="60" selection-start="3347" selection-end="3347" vertical-scroll-proportion="0.0">
+            <state line="80" column="50" selection-start="3134" selection-end="3134" vertical-scroll-proportion="0.72307694">
               <folding />
             </state>
           </provider>
@@ -1207,7 +1188,7 @@
       <file leaf-file-name="Plugins.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="380" column="69" selection-start="15230" selection-end="15230" vertical-scroll-proportion="-14.923077">
+            <state line="499" column="41" selection-start="20967" selection-end="20967" vertical-scroll-proportion="-12.615385">
               <folding />
             </state>
           </provider>
@@ -1222,10 +1203,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobBuilderSimulatorTest.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="JobBuilderSimulatorTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilderSimulatorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="162" selection-start="1500" selection-end="1500" vertical-scroll-proportion="0.37692308">
+            <state line="42" column="162" selection-start="1500" selection-end="1500" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -3641,12 +3622,16 @@
       <created>1378395612801</created>
       <updated>1378395612802</updated>
     </task>
-    <option name="localTasksCounter" value="333" />
+    <task id="LOCAL-00333" summary="Improve error reporting when plugin definitions are loaded. Advance version to 2.3.1-SNAPSHOT.">
+      <created>1379450858295</created>
+      <updated>1379450858295</updated>
+    </task>
+    <option name="localTasksCounter" value="334" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="32" y="32" width="2560" height="1330" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296371" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -3723,7 +3708,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Copy stepslogger.jar into ${GOBY_DIR} in oge_job_script." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve error reporting when plugin definitions are loaded. Advance version to 2.3.1-SNAPSHOT." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -3737,7 +3722,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Move decoration of plugin options from Submission Requests to Job Builders. Validate options coming from the plugin configuration. Add a test case for testing a wrong option value." />
     <MESSAGE value="Initialize the interface parameters list in submitRequest()." />
     <MESSAGE value="Write more consistent logs after pushing filesets for aligners in OGE script." />
     <MESSAGE value="Check on the option value is now case insensitive." />
@@ -3762,6 +3746,7 @@
     <MESSAGE value="Create a map file in oge_job_script to store environment variables generated in the script that must be visible in the plugin environment. This allows NYoSh-based plugins to load also this part of the environment at execution time." />
     <MESSAGE value="Update change log. Make release 2.3.0." />
     <MESSAGE value="Copy stepslogger.jar into ${GOBY_DIR} in oge_job_script." />
+    <MESSAGE value="Improve error reporting when plugin definitions are loaded. Advance version to 2.3.1-SNAPSHOT." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3855,20 +3840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewaySimulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="60" selection-start="3347" selection-end="3347" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="380" column="69" selection-start="15230" selection-end="15230" vertical-scroll-proportion="-14.923077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="27" selection-start="525" selection-end="525" vertical-scroll-proportion="0.0">
@@ -3878,7 +3849,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilderSimulatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="162" selection-start="1500" selection-end="1500" vertical-scroll-proportion="0.37692308">
+        <state line="42" column="162" selection-start="1500" selection-end="1500" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="499" column="41" selection-start="20967" selection-end="20967" vertical-scroll-proportion="-12.615385">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewaySimulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="50" selection-start="3134" selection-end="3134" vertical-scroll-proportion="0.72307694">
           <folding />
         </state>
       </provider>

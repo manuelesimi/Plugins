@@ -77,6 +77,9 @@ public class ClusterGatewaySimulator {
         try {
             plugins.addServerConf(config.getFile("plugins-dir").getAbsolutePath());
             plugins.setWebServerHostname("localhost");
+            if (plugins.somePluginReportedErrors()) {
+                throw new Exception(String.format(plugins.getPluginReportedErrors()));
+            }
             plugins.reload();
             if (plugins.somePluginReportedErrors()) {
                 throw new Exception(String.format("Some plugins could not be loaded. %s", plugins.getPluginReportedErrors()));
