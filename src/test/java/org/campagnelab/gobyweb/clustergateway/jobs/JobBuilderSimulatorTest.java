@@ -33,11 +33,11 @@ public class JobBuilderSimulatorTest {
     public void configure() throws Exception {
         plugins = new Plugins();
         plugins.replaceDefaultSchemaConfig(".");
-        plugins.addServerConf("test-data/root-for-aligners");
+        plugins.addServerConf("/Users/mas2182/Lab/Projects/Git/gobyweb2-plugins");
         plugins.setWebServerHostname("localhost");
         plugins.reload();
 
-        alignerConfig = plugins.getRegistry().findByTypedId("BWA_GOBY_ARTIFACT", AlignerConfig.class);
+        alignerConfig = plugins.getRegistry().findByTypedId("BWA_GOBY_ARTIFACT_NYOSH", AlignerConfig.class);
         assertNotNull(alignerConfig);
 
         resourceConfig = plugins.getRegistry().findByTypedId("BWA_WITH_GOBY_ARTIFACT", ResourceConfig.class);

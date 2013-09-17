@@ -52,7 +52,7 @@
     <orderEntry type="library" name="Maven: com.google.guava:guava-base:r03" level="project" />
     <orderEntry type="library" name="Maven: com.esotericsoftware.wildcard:wildcard:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.campagnelab:org.campagnelab.stepslogger:1.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:filesets:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:filesets:1.1.1" level="project" />
   </component>
 </module>
 

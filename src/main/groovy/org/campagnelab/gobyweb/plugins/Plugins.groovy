@@ -84,6 +84,8 @@ public class Plugins {
      */
     private Boolean somePluginReportedErrors;
 
+    private String pluginErrorMessage = "";
+
     private File schemaFile;
 
     /**
@@ -164,6 +166,7 @@ public class Plugins {
                 for (Config sameIdConfig : pluginConfigs.findAllById(idUnique)) {
                     if (!sameIdConfig.getClass().isAssignableFrom(ResourceConfig.class)) {
                         LOG.error("Plugin identifier " + idUnique + " cannot be used more than once");
+                        pluginErrorMessage = "Plugin identifier " + idUnique + " cannot be used more than once";
                         somePluginReportedErrors = true;
                         // decrement the counter so we don't report the error more than once
                         idCount.put(config.getId(), 1);
@@ -181,6 +184,7 @@ public class Plugins {
         for (String error : errors) {
             somePluginReportedErrors = true;
             LOG.error(String.format("plugin root=%s %s", ObjectArrayList.wrap(serverConfDirectories).toString(), error));
+            pluginErrorMessage = String.format("plugin root=%s %s", ObjectArrayList.wrap(serverConfDirectories).toString(), error);
         }
         // add GLOBAL resource definition for those plugins that don't provide it explicitly:
         addDefaultNeed("GLOBAL", "excl", "false");
@@ -275,6 +279,10 @@ public class Plugins {
         somePluginReportedErrors
     }
 
+    public String getPluginReportedErrors() {
+        pluginErrorMessage
+    }
+
     private boolean ignoreFilenames(String filename) {
         for (String ignore : IGNORED_FILES) {
             if (ignore.equals(filename))
@@ -335,6 +343,7 @@ public class Plugins {
             errors.each { message ->
                 println("An error occured configuring plugin: ${message}")
                 LOG.error("An error occured configuring plugin: ${message}")
+                pluginErrorMessage += "An error occured configuring plugin: ${message}";
             }
             somePluginReportedErrors = true
         }
@@ -369,7 +378,7 @@ public class Plugins {
             if (pluginSystem != null) {
                 pluginSystem.somePluginReportedErrors = true
             }
-
+            pluginErrorMessage = "JAXBException when unmarshaling the plugin in $pluginConfigFilePath";
             errors.add(e.getMessage())
             LOG.error("JAXBException when unmarshaling a plugin", e)
         }

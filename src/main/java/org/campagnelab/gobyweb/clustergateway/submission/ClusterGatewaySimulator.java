@@ -73,18 +73,17 @@ public class ClusterGatewaySimulator {
                 throw new Exception("Invalid input parameters");
         }
         //load plugin configurations
-        Plugins plugins = null;
+        Plugins plugins = new Plugins();
         try {
-            plugins = new Plugins();
             plugins.addServerConf(config.getFile("plugins-dir").getAbsolutePath());
             plugins.setWebServerHostname("localhost");
             plugins.reload();
             if (plugins.somePluginReportedErrors()) {
-                throw new Exception("Some plugins could not be loaded.");
+                throw new Exception(String.format("Some plugins could not be loaded. %s", plugins.getPluginReportedErrors()));
             }
         } catch (Exception e) {
             logger.error("Failed to load plugins definitions",e);
-            throw new Exception("Failed to load plugins definitions");
+            throw new Exception("Failed to load plugins definitions." + plugins.getPluginReportedErrors());
         }
         JobBuilderSimulator builderSimulator = null;
         String[] pluginInfoData = null;
