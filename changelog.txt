@@ -1,5 +1,6 @@
 2.3.1
     Introduce PLUGIN_NEED_DEFAULT_JVM_OPTIONS variable for default JVM executions
+    Adjust OGE memory settings to run on standard.q
 
 2.3 (Sep 05 2013)
     Simulate artifacts, needs and SDK environments in plugins-view-job-env

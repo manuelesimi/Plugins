@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Remove local path used for testing purposes.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Adjust OGE memory settings to run on standard.q.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/changelog.txt" afterPath="$PROJECT_DIR$/changelog.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -28,7 +26,7 @@
     <file path="$PROJECT_DIR$/src/main/plugins/xml/AlignerConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358052917821" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/grails-app/conf/BuildConfig.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358092685016" ignored="false" />
     <file path="/BuildConfig.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358054714635" ignored="false" />
-    <file path="/Dummy.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1380035171452" ignored="false" />
+    <file path="/Dummy.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1380047536263" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/src/java/org/campagnelab/gobyweb/oldplugins/xml/WriteTemplates.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358053501671" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/grails-app/domain/edu/cornell/med/icb/nga/datamodel/DiffExp.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358091428801" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugin-install/test/unit/org/campagnelab/gobyweb/oldplugins/PluginsTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1358053501671" ignored="false" />
@@ -115,7 +113,7 @@
     <file path="/PluginRegistry.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363879310867" ignored="false" />
     <file path="/Config.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360856460393" ignored="false" />
     <file path="/Plugins.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1379451513802" ignored="false" />
-    <file path="/a.dummy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1380033959006" ignored="false" />
+    <file path="/a.dummy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1380041580677" ignored="false" />
     <file path="/FileSetConfigTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360955115100" ignored="false" />
     <file path="/PluginRegistryTest.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1366898212731" ignored="false" />
     <file path="/FileSetConfig.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1372168042008" ignored="false" />
@@ -152,7 +150,7 @@
     <file path="/show.gsp" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360859239476" ignored="false" />
     <file path="$USER_HOME$/GobyWeb/Software/1.9/src/java/org/campagnelab/gobyweb/plugins/Plugins.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360869269118" ignored="false" />
     <file path="/PluginsService.groovy" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360872364425" ignored="false" />
-    <file path="/changelog.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1380034368468" ignored="false" />
+    <file path="/changelog.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1380047556760" ignored="false" />
     <file path="$USER_HOME$/GobyWeb/Software/2.0/grails-app/views/diffExp/browseResultsDT.gsp" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360951961682" ignored="false" />
     <file path="$USER_HOME$/GobyWeb/Software/trunk/grails-app/views/diffExp/browseResultsDT.gsp" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1360952171471" ignored="false" />
     <file path="/fileSetConfig.xsd" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1372167807540" ignored="false" />
@@ -185,7 +183,7 @@
     <file path="/SubmitTask.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362087765918" ignored="false" />
     <file path="/File.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361382703228" ignored="false" />
     <file path="$USER_HOME$/GobyWeb/Software/trunk/src/java/grid-templates/oge_job_script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1362075331826" ignored="false" />
-    <file path="/oge_job_script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378395549388" ignored="false" />
+    <file path="/oge_job_script.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1380046603301" ignored="false" />
     <file path="/FileSet.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1363199552849" ignored="false" />
     <file path="/GobyWebDataObject.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1361393955673" ignored="false" />
     <file path="/Submitter.java" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1369158140921" ignored="false" />
@@ -939,7 +937,7 @@
     <file path="$PROJECT_DIR$/../artifacts-git/CHANGES.txt" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378390635821" ignored="false" />
     <file path="$PROJECT_DIR$/../stepslogger/pom.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378401000329" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/GOBYWEB_SERVER_SIDE_2.3/config.xml" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378395734996" ignored="false" />
-    <file path="$PROJECT_DIR$/../artifacts-git/artifacts.iws" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1380035221755" ignored="false" />
+    <file path="$PROJECT_DIR$/../artifacts-git/artifacts.iws" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1380047497561" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/GOBYWEB_SERVER_SIDE_2.3/artifacts.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1380034156342" ignored="false" />
     <file path="/artifacts.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1378394932314" ignored="false" />
     <file path="$PROJECT_DIR$/../gobyweb2-plugins/plugins/resources/GOBYWEB_SERVER_SIDE_2.3/artifact-manager.sh" changelist="91423bbb-9c59-45b0-befd-d6fbd69209f1" time="1380034111875" ignored="false" />
@@ -1146,15 +1144,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JobBuilderSimulator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/simulator/JobBuilderSimulator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="13" selection-start="997" selection-end="997" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="log4j.properties" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
           <provider selected="true" editor-type-id="text-editor">
@@ -1164,19 +1153,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="changelog.txt" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="changelog.txt" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/changelog.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="81" selection-start="87" selection-end="87" vertical-scroll-proportion="0.0">
+            <state line="2" column="51" selection-start="139" selection-end="139" vertical-scroll-proportion="0.046153847">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RemoteSubmitter.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="RemoteSubmitter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="31" selection-start="2425" selection-end="2448" vertical-scroll-proportion="-0.9153846">
+            <state line="71" column="31" selection-start="2425" selection-end="2448" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1196,6 +1185,15 @@
       <file leaf-file-name="local_task_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
           <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="2" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oge_task_parallel_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_parallel_wrapper_script.sh">
+          <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
@@ -1205,7 +1203,7 @@
       <file leaf-file-name="oge_job_script.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="280" column="43" selection-start="10489" selection-end="10489" vertical-scroll-proportion="-4.9615383">
+            <state line="141" column="13" selection-start="5447" selection-end="5498" vertical-scroll-proportion="-11.538462">
               <folding />
             </state>
           </provider>
@@ -1214,7 +1212,7 @@
       <file leaf-file-name="oge_task_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="46" column="37" selection-start="1172" selection-end="1224" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1223,7 +1221,7 @@
       <file leaf-file-name="resource_install_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="114" selection-start="525" selection-end="525" vertical-scroll-proportion="0.0">
+            <state line="33" column="23" selection-start="1078" selection-end="1093" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1232,7 +1230,7 @@
       <file leaf-file-name="Plugins.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="195" column="28" selection-start="7999" selection-end="7999" vertical-scroll-proportion="-9.0">
+            <state line="191" column="45" selection-start="7749" selection-end="7749" vertical-scroll-proportion="-75.57692">
               <folding />
             </state>
           </provider>
@@ -1261,9 +1259,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/simulator/TaskDefaultOptions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/simulator/JobBuilderSimulator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/simulator/ArtifactInstallerSimulator.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/simulator/Option.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/simulator/AlignerDefaultOptions.java" />
         <option value="$PROJECT_DIR$/config/log4j.properties" />
@@ -1273,9 +1268,12 @@
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistrationTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewaySimulator.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilderSimulatorTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
+        <option value="$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh" />
+        <option value="$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh" />
         <option value="$PROJECT_DIR$/changelog.txt" />
       </list>
     </option>
@@ -3662,7 +3660,19 @@
       <created>1379453415900</created>
       <updated>1379453415900</updated>
     </task>
-    <option name="localTasksCounter" value="336" />
+    <task id="LOCAL-00336" summary="Add PLUGIN_NEED_DEFAULT_JVM_OPTIONS to plugin environment for default JVM executions.">
+      <created>1380035367939</created>
+      <updated>1380035367939</updated>
+    </task>
+    <task id="LOCAL-00337" summary="Adjust OGE memory settings to run on standard.q. Select jdk 1.6.25 as default java version to use.">
+      <created>1380047305429</created>
+      <updated>1380047305429</updated>
+    </task>
+    <task id="LOCAL-00338" summary="Copy stepslogger.jar to GOBY_DIR in task and resource wrapper scripts.">
+      <created>1380047480887</created>
+      <updated>1380047480887</updated>
+    </task>
+    <option name="localTasksCounter" value="339" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3688,7 +3698,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19689737" sideWeight="0.57933885" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2036595" sideWeight="0.3661157" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2036595" sideWeight="0.3661157" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42066115" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -3744,7 +3754,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove local path used for testing purposes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Copy stepslogger.jar to GOBY_DIR in task and resource wrapper scripts." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -3758,9 +3768,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Check on the option value is now case insensitive." />
-    <MESSAGE value="Add the option type to the help string." />
-    <MESSAGE value="Fix a typo in a log message." />
     <MESSAGE value="Remove SNAPSHOT depedencies. Advance version to 2.1 for the public release." />
     <MESSAGE value="Update change log." />
     <MESSAGE value="Advance version to 2.2-SNAPSHOT. Update project URL." />
@@ -3783,6 +3790,9 @@
     <MESSAGE value="Improve error reporting when plugin definitions are loaded. Advance version to 2.3.1-SNAPSHOT." />
     <MESSAGE value="Additional error reporting when plugin definitions are loaded." />
     <MESSAGE value="Remove local path used for testing purposes." />
+    <MESSAGE value="Add PLUGIN_NEED_DEFAULT_JVM_OPTIONS to plugin environment for default JVM executions." />
+    <MESSAGE value="Adjust OGE memory settings to run on standard.q. Select jdk 1.6.25 as default java version to use." />
+    <MESSAGE value="Copy stepslogger.jar to GOBY_DIR in task and resource wrapper scripts." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3792,13 +3802,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewaySimulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="50" selection-start="3134" selection-end="3134" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/scripts/alignment-analysis-template.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="32" selection-start="837" selection-end="837" vertical-scroll-proportion="-14.4">
@@ -3837,55 +3840,17 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/simulator/JobBuilderSimulator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="13" selection-start="997" selection-end="997" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2096#2104#0" expanded="false" />
+            <element signature="e#7288#7304#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="114" selection-start="525" selection-end="525" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="195" column="28" selection-start="7999" selection-end="7999" vertical-scroll-proportion="-9.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="280" column="43" selection-start="10489" selection-end="10489" vertical-scroll-proportion="-4.9615383">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/changelog.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="81" selection-start="87" selection-end="87" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -3901,7 +3866,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="31" selection-start="2425" selection-end="2448" vertical-scroll-proportion="-0.9153846">
+        <state line="71" column="31" selection-start="2425" selection-end="2448" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_parallel_wrapper_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="141" column="13" selection-start="5447" selection-end="5498" vertical-scroll-proportion="-11.538462">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="37" selection-start="1172" selection-end="1224" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="2" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="23" selection-start="1078" selection-end="1093" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="191" column="45" selection-start="7749" selection-end="7749" vertical-scroll-proportion="-75.57692">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/changelog.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="51" selection-start="139" selection-end="139" vertical-scroll-proportion="0.046153847">
           <folding />
         </state>
       </provider>
