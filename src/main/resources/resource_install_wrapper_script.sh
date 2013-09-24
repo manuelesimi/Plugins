@@ -31,6 +31,8 @@ if [ ! -d ${GOBY_DIR} ]; then
     /bin/cp ${JOB_DIR}/icb-groovy-support.jar ${GOBY_DIR}/
     /bin/cp ${JOB_DIR}/artifact-manager.jar ${GOBY_DIR}/
     /bin/cp ${JOB_DIR}/serverside-dependencies.jar ${GOBY_DIR}/
+    /bin/cp ${JOB_DIR}/stepslogger.jar ${GOBY_DIR}/
+
 fi
 
 LOG_FILE="resource-install-`date "+%Y-%m-%d-%H:%M:%S"`.log"

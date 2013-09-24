@@ -33,6 +33,8 @@ function run_task {
         /bin/cp ${JOB_DIR}/icb-groovy-support.jar ${GOBY_DIR}/
         /bin/cp ${JOB_DIR}/artifact-manager.jar ${GOBY_DIR}/
         /bin/cp ${JOB_DIR}/serverside-dependencies.jar ${GOBY_DIR}/
+        /bin/cp ${JOB_DIR}/stepslogger.jar ${GOBY_DIR}/
+
     fi
     setup_task_functions
 
