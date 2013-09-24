@@ -149,7 +149,7 @@ function setup {
 
         # Show the java & goby.jar version
         echo "Java version"
-        java -version
+        java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -version
         dieUponError "Could not obtain Java version number."
 
         echo "Goby.jar version"

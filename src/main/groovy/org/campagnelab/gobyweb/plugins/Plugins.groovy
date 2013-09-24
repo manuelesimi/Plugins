@@ -190,6 +190,7 @@ public class Plugins {
         addDefaultNeed("GLOBAL", "excl", "false");
         addDefaultNeed("GLOBAL", "h_vmem", "2g");
         addDefaultNeed("GLOBAL", "virtual_free", "4g");
+        addDefaultNeed("DEFAULT_JVM_OPTIONS", "", "-Xms40m -Xmx250m");
         addDefaultNeed("ALIGNMENT_POST_PROCESSING", "excl", "false");
         addDefaultNeed("ALIGNMENT_POST_PROCESSING", "h_vmem", "10g");
         addDefaultNeed("ALIGNMENT_POST_PROCESSING", "virtual_free", "12g");

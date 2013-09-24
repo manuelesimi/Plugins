@@ -1,3 +1,6 @@
+2.3.1
+    Introduce PLUGIN_NEED_DEFAULT_JVM_OPTIONS variable for default JVM executions
+
 2.3 (Sep 05 2013)
     Simulate artifacts, needs and SDK environments in plugins-view-job-env
     Create a map file in oge_job_script to make the OGE variables visible to NYoSh-based plugins
