@@ -1,5 +1,6 @@
 2.3.1
     Introduce PLUGIN_NEED_DEFAULT_JVM_OPTIONS variable for default JVM executions
+    Use JAVA_OPTS variable to set the amount of memory allocated to the groovy scripts.
     Adjust OGE memory settings to run on standard.q
 
 2.3 (Sep 05 2013)
