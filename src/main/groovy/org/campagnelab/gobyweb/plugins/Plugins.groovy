@@ -188,7 +188,7 @@ public class Plugins {
         }
         // add GLOBAL resource definition for those plugins that don't provide it explicitly:
         addDefaultNeed("GLOBAL", "excl", "false");
-        addDefaultNeed("GLOBAL", "h_vmem", "4g");
+        addDefaultNeed("GLOBAL", "h_vmem", "6g");
         //addDefaultNeed("GLOBAL", "virtual_free", "4g");
         addDefaultNeed("DEFAULT_JVM_OPTIONS", "", "-Xms40m -Xmx250m");
         addDefaultNeed("ALIGNMENT_POST_PROCESSING", "excl", "false");
