@@ -7,13 +7,10 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
-import org.campagnelab.gobyweb.clustergateway.jobs.Job;
+import org.campagnelab.gobyweb.clustergateway.jobs.*;
 
 import static org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob.*;
 
-import org.campagnelab.gobyweb.clustergateway.jobs.JobPartStatus;
-import org.campagnelab.gobyweb.clustergateway.jobs.JobRuntimeEnvironment;
 import org.campagnelab.gobyweb.filesets.protos.JobDataWriter;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.configuration.Configuration;
@@ -305,14 +302,16 @@ abstract public class AbstractSubmitter implements Submitter {
      * @return the content of the constant file
      * @throws IOException
      */
-    protected String writeConstants(JobArea jobArea, Job job) throws IOException {
+    protected String writeConstants(JobArea jobArea, ResourceJob job) throws IOException {
         //get the wrapper script
         URL constantsURL = getClass().getClassLoader().getResource(constantsTemplate);
         String constantsContent = IOUtils.toString(constantsURL);
         return constantsContent
                 .replaceAll("%%JOB_DIR%%", jobArea.getBasename(job.getTag()))
                 .replaceAll("%%TAG%%", job.getTag())
-                .replaceAll("%%ARTIFACT_REPOSITORY_DIR%%", artifactRepositoryPath);
+                .replaceAll("%%ARTIFACT_REPOSITORY_DIR%%", artifactRepositoryPath)
+                .replaceAll("%%PLUGIN_ID%%",job.getSourceConfig().getId())
+                .replaceAll("%%PLUGIN_VERSION%%", job.getSourceConfig().getVersion());
     }
 
     /**
