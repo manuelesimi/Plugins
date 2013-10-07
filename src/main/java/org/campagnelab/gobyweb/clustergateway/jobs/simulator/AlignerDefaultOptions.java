@@ -22,6 +22,7 @@ class AlignerDefaultOptions {
        options.add(new Option("ORGANISM", null, Option.OptionKind.STRING));
        options.add(new Option("ALIGNER", null, Option.OptionKind.STRING));
        options.add(new Option("PLUGIN_ID", null, Option.OptionKind.STRING));
+       options.add(new Option("PLUGIN_VERSION", null, Option.OptionKind.STRING));
        options.add(new Option("READS_PLATFORM", null, Option.OptionKind.STRING));
        options.add(new Option("PAIRED_END_DIRECTIONS",null, Option.OptionKind.STRING));
        options.add(new Option("PAIRED_END_ALIGNMENT",null, Option.OptionKind.BOOLEAN));

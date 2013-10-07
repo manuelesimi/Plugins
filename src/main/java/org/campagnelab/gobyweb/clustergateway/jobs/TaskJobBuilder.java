@@ -28,6 +28,8 @@ public class TaskJobBuilder extends JobBuilder {
     protected void customizeJob(ExecutableJob executableJob, final Map<String, String> commandLineOptions) {
         JobRuntimeEnvironment environment = executableJob.getEnvironment();
         environment.put("INITIAL_STATE", "task");
+        environment.put("PLUGIN_ID", this.taskConfig.getId());
+        environment.put("PLUGIN_VERSION", this.taskConfig.getVersion());
     }
 
     @Override

@@ -13,6 +13,7 @@ public class AlignmentAnalysisDefaultOptions {
     public static SortedSet<Option> get() {
         SortedSet<Option> options = new TreeSet<Option>();
         options.add(new Option("PLUGIN_ID", null, Option.OptionKind.STRING));
+        options.add(new Option("PLUGIN_VERSION", null, Option.OptionKind.STRING));
         options.add(new Option("ORGANISM", null, Option.OptionKind.STRING));
         options.add(new Option("GENOME_REFERENCE_ID", null, Option.OptionKind.STRING));
         options.add(new Option("DIFF_EXP_TYPE", null, Option.OptionKind.STRING));

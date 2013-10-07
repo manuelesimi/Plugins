@@ -66,6 +66,7 @@ public class AlignerJobBuilder extends JobBuilder {
 
         //replacements from the aligner configuration
         environment.put("PLUGIN_ID", alignerConfig.getId());
+        environment.put("PLUGIN_VERSION", alignerConfig.getVersion());
         environment.put("SUPPORTS_GOBY_READS", alignerConfig.supportsGobyReads);
         environment.put("SUPPORTS_GOBY_ALIGNMENTS", alignerConfig.supportsGobyAlignments);
         environment.put("SUPPORTS_FASTQ_READS", alignerConfig.supportsFastqReads);

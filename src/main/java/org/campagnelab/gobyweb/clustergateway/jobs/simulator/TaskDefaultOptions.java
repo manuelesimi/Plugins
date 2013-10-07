@@ -11,6 +11,8 @@ import java.util.TreeSet;
 public class TaskDefaultOptions {
     public static SortedSet<Option> get() {
         SortedSet<Option> options = new TreeSet<Option>();
+        options.add(new Option("PLUGIN_ID", null, Option.OptionKind.STRING));
+        options.add(new Option("PLUGIN_VERSION", null, Option.OptionKind.STRING));
         return options;
     }
 }

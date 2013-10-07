@@ -164,6 +164,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         JobRuntimeEnvironment environment = executableJob.getEnvironment();
 
         environment.put("PLUGIN_ID", analysisConfig.getId());
+        environment.put("PLUGIN_VERSION", analysisConfig.getVersion());
         environment.put("DIFF_EXP_TYPE", analysisConfig.getId());
         environment.put("PRODUCE_TAB_DELIMITED_OUTPUT", analysisConfig.producesTabDelimitedOutput);
         environment.put("PRODUCE_VARIANT_CALLING_FORMAT_OUTPUT", analysisConfig.producesVariantCallingFormatOutput);
