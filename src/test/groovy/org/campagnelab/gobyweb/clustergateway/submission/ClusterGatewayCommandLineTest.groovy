@@ -46,7 +46,7 @@ public class ClusterGatewayCommandLineTest {
     @Test
     public void installResourceWithArtifacts() {
 
-       assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--resource MINIA:1.4961")));
+       assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--resource ENSEMBL_API:73")));
 
     }
 
