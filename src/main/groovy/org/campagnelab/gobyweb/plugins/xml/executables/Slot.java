@@ -52,10 +52,10 @@ public class Slot {
         public String versionExactly;
 
         @XmlAttribute
-        public  String minOccurs;
+        public  String minOccurs = "1";
 
         @XmlAttribute
-        public String maxOccurs;
+        public String maxOccurs = "1";
 
         public IOFileSetRef() {}
 

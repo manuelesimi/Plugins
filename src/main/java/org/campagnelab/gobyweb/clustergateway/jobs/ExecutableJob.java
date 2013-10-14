@@ -148,7 +148,7 @@ public class ExecutableJob extends Job {
         List<String> mandatorySlots = new ArrayList<String>();
         for (Slot schemaInputSlot : sourceConfig.getInput().getInputSlots()) {
             String minOccurs = schemaInputSlot.geType().minOccurs;
-            if ((minOccurs != null) || (Integer.valueOf(minOccurs) > 0))
+            if (Integer.valueOf(minOccurs) > 0)
                 mandatorySlots.add(schemaInputSlot.getName());
         }
         return mandatorySlots;
@@ -163,7 +163,7 @@ public class ExecutableJob extends Job {
         List<String> mandatorySlots = new ArrayList<String>();
         for (Slot schemaOutputSlot : sourceConfig.getOutput().getOutputSlots()) {
             String minOccurs = schemaOutputSlot.geType().minOccurs;
-            if ((minOccurs != null) || (Integer.valueOf(minOccurs) > 0))
+            if (Integer.valueOf(minOccurs) > 0)
                 mandatorySlots.add(schemaOutputSlot.getName());
         }
         return mandatorySlots;
