@@ -243,7 +243,29 @@ public class ClusterGatewayCommandLineTest {
     }
 
     @Test
-    public void runRemoteAnalysisHelp() {
+    public void runTaskHelp() {
+        assertEquals(1, ClusterGateway.process(
+                ("--plugins-dir test-data/root-for-rnaselect "  +
+                        "--job RNASELECT_TASK " +
+                        "--help "
+                ).split(" ")
+        ));
+
+    }
+
+    @Test
+    public void runAlignerHelp() {
+        assertEquals(1, ClusterGateway.process(
+                ("--plugins-dir test-data/root-for-aligners "  +
+                        "--job BWA_GOBY_ARTIFACT " +
+                        "--help "
+                ).split(" ")
+        ));
+
+    }
+
+    @Test
+    public void runAnalysisHelp() {
         assertEquals(1, ClusterGateway.process(
                 ("--plugins-dir test-data/root-for-aligners "  +
                  "--job CONTAMINANT_EXTRACT " +
