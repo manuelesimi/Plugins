@@ -7,7 +7,7 @@
 #$ -j y
 
 # Cluster queue to use
-#$ -q %%QUEUE_NAME%%
+#$ -q %QUEUE_NAME%
 
 
 function setup_task_functions {
@@ -27,11 +27,12 @@ if [ -z "$JOB_DIR" ]; then
     export JOB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 fi
 
+export JOB_DIR=%JOB_DIR%
+echo "JOB _DIR is ${JOB_DIR}"
 export TMPDIR=$JOB_DIR
 
-cd ${JOB_DIR}
-. constants.sh
-. auto-options.sh
+. %JOB_DIR%/constants.sh
+. %JOB_DIR%/auto-options.sh
 
 
 GOBY_DIR=${JOB_DIR}/goby
