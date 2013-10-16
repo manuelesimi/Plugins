@@ -39,6 +39,10 @@ function setup {
     export JOB_DIR=%JOB_DIR%
     echo "JOB _DIR is ${JOB_DIR}"
 
+    if [ -z "$TMPDIR" ]; then
+        export TMPDIR=${JOB_DIR}
+    fi
+
     # define job specific constants:
     . %JOB_DIR%/constants.sh
 
