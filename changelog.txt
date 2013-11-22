@@ -1,9 +1,10 @@
-2.3.1
+2.3.1 (Nov 22 2013)
     Introduce PLUGIN_NEED_DEFAULT_JVM_OPTIONS variable for default JVM executions
     Use JAVA_OPTS variable to set the amount of memory allocated to the groovy scripts.
     Adjust OGE memory settings to run on standard.q
     Expose PLUGIN_VERSION variable to all plugins
     Default slots with no cardinality to 1 (both for minOccurs and maxOccurs).
+    Fix OGE script for remote task submission.
 
 2.3 (Sep 05 2013)
     Simulate artifacts, needs and SDK environments in plugins-view-job-env
