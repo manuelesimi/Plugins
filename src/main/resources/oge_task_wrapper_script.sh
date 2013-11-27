@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -l
 
 # Execute the script from the current directory
 #$ -cwd
@@ -9,6 +9,7 @@
 # Cluster queue to use
 #$ -q %QUEUE_NAME%
 
+slchoose sun_jdk 6.0.25 dist
 
 function setup_task_functions {
     # define no-op function to be overridden as needed by task script:

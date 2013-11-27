@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/bin/bash -l
 
 # Script to trigger the installation of artifacts for a resource plugin. Does nothing after installation.
+
+slchoose sun_jdk 6.0.25 dist
 
 function install_resource {
    echo ""

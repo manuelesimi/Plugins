@@ -5,6 +5,8 @@
     Expose PLUGIN_VERSION variable to all plugins
     Default slots with no cardinality to 1 (both for minOccurs and maxOccurs).
     Fix OGE script for remote task submission.
+    Select sun_jdk 6.0.25 distribution for task and resource installation on OGE.
+
 
 2.3 (Sep 05 2013)
     Simulate artifacts, needs and SDK environments in plugins-view-job-env
