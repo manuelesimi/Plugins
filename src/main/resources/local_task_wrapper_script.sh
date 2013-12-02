@@ -20,8 +20,8 @@ function run_task {
     export TMPDIR=$JOB_DIR
 
     cd ${JOB_DIR}
-    . constants.sh
     . auto-options.sh
+    . constants.sh
 
     GOBY_DIR=${JOB_DIR}/goby
     if [ ! -d ${GOBY_DIR} ]; then
