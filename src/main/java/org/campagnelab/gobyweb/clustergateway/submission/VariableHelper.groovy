@@ -40,7 +40,7 @@ public class VariableHelper {
             if (value.contains("\n") || value.contains("\"")) {
                 LOG.debug("Not writting variable ${key} to constants.sh because it contains new line or quote character. ");
             } else {
-                writer.append("${key}=\"${value}\" \n");
+                writer.append("export ${key}=\"${value}\" \n");
             }
         }
     }

@@ -67,9 +67,9 @@ class AutoOptionsFileHelper {
                 String key = "PLUGINS_${fromPlugin.getHumanReadableConfigType()}_${fromPlugin.getId()}_${option.id}";
                 if ((environment != null) && (environment.containsKey(key))) {
                     //override the default value with the value coming from the command line
-                    writer.println("${key}=\"${environment.getFromUndecorated(key)}\"")
+                    writer.println("export ${key}=\"${environment.getFromUndecorated(key)}\"")
                 } else {
-                    writer.println("${key}=\"${optionValue}\"")
+                    writer.println("export ${key}=\"${optionValue}\"")
                 }
 
             } else {
@@ -77,9 +77,9 @@ class AutoOptionsFileHelper {
                 String key = "PLUGINS_${pluginConfig.getHumanReadableConfigType()}_${pluginConfig.id}_${option.id}";
                 if ((environment != null) && (environment.containsKey(key))) {
                     //override the default value with the value coming from the command line
-                    writer.println("${key}=\"${environment.getFromUndecorated(key)}\"")
+                    writer.println("export ${key}=\"${environment.getFromUndecorated(key)}\"")
                 } else {
-                    writer.println("${key}=\"${optionValue}\"")
+                    writer.println("export ${key}=\"${optionValue}\"")
                 }
             }
         }
@@ -88,7 +88,7 @@ class AutoOptionsFileHelper {
         writer.println("# The plugin defines these files: ")
         for (PluginFile file : pluginConfig.getFiles()) {
             // write options in the format  ${PLUGINS_ TYPE _ plugin-id _ FILES _ file-id}
-            writer.println("PLUGINS_${pluginConfig.getHumanReadableConfigType()}_${pluginConfig.getId()}_FILES_${file.id}=\${JOB_DIR}/${file.filename}")
+            writer.println("export PLUGINS_${pluginConfig.getHumanReadableConfigType()}_${pluginConfig.getId()}_FILES_${file.id}=\${JOB_DIR}/${file.filename}")
         }
 
         writer.println("# The plugin has access to the following resources: ")
@@ -111,7 +111,7 @@ class AutoOptionsFileHelper {
 
         // write resources in the format  ${ RESOURCES _ resource-id _ file-id}
         for (PluginFile file : resource.files) {
-            writer.println("RESOURCES_${resource.id}_${file.id}=\${JOB_DIR}/${file.filename}")
+            writer.println("export RESOURCES_${resource.id}_${file.id}=\${JOB_DIR}/${file.filename}")
         }
     }
     /**
@@ -198,7 +198,7 @@ class AutoOptionsFileHelper {
             Config sourcePlugin = registry.findById(pluginIdentifier)
             sb = map.get(pluginIdentifier)
             // write _ALL_OTHER_OPTIONS in the format PLUGINS _ TYPE _ PLUGIN-ID _ _ALL_OTHER_OPTIONS
-            writer.println("PLUGINS_${sourcePlugin.getHumanReadableConfigType()}_${sourcePlugin.id}_ALL_OTHER_OPTIONS=\"${sb.toString()}\"")
+            writer.println("export PLUGINS_${sourcePlugin.getHumanReadableConfigType()}_${sourcePlugin.id}_ALL_OTHER_OPTIONS=\"${sb.toString()}\"")
         }
     }
 }
