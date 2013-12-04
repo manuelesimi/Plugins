@@ -183,6 +183,8 @@ function copy_logs {
     fi
     mkdir -p ${JAVA_LOG_DIR}/${STEP_NAME}
     /bin/cp ${TMPDIR}/java-log-output.log ${JAVA_LOG_DIR}/${STEP_NAME}/java-log-output-${START_PART}-of-${END_PART}.log
+    /bin/cp ${TMPDIR}/steplogs/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
+    /bin/cp ${TMPDIR}/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
 }
 
 function copy_reads_from_webserver {
