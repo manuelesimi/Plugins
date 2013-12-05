@@ -37,24 +37,20 @@
 package org.campagnelab.gobyweb.plugins
 
 import com.google.common.io.Files
-import edu.cornell.med.icb.util.ICBStringUtils
 import it.unimi.dsi.fastutil.objects.*
 import it.unimi.dsi.lang.MutableString
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.FilenameUtils
 import org.apache.log4j.Logger
-import org.campagnelab.gobyweb.artifacts.Artifacts
-import org.campagnelab.gobyweb.artifacts.BuildArtifactRequest
+
 import org.campagnelab.gobyweb.plugins.xml.*
 import org.campagnelab.gobyweb.plugins.xml.executables.Need
 import org.campagnelab.gobyweb.plugins.xml.executables.Option
 import org.campagnelab.gobyweb.plugins.xml.executables.Option.OptionType
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig
-import org.campagnelab.gobyweb.plugins.xml.common.PluginFile
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConsumerConfig
 import org.campagnelab.gobyweb.plugins.xml.executables.Script
-import org.campagnelab.gobyweb.plugins.xml.resources.Artifact
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig
 import static org.campagnelab.gobyweb.plugins.PluginLoaderSettings.*;
 
