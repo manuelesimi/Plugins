@@ -48,6 +48,7 @@
 
 %CPU_REQUIREMENTS%
 
+
 #select the java version to use
 slchoose sun_jdk 6.0.25 dist
 
@@ -63,8 +64,9 @@ function create_kill_file {
     if [ ! -f %KILL_FILE% ]; then
         . %JOB_DIR%/constants.sh
         echo '#!/bin/bash -l' >> %KILL_FILE%
+        echo 'export JOB_DIR=%JOB_DIR%' >> %KILL_FILE%
         echo 'if [[ ! "--no-queue-message" == $1 ]]; then' >> %KILL_FILE%
-        echo '${QUEUE_WRITER} --tag %TAG% --status %JOB_KILLED_STATUS% --description "Job killed" --index -1 --job-type job' >> %KILL_FILE%
+        echo "${QUEUE_WRITER} --tag %TAG% --status %JOB_KILLED_STATUS% --description "Job killed" --index -1 --job-type job" >> %KILL_FILE%
         echo 'fi' >> %KILL_FILE%
         chmod 700 %KILL_FILE%
     fi
@@ -92,17 +94,16 @@ function calculate_PAD_FORMAT {
 function setup {
 
     export JOB_DIR=%JOB_DIR%
-    # include value definitions for automatic options:
-    . %JOB_DIR%/auto-options.sh
-
+   
     # define job specific constants:
     . %JOB_DIR%/constants.sh
 
-
+    # include value definitions for automatic options:
+    . %JOB_DIR%/auto-options.sh
 
     #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
     export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
-
+    QUEUE_WRITER="%JOB_DIR%/groovy ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} %QUEUE_WRITER_POSTFIX% "
     create_kill_file
 
 
