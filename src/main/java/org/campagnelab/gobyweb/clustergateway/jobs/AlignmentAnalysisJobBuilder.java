@@ -238,7 +238,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
             }
             //remove the last comma
             groupFilters.setLength(groupFilters.length() - 1);
-            environment.put(String.format("PLUGIN_GROUP_ALIGNMENTS_FILTER[%s]", tokens[0]), groupFilters.toString());
+            environment.put(String.format("PLUGIN_GROUP_ALIGNMENTS_FILTER_%s", tokens[0]), groupFilters.toString());
             diffExp.addGroup(groupNumber,tokens[0]);
             groupNames.add(tokens[0]);
         }
