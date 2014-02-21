@@ -726,5 +726,25 @@ public class Plugins {
         autoOptionsFileHelper.generateAutoOptionsFile(pluginConfig, attributesPrefix, attributes)
     }
 
+    /**
+     * Starting from the plugin settings specified by the user, generates the options for its execution.
+     * @param pluginConfig
+     * @param attributesPrefix
+     * @param attributes
+     * @return
+     */
+    public Map<String, String> generateCommandLinePluginOptions(ExecutableConfig pluginConfig, String attributesPrefix = null, Map<String, String> attributes = null) {
+        autoOptionsFileHelper.generateCommandLinePluginOptions(pluginConfig, attributesPrefix, attributes)
+    }
 
+    /**
+     * Starting from the plugin settings specified by the user, collects auto-format options in *_ALL_OTHER_OPTIONS option for its execution.
+     * @param pluginConfig
+     * @param attributesPrefix
+     * @param attributes
+     * @return
+     */
+    public Map<String, String> collectAutoFormatPluginOptions(ExecutableConfig pluginConfig, String attributesPrefix = null, Map<String, String> attributes = null) {
+        autoOptionsFileHelper.collectAutoFormatPluginOptions(pluginConfig, attributesPrefix, attributes)
+    }
 }

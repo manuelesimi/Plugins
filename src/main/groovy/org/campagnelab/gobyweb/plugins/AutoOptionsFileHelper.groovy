@@ -83,7 +83,14 @@ class AutoOptionsFileHelper {
                 }
             }
         }
-        writeAutoFormatString(pluginConfig, writer, attributesPrefix, attributes);
+        Object2ObjectMap<String, StringBuffer> map = writeAutoFormatString(pluginConfig, attributesPrefix, attributes);
+
+        for (String pluginIdentifier : map.keySet()) {
+            Config sourcePlugin = registry.findById(pluginIdentifier)
+            def sb = map.get(pluginIdentifier)
+            // write _ALL_OTHER_OPTIONS in the format PLUGINS _ TYPE _ PLUGIN-ID _ _ALL_OTHER_OPTIONS
+            writer.println("export PLUGINS_${sourcePlugin.getHumanReadableConfigType()}_${sourcePlugin.id}_ALL_OTHER_OPTIONS=\"${sb.toString()}\"")
+        }
 
         writer.println("# The plugin defines these files: ")
         for (PluginFile file : pluginConfig.getFiles()) {
@@ -117,9 +124,8 @@ class AutoOptionsFileHelper {
     /**
      * Writes autoFormat options that are defined to the _ALL_OTHER_OPTIONS variable.
      * @param pluginConfig
-     * @param writer to the auto-options.sh file.
      */
-    void writeAutoFormatString(ExecutableConfig executableConfig, PrintWriter writer, String attributesPrefix, Map<String, String> attributes) {
+    Object2ObjectMap<String, StringBuffer> writeAutoFormatString(ExecutableConfig executableConfig, String attributesPrefix, Map<String, String> attributes) {
         // source plugin id -> string buffer map. String buffer will hold the AUTOFORMAT definition for the plugin
         Object2ObjectMap<String, StringBuffer> map = new Object2ObjectArrayMap<String, StringBuffer>()
         def sb
@@ -194,11 +200,55 @@ class AutoOptionsFileHelper {
 
             }
         }
+
+        return map;
+    }
+
+    /**
+     * Generates options for the command line.
+     * @param pluginConfig
+     * @param attributesPrefix
+     * @param attributes
+     * @return
+     */
+    protected Map<String, String> generateCommandLinePluginOptions(ExecutableConfig pluginConfig,
+                                           String attributesPrefix = null, Map<String, String> attributes = null) {
+        Map<String, String> pluginsOptions = new HashMap<String, String>()
+        List<Option> optionsToProcess =
+                attributes == null ? pluginConfig.userSpecifiedOptions() : pluginConfig.options()
+        for (Option option : optionsToProcess) {
+            def optionValue
+            if (attributes == null) {
+                optionValue = option.userDefinedValue
+            } else {
+                def attributeName = (attributesPrefix ?: "") + option.id
+                optionValue = attributes[attributeName] ?: ""
+            }
+
+            if (option.type == Option.OptionType.CATEGORY) {
+                optionValue = option.categoryIdToValue(optionValue)
+            }
+            pluginsOptions.put(option.id,"${optionValue}")
+        }
+        return pluginsOptions;
+    }
+
+    /**
+     *
+     * @param pluginConfig
+     * @param attributesPrefix
+     * @param attributes
+     * @return
+     */
+    protected Map<String, String> collectAutoFormatPluginOptions(ExecutableConfig pluginConfig,
+        String attributesPrefix = null, Map<String, String> attributes = null) {
+        Map<String, String> pluginsOptions = new HashMap<String, String>()
+        Object2ObjectMap<String, StringBuffer> map = writeAutoFormatString(pluginConfig, attributesPrefix, attributes);
         for (String pluginIdentifier : map.keySet()) {
             Config sourcePlugin = registry.findById(pluginIdentifier)
-            sb = map.get(pluginIdentifier)
-            // write _ALL_OTHER_OPTIONS in the format PLUGINS _ TYPE _ PLUGIN-ID _ _ALL_OTHER_OPTIONS
-            writer.println("export PLUGINS_${sourcePlugin.getHumanReadableConfigType()}_${sourcePlugin.id}_ALL_OTHER_OPTIONS=\"${sb.toString()}\"")
+            def sb = map.get(pluginIdentifier)
+            pluginsOptions.put("PLUGINS_${sourcePlugin.getHumanReadableConfigType()}_${sourcePlugin.id}_ALL_OTHER_OPTIONS", "${sb.toString()}")
         }
+        return pluginsOptions;
     }
 }
