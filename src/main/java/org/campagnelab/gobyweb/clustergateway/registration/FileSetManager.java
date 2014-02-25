@@ -134,10 +134,19 @@ public class FileSetManager {
                     }
                     throw new Exception();
                 }
-            } else {
-                logger.error("Failed to edit attributes: no attribute was defined in the input parameters.");
-                throw new Exception();
             }
+            if (config.getStringArray("sharedWith").length > 0) {
+                if (fileset.editSharedUsers(config.getString("tag"), Arrays.asList(config.getStringArray("sharedWith")), errors)) {
+                    logger.info(String.format("Fileset shared users have been successfully updated for instance %s", config.getString("tag")));
+                } else {
+                    logger.error("Failed to edit shared users.");
+                    for (String message : errors) {
+                        logger.error(message);
+                    }
+                    throw new Exception();
+                }
+            }
+
         }
         return returned_values;
     }
