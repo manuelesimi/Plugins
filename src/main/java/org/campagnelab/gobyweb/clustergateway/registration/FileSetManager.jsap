@@ -85,6 +85,19 @@
             <help>Attribute to associate to the fileset instance. The attribute must be in the form ATTR1=VALUE1</help>
         </flaggedOption>
 
+        <flaggedOption>
+            <id>sharedWith</id>
+            <stringParser>
+                    <classname>StringStringParser</classname>
+            </stringParser>
+            <required>optional</required>
+            <longFlag>sharedWith</longFlag>
+            <shortFlag>s</shortFlag>
+            <allowMultipleDeclarations>true</allowMultipleDeclarations>
+            <help>User to whom the fileset instance is shared with.</help>
+        </flaggedOption>
+
+
         <switch>
             <id>help</id>
             <shortFlag>h</shortFlag>

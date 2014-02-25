@@ -39,11 +39,12 @@ public final class TableFormatter implements OutputFormatter {
     @Override
     public void format(List<MetadataFileReader> metadataList) {
         formatter = new Formatter(System.out);
-        formatter.format("%n%-7s%s%-30s%s%-60s%s%-20s%s%-200s%n",
+        formatter.format("%n%-7s%s%-30s%s%-60s%s%-20s%s%-30s%s%-200s%n",
                 "TAG",separator,
                 "INSTANCE OF",separator,
                 "BASENAME", separator,
                 "SIZE (in bytes)", separator,
+                "SHARED WITH", separator,
                 "ATTRIBUTES");
         for (MetadataFileReader reader : metadataList) {
             formatter.format("%-7s", reader.getTag());
@@ -58,8 +59,13 @@ public final class TableFormatter implements OutputFormatter {
             }
             formatter.format("%-20d", size);
             formatter.format("%s", separator);
-            Iterator<Map.Entry<String, String>> it = reader.getAttributes().entrySet().iterator();
             StringBuilder builder = new StringBuilder();
+            for (String user: reader.getSharedWith())
+                builder.append(user).append(",");
+            formatter.format("%-30s", builder.toString().replaceAll(",$", ""));
+            formatter.format("%s", separator);
+            Iterator<Map.Entry<String, String>> it = reader.getAttributes().entrySet().iterator();
+            builder = new StringBuilder();
             while (it.hasNext()) {
                 Map.Entry<String,String> attribute = it.next();
                 builder.append(String.format("%s=%s", attribute.getKey(), attribute.getValue()));

@@ -28,8 +28,8 @@ public class AlignerRemoteSubmissionTest {
     static Plugins plugins;
     static JobArea jobArea;
     static Actions actions;
-    static final String filesetAreaReference = "/zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA";
-    static final String jobAreaReference = "gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS";
+    static final String filesetAreaReference = "/zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA";
+    static final String jobAreaReference = "gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/";
     static final String envScript = "test-data/root-for-aligners/artifacts-config/env.sh";
     static Properties prop = new Properties();
     static final String owner = "gobywebpaper";

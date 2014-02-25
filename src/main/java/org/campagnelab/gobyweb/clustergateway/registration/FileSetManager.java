@@ -104,9 +104,11 @@ public class FileSetManager {
         if (config.getString("action").equalsIgnoreCase("register")) {
             List<InputEntry> entries = parseInputEntries(config.getStringArray("entries"));
             if (config.userSpecified("no-copy"))
-                returned_values = fileset.registerNoCopy(entries, parseInputAttributes(config.getStringArray("attribute")), errors, config.getString("tag"));
+                returned_values = fileset.registerNoCopy(entries, parseInputAttributes(config.getStringArray("attribute")),
+                        Arrays.asList(config.getStringArray("sharedWith")), errors, config.getString("tag"));
             else
-                returned_values = fileset.register(entries, parseInputAttributes(config.getStringArray("attribute")), errors, config.getString("tag"));
+                returned_values = fileset.register(entries, parseInputAttributes(config.getStringArray("attribute")),
+                        Arrays.asList(config.getStringArray("sharedWith")), errors, config.getString("tag"));
             if (returned_values.size() > 0) {
                 logger.info(String.format("%d fileset instances have been successfully registered with the following tags: ", returned_values.size()));
                 logger.info(Arrays.toString(returned_values.toArray()));
@@ -145,7 +147,7 @@ public class FileSetManager {
      * @param inputAttributes  attributes in the form KEY=VALUE,KEY2=VALUE2
      * @return
      */
-    public static Map<String, String> parseInputAttributes(String[] inputAttributes) throws Exception {
+    public static Map<String, String>   parseInputAttributes(String[] inputAttributes) throws Exception {
         Map<String, String> attributes = new HashMap<String, String>();
         if (inputAttributes == null)
             return attributes;

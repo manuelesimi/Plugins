@@ -33,12 +33,18 @@ public class FileSetCommandLineTest {
 
     @Test
     public void registerWithNameAndGuess() {
+        String[] users = new String[3];
+        users[0] = "me";
+        users[1] = "myself";
+        users[2] = "I";
+
         assertEquals(5, FileSetManager.process(buildFileRegistrationArgs(
                 "GOBY_ALIGNMENTS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.index "
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.entries "
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.header "
                         + "guess: "
-                        + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads"
+                        + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads",
+                new String[0], users
                 )).size());
 
         assertEquals(5, FileSetManager.process(buildFileRegistrationArgs(
@@ -46,12 +52,14 @@ public class FileSetCommandLineTest {
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.entries "
                         + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.header "
                         + "guess: "
-                        + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads"
+                        + "test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_7/*.compact-reads",
+                new String[0], users
         )).size());
 
         assertEquals(2, FileSetManager.process(buildFileRegistrationArgs(
                 "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads" +
-                " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads")).size());
+                " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads",
+                new String[0], users)).size());
 
 
     }
@@ -61,14 +69,16 @@ public class FileSetCommandLineTest {
 
         assertEquals(1, FileSetManager.process(buildFileRegistrationArgs(
                 "--tag XXXXXX7 " +
-                        "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads"
+                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads",
+                new String[0],new String[0]
         )).size());
 
         try {
             //this has to fail because the input tag already exists (from the previous registration)
             assertEquals(0, FileSetManager.process(buildFileRegistrationArgs(
                     "--tag XXXXXX7 " +
-                            "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads"
+                    "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads",
+                    new String[0],new String[0]
             )).size());
             fail("Registration of an existing tag did not fail as expected");
         } catch (Exception e) {/*expected*/}
@@ -78,7 +88,9 @@ public class FileSetCommandLineTest {
             assertEquals(0, FileSetManager.process(buildFileRegistrationArgs(
                 "--tag XXXXXX8 " +
                 "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads" +
-                        " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads")).size());
+                        " test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE2.compact-reads",
+                    new String[0],new String[0]
+            )).size());
             fail("Registration with tag one and two instances did not fail");
         } catch (Exception e) {/*expected*/}
 
@@ -89,7 +101,8 @@ public class FileSetCommandLineTest {
             //this has to fail because the input tag already exists (from the previous registration)
             assertEquals("Unexpected number of tags returned by registerNoCopy", 1, FileSetManager.process(buildFileRegistrationArgs(
                     "--no-copy " +
-                    "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads"
+                    "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads",
+                    new String[0],new String[0]
             )).size());
 
     }
@@ -102,17 +115,25 @@ public class FileSetCommandLineTest {
         attributes[1] = "KEY2=VALUE2";
         attributes[2] = "KEY3=VALUE3";
         attributes[3] = "KEY4=VALUE4";
+
+        String[] users = new String[3];
+        users[0] = "me";
+        users[1] = "myself";
+        users[2] = "I";
         assertEquals("Unexpected results returned by edit", 0, FileSetManager.process(buildFileEditArgs(
                         "XXXXXX7",
-                attributes
+                attributes, users
         )).size());
 
     }
 
-    private static String[] buildFileEditArgs(String tag, String[] attributes) {
+    private static String[] buildFileEditArgs(String tag, String[] attributes, String[] sharedWith) {
         StringBuilder builder = new StringBuilder();
         for(String attribute : attributes)
             builder.append("-a ${attribute} ")
+
+        for(String user : sharedWith)
+            builder.append("--sharedWith ${user} ")
 
         ("--fileset-area ${storageAreaDir} "+
                 "--plugins-dir test-data/root-for-rnaselect " +
@@ -124,10 +145,13 @@ public class FileSetCommandLineTest {
 
     }
 
-    public static String[] buildFileRegistrationArgs(String filenames, String[] attributes) {
+    public static String[] buildFileRegistrationArgs(String filenames, String[] attributes, String[] sharedWith) {
         StringBuilder builder = new StringBuilder();
         for(String attribute : attributes)
             builder.append("-a ${attribute} ")
+
+        for(String user : sharedWith)
+            builder.append("--sharedWith ${user} ")
 
         ("--fileset-area ${storageAreaDir} "+
                 "--plugins-dir test-data/root-for-rnaselect " +

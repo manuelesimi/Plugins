@@ -81,8 +81,8 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(0, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS " +
-                        "--fileset-area /zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner campagne " +
                         "--queue rascals.q " +
@@ -115,8 +115,8 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(0, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS " +
-                        "--fileset-area /zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
                         "--queue rascals.q " +
@@ -150,8 +150,8 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(1, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS " +
-                        "--fileset-area /zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
                         "--queue rascals.q " +
@@ -186,8 +186,8 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(1, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS " +
-                        "--fileset-area /zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
                         "--queue rascals.q " +
@@ -220,8 +220,8 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(1, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/dat01/campagne_lab_scratch/gobyweb/GOBYWEB_TRIAL/SGE_JOBS " +
-                        "--fileset-area /zenodotus/dat01/campagne_lab_store/gobyweb_dat/GOBYWEB_TRIAL/FILESETS_AREA " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
                         "--queue rascals.q " +
