@@ -33,26 +33,26 @@ public class AlignerJobBuilder extends JobBuilder {
      * @param alignerConfig the source aligner configuration
      * @param jobArea the job area where the job will be submitted
      * @param filesetAreaReference the fileset area from which reads metadata are fetched
-     * @param owner the owner of the job
+     * @param user the owner of the job
      * @param inputSlots the input slots passed on the command line
      * @throws IOException
      */
     public AlignerJobBuilder(AlignerConfig alignerConfig, JobArea jobArea, String filesetAreaReference,
-                             String owner, Set<InputSlotValue> inputSlots) throws IOException {
+                             String user, Set<InputSlotValue> inputSlots) throws IOException {
         super(alignerConfig);
         this.alignerConfig = alignerConfig;
         // create the fileset area according to the location of the job area
         if (jobArea.isLocal()) {
             //we can use the reference name as it is because we have the same visibility
-            this.fileSetArea = AreaFactory.createFileSetArea(filesetAreaReference, owner);
+            this.fileSetArea = AreaFactory.createAdminFileSetArea(filesetAreaReference, user);
         } else {
             if (filesetAreaReference.startsWith("/")) {
                 //the fileset area is local to the job area
                 String remoteReferenceName = String.format("%s@%s:%s", jobArea.getUserName(), jobArea.getHostName(), filesetAreaReference);
-                this.fileSetArea = AreaFactory.createFileSetArea(remoteReferenceName, owner);
+                this.fileSetArea = AreaFactory.createAdminFileSetArea(remoteReferenceName, user);
             } else {
                 //the fileset area must be remote also for the job area
-                this.fileSetArea = AreaFactory.createFileSetArea(filesetAreaReference, owner);
+                this.fileSetArea = AreaFactory.createAdminFileSetArea(filesetAreaReference, user);
             }
         }
         //input slots are validated elsewhere, we do not need to do it here

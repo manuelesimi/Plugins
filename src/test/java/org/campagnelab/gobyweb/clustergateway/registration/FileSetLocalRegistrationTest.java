@@ -52,7 +52,7 @@ public class FileSetLocalRegistrationTest {
                     storageAreaDir, "junit");
             fileset =  FileSetAPI.getReadWriteAPI(storageArea,
                     PluginsToConfigurations.convertAsList(plugins.getRegistry().filterConfigs(FileSetConfig.class)));
-        } catch (IOException ioe) {
+        } catch (Exception ioe) {
             ioe.printStackTrace();
            fail("fail to create the local storage area");
         }

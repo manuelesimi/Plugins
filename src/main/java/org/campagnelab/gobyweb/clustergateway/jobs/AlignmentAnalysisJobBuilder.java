@@ -47,15 +47,15 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         // create the fileset area according to the location of the job area
         if (jobArea.isLocal()) {
             //we can use the reference name as it is because we have the same visibility
-            this.fileSetArea = AreaFactory.createFileSetArea(filesetAreaReference, owner);
+            this.fileSetArea = AreaFactory.createAdminFileSetArea(filesetAreaReference, owner);
         } else {
             if (filesetAreaReference.startsWith("/")) {
                 //the fileset area is local to the job area
                 String remoteReferenceName = String.format("%s@%s:%s", jobArea.getUserName(), jobArea.getHostName(), filesetAreaReference);
-                this.fileSetArea = AreaFactory.createFileSetArea(remoteReferenceName, owner);
+                this.fileSetArea = AreaFactory.createAdminFileSetArea(remoteReferenceName,owner);
             } else {
                 //the fileset area must be remote also for the job area
-                this.fileSetArea = AreaFactory.createFileSetArea(filesetAreaReference, owner);
+                this.fileSetArea = AreaFactory.createAdminFileSetArea(filesetAreaReference,owner);
             }
         }
         this.parseInputSlots(inputSlots);
