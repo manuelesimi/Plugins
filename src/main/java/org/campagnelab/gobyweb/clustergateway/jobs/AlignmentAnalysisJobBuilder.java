@@ -92,7 +92,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
      */
     private String generatePluginOutputCopyStatements() {
         StringBuilder command = new StringBuilder();
-        for (OutputFile file : this.analysisConfig.output.files) {
+        for (OutputFile file : this.analysisConfig.outputFiles.files) {
             command.append(String.format("if [ -f %s ]; then\n",file.filename));
             command.append(String.format("/bin/mv %s ${RESULT_DIR}/${TAG}-%s ; \n",file.filename,file.filename));
             command.append("fi\n");
@@ -105,7 +105,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
      */
     private String generatePluginOutputPushStatements() {
         StringBuilder command = new StringBuilder();
-        for (OutputFile file : this.analysisConfig.output.files) {
+        for (OutputFile file : this.analysisConfig.outputFiles.files) {
             String attributes = "";
             if ((file.tableName != null) && (file.tableName.length() > 0) )
                 attributes = String.format("-a TABLENAME=%s",file.tableName);

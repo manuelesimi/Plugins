@@ -125,7 +125,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
     public int maximumNumberOfGroups;
 
     @XmlElement(name = "outputSchema")
-    public OutputSchema output = new OutputSchema();
+    public OutputSchema outputFiles = new OutputSchema();
 
     protected ExecutableInputSchema executableInputSchema;
 
@@ -160,7 +160,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
         if (producesTabDelimitedOutput && producesVariantCallingFormatOutput) {
             errors.add("TSV and VCF are mutually exclusive. An alignment analysis plugin cannot support both.");
         }
-        output.validate(errors);
+        outputFiles.validate(errors);
 
     }
 
@@ -225,7 +225,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
         assert (producesTabDelimitedOutput || producesVariantCallingFormatOutput)
                 : "producesTabDelimitedOutput and producesVariantCallingFormatOutput cannot be both false";
         List<Slot> slots = outputSchema.getOutputSlots();
-        for (OutputFile file : this.output.files) {
+        for (OutputFile file : this.outputFiles.files) {
             FileSetConfig fileSetConfig = DependencyResolver.resolveFileSetFromMimeType(file.mimeType);
             assert fileSetConfig != null : String.format("Unable to assign the output file %s to a fileset configuration. No matching mime-type found");
             Slot slot = new Slot();
