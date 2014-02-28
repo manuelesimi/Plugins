@@ -86,6 +86,7 @@ public class ClusterGatewayCommandLineTest {
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner campagne " +
                         "--queue rascals.q " +
+                        "--job-tag external-tag " +
                         "--env-script ${envScript} "+
                         "--job BWA_GOBY_ARTIFACT " +
                         "--GENOME_REFERENCE_ID WBcel215.69 "+

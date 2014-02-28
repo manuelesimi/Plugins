@@ -46,6 +46,12 @@ public interface Submitter {
     public void setRemoteArtifactRepositoryPath(String artifactRepositoryPath);
 
     /**
+     * Sets the tag to assign to the job being submitted.
+     * @param jobTag
+     */
+    public void assignTagToJob(String jobTag);
+
+    /**
      * The script to run for executing the job.
      * @param wrapperScript
      */

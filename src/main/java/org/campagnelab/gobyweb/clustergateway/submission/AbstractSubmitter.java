@@ -53,6 +53,8 @@ abstract public class AbstractSubmitter implements Submitter {
 
     private static Logger logger = Logger.getLogger(Submitter.class);
 
+    protected String jobTag = null;
+
 
     protected AbstractSubmitter(PluginRegistry registry) throws IOException {
         this.registry = registry;
@@ -78,6 +80,18 @@ abstract public class AbstractSubmitter implements Submitter {
     public void setEnvironmentScript(String environmentScriptFilename) {
         this.environmentScriptFilename = environmentScriptFilename;
     }
+
+
+    /**
+     * Sets the tag to assign to the job being submitted.
+     *
+     * @param jobTag
+     */
+    @Override
+    public void assignTagToJob(String jobTag) {
+       this.jobTag = jobTag;
+    }
+
 
     @Override
     public void setRemoteArtifactRepositoryPath(String artifactRepositoryPath) {

@@ -74,6 +74,17 @@
         </flaggedOption>
 
         <flaggedOption>
+            <id>job-tag</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>optional</required>
+            <shortFlag>t</shortFlag>
+            <longFlag>job-tag</longFlag>
+            <help>The tag that will be assigned to the job if successfully submitted.</help>
+        </flaggedOption>
+
+        <flaggedOption>
             <id>resource</id>
             <stringParser>
                 <classname>StringStringParser</classname>

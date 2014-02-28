@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
 import com.martiansoftware.jsap.*;
+import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.InputSlotValue;
@@ -216,6 +217,7 @@ public abstract class SubmissionRequest {
             assert actions != null : "action cannot be null.";
             submitter.setSubmissionHostname(config.getString("artifact-server"));
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
+            submitter.assignTagToJob(config.userSpecified("job-tag")? config.getString("job-tag"):ICBStringUtils.generateRandomString());
             if (config.userSpecified("env-script")) {
                 submitter.setEnvironmentScript(config.getFile("env-script").getAbsolutePath());
             } else {

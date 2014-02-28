@@ -74,7 +74,7 @@ final class Actions {
     private void submitJob(ExecutableJob job, Set<InputSlotValue> inputFilesets) throws Exception {
         //prepare the session for the submission
         Session session = this.prepareJobSession();
-        job.setTag(ICBStringUtils.generateRandomString());
+        //job.setTag(submitter.j);
         logger.debug("Tag assigned to the job: " + job.getTag());
         //add the input filesets
         job.addInputSlotValues(inputFilesets);
@@ -190,7 +190,7 @@ final class Actions {
     protected void submitResourceInstall( ResourceConfig config) throws Exception {
 
         ResourceJob resourceInstance = new ResourceJob(config);
-        resourceInstance.setTag(ICBStringUtils.generateRandomString());
+        //resourceInstance.setTag(ICBStringUtils.generateRandomString());
         logger.debug("Tag assigned to Task instance: " + resourceInstance.getTag());
 
         //prepare the session for the submission

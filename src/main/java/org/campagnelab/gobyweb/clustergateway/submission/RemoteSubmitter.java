@@ -48,6 +48,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
      */
     @Override
     public void submitJob(JobArea jobArea, Session session, ExecutableJob job) throws Exception {
+        job.setTag(this.jobTag);
 
         //create the temp dir with the submission files to move on the cluster
         File tempDir = Files.createTempDir();
@@ -83,7 +84,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         //execute the task
         logger.info("Requesting job execution...");
         logger.info("Output from the submission process:");
-        jobArea.execute(job.getTag(), wrapperScript);
+        jobArea.execute(this.jobTag, wrapperScript);
         logger.info(String.format("The job will be executed in the Job Area at %s/%s", jobArea.toString(),
                 job.getTag()));
 
@@ -91,6 +92,9 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
     @Override
     public void submitResourceInstall(JobArea jobArea, Session session, ResourceJob resourceJob) throws Exception {
+
+        resourceJob.setTag(this.jobTag);
+
         //create the temp dir with the submission files to move on the cluster
         File tempDir = Files.createTempDir();
         //get the wrapper script
