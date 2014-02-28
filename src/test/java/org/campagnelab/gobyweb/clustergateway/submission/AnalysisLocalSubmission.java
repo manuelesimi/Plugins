@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
+import edu.cornell.med.icb.util.ICBStringUtils;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
@@ -70,6 +71,7 @@ public class AnalysisLocalSubmission {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
+            submitter.assignTagToJob(ICBStringUtils.generateRandomString());
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             /*actions.submitAnalysis(s
                     alignmentAnalysisConfig,

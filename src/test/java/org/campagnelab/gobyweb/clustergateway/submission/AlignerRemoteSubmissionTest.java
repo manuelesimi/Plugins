@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
+import edu.cornell.med.icb.util.ICBStringUtils;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.Plugins;
@@ -77,6 +78,7 @@ public class AlignerRemoteSubmissionTest {
                     java.net.InetAddress.getLocalHost().getHostName()));
             submitter.setRemoteArtifactRepositoryPath("/scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK");
             submitter.setEnvironmentScript(new File(envScript).getAbsolutePath());
+            submitter.assignTagToJob(ICBStringUtils.generateRandomString());
             actions = new Actions(submitter, filesetAreaReference, jobArea, plugins.getRegistry());
             actions.submitAligner(
                     alignerConfig,

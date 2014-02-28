@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
 import com.google.common.io.Files;
+import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.io.FileUtils;
 import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.io.AreaFactory;
@@ -80,6 +81,7 @@ public class TaskLocalSubmissionTest {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
+            submitter.assignTagToJob(ICBStringUtils.generateRandomString());
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             actions.submitTask(taskConfig ,
                     SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}),
@@ -97,6 +99,7 @@ public class TaskLocalSubmissionTest {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
+            submitter.assignTagToJob(ICBStringUtils.generateRandomString());
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             //12 values for input reads are not accepted
             actions.submitTask(
@@ -119,6 +122,7 @@ public class TaskLocalSubmissionTest {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
+            submitter.assignTagToJob(ICBStringUtils.generateRandomString());
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             //no values for input reads are not accepted
             actions.submitTask(
@@ -138,6 +142,7 @@ public class TaskLocalSubmissionTest {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
+            submitter.assignTagToJob(ICBStringUtils.generateRandomString());
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             //INPUT_READS slot is mandatory
             actions.submitTask(
