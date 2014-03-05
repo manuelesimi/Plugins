@@ -130,12 +130,12 @@ public abstract class SubmissionRequest {
         if (options == null)
             return;
         for (String inputAttribute: options) {
-            String[] tokens = inputAttribute.split("=");
+            String[] tokens = inputAttribute.split("=",2);
             if (tokens.length == 2) {
                 optionsMap.put(tokens[0],tokens[1]);
             } else {
-                logger.error("Invalid options format" + inputAttribute);
-                throw new Exception("Invalid options format" + inputAttribute);
+                logger.error("Invalid option format: " + inputAttribute + ". Must be KEY=VALUE.");
+                throw new Exception("Invalid option format: " + inputAttribute+ ". Must be KEY=VALUE.");
             }
         }
     }
