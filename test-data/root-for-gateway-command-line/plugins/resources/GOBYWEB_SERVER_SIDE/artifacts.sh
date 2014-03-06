@@ -5,7 +5,7 @@ function install_plugin_artifacts {
         mkdir -p ${ARTIFACT_REPOSITORY_DIR}
         mkdir -p ${JOB_DIR}/steplogs
         REPO_MANAGER_OPTIONS="--repo-dir-quota  1000000000"
-        RUN_ARTIFACT_MANAGER="java -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
+        RUN_ARTIFACT_MANAGER="java  -Xms40m -Xmx250m -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
                  -Djava.io.tmpdir=${TMPDIR} \
                  -cp ${GOBY_DIR}/serverside-dependencies.jar:${GOBY_DIR}/artifact-manager.jar \
                  org.campagnelab.gobyweb.artifacts.ArtifactManager --log-dir ${JOB_DIR}/steplogs "
