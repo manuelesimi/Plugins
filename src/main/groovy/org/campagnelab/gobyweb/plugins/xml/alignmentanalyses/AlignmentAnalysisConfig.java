@@ -219,7 +219,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
 
     @Override
     protected void decorateOutput(ExecutableOutputSchema outputSchema) {
-
+        super.decorateOutput(outputSchema);
         assert (!(producesTabDelimitedOutput && producesVariantCallingFormatOutput))
                 : "producesTabDelimitedOutput and producesVariantCallingFormatOutput cannot be both true";
         assert (producesTabDelimitedOutput || producesVariantCallingFormatOutput)

@@ -360,6 +360,7 @@ function push_analysis_results {
        local REGISTERED_TAG=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} ${slot}: ${TMPDIR}/import-db/${TAG}-${file_to_push}`
        dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAG}"
        echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAG}"
+       ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${REGISTERED_TAGS}"
     elif [ "${mandatory}" == "true" ]; then
        echo "ERROR: Mandatory file ${file_to_push} was not produced by the job."
     fi;
@@ -381,6 +382,9 @@ function push_bam_alignments {
     dieUponError "Failed to push the alignment files in the fileset area: ${REGISTERED_TAGS}"
 
     echo "The following BAM_ALIGNMENT instance has been successfully registered: ${REGISTERED_TAGS}"
+
+    ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${REGISTERED_TAGS}"
+
 }
 
 #pushes Goby alignments produced by an aligner job in the fileset area
@@ -398,12 +402,12 @@ function push_goby_alignments {
      dieUponError "Failed to push the alignment files in the fileset area: ${REGISTERED_TAGS}"
 
      echo "The following GOBY_ALIGNMENT instance has been successfully registered: ${REGISTERED_TAGS}"
+     ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${REGISTERED_TAGS}"
 
 }
 
 #pushes any result (except the alignments) produced by an aligner job in the fileset area
 function push_aligner_results {
-
    echo .
    echo . Running push_other_results
    echo .
@@ -416,6 +420,7 @@ function push_aligner_results {
    fi
    echo "The following TSV instance has been successfully registered: ${REGISTERED_TAGS}"
 
+   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${REGISTERED_TAGS}"
    #push COUNTS back
    echo Pushing COUNTS
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} COUNTS: $RESULT_DIR/*.counts`
@@ -423,6 +428,7 @@ function push_aligner_results {
         echo "Failed to push back COUNTS files: ${REGISTERED_TAGS}"
    fi
    echo "The following COUNTS instance has been successfully registered: ${REGISTERED_TAGS}"
+   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${REGISTERED_TAGS}"
 
     #push GZ back
    echo Pushing GZs
@@ -431,6 +437,7 @@ function push_aligner_results {
         echo "Failed to push back GZ files: ${REGISTERED_TAGS}"
    fi
    echo "The following GZ instance has been successfully registered: ${REGISTERED_TAGS}"
+   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${REGISTERED_TAGS}"
 
     #push GZ back
    echo Pushing STATS
@@ -439,6 +446,19 @@ function push_aligner_results {
         echo "Failed to push back STATS files: ${REGISTERED_TAGS}"
    fi
    echo "The following STATS instance has been successfully registered: ${REGISTERED_TAGS}"
+   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${REGISTERED_TAGS}"
+
+}
+
+# Pushes some job metadata to the fileset area
+# param $1: space-separated list of fileset tags registered by the job
+function push_job_metadata {
+   tags="$@"
+   echo "JOB: ${TAG}" >> ${JOB_DIR}/metadata.txt
+   echo "COMPLETED: `date`" >> ${JOB_DIR}/metadata.txt
+   echo "TAGS: ${tags}" >> ${JOB_DIR}/metadata.txt
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/metadata.txt`
+   echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
 }
 
 function bam_align {
@@ -1066,6 +1086,7 @@ case ${STATE} in
         ;;
     post)
         install_plugin_artifacts
+        ALL_REGISTERED_TAGS=""
         setup_plugin_functions
         alignment_concat
         alignment_counts
@@ -1081,6 +1102,7 @@ case ${STATE} in
             push_bam_alignments
         fi
         push_aligner_results
+        push_job_metadata ${ALL_REGISTERED_TAGS}
         cleanup
         job_complete
         ;;

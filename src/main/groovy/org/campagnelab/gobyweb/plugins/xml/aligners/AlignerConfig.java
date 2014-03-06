@@ -174,6 +174,7 @@ public class AlignerConfig extends ExecutableConfig {
 
     @Override
     public void decorateOutput(ExecutableOutputSchema outputSchema) {
+        super.decorateOutput(outputSchema);
         List<Slot> slots = outputSchema.getOutputSlots();
         if (supportsGobyAlignments){
             Slot gobySlot = new Slot();

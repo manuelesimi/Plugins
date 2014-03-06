@@ -59,6 +59,16 @@ public class PluginLoaderSettings {
     };
 
     /**
+     * Fileset configuration configuration added to all Executable OutputSchemas.
+     */
+    public static final String[] JOB_METADATA = new String[] {
+            "JOB_METADATA", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+    /**
      * Fileset configuration configuration added to AlignerConfig's OutputSchema for aligners that support Goby.
      */
     public static final String[] GOBY_ALIGNMENTS = new String[] {

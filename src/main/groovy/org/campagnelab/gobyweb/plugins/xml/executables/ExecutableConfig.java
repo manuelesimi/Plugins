@@ -37,6 +37,7 @@
 package org.campagnelab.gobyweb.plugins.xml.executables;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import org.campagnelab.gobyweb.plugins.PluginLoaderSettings;
 import org.campagnelab.gobyweb.plugins.xml.PluginFileProvider;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConsumerConfig;
@@ -359,10 +360,7 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
     public ExecutableOutputSchema getOutput() {
         if (this.executableIOSchema.outputSchema == null)
             this.executableIOSchema.outputSchema = new ExecutableOutputSchema();
-        if (!this.isOutputDecorated) {
-            this.decorateOutput(this.executableIOSchema.outputSchema);
-            this.isOutputDecorated = true;
-        }
+        this.decorateOutput(this.executableIOSchema.outputSchema);
         return  this.executableIOSchema.outputSchema;
     }
 
@@ -371,7 +369,35 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
      * the Executable I/O Schema's input.
      * @param outputSchema
      */
-    protected void decorateOutput(ExecutableOutputSchema outputSchema) {}
+    protected void decorateOutput(ExecutableOutputSchema outputSchema) {
+        if (!this.isOutputDecorated) {
+            this.addJobMetadataSlot(outputSchema);
+            this.isOutputDecorated = true;
+        }
+    }
+
+
+    private void addJobMetadataSlot(ExecutableOutputSchema outputSchema) {
+        List<Slot> slots = outputSchema.getOutputSlots();
+        boolean found = false;
+        for (Slot slot : slots) {
+            if (slot.getName().equals("JOB_METADATA"))
+                   found = true;
+        }
+        if (!found) {
+            Slot metadataSlot = new Slot();
+            metadataSlot.setName("JOB_METADATA");
+            Slot.IOFileSetRef metadataType = new Slot.IOFileSetRef();
+            metadataType.id = PluginLoaderSettings.JOB_METADATA[0];
+            metadataType.versionAtLeast = PluginLoaderSettings.JOB_METADATA[1];
+            metadataType.versionExactly = PluginLoaderSettings.JOB_METADATA[2];
+            metadataType.versionAtMost = PluginLoaderSettings.JOB_METADATA[3];
+            metadataType.minOccurs = Integer.toString(1);
+            metadataType.maxOccurs = Integer.toString(1);
+            metadataSlot.seType(metadataType);
+            slots.add(metadataSlot);
+        }
+    }
 
     /**
      * The I/O Schema defining the filesets consumed and produced by

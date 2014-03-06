@@ -73,6 +73,7 @@ public class TaskConfigTest {
 
         Slot taskIOOUT2 =  new Slot();
         Slot.IOFileSetRef outFileSetRef2 = new Slot.IOFileSetRef();
+        taskIOOUT2.name = "TSV_FILE_2";
         outFileSetRef2.id = "TSV_second_format  ";
         outFileSetRef2.versionExactly = "1.5";
         outFileSetRef2.maxOccurs = "unbounded";
@@ -126,7 +127,7 @@ public class TaskConfigTest {
         assertNotNull("InputSchema cannot be null", deserializedTask.getInput());
         assertNotNull("OutputSchema cannot be null", deserializedTask.getOutput());
         assertEquals("There must be only 1 input slot", 1, deserializedTask.getInput().getInputSlots().size());
-        assertEquals("There must be 2 output slots", 2, deserializedTask.getOutput().getOutputSlots().size());
+        assertEquals("There must be 3 output slots", 3, deserializedTask.getOutput().getOutputSlots().size());
 
     }
 }
