@@ -26,9 +26,23 @@ function install_resources {
     install_plugin_artifacts
 }
 
-function run_task {
-   plugin_task
 
+# Pushes some job metadata to the fileset area
+# param $1: space-separated list of fileset tags registered by the job
+function push_job_metadata {
+   tags="$@"
+   stats_file="statistics.properties"
+   echo "JOB=${TAG}" >> ${JOB_DIR}/${stats_file}
+   echo "COMPLETED=`date`" >> ${JOB_DIR}/${stats_file}
+   echo "TAGS=${tags}" >> ${JOB_DIR}/${stats_file}
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${stats_file}`
+   echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
+}
+
+function run_task {
+   ALL_REGISTERED_TAGS=""
+   plugin_task
+   push_job_metadata ${ALL_REGISTERED_TAGS}
 }
 
 function setup {
