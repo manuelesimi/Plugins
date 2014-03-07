@@ -49,6 +49,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
     @Override
     public void submitJob(JobArea jobArea, Session session, ExecutableJob job) throws Exception {
         job.setTag(this.jobTag);
+        job.setOwner(jobArea.getOwner());
 
         //create the temp dir with the submission files to move on the cluster
         File tempDir = Files.createTempDir();
