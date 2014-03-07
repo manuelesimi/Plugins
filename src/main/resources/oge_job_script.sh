@@ -459,6 +459,7 @@ function push_job_metadata {
    echo "OWNER=${OWNER}" >> ${JOB_DIR}/${stats_file}
    echo "COMPLETED=`date +"%Y-%m-%d %T%z"`" >> ${JOB_DIR}/${stats_file}
    echo "TAGS=${tags}" >> ${JOB_DIR}/${stats_file}
+   echo "SHAREDWITH=" >> ${JOB_DIR}/${stats_file}
    REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${stats_file}`
    echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
 }
