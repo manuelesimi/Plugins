@@ -454,10 +454,11 @@ function push_aligner_results {
 # param $1: space-separated list of fileset tags registered by the job
 function push_job_metadata {
    tags="$@"
-   echo "JOB: ${TAG}" >> ${JOB_DIR}/metadata.txt
-   echo "COMPLETED: `date`" >> ${JOB_DIR}/metadata.txt
-   echo "TAGS: ${tags}" >> ${JOB_DIR}/metadata.txt
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/metadata.txt`
+   stats_file="statistics.properties"
+   echo "JOB=${TAG}" >> ${JOB_DIR}/${stats_file}
+   echo "COMPLETED=`date`" >> ${JOB_DIR}/${stats_file}
+   echo "TAGS=${tags}" >> ${JOB_DIR}/${stats_file}
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${stats_file}`
    echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
 }
 
