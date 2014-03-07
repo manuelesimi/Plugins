@@ -173,6 +173,7 @@ abstract public class AbstractSubmitter implements Submitter {
     protected void completeJobEnvironment(ExecutableJob job, String jobDir) {
         JobRuntimeEnvironment environment = job.getEnvironment();
         environment.put("TAG", job.getTag());
+        environment.put("OWNER", job.getOwnerId());
         environment.put("JOB_PART_COMPLETED_STATUS", JobPartStatus.COMPLETED.statusName);
         environment.put("JOB_PART_FAILED_STATUS", JobPartStatus.FAILED.statusName);
         environment.put("JOB_PART_SPLIT_STATUS", JobPartStatus.SPLIT.statusName);

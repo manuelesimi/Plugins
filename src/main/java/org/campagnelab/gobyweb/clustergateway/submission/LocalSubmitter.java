@@ -41,7 +41,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
     @Override
     public void submitJob(JobArea jobArea, Session session, ExecutableJob job) throws Exception {
         job.setTag(this.jobTag);
-
+        job.setOwner(jobArea.getOwner());
         jobArea.createTag(job.getTag());
         //in the local submitter we directly access to the job area folder to avoid creating and then copying local files
         final File jobLocalDir = new File(jobArea.getBasename(job.getTag()));
