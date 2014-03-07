@@ -32,6 +32,7 @@ function install_resources {
 function push_job_metadata {
    tags="$@"
    stats_file="statistics.properties"
+   rm -rf ${JOB_DIR}/${stats_file}
    echo "JOB=${TAG}" >> ${JOB_DIR}/${stats_file}
    echo "OWNER=${OWNER}" >> ${JOB_DIR}/${stats_file}
    echo "COMPLETED=`date +"%Y-%m-%d %T%z"`" >> ${JOB_DIR}/${stats_file}
