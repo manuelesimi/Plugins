@@ -76,7 +76,7 @@
         <xs:attribute name="value" type="xs:string"/>
     </xs:complexType>
 
-    <xs:complexType name="T_artifacts">
+    <xs:complexType name="T_artifacts_req">
         <xs:all>
         </xs:all>
         <xs:attribute name="scope" type="T_scope">
@@ -203,7 +203,7 @@
     <xs:element name="versionExactly" type="xs:string"/>
     <xs:element name="runtime" type="T_runtime"/>
     <xs:element name="need" type="T_need"/>
-    <xs:element name="artifacts" type="T_artifacts"/>
+    <xs:element name="artifacts" type="T_artifacts_req"/>
     <xs:element name="options" type="T_options"/>
     <xs:element name="validation" type="T_validation"/>
     <xs:element name="option" type="T_option"/>
