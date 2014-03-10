@@ -62,4 +62,9 @@ public class Resource {
      * Exact version number of the resource required. Any version is acceptable when version==null.
      */
     public String versionExactly;
+
+    /**
+     * Flag for mandatory resources. If true, the resource is installed for all the job phases.
+     */
+    public boolean mandatory = false;
 }

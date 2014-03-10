@@ -392,6 +392,7 @@ public class Plugins {
             Resource resourceRef = new Resource()
             resourceRef.id = resource.id
             resourceRef.versionExactly = resource.version
+            resourceRef.mandatory = true
             if (!config.requires.contains(resourceRef)) {
                 config.requires.add(0, resourceRef);
             }

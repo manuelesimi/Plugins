@@ -490,26 +490,26 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-math3/3.0/commons-math3-3.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.campagnelab.gobyweb:artifacts:2.2.4">
+    <library name="Maven: org.campagnelab.gobyweb:artifacts:2.3.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.2.4/artifacts-2.2.4.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.3.0-SNAPSHOT/artifacts-2.3.0-20140310.184951-145.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.2.4/artifacts-2.2.4-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.3.0-SNAPSHOT/artifacts-2.3.0-20140310.184951-145-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.2.4/artifacts-2.2.4-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.3.0-SNAPSHOT/artifacts-2.3.0-20140310.184951-145-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:filesets:1.2.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-20140226.182533-72.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-20140309.023342-78.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-20140226.182533-72-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-20140309.023342-78-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-20140226.182533-72-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-20140309.023342-78-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:filesets:2.0.0-SNAPSHOT">
