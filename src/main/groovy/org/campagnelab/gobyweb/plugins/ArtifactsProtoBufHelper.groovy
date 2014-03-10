@@ -120,7 +120,7 @@ public class ArtifactsProtoBufHelper {
                 ResourceConfig preResourceConfig = DependencyResolver.resolveResource(prerequisite.id,
                         prerequisite.versionAtLeast,
                         prerequisite.versionExactly, prerequisite.versionAtMost)
-                buildPbRequest(preResourceConfig, requestBuilder, prerequisite.mandatory)
+                buildPbRequest(preResourceConfig, requestBuilder, mandatory) //if the source resource is mandatory, also its deps are mandatory.
             }
 
         }

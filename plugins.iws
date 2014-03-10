@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/resources/Resource.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/resources/Resource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="plugins.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -199,7 +194,7 @@
       <file leaf-file-name="ArtifactsProtoBufHelper.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="170" selection-start="5080" selection-end="5080" vertical-scroll-proportion="0.48188975" vertical-offset="1209" max-vertical-offset="2370">
+            <state line="131" column="84" selection-start="6310" selection-end="6310" vertical-scroll-proportion="0.7338583" vertical-offset="1379" max-vertical-offset="2370">
               <folding />
             </state>
           </provider>
@@ -322,8 +317,8 @@
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/resources/Resource.java" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy" />
       </list>
     </option>
   </component>
@@ -1630,7 +1625,7 @@
       <workItem from="1392130398638" duration="39357000" />
       <workItem from="1393280529750" duration="10437000" />
       <workItem from="1393357697883" duration="36703000" />
-      <workItem from="1394134749925" duration="29045000" />
+      <workItem from="1394134749925" duration="29423000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3140,11 +3135,15 @@
       <created>1394465756688</created>
       <updated>1394465756688</updated>
     </task>
-    <option name="localTasksCounter" value="378" />
+    <task id="LOCAL-00378" summary="Make GOBYWEB_SERVER_SIDE resource and its dependencies mandatory artifacts. Integrate and advance pom dependency for Artifacts 2-4-0-SNAPSHOT.">
+      <created>1394477670084</created>
+      <updated>1394477670084</updated>
+    </task>
+    <option name="localTasksCounter" value="379" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161165000" />
+    <option name="totallyTimeSpent" value="161543000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -3200,7 +3199,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Use RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES as configuration file in FILESET_COMMAND." />
     <MESSAGE value="export variables in constant.sh and auto-options.sh" />
     <MESSAGE value="Load auto-options.sh before constants.sh in oge scripts." />
     <MESSAGE value="Copy back stepslogger logs in the JOB_DIR after the execution." />
@@ -3225,7 +3223,8 @@
     <MESSAGE value="Add empty SHAREDWITH property to newly created metadata instances." />
     <MESSAGE value="Remove job metadata file before creating it. This is needed if the post phase is executed twice (e.g. manually resubmitted upon a first failure)." />
     <MESSAGE value="Add and manage artifacts runtime requirement. Each scope can use it to declare whether it needs the plugins' artifacts during its execution or not." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add and manage artifacts runtime requirement. Each scope can use it to declare whether it needs the plugins' artifacts during its execution or not." />
+    <MESSAGE value="Make GOBYWEB_SERVER_SIDE resource and its dependencies mandatory artifacts. Integrate and advance pom dependency for Artifacts 2-4-0-SNAPSHOT." />
+    <option name="LAST_COMMIT_MESSAGE" value="Make GOBYWEB_SERVER_SIDE resource and its dependencies mandatory artifacts. Integrate and advance pom dependency for Artifacts 2-4-0-SNAPSHOT." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3542,13 +3541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="157" column="58" selection-start="6057" selection-end="6057" vertical-scroll-proportion="0.0" vertical-offset="1443" max-vertical-offset="6555">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/resources/ResourceConsumerConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="31" selection-start="837" selection-end="837" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
@@ -3600,9 +3592,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="157" column="58" selection-start="6057" selection-end="6057" vertical-scroll-proportion="0.0" vertical-offset="1443" max-vertical-offset="6555">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="170" selection-start="5080" selection-end="5080" vertical-scroll-proportion="0.48188975" vertical-offset="1209" max-vertical-offset="2370">
+        <state line="131" column="84" selection-start="6310" selection-end="6310" vertical-scroll-proportion="0.7338583" vertical-offset="1379" max-vertical-offset="2370">
           <folding />
         </state>
       </provider>
