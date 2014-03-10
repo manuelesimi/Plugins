@@ -1,9 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.jobs;
 
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
-import org.campagnelab.gobyweb.plugins.xml.executables.Need;
-import org.campagnelab.gobyweb.plugins.xml.executables.Option;
-import org.campagnelab.gobyweb.plugins.xml.executables.OptionError;
+import org.campagnelab.gobyweb.plugins.xml.executables.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,14 +22,17 @@ public abstract class JobBuilder {
     }
 
     /**
+     * Parses plugin runtime requirements.
+     *
      * For each need, adds a variable to replacements for each scope in pluginConfig runtime requirements.
      * Variables are called PLUGINS_NEED_${scope}*
+     *
+     * For each artifacts element found, adds a variable that states if a scope requires artifacts installation or not.
      */
     private Map<String, Object> buildResourceRequirements() {
 
         Map<String, Object> requirementsByScope = new HashMap<String, Object>();
         List<Need> needs = executableConfig.getRuntime().needs();
-        //PLUGIN_NEED_ALIGN="excl=false,h_vmem=6g,virtual_free=6g"
         for (Need need : needs) {
             // if key is present, format as key=value,
             // otherwise, just write value to PLUGIN_NEED constant.
@@ -44,6 +44,11 @@ public abstract class JobBuilder {
             } else {
                 requirementsByScope.put(key, needAsString);
             }
+        }
+        List<Artifacts> artifactsList = executableConfig.getRuntime().artifacts();
+        for (Artifacts artifacts: artifactsList) {
+            String key = String.format("PLUGIN_ARTIFACTS_%s", artifacts.scope);
+            requirementsByScope.put(key, Boolean.toString(artifacts.required));
         }
         return requirementsByScope;
     }

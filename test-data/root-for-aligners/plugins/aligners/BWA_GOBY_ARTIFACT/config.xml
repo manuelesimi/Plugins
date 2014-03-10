@@ -39,6 +39,9 @@
         <need scope="ALIGNMENT_POST_PROCESSING" key="excl" value="false"/>
         <need scope="ALIGNMENT_POST_PROCESSING" key="h_vmem" value="10g"/>
         <need scope="ALIGNMENT_POST_PROCESSING" key="virtual_free" value="10g"/>
+        <artifacts scope="SUBMIT" required="true"/>
+        <artifacts scope="POST" required="false"/>
+        <artifacts scope="ALIGN" required="true"/>
     </runtime>
     <options>
 

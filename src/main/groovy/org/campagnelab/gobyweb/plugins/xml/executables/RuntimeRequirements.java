@@ -16,12 +16,17 @@ import java.util.ArrayList;
 @XmlRootElement
 public class RuntimeRequirements {
 
+    @XmlElement(name = "need")
+    public ArrayList<Need> needs=new ArrayList<Need>();
+
+    @XmlElement(name = "artifacts")
+    public ArrayList<Artifacts> artifacts=new ArrayList<Artifacts>();
+
     public ArrayList<Need> needs() {
         return needs;
     }
 
-    @XmlElement(name = "need")
-    public ArrayList<Need> needs=new ArrayList<Need>();
-
-
+    public ArrayList<Artifacts> artifacts() {
+        return artifacts;
+    }
 }

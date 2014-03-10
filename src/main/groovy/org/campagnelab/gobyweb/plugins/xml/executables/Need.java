@@ -32,8 +32,7 @@ public class Need {
     @XmlAttribute
     public String scope = "GLOBAL";
 
-    public Need() {
-    }
+    public Need() { /* required by JAXB */}
 
     public Need(String scope, String key, String value ) {
         this.key = key;
