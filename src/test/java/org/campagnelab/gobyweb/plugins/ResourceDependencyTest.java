@@ -77,6 +77,7 @@ public class ResourceDependencyTest {
                 "    name: \"ensembl-version-number\"\n" +
                 "  }\n" +
                 "  retention: REMOVE_OLDEST\n" +
+                "  mandatory: false\n" +
                 "}\n" +
                 "artifacts {\n" +
                 "  plugin_id: \"SAMTOOLS\"\n" +
@@ -85,6 +86,7 @@ public class ResourceDependencyTest {
                 "  script_install_path: \"INSTALL_PATH_OMITTED\"\n" +
                 "  ssh_web_app_host: \"localhost\"\n" +
                 "  retention: REMOVE_OLDEST\n" +
+                "  mandatory: false\n" +
                 "}\n" +
                 "artifacts {\n" +
                 "  plugin_id: \"FAI_INDEXED_GENOMES\"\n" +
@@ -102,6 +104,7 @@ public class ResourceDependencyTest {
                 "    name: \"ensembl-version-number\"\n" +
                 "  }\n" +
                 "  retention: REMOVE_OLDEST\n" +
+                "  mandatory: false\n" +
                 "}\n" +
                 "artifacts {\n" +
                 "  plugin_id: \"STAR\"\n" +
@@ -110,6 +113,7 @@ public class ResourceDependencyTest {
                 "  script_install_path: \"INSTALL_PATH_OMITTED\"\n" +
                 "  ssh_web_app_host: \"localhost\"\n" +
                 "  retention: REMOVE_OLDEST\n" +
+                "  mandatory: false\n" +
                 "}\n" +
                 "artifacts {\n" +
                 "  plugin_id: \"STAR\"\n" +
@@ -127,6 +131,7 @@ public class ResourceDependencyTest {
                 "    name: \"ensembl-version-number\"\n" +
                 "  }\n" +
                 "  retention: REMOVE_OLDEST\n" +
+                "  mandatory: false\n" +
                 "}\n" +
                 "artifacts {\n" +
                 "  plugin_id: \"SAMTOOLS\"\n" +
@@ -135,6 +140,7 @@ public class ResourceDependencyTest {
                 "  script_install_path: \"INSTALL_PATH_OMITTED\"\n" +
                 "  ssh_web_app_host: \"localhost\"\n" +
                 "  retention: REMOVE_OLDEST\n" +
+                "  mandatory: false\n" +
                 "}\n", cleanup(helper.getRequests()).toString());
     }
 
