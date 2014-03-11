@@ -63,6 +63,7 @@
             <xs:enumeration value="COMBINE_JVM"/>
             <xs:enumeration value="ALIGNMENT_POST_PROCESSING"/>
             <xs:enumeration value="ALIGNMENT_POST_PROCESSING_JVM"/>
+            <xs:enumeration value="TASK"/>
             <xs:enumeration value="POST"/>
         </xs:restriction>
     </xs:simpleType>
