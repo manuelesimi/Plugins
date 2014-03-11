@@ -1047,10 +1047,18 @@ function setup_plugin_functions {
 ## Script logic starts here
 #######################################################################################
 
+setup
+
+if [ -z ${TMPDIR} ]; then
+        TMPDIR="${JOB_DIR}/submit-tmp"
+        mkdir -p "${TMPDIR}"
+fi
+
 ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
 . artifacts.sh
 
-setup
+#install mandatory artifacts for all the STATEs
+install_plugin_mandatory_artifacts
 
 case ${STATE} in
     install_plugin_artifacts)
@@ -1062,34 +1070,46 @@ case ${STATE} in
         setup_align
         ;;
     bam_align)
-        install_plugin_artifacts
+        if [ "${PLUGIN_ARTIFACTS_ALIGN}" != "false" ]; then
+            install_plugin_artifacts
+        fi
         setup_plugin_functions
         fetch_input_reads
         bam_align
         ;;
     single_align)
-        install_plugin_artifacts
+        if [ "${PLUGIN_ARTIFACTS_ALIGN}" != "false" ]; then
+            install_plugin_artifacts
+        fi
         setup_plugin_functions
         run_single_align
         ;;
     single_alignment_analysis_process)
-        install_plugin_artifacts
+        if [ "${PLUGIN_ARTIFACTS_PROCESS}" != "false" ]; then
+            install_plugin_artifacts
+        fi
         setup_plugin_functions
         run_single_alignment_analysis_process
         ;;
     alignment_analysis_combine)
-        install_plugin_artifacts
+        if [ "${PLUGIN_ARTIFACTS_COMBINE}" != "false" ]; then
+            install_plugin_artifacts
+        fi
         setup_plugin_functions
         run_alignment_analysis_combine
         ;;
     diffexp)
-        install_plugin_artifacts
+        if [ "${PLUGIN_ARTIFACTS_DIFFEXP_SUBMIT}" != "false" ]; then
+            install_plugin_artifacts
+        fi
         setup_plugin_functions
         diffexp
         cleanup
         ;;
     post)
-        install_plugin_artifacts
+        if [ "${PLUGIN_ARTIFACTS_POST}" == "true" ]; then
+            install_plugin_artifacts
+        fi
         ALL_REGISTERED_TAGS=""
         setup_plugin_functions
         alignment_concat
@@ -1112,6 +1132,10 @@ case ${STATE} in
         ;;
     *)
         cd ${JOB_DIR}
+        if [ "${PLUGIN_ARTIFACTS_SUBMIT}" == "true" ]; then
+            install_plugin_artifacts
+        fi
+
         SUBMISSION=`qsub -N ${TAG}.submit -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
         checkSubmission $SUBMISSION
         append_kill_file ${SUBMISSION}
