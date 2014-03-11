@@ -62,6 +62,15 @@ public class ResourceDependencyTest {
         ArtifactRequestHelper helper = new ArtifactRequestHelper(requests);
 
         assertEquals("artifacts {\n" +
+                "  plugin_id: \"GROOVY\"\n"+
+                "  artifact_id: \"DISTRIBUTION\"\n"+
+                "  version: \"2.0.6\"\n"+
+                "  script_install_path: \"INSTALL_PATH_OMITTED\"\n"+
+                "  ssh_web_app_host: \"localhost\"\n"+
+                "  retention: REMOVE_OLDEST\n"+
+                "  mandatory: true\n"+
+                "}\n"+
+                "artifacts {\n"+
                 "  plugin_id: \"ENSEMBL_GENOMES\"\n" +
                 "  artifact_id: \"TOPLEVEL\"\n" +
                 "  version: \"1.1\"\n" +
@@ -161,7 +170,10 @@ public class ResourceDependencyTest {
 
 
         assertEquals("org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig:STAR22_GOBY:STAR 2.20 (Goby output)=1.2\n" +
-                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GOBYWEB_SERVER_SIDE:GobyWeb server side tools=2.0\n" +
+                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GOBYWEB_SERVER_SIDE:GobyWeb server side tools=2.4\n"+
+                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GROOVY:Groovy language=2.0.6\n"+
+                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:FETCH_URL:Fetch and cache URL content=1.2\n"+
+                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:BASH_LIBRARY:Library of Functions for the Bash Shell=1.0\n"+
                 "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:STAR:STAR=2.2.0\n" +
                 "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:FAI_INDEXED_GENOMES:FAI indexed genomes=1.1.1\n" +
                 "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:ENSEMBL_GENOMES:Ensembl Genomes=1.1\n" +
