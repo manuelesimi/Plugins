@@ -128,6 +128,7 @@ function setup {
         echo SGE: execution host is ${HOSTNAME}
         echo SGE: job identifier is ${JOB_ID}
         echo SGE: job name is ${JOB_NAME}
+        echo SGE: job current state = ${STATE}
         echo SGE: task number is ${SGE_TASK_ID}
         echo SGE: current home directory is ${SGE_O_HOME}
         echo SGE: scratch directory is ${TMPDIR}
@@ -1049,27 +1050,26 @@ function setup_plugin_functions {
 
 setup
 
-if [ -z ${TMPDIR} ]; then
-        TMPDIR="${JOB_DIR}/submit-tmp"
-        mkdir -p "${TMPDIR}"
-fi
-
 ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
-. artifacts.sh
+. ${JOB_DIR}/artifacts.sh
 
-#install mandatory artifacts for all the STATEs
-install_plugin_mandatory_artifacts
 
 case ${STATE} in
     install_plugin_artifacts)
+        install_plugin_mandatory_artifacts
         install_plugin_artifacts
         setup_plugin_functions
         ;;
     pre_align)
+        install_plugin_mandatory_artifacts
+        if [ "${PLUGIN_ARTIFACTS_SUBMIT}" == "true" ]; then
+            install_plugin_artifacts
+        fi
         copy_reads_from_webserver
         setup_align
         ;;
     bam_align)
+        install_plugin_mandatory_artifacts
         if [ "${PLUGIN_ARTIFACTS_ALIGN}" != "false" ]; then
             install_plugin_artifacts
         fi
@@ -1078,6 +1078,7 @@ case ${STATE} in
         bam_align
         ;;
     single_align)
+        install_plugin_mandatory_artifacts
         if [ "${PLUGIN_ARTIFACTS_ALIGN}" != "false" ]; then
             install_plugin_artifacts
         fi
@@ -1085,6 +1086,7 @@ case ${STATE} in
         run_single_align
         ;;
     single_alignment_analysis_process)
+        install_plugin_mandatory_artifacts
         if [ "${PLUGIN_ARTIFACTS_PROCESS}" != "false" ]; then
             install_plugin_artifacts
         fi
@@ -1092,6 +1094,7 @@ case ${STATE} in
         run_single_alignment_analysis_process
         ;;
     alignment_analysis_combine)
+        install_plugin_mandatory_artifacts
         if [ "${PLUGIN_ARTIFACTS_COMBINE}" != "false" ]; then
             install_plugin_artifacts
         fi
@@ -1099,7 +1102,8 @@ case ${STATE} in
         run_alignment_analysis_combine
         ;;
     diffexp)
-        if [ "${PLUGIN_ARTIFACTS_DIFFEXP_SUBMIT}" != "false" ]; then
+        install_plugin_mandatory_artifacts
+        if [ "${PLUGIN_ARTIFACTS_SUBMIT}" == "true" ]; then
             install_plugin_artifacts
         fi
         setup_plugin_functions
@@ -1107,6 +1111,7 @@ case ${STATE} in
         cleanup
         ;;
     post)
+        install_plugin_mandatory_artifacts
         if [ "${PLUGIN_ARTIFACTS_POST}" == "true" ]; then
             install_plugin_artifacts
         fi
@@ -1132,9 +1137,10 @@ case ${STATE} in
         ;;
     *)
         cd ${JOB_DIR}
-        if [ "${PLUGIN_ARTIFACTS_SUBMIT}" == "true" ]; then
-            install_plugin_artifacts
-        fi
+        #install_plugin_mandatory_artifacts
+        #if [ "${PLUGIN_ARTIFACTS_SUBMIT}" == "true" ]; then
+        #    install_plugin_artifacts
+        #fi
 
         SUBMISSION=`qsub -N ${TAG}.submit -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
         checkSubmission $SUBMISSION

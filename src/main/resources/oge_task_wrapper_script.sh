@@ -23,7 +23,10 @@ function install_resources {
     #include needed function for resources installation
     ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
     . %JOB_DIR%/artifacts.sh
-    install_plugin_artifacts
+     install_plugin_mandatory_artifacts
+     if [ "${PLUGIN_ARTIFACTS_TASK}" != "false" ]; then
+           install_plugin_artifacts
+     fi
 }
 
 
@@ -94,6 +97,7 @@ function setup {
     echo SGE: execution host is ${HOSTNAME}
     echo SGE: job identifier is ${JOB_ID}
     echo SGE: job name is ${JOB_NAME}
+    echo SGE: job current state = ${STATE}
     echo SGE: task number is ${SGE_TASK_ID}
     echo SGE: current home directory is ${SGE_O_HOME}
     echo SGE: scratch directory is ${TMPDIR}
