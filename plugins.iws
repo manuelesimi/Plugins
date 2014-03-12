@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -241,7 +236,7 @@
       <file leaf-file-name="oge_job_script.sh" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="104" selection-start="3018" selection-end="3018" vertical-scroll-proportion="0.61325115" vertical-offset="757" max-vertical-offset="17340">
+            <state line="446" column="114" selection-start="18137" selection-end="18137" vertical-scroll-proportion="0.6934189" vertical-offset="6258" max-vertical-offset="17340">
               <folding />
             </state>
           </provider>
@@ -345,9 +340,9 @@
         <option value="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/SAMTOOLS_0.1.18/config.xml" />
         <option value="$PROJECT_DIR$/test-data/plugin-root-3/plugins/aligners/STAR22_GOBY/config.xml" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
         <option value="$PROJECT_DIR$/schemas/common.xsd" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
+        <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
       </list>
     </option>
   </component>
@@ -2276,7 +2271,7 @@
       <workItem from="1392130398638" duration="39357000" />
       <workItem from="1393280529750" duration="10437000" />
       <workItem from="1393357697883" duration="36703000" />
-      <workItem from="1394134749925" duration="50192000" />
+      <workItem from="1394134749925" duration="53908000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3826,15 +3821,19 @@
       <created>1394553954994</created>
       <updated>1394553954995</updated>
     </task>
-    <option name="localTasksCounter" value="388" />
+    <task id="LOCAL-00388" summary="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource.&#10;">
+      <created>1394567368090</created>
+      <updated>1394567368090</updated>
+    </task>
+    <option name="localTasksCounter" value="389" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182312000" />
+    <option name="totallyTimeSpent" value="186028000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296371" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3853,7 +3852,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3391089" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29388404" sideWeight="0.31556803" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17712471" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17712471" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29388404" sideWeight="0.68443197" order="0" side_tool="false" content_ui="combo" />
@@ -3886,7 +3885,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Add and manage sharedWith argument within fileset registration." />
     <MESSAGE value="Use AdminFileSetAreas to fetch fileset metadata at job submission time. This allows to access and validate instances shared with the job owner." />
     <MESSAGE value="Rename the OutputSchema property in AlignmentAnalysisConfig. Gobyweb (groovy) resolved the previous name (output) with the access method getOutput() that instead relates to the IOExecutableSchema." />
     <MESSAGE value="Add a new optional parameter to plugins-submit-job to indicate the tag to be assigned to the job.&#10;" />
@@ -3911,7 +3909,8 @@
     <MESSAGE value="Change oge_job_script.sh to invoke install_plugin_mandatory_artifacts and install_plugin_artifacts at each job state according to the plugin's configuration." />
     <MESSAGE value="Several fixes on artifacts management in oge_job_script.sh and oge_task_wrapper_script.sh. Align scope enumeration in common.xsd to the job states managed in the oge scripts." />
     <MESSAGE value="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource and schemas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource and schemas." />
+    <MESSAGE value="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -4285,7 +4284,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="104" selection-start="3018" selection-end="3018" vertical-scroll-proportion="0.61325115" vertical-offset="757" max-vertical-offset="17340">
+        <state line="446" column="114" selection-start="18137" selection-end="18137" vertical-scroll-proportion="0.6934189" vertical-offset="6258" max-vertical-offset="17340">
           <folding />
         </state>
       </provider>
