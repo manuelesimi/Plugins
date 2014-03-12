@@ -236,7 +236,7 @@
       <file leaf-file-name="oge_job_script.sh" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="446" column="114" selection-start="18137" selection-end="18137" vertical-scroll-proportion="0.6934189" vertical-offset="6258" max-vertical-offset="17340">
+            <state line="363" column="50" selection-start="14164" selection-end="14164" vertical-scroll-proportion="0.18780096" vertical-offset="5328" max-vertical-offset="17340">
               <folding />
             </state>
           </provider>
@@ -2271,7 +2271,7 @@
       <workItem from="1392130398638" duration="39357000" />
       <workItem from="1393280529750" duration="10437000" />
       <workItem from="1393357697883" duration="36703000" />
-      <workItem from="1394134749925" duration="53908000" />
+      <workItem from="1394134749925" duration="54151000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3825,15 +3825,19 @@
       <created>1394567368090</created>
       <updated>1394567368090</updated>
     </task>
-    <option name="localTasksCounter" value="389" />
+    <task id="LOCAL-00389" summary="Attach to each fileset tag in the job metadata the output slot name in which it has been published.">
+      <created>1394633053000</created>
+      <updated>1394633053000</updated>
+    </task>
+    <option name="localTasksCounter" value="390" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="186028000" />
+    <option name="totallyTimeSpent" value="186271000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296371" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3885,7 +3889,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Use AdminFileSetAreas to fetch fileset metadata at job submission time. This allows to access and validate instances shared with the job owner." />
     <MESSAGE value="Rename the OutputSchema property in AlignmentAnalysisConfig. Gobyweb (groovy) resolved the previous name (output) with the access method getOutput() that instead relates to the IOExecutableSchema." />
     <MESSAGE value="Add a new optional parameter to plugins-submit-job to indicate the tag to be assigned to the job.&#10;" />
     <MESSAGE value="Fix some test cases broken by the previous commit on external job tags." />
@@ -3910,7 +3913,8 @@
     <MESSAGE value="Several fixes on artifacts management in oge_job_script.sh and oge_task_wrapper_script.sh. Align scope enumeration in common.xsd to the job states managed in the oge scripts." />
     <MESSAGE value="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource and schemas." />
     <MESSAGE value="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource.&#10;" />
+    <MESSAGE value="Attach to each fileset tag in the job metadata the output slot name in which it has been published." />
+    <option name="LAST_COMMIT_MESSAGE" value="Attach to each fileset tag in the job metadata the output slot name in which it has been published." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -4284,7 +4288,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="446" column="114" selection-start="18137" selection-end="18137" vertical-scroll-proportion="0.6934189" vertical-offset="6258" max-vertical-offset="17340">
+        <state line="363" column="50" selection-start="14164" selection-end="14164" vertical-scroll-proportion="0.18780096" vertical-offset="5328" max-vertical-offset="17340">
           <folding />
         </state>
       </provider>
