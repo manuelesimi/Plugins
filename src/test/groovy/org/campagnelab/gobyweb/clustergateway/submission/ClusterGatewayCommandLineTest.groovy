@@ -69,7 +69,7 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
-    @Test
+   // @Test
     public void runRemoteAligner() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
