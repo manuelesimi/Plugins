@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" afterPath="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" />
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Disable two test cases must be adapted to use JOB Metadata to be back working.&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
@@ -181,10 +180,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="oge_job_script.sh" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="oge_job_script.sh" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="386" column="61" selection-start="15185" selection-end="15198" vertical-scroll-proportion="-17.76923" vertical-offset="5328" max-vertical-offset="17340">
+            <state line="445" column="65" selection-start="18069" selection-end="18069" vertical-scroll-proportion="0.33226323" vertical-offset="6468" max-vertical-offset="17325">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlignmentAnalysisJobBuilder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="107" column="7" selection-start="4906" selection-end="5320" vertical-scroll-proportion="0.0" vertical-offset="1159" max-vertical-offset="3900">
               <folding />
             </state>
           </provider>
@@ -199,10 +207,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileSetManager.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="FileSetManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="138" selection-start="2117" selection-end="2117" vertical-scroll-proportion="0.58912385" vertical-offset="120" max-vertical-offset="2985">
+            <state line="49" column="9" selection-start="2117" selection-end="2117" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="2985">
               <folding />
             </state>
           </provider>
@@ -211,7 +219,7 @@
       <file leaf-file-name="AlignerRemoteSubmissionTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="9" selection-start="2461" selection-end="2461" vertical-scroll-proportion="0.0" vertical-offset="598" max-vertical-offset="1305">
+            <state line="66" column="9" selection-start="2459" selection-end="2459" vertical-scroll-proportion="0.0" vertical-offset="598" max-vertical-offset="1305">
               <folding />
             </state>
           </provider>
@@ -253,19 +261,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="artifacts.sh" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.4/artifacts.sh">
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="33" selection-start="165" selection-end="189" vertical-scroll-proportion="-4.8" vertical-offset="0" max-vertical-offset="1050">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="oge_task_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="42" selection-start="2968" selection-end="2968" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2235">
+            <state line="262" column="60" selection-start="10635" selection-end="10635" vertical-scroll-proportion="0.0" vertical-offset="3537" max-vertical-offset="4200">
               <folding />
             </state>
           </provider>
@@ -341,10 +340,10 @@
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java" />
         <option value="$PROJECT_DIR$/schemas/common.xsd" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java" />
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" />
+        <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
       </list>
     </option>
   </component>
@@ -1591,7 +1590,7 @@
       <workItem from="1392130398638" duration="39357000" />
       <workItem from="1393280529750" duration="10437000" />
       <workItem from="1393357697883" duration="36703000" />
-      <workItem from="1394134749925" duration="60122000" />
+      <workItem from="1394134749925" duration="69736000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3157,15 +3156,19 @@
       <created>1394742212816</created>
       <updated>1394742212818</updated>
     </task>
-    <option name="localTasksCounter" value="392" />
+    <task id="LOCAL-00392" summary="Disable two test cases must be adapted to use JOB Metadata to be back working.">
+      <created>1394742280439</created>
+      <updated>1394742280441</updated>
+    </task>
+    <option name="localTasksCounter" value="393" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192242000" />
+    <option name="totallyTimeSpent" value="201856000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296371" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3184,7 +3187,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3391089" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29388404" sideWeight="0.31556803" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17712471" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17712471" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29388404" sideWeight="0.68443197" order="0" side_tool="false" content_ui="combo" />
@@ -3217,7 +3220,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Fix some test cases broken by the previous commit on external job tags." />
     <MESSAGE value="Fix java memory settings in test-data for artifacts installation." />
     <MESSAGE value="Add JOB_METADATA output slot to all Executable Configs.  oge_job_script.sh has been changed to generate metadata about the job execution and push them in the JOB_METADATA slot. Job metadata are needed by GobyWeb to match the information available in the local database with the filesets pushed by the job in the remote fileset area." />
     <MESSAGE value="Change the job metadata file from txt to properties.&#10;" />
@@ -3242,7 +3244,8 @@
     <MESSAGE value="Attach to each fileset tag in the job metadata the output slot name in which it has been published." />
     <MESSAGE value="Remove an extra-space char in oge_job_script.sh." />
     <MESSAGE value="Print out to the user the stacktrace when FilesetManager fails." />
-    <option name="LAST_COMMIT_MESSAGE" value="Print out to the user the stacktrace when FilesetManager fails." />
+    <MESSAGE value="Disable two test cases must be adapted to use JOB Metadata to be back working." />
+    <option name="LAST_COMMIT_MESSAGE" value="Disable two test cases must be adapted to use JOB Metadata to be back working." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3408,23 +3411,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="239" column="74" selection-start="9924" selection-end="9924" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4200">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/schemas/common.xsd">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="145" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="3555">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="13" selection-start="873" selection-end="873" vertical-scroll-proportion="0.0" vertical-offset="1830" max-vertical-offset="3900">
           <folding />
         </state>
       </provider>
@@ -3562,16 +3551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="386" column="61" selection-start="15185" selection-end="15198" vertical-scroll-proportion="-17.76923" vertical-offset="5328" max-vertical-offset="17340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="0" selection-start="1112" selection-end="1112" vertical-scroll-proportion="0.0" vertical-offset="138" max-vertical-offset="825">
@@ -3602,7 +3581,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="9" selection-start="2461" selection-end="2461" vertical-scroll-proportion="0.0" vertical-offset="598" max-vertical-offset="1305">
+        <state line="66" column="9" selection-start="2459" selection-end="2459" vertical-scroll-proportion="0.0" vertical-offset="598" max-vertical-offset="1305">
           <folding />
         </state>
       </provider>
@@ -3616,7 +3595,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="138" selection-start="2117" selection-end="2117" vertical-scroll-proportion="0.58912385" vertical-offset="120" max-vertical-offset="2985">
+        <state line="49" column="9" selection-start="2117" selection-end="2117" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="2985">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="7" selection-start="4906" selection-end="5320" vertical-scroll-proportion="0.0" vertical-offset="1159" max-vertical-offset="3900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="262" column="60" selection-start="10635" selection-end="10635" vertical-scroll-proportion="0.0" vertical-offset="3537" max-vertical-offset="4200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="445" column="65" selection-start="18069" selection-end="18069" vertical-scroll-proportion="0.33226323" vertical-offset="6468" max-vertical-offset="17325">
           <folding />
         </state>
       </provider>
