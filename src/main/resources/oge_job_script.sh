@@ -399,7 +399,9 @@ function push_goby_alignments {
      #push back the generated alignments
      ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
 
-     REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header $RESULT_DIR/*.alignment-stats.txt $RESULT_DIR/*.tmh`
+     REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header $RESULT_DIR/*.tmh`
+
+     #TODO register $RESULT_DIR/*.alignment-stats.txt  and  $RESULT_DIR/*.sequence-variation-stats.tsv
      dieUponError "Failed to push the alignment files in the fileset area: ${REGISTERED_TAGS}"
 
      echo "The following GOBY_ALIGNMENT instance has been successfully registered: ${REGISTERED_TAGS}"

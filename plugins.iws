@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -192,7 +191,7 @@
       <file leaf-file-name="oge_job_script.sh" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="460" column="15" selection-start="18638" selection-end="18638" vertical-scroll-proportion="0.717496" vertical-offset="6453" max-vertical-offset="17340">
+            <state line="403" column="109" selection-start="15887" selection-end="15983" vertical-scroll-proportion="0.59711075" vertical-offset="5673" max-vertical-offset="17370">
               <folding />
             </state>
           </provider>
@@ -1376,7 +1375,7 @@
       <workItem from="1392130398638" duration="39357000" />
       <workItem from="1393280529750" duration="10437000" />
       <workItem from="1393357697883" duration="36703000" />
-      <workItem from="1394134749925" duration="74154000" />
+      <workItem from="1394134749925" duration="75305000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -2954,11 +2953,15 @@
       <created>1395427160745</created>
       <updated>1395427160747</updated>
     </task>
-    <option name="localTasksCounter" value="395" />
+    <task id="LOCAL-00395" summary="Add PLUGIN_ID to job metadata.">
+      <created>1395433503866</created>
+      <updated>1395433503868</updated>
+    </task>
+    <option name="localTasksCounter" value="396" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206274000" />
+    <option name="totallyTimeSpent" value="207425000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -3014,7 +3017,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Change the job metadata file from txt to properties.&#10;" />
     <MESSAGE value="Generate and push job metadata for tasks.&#10;" />
     <MESSAGE value="Add OWNER to job medatada." />
     <MESSAGE value="Add function dieUponError to task wrapper script." />
@@ -3039,7 +3041,8 @@
     <MESSAGE value="Disable two test cases must be adapted to use JOB Metadata to be back working." />
     <MESSAGE value="Rename statistics.properties to TAG.properties for JOB_METADATA to be consistent with the name assigned in the GobyWeb import utilities." />
     <MESSAGE value="Print the path of the plugin configuration file that fails to be loaded." />
-    <option name="LAST_COMMIT_MESSAGE" value="Print the path of the plugin configuration file that fails to be loaded." />
+    <MESSAGE value="Add PLUGIN_ID to job metadata." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add PLUGIN_ID to job metadata." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3413,7 +3416,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="460" column="15" selection-start="18638" selection-end="18638" vertical-scroll-proportion="0.717496" vertical-offset="6453" max-vertical-offset="17340">
+        <state line="403" column="109" selection-start="15887" selection-end="15983" vertical-scroll-proportion="0.59711075" vertical-offset="5673" max-vertical-offset="17370">
           <folding />
         </state>
       </provider>
