@@ -34,14 +34,14 @@ function install_resources {
 # param $1: space-separated list of fileset tags registered by the job
 function push_job_metadata {
    tags="$@"
-   stats_file="statistics.properties"
-   rm -rf ${JOB_DIR}/${stats_file}
-   echo "JOB=${TAG}" >> ${JOB_DIR}/${stats_file}
-   echo "OWNER=${OWNER}" >> ${JOB_DIR}/${stats_file}
-   echo "COMPLETED=`date +"%Y-%m-%d %T%z"`" >> ${JOB_DIR}/${stats_file}
-   echo "TAGS=${tags}" >> ${JOB_DIR}/${stats_file}
-   echo "SHAREDWITH=" >> ${JOB_DIR}/${stats_file}
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${stats_file}`
+   rm -rf ${JOB_DIR}/${TAG}.properties
+   echo "JOB=${TAG}" >> ${JOB_DIR}/${TAG}.properties
+   echo "OWNER=${OWNER}" >> ${JOB_DIR}/${TAG}.properties
+   echo "PLUGIN=${PLUGIN_ID}" >> ${JOB_DIR}/${stats_file}
+   echo "COMPLETED=`date +"%Y-%m-%d %T%z"`" >> ${JOB_DIR}/${TAG}.properties
+   echo "TAGS=${tags}" >> ${JOB_DIR}/${TAG}.properties
+   echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${TAG}.properties`
    echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
 }
 

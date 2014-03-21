@@ -458,6 +458,7 @@ function push_job_metadata {
    rm -rf ${JOB_DIR}/${TAG}.properties
    echo "JOB=${TAG}" >> ${JOB_DIR}/${TAG}.properties
    echo "OWNER=${OWNER}" >> ${JOB_DIR}/${TAG}.properties
+   echo "PLUGIN=${PLUGIN_ID}" >> ${JOB_DIR}/${stats_file}
    echo "COMPLETED=`date +"%Y-%m-%d %T%z"`" >> ${JOB_DIR}/${TAG}.properties
    echo "TAGS=${tags}" >> ${JOB_DIR}/${TAG}.properties
    echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
