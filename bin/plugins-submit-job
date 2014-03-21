@@ -6,10 +6,11 @@ if [[ $OSTYPE == "cygwin" ]]; then
 fi
 PARENT_DIR=`dirname ${WORKING_DIR}`
 LIB_DIR=${PARENT_DIR}/lib
+CLASSES_DIR=${PARENT_DIR}/target/classes
 CONFIG_DIR=${PARENT_DIR}/config
 TARGET_DIR=${PARENT_DIR}/target
 SNAPSHOT_JAR="${TARGET_DIR}/plugins-sdk.jar"
 JAVA_OPTIONS="-Xmx2g"
 
-java $JAVA_OPTIONS -Dlog4j.configuration=file:${CONFIG_DIR}/log4j.properties -cp ${LIB_DIR}/plugins-sdk.jar:${SNAPSHOT_JAR} \
+java $JAVA_OPTIONS -Dlog4j.configuration=file:${CONFIG_DIR}/log4j.properties -cp ${CLASSES_DIR}:${LIB_DIR}/plugins-sdk.jar:${SNAPSHOT_JAR} \
 org.campagnelab.gobyweb.clustergateway.submission.ClusterGateway "$@"
