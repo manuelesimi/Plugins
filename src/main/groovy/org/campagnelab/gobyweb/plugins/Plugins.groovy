@@ -377,7 +377,7 @@ public class Plugins {
             }
             pluginErrorMessage = "JAXBException when unmarshaling the plugin in $pluginConfigFilePath";
             errors.add(e.getMessage())
-            LOG.error("JAXBException when unmarshaling a plugin", e)
+            LOG.error("JAXBException when unmarshaling plugin config at ${fileToUnmarshal.getAbsolutePath()}", e)
         }
         [config, validationCollector, errors, fileToUnmarshal]
     }
