@@ -89,7 +89,7 @@ abstract public class AbstractSubmitter implements Submitter {
      */
     @Override
     public void assignTagToJob(String jobTag) {
-       this.jobTag = jobTag;
+        this.jobTag = jobTag;
     }
 
 
@@ -111,29 +111,11 @@ abstract public class AbstractSubmitter implements Submitter {
         return result.toArray(new PluginFile[result.size()]);
     }
 
-    /**
-     * Copy resource files to a destination directory. Handles directories appropriately.
-     *
-     * @param executableConfig
-     * @param tempDir
-     * @throws IOException
-     */
-    protected void copyResourceFiles(ExecutableConfig executableConfig, File tempDir) throws IOException {
-        // copy all the resources' files in the local working dir
-        logger.info("Collecting files from dependencies...");
-        for (PluginFile file : collectResourceFiles(executableConfig)) {
-            if (file.isDirectory) {
-                FileUtils.copyDirectory(file.getLocalFile(), new File(tempDir, file.getLocalFile().getName()));
-            } else {
-                Files.copy(file.getLocalFile(), new File(tempDir, file.getLocalFile().getName()));
-            }
-        }
-    }
 
     protected void copyAutoOptions(ExecutableConfig executableConfig, File tempDir, JobRuntimeEnvironment environment) throws IOException {
         logger.info("Generating the job environment...");
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
-        File autoOptionsFile = helper.generateAutoOptionsFile(executableConfig,null, null, environment);
+        File autoOptionsFile = helper.generateAutoOptionsFile(executableConfig, null, null, environment);
         Files.copy(autoOptionsFile, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "auto-options.sh")));
     }
 
@@ -155,9 +137,9 @@ abstract public class AbstractSubmitter implements Submitter {
         File installArtifactPbRequests;
         if ((config.getClass().isAssignableFrom(ExecutableConfig.class)) //same class
                 || (ExecutableConfig.class.isInstance(config)))  //or a sub-class
-            installArtifactPbRequests = helper.createPbRequestFile((ExecutableConfig)config);
-         else
-            installArtifactPbRequests = helper.createPbRequestFile((ResourceConfig)config);
+            installArtifactPbRequests = helper.createPbRequestFile((ExecutableConfig) config);
+        else
+            installArtifactPbRequests = helper.createPbRequestFile((ResourceConfig) config);
 
         if (installArtifactPbRequests != null) {
             Files.copy(installArtifactPbRequests, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "artifacts-install-requests.pb")));
@@ -167,7 +149,8 @@ abstract public class AbstractSubmitter implements Submitter {
 
     /**
      * Completes job environment with the information available in the submitter.
-     * @param job the job
+     *
+     * @param job    the job
      * @param jobDir the target     execution directory
      */
     protected void completeJobEnvironment(ExecutableJob job, String jobDir) {
@@ -200,14 +183,15 @@ abstract public class AbstractSubmitter implements Submitter {
             environment.put("QUEUE_WRITER", "${RESOURCES_GROOVY_EXECUTABLE} ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} " + environment.getFromUndecorated("QUEUE_WRITER_POSTFIX"));
         } else {
             environment.put("QUEUE_WRITER", "${RESOURCES_GROOVY_EXECUTABLE} ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} --handler-service PluginsSDK --queue-message-dir "
-                + queueMessageDir.getAbsolutePath());
+                    + queueMessageDir.getAbsolutePath());
         }
         environment.put("ARTIFACT_REPOSITORY_DIR", artifactRepositoryPath);
         environment.put("FILESET_TARGET_DIR", "${TMPDIR}");
         environment.put("FILESET_COMMAND",
                 String.format("java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} -Dlog4j.configuration=file:${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${FILESET_TARGET_DIR} --pb-file %s/filesets.pb --job-tag %s",
                         jobDir,
-                        job.getTag()));
+                        job.getTag())
+        );
         if (job.isParallel()) {
             environment.put("CPU_REQUIREMENTS", "#$ -l excl=true");
         } else {
@@ -242,6 +226,31 @@ abstract public class AbstractSubmitter implements Submitter {
                     logger.trace(String.format("Marking %s with executable flag.", to.getAbsolutePath()));
                     to.setExecutable(true);
                 }
+            }
+        }
+    }
+
+    /**
+     * Copy resource files to a destination directory. Handles directories appropriately.
+     *
+     * @param executableConfig
+     * @param tempDir
+     * @throws IOException
+     */
+    protected void copyResourceFiles(ExecutableConfig executableConfig, File tempDir) throws IOException {
+        // copy all the resources' files in the local working dir
+        logger.info("Collecting files from dependencies...");
+        for (PluginFile file : collectResourceFiles(executableConfig)) {
+            if (file.isDirectory) {
+                FileUtils.copyDirectory(file.getLocalFile(), new File(tempDir, file.getLocalFile().getName()));
+            } else {
+                File to = new File(tempDir, file.getLocalFile().getName());
+                Files.copy(file.getLocalFile(), to);
+                if (file.getLocalFile().canExecute()) {
+                    logger.trace(String.format("Marking %s with executable flag.", to.getAbsolutePath()));
+                    to.setExecutable(true);
+                }
+                Files.copy(file.getLocalFile(), new File(tempDir, file.getLocalFile().getName()));
             }
         }
     }
@@ -319,7 +328,7 @@ abstract public class AbstractSubmitter implements Submitter {
                 .replaceAll("%%JOB_DIR%%", jobArea.getBasename(job.getTag()))
                 .replaceAll("%%TAG%%", job.getTag())
                 .replaceAll("%%ARTIFACT_REPOSITORY_DIR%%", artifactRepositoryPath)
-                .replaceAll("%%PLUGIN_ID%%",job.getSourceConfig().getId())
+                .replaceAll("%%PLUGIN_ID%%", job.getSourceConfig().getId())
                 .replaceAll("%%PLUGIN_VERSION%%", job.getSourceConfig().getVersion());
     }
 
@@ -427,15 +436,16 @@ abstract public class AbstractSubmitter implements Submitter {
 
     /**
      * Runs preDeployment scripts declared in the job plugin's configuration.
+     *
      * @param job
      * @param jobDir
      */
-    protected void runPreDeploymentScripts (ExecutableJob job, File jobDir) throws Exception{
+    protected void runPreDeploymentScripts(ExecutableJob job, File jobDir) throws Exception {
         Execute execute = job.getSourceConfig().getExecute();
         if (execute != null) {
             for (Script script : execute.scripts()) {
                 if (script.phase.equalsIgnoreCase("pre-deployment")) {
-                    PluginScriptExecutor.executeScript(job,script,jobDir);
+                    PluginScriptExecutor.executeScript(job, script, jobDir);
                 }
             }
         }
