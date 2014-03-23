@@ -121,6 +121,11 @@ function setup {
 
 setup
 
+    # Install artifacts needed by this task:
+    ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
+    . artifacts.sh
+    install_plugin_artifacts
+
 case ${STATE} in
     task)
         setup_task_functions

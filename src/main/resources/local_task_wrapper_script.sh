@@ -7,6 +7,15 @@ function setup_task_functions {
     . ${JOB_DIR}/script.sh
 
 }
+function install_resources {
+     #include needed function for resources installation
+     ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
+     . %JOB_DIR%/artifacts.sh
+      install_plugin_mandatory_artifacts
+      if [ "${PLUGIN_ARTIFACTS_TASK}" != "false" ]; then
+            install_plugin_artifacts
+      fi
+}
 
 function run_task {
    plugin_task
@@ -37,6 +46,8 @@ function run_task {
 
     fi
     setup_task_functions
+    install_resources
+
 
     LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"
     run_task 2>&1 |tee ${LOG_FILE}
@@ -44,5 +55,5 @@ function run_task {
       echo "Task execution completed successfully." >>${LOG_FILE}
 
     else
-      echo "An error occured"
+      echo "An error occurred"
     fi
