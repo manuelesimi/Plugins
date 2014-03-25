@@ -415,15 +415,25 @@ function push_aligner_results {
    echo . Running push_other_results
    echo .
 
-   #push back TSV
-   echo Pushing TSV
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} TSV: $RESULT_DIR/*.tsv`
+   #push back ALIGNMENT_BED
+   echo Pushing ALIGNMENT_BED
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} ALIGNMENT_BED: $RESULT_DIR/*-all.bed.gz`
    if [ $? != 0 ]; then
-        echo "Failed to push back TSV files: ${REGISTERED_TAGS}"
+        echo "Failed to push back ALIGNMENT_BED files: ${REGISTERED_TAGS}"
    fi
-   echo "The following TSV instance has been successfully registered: ${REGISTERED_TAGS}"
+   echo "The following ALIGNMENT_BED instance has been successfully registered: ${REGISTERED_TAGS}"
+   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_BED:[${REGISTERED_TAGS}]"
 
-   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} TSV:[${REGISTERED_TAGS}]"
+   #push back ALIGNMENT_WIG
+   echo Pushing ALIGNMENT_WIG
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} ALIGNMENT_WIG: $RESULT_DIR/*-all.wig.gz`
+   if [ $? != 0 ]; then
+        echo "Failed to push back ALIGNMENT_WIG files: ${REGISTERED_TAGS}"
+   fi
+   echo "The following ALIGNMENT_WIG instance has been successfully registered: ${REGISTERED_TAGS}"
+
+   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_WIG:[${REGISTERED_TAGS}]"
+
    #push COUNTS back
    echo Pushing COUNTS
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} COUNTS: $RESULT_DIR/*.counts`
@@ -433,16 +443,25 @@ function push_aligner_results {
    echo "The following COUNTS instance has been successfully registered: ${REGISTERED_TAGS}"
    ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} COUNTS:[${REGISTERED_TAGS}]"
 
-    #push GZ back
-   echo Pushing GZs
-   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} GZ: $RESULT_DIR/*.gz`
+   #push ALIGNMENT_ALL_FILES back
+   echo Pushing ALIGNMENT_ALL_FILES
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} ALIGNMENT_ALL_FILES: $RESULT_DIR/*-all-files.zip`
    if [ $? != 0 ]; then
-        echo "Failed to push back GZ files: ${REGISTERED_TAGS}"
+        echo "Failed to push back ALIGNMENT_ALL_FILES files: ${REGISTERED_TAGS}"
    fi
-   echo "The following GZ instance has been successfully registered: ${REGISTERED_TAGS}"
-   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} GZ:[${REGISTERED_TAGS}]"
+   echo "The following ALIGNMENT_ALL_FILES instance has been successfully registered: ${REGISTERED_TAGS}"
+   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_ALL_FILES:[${REGISTERED_TAGS}]"
 
-    #push GZ back
+    #push ALIGNMENT_SEQUENCE_VARIATION_STATS back
+   echo Pushing ALIGNMENT_ALL_FILES
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} ALIGNMENT_SEQUENCE_VARIATION_STATS: $RESULT_DIR/*.sequence-variation-stats.tsv    `
+   if [ $? != 0 ]; then
+        echo "Failed to push back ALIGNMENT_SEQUENCE_VARIATION_STATS files: ${REGISTERED_TAGS}"
+   fi
+   echo "The following ALIGNMENT_SEQUENCE_VARIATION_STATS instance has been successfully registered: ${REGISTERED_TAGS}"
+   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_SEQUENCE_VARIATION_STATS:[${REGISTERED_TAGS}]"
+
+    #push STATS back
    echo Pushing STATS
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} STATS: $RESULT_DIR/*.stats`
    if [ $? != 0 ]; then
@@ -450,6 +469,15 @@ function push_aligner_results {
    fi
    echo "The following STATS instance has been successfully registered: ${REGISTERED_TAGS}"
    ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} STATS:[${REGISTERED_TAGS}]"
+
+    #push ALIGNMENT_STATS back
+   echo Pushing ALIGNMENT_STATS
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} ALIGNMENT_STATS: $RESULT_DIR/*.alignment-stats.txt`
+   if [ $? != 0 ]; then
+        echo "Failed to push back ALIGNMENT_STATS files: ${REGISTERED_TAGS}"
+   fi
+   echo "The following ALIGNMENT_STATS instance has been successfully registered: ${REGISTERED_TAGS}"
+   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_STATS:[${REGISTERED_TAGS}]"
 
 }
 

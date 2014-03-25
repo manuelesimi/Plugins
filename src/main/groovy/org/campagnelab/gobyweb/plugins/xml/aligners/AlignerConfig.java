@@ -214,29 +214,53 @@ public class AlignerConfig extends ExecutableConfig {
         countsSlot.seType(countsType);
         slots.add(countsSlot);
 
-        Slot tsvSlot = new Slot();
-        tsvSlot.setName("TSV");
-        Slot.IOFileSetRef tsvType = new Slot.IOFileSetRef();
-        tsvType.id = PluginLoaderSettings.TSV[0];
-        tsvType.versionAtLeast = PluginLoaderSettings.TSV[1];
-        tsvType.versionExactly = PluginLoaderSettings.TSV[2];
-        tsvType.versionAtMost = PluginLoaderSettings.TSV[3];
-        tsvType.minOccurs = Integer.toString(1);
-        tsvType.maxOccurs = Integer.toString(1);
-        tsvSlot.seType(tsvType);
-        slots.add(tsvSlot);
-
         Slot gzSlot = new Slot();
-        gzSlot.setName("GZ");
+        gzSlot.setName("ALIGNMENT_ALL_FILES");
         Slot.IOFileSetRef gzType = new Slot.IOFileSetRef();
-        gzType.id = PluginLoaderSettings.GZ[0];
-        gzType.versionAtLeast = PluginLoaderSettings.GZ[1];
-        gzType.versionExactly = PluginLoaderSettings.GZ[2];
-        gzType.versionAtMost = PluginLoaderSettings.GZ[3];
-        gzType.minOccurs = Integer.toString(2);
-        gzType.maxOccurs = Integer.toString(2);
+        gzType.id = PluginLoaderSettings.ALIGNMENT_ALL_FILES[0];
+        gzType.versionAtLeast = PluginLoaderSettings.ALIGNMENT_ALL_FILES[1];
+        gzType.versionExactly = PluginLoaderSettings.ALIGNMENT_ALL_FILES[2];
+        gzType.versionAtMost = PluginLoaderSettings.ALIGNMENT_ALL_FILES[3];
+        gzType.minOccurs = Integer.toString(0);
+        gzType.maxOccurs = Integer.toString(1);
         gzSlot.seType(gzType);
         slots.add(gzSlot);
+
+        Slot bedSlot = new Slot();
+        bedSlot.setName("ALIGNMENT_BED");
+        Slot.IOFileSetRef bedType = new Slot.IOFileSetRef();
+        bedType.id = PluginLoaderSettings.ALIGNMENT_BED[0];
+        bedType.versionAtLeast = PluginLoaderSettings.ALIGNMENT_BED[1];
+        bedType.versionExactly = PluginLoaderSettings.ALIGNMENT_BED[2];
+        bedType.versionAtMost = PluginLoaderSettings.ALIGNMENT_BED[3];
+        bedType.minOccurs = Integer.toString(0);
+        bedType.maxOccurs = Integer.toString(1);
+        bedSlot.seType(bedType);
+        slots.add(bedSlot);
+
+        Slot wigSlot = new Slot();
+        wigSlot.setName("ALIGNMENT_WIG");
+        Slot.IOFileSetRef wigType = new Slot.IOFileSetRef();
+        wigType.id = PluginLoaderSettings.ALIGNMENT_WIG[0];
+        wigType.versionAtLeast = PluginLoaderSettings.ALIGNMENT_WIG[1];
+        wigType.versionExactly = PluginLoaderSettings.ALIGNMENT_WIG[2];
+        wigType.versionAtMost = PluginLoaderSettings.ALIGNMENT_WIG[3];
+        wigType.minOccurs = Integer.toString(0);
+        wigType.maxOccurs = Integer.toString(1);
+        wigSlot.seType(wigType);
+        slots.add(wigSlot);
+
+        Slot astatsSlot = new Slot();
+        astatsSlot.setName("ALIGNMENT_STATS");
+        Slot.IOFileSetRef astatsType = new Slot.IOFileSetRef();
+        astatsType.id = PluginLoaderSettings.ALIGNMENT_STATS[0];
+        astatsType.versionAtLeast = PluginLoaderSettings.ALIGNMENT_STATS[1];
+        astatsType.versionExactly = PluginLoaderSettings.ALIGNMENT_STATS[2];
+        astatsType.versionAtMost = PluginLoaderSettings.ALIGNMENT_STATS[3];
+        astatsType.minOccurs = Integer.toString(0);
+        astatsType.maxOccurs = Integer.toString(1);
+        astatsSlot.seType(astatsType);
+        slots.add(astatsSlot);
 
         Slot statsSlot = new Slot();
         statsSlot.setName("STATS");
@@ -248,6 +272,18 @@ public class AlignerConfig extends ExecutableConfig {
         statsType.minOccurs = Integer.toString(0);
         statsType.maxOccurs = Integer.toString(1);
         statsSlot.seType(statsType);
+        slots.add(statsSlot);
+
+        Slot vstatsSlot = new Slot();
+        vstatsSlot.setName("ALIGNMENT_SEQUENCE_VARIATION_STATS");
+        Slot.IOFileSetRef vstatsType = new Slot.IOFileSetRef();
+        vstatsType.id = PluginLoaderSettings.ALIGNMENT_SEQUENCE_VARIATION_STATS[0];
+        vstatsType.versionAtLeast = PluginLoaderSettings.ALIGNMENT_SEQUENCE_VARIATION_STATS[1];
+        vstatsType.versionExactly = PluginLoaderSettings.ALIGNMENT_SEQUENCE_VARIATION_STATS[2];
+        vstatsType.versionAtMost = PluginLoaderSettings.ALIGNMENT_SEQUENCE_VARIATION_STATS[3];
+        vstatsType.minOccurs = Integer.toString(0);
+        vstatsType.maxOccurs = Integer.toString(1);
+        vstatsSlot.seType(vstatsType);
         slots.add(statsSlot);
     }
 }
