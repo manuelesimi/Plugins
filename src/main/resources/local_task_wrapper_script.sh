@@ -17,8 +17,25 @@ function install_resources {
       fi
 }
 
+# Pushes some job metadata to the fileset area
+# param $1: space-separated list of fileset tags registered by the job
+function push_job_metadata {
+   tags="$@"
+   rm -rf ${JOB_DIR}/${TAG}.properties
+   echo "JOB=${TAG}" >> ${JOB_DIR}/${TAG}.properties
+   echo "OWNER=${OWNER}" >> ${JOB_DIR}/${TAG}.properties
+   echo "PLUGIN=${PLUGIN_ID}" >> ${JOB_DIR}/${stats_file}
+   echo "COMPLETED=`date +"%Y-%m-%d %T%z"`" >> ${JOB_DIR}/${TAG}.properties
+   echo "TAGS=${tags}" >> ${JOB_DIR}/${TAG}.properties
+   echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
+   REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${TAG}.properties`
+   echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
+}
+
 function run_task {
+   ALL_REGISTERED_TAGS=""
    plugin_task
+   push_job_metadata ${ALL_REGISTERED_TAGS}
 }
 
     #in case the script is re-run from the command line, we need to set here the JOB dir
