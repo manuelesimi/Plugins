@@ -151,7 +151,7 @@ public abstract class SubmissionRequest {
 
     /**
      * Submits the request to the Cluster Gateway.
-     * @param fromAPI if true, it throws the Exceptions, otherwise the exit code
+     * @param fromAPI if true, it throws the Exceptions, otherwise returns the exit code
      * @return 0 if the request was successfully submitted, anything else if it failed
      * @throws Exception
      */
@@ -227,6 +227,7 @@ public abstract class SubmissionRequest {
             submitter.setSubmissionHostname(config.getString("artifact-server"));
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
             submitter.assignTagToJob(config.userSpecified("job-tag")? config.getString("job-tag"):ICBStringUtils.generateRandomString());
+            submitter.setFileSetAreaReference(config.getString("fileset-area"));
             if (config.userSpecified("env-script")) {
                 submitter.setEnvironmentScript(config.getFile("env-script").getAbsolutePath());
             } else {

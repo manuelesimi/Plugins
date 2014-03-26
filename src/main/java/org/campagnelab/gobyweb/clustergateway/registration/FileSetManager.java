@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.commons.lang.StringUtils;
@@ -64,11 +65,33 @@ public class FileSetManager {
      * @return the list of tags in case of register action, an empty list for the other operations
      * @throws Exception
      */
+    public static List<String> processAPI(String[] args) throws Exception {
+        return internalProcess(args,true);
+    }
+
+
     public static List<String> process(String[] args) throws Exception {
+        return internalProcess(args,false);
+    }
+    /**
+     * Processes the caller requests.
+     * @param args the arguments passed on the command line
+     * @param fromAPI if true, it throws the Exceptions, otherwise returns the exit code
+     * @return the list of tags in case of register action, an empty list for the other operations
+     * @throws Exception
+     */
+    public static List<String> internalProcess(String[] args, boolean fromAPI) throws Exception {
         List<String> returned_values = new ArrayList<String>();
         JSAPResult config = jsapHelper.configure(args);
-        if (config == null)
-            System.exit(1);
+        if (config == null) {
+            if (fromAPI)
+                throw new Exception("Failed to parse the input arguments. Errors returned: " + Joiner.on("\n").join(jsapHelper.getErrors()));
+            else {
+                System.err.println("Failed to parse the input arguments. Errors returned: " + Joiner.on("\n").join(jsapHelper.getErrors()));
+                return Collections.EMPTY_LIST;
+            }
+        }
+
 
         //create the reference to the storage area
         FileSetArea storageArea = null;
@@ -77,7 +100,8 @@ public class FileSetManager {
                     config.getString("fileset-area"),
                     config.userSpecified("owner")? config.getString("owner"): System.getProperty("user.name"));
         } catch (IOException ioe) {
-            throw ioe;
+            dieUponError(fromAPI, ioe, "Failed to connect to the FileSet Area.");
+            return Collections.EMPTY_LIST;
         }
 
         //load plugin configurations
@@ -93,8 +117,7 @@ public class FileSetManager {
                 throw new Exception();
             }
         } catch (Exception e) {
-            logger.error("Failed to load plugins definitions",e);
-            throw new Exception(e);
+            dieUponError(true, e, "Failed to load plugins definitions");
         }
 
         List<String> errors = new ArrayList<String>();
@@ -117,7 +140,9 @@ public class FileSetManager {
                 for (String message : errors) {
                     logger.error(message);
                 }
-                throw new Exception();
+                dieUponError(true, new Exception("Failed to register the fileset instances. Errors returned: "
+                        + Joiner.on("\n").join(errors)), "Failed to load plugins definitions");
+
             }
         } else if (config.getString("action").equalsIgnoreCase("unregister")) {
             fileset.unregister(config.getString("tag"));
@@ -132,7 +157,9 @@ public class FileSetManager {
                     for (String message : errors) {
                         logger.error(message);
                     }
-                    throw new Exception();
+                    dieUponError(true, new Exception("Failed to edit attributes. Errors returned: "
+                            + Joiner.on("\n").join(errors)), "Failed to edit attributes.");
+
                 }
             }
             if (config.getStringArray("sharedWith").length > 0) {
@@ -143,12 +170,20 @@ public class FileSetManager {
                     for (String message : errors) {
                         logger.error(message);
                     }
-                    throw new Exception();
+                    dieUponError(true, new Exception("Failed to edit shared users. Errors returned: "
+                            + Joiner.on("\n").join(errors)), "Failed to edit shared users.");
                 }
             }
 
         }
         return returned_values;
+    }
+
+    private  static <E extends Exception> void dieUponError(boolean fromAPI, E exception, String message) throws E {
+        if (fromAPI)
+            throw exception;
+        else
+            logger.error(message, exception);
     }
 
     /**

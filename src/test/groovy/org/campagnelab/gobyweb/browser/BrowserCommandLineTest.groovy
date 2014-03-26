@@ -47,6 +47,24 @@ class BrowserCommandLineTest {
 
     }
 
+    @Test(expected = Exception.class)
+    public void testRegistrationWithError() {
+        String[] attributes = new String[1];
+        attributes[0] = "KEY1=VALUE1";
+
+        String[] users = new String[3];
+        users[0] = "me";
+        users[1] = "myself";
+        users[2] = "I";
+
+        assertEquals(1, FileSetManager.processAPI(FileSetCommandLineTest.buildFileRegistrationArgs(
+                "--tag XXXXXX8 " +
+                        "COMPACT_READS: does/not/exist",
+                attributes, users
+        )).size());
+
+    }
+
     @Test
     public void testLocalBrowserByTagOnlyTags() {
         String[] attributes = new String[1];
@@ -107,7 +125,7 @@ class BrowserCommandLineTest {
         String[] users3 = new String[1];
         users3[0] = "me";
 
-        assertEquals(1, FileSetManager.process(FileSetCommandLineTest.buildFileRegistrationArgs(
+        assertEquals(1, FileSetManager.processAPI(FileSetCommandLineTest.buildFileRegistrationArgs(
                 "--tag XXXXX12 " +
                         "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/CASE2_FILE1.compact-reads",
                 attributes3, users3
