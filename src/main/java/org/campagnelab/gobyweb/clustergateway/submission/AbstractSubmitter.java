@@ -55,6 +55,8 @@ abstract public class AbstractSubmitter implements Submitter {
 
     protected String jobTag = null;
 
+    protected String fileSetAreaReference;
+
 
     protected AbstractSubmitter(PluginRegistry registry) throws IOException {
         this.registry = registry;
@@ -97,6 +99,12 @@ abstract public class AbstractSubmitter implements Submitter {
     public void setRemoteArtifactRepositoryPath(String artifactRepositoryPath) {
         assert artifactRepositoryPath != null : "artifactRepositoryPath cannot be null";
         this.artifactRepositoryPath = artifactRepositoryPath;
+    }
+
+    @Override
+    public void setFileSetAreaReference(String fileSetAreaReference) {
+        assert fileSetAreaReference != null : "fileSetAreaReference cannot be null";
+        this.fileSetAreaReference = fileSetAreaReference;
     }
 
     /**
@@ -186,6 +194,7 @@ abstract public class AbstractSubmitter implements Submitter {
                     + queueMessageDir.getAbsolutePath());
         }
         environment.put("ARTIFACT_REPOSITORY_DIR", artifactRepositoryPath);
+        environment.put("FILESET_AREA", String.format("%s/%s",fileSetAreaReference, job.getOwnerId()));
         environment.put("FILESET_TARGET_DIR", "${TMPDIR}");
         environment.put("FILESET_COMMAND",
                 String.format("java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} -Dlog4j.configuration=file:${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${FILESET_TARGET_DIR} --pb-file %s/filesets.pb --job-tag %s",
