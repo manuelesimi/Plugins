@@ -150,10 +150,11 @@ public abstract class SubmissionRequest {
 
     /**
      * Submits the request to the Cluster Gateway.
+     * @param fromAPI if true, it throws the Exceptions, otherwise the exit code
      * @return 0 if the request was successfully submitted, anything else if it failed
      * @throws Exception
      */
-    protected int submitRequest() throws Exception {
+    protected int submitRequest(boolean fromAPI) throws Exception {
         logger.info("Analyzing the submission request...");
         List<Parameter> interfaceParameters = new ArrayList<Parameter>();
         if (this.executableConfig != null) {
@@ -182,7 +183,7 @@ public abstract class SubmissionRequest {
         this.addInputSlots(interfaceParameters);
         JSAPResult config = jsapHelper.configure(commandLineArguments, interfaceParameters);
         if (config == null)
-            return 1;
+            return (1);
 
         //add the parameters to the options map
         for (Parameter parameter : interfaceParameters) {
@@ -198,7 +199,10 @@ public abstract class SubmissionRequest {
             jobArea = AreaFactory.createJobArea(jobAreaLocation, owner);
         } catch (IOException ioe) {
             logger.error(ioe);
-            return (1);
+            if (fromAPI)
+                throw ioe;
+            else
+                return (2);
         }
 
         try {
@@ -232,8 +236,10 @@ public abstract class SubmissionRequest {
             return this.submit(config,actions);
         } catch (Exception e) {
             logger.error("Failed to manage the requested action. " + e.getMessage());
-            return (1);
-        }
+            if (fromAPI)
+                throw e;
+            else
+                return (3);        }
 
     }
 
