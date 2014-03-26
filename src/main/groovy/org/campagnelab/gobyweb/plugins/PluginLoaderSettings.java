@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.plugins;
 
 import org.campagnelab.gobyweb.plugins.xml.Config;
+import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
@@ -8,7 +9,9 @@ import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
 /**
- * Settings used during the configuration loading activities
+ * Settings used during the configuration loading activities.
+ * Also, it includes references to plugins used to build default I/O Schemas and resources of {@link ExecutableConfig}s
+ *
  * @author manuele
  */
 public class PluginLoaderSettings {
@@ -113,12 +116,53 @@ public class PluginLoaderSettings {
     /**
      * Fileset configuration configuration added to each AlignerConfig's OutputSchema.
      */
-    public static final String[] GZ = new String[] {
-            "GZ", //ID
+    public static final String[] ALIGNMENT_ALL_FILES = new String[] {
+            "ALIGNMENT_ALL_FILES", //ID
             "1.0",  //versionAtLeast
             null, //versionExactly
             null //versionAtMost
     };
+
+    /**
+     * Fileset configuration configuration added to each AlignerConfig's OutputSchema.
+     */
+    public static final String[] ALIGNMENT_BED = new String[] {
+            "ALIGNMENT_BED", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+    /**
+     * Fileset configuration configuration added to each AlignerConfig's OutputSchema.
+     */
+    public static final String[] ALIGNMENT_SEQUENCE_VARIATION_STATS = new String[] {
+            "ALIGNMENT_SEQUENCE_VARIATION_STATS", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+    /**
+     * Fileset configuration configuration added to each AlignerConfig's OutputSchema.
+     */
+    public static final String[] ALIGNMENT_STATS = new String[] {
+            "ALIGNMENT_STATS", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+    /**
+     * Fileset configuration configuration added to each AlignerConfig's OutputSchema.
+     */
+    public static final String[] ALIGNMENT_WIG = new String[] {
+            "ALIGNMENT_WIG", //ID
+            "1.0",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
 
     /**
      * Fileset configuration configuration added to each AlignerConfig's OutputSchema.

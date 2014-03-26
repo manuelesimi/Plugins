@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
+import com.google.common.base.Joiner;
 import com.martiansoftware.jsap.*;
 import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.lang.StringUtils;
@@ -150,10 +151,11 @@ public abstract class SubmissionRequest {
 
     /**
      * Submits the request to the Cluster Gateway.
+     * @param fromAPI if true, it throws the Exceptions, otherwise returns the exit code
      * @return 0 if the request was successfully submitted, anything else if it failed
      * @throws Exception
      */
-    protected int submitRequest() throws Exception {
+    protected int submitRequest(boolean fromAPI) throws Exception {
         logger.info("Analyzing the submission request...");
         List<Parameter> interfaceParameters = new ArrayList<Parameter>();
         if (this.executableConfig != null) {
@@ -181,8 +183,12 @@ public abstract class SubmissionRequest {
         interfaceParameters.addAll(this.getAdditionalParameters());
         this.addInputSlots(interfaceParameters);
         JSAPResult config = jsapHelper.configure(commandLineArguments, interfaceParameters);
-        if (config == null)
-            return 1;
+        if (config == null) {
+            if (fromAPI)
+                throw new Exception("Failed to parse the input arguments. Errors returned: " + Joiner.on("\n").join(jsapHelper.getErrors()));
+            else
+                return (1);
+        }
 
         //add the parameters to the options map
         for (Parameter parameter : interfaceParameters) {
@@ -198,7 +204,10 @@ public abstract class SubmissionRequest {
             jobArea = AreaFactory.createJobArea(jobAreaLocation, owner);
         } catch (IOException ioe) {
             logger.error(ioe);
-            return (1);
+            if (fromAPI)
+                throw ioe;
+            else
+                return (2);
         }
 
         try {
@@ -218,6 +227,7 @@ public abstract class SubmissionRequest {
             submitter.setSubmissionHostname(config.getString("artifact-server"));
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
             submitter.assignTagToJob(config.userSpecified("job-tag")? config.getString("job-tag"):ICBStringUtils.generateRandomString());
+            submitter.setFileSetAreaReference(config.getString("fileset-area"));
             if (config.userSpecified("env-script")) {
                 submitter.setEnvironmentScript(config.getFile("env-script").getAbsolutePath());
             } else {
@@ -232,7 +242,10 @@ public abstract class SubmissionRequest {
             return this.submit(config,actions);
         } catch (Exception e) {
             logger.error("Failed to manage the requested action. " + e.getMessage());
-            return (1);
+            if (fromAPI)
+                throw e;
+            else
+                return (3);
         }
 
     }
