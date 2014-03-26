@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
+import com.google.common.base.Joiner;
 import com.martiansoftware.jsap.*;
 import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.lang.StringUtils;
@@ -182,8 +183,12 @@ public abstract class SubmissionRequest {
         interfaceParameters.addAll(this.getAdditionalParameters());
         this.addInputSlots(interfaceParameters);
         JSAPResult config = jsapHelper.configure(commandLineArguments, interfaceParameters);
-        if (config == null)
-            return (1);
+        if (config == null) {
+            if (fromAPI)
+                throw new Exception("Failed to parse the input arguments. Errors returned: " + Joiner.on("\n").join(jsapHelper.getErrors()));
+            else
+                return (1);
+        }
 
         //add the parameters to the options map
         for (Parameter parameter : interfaceParameters) {
@@ -239,7 +244,8 @@ public abstract class SubmissionRequest {
             if (fromAPI)
                 throw e;
             else
-                return (3);        }
+                return (3);
+        }
 
     }
 

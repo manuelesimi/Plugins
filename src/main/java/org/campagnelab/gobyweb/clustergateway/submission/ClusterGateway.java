@@ -31,6 +31,7 @@ public class ClusterGateway {
      *  3: submission to cluster failed, likely a wrong option in the parameters
      *  4: unused
      *  5: invalid JSAP request
+     *  6: failed to print the help message
      */
     public static int process(String[] args) {
 

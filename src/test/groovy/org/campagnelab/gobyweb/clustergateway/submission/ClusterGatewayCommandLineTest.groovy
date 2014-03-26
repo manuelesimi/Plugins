@@ -264,14 +264,14 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void runAlignerHelpWithAPI() {
-        assertEquals(1, ClusterGateway.processAPI(
+       ClusterGateway.processAPI(
                 ("--plugins-dir test-data/root-for-aligners "  +
                         "--job BWA_GOBY_ARTIFACT " +
                         "--help "
                 ).split(" ")
-        ));
+        );
 
     }
 
