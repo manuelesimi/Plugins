@@ -4,7 +4,6 @@
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" afterPath="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -220,25 +219,25 @@
       <file leaf-file-name="ClusterGateway.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="37" selection-start="1888" selection-end="1888" vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1050">
+            <state line="38" column="38" selection-start="1121" selection-end="1121" vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="1050">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClusterGatewayCommandLineTest.groovy" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ClusterGatewayCommandLineTest.groovy" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="267" column="36" selection-start="11957" selection-end="11957" vertical-scroll-proportion="0.5755287" vertical-offset="3489" max-vertical-offset="4650">
+            <state line="221" column="22" selection-start="10016" selection-end="10016" vertical-scroll-proportion="-13.923077" vertical-offset="2818" max-vertical-offset="4650">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SubmissionRequest.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SubmissionRequest.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="183" column="60" selection-start="7614" selection-end="7614" vertical-scroll-proportion="0.0" vertical-offset="1643" max-vertical-offset="3885">
+            <state line="216" column="56" selection-start="9073" selection-end="9073" vertical-scroll-proportion="0.3559322" vertical-offset="2694" max-vertical-offset="3885">
               <folding />
             </state>
           </provider>
@@ -1478,7 +1477,7 @@
       <workItem from="1393280529750" duration="10437000" />
       <workItem from="1393357697883" duration="36703000" />
       <workItem from="1394134749925" duration="86702000" />
-      <workItem from="1395776991099" duration="1900000" />
+      <workItem from="1395776991099" duration="2467000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3068,11 +3067,15 @@
       <created>1395755409803</created>
       <updated>1395755409805</updated>
     </task>
-    <option name="localTasksCounter" value="398" />
+    <task id="LOCAL-00398" summary="Add an API version of the process method in ClusterGateway. This method can be invoked from external code and throws up Exceptions coming from the job submissions, if any.">
+      <created>1395840400633</created>
+      <updated>1395840400633</updated>
+    </task>
+    <option name="localTasksCounter" value="399" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220722000" />
+    <option name="totallyTimeSpent" value="221289000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -3099,7 +3102,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29388404" sideWeight="0.68443197" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41171616" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41171616" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -3128,7 +3131,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Add function dieUponError to task wrapper script." />
     <MESSAGE value="Add OWNER to job medatada in remote submitter." />
     <MESSAGE value="Add empty SHAREDWITH property to newly created metadata instances." />
     <MESSAGE value="Remove job metadata file before creating it. This is needed if the post phase is executed twice (e.g. manually resubmitted upon a first failure)." />
@@ -3153,7 +3155,8 @@
     <MESSAGE value="Add PLUGIN_ID to job metadata." />
     <MESSAGE value="Remove *.alignment-stats.txt from alignment filesets. TODO: register $RESULT_DIR/*.alignment-stats.txt and $RESULT_DIR/*.sequence-variation-stats.tsv as separate filesets." />
     <MESSAGE value="Add new output slots to the default I/O schema for aligners. Modify OGE_job_script to push additional filesets produced by aligner executions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add new output slots to the default I/O schema for aligners. Modify OGE_job_script to push additional filesets produced by aligner executions." />
+    <MESSAGE value="Add an API version of the process method in ClusterGateway. This method can be invoked from external code and throws up Exceptions coming from the job submissions, if any." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add an API version of the process method in ClusterGateway. This method can be invoked from external code and throws up Exceptions coming from the job submissions, if any." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3452,23 +3455,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="221" column="22" selection-start="10016" selection-end="10016" vertical-scroll-proportion="-13.923077" vertical-offset="2818" max-vertical-offset="4650">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="37" selection-start="1888" selection-end="1888" vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1050">
+        <state line="38" column="38" selection-start="1121" selection-end="1121" vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="1050">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="183" column="60" selection-start="7614" selection-end="7614" vertical-scroll-proportion="0.0" vertical-offset="2318" max-vertical-offset="3885">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="267" column="36" selection-start="11957" selection-end="11957" vertical-scroll-proportion="0.5755287" vertical-offset="3489" max-vertical-offset="4650">
+        <state line="216" column="56" selection-start="9073" selection-end="9073" vertical-scroll-proportion="0.3559322" vertical-offset="2694" max-vertical-offset="3885">
           <folding />
         </state>
       </provider>

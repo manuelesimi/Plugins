@@ -149,7 +149,7 @@ public class ClusterGatewayCommandLineTest {
         String artifactServer = String.format("%s@%s",
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
-        assertEquals(1, ClusterGateway.process(
+        assertEquals(3, ClusterGateway.process(
                 ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
@@ -185,7 +185,7 @@ public class ClusterGatewayCommandLineTest {
         String artifactServer = String.format("%s@%s",
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
-        assertEquals(1, ClusterGateway.process(
+        assertEquals(3, ClusterGateway.process(
                 ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
@@ -219,7 +219,7 @@ public class ClusterGatewayCommandLineTest {
         String artifactServer = String.format("%s@%s",
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
-        assertEquals(1, ClusterGateway.process(
+        assertEquals(3, ClusterGateway.process(
                 ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +

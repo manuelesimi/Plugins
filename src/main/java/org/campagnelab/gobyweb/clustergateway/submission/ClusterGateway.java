@@ -28,7 +28,7 @@ public class ClusterGateway {
      * @return one of the following codes:
      *  1: an error occurred when the arguments have been parsed
      *  2: failed to access the Job Area
-     *  3: submission to cluster failed
+     *  3: submission to cluster failed, likely a wrong option in the parameters
      *  4: unused
      *  5: invalid JSAP request
      */
