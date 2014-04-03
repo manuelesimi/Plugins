@@ -46,6 +46,9 @@ function run_task {
 
     export TMPDIR=$JOB_DIR
 
+    #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
+    export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
+
     cd ${JOB_DIR}
     . auto-options.sh
     . constants.sh

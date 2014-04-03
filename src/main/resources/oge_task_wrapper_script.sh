@@ -121,7 +121,8 @@ function setup {
 }
 
 setup
-
+     #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
+    export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
     # Install artifacts needed by this task:
     ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
     . artifacts.sh
