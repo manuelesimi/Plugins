@@ -65,10 +65,9 @@ function run_task {
 }
 
 function setup {
-    #in case the script is re-run from the command line, we need to set here the JOB dir
-    #if [ -z "$JOB_DIR" ]; then
-    #    export JOB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-    #fi
+
+    #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
+    export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
 
     export JOB_DIR=%JOB_DIR%
     echo "JOB _DIR is ${JOB_DIR}"
@@ -121,12 +120,11 @@ function setup {
 }
 
 setup
-     #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
-    export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
-    # Install artifacts needed by this task:
-    ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
-    . artifacts.sh
-    install_plugin_artifacts
+
+# Install artifacts needed by this task:
+ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
+. artifacts.sh
+install_plugin_artifacts
 
 case ${STATE} in
     task)
