@@ -7,6 +7,17 @@ function setup_task_functions {
     . ${JOB_DIR}/script.sh
 
 }
+
+function dieUponError {
+  RETURN_STATUS=$?
+  DESCRIPTION=$1
+  if [ ! ${RETURN_STATUS} -eq 0 ]; then
+       echo "Task failed. Error description: ${DESCRIPTION}"
+       exit
+  fi
+
+}
+
 function install_resources {
      #include needed function for resources installation
      ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
