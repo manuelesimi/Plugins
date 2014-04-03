@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Set  JAVA_OPTS for default memory settings needed by groovy scripts executed by tasks.&#10;">
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
@@ -238,7 +238,7 @@
       <file leaf-file-name="local_task_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="41" selection-start="2103" selection-end="2103" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1440">
+            <state line="53" column="32" selection-start="1736" selection-end="1762" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1440">
               <folding />
             </state>
           </provider>
@@ -265,7 +265,7 @@
       <file leaf-file-name="oge_task_wrapper_script.sh" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="126" column="0" selection-start="3934" selection-end="3934" vertical-scroll-proportion="0.36555892" vertical-offset="1648" max-vertical-offset="2310">
+            <state line="131" column="82" selection-start="4148" selection-end="4148" vertical-scroll-proportion="2.968278" vertical-offset="0" max-vertical-offset="2355">
               <folding />
             </state>
           </provider>
@@ -1678,7 +1678,7 @@
       <workItem from="1393280529750" duration="10437000" />
       <workItem from="1393357697883" duration="36703000" />
       <workItem from="1394134749925" duration="86702000" />
-      <workItem from="1395776991099" duration="14780000" />
+      <workItem from="1395776991099" duration="18574000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3296,11 +3296,15 @@
       <created>1396533106304</created>
       <updated>1396533106304</updated>
     </task>
-    <option name="localTasksCounter" value="405" />
+    <task id="LOCAL-00405" summary="Move  JAVA_OPTS setting in the setup function for tasks.&#10;">
+      <created>1396533248652</created>
+      <updated>1396533248652</updated>
+    </task>
+    <option name="localTasksCounter" value="406" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="233602000" />
+    <option name="totallyTimeSpent" value="237396000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -3356,7 +3360,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Rename T_artifacts to T_artifacts_req (was in conflict with the resource XML schema)." />
     <MESSAGE value="Fix writePbRequests test broken by the integration with Artifacts 2-4-0-SNAPSHOT." />
     <MESSAGE value="Update all test-dataand test cases to use GOBYWEB_SERVER_SIDE_2.4 and related artifacts." />
     <MESSAGE value="Add DIFFEXP_SUBMIT scope to common.xsd" />
@@ -3381,7 +3384,8 @@
     <MESSAGE value="Delete the previous job metadata instance (if it exists) before re-publishing it." />
     <MESSAGE value="Add an API version of the process method in FileSetManager. This method can be invoked from external code and throws up Exceptions coming from filesets' operations, if any." />
     <MESSAGE value="Set  JAVA_OPTS for default memory settings needed by groovy scripts executed by tasks.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Set  JAVA_OPTS for default memory settings needed by groovy scripts executed by tasks.&#10;" />
+    <MESSAGE value="Move  JAVA_OPTS setting in the setup function for tasks.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move  JAVA_OPTS setting in the setup function for tasks.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3709,14 +3713,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="41" selection-start="2103" selection-end="2103" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1440">
+        <state line="53" column="32" selection-start="1736" selection-end="1762" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1440">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="0" selection-start="3934" selection-end="3934" vertical-scroll-proportion="0.36555892" vertical-offset="1648" max-vertical-offset="2310">
+        <state line="131" column="82" selection-start="4148" selection-end="4148" vertical-scroll-proportion="2.968278" vertical-offset="0" max-vertical-offset="2355">
           <folding />
         </state>
       </provider>
