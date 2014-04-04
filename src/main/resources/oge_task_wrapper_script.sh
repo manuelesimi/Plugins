@@ -62,9 +62,7 @@ function run_task {
    ALL_REGISTERED_TAGS=""
    plugin_task
    push_job_metadata ${ALL_REGISTERED_TAGS}
-   if [ -z "$QUEUE_WRITER" ]; then
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Task completed" --index 0 --job-type job
-   fi
+   ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Task completed" --index 0 --job-type job
 }
 
 function setup {
