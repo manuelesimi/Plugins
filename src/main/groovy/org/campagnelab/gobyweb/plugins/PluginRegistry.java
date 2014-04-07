@@ -50,7 +50,7 @@ public class PluginRegistry extends ArrayList<Config> {
      * @param <T> the class to filter for
      * @return the list of configurations for the plugin type loaded from the disk
      */
-    public <T extends Config> List<T> filterConfigs(Class<T> configClass) {
+    public synchronized <T extends Config> List<T> filterConfigs(Class<T> configClass) {
         List<T> returnedList = new ArrayList<T>();
         for (Config p : this) {
             if ( (p.getClass().isAssignableFrom(configClass) //same class
@@ -65,7 +65,7 @@ public class PluginRegistry extends ArrayList<Config> {
      * @param idToFind
      * @return the configuration that matches or null
      */
-    public Config findById(String idToFind) {
+    public synchronized Config findById(String idToFind) {
         if (idToFind != null) {
             for (Config config: this) {
                 if (config.getId().compareTo(idToFind)==0) {
@@ -81,7 +81,7 @@ public class PluginRegistry extends ArrayList<Config> {
      * @param idToFind
      * @return the configurations that match or null
      */
-    public List<Config> findAllById(String idToFind) {
+    public synchronized List<Config> findAllById(String idToFind) {
         List<Config> returnedList = new ArrayList<Config>();
         if (idToFind != null) {
             for (Config config: this) {
@@ -100,7 +100,7 @@ public class PluginRegistry extends ArrayList<Config> {
      * @param <T> the class to filter for
      * @return the configuration that matches or null
      */
-    public <T extends Config> T findByTypedId(String idToFind, Class<T> configClass ) {
+    public synchronized <T extends Config> T findByTypedId(String idToFind, Class<T> configClass ) {
         return findByTypedIdAndVersion(idToFind, null, configClass);
     }
 
@@ -113,7 +113,7 @@ public class PluginRegistry extends ArrayList<Config> {
      * @param <T> the class to filter for
      * @return the configuration that matches or null
      */
-    public <T extends Config> T findByTypedIdAndVersion(String idToFind, String version, Class<T> configClass ) {
+    public synchronized  <T extends Config> T findByTypedIdAndVersion(String idToFind, String version, Class<T> configClass ) {
         if (idToFind != null) {
             for (Config config: this) {
                 if ((config.getId().compareTo(idToFind)==0)
@@ -126,5 +126,28 @@ public class PluginRegistry extends ArrayList<Config> {
         }
         return null;
     }
+
+    public synchronized boolean add(Config config) {
+        return super.add(config);
+    }
+
+    public synchronized boolean remove(Config config) {
+        return super.remove(config);
+    }
+
+    @Override
+    public synchronized boolean removeAll(Collection<?> configs) {
+        return super.removeAll(configs);
+    }
+
+    public synchronized boolean addAll(Collection<? extends Config> configs) {
+        return super.addAll(configs);
+    }
+
+    @Override
+    public synchronized void clear() {
+        super.clear();
+    }
+
 }
 
