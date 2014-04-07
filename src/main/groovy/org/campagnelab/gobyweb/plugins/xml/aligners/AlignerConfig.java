@@ -284,6 +284,6 @@ public class AlignerConfig extends ExecutableConfig {
         vstatsType.minOccurs = Integer.toString(0);
         vstatsType.maxOccurs = Integer.toString(1);
         vstatsSlot.seType(vstatsType);
-        slots.add(statsSlot);
+        slots.add(vstatsSlot);
     }
 }
