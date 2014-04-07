@@ -182,7 +182,7 @@
       <file leaf-file-name="FileSetManager.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="11" selection-start="3250" selection-end="3250" vertical-scroll-proportion="0.61451817" vertical-offset="499" max-vertical-offset="3495">
+            <state line="217" column="50" selection-start="10371" selection-end="10371" vertical-scroll-proportion="0.5206508" vertical-offset="2599" max-vertical-offset="3495">
               <folding />
             </state>
           </provider>
@@ -261,7 +261,7 @@
       <file leaf-file-name="FileSetManager.jsap" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.jsap">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1815">
+            <state line="75" column="85" selection-start="3007" selection-end="3007" vertical-scroll-proportion="-8.730769" vertical-offset="898" max-vertical-offset="1815">
               <folding />
             </state>
           </provider>
@@ -1574,7 +1574,7 @@
       <workItem from="1393357697883" duration="36703000" />
       <workItem from="1394134749925" duration="86702000" />
       <workItem from="1395776991099" duration="21196000" />
-      <workItem from="1396710106642" duration="5524000" />
+      <workItem from="1396710106642" duration="6323000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3208,11 +3208,15 @@
       <created>1396883434198</created>
       <updated>1396883434199</updated>
     </task>
-    <option name="localTasksCounter" value="409" />
+    <task id="LOCAL-00409" summary="Make internalProcess of FileSetManager private.&#10;">
+      <created>1396892527031</created>
+      <updated>1396892527031</updated>
+    </task>
+    <option name="localTasksCounter" value="410" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="245542000" />
+    <option name="totallyTimeSpent" value="246341000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -3268,7 +3272,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Force all plugins to depend on GOBYWEB_SERVER_SIDE_2.4 resource." />
     <MESSAGE value="Change oge_job_script.sh to invoke install_plugin_mandatory_artifacts and install_plugin_artifacts at each job state according to the plugin's configuration." />
     <MESSAGE value="Several fixes on artifacts management in oge_job_script.sh and oge_task_wrapper_script.sh. Align scope enumeration in common.xsd to the job states managed in the oge scripts." />
     <MESSAGE value="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource and schemas." />
@@ -3293,7 +3296,8 @@
     <MESSAGE value="Send the message that the task is completed after publishing the job metadata. The message cannot be sent by the task's script because it would be processed by the Service on the webapp before job metadata are published." />
     <MESSAGE value="Remove wrong check on QUEUE_WRITER in oge_task_wrapper_script." />
     <MESSAGE value="Make PluginRegistry thread safe" />
-    <option name="LAST_COMMIT_MESSAGE" value="Make PluginRegistry thread safe" />
+    <MESSAGE value="Make internalProcess of FileSetManager private.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make internalProcess of FileSetManager private.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3614,14 +3618,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.jsap">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1815">
+        <state line="75" column="85" selection-start="3007" selection-end="3007" vertical-scroll-proportion="-8.730769" vertical-offset="898" max-vertical-offset="1815">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="11" selection-start="3250" selection-end="3250" vertical-scroll-proportion="0.61451817" vertical-offset="499" max-vertical-offset="3495">
+        <state line="217" column="50" selection-start="10371" selection-end="10371" vertical-scroll-proportion="0.5206508" vertical-offset="2599" max-vertical-offset="3495">
           <folding />
         </state>
       </provider>

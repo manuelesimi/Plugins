@@ -202,7 +202,7 @@ public class FileSetManager {
                 attributes.put(tokens[0],tokens[1]);
             } else {
                 logger.error("Invalid attribute format" + inputAttribute);
-                throw new Exception();
+                throw new Exception("Invalid attribute format" + inputAttribute);
             }
         }
         return attributes;
