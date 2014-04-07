@@ -929,7 +929,7 @@ function compress {
     #
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPRESS_STATUS} --description "Compressing files" --index ${CURRENT_PART} --job-type job-part
     cd $RESULT_DIR
-    zip ${BASENAME}-all-files.zip ${TAG}*
+    zip ${BASENAME}-all-files.zip ${BASENAME}*
     cd ${SGE_O_WORKDIR}
 }
 
