@@ -80,7 +80,7 @@ public class FileSetManager {
      * @return the list of tags in case of register action, an empty list for the other operations
      * @throws Exception
      */
-    public static List<String> internalProcess(String[] args, boolean fromAPI) throws Exception {
+    private static List<String> internalProcess(String[] args, boolean fromAPI) throws Exception {
         List<String> returned_values = new ArrayList<String>();
         JSAPResult config = jsapHelper.configure(args);
         if (config == null) {
