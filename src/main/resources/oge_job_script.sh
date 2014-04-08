@@ -358,9 +358,9 @@ function push_analysis_results {
 
     #push the file
     if [ -e "${TMPDIR}/import-db/${TAG}-${file_to_push}" ]; then
-       local REGISTERED_TAG=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} ${slot}: ${TMPDIR}/import-db/${TAG}-${file_to_push}`
-       dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAG}"
-       echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAG}"
+       local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} ${slot}: ${TMPDIR}/import-db/${TAG}-${file_to_push}`
+       dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAGS}"
+       echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAGS}"
        ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${slot}:[${REGISTERED_TAGS}]"
     elif [ "${mandatory}" == "true" ]; then
        echo "ERROR: Mandatory file ${file_to_push} was not produced by the job."
@@ -1129,8 +1129,11 @@ case ${STATE} in
         if [ "${PLUGIN_ARTIFACTS_COMBINE}" != "false" ]; then
             install_plugin_artifacts
         fi
+        ALL_REGISTERED_TAGS=""
         setup_plugin_functions
         run_alignment_analysis_combine
+        push_job_metadata ${ALL_REGISTERED_TAGS}
+
         ;;
     diffexp)
         install_plugin_mandatory_artifacts
