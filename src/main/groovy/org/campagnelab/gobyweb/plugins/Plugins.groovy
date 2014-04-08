@@ -555,11 +555,13 @@ public class Plugins {
      */
     public Config findByDbLegacyId(Class type, String idToFind) {
         if (idToFind) {
-            for (Config plugin in pluginConfigs) {
-                if (((plugin.getClass().isAssignableFrom(type)) //same class
-                        || (type.isInstance(plugin)))  //or a sub-class
-                        && (plugin.dbLegacyId && plugin.dbLegacyId == idToFind)) {
-                    return plugin
+            synchronized (pluginConfigs) {
+                for (Config plugin in pluginConfigs) {
+                    if (((plugin.getClass().isAssignableFrom(type)) //same class
+                            || (type.isInstance(plugin)))  //or a sub-class
+                            && (plugin.dbLegacyId && plugin.dbLegacyId == idToFind)) {
+                        return plugin
+                    }
                 }
             }
         }

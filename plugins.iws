@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Fix input pattern for zip command when compressing all alignment files in oge_job_script.sh.&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -64,7 +64,7 @@
       </breakpoint>
     </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" line="713" class="org.campagnelab.gobyweb.plugins.Plugins" package="org.campagnelab.gobyweb.plugins">
+      <breakpoint url="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" line="715" class="org.campagnelab.gobyweb.plugins.Plugins" package="org.campagnelab.gobyweb.plugins">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -188,10 +188,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oge_job_script.sh" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="oge_job_script.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="360" column="13" selection-start="13742" selection-end="13742" vertical-scroll-proportion="0.33226323" vertical-offset="5193" max-vertical-offset="17850">
+            <state line="374" column="98" selection-start="14496" selection-end="14496" vertical-scroll-proportion="-16.038462" vertical-offset="5193" max-vertical-offset="17850">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Plugins.groovy" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="555" column="34" selection-start="23186" selection-end="23202" vertical-scroll-proportion="0.44561934" vertical-offset="7190" max-vertical-offset="10545">
               <folding />
             </state>
           </provider>
@@ -219,15 +228,6 @@
         <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-SNAPSHOT-sources.jar!/org/campagnelab/gobyweb/filesets/RegistrationAPI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="26" column="6" selection-start="739" selection-end="739" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4245">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PluginRegistry.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginRegistry.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="137" column="100" selection-start="4418" selection-end="4418" vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="2295">
               <folding />
             </state>
           </provider>
@@ -329,7 +329,6 @@
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java" />
         <option value="$PROJECT_DIR$/schemas/common.xsd" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java" />
-        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" />
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" />
@@ -343,6 +342,7 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/aligners/AlignerConfig.java" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
+        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
       </list>
     </option>
   </component>
@@ -1631,7 +1631,7 @@
       <workItem from="1393357697883" duration="36703000" />
       <workItem from="1394134749925" duration="86702000" />
       <workItem from="1395776991099" duration="21196000" />
-      <workItem from="1396710106642" duration="14065000" />
+      <workItem from="1396710106642" duration="16838000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3281,15 +3281,19 @@
       <created>1396901887379</created>
       <updated>1396901887379</updated>
     </task>
-    <option name="localTasksCounter" value="413" />
+    <task id="LOCAL-00413" summary="Fix tag variables used to collect information on filesets published by an analysis job. Push job metadata for analysis after when run_alignment_analysis_combine returns.">
+      <created>1396974107684</created>
+      <updated>1396974107684</updated>
+    </task>
+    <option name="localTasksCounter" value="414" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254083000" />
+    <option name="totallyTimeSpent" value="256856000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296371" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3308,7 +3312,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3391089" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29388404" sideWeight="0.31556803" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17950754" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17950754" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29388404" sideWeight="0.68443197" order="0" side_tool="false" content_ui="combo" />
@@ -3341,7 +3345,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource.&#10;" />
     <MESSAGE value="Attach to each fileset tag in the job metadata the output slot name in which it has been published." />
     <MESSAGE value="Remove an extra-space char in oge_job_script.sh." />
     <MESSAGE value="Print out to the user the stacktrace when FilesetManager fails." />
@@ -3366,7 +3369,8 @@
     <MESSAGE value="Add a message to the Exception thrown when a fileset attribute is invalid." />
     <MESSAGE value="Fix ALIGNMENT_SEQUENCE_VARIATION_STATS input slot for aligner configurations." />
     <MESSAGE value="Fix input pattern for zip command when compressing all alignment files in oge_job_script.sh.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix input pattern for zip command when compressing all alignment files in oge_job_script.sh.&#10;" />
+    <MESSAGE value="Fix tag variables used to collect information on filesets published by an analysis job. Push job metadata for analysis after when run_alignment_analysis_combine returns." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix tag variables used to collect information on filesets published by an analysis job. Push job metadata for analysis after when run_alignment_analysis_combine returns." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3614,13 +3618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="324" column="30" selection-start="12766" selection-end="12766" vertical-scroll-proportion="0.0" vertical-offset="3814" max-vertical-offset="10515">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginRegistry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="137" column="100" selection-start="4418" selection-end="4418" vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="2295">
@@ -3689,7 +3686,14 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="360" column="13" selection-start="13742" selection-end="13742" vertical-scroll-proportion="0.33226323" vertical-offset="5193" max-vertical-offset="17850">
+        <state line="374" column="98" selection-start="14496" selection-end="14496" vertical-scroll-proportion="-16.038462" vertical-offset="5193" max-vertical-offset="17850">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="555" column="34" selection-start="23186" selection-end="23202" vertical-scroll-proportion="0.44561934" vertical-offset="7190" max-vertical-offset="10545">
           <folding />
         </state>
       </provider>
