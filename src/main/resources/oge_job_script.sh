@@ -486,7 +486,7 @@ function push_aligner_results {
 function push_job_metadata {
    tags="$@"
    rm -rf ${JOB_DIR}/${TAG}.properties
-   rm -rf %FILESET_AREA%/${TAG}
+   rm -rf %FILESET_AREA%/${TAG:0:1}/${TAG}
    echo "JOB=${TAG}" >> ${JOB_DIR}/${TAG}.properties
    echo "OWNER=${OWNER}" >> ${JOB_DIR}/${TAG}.properties
    echo "PLUGIN=${PLUGIN_ID}" >> ${JOB_DIR}/${stats_file}
