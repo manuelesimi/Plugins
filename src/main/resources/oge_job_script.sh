@@ -66,7 +66,7 @@ function create_kill_file {
         echo '#!/bin/bash -l' >> %KILL_FILE%
         echo 'export JOB_DIR=%JOB_DIR%' >> %KILL_FILE%
         echo 'if [[ ! "--no-queue-message" == $1 ]]; then' >> %KILL_FILE%
-        echo "${QUEUE_WRITER} --tag %TAG% --status %JOB_KILLED_STATUS% --description "Job killed" --index -1 --job-type job" >> %KILL_FILE%
+        echo "${QUEUE_WRITER} --tag %TAG% --status %JOB_KILLED_STATUS% --description \"Job killed\" --index -1 --job-type job" >> %KILL_FILE%
         echo 'fi' >> %KILL_FILE%
         chmod 700 %KILL_FILE%
     fi
