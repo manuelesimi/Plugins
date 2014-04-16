@@ -1,3 +1,9 @@
+2.4.0
+    Support analyses with a single group.
+    Integration with filesets library 1.2.0.
+    Publish a JOB METADATA fileset instance for each job successfully executed.
+    Introduce mandatory and optional artifacts for different job phases.
+
 2.3.1 (Nov 22 2013)
     Introduce PLUGIN_NEED_DEFAULT_JVM_OPTIONS variable for default JVM executions
     Use JAVA_OPTS variable to set the amount of memory allocated to the groovy scripts.
