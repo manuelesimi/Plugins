@@ -259,6 +259,14 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         executableJob.setDataForScripts(diffExp);
     }
 
+
+    /**
+     * Validates the pair definition. It checks if the group names defined in the pair are valid.
+     * @param pair the pair definition
+     * @param groupNames the list of groups defined for this analysis
+     * @return  true if the pair is valid
+     * @throws IOException if a group name is invalid
+     */
     private boolean validatePair(String pair, Set<String> groupNames) throws IOException {
         for (String name : pair.split("/")) {
             if (!groupNames.contains(name))
