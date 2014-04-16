@@ -65,6 +65,7 @@ function create_kill_file {
         . %JOB_DIR%/constants.sh
         echo '#!/bin/bash -l' >> %KILL_FILE%
         echo 'export JOB_DIR=%JOB_DIR%' >> %KILL_FILE%
+        echo 'export TMPDIR=%JOB_DIR%' >> %KILL_FILE%
         echo 'if [[ ! "--no-queue-message" == $1 ]]; then' >> %KILL_FILE%
         echo "${QUEUE_WRITER} --tag %TAG% --status %JOB_KILLED_STATUS% --description \"Job killed\" --index -1 --job-type job" >> %KILL_FILE%
         echo 'fi' >> %KILL_FILE%
