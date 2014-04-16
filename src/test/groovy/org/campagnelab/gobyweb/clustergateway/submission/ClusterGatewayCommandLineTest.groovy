@@ -123,8 +123,8 @@ public class ClusterGatewayCommandLineTest {
                         "--env-script ${envScript} "+
                         "--job CONTAMINANT_EXTRACT " +
                         "--COMPARISON_PAIR Group_1/Group_2 "+
-                        "--GROUP_DEFINITION Group_1=ZDFTZZE,PVOVHCB " +
-                        "--GROUP_DEFINITION Group_2=KAKIMJE " +
+                        "--GROUP_DEFINITION Group_1=VMUKAAN,RHPHQGN " +
+                        "--GROUP_DEFINITION Group_2=HGVOJLQ " +
                         "--option ENSEMBL_RELEASE=50 " +
                         //"--MERGE_GROUPS true " +
                         "--option BAR=bar " +
@@ -132,7 +132,40 @@ public class ClusterGatewayCommandLineTest {
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
-                        "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
+                        "INPUT_ALIGNMENTS: VMUKAAN HGVOJLQ RHPHQGN ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
+                ).split(" ")
+        ));
+
+    }
+    //@Test
+    public void runRemoteAnalysisWithOneGroup() {
+
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAnalysisWithOneGroup() test");
+            return;
+        }
+
+        String artifactServer = String.format("%s@%s",
+                System.getProperty("user.name"),
+                java.net.InetAddress.getLocalHost().getHostName());
+        assertEquals(0, ClusterGateway.process(
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
+                        "--plugins-dir test-data/root-for-aligners " +
+                        "--owner gobywebpaper " +
+                        "--queue rascals.q " +
+                        "--env-script ${envScript} "+
+                        "--job CONTAMINANT_EXTRACT " +
+                        "--COMPARISON_PAIR Group_1 "+
+                        "--GROUP_DEFINITION Group_1= " +
+                        "--option ENSEMBL_RELEASE=50 " +
+                        //"--MERGE_GROUPS true " +
+                        "--option BAR=bar " +
+                        "--option BAZ=baz " +
+                        "--option DEBUG=true " +
+                        "--artifact-server ${artifactServer} "+
+                        "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
+                        "INPUT_ALIGNMENTS: VMUKAAN HGVOJLQ RHPHQGN ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
         ));
 
