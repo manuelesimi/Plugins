@@ -221,25 +221,8 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
             errors.clear();
         }
 
-        //for each group, we create a filter for querying only slots belonging to the group and add the alignments to the group
-        int groupNumber=0;
-        Set<String> groupNames = new HashSet<String>();
-        for (String groupDefinition : this.groupDefinitions) {
-            groupNumber++;
-            String[] tokens = groupDefinition.split("=");
-            String[] tags = tokens[1].split(",");
-            StringBuilder groupFilters = new StringBuilder("--filter-attribute BASENAME=");
-            int i=0;
-            for (String tag: tags) {
-                groupFilters.append(String.format("%s,", alignmentMap.get(tag).getBasename()));
-                diffExp.addAlignmentToGroup(groupNumber, i++, alignmentMap.get(tag));
-            }
-            //remove the last comma
-            groupFilters.setLength(groupFilters.length() - 1);
-            environment.put(String.format("PLUGIN_GROUP_ALIGNMENTS_FILTER_%s", tokens[0]), groupFilters.toString());
-            diffExp.addGroup(groupNumber,tokens[0]);
-            groupNames.add(tokens[0]);
-        }
+        //create group filters
+        Set<String> groupNames = this.createFiltersForGroups(environment, diffExp, alignmentMap);
 
         //create a joined group definition in the form "Group_1=TAGN/Group_2=TAGX/Group_3=TAG342,TAG231"
         String joinedGroups= Joiner.on("/").join(this.groupDefinitions);
@@ -259,6 +242,55 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         executableJob.setDataForScripts(diffExp);
     }
 
+    /**
+     * For each group, creates a filter for querying only slots belonging to the group and add the alignments to the group.
+     *  @param environment
+     *  @param diffExp
+     *  @param alignmentMap
+     *  @return the accepted group names
+     *
+     */
+    private Set<String> createFiltersForGroups(JobRuntimeEnvironment environment,
+                                               DiffExp diffExp, Map<String, Alignment> alignmentMap) throws IOException {
+        int groupNumber=0;
+
+        Set<String> groupNames = new HashSet<String>();
+        for (String groupDefinition : this.groupDefinitions) {
+            groupNumber++;
+            String[] tokens = groupDefinition.split("=");
+            if (tokens.length == 1) {
+                //the group has no alignment associated, this can be accepted only when just one group is defined
+                if (this.groupDefinitions.size() == 1) {
+                    //by default, all alignments in the input slot belong to the group
+                    StringBuilder groupFilters = new StringBuilder("--filter-attribute BASENAME=");
+                    int i=0;
+                    for (Alignment alignment : alignmentMap.values()) {
+                        groupFilters.append(String.format("%s,", alignment.getBasename()));
+                        diffExp.addAlignmentToGroup(groupNumber, i++, alignment);
+                    }
+                    //remove the last comma
+                    groupFilters.setLength(groupFilters.length() - 1);
+                    environment.put(String.format("PLUGIN_GROUP_ALIGNMENTS_FILTER_%s", makeNameCompliantWithBash(tokens[0])), groupFilters.toString());
+                } else {
+                    throw new IOException("Invalid group definition: " + groupDefinition + ". It must be in the form NAME=TAG1,TAG2,...");
+                }
+            } else {
+                String[] tags = tokens[1].split(",");
+                StringBuilder groupFilters = new StringBuilder("--filter-attribute BASENAME=");
+                int i=0;
+                for (String tag: tags) {
+                    groupFilters.append(String.format("%s,", alignmentMap.get(tag).getBasename()));
+                    diffExp.addAlignmentToGroup(groupNumber, i++, alignmentMap.get(tag));
+                }
+                //remove the last comma
+                groupFilters.setLength(groupFilters.length() - 1);
+                environment.put(String.format("PLUGIN_GROUP_ALIGNMENTS_FILTER_%s", makeNameCompliantWithBash(tokens[0])), groupFilters.toString());
+            }
+            diffExp.addGroup(groupNumber,tokens[0]);
+            groupNames.add(tokens[0]);
+        }
+        return groupNames;
+    }
 
     /**
      * Validates the pair definition. It checks if the group names defined in the pair are valid.
@@ -274,6 +306,16 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
                         + pair);
         }
         return true;
+    }
+
+    /**
+     * Makes a name compliant with bash rules.
+     * @param name
+     * @return
+     */
+    private String makeNameCompliantWithBash(String name) {
+        //bash does not allow dashes  in a name
+        return name.replaceAll("-","_");
     }
 
     @Override
