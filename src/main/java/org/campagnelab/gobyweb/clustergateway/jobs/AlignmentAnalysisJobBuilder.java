@@ -8,10 +8,8 @@ import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
-import org.campagnelab.gobyweb.plugins.PluginLoaderSettings;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.OutputFile;
-import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
 
 import java.io.IOException;
 import java.util.*;
@@ -253,16 +251,21 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
 
         //check comparison pairs
         for (int i=1; i <= comparisonPairs.size(); i++) {
-            String[] tokens = comparisonPairs.get(i-1).split("/");
-            if ((groupNames.contains(tokens[0]) && groupNames.contains(tokens[1])))
-            //comparison pair must be in the form "Group_2/Group_3"
-                 environment.put(String.format("GROUP%d_COMPARISON_PAIR",i), comparisonPairs.get(i-1));
-            else
-                throw new IOException("Invalid group name specified in the comparison pair " +comparisonPairs.get(i-1));
+            if (validatePair(comparisonPairs.get(i - 1), groupNames))
+                environment.put(String.format("GROUP%d_COMPARISON_PAIR",i), comparisonPairs.get(i-1));
         }
         environment.put("NUM_GROUPS",this.groupDefinitions.size());
         environment.put("COMPARE_DEFINITION", Joiner.on(",").join(this.comparisonPairs));
         executableJob.setDataForScripts(diffExp);
+    }
+
+    private boolean validatePair(String pair, Set<String> groupNames) throws IOException {
+        for (String name : pair.split("/")) {
+            if (!groupNames.contains(name))
+                throw new IOException("Invalid group name " + name + " specified in comparison pair "
+                        + pair);
+        }
+        return true;
     }
 
     @Override
