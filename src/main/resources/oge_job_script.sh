@@ -328,10 +328,6 @@ function run_alignment_analysis_combine {
 
     %PUSH_PLUGIN_OUTPUT_FILES%
 
-    #
-    # Job completely done
-    #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index 1 --job-type job
 
     jobCompletedEmail
 
@@ -979,6 +975,22 @@ function job_complete {
     jobCompletedEmail
 }
 
+
+function diffexp_job_complete {
+    echo .
+    echo . diffexp_job_complete
+    echo .
+    #
+    # Job completely done
+    #
+    copy_logs diffexp 1 1
+
+    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
+    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index ${CURRENT_PART} --job-type job
+
+    jobCompletedEmail
+}
+
 function diffexp {
     jobStartedEmail
 
@@ -1041,16 +1053,6 @@ function diffexp {
     #
     push_alignment_analysis_results
 
-    #
-    # Job completely done
-    #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index ${CURRENT_PART} --job-type job
-
-    jobCompletedEmail
-
-
-    copy_logs diffexp 1 1
 }
 
 function jobStartedEmail {
@@ -1141,7 +1143,7 @@ case ${STATE} in
         setup_plugin_functions
         run_alignment_analysis_combine
         push_job_metadata ${ALL_REGISTERED_TAGS}
-
+        diffexp_job_complete
         ;;
     diffexp)
         install_plugin_mandatory_artifacts
