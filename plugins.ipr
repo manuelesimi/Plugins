@@ -501,15 +501,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.3.0/artifacts-2.3.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.campagnelab.gobyweb:filesets:1.2.0-SNAPSHOT">
+    <library name="Maven: org.campagnelab.gobyweb:filesets:1.2.0">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-20140417.180258-115.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0/filesets-1.2.0.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-20140417.180258-115-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0/filesets-1.2.0-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-20140417.180258-115-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0/filesets-1.2.0-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:filesets:2.0.0-SNAPSHOT">

@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="plugins.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -165,10 +166,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FileSetAPI.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-20140409.210522-104-sources.jar!/org/campagnelab/gobyweb/filesets/FileSetAPI.java">
+      <file leaf-file-name="oge_job_script.sh" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="16" selection-start="5896" selection-end="5896" vertical-scroll-proportion="0.0" vertical-offset="1549" max-vertical-offset="3690">
+            <state line="540" column="150" selection-start="22961" selection-end="22961" vertical-scroll-proportion="0.5730337" vertical-offset="7743" max-vertical-offset="18000">
               <folding />
             </state>
           </provider>
@@ -226,10 +227,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="197" column="96" selection-start="8394" selection-end="8394" vertical-scroll-proportion="0.5241692" vertical-offset="2608" max-vertical-offset="4200">
+            <state line="197" column="96" selection-start="8394" selection-end="8394" vertical-scroll-proportion="0.0" vertical-offset="2608" max-vertical-offset="4200">
               <folding />
             </state>
           </provider>
@@ -361,7 +362,6 @@
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java" />
         <option value="$PROJECT_DIR$/changelog.txt" />
-        <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginRegistry.java" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" />
@@ -369,6 +369,7 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequestFactory.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
       </list>
     </option>
   </component>
@@ -1550,7 +1551,7 @@
       <workItem from="1393357697883" duration="36703000" />
       <workItem from="1394134749925" duration="86702000" />
       <workItem from="1395776991099" duration="21196000" />
-      <workItem from="1396710106642" duration="67463000" />
+      <workItem from="1396710106642" duration="69174000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3268,11 +3269,15 @@
       <created>1397835492509</created>
       <updated>1397835492509</updated>
     </task>
-    <option name="localTasksCounter" value="430" />
+    <task id="LOCAL-00430" summary="Remove snapshot dependencies for artifacts and filesets.">
+      <created>1397836364303</created>
+      <updated>1397836364303</updated>
+    </task>
+    <option name="localTasksCounter" value="431" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="307481000" />
+    <option name="totallyTimeSpent" value="309192000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -3299,7 +3304,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29388404" sideWeight="0.68443197" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41171616" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41171616" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -3328,7 +3333,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Move  JAVA_OPTS setting in the setup function for tasks.&#10;" />
     <MESSAGE value="Send the message that the task is completed after publishing the job metadata. The message cannot be sent by the task's script because it would be processed by the Service on the webapp before job metadata are published." />
     <MESSAGE value="Remove wrong check on QUEUE_WRITER in oge_task_wrapper_script." />
     <MESSAGE value="Make PluginRegistry thread safe" />
@@ -3353,7 +3357,8 @@
     <MESSAGE value="Send the message that a diffexp job is completed after pushing the job metadata in the fileset area." />
     <MESSAGE value="For each command, reload plugin definitions only if the registry is empty or the request is coming from the command line." />
     <MESSAGE value="Move version to 2.4.0." />
-    <option name="LAST_COMMIT_MESSAGE" value="Move version to 2.4.0." />
+    <MESSAGE value="Remove snapshot dependencies for artifacts and filesets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove snapshot dependencies for artifacts and filesets." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3631,16 +3636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1147" column="60" selection-start="46107" selection-end="46107" vertical-scroll-proportion="-9.115385" vertical-offset="16968" max-vertical-offset="18000">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/plugins-unregister-fileset">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="86" selection-start="519" selection-end="529" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
@@ -3773,7 +3768,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="197" column="96" selection-start="8394" selection-end="8394" vertical-scroll-proportion="0.5241692" vertical-offset="2608" max-vertical-offset="4200">
+        <state line="197" column="96" selection-start="8394" selection-end="8394" vertical-scroll-proportion="0.0" vertical-offset="2608" max-vertical-offset="4200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="540" column="150" selection-start="22961" selection-end="22961" vertical-scroll-proportion="0.5730337" vertical-offset="7743" max-vertical-offset="18000">
           <folding />
         </state>
       </provider>

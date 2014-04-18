@@ -549,7 +549,7 @@ function goby_with_memory {
    mode_name="$2"
    shift
    shift
-   java ${memory} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
+   java -Xms40m  ${memory} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
                                      -Dgoby.configuration=file:${GOBY_DIR}/goby.properties -jar ${GOBY_DIR}/goby.jar \
                        --mode ${mode_name} $*
 }
