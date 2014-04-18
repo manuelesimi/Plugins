@@ -1,6 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
@@ -17,18 +18,21 @@ public class SubmissionRequestFactory {
 
     protected static final org.apache.log4j.Logger logger = Logger.getLogger(SubmissionRequestFactory.class);
 
-    public static SubmissionRequest createRequest(String[] args) throws Exception {
+    public static SubmissionRequest createRequest(String[] args, boolean fromAPI) throws Exception {
 
         //load plugin configurations
-        logger.info("Loading available plugins...");
+        PluginRegistry pluginRegistry = PluginRegistry.getRegistry();
 
-        Plugins plugins = null;
-        plugins = new Plugins(false);
-        plugins.addServerConf(getPluginsDir(args).getAbsolutePath());
-        plugins.setWebServerHostname("localhost");
-        plugins.reload();
-        if (plugins.somePluginReportedErrors()) {
-            throw new Exception("Some plugins could not be loaded. See below for details. Aborting.");
+        if (pluginRegistry.size() == 0 || !fromAPI) {
+            logger.info("Loading available plugins...");
+            Plugins plugins = null;
+            plugins = new Plugins(false);
+            plugins.addServerConf(getPluginsDir(args).getAbsolutePath());
+            plugins.setWebServerHostname("localhost");
+            plugins.reload();
+            if (plugins.somePluginReportedErrors()) {
+                throw new Exception("Some plugins could not be loaded. See below for details. Aborting.");
+            }
         }
 
         String[] pluginInfo = getPluginInfo(args);
@@ -36,20 +40,19 @@ public class SubmissionRequestFactory {
         if (pluginInfo[0].equalsIgnoreCase("resource")) {
             request = new ResourceSubmissionRequest(pluginInfo[1]);
         } else if  (pluginInfo[0].equalsIgnoreCase("job")) {
-            AlignerConfig alignerConfig = plugins.getRegistry().findByTypedId(pluginInfo[1], AlignerConfig.class);
+            AlignerConfig alignerConfig = pluginRegistry.findByTypedId(pluginInfo[1], AlignerConfig.class);
             if (alignerConfig != null)
                 request = new AlignerSubmissionRequest(alignerConfig);
 
-            AlignmentAnalysisConfig analysisConfig = plugins.getRegistry().findByTypedId(pluginInfo[1], AlignmentAnalysisConfig.class);
+            AlignmentAnalysisConfig analysisConfig = pluginRegistry.findByTypedId(pluginInfo[1], AlignmentAnalysisConfig.class);
             if (analysisConfig != null)
                 request = new AlignmentAnalysisSubmissionRequest(analysisConfig);
 
-            TaskConfig taskConfig = plugins.getRegistry().findByTypedId(pluginInfo[1], TaskConfig.class);
+            TaskConfig taskConfig = pluginRegistry.findByTypedId(pluginInfo[1], TaskConfig.class);
             if (taskConfig != null)
                 request =  new TaskSubmissionRequest(taskConfig);
         }
         if (request != null) {
-            request.setPlugins(plugins);
             request.setCommandLineArguments(args);
             return request;
         } else
