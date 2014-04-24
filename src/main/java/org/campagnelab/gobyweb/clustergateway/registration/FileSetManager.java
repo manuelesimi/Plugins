@@ -1,14 +1,12 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
 import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.registration.InputEntry;
-import org.campagnelab.gobyweb.filesets.registration.InputEntryListBuilder;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.FileSetArea;
@@ -82,6 +80,7 @@ public class FileSetManager {
         }
         return internalProcess(config,false);
     }
+
     /**
      * Processes the caller requests.
      * @param config the arguments passed on the command line
