@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A stateful version of the FileSetManager.
@@ -25,7 +26,7 @@ public class StatefulFileSetManager {
 
     private final FileSetArea storageArea;
     private PluginRegistry pluginRegistry;
-
+    ConfigurationList configurationList;
 
     public StatefulFileSetManager(String filesetAreaReference, String owner) throws IOException {
         this.storageArea = AreaFactory.createFileSetArea(
@@ -35,6 +36,7 @@ public class StatefulFileSetManager {
 
     public void setPluginDefinitions(PluginRegistry pluginRegistry) throws Exception {
         this.pluginRegistry = pluginRegistry;
+        configurationList = PluginsToConfigurations.convertAsList(pluginRegistry.filterConfigs(FileSetConfig.class));
 
     }
 
@@ -48,7 +50,6 @@ public class StatefulFileSetManager {
     public RegistrationPreviewDetails previewRegistration(
                 String[] paths, String ... fileSetID) throws Exception {
         //convert plugins configuration to configurations that can be consumed by FileSetAPI
-        ConfigurationList configurationList = PluginsToConfigurations.convertAsList(pluginRegistry.filterConfigs(FileSetConfig.class));
         FileSetAPI fileset = FileSetAPI.getReadWriteAPI(storageArea, configurationList);
         List<InputEntry> inputEntries;
         if (fileSetID != null && fileSetID.length > 0) {
@@ -62,4 +63,21 @@ public class StatefulFileSetManager {
         return fileset.registerPreview(inputEntries,fileSetID);
     }
 
+    /**
+     * Registers the given paths as filesets.
+     * @param paths
+     * @param attributes
+     * @param sharedWith
+     * @param errors
+     * @param tag
+     * @return the list of tags of the newly registered filesets.
+     * @throws Exception
+     */
+    public List<String> register(
+            String[] paths, final Map<String, String> attributes,
+            final List<String> sharedWith, List<String> errors, String tag) throws Exception {
+        FileSetAPI fileset = FileSetAPI.getReadWriteAPI(storageArea, configurationList);
+        List<InputEntry> inputEntries = FileSetManager.parseInputEntries(paths);
+        return fileset.register(inputEntries,attributes,sharedWith,errors,tag);
+    }
 }
