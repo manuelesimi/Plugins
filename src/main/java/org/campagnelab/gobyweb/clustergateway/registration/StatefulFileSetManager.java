@@ -32,7 +32,7 @@ public class StatefulFileSetManager {
         this.pluginRegistry = PluginRegistry.getRegistry();
     }
 
-    public void setPluginsDefinition(PluginRegistry pluginRegistry) throws Exception {
+    public void setPluginDefinitions(PluginRegistry pluginRegistry) throws Exception {
         this.pluginRegistry = pluginRegistry;
 
     }
