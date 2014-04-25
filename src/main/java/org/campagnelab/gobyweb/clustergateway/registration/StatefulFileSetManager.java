@@ -13,6 +13,7 @@ import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -49,8 +50,16 @@ public class StatefulFileSetManager {
         //convert plugins configuration to configurations that can be consumed by FileSetAPI
         ConfigurationList configurationList = PluginsToConfigurations.convertAsList(pluginRegistry.filterConfigs(FileSetConfig.class));
         FileSetAPI fileset = FileSetAPI.getReadWriteAPI(storageArea, configurationList);
-        List<InputEntry> entries = FileSetManager.parseInputEntries(paths);
-        return fileset.registerPreview(entries,fileSetID);
+        List<InputEntry> inputEntries;
+        if (fileSetID != null && fileSetID.length > 0) {
+            String[] entries = new String[paths.length + 1];
+            entries[0] = fileSetID[0] + ":";
+            System.arraycopy(paths,0,entries,1,paths.length);
+            inputEntries = FileSetManager.parseInputEntries(entries);
+        }  else {
+            inputEntries = FileSetManager.parseInputEntries(paths);
+        }
+        return fileset.registerPreview(inputEntries,fileSetID);
     }
 
 }

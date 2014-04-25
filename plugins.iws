@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Add a StatefulFileSetManager tha exposes the preview API of the FileSet Library. Advance version to 2.4.1-SNAPSHOT.&#10;">
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetManager.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
@@ -185,8 +185,10 @@
       <file leaf-file-name="FileSetManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="3735">
-              <folding />
+            <state line="216" column="35" selection-start="10473" selection-end="10473" vertical-scroll-proportion="0.0" vertical-offset="3020" max-vertical-offset="3735">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -194,11 +196,11 @@
       <file leaf-file-name="StatefulFileSetManager.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="45" selection-start="1514" selection-end="1514" vertical-scroll-proportion="0.6797583" vertical-offset="210" max-vertical-offset="930">
+            <state line="59" column="67" selection-start="2417" selection-end="2417" vertical-scroll-proportion="0.8836858" vertical-offset="300" max-vertical-offset="1065">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1250#1251#0" expanded="true" />
-                <element signature="e#1303#1304#0" expanded="true" />
+                <element signature="e#1275#1276#0" expanded="true" />
+                <element signature="e#1328#1329#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1641,7 +1643,7 @@
       <workItem from="1395776991099" duration="21196000" />
       <workItem from="1396710106642" duration="74071000" />
       <workItem from="1398106757837" duration="108000" />
-      <workItem from="1398264943818" duration="15236000" />
+      <workItem from="1398264943818" duration="16523000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3371,11 +3373,15 @@
       <created>1398374979479</created>
       <updated>1398374979480</updated>
     </task>
-    <option name="localTasksCounter" value="433" />
+    <task id="LOCAL-00433" summary="Fix method name.">
+      <created>1398444590075</created>
+      <updated>1398444590075</updated>
+    </task>
+    <option name="localTasksCounter" value="434" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="329433000" />
+    <option name="totallyTimeSpent" value="330720000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -3398,7 +3404,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3391089" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29388404" sideWeight="0.31556803" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18189038" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18189038" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29388404" sideWeight="0.68443197" order="0" side_tool="false" content_ui="combo" />
@@ -3431,7 +3437,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Make PluginRegistry thread safe" />
     <MESSAGE value="Make internalProcess of FileSetManager private.&#10;" />
     <MESSAGE value="Add a message to the Exception thrown when a fileset attribute is invalid." />
     <MESSAGE value="Fix ALIGNMENT_SEQUENCE_VARIATION_STATS input slot for aligner configurations." />
@@ -3456,7 +3461,8 @@
     <MESSAGE value="Remove snapshot dependencies for artifacts and filesets." />
     <MESSAGE value="Set java initial heap size in goby_with_memory." />
     <MESSAGE value="Add a StatefulFileSetManager tha exposes the preview API of the FileSet Library. Advance version to 2.4.1-SNAPSHOT." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add a StatefulFileSetManager tha exposes the preview API of the FileSet Library. Advance version to 2.4.1-SNAPSHOT." />
+    <MESSAGE value="Fix method name." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix method name." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3771,18 +3777,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3735">
-          <folding />
+        <state line="216" column="35" selection-start="10473" selection-end="10473" vertical-scroll-proportion="0.0" vertical-offset="3020" max-vertical-offset="3735">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="45" selection-start="1514" selection-end="1514" vertical-scroll-proportion="0.6797583" vertical-offset="210" max-vertical-offset="930">
+        <state line="59" column="67" selection-start="2417" selection-end="2417" vertical-scroll-proportion="0.8836858" vertical-offset="300" max-vertical-offset="1065">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1250#1251#0" expanded="true" />
-            <element signature="e#1303#1304#0" expanded="true" />
+            <element signature="e#1275#1276#0" expanded="true" />
+            <element signature="e#1328#1329#0" expanded="true" />
           </folding>
         </state>
       </provider>
