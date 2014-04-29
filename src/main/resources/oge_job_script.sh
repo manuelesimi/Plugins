@@ -596,6 +596,9 @@ function fetch_input_reads {
 
      echo "fileset command: ${FILESET_COMMAND}"
 
+     #make sure that the dir in which reads files will be store exists
+     mkdir -p ${FILESET_TARGET_DIR}
+
      #INPUT_READS slot is declated in AlignerConfig.getInput()
      ${FILESET_COMMAND} --has-fileset INPUT_READS
      dieUponError "Input compact reads are not available"
@@ -631,9 +634,6 @@ function run_single_align {
     else
         CURRENT_PART=1
     fi
-
-    #fetch the input reads from the fileset area
-    fetch_input_reads
 
     # Here 0 and 0 indicate FULL file
     START_POSITION=0
@@ -1106,7 +1106,9 @@ case ${STATE} in
         if [ "${PLUGIN_ARTIFACTS_SUBMIT}" == "true" ]; then
             install_plugin_artifacts
         fi
-        copy_reads_from_webserver
+        #fetch the input reads from the fileset area
+        fetch_input_reads
+        echo "export READS=${READS}" >> "${JOB_DIR}/constants.sh"
         setup_align
         ;;
     bam_align)
@@ -1116,6 +1118,7 @@ case ${STATE} in
         fi
         setup_plugin_functions
         fetch_input_reads
+        echo "export READS=${READS}" >> "${JOB_DIR}/constants.sh"
         bam_align
         ;;
     single_align)
