@@ -69,7 +69,7 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
-   // @Test
+   //@Test
     public void runRemoteAligner() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
@@ -96,7 +96,7 @@ public class ClusterGatewayCommandLineTest {
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
-                        "INPUT_READS: KKHLEFC"
+                        "INPUT_READS: HQPMEDL"
 
                 ).split(" ")
         ));
