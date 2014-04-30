@@ -198,11 +198,11 @@ function setup_parallel_alignment_analysis {
     if [ ${NUMBER_OF_ALIGN_PARTS} -gt 1 ]; then
         ARRAY_DIRECTIVE="-t 1-${NUMBER_OF_ALIGN_PARTS}"
     fi
-    ALIGNMENT_ANALYSIS=`qsub ${ARRAY_DIRECTIVE} ${PART_EXCLUSIVE} -N ${TAG}.align -terse -v STATE=single_alignment_analysis oge_job_script.sh`
+    ALIGNMENT_ANALYSIS=`qsub ${ARRAY_DIRECTIVE} ${PART_EXCLUSIVE} -N ${TAG}.align -terse -r y -v STATE=single_alignment_analysis oge_job_script.sh`
     checkSubmission $ALIGNMENT_ANALYSIS
     ALIGNMENT_ANALYSIS=${ALIGNMENT_ANALYSIS%%.*}
     append_kill_file ${ALIGNMENT_ANALYSIS}
-    POST=`qsub -N ${TAG}.post -terse -hold_jid ${ALIGN} -v STATE=post,ALIGN_MODE=normal oge_job_script.sh`
+    POST=`qsub -N ${TAG}.post -terse -r y -hold_jid ${ALIGN} -v STATE=post,ALIGN_MODE=normal oge_job_script.sh`
     checkSubmission $POST
     append_kill_file ${POST}
 
@@ -214,7 +214,7 @@ function setup_align {
 
   if [ "${SUPPORTS_BAM_ALIGNMENTS}" == "true" ]; then
     # require exclusive access to a node, where one READS file will be processed in parallel to produce a single BAM file.
-    ALIGN=`qsub -N ${TAG}.bamalign -l ${PLUGIN_NEED_ALIGN} -terse -v STATE=bam_align oge_job_script.sh`
+    ALIGN=`qsub -N ${TAG}.bamalign -l ${PLUGIN_NEED_ALIGN} -terse -r y -v STATE=bam_align oge_job_script.sh`
     checkSubmission $ALIGN
     ALIGN=${ALIGN%%.*}
     append_kill_file ${ALIGN}
@@ -227,11 +227,11 @@ function setup_align {
         ARRAY_DIRECTIVE="-t 1-${NUMBER_OF_ALIGN_PARTS}"
     fi
     
-    ALIGN=`qsub ${ARRAY_DIRECTIVE} -l ${PLUGIN_NEED_ALIGN} -N ${TAG}.align -terse -v STATE=single_align oge_job_script.sh`
+    ALIGN=`qsub ${ARRAY_DIRECTIVE} -l ${PLUGIN_NEED_ALIGN} -N ${TAG}.align -terse -r y -v STATE=single_align oge_job_script.sh`
     checkSubmission $ALIGN
     ALIGN=${ALIGN%%.*}
     append_kill_file ${ALIGN}
-    POST=`qsub -N ${TAG}.post -terse -hold_jid ${ALIGN} -l ${PLUGIN_NEED_ALIGNMENT_POST_PROCESSING}  -v STATE=post,ALIGN_MODE=normal oge_job_script.sh`
+    POST=`qsub -N ${TAG}.post -terse -r y -hold_jid ${ALIGN} -l ${PLUGIN_NEED_ALIGNMENT_POST_PROCESSING}  -v STATE=post,ALIGN_MODE=normal oge_job_script.sh`
     checkSubmission $POST
     append_kill_file ${POST}
   fi
@@ -247,11 +247,11 @@ function setup_parallel_alignment_analysis_jobs {
     cd ${SGE_O_WORKDIR}
     # We do not require exclusive use of a server when comparing sequence variants, maximize job throughput.
 
-    ALIGN=`qsub ${ARRAY_DIRECTIVE} -N ${TAG}.aap -l ${PLUGIN_NEED_PROCESS} -terse -v STATE=single_alignment_analysis_process -v SLICING_PLAN_FILENAME=${SLICING_PLAN_FILENAME} oge_job_script.sh`
+    ALIGN=`qsub ${ARRAY_DIRECTIVE} -N ${TAG}.aap -l ${PLUGIN_NEED_PROCESS} -terse -r y -v STATE=single_alignment_analysis_process -v SLICING_PLAN_FILENAME=${SLICING_PLAN_FILENAME} oge_job_script.sh`
     checkSubmission ${ALIGN}
     ALIGN=${ALIGN%%.*}
     append_kill_file ${ALIGN}
-    POST=`qsub -N ${TAG}.post -terse -hold_jid ${ALIGN} -l ${PLUGIN_NEED_COMBINE} -v STATE=alignment_analysis_combine oge_job_script.sh`
+    POST=`qsub -N ${TAG}.post -terse -r y -hold_jid ${ALIGN} -l ${PLUGIN_NEED_COMBINE} -v STATE=alignment_analysis_combine oge_job_script.sh`
     checkSubmission ${POST}
     append_kill_file ${POST}
 }
@@ -1186,7 +1186,7 @@ case ${STATE} in
         #    install_plugin_artifacts
         #fi
 
-        SUBMISSION=`qsub -N ${TAG}.submit -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
+        SUBMISSION=`qsub -N ${TAG}.submit -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
         checkSubmission $SUBMISSION
         append_kill_file ${SUBMISSION}
         echo ${SUBMISSION}
