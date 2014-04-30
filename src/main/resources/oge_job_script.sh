@@ -190,9 +190,6 @@ function copy_logs {
     /bin/cp ${TMPDIR}/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
 }
 
-function copy_reads_from_webserver {
-    echo;
-}
 
 function setup_parallel_alignment_analysis {
     jobStartedEmail
