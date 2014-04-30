@@ -164,7 +164,7 @@ function setup {
         dieUponError "Could not obtain Java version number."
 
         echo "Goby.jar version"
-        goby_with_memory -Xmx40m version
+        goby_with_memory 40m version
         dieUponError "Could not obtain Goby version number."
 
     fi
@@ -190,9 +190,6 @@ function copy_logs {
     /bin/cp ${TMPDIR}/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
 }
 
-function copy_reads_from_webserver {
-    echo;
-}
 
 function setup_parallel_alignment_analysis {
     jobStartedEmail
@@ -549,7 +546,7 @@ function goby_with_memory {
    mode_name="$2"
    shift
    shift
-   java -Xms40m  ${memory} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
+   java -Xms${memory} -Xmx${memory} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
                                      -Dgoby.configuration=file:${GOBY_DIR}/goby.properties -jar ${GOBY_DIR}/goby.jar \
                        --mode ${mode_name} $*
 }
@@ -669,7 +666,7 @@ function run_single_align {
 
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_SORT_STATUS} --description "Post-align sort, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
 
-    goby_with_memory -Xmx${PLUGIN_NEED_ALIGN_JVM} sort pre-sort-${TAG}.entries -o ${BASENAME} -f 75
+    goby_with_memory ${PLUGIN_NEED_ALIGN_JVM} sort pre-sort-${TAG}.entries -o ${BASENAME} -f 75
     if [ ! $? -eq 0 ]; then
         ls -lat
         rm ${TAG}.*

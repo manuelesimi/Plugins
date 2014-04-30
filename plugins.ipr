@@ -520,7 +520,7 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-20130628.095324-98-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$USER_HOME$/CampagneLab/filesets/target/filesets-2.0.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../filesets/target/filesets-2.0.0-SNAPSHOT-sources.jar!/" />
         <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/2.0.0-SNAPSHOT/filesets-2.0.0-20130628.095324-98-sources.jar!/" />
       </SOURCES>
     </library>
