@@ -64,8 +64,9 @@ public class StatefulFileSetManager {
     }
 
     /**
-     * Registers the given paths as filesets.
-     * @param paths
+     * Registers a single instance fileset instance using the given type.
+     * @param fileSetID the type of fileset to register
+     * @param paths list of pathnames matching the fileset entries
      * @param attributes
      * @param sharedWith
      * @param errors
@@ -73,11 +74,14 @@ public class StatefulFileSetManager {
      * @return the list of tags of the newly registered filesets.
      * @throws Exception
      */
-    public List<String> register(
+    public List<String> register(String fileSetID,
             String[] paths, final Map<String, String> attributes,
             final List<String> sharedWith, List<String> errors, String tag) throws Exception {
+        String[] entries = new String[paths.length + 1];
+        entries[0] = fileSetID + ":";
+        System.arraycopy(paths,0,entries,1,paths.length);
         FileSetAPI fileset = FileSetAPI.getReadWriteAPI(storageArea, configurationList);
-        List<InputEntry> inputEntries = FileSetManager.parseInputEntries(paths);
+        List<InputEntry> inputEntries = FileSetManager.parseInputEntries(entries);
         return fileset.register(inputEntries,attributes,sharedWith,errors,tag);
     }
 }
