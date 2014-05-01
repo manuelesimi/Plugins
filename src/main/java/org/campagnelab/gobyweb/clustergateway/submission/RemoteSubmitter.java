@@ -50,7 +50,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
     public void submitJob(JobArea jobArea, Session session, ExecutableJob job) throws Exception {
         job.setTag(this.jobTag);
         job.setOwner(jobArea.getOwner());
-
+        jobArea.createTag(job.getTag());
         //create the temp dir with the submission files to move on the cluster
         File tempDir = Files.createTempDir();
 
@@ -86,8 +86,8 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         logger.info("Requesting job execution...");
         logger.info("Output from the submission process:");
         jobArea.execute(this.jobTag, wrapperScript);
-        logger.info(String.format("The job will be executed in the Job Area at %s/%s", jobArea.toString(),
-                job.getTag()));
+        logger.info(String.format("The job will be executed in the Job Area at %s/%s/%s", jobArea.toString(),
+                job.getTag().charAt(0), job.getTag()));
 
     }
 
@@ -121,8 +121,8 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{this.wrapperScript, "*"});
 
         //execute the resourceJob
-        logger.info(String.format("The job will be executed in the Job Area at %s/%s)", jobArea.toString(),
-                resourceJob.getTag()));
+        logger.info(String.format("The job will be executed in the Job Area at %s/%s/%s)", jobArea.toString(),
+                resourceJob.getTag().charAt(0), resourceJob.getTag()));
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", jobArea.getBasename(resourceJob.getTag()));
         jobArea.execute(resourceJob.getTag(), this.wrapperScript,env);
@@ -147,7 +147,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         FileUtils.moveDirectory(localDir, localWorkingDir);
         //upload the entire folder in the job area
         logger.info("Submitting files for execution...");
-        jobArea.push(job.getTag(), localWorkingDir);
+        jobArea.pushJobDir(job.getTag(), localWorkingDir);
         FileUtils.forceDeleteOnExit(localWorkingDir);
     }
 }

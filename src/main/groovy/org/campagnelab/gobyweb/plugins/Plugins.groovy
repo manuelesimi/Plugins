@@ -144,32 +144,35 @@ public class Plugins {
             for (String dir : SCANNED_DIRS)
                 readConfigurationFromLocation(serverConfDir + dir);
         }
-        // now that all configurations are loaded, trigger post load activities
-        for (Config config : pluginConfigs) {
-            config.loadCompletedEvent();
-        }
-        // Check that plugin identifiers are unique across all types of plugins, except resource plugins:
-        Object2IntMap idCount = new Object2IntArrayMap();
-        idCount.defaultReturnValue(0);
-        for (Config config : pluginConfigs) {
-            String idUnique = config.getId();
-            idCount.put(idUnique, idCount.getInt(idUnique) + 1);
-        }
+        synchronized (pluginConfigs) {
+            // now that all configurations are loaded, trigger post load activities
+            for (Config config : pluginConfigs) {
+                config.loadCompletedEvent();
+            }
+            // Check that plugin identifiers are unique across all types of plugins, except resource plugins:
+            Object2IntMap idCount = new Object2IntArrayMap();
+            idCount.defaultReturnValue(0);
+            for (Config config : pluginConfigs) {
+                String idUnique = config.getId();
+                idCount.put(idUnique, idCount.getInt(idUnique) + 1);
+            }
 
-        for (Config config : pluginConfigs) {
-            String idUnique = config.getId();
-            if (idCount.getInt(idUnique) > 1) {
-                for (Config sameIdConfig : pluginConfigs.findAllById(idUnique)) {
-                    if (!sameIdConfig.getClass().isAssignableFrom(ResourceConfig.class)) {
-                        LOG.error("Plugin identifier " + idUnique + " cannot be used more than once");
-                        pluginErrorMessage = "Plugin identifier " + idUnique + " cannot be used more than once";
-                        somePluginReportedErrors = true;
-                        // decrement the counter so we don't report the error more than once
-                        idCount.put(config.getId(), 1);
+            for (Config config : pluginConfigs) {
+                String idUnique = config.getId();
+                if (idCount.getInt(idUnique) > 1) {
+                    for (Config sameIdConfig : pluginConfigs.findAllById(idUnique)) {
+                        if (!sameIdConfig.getClass().isAssignableFrom(ResourceConfig.class)) {
+                            LOG.error("Plugin identifier " + idUnique + " cannot be used more than once");
+                            pluginErrorMessage = "Plugin identifier " + idUnique + " cannot be used more than once";
+                            somePluginReportedErrors = true;
+                            // decrement the counter so we don't report the error more than once
+                            idCount.put(config.getId(), 1);
+                        }
                     }
                 }
             }
         }
+
         ObjectArrayList<String> errors = new ObjectArrayList<String>();
 
 
@@ -226,9 +229,11 @@ public class Plugins {
      */
     public String describePlugins() {
         MutableString buffer = new MutableString();
-        for (Config config : pluginConfigs)
-            buffer.append(String.format(" %s\n", config.toString()));
+        synchronized (pluginConfigs) {
+            for (Config config : pluginConfigs)
+                buffer.append(String.format(" %s\n", config.toString()));
 
+        }
         return buffer.toString();
     }
     /**
@@ -254,21 +259,24 @@ public class Plugins {
 
         // now check resources requirements, and remove the plugins that cannot find their resources:
         def toRemove = []
-        for (Config config : pluginConfigs) {
-            if ((config.getClass().isAssignableFrom(ResourceConsumerConfig.class) //same class
-                    || (ResourceConsumerConfig.isInstance(config)))) {            //or a sub-class
-                LOG.trace("Checking resources for ${config}")
-                def errors = new ArrayList<String>()
-                errors = checkRequiredResources(config, errors)
-                if (!errors.isEmpty()) {
-                    toRemove.add(config)
-                    errors.each { message ->
-                        LOG.error("An error occurred resolving a plugin resource requirement: ${message}")
+        synchronized (pluginConfigs) {
+            for (Config config : pluginConfigs) {
+                if ((config.getClass().isAssignableFrom(ResourceConsumerConfig.class) //same class
+                        || (ResourceConsumerConfig.isInstance(config)))) {            //or a sub-class
+                    LOG.trace("Checking resources for ${config}")
+                    def errors = new ArrayList<String>()
+                    errors = checkRequiredResources(config, errors)
+                    if (!errors.isEmpty()) {
+                        toRemove.add(config)
+                        errors.each { message ->
+                            LOG.error("An error occurred resolving a plugin resource requirement: ${message}")
+                        }
                     }
                 }
             }
+            pluginConfigs.removeAll(toRemove)
         }
-        pluginConfigs.removeAll(toRemove)
+
 
     }
 
@@ -555,11 +563,13 @@ public class Plugins {
      */
     public Config findByDbLegacyId(Class type, String idToFind) {
         if (idToFind) {
-            for (Config plugin in pluginConfigs) {
-                if (((plugin.getClass().isAssignableFrom(type)) //same class
-                        || (type.isInstance(plugin)))  //or a sub-class
-                        && (plugin.dbLegacyId && plugin.dbLegacyId == idToFind)) {
-                    return plugin
+            synchronized (pluginConfigs) {
+                for (Config plugin in pluginConfigs) {
+                    if (((plugin.getClass().isAssignableFrom(type)) //same class
+                            || (type.isInstance(plugin)))  //or a sub-class
+                            && (plugin.dbLegacyId && plugin.dbLegacyId == idToFind)) {
+                        return plugin
+                    }
                 }
             }
         }

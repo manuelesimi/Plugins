@@ -35,7 +35,7 @@ function install_resources {
 function push_job_metadata {
    tags="$@"
    rm -rf ${JOB_DIR}/${TAG}.properties
-   rm -rf %FILESET_AREA%/${TAG}
+   rm -rf %FILESET_AREA%/${TAG:0:1}/${TAG}
    echo "JOB=${TAG}" >> ${JOB_DIR}/${TAG}.properties
    echo "OWNER=${OWNER}" >> ${JOB_DIR}/${TAG}.properties
    echo "PLUGIN=${PLUGIN_ID}" >> ${JOB_DIR}/${stats_file}
@@ -62,13 +62,13 @@ function run_task {
    ALL_REGISTERED_TAGS=""
    plugin_task
    push_job_metadata ${ALL_REGISTERED_TAGS}
+   ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Task completed" --index 0 --job-type job
 }
 
 function setup {
-    #in case the script is re-run from the command line, we need to set here the JOB dir
-    #if [ -z "$JOB_DIR" ]; then
-    #    export JOB_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-    #fi
+
+    #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
+    export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
 
     export JOB_DIR=%JOB_DIR%
     echo "JOB _DIR is ${JOB_DIR}"
@@ -122,10 +122,10 @@ function setup {
 
 setup
 
-    # Install artifacts needed by this task:
-    ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
-    . artifacts.sh
-    install_plugin_artifacts
+# Install artifacts needed by this task:
+ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
+. artifacts.sh
+install_plugin_artifacts
 
 case ${STATE} in
     task)
@@ -142,7 +142,7 @@ case ${STATE} in
 
     *)
         cd ${JOB_DIR}
-        SUBMISSION=`qsub -N ${TAG}.submit -terse -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
+        SUBMISSION=`qsub -N ${TAG}.submit -terse -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
         echo ${SUBMISSION}
         ;;
 esac

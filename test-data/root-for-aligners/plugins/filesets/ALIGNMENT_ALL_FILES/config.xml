@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<fileSetConfig xsi:noNamespaceSchemaLocation="../../../schemas/plugins.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <name>Zipped files prduced by aligner</name>
+    <id>ALIGNMENT_ALL_FILES</id>
+    <help>Zip archive with all the files produced by an aligner</help>
+    <version>1.0</version>
+    <mimeType>application/zip</mimeType>
+    <files>
+        <selector matchAttribute="BASENAME">
+            <id>ARCHIVE</id>
+            <pattern>*-all-files.zip</pattern>
+            <mandatory>true</mandatory>
+        </selector>
+    </files>
+    <attributes>
+        <attribute name="BASENAME"/>
+    </attributes>
+</fileSetConfig>

@@ -33,7 +33,7 @@ function install_resources {
 function push_job_metadata {
    tags="$@"
    rm -rf ${JOB_DIR}/${TAG}.properties
-   rm -rf %FILESET_AREA%/${TAG}
+   rm -rf %FILESET_AREA%/${TAG:0:1}/${TAG}
    echo "JOB=${TAG}" >> ${JOB_DIR}/${TAG}.properties
    echo "OWNER=${OWNER}" >> ${JOB_DIR}/${TAG}.properties
    echo "PLUGIN=${PLUGIN_ID}" >> ${JOB_DIR}/${stats_file}
@@ -56,6 +56,9 @@ function run_task {
     fi
 
     export TMPDIR=$JOB_DIR
+
+    #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
+    export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
 
     cd ${JOB_DIR}
     . auto-options.sh

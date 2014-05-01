@@ -1,17 +1,16 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
 import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.registration.InputEntry;
-import org.campagnelab.gobyweb.filesets.registration.InputEntryListBuilder;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.FileSetArea;
+import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
@@ -60,38 +59,37 @@ public class FileSetManager {
     }
 
     /**
-     * Processes the caller requests.
+     * Processes the caller requests. API version assumes that plugin definitions are already loaded in the registry.
      * @param args the arguments passed on the command line
      * @return the list of tags in case of register action, an empty list for the other operations
      * @throws Exception
      */
     public static List<String> processAPI(String[] args) throws Exception {
-        return internalProcess(args,true);
+        JSAPResult config = jsapHelper.configure(args);
+        if (config == null) {
+           throw new Exception("Failed to parse the input arguments. Errors returned: " + Joiner.on("\n").join(jsapHelper.getErrors()));
+        }
+        return internalProcess(config,true);
     }
 
 
     public static List<String> process(String[] args) throws Exception {
-        return internalProcess(args,false);
+        JSAPResult config = jsapHelper.configure(args);
+        if (config == null) {
+            throw new Exception("Failed to parse the input arguments. Errors returned: " + Joiner.on("\n").join(jsapHelper.getErrors()));
+        }
+        return internalProcess(config,false);
     }
+
     /**
      * Processes the caller requests.
-     * @param args the arguments passed on the command line
+     * @param config the arguments passed on the command line
      * @param fromAPI if true, it throws the Exceptions, otherwise returns the exit code
      * @return the list of tags in case of register action, an empty list for the other operations
      * @throws Exception
      */
-    public static List<String> internalProcess(String[] args, boolean fromAPI) throws Exception {
+    private static List<String> internalProcess(JSAPResult config, boolean fromAPI) throws Exception {
         List<String> returned_values = new ArrayList<String>();
-        JSAPResult config = jsapHelper.configure(args);
-        if (config == null) {
-            if (fromAPI)
-                throw new Exception("Failed to parse the input arguments. Errors returned: " + Joiner.on("\n").join(jsapHelper.getErrors()));
-            else {
-                System.err.println("Failed to parse the input arguments. Errors returned: " + Joiner.on("\n").join(jsapHelper.getErrors()));
-                return Collections.EMPTY_LIST;
-            }
-        }
-
 
         //create the reference to the storage area
         FileSetArea storageArea = null;
@@ -104,25 +102,27 @@ public class FileSetManager {
             return Collections.EMPTY_LIST;
         }
 
-        //load plugin configurations
-        Plugins plugins = null;
-        try {
-           // TODO: introduce a PluginHelper to do load and validate plugins. This part is common with ClusterGateway
-            plugins = new Plugins();
-            plugins.addServerConf(config.getFile("plugins-dir").getAbsolutePath());
-            plugins.setWebServerHostname("localhost");
-            plugins.reload();
-            if (plugins.somePluginReportedErrors()) {
-                System.err.println("Some plugins could not be loaded. See below for details. Aborting.");
-                throw new Exception();
+        PluginRegistry pluginRegistry = PluginRegistry.getRegistry();
+        if (pluginRegistry.size() == 0 || !fromAPI) {
+            //load plugin configurations
+            Plugins plugins = null;
+            try {
+                // TODO: introduce a PluginHelper to do load and validate plugins. This part is common with ClusterGateway
+                plugins = new Plugins();
+                plugins.addServerConf(config.getFile("plugins-dir").getAbsolutePath());
+                plugins.setWebServerHostname("localhost");
+                plugins.reload();
+                if (plugins.somePluginReportedErrors()) {
+                    System.err.println("Some plugins could not be loaded. See below for details. Aborting.");
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                dieUponError(true, e, "Failed to load plugins definitions");
             }
-        } catch (Exception e) {
-            dieUponError(true, e, "Failed to load plugins definitions");
         }
-
         List<String> errors = new ArrayList<String>();
         //convert plugins configuration to configurations that can be consumed by FileSetAPI
-        ConfigurationList configurationList = PluginsToConfigurations.convertAsList(plugins.getRegistry().filterConfigs(FileSetConfig.class));
+        ConfigurationList configurationList = PluginsToConfigurations.convertAsList(pluginRegistry.getRegistry().filterConfigs(FileSetConfig.class));
         FileSetAPI fileset = FileSetAPI.getReadWriteAPI(storageArea, configurationList);
         if (config.getString("action").equalsIgnoreCase("register")) {
             List<InputEntry> entries = parseInputEntries(config.getStringArray("entries"));
@@ -202,7 +202,7 @@ public class FileSetManager {
                 attributes.put(tokens[0],tokens[1]);
             } else {
                 logger.error("Invalid attribute format" + inputAttribute);
-                throw new Exception();
+                throw new Exception("Invalid attribute format" + inputAttribute);
             }
         }
         return attributes;

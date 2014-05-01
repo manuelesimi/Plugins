@@ -1,0 +1,14 @@
+#!/bin/sh
+
+WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [[ $OSTYPE == "cygwin" ]]; then
+    WORKING_DIR=`cygpath -m "${WORKING_DIR}"`
+fi
+PARENT_DIR=`dirname ${WORKING_DIR}`
+LIB_DIR=${PARENT_DIR}/lib
+CONFIG_DIR=${PARENT_DIR}/config
+TARGET_DIR=${PARENT_DIR}/target
+SNAPSHOT_JAR="${TARGET_DIR}/plugins-sdk.jar"
+
+java -cp ${LIB_DIR}/plugins-sdk.jar:${LIB_DIR}/nailgun-server-0.9.2-SNAPSHOT.jar:${SNAPSHOT_JAR} -Dlog4j.configuration=file:${CONFIG_DIR}/log4j.properties \
+ com.martiansoftware.nailgun.NGServer

@@ -60,22 +60,23 @@ public class DependencyResolver {
      */
     public static ResourceConfig resolveResource(String resourceId, String versionAtLeast, String versionExactly, String versionAtMost) {
         List<ResourceConfig> resourceList = new ArrayList<ResourceConfig>();
+        synchronized (pluginConfigs) {
+            for (ResourceConfig resource : pluginConfigs.filterConfigs(ResourceConfig.class)) {
+                if (!resource.getId().equalsIgnoreCase(resourceId)) continue;
 
-        for (ResourceConfig resource : pluginConfigs.filterConfigs(ResourceConfig.class)) {
-            if (!resource.getId().equalsIgnoreCase(resourceId)) continue;
+                if (versionExactly != null && !resource.exactlyVersion(versionExactly)) {
+                    continue;
+                }
+                if (versionAtLeast != null && !resource.atLeastVersion(versionAtLeast)) {
+                    continue;
+                }
+                if (versionAtMost != null && !resource.atMostVersion(versionAtMost)) {
+                    continue;
+                }
 
-            if (versionExactly != null && !resource.exactlyVersion(versionExactly)) {
-                continue;
+                resourceList.add(resource);
+
             }
-            if (versionAtLeast != null && !resource.atLeastVersion(versionAtLeast)) {
-                continue;
-            }
-            if (versionAtMost != null && !resource.atMostVersion(versionAtMost)) {
-                continue;
-            }
-
-            resourceList.add(resource);
-
         }
         if (resourceList.size() > 0) {
             Collections.sort(resourceList);
@@ -100,27 +101,28 @@ public class DependencyResolver {
         if (versionAtMost != null && versionAtMost.length > 0 && versionAtMost[0] != null) {
             checkAtMost = true;
         }
-        for (FileSetConfig fileSet : pluginConfigs.filterConfigs(FileSetConfig.class)) {
-            if (versionExactly != null) { //check exactly
-                if (fileSet.getId().equalsIgnoreCase(fileSetId) &&
-                        fileSet.exactlyVersion(versionExactly))
-                    fileSetList.add(fileSet);
-            } else if (versionAtLeast != null) {
-                if (fileSet.getId().equalsIgnoreCase(fileSetId) &&
-                        fileSet.atLeastVersion(versionAtLeast)) {
-                    if (checkAtMost) { //check atLeast and atMost
-                        if (fileSet.atMostVersion(versionAtMost[0])) {
-                            fileSetList.add(fileSet);
-                        }
-                    } else  //accept because there is not atMost to check
+        synchronized (pluginConfigs) {
+            for (FileSetConfig fileSet : pluginConfigs.filterConfigs(FileSetConfig.class)) {
+                if (versionExactly != null) { //check exactly
+                    if (fileSet.getId().equalsIgnoreCase(fileSetId) &&
+                            fileSet.exactlyVersion(versionExactly))
                         fileSetList.add(fileSet);
-                }
-            } else if (checkAtMost && (fileSet.getId().equalsIgnoreCase(fileSetId))) { //check only atMost
-                if (fileSet.atMostVersion(versionAtMost[0])) {
-                    fileSetList.add(fileSet);
+                } else if (versionAtLeast != null) {
+                    if (fileSet.getId().equalsIgnoreCase(fileSetId) &&
+                            fileSet.atLeastVersion(versionAtLeast)) {
+                        if (checkAtMost) { //check atLeast and atMost
+                            if (fileSet.atMostVersion(versionAtMost[0])) {
+                                fileSetList.add(fileSet);
+                            }
+                        } else  //accept because there is not atMost to check
+                            fileSetList.add(fileSet);
+                    }
+                } else if (checkAtMost && (fileSet.getId().equalsIgnoreCase(fileSetId))) { //check only atMost
+                    if (fileSet.atMostVersion(versionAtMost[0])) {
+                        fileSetList.add(fileSet);
+                    }
                 }
             }
-
         }
         if (fileSetList.size() > 0) {
             Collections.sort(fileSetList);
@@ -133,9 +135,11 @@ public class DependencyResolver {
     public static FileSetConfig resolveFileSetFromMimeType(String mimeType) {
         //look for matching fileset configurations
         List<FileSetConfig> matchingFileSets = new ArrayList<FileSetConfig>();
-        for (FileSetConfig fileSet : pluginConfigs.filterConfigs(FileSetConfig.class)) {
-            if (fileSet.getMimeType().equalsIgnoreCase(mimeType)) {
-               matchingFileSets.add(fileSet);
+        synchronized (pluginConfigs) {
+            for (FileSetConfig fileSet : pluginConfigs.filterConfigs(FileSetConfig.class)) {
+                if (fileSet.getMimeType().equalsIgnoreCase(mimeType)) {
+                   matchingFileSets.add(fileSet);
+                }
             }
         }
         //pick up the matching fileset with largest version number

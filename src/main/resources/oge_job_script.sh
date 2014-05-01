@@ -65,8 +65,9 @@ function create_kill_file {
         . %JOB_DIR%/constants.sh
         echo '#!/bin/bash -l' >> %KILL_FILE%
         echo 'export JOB_DIR=%JOB_DIR%' >> %KILL_FILE%
+        echo 'export TMPDIR=%JOB_DIR%' >> %KILL_FILE%
         echo 'if [[ ! "--no-queue-message" == $1 ]]; then' >> %KILL_FILE%
-        echo "${QUEUE_WRITER} --tag %TAG% --status %JOB_KILLED_STATUS% --description "Job killed" --index -1 --job-type job" >> %KILL_FILE%
+        echo "${QUEUE_WRITER} --tag %TAG% --status %JOB_KILLED_STATUS% --description \"Job killed\" --index -1 --job-type job" >> %KILL_FILE%
         echo 'fi' >> %KILL_FILE%
         chmod 700 %KILL_FILE%
     fi
@@ -163,7 +164,7 @@ function setup {
         dieUponError "Could not obtain Java version number."
 
         echo "Goby.jar version"
-        goby_with_memory -Xmx40m version
+        goby_with_memory 40m version
         dieUponError "Could not obtain Goby version number."
 
     fi
@@ -189,9 +190,6 @@ function copy_logs {
     /bin/cp ${TMPDIR}/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
 }
 
-function copy_reads_from_webserver {
-    echo;
-}
 
 function setup_parallel_alignment_analysis {
     jobStartedEmail
@@ -200,11 +198,11 @@ function setup_parallel_alignment_analysis {
     if [ ${NUMBER_OF_ALIGN_PARTS} -gt 1 ]; then
         ARRAY_DIRECTIVE="-t 1-${NUMBER_OF_ALIGN_PARTS}"
     fi
-    ALIGNMENT_ANALYSIS=`qsub ${ARRAY_DIRECTIVE} ${PART_EXCLUSIVE} -N ${TAG}.align -terse -v STATE=single_alignment_analysis oge_job_script.sh`
+    ALIGNMENT_ANALYSIS=`qsub ${ARRAY_DIRECTIVE} ${PART_EXCLUSIVE} -N ${TAG}.align -terse -r y -v STATE=single_alignment_analysis oge_job_script.sh`
     checkSubmission $ALIGNMENT_ANALYSIS
     ALIGNMENT_ANALYSIS=${ALIGNMENT_ANALYSIS%%.*}
     append_kill_file ${ALIGNMENT_ANALYSIS}
-    POST=`qsub -N ${TAG}.post -terse -hold_jid ${ALIGN} -v STATE=post,ALIGN_MODE=normal oge_job_script.sh`
+    POST=`qsub -N ${TAG}.post -terse -r y -hold_jid ${ALIGN} -v STATE=post,ALIGN_MODE=normal oge_job_script.sh`
     checkSubmission $POST
     append_kill_file ${POST}
 
@@ -216,7 +214,7 @@ function setup_align {
 
   if [ "${SUPPORTS_BAM_ALIGNMENTS}" == "true" ]; then
     # require exclusive access to a node, where one READS file will be processed in parallel to produce a single BAM file.
-    ALIGN=`qsub -N ${TAG}.bamalign -l ${PLUGIN_NEED_ALIGN} -terse -v STATE=bam_align oge_job_script.sh`
+    ALIGN=`qsub -N ${TAG}.bamalign -l ${PLUGIN_NEED_ALIGN} -terse -r y -v STATE=bam_align oge_job_script.sh`
     checkSubmission $ALIGN
     ALIGN=${ALIGN%%.*}
     append_kill_file ${ALIGN}
@@ -229,11 +227,11 @@ function setup_align {
         ARRAY_DIRECTIVE="-t 1-${NUMBER_OF_ALIGN_PARTS}"
     fi
     
-    ALIGN=`qsub ${ARRAY_DIRECTIVE} -l ${PLUGIN_NEED_ALIGN} -N ${TAG}.align -terse -v STATE=single_align oge_job_script.sh`
+    ALIGN=`qsub ${ARRAY_DIRECTIVE} -l ${PLUGIN_NEED_ALIGN} -N ${TAG}.align -terse -r y -v STATE=single_align oge_job_script.sh`
     checkSubmission $ALIGN
     ALIGN=${ALIGN%%.*}
     append_kill_file ${ALIGN}
-    POST=`qsub -N ${TAG}.post -terse -hold_jid ${ALIGN} -l ${PLUGIN_NEED_ALIGNMENT_POST_PROCESSING}  -v STATE=post,ALIGN_MODE=normal oge_job_script.sh`
+    POST=`qsub -N ${TAG}.post -terse -r y -hold_jid ${ALIGN} -l ${PLUGIN_NEED_ALIGNMENT_POST_PROCESSING}  -v STATE=post,ALIGN_MODE=normal oge_job_script.sh`
     checkSubmission $POST
     append_kill_file ${POST}
   fi
@@ -249,11 +247,11 @@ function setup_parallel_alignment_analysis_jobs {
     cd ${SGE_O_WORKDIR}
     # We do not require exclusive use of a server when comparing sequence variants, maximize job throughput.
 
-    ALIGN=`qsub ${ARRAY_DIRECTIVE} -N ${TAG}.aap -l ${PLUGIN_NEED_PROCESS} -terse -v STATE=single_alignment_analysis_process -v SLICING_PLAN_FILENAME=${SLICING_PLAN_FILENAME} oge_job_script.sh`
+    ALIGN=`qsub ${ARRAY_DIRECTIVE} -N ${TAG}.aap -l ${PLUGIN_NEED_PROCESS} -terse -r y -v STATE=single_alignment_analysis_process -v SLICING_PLAN_FILENAME=${SLICING_PLAN_FILENAME} oge_job_script.sh`
     checkSubmission ${ALIGN}
     ALIGN=${ALIGN%%.*}
     append_kill_file ${ALIGN}
-    POST=`qsub -N ${TAG}.post -terse -hold_jid ${ALIGN} -l ${PLUGIN_NEED_COMBINE} -v STATE=alignment_analysis_combine oge_job_script.sh`
+    POST=`qsub -N ${TAG}.post -terse -r y -hold_jid ${ALIGN} -l ${PLUGIN_NEED_COMBINE} -v STATE=alignment_analysis_combine oge_job_script.sh`
     checkSubmission ${POST}
     append_kill_file ${POST}
 }
@@ -327,10 +325,6 @@ function run_alignment_analysis_combine {
 
     %PUSH_PLUGIN_OUTPUT_FILES%
 
-    #
-    # Job completely done
-    #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index 1 --job-type job
 
     jobCompletedEmail
 
@@ -358,12 +352,19 @@ function push_analysis_results {
 
     #push the file
     if [ -e "${TMPDIR}/import-db/${TAG}-${file_to_push}" ]; then
-       local REGISTERED_TAG=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} ${slot}: ${TMPDIR}/import-db/${TAG}-${file_to_push}`
-       dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAG}"
-       echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAG}"
+       local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${TMPDIR}/import-db/${TAG}-${file_to_push}`
+       dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAGS}"
+       echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAGS}"
        ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${slot}:[${REGISTERED_TAGS}]"
-    elif [ "${mandatory}" == "true" ]; then
-       echo "ERROR: Mandatory file ${file_to_push} was not produced by the job."
+    elif [ -e "${JOB_DIR}/results/${TAG}/${TAG}-${file_to_push}" ]; then
+        local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${JOB_DIR}/results/${TAG}/${TAG}-${file_to_push}`
+        dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAGS}"
+        echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAGS}"
+        ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${slot}:[${REGISTERED_TAGS}]"
+    else
+        if [ "${mandatory}" == "true" ]; then
+              echo "ERROR: Mandatory file ${file_to_push} was not produced by the job."
+        fi;
     fi;
 }
 
@@ -486,7 +487,7 @@ function push_aligner_results {
 function push_job_metadata {
    tags="$@"
    rm -rf ${JOB_DIR}/${TAG}.properties
-   rm -rf %FILESET_AREA%/${TAG}
+   rm -rf %FILESET_AREA%/${TAG:0:1}/${TAG}
    echo "JOB=${TAG}" >> ${JOB_DIR}/${TAG}.properties
    echo "OWNER=${OWNER}" >> ${JOB_DIR}/${TAG}.properties
    echo "PLUGIN=${PLUGIN_ID}" >> ${JOB_DIR}/${stats_file}
@@ -545,7 +546,7 @@ function goby_with_memory {
    mode_name="$2"
    shift
    shift
-   java ${memory} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
+   java -Xms${memory} -Xmx${memory} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
                                      -Dgoby.configuration=file:${GOBY_DIR}/goby.properties -jar ${GOBY_DIR}/goby.jar \
                        --mode ${mode_name} $*
 }
@@ -592,6 +593,9 @@ function fetch_input_reads {
 
      echo "fileset command: ${FILESET_COMMAND}"
 
+     #make sure that the dir in which reads files will be store exists
+     mkdir -p ${FILESET_TARGET_DIR}
+
      #INPUT_READS slot is declated in AlignerConfig.getInput()
      ${FILESET_COMMAND} --has-fileset INPUT_READS
      dieUponError "Input compact reads are not available"
@@ -628,9 +632,6 @@ function run_single_align {
         CURRENT_PART=1
     fi
 
-    #fetch the input reads from the fileset area
-    fetch_input_reads
-
     # Here 0 and 0 indicate FULL file
     START_POSITION=0
     END_POSITION=0
@@ -665,7 +666,7 @@ function run_single_align {
 
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_SORT_STATUS} --description "Post-align sort, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
 
-    goby_with_memory -Xmx${PLUGIN_NEED_ALIGN_JVM} sort pre-sort-${TAG}.entries -o ${BASENAME} -f 75
+    goby_with_memory ${PLUGIN_NEED_ALIGN_JVM} sort pre-sort-${TAG}.entries -o ${BASENAME} -f 75
     if [ ! $? -eq 0 ]; then
         ls -lat
         rm ${TAG}.*
@@ -929,7 +930,7 @@ function compress {
     #
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPRESS_STATUS} --description "Compressing files" --index ${CURRENT_PART} --job-type job-part
     cd $RESULT_DIR
-    zip ${BASENAME}-all-files.zip ${TAG}*
+    zip ${BASENAME}-all-files.zip ${BASENAME}*
     cd ${SGE_O_WORKDIR}
 }
 
@@ -965,6 +966,22 @@ function job_complete {
     # Job completely done
     #
     copy_logs complete ${CURRENT_PART} ${NUMBER_OF_PARTS}
+    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
+    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index ${CURRENT_PART} --job-type job
+
+    jobCompletedEmail
+}
+
+
+function diffexp_job_complete {
+    echo .
+    echo . diffexp_job_complete
+    echo .
+    #
+    # Job completely done
+    #
+    copy_logs diffexp 1 1
+
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index ${CURRENT_PART} --job-type job
 
@@ -1033,16 +1050,6 @@ function diffexp {
     #
     push_alignment_analysis_results
 
-    #
-    # Job completely done
-    #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index ${CURRENT_PART} --job-type job
-
-    jobCompletedEmail
-
-
-    copy_logs diffexp 1 1
 }
 
 function jobStartedEmail {
@@ -1096,7 +1103,9 @@ case ${STATE} in
         if [ "${PLUGIN_ARTIFACTS_SUBMIT}" == "true" ]; then
             install_plugin_artifacts
         fi
-        copy_reads_from_webserver
+        #fetch the input reads from the fileset area
+        fetch_input_reads
+        echo "export READS=${READS}" >> "${JOB_DIR}/constants.sh"
         setup_align
         ;;
     bam_align)
@@ -1106,6 +1115,7 @@ case ${STATE} in
         fi
         setup_plugin_functions
         fetch_input_reads
+        echo "export READS=${READS}" >> "${JOB_DIR}/constants.sh"
         bam_align
         ;;
     single_align)
@@ -1129,8 +1139,11 @@ case ${STATE} in
         if [ "${PLUGIN_ARTIFACTS_COMBINE}" != "false" ]; then
             install_plugin_artifacts
         fi
+        ALL_REGISTERED_TAGS=""
         setup_plugin_functions
         run_alignment_analysis_combine
+        push_job_metadata ${ALL_REGISTERED_TAGS}
+        diffexp_job_complete
         ;;
     diffexp)
         install_plugin_mandatory_artifacts
@@ -1173,7 +1186,7 @@ case ${STATE} in
         #    install_plugin_artifacts
         #fi
 
-        SUBMISSION=`qsub -N ${TAG}.submit -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
+        SUBMISSION=`qsub -N ${TAG}.submit -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
         checkSubmission $SUBMISSION
         append_kill_file ${SUBMISSION}
         echo ${SUBMISSION}

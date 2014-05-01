@@ -9,6 +9,7 @@ import org.campagnelab.gobyweb.clustergateway.jobs.InputSlotValue;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.JobArea;
+import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.executables.*;
 
@@ -67,7 +68,7 @@ public abstract class SubmissionRequest {
 
     private Set<InputSlotValue> inputSlots = Collections.EMPTY_SET;
 
-    private Plugins plugins;
+    private PluginRegistry pluginRegistry = PluginRegistry.getRegistry();
 
     private String[] commandLineArguments;
 
@@ -77,10 +78,6 @@ public abstract class SubmissionRequest {
 
     protected Set<InputSlotValue> getInputSlots() {
         return inputSlots;
-    }
-
-    protected void setPlugins(Plugins plugins) {
-        this.plugins = plugins;
     }
 
     /**
@@ -213,16 +210,16 @@ public abstract class SubmissionRequest {
         try {
             Submitter submitter = null;
             if (jobArea.isLocal()) {
-                submitter = new LocalSubmitter(plugins.getRegistry());
+                submitter = new LocalSubmitter(pluginRegistry);
             } else {
                 if ((config.userSpecified("job") && (config.userSpecified("queue"))))
-                    submitter = new RemoteSubmitter(plugins.getRegistry(), config.getString("queue"));
+                    submitter = new RemoteSubmitter(pluginRegistry, config.getString("queue"));
                 else if (config.userSpecified("resource"))
-                    submitter = new RemoteSubmitter(plugins.getRegistry());
+                    submitter = new RemoteSubmitter(pluginRegistry);
                 else
                     throw new Exception("No queue has been indicated");
             }
-            Actions actions = new Actions(submitter, config.getString("fileset-area"), jobArea, plugins.getRegistry());
+            Actions actions = new Actions(submitter, config.getString("fileset-area"), jobArea, pluginRegistry);
             assert actions != null : "action cannot be null.";
             submitter.setSubmissionHostname(config.getString("artifact-server"));
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));

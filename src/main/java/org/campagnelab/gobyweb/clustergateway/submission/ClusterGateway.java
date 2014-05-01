@@ -36,7 +36,7 @@ public class ClusterGateway {
     public static int process(String[] args) {
 
         try {
-            SubmissionRequest request = SubmissionRequestFactory.createRequest(args);
+            SubmissionRequest request = SubmissionRequestFactory.createRequest(args,false);
             return request.submitRequest(false);
         } catch (Exception e) {
             //display the basic help
@@ -64,7 +64,7 @@ public class ClusterGateway {
      * @throws Exception
      */
     public static int processAPI(String[] args) throws Exception {
-        SubmissionRequest request = SubmissionRequestFactory.createRequest(args);
+        SubmissionRequest request = SubmissionRequestFactory.createRequest(args,true);
         return request.submitRequest(true);
     }
 }
