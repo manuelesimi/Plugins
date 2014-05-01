@@ -56,7 +56,7 @@ function checkSubmission {
     if [ -z $1 ]; then
         # Kill any already submitted jobs, inform the web server the job has been killed. Quit the script.
         %KILL_FILE%
-        exit
+        exit ${RETURN_STATUS}
     fi
 }
 
@@ -520,7 +520,7 @@ function bam_align {
     else
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
         jobFailedEmail
-        exit
+        exit ${RETURN_STATUS}
     fi
 }
 
@@ -567,7 +567,7 @@ function dieUponError {
             # Failed, no result to copy
             copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
             ${QUEUE_WRITER} --tag ${TAG} --index ${CURRENT_PART} --job-type job-part --status ${JOB_PART_FAILED_STATUS} --description "${DESCRIPTION}"
-            exit
+            exit ${RETURN_STATUS}
     fi
 }
 
@@ -614,7 +614,7 @@ function jobDieUponError {
             copy_logs job ${CURRENT_PART} ${NUMBER_OF_PARTS}
             ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
             jobFailedEmail
-            exit
+            exit ${RETURN_STATUS}
     fi
 }
 
@@ -660,7 +660,7 @@ function run_single_align {
         # Failed, no result to copy
         copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Align, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
-        exit
+        exit ${RETURN_STATUS}
     fi
 
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_SORT_STATUS} --description "Post-align sort, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
@@ -670,7 +670,7 @@ function run_single_align {
         ls -lat
         rm ${TAG}.*
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Post-align sort, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
-        exit
+        exit ${RETURN_STATUS}
     else
         # post-align sort was successful.
         ls -lat
@@ -719,7 +719,7 @@ function alignment_concat {
                 copy_logs concat ${CURRENT_PART} ${NUMBER_OF_PARTS}
                 ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
                 jobFailedEmail
-                exit
+                exit ${RETURN_STATUS}
             fi
 
         else
@@ -751,7 +751,7 @@ function alignment_concat {
                     copy_logs concat ${CURRENT_PART} ${NUMBER_OF_PARTS}
                     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
                     jobFailedEmail
-                    exit
+                    exit ${RETURN_STATUS}
                 fi
             done
  
@@ -765,7 +765,7 @@ function alignment_concat {
                 copy_logs concat ${CURRENT_PART} ${NUMBER_OF_PARTS}
                 ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
                 jobFailedEmail
-                exit
+                exit ${RETURN_STATUS}
             fi
 
         fi
@@ -790,7 +790,7 @@ function fail_when_no_results {
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
         jobFailedEmail
-        exit
+        exit ${RETURN_STATUS}
     fi
 }
 
@@ -812,7 +812,7 @@ function alignment_counts {
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Counts, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
-        # Don't exit
+        # Don't exit ${RETURN_STATUS}
     fi
 }
 
@@ -831,7 +831,7 @@ function alignment_stats {
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
         jobFailedEmail
-        exit
+        exit ${RETURN_STATUS}
     fi
 
     #
@@ -845,7 +845,7 @@ function alignment_stats {
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Alignment Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
-        # Don't exit
+        # Don't exit ${RETURN_STATUS}
     fi
 }
 
@@ -864,7 +864,7 @@ function alignment_sequence_variation_stats {
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
         jobFailedEmail
-        exit
+        exit ${RETURN_STATUS}
     fi
 
     #
@@ -878,7 +878,7 @@ function alignment_sequence_variation_stats {
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Alignment Sequence Variation Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
-        # Don't exit
+        # Don't exit ${RETURN_STATUS}
     fi
 }
 
@@ -896,7 +896,7 @@ function wiggles {
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Wiggles, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
-        # Don't exit
+        # Don't exit ${RETURN_STATUS}
     fi
 }
 
@@ -914,7 +914,7 @@ function bedgraph {
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Bedgraph, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
-        # Don't exit
+        # Don't exit ${RETURN_STATUS}
     fi
 }
 
@@ -1023,9 +1023,9 @@ function diffexp {
       # start SGE array jobs with NUMBER_SEQ_VAR_SLICES pieces:
 
       setup_parallel_alignment_analysis_jobs $RESULT_DIR/${TAG}-slicing-plan.txt
-      # we exit here because the job has been submitted to SGE. Other parts will execute and
+      # we exit ${RETURN_STATUS} here because the job has been submitted to SGE. Other parts will execute and
       # finish or fail the job
-      exit
+      exit ${RETURN_STATUS}
     fi
 
     #
