@@ -51,7 +51,7 @@ function dieUponError {
   DESCRIPTION=$1
   if [ ! ${RETURN_STATUS} -eq 0 ]; then
        echo "Task failed. Error description: ${DESCRIPTION}"
-       exit
+       exit ${RETURN_STATUS}
   fi
 
 }
