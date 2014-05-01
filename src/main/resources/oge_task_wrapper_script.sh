@@ -133,10 +133,12 @@ case ${STATE} in
         install_resources
         LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"
         run_task 2>&1 |tee ${LOG_FILE}
-        if [ $?==0 ]; then
+        STATUS=$?
+        if [ ${STATUS}==0 ]; then
          echo "Task execution completed successfully." >>${LOG_FILE}
         else
          echo "An error occured"
+         exit ${STATUS}
         fi
         ;;
 
