@@ -77,6 +77,10 @@ function run_task {
         /bin/cp ${JOB_DIR}/stepslogger.jar ${GOBY_DIR}/
 
     fi
+
+     #make sure that the dir in which reads files will be stored exists
+     mkdir -p ${FILESET_TARGET_DIR}
+
     setup_task_functions
     install_resources
 
