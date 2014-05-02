@@ -56,7 +56,7 @@ function checkSubmission {
     if [ -z $1 ]; then
         # Kill any already submitted jobs, inform the web server the job has been killed. Quit the script.
         %KILL_FILE%
-        exit ${RETURN_STATUS}
+        exit 0
     fi
 }
 
@@ -503,7 +503,7 @@ function bam_align {
     CURRENT_PART=1
 
     (cd ${TMPDIR} ; plugin_align  pre-sort-${TAG} ${BASENAME} )
-
+    RETURN_STATUS=$?
     if [ $? -eq 0 ]; then
         # Completed, copy the results back
 
@@ -656,7 +656,7 @@ function run_single_align {
       ( cd ${TMPDIR} ;   plugin_align pre-sort-${TAG} ${BASENAME})
 
     # <---- NEW--------
-
+    RETURN_STATUS=$?
     if [ ! $? -eq 0 ]; then
         # Failed, no result to copy
         copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
@@ -667,6 +667,7 @@ function run_single_align {
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_SORT_STATUS} --description "Post-align sort, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
 
     goby_with_memory ${PLUGIN_NEED_ALIGN_JVM} sort pre-sort-${TAG}.entries -o ${BASENAME} -f 75
+    RETURN_STATUS=$?
     if [ ! $? -eq 0 ]; then
         ls -lat
         rm ${TAG}.*
@@ -791,7 +792,7 @@ function fail_when_no_results {
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
         jobFailedEmail
-        exit ${RETURN_STATUS}
+        exit 1
     fi
 }
 
@@ -813,7 +814,7 @@ function alignment_counts {
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Counts, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
-        # Don't exit ${RETURN_STATUS}
+        # Don't exit.
     fi
 }
 
@@ -832,7 +833,7 @@ function alignment_stats {
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
         jobFailedEmail
-        exit ${RETURN_STATUS}
+        exit 1
     fi
 
     #
@@ -846,7 +847,7 @@ function alignment_stats {
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Alignment Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
-        # Don't exit ${RETURN_STATUS}
+        # Don't exit
     fi
 }
 
@@ -865,7 +866,7 @@ function alignment_sequence_variation_stats {
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
         jobFailedEmail
-        exit ${RETURN_STATUS}
+        exit 1
     fi
 
     #
@@ -897,7 +898,7 @@ function wiggles {
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Wiggles, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
-        # Don't exit ${RETURN_STATUS}
+        # Don't exit
     fi
 }
 
@@ -915,7 +916,7 @@ function bedgraph {
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
         ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Bedgraph, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
-        # Don't exit ${RETURN_STATUS}
+        # Don't exit
     fi
 }
 
@@ -1040,6 +1041,7 @@ function diffexp {
       # start SGE array jobs with NUMBER_SEQ_VAR_SLICES pieces:
 
       setup_parallel_alignment_analysis_jobs $RESULT_DIR/${TAG}-slicing-plan.txt
+      RETURN_STATUS=$?
       # we exit ${RETURN_STATUS} here because the job has been submitted to SGE. Other parts will execute and
       # finish or fail the job
       exit ${RETURN_STATUS}
@@ -1049,7 +1051,7 @@ function diffexp {
     # Push alignment default results
     #
     push_alignment_analysis_results
-
+    dieUponError "Cannot push alignment Results"
 }
 
 function jobStartedEmail {
