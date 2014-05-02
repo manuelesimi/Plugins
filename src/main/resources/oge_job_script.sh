@@ -272,7 +272,7 @@ function run_single_alignment_analysis_process {
 
   RETURN_STATUS=$?
   if [ ! $RETURN_STATUS -eq 0 ]; then
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "run_single_alignment_analysis_process failed for part ${CURRENT_PART}" --index ${CURRENT_PART} --job-type job-part
+    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "run_single_alignment_analysis_process failed for part ${CURRENT_PART} on ${HOSTNAME}" --index ${CURRENT_PART} --job-type job-part
   fi
     # Completed, copy the results back
     if [ ! -z ${SGE_TASK_ID} ] && [ "${SGE_TASK_ID}" != "undefined" ] && [ "${SGE_TASK_ID}" != "unknown" ]; then
@@ -291,7 +291,7 @@ function run_alignment_analysis_combine {
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Starting to combine results.." --index 1 --job-type job-part
     RESULT_DIR=${SGE_O_WORKDIR}/results/${TAG}
     (cd ${TMPDIR} ; plugin_alignment_analysis_combine ${RESULT_DIR}/${TAG}.${RESULT_FILE_EXTENSION} ${SGE_O_WORKDIR}/split-results/${TAG}/${TAG}-*.${RESULT_FILE_EXTENSION} )
-    jobDieUponError "failed to combine results"
+    jobDieUponError "failed to combine results (${HOSTNAME})"
 
     %COPY_PLUGIN_OUTPUT_FILES%
 
@@ -651,11 +651,9 @@ function run_single_align {
     # Run the alignment
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_ALIGN_STATUS} --description "Align, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
 
-    # ---- NEW-------->
       # call the aligner plugin script.sh from TMDDIR:
       ( cd ${TMPDIR} ;   plugin_align pre-sort-${TAG} ${BASENAME})
 
-    # <---- NEW--------
     RETURN_STATUS=$?
     if [ ! $? -eq 0 ]; then
         # Failed, no result to copy
