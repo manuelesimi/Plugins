@@ -576,6 +576,9 @@ function fetch_input_alignments {
 
      echo "fileset command: ${FILESET_COMMAND}"
 
+     #make sure that the dir in which reads files will be stored exists
+     mkdir -p ${FILESET_TARGET_DIR}
+
      #INPUT_ALIGNMENTS slot is declared in AlignmentAnalysisConfig.getInput()
      ${FILESET_COMMAND} --has-fileset INPUT_ALIGNMENTS
      dieUponError "INPUT_ALIGNMENTS input entries are not available"
@@ -593,7 +596,7 @@ function fetch_input_reads {
 
      echo "fileset command: ${FILESET_COMMAND}"
 
-     #make sure that the dir in which reads files will be store exists
+     #make sure that the dir in which reads files will be stored exists
      mkdir -p ${FILESET_TARGET_DIR}
 
      #INPUT_READS slot is declated in AlignerConfig.getInput()

@@ -51,7 +51,7 @@ function dieUponError {
   DESCRIPTION=$1
   if [ ! ${RETURN_STATUS} -eq 0 ]; then
        echo "Task failed. Error description: ${DESCRIPTION}"
-       exit
+       exit ${RETURN_STATUS}
   fi
 
 }
@@ -118,6 +118,10 @@ function setup {
         /bin/cp ${JOB_DIR}/serverside-dependencies.jar ${GOBY_DIR}/
         /bin/cp ${JOB_DIR}/stepslogger.jar ${GOBY_DIR}/
     fi
+
+     #make sure that the dir in which reads files will be stored exists
+     mkdir -p ${FILESET_TARGET_DIR}
+
 }
 
 setup
