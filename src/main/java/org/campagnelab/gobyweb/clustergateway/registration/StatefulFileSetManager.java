@@ -3,7 +3,9 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.preview.RegistrationPreviewDetails;
+import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.filesets.registration.InputEntry;
+import org.campagnelab.gobyweb.filesets.rpc.FileSetClient;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
@@ -22,22 +24,11 @@ import java.util.Map;
  *
  * @author manuele
  */
-public class StatefulFileSetManager {
+public class StatefulFileSetManager extends BaseStatefulManager {
 
-    private final FileSetArea storageArea;
-    private PluginRegistry pluginRegistry;
-    ConfigurationList configurationList;
 
     public StatefulFileSetManager(String filesetAreaReference, String owner) throws IOException {
-        this.storageArea = AreaFactory.createFileSetArea(
-                filesetAreaReference, owner);
-        this.pluginRegistry = PluginRegistry.getRegistry();
-    }
-
-    public void setPluginDefinitions(PluginRegistry pluginRegistry) throws Exception {
-        this.pluginRegistry = pluginRegistry;
-        configurationList = PluginsToConfigurations.convertAsList(pluginRegistry.filterConfigs(FileSetConfig.class));
-
+       super(filesetAreaReference,owner);
     }
 
     /**
