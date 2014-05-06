@@ -19,11 +19,14 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
 
     private final int serverPort;
 
+    FileSetClient client;
+
     public StatefulFileSetRPCManager(String filesetAreaReference, String owner, String clientName, int serverPort) throws IOException {
         super(filesetAreaReference, owner);
         this.clientName = clientName;
         this.serverPort = serverPort;
         this.serverHost = this.storageArea.getHostName();
+        this.connect();
     }
 
     /**
@@ -34,9 +37,11 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
      * @throws IOException
      */
     public MetadataFileReader fetchMetadata(String tag, List<String> errors) throws IOException {
-        FileSetClient client = new FileSetClient(this.clientName, this.storageArea.getRootPath(),
-                this.storageArea.getOwner(), this.serverHost, this.serverPort);
        return client.sendGetRequest(tag);
+    }
 
+    private void connect() throws IOException {
+        this.client = new FileSetClient(this.clientName, this.storageArea.getRootPath(),
+                this.storageArea.getOwner(), this.serverHost, this.serverPort);
     }
 }
