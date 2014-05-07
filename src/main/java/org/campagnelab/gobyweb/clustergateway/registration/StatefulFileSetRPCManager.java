@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author manuele
  */
-public class StatefulFileSetRPCManager extends BaseStatefulManager {
+public class StatefulFileSetRPCManager extends BaseStatefulManager  {
 
     private final String clientName;
 
@@ -19,7 +19,9 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
 
     private final int serverPort;
 
-    FileSetClient client;
+    private FileSetClient client;
+
+    private static final long serialVersionUID = 1526246795622776347L;
 
     public StatefulFileSetRPCManager(String filesetAreaReference, String owner, String clientName, int serverPort) throws IOException {
         super(filesetAreaReference, owner);
@@ -37,7 +39,33 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
      * @throws IOException
      */
     public MetadataFileReader fetchMetadata(String tag, List<String> errors) throws IOException {
+       this.resetConnection();
        return client.sendGetRequest(tag);
+    }
+
+    /**
+     * Checks if the connection with the server is still alive. If not, the connection is reopened.
+     * @throws IOException
+     */
+    public void resetConnection() throws IOException {
+        if (!client.isAlive()) {
+            this.client.close();
+            this.connect();
+        }
+    }
+
+    /**
+     * Checks if the connection with the server is still alive.
+     */
+    public boolean isAlive() {
+        return this.client.isAlive();
+    }
+
+    /**
+     * Shutdowns the connection.
+     */
+    public void shutdown() {
+        this.client.close();
     }
 
     private void connect() throws IOException {

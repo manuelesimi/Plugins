@@ -26,6 +26,7 @@ import java.util.Map;
  */
 public class StatefulFileSetManager extends BaseStatefulManager {
 
+    private static final long serialVersionUID = 1526246795621236347L;
 
     public StatefulFileSetManager(String filesetAreaReference, String owner) throws IOException {
        super(filesetAreaReference,owner);

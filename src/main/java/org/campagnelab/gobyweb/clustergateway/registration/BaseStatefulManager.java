@@ -7,13 +7,14 @@ import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Base version of stateful FileSetManager.
  *
  * @author manuele
  */
-public class BaseStatefulManager {
+public class BaseStatefulManager implements Serializable {
 
     protected  FileSetArea storageArea;
 
