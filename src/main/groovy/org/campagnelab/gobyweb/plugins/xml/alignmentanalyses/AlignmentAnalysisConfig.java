@@ -227,7 +227,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
         List<Slot> slots = outputSchema.getOutputSlots();
         for (OutputFile file : this.outputFiles.files) {
             FileSetConfig fileSetConfig = DependencyResolver.resolveFileSetFromMimeType(file.mimeType);
-            assert fileSetConfig != null : String.format("Unable to assign the output file %s to a fileset configuration. No matching mime-type found");
+            assert fileSetConfig != null : String.format("Unable to assign the output file %s to a fileset configuration. No matching mime-type found", file.filename);
             Slot slot = new Slot();
             slot.setName(file.id);
             Slot.IOFileSetRef ref = new Slot.IOFileSetRef();
