@@ -5,6 +5,7 @@ import org.campagnelab.gobyweb.filesets.rpc.FileSetClient;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A stateful version of the FileSetManager that uses the RPC API.
@@ -29,6 +30,12 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
         this.serverPort = serverPort;
         this.serverHost = this.storageArea.getHostName();
         this.connect();
+    }
+
+    @Override
+    public List<String> register(String fileSetID, String[] paths, Map<String, String> attributes,
+                                 List<String> sharedWith, List<String> errors, String tag) throws Exception {
+        return null;
     }
 
     /**
