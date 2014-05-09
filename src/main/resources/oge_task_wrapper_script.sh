@@ -119,17 +119,30 @@ function setup {
         /bin/cp ${JOB_DIR}/stepslogger.jar ${GOBY_DIR}/
     fi
 
-     #make sure that the dir in which reads files will be stored exists
-     mkdir -p ${FILESET_TARGET_DIR}
+    # Copy the goby and support tools to the local node
+    if [ -d "${TMPDIR}" ]; then
+            echo Copying goby dir to the local node ...
+            /bin/cp ${GOBY_DIR}/* ${TMPDIR}
+            cd ${TMPDIR}
+            export TMPDIR
+    fi
+
+    # Show the java & goby.jar version
+    echo "Java version"
+    java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -version
+    dieUponError "Could not obtain Java version number."
+
+    echo "Goby.jar version"
+    goby_with_memory 40m version
+    dieUponError "Could not obtain Goby version number."
+
+    #make sure that the dir in which reads files will be stored exists
+    mkdir -p ${FILESET_TARGET_DIR}
 
 }
 
 setup
 
-# Install artifacts needed by this task:
-ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
-. artifacts.sh
-install_plugin_artifacts
 
 case ${STATE} in
     task)
