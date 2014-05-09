@@ -1,23 +1,11 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
-import com.google.common.base.Joiner;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
-import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
-import org.campagnelab.gobyweb.filesets.preview.RegistrationPreviewDetails;
-import org.campagnelab.gobyweb.filesets.protos.FileSetMetadata;
 import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.filesets.registration.InputEntry;
-import org.campagnelab.gobyweb.filesets.rpc.FileSetClient;
-import org.campagnelab.gobyweb.io.AreaFactory;
-import org.campagnelab.gobyweb.io.FileSetArea;
-import org.campagnelab.gobyweb.plugins.PluginRegistry;
-import org.campagnelab.gobyweb.plugins.Plugins;
-import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
-import java.io.File;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 

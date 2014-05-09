@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by mas2182 on 5/8/14.
+ * Interface for stateful managers.
+ *
+ * @author manuele
  */
 public interface StatefulFileSetManager {
 
