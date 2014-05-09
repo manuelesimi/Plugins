@@ -132,10 +132,6 @@ function setup {
     java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -version
     dieUponError "Could not obtain Java version number."
 
-    echo "Goby.jar version"
-    goby_with_memory 40m version
-    dieUponError "Could not obtain Goby version number."
-
     #make sure that the dir in which reads files will be stored exists
     mkdir -p ${FILESET_TARGET_DIR}
 
