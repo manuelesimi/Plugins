@@ -940,18 +940,11 @@ function cleanup {
     CURRENT_PART=${NUMBER_OF_PARTS}
     # We have concat'd. Remove the interim results.
     if [ ! -z ${SGE_O_WORKDIR} ]; then
-        if [ -d ${SGE_O_WORKDIR}/split-results/ ]; then
-          echo Not removing split-results
-          #  rm -rf ${INTERIM_RESULT_DIR}
-        fi
 
         if [ -d ${SGE_O_WORKDIR}/results/ ]; then
             rm -rf ${SGE_O_WORKDIR}/results/
         fi
 
-        if [ -d ${SGE_O_WORKDIR}/source/ ]; then
-            rm -rf ${SGE_O_WORKDIR}/source/
-        fi
     fi
     #
     # Keep this in case we need to run again with the same version?
