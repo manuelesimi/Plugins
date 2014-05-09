@@ -290,7 +290,7 @@ abstract public class AbstractSubmitter implements Submitter {
                 resourceRef.versionAtMost);
         if (config == null) {
             String message = String.format("Resource lookup failed for resourceRef id=%s versionAtLeast=%s versionExactly=%s versionAtMost=%s%n.",
-                    config.getId(), resourceRef.versionAtLeast, resourceRef.versionExactly, resourceRef.versionAtMost);
+                    resourceRef.id, resourceRef.versionAtLeast, resourceRef.versionExactly, resourceRef.versionAtMost);
 
             logger.error(message);
             throw new RuntimeException(message);

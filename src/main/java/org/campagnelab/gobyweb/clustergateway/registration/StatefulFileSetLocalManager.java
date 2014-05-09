@@ -1,8 +1,10 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
+import com.google.common.base.Joiner;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.preview.RegistrationPreviewDetails;
+import org.campagnelab.gobyweb.filesets.protos.FileSetMetadata;
 import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.filesets.registration.InputEntry;
 import org.campagnelab.gobyweb.filesets.rpc.FileSetClient;
@@ -58,6 +60,7 @@ public class StatefulFileSetLocalManager extends BaseStatefulManager {
 
     @Override
     public MetadataFileReader fetchMetadata(String tag, List<String> errors) throws IOException {
-        return null;
+        FileSetAPI api = FileSetAPI.getReadOnlyAPI(storageArea);
+        return api.fetchMetadata(tag, errors);
     }
 }

@@ -206,7 +206,7 @@ public class Option {
                         return null;
                     }
                 }
-                return new OptionError(this, String.format("The category %s does not exist.", value, id));
+                return new OptionError(this, String.format("The category %s/%s does not exist.", value, id));
             case INTEGER:
                 if (validateInteger(value)) {
                     return null;
