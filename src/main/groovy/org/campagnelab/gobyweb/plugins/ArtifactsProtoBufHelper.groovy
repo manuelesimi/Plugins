@@ -44,8 +44,8 @@ public class ArtifactsProtoBufHelper {
     public File createPbRequestFile(ResourceConsumerConfig pluginConfig) {
         BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
         def uniqueFile = File.createTempFile(ARTIFACTS_INSTALL_REQUESTS, ".pb");
-
-        buildPbRequest(requestBuilder, pluginConfig)
+        Set<String> alreadyInstalled=new HashSet<String>();
+        buildPbRequest(requestBuilder, pluginConfig, alreadyInstalled)
 
         if (!requestBuilder.isEmpty()) {
             requestBuilder.save(uniqueFile);
@@ -67,10 +67,10 @@ public class ArtifactsProtoBufHelper {
     public File createPbRequestFile(ResourceConfig resourceConfig) {
         BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
         def uniqueFile = File.createTempFile(ARTIFACTS_INSTALL_REQUESTS, ".pb");
-
-        buildPbRequest(requestBuilder, resourceConfig)
+        Set<String> alreadyInstalled=new HashSet<String>();
+        buildPbRequest(requestBuilder, resourceConfig, alreadyInstalled)
         // the resource has artifacts, so we write these to the PB request:
-        buildPbRequest(resourceConfig, requestBuilder, true)
+        buildPbRequest(resourceConfig, requestBuilder,alreadyInstalled, true)
 
         if (!requestBuilder.isEmpty()) {
             requestBuilder.save(uniqueFile);
@@ -88,7 +88,8 @@ public class ArtifactsProtoBufHelper {
      * @param pluginConfig
      * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
      */
-    private void buildPbRequest(BuildArtifactRequest requestBuilder, ResourceConsumerConfig resourceConsumerConfig) {
+    private void buildPbRequest(BuildArtifactRequest requestBuilder, ResourceConsumerConfig resourceConsumerConfig,
+                                Set<String> alreadyInstalled) {
         LOG.debug("createPbRequestFile for " + resourceConsumerConfig?.id)
 
         pluginEnvironmentCollectionScripts.each { envScript ->
@@ -101,7 +102,7 @@ public class ArtifactsProtoBufHelper {
             resource ->
                 def resourceConfig = DependencyResolver.resolveResource(resource.id, resource.versionAtLeast, resource.versionExactly,
                         resource.versionAtMost)
-                buildPbRequest(resourceConfig, requestBuilder, resource.mandatory)
+                buildPbRequest(resourceConfig, requestBuilder, alreadyInstalled, resource.mandatory)
         }
 
 
@@ -112,7 +113,9 @@ public class ArtifactsProtoBufHelper {
      * @param resourceConfig
      * @param requestBuilder
      */
-    private def buildPbRequest(ResourceConfig resourceConfig, BuildArtifactRequest requestBuilder, boolean mandatory = false) {
+    private def buildPbRequest(ResourceConfig resourceConfig, BuildArtifactRequest requestBuilder,
+                               Set<String> alreadyInstalled,
+                               boolean mandatory = false) {
         LOG.debug("writePbForResource for " + resourceConfig?.id + " visiting resource dependencies..")
         if (!resourceConfig.requires.isEmpty()) {
             // recursively generate PB requests for resources required by this resource.
@@ -120,7 +123,8 @@ public class ArtifactsProtoBufHelper {
                 ResourceConfig preResourceConfig = DependencyResolver.resolveResource(prerequisite.id,
                         prerequisite.versionAtLeast,
                         prerequisite.versionExactly, prerequisite.versionAtMost)
-                buildPbRequest(preResourceConfig, requestBuilder, mandatory) //if the source resource is mandatory, also its deps are mandatory.
+                buildPbRequest(preResourceConfig, requestBuilder, alreadyInstalled, mandatory)
+                //if the source resource is mandatory, also its deps are mandatory.
             }
 
         }
@@ -134,9 +138,13 @@ public class ArtifactsProtoBufHelper {
 
             for (Artifact artifactXml : resourceConfig.artifacts) {
                 LOG.debug(String.format("PB request.add(%s:%s)", resourceConfig.id, artifactXml.id))
-                requestBuilder.addArtifactWithList(resourceConfig.id, artifactXml.id, resourceConfig.version, mandatory,
-                        scriptFilename, Artifacts.RetentionPolicy.REMOVE_OLDEST, constructAvp(artifactXml)
-                )
+                String key = "${resourceConfig.id}:${resourceConfig.version}"
+                if (!alreadyInstalled.contains(key)) {
+                    requestBuilder.addArtifactWithList(resourceConfig.id, artifactXml.id, resourceConfig.version, mandatory,
+                            scriptFilename, Artifacts.RetentionPolicy.REMOVE_OLDEST, constructAvp(artifactXml))
+                    alreadyInstalled.add(key);
+                }
+
             }
         }
         LOG.debug("writePbForResource for " + resourceConfig?.id + " done.")
