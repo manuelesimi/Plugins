@@ -4,6 +4,7 @@ import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.filesets.rpc.FileSetClient;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,8 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
 
     private FileSetClient client;
 
+    private static final Map<String,FileSetClient> fileSetClientMap = new HashMap<String, FileSetClient>();
+
     private static final long serialVersionUID = 1526246795622776347L;
 
     public StatefulFileSetRPCManager(String filesetAreaReference, String owner, String clientName, int serverPort) throws IOException {
@@ -29,6 +32,12 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
         this.clientName = clientName;
         this.serverPort = serverPort;
         this.serverHost = this.storageArea.getHostName();
+        String key = this.buildClientKey();
+        if (fileSetClientMap.containsKey(key)) {
+            //reuse the client
+            this.client = fileSetClientMap.get(key);
+            this.shutdown();
+        }
         this.connect();
     }
 
@@ -73,10 +82,16 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
      */
     public void shutdown() {
         this.client.close();
+        fileSetClientMap.remove(this.buildClientKey());
     }
 
-    private void connect() throws IOException {
+    public void connect() throws IOException {
         this.client = new FileSetClient(this.clientName, this.storageArea.getRootPath(),
                 this.storageArea.getOwner(), this.serverHost, this.serverPort);
+        fileSetClientMap.put(this.buildClientKey(),this.client);
+    }
+
+    private String buildClientKey() {
+        return String.format("%s%d%s", this.serverHost,this.serverPort,this.clientName);
     }
 }

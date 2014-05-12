@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManager.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetManager.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetManager.java" />
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Cache RPC clients to disconnect them before a new req">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -168,7 +167,7 @@
       <file leaf-file-name="oge_job_script.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="839" column="96" selection-start="35710" selection-end="35710" vertical-scroll-proportion="-27.076923" vertical-offset="11881" max-vertical-offset="17940">
+            <state line="1133" column="69" selection-start="46167" selection-end="46167" vertical-scroll-proportion="-13.576923" vertical-offset="16642" max-vertical-offset="17940">
               <folding />
             </state>
           </provider>
@@ -192,10 +191,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatefulFileSetManager.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="StatefulFileSetManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="33" selection-start="372" selection-end="372" vertical-scroll-proportion="0.06448839" vertical-offset="0" max-vertical-offset="1163">
+            <state line="19" column="52" selection-start="551" selection-end="551" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
               <folding />
             </state>
           </provider>
@@ -228,12 +227,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatefulFileSetRPCManager.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="StatefulFileSetRPCManager.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="7" selection-start="1247" selection-end="1379" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1320">
+            <state line="23" column="78" selection-start="601" selection-end="601" vertical-scroll-proportion="0.521148" vertical-offset="0" max-vertical-offset="1545">
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#684#707#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -328,11 +328,11 @@
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" />
         <option value="$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/BaseStatefulManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java" />
       </list>
     </option>
   </component>
@@ -364,6 +364,46 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="Dependencies" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="plugins" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Dependencies" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="org.campagnelab.gobyweb:artifacts:2.3.0" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="plugins" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Dependencies" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="org.campagnelab.gobyweb:artifacts:2.3.0" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="org.campagnelab.gobyweb:serverside-dependencies:full:1.0.6" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -1436,7 +1476,7 @@
       <workItem from="1398866353916" duration="9038000" />
       <workItem from="1399059289105" duration="22321000" />
       <workItem from="1399580263401" duration="1339000" />
-      <workItem from="1399666205470" duration="131000" />
+      <workItem from="1399666205470" duration="4133000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3222,11 +3262,15 @@
       <created>1399665251249</created>
       <updated>1399665251250</updated>
     </task>
-    <option name="localTasksCounter" value="447" />
+    <task id="LOCAL-00447" summary="Cleanup some unused imports.">
+      <created>1399666353431</created>
+      <updated>1399666353431</updated>
+    </task>
+    <option name="localTasksCounter" value="448" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="373698000" />
+    <option name="totallyTimeSpent" value="377700000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -3246,13 +3290,14 @@
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40676567" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3391089" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29308975" sideWeight="0.31713346" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29308975" sideWeight="0.31697056" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19062749" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29308975" sideWeight="0.6828666" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41171616" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29308975" sideWeight="0.6816269" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41171616" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -3263,7 +3308,6 @@
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29785478" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3391089" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -3283,7 +3327,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Fix single group analysis jobs. Change alignment filter variables to be compliant with bash (they include the group name that may contain chars not accepted in bash names)." />
     <MESSAGE value="Add a unit test for analysis jobs with a single group defined." />
     <MESSAGE value="Update change log for version 2.4.0." />
     <MESSAGE value="Quote the description message for killed jobs." />
@@ -3308,7 +3351,8 @@
     <MESSAGE value="Add methods to RPC to test and reset the connection. Implement the Serialize interface in Stateful Managers." />
     <MESSAGE value="Add interface and implementation of common methods for StatefulManagers." />
     <MESSAGE value="Do not remove the source folder after the job is completed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Do not remove the source folder after the job is completed." />
+    <MESSAGE value="Cleanup some unused imports." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup some unused imports." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3553,16 +3597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="839" column="96" selection-start="35710" selection-end="35710" vertical-scroll-proportion="-27.076923" vertical-offset="11881" max-vertical-offset="17940">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="34" selection-start="641" selection-end="662" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2610">
@@ -3573,15 +3607,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="62" selection-end="62" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="7" selection-start="1247" selection-end="1379" vertical-scroll-proportion="0.0" vertical-offset="400" max-vertical-offset="1320">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -3611,8 +3636,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="33" selection-start="372" selection-end="372" vertical-scroll-proportion="0.06448839" vertical-offset="0" max-vertical-offset="1163">
+        <state line="19" column="52" selection-start="551" selection-end="551" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1133" column="69" selection-start="46167" selection-end="46167" vertical-scroll-proportion="-13.576923" vertical-offset="16642" max-vertical-offset="17940">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="78" selection-start="601" selection-end="601" vertical-scroll-proportion="0.521148" vertical-offset="0" max-vertical-offset="1545">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#684#707#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
