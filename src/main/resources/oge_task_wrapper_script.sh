@@ -77,6 +77,7 @@ function setup {
         export TMPDIR=${JOB_DIR}
     fi
 
+    CURRENT_PART=1 # Needed when reporting errors with dieUponError
 
     # include value definitions for automatic options:
     . %JOB_DIR%/auto-options.sh
