@@ -138,7 +138,8 @@ public class ArtifactsProtoBufHelper {
 
             for (Artifact artifactXml : resourceConfig.artifacts) {
                 LOG.debug(String.format("PB request.add(%s:%s)", resourceConfig.id, artifactXml.id))
-                String key = "${resourceConfig.id}:${resourceConfig.version}"
+                // generate a unique key for each plugin and artifact:
+                String key = "${resourceConfig.id}:${artifactXml.id}:${resourceConfig.version}"
                 if (!alreadyInstalled.contains(key)) {
                     requestBuilder.addArtifactWithList(resourceConfig.id, artifactXml.id, resourceConfig.version, mandatory,
                             scriptFilename, Artifacts.RetentionPolicy.REMOVE_OLDEST, constructAvp(artifactXml))
