@@ -1,9 +1,11 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
+import org.campagnelab.gobyweb.filesets.configuration.Configuration;
 import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.filesets.rpc.FileSetClient;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +23,8 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
 
     private final int serverPort;
 
+    private final String serverUsername;
+
     private FileSetClient client;
 
     private static final Map<String,FileSetClient> fileSetClientMap = new HashMap<String, FileSetClient>();
@@ -32,6 +36,7 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
         this.clientName = clientName;
         this.serverPort = serverPort;
         this.serverHost = this.storageArea.getHostName();
+        this.serverUsername = this.storageArea.getUserName();
         String key = this.buildClientKey();
         if (fileSetClientMap.containsKey(key)) {
             //reuse the client
@@ -44,7 +49,16 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
     @Override
     public List<String> register(String fileSetID, String[] paths, Map<String, String> attributes,
                                  List<String> sharedWith, List<String> errors, String tag) throws Exception {
-        return null;
+
+        String[] entries = new String[paths.length + 1];
+        entries[0] = fileSetID + ":";
+        System.arraycopy(paths, 0, entries, 1, paths.length);
+        Configuration filesetConfiguration = this.configurationList.getConfiguration(fileSetID);
+        if (filesetConfiguration == null) {
+            errors.add("Unable to find a FileSet configuration with id=" + fileSetID);
+            return Collections.emptyList();
+        }
+        return this.client.sendRegisterRequest(entries, filesetConfiguration,attributes,sharedWith,errors,tag);
     }
 
     /**
@@ -87,7 +101,7 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
 
     public void connect() throws IOException {
         this.client = new FileSetClient(this.clientName, this.storageArea.getRootPath(),
-                this.storageArea.getOwner(), this.serverHost, "", this.serverPort);
+                this.storageArea.getOwner(), this.serverHost, this.serverUsername, this.serverPort);
         fileSetClientMap.put(this.buildClientKey(),this.client);
     }
 
