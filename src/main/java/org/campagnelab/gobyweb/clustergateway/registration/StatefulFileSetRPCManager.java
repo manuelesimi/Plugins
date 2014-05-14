@@ -87,7 +87,7 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
 
     public void connect() throws IOException {
         this.client = new FileSetClient(this.clientName, this.storageArea.getRootPath(),
-                this.storageArea.getOwner(), this.serverHost, this.serverPort);
+                this.storageArea.getOwner(), this.serverHost, "", this.serverPort);
         fileSetClientMap.put(this.buildClientKey(),this.client);
     }
 

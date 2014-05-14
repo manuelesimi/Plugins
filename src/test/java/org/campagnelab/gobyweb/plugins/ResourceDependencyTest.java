@@ -123,7 +123,25 @@ public class ResourceDependencyTest {
                 "  ssh_web_app_host: \"localhost\"\n" +
                 "  retention: REMOVE_OLDEST\n" +
                 "  mandatory: false\n" +
-                "}\n" , cleanup(helper.getRequests()).toString());
+                "}\n" +
+                "artifacts {\n" +
+                "  plugin_id: \"STAR\"\n" +
+                "  artifact_id: \"INDEX\"\n" +
+                "  version: \"2.2.0\"\n" +
+                "  script_install_path: \"INSTALL_PATH_OMITTED\"\n" +
+                "  ssh_web_app_host: \"localhost\"\n" +
+                "  attributes {\n" +
+                "    name: \"organism\"\n" +
+                "  }\n" +
+                "  attributes {\n" +
+                "    name: \"reference-build\"\n" +
+                "  }\n" +
+                "  attributes {\n" +
+                "    name: \"ensembl-version-number\"\n" +
+                "  }\n" +
+                "  retention: REMOVE_OLDEST\n" +
+                "  mandatory: false\n" +
+                "}\n"  , cleanup(helper.getRequests()).toString());
     }
 
     @Test
