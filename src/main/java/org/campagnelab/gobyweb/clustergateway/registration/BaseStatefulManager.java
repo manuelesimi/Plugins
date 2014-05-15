@@ -53,7 +53,7 @@ public abstract class BaseStatefulManager implements Serializable,StatefulFileSe
     public RegistrationPreviewDetails previewRegistration(
             String[] paths, String ... fileSetID) throws Exception {
         //convert plugins configuration to configurations that can be consumed by FileSetAPI
-        FileSetAPI fileset = FileSetAPI.getReadWriteAPI(storageArea, configurationList);
+        FileSetAPI fileset = FileSetAPI.getReadWriteAPI(AreaFactory.createDummyFileSetArea(), configurationList);
         List<InputEntry> inputEntries;
         if (fileSetID != null && fileSetID.length > 0) {
             String[] entries = new String[paths.length + 1];
