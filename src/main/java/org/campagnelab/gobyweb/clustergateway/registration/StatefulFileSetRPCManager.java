@@ -90,6 +90,12 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
         return this.client.sendRegisterRequest(entries, filesetConfiguration, attributes, sharedWith, errors, tag);
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        shutdown();
+    }
+
     /**
      * Fetches the instance metadata.
      *
@@ -99,7 +105,7 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
      * @throws IOException
      */
     public MetadataFileReader fetchMetadata(String tag, List<String> errors) throws IOException {
-        this.resetConnection();
+//        this.resetConnection();
         return client.sendGetRequest(tag);
     }
 
@@ -109,7 +115,7 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
      * @throws IOException
      */
     public void resetConnection() throws IOException {
-        if (!client.isAlive()) {
+        if (!isAlive()) {
             this.client.close();
             this.connect();
         }
@@ -119,15 +125,18 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
      * Checks if the connection with the server is still alive.
      */
     public boolean isAlive() {
-        return this.client.isAlive();
+        return client != null && this.client.isAlive();
     }
 
     /**
      * Shutdowns the connection.
      */
     public void shutdown() {
-        this.client.close();
+        if (isAlive()) {
+            this.client.close();
+        }
         fileSetClientMap.remove(this.buildClientKey());
+
     }
 
     public void connect() throws IOException {
