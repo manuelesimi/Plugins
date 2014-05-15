@@ -3,6 +3,7 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 import org.campagnelab.gobyweb.filesets.configuration.Configuration;
 import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.filesets.rpc.FileSetClient;
+import org.campagnelab.gobyweb.plugins.PluginRegistry;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -15,7 +16,7 @@ import java.util.Map;
  *
  * @author manuele
  */
-public class StatefulFileSetRPCManager extends BaseStatefulManager  {
+public class StatefulFileSetRPCManager extends BaseStatefulManager {
 
     private final String clientName;
 
@@ -23,27 +24,55 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
 
     private final int serverPort;
 
-    private final String serverUsername;
+    /**
+     * Username to use when sshing to the host that has the remote fileset area. Not the host with the tunnel,
+     * but the host at the destination of the tunnel.
+     */
+    private final String filesetAreaUsername;
+    private final String filesetAreaHostname;
+    /**
+     * The path to the fileset area on the remote fileset area.
+     */
+    private final String filesetAreaPath;
+    private final String owner;
 
     private FileSetClient client;
 
-    private static final Map<String,FileSetClient> fileSetClientMap = new HashMap<String, FileSetClient>();
+    private static final Map<String, FileSetClient> fileSetClientMap = new HashMap<String, FileSetClient>();
 
     private static final long serialVersionUID = 1526246795622776347L;
 
-    public StatefulFileSetRPCManager(String filesetAreaReference, String owner, String clientName, int serverPort) throws IOException {
-        super(filesetAreaReference, owner);
+    /**
+     * Create a StatefulFileSetRPCManager.
+     *
+     * @param serverHost          The hostname of the server to which the fileset server connection will be made.
+     * @param serverPort          The port of the server to which the fileset server connection will be made.
+     * @param filesetAreaHostname The hostname of the server where the fileset area actually exists. This may be different from serverHost if a tunnel was created to the fileset server.
+     * @param filesetAreaUsername The username to connect via ssh to the the server where the fileset area actually exists.
+     * @param filesetAreaPath     The path to the fileset area on the fileset area server.
+     * @param owner               The owner of the fileset instances that should be exposed, in the fileset area.
+     * @param clientName          A client name that will be used to identify this connection.
+     * @throws IOException
+     */
+    public StatefulFileSetRPCManager(String serverHost, int serverPort, String filesetAreaHostname,
+                                     String filesetAreaUsername, String filesetAreaPath,
+                                     String owner, String clientName) {
+        super();
+        this.pluginRegistry = PluginRegistry.getRegistry();
+        this.owner = owner;
         this.clientName = clientName;
         this.serverPort = serverPort;
-        this.serverHost = this.storageArea.getHostName();
-        this.serverUsername = this.storageArea.getUserName();
+        this.serverHost = serverHost;
+        this.filesetAreaHostname = filesetAreaHostname;
+        this.filesetAreaUsername = filesetAreaUsername;
+        this.filesetAreaPath = filesetAreaPath;
         String key = this.buildClientKey();
         if (fileSetClientMap.containsKey(key)) {
             //reuse the client
             this.client = fileSetClientMap.get(key);
             this.shutdown();
         }
-        this.connect();
+
     }
 
     @Override
@@ -58,23 +87,25 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
             errors.add("Unable to find a FileSet configuration with id=" + fileSetID);
             return Collections.emptyList();
         }
-        return this.client.sendRegisterRequest(entries, filesetConfiguration,attributes,sharedWith,errors,tag);
+        return this.client.sendRegisterRequest(entries, filesetConfiguration, attributes, sharedWith, errors, tag);
     }
 
     /**
      * Fetches the instance metadata.
+     *
      * @param tag
      * @param errors
      * @return
      * @throws IOException
      */
     public MetadataFileReader fetchMetadata(String tag, List<String> errors) throws IOException {
-       this.resetConnection();
-       return client.sendGetRequest(tag);
+        this.resetConnection();
+        return client.sendGetRequest(tag);
     }
 
     /**
      * Checks if the connection with the server is still alive. If not, the connection is reopened.
+     *
      * @throws IOException
      */
     public void resetConnection() throws IOException {
@@ -100,12 +131,18 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager  {
     }
 
     public void connect() throws IOException {
-        this.client = new FileSetClient(this.clientName, this.storageArea.getRootPath(),
-                this.storageArea.getOwner(), this.serverHost, this.serverUsername, this.serverPort);
-        fileSetClientMap.put(this.buildClientKey(),this.client);
+        this.client = new FileSetClient(
+                this.clientName,
+                filesetAreaHostname,
+                filesetAreaUsername,
+                filesetAreaPath,
+                this.owner,
+                this.serverHost,
+                this.serverPort);
+        fileSetClientMap.put(this.buildClientKey(), this.client);
     }
 
     private String buildClientKey() {
-        return String.format("%s%d%s", this.serverHost,this.serverPort,this.clientName);
+        return String.format("%s%d%s", this.serverHost, this.serverPort, this.clientName);
     }
 }

@@ -26,6 +26,9 @@ public abstract class BaseStatefulManager implements Serializable,StatefulFileSe
 
     protected ConfigurationList configurationList;
 
+    protected BaseStatefulManager() {
+
+    }
     public BaseStatefulManager(String filesetAreaReference, String owner) throws IOException {
         this.storageArea = AreaFactory.createFileSetArea(filesetAreaReference, owner);
         this.pluginRegistry = PluginRegistry.getRegistry();
