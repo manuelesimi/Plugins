@@ -2,6 +2,7 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 
 import org.campagnelab.gobyweb.filesets.configuration.Configuration;
 import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
+import org.campagnelab.gobyweb.filesets.rpc.ClientNameAlreadyConnectedException;
 import org.campagnelab.gobyweb.filesets.rpc.FileSetClient;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 
@@ -114,7 +115,7 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
      *
      * @throws IOException
      */
-    public void resetConnection() throws IOException {
+    public void resetConnection() throws IOException, ClientNameAlreadyConnectedException {
         if (!isAlive()) {
             this.client.close();
             this.connect();
@@ -139,7 +140,7 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
 
     }
 
-    public void connect() throws IOException {
+    public void connect() throws IOException, ClientNameAlreadyConnectedException {
         this.client = new FileSetClient(
                 this.clientName,
                 filesetAreaHostname,
