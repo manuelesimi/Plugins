@@ -6,6 +6,7 @@ import org.campagnelab.gobyweb.filesets.registration.InputEntry;
 
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -57,5 +58,35 @@ public class StatefulFileSetLocalManager extends BaseStatefulManager {
     public MetadataFileReader fetchMetadata(String tag, List<String> errors) throws IOException {
         FileSetAPI api = FileSetAPI.getReadOnlyAPI(storageArea);
         return api.fetchMetadata(tag, errors);
+    }
+
+    /**
+     * Fetches an entry from the instance.
+     *
+     *
+     * @param tag
+     * @param errors
+     * @return
+     * @throws java.io.IOException
+     */
+    @Override
+    public boolean fetchEntry(String entryName, String tag, List<String> paths, List<String> errors) throws IOException {
+        FileSetAPI api = FileSetAPI.getReadOnlyAPI(storageArea);
+        return api.fetchEntry(entryName,tag,paths,errors);
+    }
+
+    /**
+     * Fetches an entry from the instance.
+     *
+     * @param entryName
+     * @param tag
+     * @param data
+     * @param errors
+     * @return
+     * @throws java.io.IOException
+     */
+    @Override
+    public boolean fetchStreamedEntry(String entryName, String tag, List<ByteBuffer> data, List<String> errors) throws IOException {
+        throw new UnsupportedOperationException();
     }
 }

@@ -3,14 +3,13 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 import org.campagnelab.gobyweb.filesets.configuration.Configuration;
 import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.filesets.rpc.ClientNameAlreadyConnectedException;
+import org.campagnelab.gobyweb.filesets.rpc.FetchedEntry;
 import org.campagnelab.gobyweb.filesets.rpc.FileSetClient;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.nio.ByteBuffer;
+import java.util.*;
 
 /**
  * A stateful version of the FileSetManager that uses the RPC API.
@@ -108,6 +107,43 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
     public MetadataFileReader fetchMetadata(String tag, List<String> errors) throws IOException {
 //        this.resetConnection();
         return client.sendGetRequest(tag);
+    }
+
+    /**
+     * Fetches an entry from the instance.
+     *
+     * @param entryName
+     * @param tag
+     * @param paths
+     * @param errors
+     * @return
+     * @throws java.io.IOException
+     */
+    @Override
+    public boolean fetchEntry(String entryName, String tag, List<String> paths, List<String> errors) throws IOException {
+         throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Fetches an entry from the instance.
+     *
+     * @param entryName
+     * @param tag
+     * @param data
+     * @param errors
+     * @return
+     * @throws java.io.IOException
+     */
+    @Override
+    public boolean fetchStreamedEntry(String entryName, String tag, List<ByteBuffer> data, List<String> errors) throws IOException {
+        FetchedEntry entry = client.fetchEntry(entryName,tag,errors);
+        if (entry == null || entry.size() == 0)
+            return false;
+        if (data == null)
+            data = new ArrayList<ByteBuffer>();
+        for (int i = 0; i < entry.size(); i++)
+            data.add(entry.getDataAt(i));
+        return true;
     }
 
     /**

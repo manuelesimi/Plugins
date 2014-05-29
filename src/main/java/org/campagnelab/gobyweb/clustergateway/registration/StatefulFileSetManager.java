@@ -5,6 +5,7 @@ import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Map;
 
@@ -53,4 +54,27 @@ public interface StatefulFileSetManager {
      * @throws IOException
      */
     public MetadataFileReader fetchMetadata(String tag, List<String> errors) throws IOException;
+
+    /**
+     * Fetches an entry from the instance.
+     * @param entryName
+     * @param tag
+     * @param paths the localized files
+     * @param errors
+     * @return
+     * @throws IOException
+     */
+    public boolean fetchEntry(String entryName, String tag, List<String> paths, List<String> errors) throws IOException;
+
+    /**
+     * Fetches an entry from the instance as stream of bytes.
+     * @param entryName
+     * @param tag
+     * @param data
+     * @param errors
+     * @return
+     * @throws IOException
+     */
+    public boolean fetchStreamedEntry(String entryName, String tag, List<ByteBuffer> data, List<String> errors) throws IOException;
+
 }
