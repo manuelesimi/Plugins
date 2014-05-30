@@ -172,7 +172,8 @@ public abstract class SubmissionRequest {
                         .setRequired(option.required)
                         .setShortFlag(JSAP.NO_SHORTFLAG)
                         .setLongFlag(option.id)
-                        .setDefault(defaultTo);
+                        .setDefault(defaultTo)
+                        .setAllowMultipleDeclarations(option.allowMultiple);
                 jsapOption.setHelp(option.help + valuesHelp);
                 interfaceParameters.add(jsapOption);
             }

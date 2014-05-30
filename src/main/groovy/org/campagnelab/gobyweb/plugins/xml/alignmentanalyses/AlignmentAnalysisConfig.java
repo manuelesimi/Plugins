@@ -241,4 +241,26 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
             slots.add(slot);
         }
     }
+
+    @Override
+    protected void decorateOptions(Options options) {
+        //GROUP_DEFINITION
+        Option option = new Option();
+        option.id = "GROUP_DEFINITION";
+        option.name = "GROUP_DEFINITION";
+        option.required = true;
+        option.type = Option.OptionType.STRING;
+        option.allowMultiple = true;
+        option.help = "The group definition list. Each definition must be in the form: Group_N=TAG,TAG342,TAG231,etc. TAGs must match the ones declared in the SLOTS.";
+        options.items().add(option);
+        //COMPARISON_PAIR
+        Option option2 = new Option();
+        option2.id = "COMPARISON_PAIR";
+        option2.name = "COMPARISON_PAIR";
+        option2.required = true;
+        option2.type = Option.OptionType.STRING;
+        option2.allowMultiple = true;
+        option2.help = "The comparison pair list. Each pair must be in the form Group_Name1/Group_Name2. Group names must match the ones declared in the GROUP_DEFINITION.";
+        options.items().add(option2);
+    }
 }

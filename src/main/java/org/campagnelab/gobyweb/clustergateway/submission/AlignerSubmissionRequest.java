@@ -29,7 +29,7 @@ class AlignerSubmissionRequest extends SubmissionRequest {
         List<Parameter> parameters = new ArrayList<Parameter>();
 
         //add mandatory parameters common to all aligners
-        FlaggedOption genome = new FlaggedOption("GENOME_REFERENCE_ID")
+      /*  FlaggedOption genome = new FlaggedOption("GENOME_REFERENCE_ID")
                 .setStringParser(JSAP.STRING_PARSER)
                 .setRequired(true)
                 .setShortFlag(JSAP.NO_SHORTFLAG)
@@ -44,7 +44,7 @@ class AlignerSubmissionRequest extends SubmissionRequest {
                 .setShortFlag(JSAP.NO_SHORTFLAG)
                 .setLongFlag("CHUNK_SIZE");
         chunk_size.setHelp("The number of bytes of compressed reads file to give to a single align part.");
-        parameters.add(chunk_size);
+        parameters.add(chunk_size);                                             */
 
         return parameters;
     }

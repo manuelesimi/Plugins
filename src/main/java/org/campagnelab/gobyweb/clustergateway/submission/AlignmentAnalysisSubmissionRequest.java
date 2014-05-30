@@ -26,7 +26,7 @@ class AlignmentAnalysisSubmissionRequest extends SubmissionRequest {
     @Override
     protected List<Parameter> getAdditionalParameters() {
         List<Parameter> parameters = new ArrayList<Parameter>();
-        FlaggedOption groups = new FlaggedOption("GROUP_DEFINITION")
+    /*    FlaggedOption groups = new FlaggedOption("GROUP_DEFINITION")
                 .setStringParser(JSAP.STRING_PARSER)
                 .setRequired(true)
                 .setAllowMultipleDeclarations(true)
@@ -42,7 +42,7 @@ class AlignmentAnalysisSubmissionRequest extends SubmissionRequest {
                 .setShortFlag(JSAP.NO_SHORTFLAG)
                 .setLongFlag("COMPARISON_PAIR");
         pairs.setHelp("The comparison pair list. Each pair must be in the form Group_Name1/Group_Name2. Group names must match the ones declared in the GROUP_DEFINITION");
-        parameters.add(pairs);
+        parameters.add(pairs);       */
 
         return parameters;
     }

@@ -80,6 +80,11 @@ public class Option {
      */
     public String defaultsTo;
 
+    /**
+     * Allows multiple declaration of this option from the command line.
+     */
+    public boolean allowMultiple = false;
+
     public enum OptionType {
         /**
          * A BOOLEAN is either true or false. It can be shown as a checkbox. The userDefinedValue field will be true or

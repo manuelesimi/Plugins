@@ -156,6 +156,33 @@ public class AlignerConfig extends ExecutableConfig {
         return String.format("%s/%s (%s) num-rules: %d, num-needs: %d", this.getHumanReadableConfigType(), this.name, this.version, this.options.rules().size(), this.runtime.needs.size());
     }
 
+    /**
+     * This method is a hook for subclasses that want to decorate
+     * the plugin options
+     *
+     * @param options
+     */
+    @Override
+    protected void decorateOptions(Options options) {
+        //GENOME_REFERENCE_ID
+        Option option = new Option();
+        option.id = "GENOME_REFERENCE_ID";
+        option.name = "GENOME_REFERENCE_ID";
+        option.required = true;
+        option.type = Option.OptionType.STRING;
+        option.help = "The reference genome.";
+        options.items().add(option);
+        //CHUNK_SIZE long
+        Option option2 = new Option();
+        option2.id = "CHUNK_SIZE";
+        option2.name = "CHUNK_SIZE";
+        option2.required = true;
+        option2.help = "The number of bytes of compressed reads file to give to a single align part." ;
+        option2.defaultsTo = "50000000";
+        option2.type = Option.OptionType.INTEGER;
+        options.items().add(option2);
+    }
+
     @Override
     protected void decorateInput(ExecutableInputSchema inputSchema) {
         List<Slot> slots = inputSchema.getInputSlots();

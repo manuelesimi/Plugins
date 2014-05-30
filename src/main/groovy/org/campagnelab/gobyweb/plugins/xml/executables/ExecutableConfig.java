@@ -92,6 +92,11 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
     private boolean isInputDecorated = false;
 
     /**
+     * Indicates if the options must be decorated.
+     */
+    private boolean areOptionsDecorated = false;
+
+    /**
      * Indicates if the output of the Executable IO Schema must be decorated.
      */
     private boolean isOutputDecorated = false;
@@ -309,8 +314,19 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
     }
 
     public Options getOptions() {
+        if (!this.areOptionsDecorated) {
+            this.decorateOptions(this.options);
+            this.areOptionsDecorated = true;
+        }
         return options;
     }
+
+    /**
+     * This method is a hook for subclasses that want to decorate
+     * the plugin options
+     * @param inputSchema
+     */
+    protected void decorateOptions(Options options) {}
 
     public Execute getExecute() {
         return execute;
