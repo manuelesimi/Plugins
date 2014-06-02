@@ -3,8 +3,6 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 import junit.framework.Assert;
 import org.campagnelab.gobyweb.clustergateway.util.JobMetadataParser;
 import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 import java.io.StringReader;
 import java.nio.ByteBuffer;
@@ -13,21 +11,23 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * Created by mas2182 on 5/29/14.
+ * Tester for {@link org.campagnelab.gobyweb.clustergateway.registration.StatefulFileSetRPCManager}
+ *
+ * @author manuele
  */
 public class StatefulFileSetRPCManagerTest {
 
     StatefulFileSetRPCManager manager;
 
 
-    @Test
+   // @Test
     public void testRegister() throws Exception {
-
+       return;
     }
 
-    @Test
+    //@Test
     public void testFetchMetadata() throws Exception {
-
+      return;
     }
 
     //@Test
