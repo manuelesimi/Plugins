@@ -101,7 +101,16 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
      */
     private boolean isOutputDecorated = false;
 
+    /**
+     * Gets the options accepted by this configuration.
+     * @return the options
+     * @deprecated see #ExecutableConfig.getOptions()
+     */
     public List<Option> options() {
+        if (!this.areOptionsDecorated) {
+            this.decorateOptions(this.options);
+            this.areOptionsDecorated = true;
+        }
         return options.option;
     }
 
