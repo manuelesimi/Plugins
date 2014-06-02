@@ -160,17 +160,11 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
             rule.validWhenParsed = validateOVL(rule.validWhen, errors);
         }
 
-        for (Option anOption : options.items()) {
+        for (Option anOption : this.getOptions().items()) {
             validateId("Plugin Option", anOption.id, errors);
             anOption.hiddenWhenParsed = validateOVL(anOption.hiddenWhen, errors);
-            if (anOption.required) {
-                if (anOption.defaultsTo == null) {
-                    errors.add(String.format(
-                            "Plugin Option %s is marked as required, but does not have a defaultsTo attribute. Default values are necessary for required options.",
-                            anOption.id));
-                } else {
+            if (anOption.required && anOption.defaultsTo != null) {
                     anOption.userDefinedValue = anOption.defaultsTo;
-                }
             }
 
         }

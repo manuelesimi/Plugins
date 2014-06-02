@@ -113,7 +113,7 @@ public class PluginsTest {
 
         ArrayList<String> errors = new ArrayList<String>();
         config.validate(errors);
-        assertEquals("config must exactly one user-defined option", 1, config.userSpecifiedOptions().size());
+        assertEquals("config must exactly one user-defined option", 2, config.userSpecifiedOptions().size());
 
     }
 
