@@ -52,7 +52,7 @@
     <orderEntry type="library" name="Maven: com.google.guava:guava-base:r03" level="project" />
     <orderEntry type="library" name="Maven: com.esotericsoftware.wildcard:wildcard:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.campagnelab:org.campagnelab.stepslogger:1.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:filesets:1.3.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:filesets:1.2.1-SNAPSHOT" level="project" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">
