@@ -158,7 +158,7 @@ case ${STATE} in
 
     *)
         cd ${JOB_DIR}
-        SUBMISSION=`qsub -N ${TAG}.submit -terse -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
+        SUBMISSION=`qsub -N ${TAG}.submit -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
         echo ${SUBMISSION}
         ;;
 esac
