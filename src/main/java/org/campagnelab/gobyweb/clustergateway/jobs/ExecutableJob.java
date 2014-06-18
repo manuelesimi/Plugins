@@ -16,19 +16,31 @@ import java.util.*;
  */
 public class ExecutableJob extends Job {
 
-     private ExecutableConfig sourceConfig;
+    private ExecutableConfig sourceConfig;
 
-     private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
+    private Set<InputSlotValue> inputSlots = new HashSet<InputSlotValue>();
 
      //a dynamic data object consumed by plugin scripts. At runtime, Groovy will resolve it with the actual object
      //the object stored in this variable depends on the job to be executed and it is prepared in the appropriate job builder.
-     private Object dataForScripts;
+    private Object dataForScripts;
 
-     public ExecutableJob(ExecutableConfig sourceConfig) {
+    /**
+     * Messaging broker's host
+     */
+    private String brokerHostname;
+
+    /**
+     * Messaging broker's port
+     */
+    private int brokerPort;
+
+    public ExecutableJob(ExecutableConfig sourceConfig, CommonJobConfiguration jobConfiguration) {
          this.sourceConfig = sourceConfig;
          for (PluginFile file : sourceConfig.getFiles()) {
              this.addFile(file.getLocalFile());
          }
+        this.brokerHostname = jobConfiguration.getBrokerHostname();
+        this.brokerPort = jobConfiguration.getBrokerPort();
      }
 
      public ExecutableOutputSchema getOutputSchema() {
@@ -182,6 +194,39 @@ public class ExecutableJob extends Job {
 
     public void setDataForScripts(Object dataForScripts) {
         this.dataForScripts = dataForScripts;
+    }
+
+
+    /**
+     * Sets the messaging broker's hostname
+     * @param brokerHostname
+     */
+    public void setBrokerHostname(String brokerHostname) {
+        this.brokerHostname = brokerHostname;
+    }
+
+    /**
+     * Sets the messaging broker's port
+     * @param brokerPort
+     */
+    public void setBrokerPort(int brokerPort) {
+        this.brokerPort = brokerPort;
+    }
+
+    /**
+     * Gets the messaging broker's hostname
+     * @return
+     */
+    public String getBrokerHostname() {
+        return this.brokerHostname;
+    }
+
+    /**
+     * Gets the messaging broker's port
+     * @return
+     */
+    public int getBrokerPort() {
+        return brokerPort;
     }
 
     public static class InvalidSlotValueException extends Exception {

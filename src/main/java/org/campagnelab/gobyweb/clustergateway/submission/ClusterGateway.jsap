@@ -169,5 +169,24 @@
             <help>Additional option(s) to pass to the job in the format KEY=VALUE. The option will be available as environment variable in the job execution environment.</help>
         </flaggedOption>
 
+        <flaggedOption>
+            <id>broker-hostname</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <longFlag>broker-hostname</longFlag>
+            <help>The hostname where the messaging broker is running. Messages will be sent there.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>broker-port</id>
+            <stringParser>
+                <classname>IntegerStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <longFlag>broker-port</longFlag>
+            <help>The port where the messaging broker is listening. </help>
+        </flaggedOption>
     </parameters>
 </jsap>

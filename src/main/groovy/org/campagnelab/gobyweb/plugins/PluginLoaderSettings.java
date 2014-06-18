@@ -46,7 +46,17 @@ public class PluginLoaderSettings {
      */
     public static final String[] SERVER_SIDE_TOOL = new String[] {
             "GOBYWEB_SERVER_SIDE", //ID
-            "2.4",  //versionAtLeast
+            "2.5",  //versionAtLeast
+            null, //versionExactly
+            null //versionAtMost
+    };
+
+    /**
+     * Resource configuration added to each non resource configuration.
+     */
+    public static final String[] MERCURY = new String[] {
+            "MERCURY", //ID
+            "1.0",  //versionAtLeast
             null, //versionExactly
             null //versionAtMost
     };

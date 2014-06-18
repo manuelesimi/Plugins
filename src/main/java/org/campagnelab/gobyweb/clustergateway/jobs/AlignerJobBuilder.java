@@ -31,16 +31,15 @@ public class AlignerJobBuilder extends JobBuilder {
     /**
      * Creates an aligner job builder.
      * @param alignerConfig the source aligner configuration
-     * @param jobArea the job area where the job will be submitted
-     * @param filesetAreaReference the fileset area from which reads metadata are fetched
-     * @param user the owner of the job
-     * @param inputSlots the input slots passed on the command line
+     * @param jobConfiguration the job submission settings
      * @throws IOException
      */
-    public AlignerJobBuilder(AlignerConfig alignerConfig, JobArea jobArea, String filesetAreaReference,
-                             String user, Set<InputSlotValue> inputSlots) throws IOException {
-        super(alignerConfig);
+    public AlignerJobBuilder(AlignerConfig alignerConfig, CommonJobConfiguration jobConfiguration) throws IOException {
+        super(alignerConfig,jobConfiguration);
         this.alignerConfig = alignerConfig;
+        JobArea jobArea = jobConfiguration.getJobArea();
+        String filesetAreaReference = jobConfiguration.getFilesetAreaReference();
+        String user = jobConfiguration.getOwner();
         // create the fileset area according to the location of the job area
         if (jobArea.isLocal()) {
             //we can use the reference name as it is because we have the same visibility
@@ -56,7 +55,7 @@ public class AlignerJobBuilder extends JobBuilder {
             }
         }
         //input slots are validated elsewhere, we do not need to do it here
-        InputSlotValue inputReads = inputSlots.iterator().next();
+        InputSlotValue inputReads = jobConfiguration.getInputSlots().iterator().next();
         this.inputReadsTag = inputReads.getValues().get(0);
     }
 

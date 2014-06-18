@@ -32,16 +32,15 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
     /**
      * Creates an analysis alignment job builder.
      * @param analysisConfig the source analysis configuration
-     * @param jobArea the job area where the job will be submitted
-     * @param filesetAreaReference the fileset area from which alignment metadata are fetched
-     * @param owner the owner of the job
-     * @param inputSlots the input slots passed on the command line
+     * @param jobConfiguration the job submission settings
      * @throws IOException
      */
-    public AlignmentAnalysisJobBuilder(AlignmentAnalysisConfig analysisConfig, JobArea jobArea, String filesetAreaReference,
-                                       String owner, Set<InputSlotValue> inputSlots) throws IOException {
-        super(analysisConfig);
+    public AlignmentAnalysisJobBuilder(AlignmentAnalysisConfig analysisConfig,CommonJobConfiguration jobConfiguration) throws IOException {
+        super(analysisConfig,jobConfiguration);
         this.analysisConfig = analysisConfig;
+        JobArea jobArea = jobConfiguration.getJobArea();
+        String filesetAreaReference = jobConfiguration.getFilesetAreaReference();
+        String owner = jobConfiguration.getOwner();
         // create the fileset area according to the location of the job area
         if (jobArea.isLocal()) {
             //we can use the reference name as it is because we have the same visibility
@@ -56,7 +55,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
                 this.fileSetArea = AreaFactory.createAdminFileSetArea(filesetAreaReference,owner);
             }
         }
-        this.parseInputSlots(inputSlots);
+        this.parseInputSlots(jobConfiguration.getInputSlots());
     }
 
     /**

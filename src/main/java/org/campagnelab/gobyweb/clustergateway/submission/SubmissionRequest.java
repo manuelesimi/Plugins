@@ -220,7 +220,8 @@ public abstract class SubmissionRequest {
                 else
                     throw new Exception("No queue has been indicated");
             }
-            Actions actions = new Actions(submitter, config.getString("fileset-area"), jobArea, pluginRegistry);
+            Actions actions = new Actions(submitter, config.getString("fileset-area"),
+                    jobArea, pluginRegistry, config.getString("broker-hostname"), config.getInt("broker-port"));
             assert actions != null : "action cannot be null.";
             submitter.setSubmissionHostname(config.getString("artifact-server"));
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));

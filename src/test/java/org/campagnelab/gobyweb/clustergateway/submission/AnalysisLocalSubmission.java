@@ -30,6 +30,8 @@ public class AnalysisLocalSubmission {
     static JobArea jobArea;
     static FileSetArea storageArea;
     static Actions actions;
+    static String brokerHostname = "localhost";
+    static int brokerPort = 5672;
     static final String rootAreaDir = "test-results";
     static final String storageAreaDir = String.format("%s/filesets", rootAreaDir);
     static final String jobAreaDir = String.format("%s/jobs", rootAreaDir);
@@ -72,7 +74,7 @@ public class AnalysisLocalSubmission {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
+            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
             /*actions.submitAnalysis(s
                     alignmentAnalysisConfig,
                     SubmissionRequest.toInputParameters(new String[]{}), Collections.EMPTY_MAP);   */

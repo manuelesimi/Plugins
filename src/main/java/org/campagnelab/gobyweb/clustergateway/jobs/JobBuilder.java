@@ -16,9 +16,11 @@ import java.util.Map;
 public abstract class JobBuilder {
 
     private final ExecutableConfig executableConfig;
+    private final CommonJobConfiguration jobConfiguration;
 
-    protected JobBuilder(ExecutableConfig executableConfig) {
+    protected JobBuilder(ExecutableConfig executableConfig, CommonJobConfiguration jobConfiguration) {
         this.executableConfig = executableConfig;
+        this.jobConfiguration = jobConfiguration;
     }
 
     /**
@@ -60,7 +62,7 @@ public abstract class JobBuilder {
      * @throws IOException
      */
     public ExecutableJob build(final Map<String, String> commandLineOptions) throws IOException {
-        ExecutableJob executableJob = new ExecutableJob(executableConfig);
+        ExecutableJob executableJob = new ExecutableJob(executableConfig, jobConfiguration);
         //default memory settings (can be overridden by subclasses)
         executableJob.setMemoryInGigs(8);
         this.manageConfigOptions(commandLineOptions);

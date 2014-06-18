@@ -1,12 +1,10 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
-import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.*;
 
 import org.campagnelab.gobyweb.io.JobArea;
-import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 
@@ -30,11 +28,9 @@ final class Actions {
 
     private Submitter submitter;
 
-    private String fileSetAreaReference;
-
-    private JobArea jobArea;
-
     private PluginRegistry registry;
+
+    private CommonJobConfiguration jobConfiguration;
 
     /**
      * The directory where the Cluster Gateway stores results of job executions
@@ -55,10 +51,16 @@ final class Actions {
      * @param registry
      * @throws IOException if the creation of the folder where to store job results fails
      */
-    protected Actions(Submitter submitter, String fileSetAreaReference, JobArea jobArea, PluginRegistry registry) throws IOException {
+    protected Actions(Submitter submitter, String fileSetAreaReference,
+                      JobArea jobArea, PluginRegistry registry,
+                      String brokerHostname, int brokerPort) throws IOException {
         this.registry = registry;
-        this.fileSetAreaReference = fileSetAreaReference;
-        this.jobArea = jobArea;
+        this.jobConfiguration = new CommonJobConfiguration();
+        this.jobConfiguration.setFilesetAreaReference(fileSetAreaReference);
+        this.jobConfiguration.setJobArea(jobArea);
+        this.jobConfiguration.setOwner(jobArea.getOwner());
+        this.jobConfiguration.setBrokerHostname(brokerHostname);
+        this.jobConfiguration.setBrokerPort(brokerPort);
         this.submitter = submitter;
         if (!returnedJobFiles.exists())
             FileUtils.forceMkdir(returnedJobFiles);
@@ -79,7 +81,7 @@ final class Actions {
         //add the input filesets
         job.addInputSlotValues(inputFilesets);
         //submit the job
-        submitter.submitJob(jobArea, session, job);
+        submitter.submitJob(this.jobConfiguration.getJobArea(), session, job);
     }
 
 
@@ -90,11 +92,11 @@ final class Actions {
      */
     private Session prepareJobSession() throws Exception {
         Session session = submitter.newSession();
-        session.targetAreaReferenceName = fileSetAreaReference;
-        session.targetAreaOwner = jobArea.getOwner();
+        session.targetAreaReferenceName = this.jobConfiguration.getFilesetAreaReference();
+        session.targetAreaOwner = this.jobConfiguration.getOwner();
         //create the directory for results
         FileUtils.forceMkdir(returnedJobFiles);
-        if (jobArea.isLocal()) {
+        if (this.jobConfiguration.getJobArea().isLocal()) {
             //the job is executed locally, it just needs a local reference to the results directory
             session.callerAreaReferenceName = returnedJobFiles.getAbsolutePath();
         } else {
@@ -125,8 +127,9 @@ final class Actions {
      */
     protected void submitAligner(AlignerConfig alignerConfig, Set<InputSlotValue> inputSlots, String genomeID,
                                  long chunkSize, Map<String, String> unclassifiedOptions) throws Exception {
-        AlignerJobBuilder builder = new AlignerJobBuilder(alignerConfig, jobArea,
-                fileSetAreaReference, jobArea.getOwner(), inputSlots);
+
+        jobConfiguration.setInputSlots(inputSlots);
+        AlignerJobBuilder builder = new AlignerJobBuilder(alignerConfig, jobConfiguration);
         builder.setChunkSize(chunkSize);
         builder.setGenomeID(genomeID);
         if (!submitter.isLocal())
@@ -148,9 +151,8 @@ final class Actions {
     protected void submitAnalysis(AlignmentAnalysisConfig analysisConfig, Set<InputSlotValue> inputSlots, String[] groups_definitions,
                                   String[] comparison_pairs, Map<String, String> unclassifiedOptions)
             throws Exception {
-
-        AlignmentAnalysisJobBuilder builder = new AlignmentAnalysisJobBuilder(analysisConfig, jobArea,
-                fileSetAreaReference, jobArea.getOwner(), inputSlots);
+        jobConfiguration.setInputSlots(inputSlots);
+        AlignmentAnalysisJobBuilder builder = new AlignmentAnalysisJobBuilder(analysisConfig, jobConfiguration);
         builder.setGroupDefinition(Arrays.asList(groups_definitions));
         builder.setComparisonPairs(Arrays.asList(comparison_pairs));
         if (!submitter.isLocal())
@@ -172,7 +174,9 @@ final class Actions {
     protected void submitTask(TaskConfig taskConfig, Set<InputSlotValue> inputSlots,
                               Map<String, String> unclassifiedOptions) throws Exception {
 
-        TaskJobBuilder builder = new TaskJobBuilder(taskConfig);
+        jobConfiguration.setInputSlots(inputSlots);
+        TaskJobBuilder builder = new TaskJobBuilder(taskConfig, jobConfiguration);
+
         if (submitter.isLocal())
             submitter.setWrapperScript("local_task_wrapper_script.sh");
         else
@@ -187,7 +191,7 @@ final class Actions {
      * @param config      the resource
      * @throws Exception
      */
-    protected void submitResourceInstall( ResourceConfig config) throws Exception {
+    protected void submitResourceInstall(ResourceConfig config) throws Exception {
 
         ResourceJob resourceInstance = new ResourceJob(config);
         //resourceInstance.setTag(ICBStringUtils.generateRandomString());
@@ -198,7 +202,7 @@ final class Actions {
         submitter.setWrapperScript("resource_install_wrapper_script.sh");
 
         //submit the resourceInstance
-        submitter.submitResourceInstall(jobArea, session, resourceInstance);
+        submitter.submitResourceInstall(jobConfiguration.getJobArea(), session, resourceInstance);
     }
 
 }

@@ -14,8 +14,13 @@ public class TaskJobBuilder extends JobBuilder {
 
     private final TaskConfig taskConfig;
 
-    public TaskJobBuilder(TaskConfig taskConfig) {
-        super(taskConfig);
+    /**
+     *
+     * @param taskConfig the source task config
+     * @param jobConfiguration the job submission settings
+     */
+    public TaskJobBuilder(TaskConfig taskConfig, CommonJobConfiguration jobConfiguration) {
+        super(taskConfig,jobConfiguration);
         this.taskConfig = taskConfig;
     }
 

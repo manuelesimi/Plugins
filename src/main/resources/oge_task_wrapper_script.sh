@@ -23,9 +23,11 @@ function install_resources {
     #include needed function for resources installation
     ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
     . %JOB_DIR%/artifacts.sh
+     debug "Installing mandatory plugin artifacts"
      install_plugin_mandatory_artifacts
      if [ "${PLUGIN_ARTIFACTS_TASK}" != "false" ]; then
-           install_plugin_artifacts
+        debug "Installing plugin artifacts"
+        install_plugin_artifacts
      fi
 }
 
@@ -43,14 +45,14 @@ function push_job_metadata {
    echo "TAGS=${tags}" >> ${JOB_DIR}/${TAG}.properties
    echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
    REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${TAG}.properties`
-   echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
+   debug "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
 }
 
 function dieUponError {
   RETURN_STATUS=$?
   DESCRIPTION=$1
   if [ ! ${RETURN_STATUS} -eq 0 ]; then
-       echo "Task failed. Error description: ${DESCRIPTION}"
+       error "Task failed. Error description: ${DESCRIPTION}"
        exit ${RETURN_STATUS}
   fi
 
@@ -62,7 +64,8 @@ function run_task {
    ALL_REGISTERED_TAGS=""
    plugin_task
    push_job_metadata ${ALL_REGISTERED_TAGS}
-   ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Task completed" --index 0 --job-type job
+   #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Task completed" --index 0 --job-type job
+   info "Task completed"
 }
 
 function setup {
@@ -140,6 +143,8 @@ function setup {
 
 setup
 
+ #include logging functions
+. ${JOB_DIR}/message-functions.sh
 
 case ${STATE} in
     task)
@@ -149,9 +154,11 @@ case ${STATE} in
         run_task 2>&1 |tee ${LOG_FILE}
         STATUS=$?
         if [ ${STATUS}==0 ]; then
-         echo "Task execution completed successfully." >>${LOG_FILE}
+         #echo "Task execution completed successfully." >>${LOG_FILE}
+         info "Task execution completed successfully."
         else
-         echo "An error occured"
+         #echo "An error occured"
+         error "An error occured. Exit status is: ${STATUS}"
          exit ${STATUS}
         fi
         ;;

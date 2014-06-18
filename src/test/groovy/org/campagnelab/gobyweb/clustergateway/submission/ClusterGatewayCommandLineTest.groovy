@@ -28,6 +28,8 @@ public class ClusterGatewayCommandLineTest {
     static def repoDirAbsolutePath=new File("${resultsDir}/REPO").getAbsolutePath()
 
     static Properties prop = new Properties();
+    static String brokerHostname = "localhost";
+    static int brokerPort = 5672;
 
 
     @BeforeClass
@@ -95,6 +97,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
+                        "--broker-hostname ${brokerHostname} " +
+                        "--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_READS: HQPMEDL"
 
@@ -131,6 +135,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
+                        "--broker-hostname ${brokerHostname} " +
+                        "--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: VMUKAAN HGVOJLQ RHPHQGN ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
@@ -164,6 +170,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
+                        "--broker-hostname ${brokerHostname} " +
+                        "--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: VMUKAAN HGVOJLQ RHPHQGN ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
@@ -200,6 +208,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
+                        "--broker-hostname ${brokerHostname} " +
+                        "--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
@@ -234,6 +244,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
+                        "--broker-hostname ${brokerHostname} " +
+                        "--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ" //slots cardinality does not match
                 ).split(" ")
@@ -268,6 +280,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
+                        "--broker-hostname ${brokerHostname} " +
+                        "--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ KKHLEFC" //KKHLEFC does not match any source for alignments
                 ).split(" ")
@@ -339,6 +353,8 @@ public class ClusterGatewayCommandLineTest {
                 "--option BAZ=baz " +
                 "--option DEBUG=true " +
                 "--artifact-server localhost "+
+                "--broker-hostname ${brokerHostname} " +
+                "--broker-port ${brokerPort} " +
                 "--repository ${repoDirAbsolutePath} "+
                 additionalCommands).split(" ");
 

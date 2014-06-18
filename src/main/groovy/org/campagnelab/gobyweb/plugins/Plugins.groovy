@@ -404,6 +404,16 @@ public class Plugins {
             if (!config.requires.contains(resourceRef)) {
                 config.requires.add(0, resourceRef);
             }
+
+            ResourceConfig mercury = lookupResource(MERCURY[0], MERCURY[1], MERCURY[2])
+            assert mercury != null: " The ${MERCURY[0]} resource must exist";
+            Resource mercuryRef = new Resource()
+            mercuryRef.id = mercury.id
+            mercuryRef.versionExactly = mercury.version
+            resourceRef.mandatory = true
+            if (!config.requires.contains(mercuryRef)) {
+                config.requires.add(0, mercuryRef);
+            }
         }
 
     }

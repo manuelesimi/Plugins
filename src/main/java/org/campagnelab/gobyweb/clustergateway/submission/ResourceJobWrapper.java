@@ -13,6 +13,7 @@ import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import java.util.List;
 import java.util.Vector;
 
+import static org.campagnelab.gobyweb.plugins.PluginLoaderSettings.MERCURY;
 import static org.campagnelab.gobyweb.plugins.PluginLoaderSettings.SERVER_SIDE_TOOL;
 
 /**
@@ -78,6 +79,14 @@ public class ResourceJobWrapper extends ExecutableConfig {
         serverSideResourceRef.id = serverSideResource.getId();
         serverSideResourceRef.versionExactly = serverSideResource.getVersion();
         result.add(serverSideResourceRef);
+
+        ResourceConfig mercury = DependencyResolver.resolveResource(MERCURY[0], MERCURY[1], null);
+        assert mercury != null : " The ${MERCURY[0]} resource must exist";
+        Resource mercuryRef = new Resource();
+        mercuryRef.id = mercury.getId();
+        mercuryRef.versionExactly = mercury.getVersion();
+        result.add(mercuryRef);
+
 
         Resource thisResource = new Resource();
         thisResource.id = resource.getId();

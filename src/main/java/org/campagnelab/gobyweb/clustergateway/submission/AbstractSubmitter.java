@@ -201,6 +201,9 @@ abstract public class AbstractSubmitter implements Submitter {
                         jobDir,
                         job.getTag())
         );
+        environment.put("BROKER_HOSTNAME", job.getBrokerHostname());
+        environment.put("BROKER_PORT", job.getBrokerPort());
+
         if (job.isParallel()) {
             environment.put("CPU_REQUIREMENTS", "#$ -l excl=true");
         } else {

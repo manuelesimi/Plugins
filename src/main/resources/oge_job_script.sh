@@ -1084,9 +1084,11 @@ function setup_plugin_functions {
 
 setup
 
+#include logging functions
+. ${JOB_DIR}/message-functions.sh
+
 ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
 . ${JOB_DIR}/artifacts.sh
-
 
 case ${STATE} in
     install_plugin_artifacts)

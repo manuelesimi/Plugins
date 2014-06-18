@@ -1,5 +1,9 @@
 #!/bin/sh
 
+
+ #include logging functions
+. %JOB_DIR%/message-functions.sh
+
 function setup_task_functions {
     # define no-op function to be overridden as needed by task script:
     plugin_task() { echo; }
@@ -12,7 +16,7 @@ function dieUponError {
   RETURN_STATUS=$?
   DESCRIPTION=$1
   if [ ! ${RETURN_STATUS} -eq 0 ]; then
-       echo "Task failed. Error description: ${DESCRIPTION}"
+       error "Task failed. Error description: ${DESCRIPTION}"
        exit
   fi
 
@@ -41,7 +45,7 @@ function push_job_metadata {
    echo "TAGS=${tags}" >> ${JOB_DIR}/${TAG}.properties
    echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
    REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${TAG}.properties`
-   echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
+   info "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
 }
 
 function run_task {
@@ -78,18 +82,20 @@ function run_task {
 
     fi
 
-     #make sure that the dir in which reads files will be stored exists
-     mkdir -p ${FILESET_TARGET_DIR}
+    #make sure that the dir in which reads files will be stored exists
+    mkdir -p ${FILESET_TARGET_DIR}
 
+    info "Task started."
     setup_task_functions
+
     install_resources
 
+    info "Required resources installed."
 
     LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"
     run_task 2>&1 |tee ${LOG_FILE}
     if [ $?==0 ]; then
-      echo "Task execution completed successfully." >>${LOG_FILE}
-
+      info "Task execution completed successfully."
     else
-      echo "An error occurred"
+      error "Task failed."
     fi
