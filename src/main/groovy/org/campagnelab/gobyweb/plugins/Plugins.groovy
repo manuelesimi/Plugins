@@ -177,7 +177,8 @@ public class Plugins {
 
 
         for (ResourceConfig resourceConfig : pluginConfigs.filterConfigs(ResourceConfig.class)) {
-            resourceConfig.validateFiles(errors);
+            if (!resourceConfig.isDisabled())
+                resourceConfig.validateFiles(errors);
         }
 
         for (String error : errors) {
@@ -261,15 +262,17 @@ public class Plugins {
         def toRemove = []
         synchronized (pluginConfigs) {
             for (Config config : pluginConfigs) {
-                if ((config.getClass().isAssignableFrom(ResourceConsumerConfig.class) //same class
-                        || (ResourceConsumerConfig.isInstance(config)))) {            //or a sub-class
-                    LOG.trace("Checking resources for ${config}")
-                    def errors = new ArrayList<String>()
-                    errors = checkRequiredResources(config, errors)
-                    if (!errors.isEmpty()) {
-                        toRemove.add(config)
-                        errors.each { message ->
-                            LOG.error("An error occurred resolving a plugin resource requirement: ${message}")
+                if (!config.isDisabled()) {
+                    if ((config.getClass().isAssignableFrom(ResourceConsumerConfig.class) //same class
+                            || (ResourceConsumerConfig.isInstance(config)))) {            //or a sub-class
+                        LOG.trace("Checking resources for ${config}")
+                        def errors = new ArrayList<String>()
+                        errors = checkRequiredResources(config, errors)
+                        if (!errors.isEmpty()) {
+                            toRemove.add(config)
+                            errors.each { message ->
+                                LOG.error("An error occurred resolving a plugin resource requirement: ${message}")
+                            }
                         }
                     }
                 }
