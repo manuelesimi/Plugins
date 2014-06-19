@@ -23,10 +23,10 @@ function install_resources {
     #include needed function for resources installation
     ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
     . %JOB_DIR%/artifacts.sh
-     debug "Installing mandatory plugin artifacts"
+     debug "Installing mandatory plugin artifacts" "RUNNING"
      install_plugin_mandatory_artifacts
      if [ "${PLUGIN_ARTIFACTS_TASK}" != "false" ]; then
-        debug "Installing plugin artifacts"
+        debug "Installing plugin artifacts" "RUNNING"
         install_plugin_artifacts
      fi
 }
@@ -45,14 +45,14 @@ function push_job_metadata {
    echo "TAGS=${tags}" >> ${JOB_DIR}/${TAG}.properties
    echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
    REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${TAG}.properties`
-   debug "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
+   debug "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}" "RUNNING"
 }
 
 function dieUponError {
   RETURN_STATUS=$?
   DESCRIPTION=$1
   if [ ! ${RETURN_STATUS} -eq 0 ]; then
-       error "Task failed. Error description: ${DESCRIPTION}"
+       fatal "Task failed. Error description: ${DESCRIPTION}" "COMPLETED"
        exit ${RETURN_STATUS}
   fi
 
@@ -65,7 +65,7 @@ function run_task {
    plugin_task
    push_job_metadata ${ALL_REGISTERED_TAGS}
    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Task completed" --index 0 --job-type job
-   info "Task completed"
+   info "Task completed" "COMPLETED"
 }
 
 function setup {
@@ -74,7 +74,7 @@ function setup {
     export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
 
     export JOB_DIR=%JOB_DIR%
-    echo "JOB _DIR is ${JOB_DIR}"
+    trace "JOB _DIR is ${JOB_DIR}" "RUNNING"
 
     if [ -z "$TMPDIR" ]; then
         export TMPDIR=${JOB_DIR}
@@ -155,10 +155,10 @@ case ${STATE} in
         STATUS=$?
         if [ ${STATUS}==0 ]; then
          #echo "Task execution completed successfully." >>${LOG_FILE}
-         info "Task execution completed successfully."
+         info "Task execution completed successfully." "COMPLETED"
         else
          #echo "An error occured"
-         error "An error occured. Exit status is: ${STATUS}"
+         fatal "An error occured. Exit status is: ${STATUS}" "COMPLETED"
          exit ${STATUS}
         fi
         ;;
@@ -167,6 +167,8 @@ case ${STATE} in
         cd ${JOB_DIR}
         SUBMISSION=`qsub -N ${TAG}.submit -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
         echo ${SUBMISSION}
+        info "Task submitted: ${SUBMISSION}" "SUBMITTED"
+
         ;;
 esac
 

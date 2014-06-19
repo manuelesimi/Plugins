@@ -16,7 +16,7 @@ function dieUponError {
   RETURN_STATUS=$?
   DESCRIPTION=$1
   if [ ! ${RETURN_STATUS} -eq 0 ]; then
-       error "Task failed. Error description: ${DESCRIPTION}"
+       fatal "Task failed. Error description: ${DESCRIPTION}" "COMPLETED"
        exit
   fi
 
@@ -45,7 +45,7 @@ function push_job_metadata {
    echo "TAGS=${tags}" >> ${JOB_DIR}/${TAG}.properties
    echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
    REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${TAG}.properties`
-   info "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
+   info "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}" "RUNNING"
 }
 
 function run_task {
@@ -85,7 +85,7 @@ function run_task {
     #make sure that the dir in which reads files will be stored exists
     mkdir -p ${FILESET_TARGET_DIR}
 
-    info "Task started."
+    info "Task started." "STARTED" "1" "1"
     setup_task_functions
 
     install_resources
@@ -95,7 +95,7 @@ function run_task {
     LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"
     run_task 2>&1 |tee ${LOG_FILE}
     if [ $?==0 ]; then
-      info "Task execution completed successfully."
+      info "Task execution completed successfully." "COMPLETED" "1" "1"
     else
-      error "Task failed."
+      error "Task failed." "COMPLETED" "1" "1"
     fi
