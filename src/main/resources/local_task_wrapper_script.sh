@@ -85,17 +85,14 @@ function run_task {
     #make sure that the dir in which reads files will be stored exists
     mkdir -p ${FILESET_TARGET_DIR}
 
-    info "Task started." "STARTED" "1" "1"
+    info "Task started." "STARTED"
     setup_task_functions
-
     install_resources
-
-    info "Required resources installed."
-
+    debug "Required resources installed."
     LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"
     run_task 2>&1 |tee ${LOG_FILE}
     if [ $?==0 ]; then
-      info "Task execution completed successfully." "COMPLETED" "1" "1"
+      info "Task execution completed successfully." "COMPLETED"
     else
-      error "Task failed." "COMPLETED" "1" "1"
+      error "Task failed." "COMPLETED"
     fi
