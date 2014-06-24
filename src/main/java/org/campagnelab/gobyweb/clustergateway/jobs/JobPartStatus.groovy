@@ -20,6 +20,7 @@ public enum JobPartStatus {
     WIGGLES("w"),
     COMPRESS("z"),
     TRANSFER("t"),
+    REGISTERED_FILESETS("r"),
     COMPLETED("d"),
     DIFF_EXP("x"),
     ALIGNMENT_SEQ_VARIATION_STATS("v"),

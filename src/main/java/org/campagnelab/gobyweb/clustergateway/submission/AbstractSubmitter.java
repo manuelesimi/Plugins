@@ -180,6 +180,7 @@ abstract public class AbstractSubmitter implements Submitter {
         environment.put("JOB_PART_ALIGNMENT_SEQ_VARIATION_STATS_STATUS", JobPartStatus.ALIGNMENT_SEQ_VARIATION_STATS.statusName);
         environment.put("JOB_PART_COMPRESS_STATUS", JobPartStatus.COMPRESS.statusName);
         environment.put("JOB_PART_TRANSFER_STATUS", JobPartStatus.TRANSFER.statusName);
+        environment.put("JOB_REGISTERED_FILESETS_STATUS", JobPartStatus.REGISTERED_FILESETS.statusName);
         environment.put("JOB_KILLED_STATUS", JobPartStatus.KILLED.statusName);
         environment.put("JOB_DIR", jobDir);
         environment.put("GOBY_DIR", "${TMPDIR}");

@@ -95,7 +95,10 @@ function calculate_PAD_FORMAT {
 function setup {
 
     export JOB_DIR=%JOB_DIR%
-   
+
+   #include logging functions
+    . %JOB_DIR%/message-functions.sh
+
     # define job specific constants:
     . %JOB_DIR%/constants.sh
 
@@ -258,13 +261,13 @@ function setup_parallel_alignment_analysis_jobs {
 
 
 function run_single_alignment_analysis_process {
-
   if [ ! -z ${SGE_TASK_ID} ] && [ "${SGE_TASK_ID}" != "undefined" ] && [ "${SGE_TASK_ID}" != "unknown" ]; then
            CURRENT_PART=${SGE_TASK_ID}
   else
            CURRENT_PART=1
   fi
-  ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Processing run_single_alignment_analysis_process for part ${CURRENT_PART}" --index ${CURRENT_PART} --job-type job-part
+  #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Processing run_single_alignment_analysis_process for part ${CURRENT_PART}" --index ${CURRENT_PART} --job-type job-part
+  debug "Processing run_single_alignment_analysis_process for part ${CURRENT_PART}" ${JOB_PART_DIFF_EXP_STATUS} ${CURRENT_PART} ${NUMBER_OF_PARTS}
 
   # This variable is defined on the command line: SLICING_PLAN_FILENAME
 
@@ -272,7 +275,8 @@ function run_single_alignment_analysis_process {
 
   RETURN_STATUS=$?
   if [ ! $RETURN_STATUS -eq 0 ]; then
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "run_single_alignment_analysis_process failed for part ${CURRENT_PART} on ${HOSTNAME}" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "run_single_alignment_analysis_process failed for part ${CURRENT_PART} on ${HOSTNAME}" --index ${CURRENT_PART} --job-type job-part
+    error "run_single_alignment_analysis_process failed for part ${CURRENT_PART} on ${HOSTNAME}" ${JOB_PART_FAILED_STATUS} ${CURRENT_PART} ${NUMBER_OF_PARTS}
   fi
     # Completed, copy the results back
     if [ ! -z ${SGE_TASK_ID} ] && [ "${SGE_TASK_ID}" != "undefined" ] && [ "${SGE_TASK_ID}" != "unknown" ]; then
@@ -288,7 +292,8 @@ function run_single_alignment_analysis_process {
 
 function run_alignment_analysis_combine {
 
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Starting to combine results.." --index 1 --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Starting to combine results.." --index 1 --job-type job-part
+    debug "Starting to combine results.." ${JOB_PART_DIFF_EXP_STATUS}
     RESULT_DIR=${SGE_O_WORKDIR}/results/${TAG}
     (cd ${TMPDIR} ; plugin_alignment_analysis_combine ${RESULT_DIR}/${TAG}.${RESULT_FILE_EXTENSION} ${SGE_O_WORKDIR}/split-results/${TAG}/${TAG}-*.${RESULT_FILE_EXTENSION} )
     jobDieUponError "failed to combine results (${HOSTNAME})"
@@ -378,13 +383,13 @@ function push_bam_alignments {
     fail_when_no_results
 
      #push back the generated alignments
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
-
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
+    debug "Pushing results in the fileset area" ${JOB_PART_TRANSFER_STATUS}
     REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} BAM_ALIGNMENT: $RESULT_DIR/*.bam $RESULT_DIR/*.bam.bai`
     dieUponError "Failed to push the alignment files in the fileset area: ${REGISTERED_TAGS}"
 
     echo "The following BAM_ALIGNMENT instance has been successfully registered: ${REGISTERED_TAGS}"
-
+    info "The following BAM_ALIGNMENT instance has been successfully registered: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
     ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} BAM_ALIGNMENT:[${REGISTERED_TAGS}]"
 
 }
@@ -398,14 +403,14 @@ function push_goby_alignments {
     fail_when_no_results
 
      #push back the generated alignments
-     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
-
+     #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_TRANSFER_STATUS} --description "Pushing results in the fileset area" --index ${CURRENT_PART} --job-type job-part
+     debug "Pushing results in the fileset area" ${JOB_PART_TRANSFER_STATUS}
      REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} GOBY_ALIGNMENT: $RESULT_DIR/*.index $RESULT_DIR/*.entries $RESULT_DIR/*.header $RESULT_DIR/*.tmh`
 
      #TODO register $RESULT_DIR/*.alignment-stats.txt  and  $RESULT_DIR/*.sequence-variation-stats.tsv
      dieUponError "Failed to push the alignment files in the fileset area: ${REGISTERED_TAGS}"
 
-     echo "The following GOBY_ALIGNMENT instance has been successfully registered: ${REGISTERED_TAGS}"
+     debug "The following GOBY_ALIGNMENT instance has been successfully registered: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
      ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} GOBY_ALIGNMENT:[${REGISTERED_TAGS}]"
 
 }
@@ -420,66 +425,68 @@ function push_aligner_results {
    echo Pushing ALIGNMENT_BED
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} ALIGNMENT_BED: $RESULT_DIR/*-all.bed.gz`
    if [ $? != 0 ]; then
-        echo "Failed to push back ALIGNMENT_BED files: ${REGISTERED_TAGS}"
+        error "Failed to push back ALIGNMENT_BED files: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
    fi
-   echo "The following ALIGNMENT_BED instance has been successfully registered: ${REGISTERED_TAGS}"
+   debug "The following ALIGNMENT_BED instance has been successfully registered: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
    ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_BED:[${REGISTERED_TAGS}]"
 
    #push back ALIGNMENT_WIG
    echo Pushing ALIGNMENT_WIG
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} ALIGNMENT_WIG: $RESULT_DIR/*-all.wig.gz`
    if [ $? != 0 ]; then
-        echo "Failed to push back ALIGNMENT_WIG files: ${REGISTERED_TAGS}"
+        error "Failed to push back ALIGNMENT_WIG files: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
    fi
-   echo "The following ALIGNMENT_WIG instance has been successfully registered: ${REGISTERED_TAGS}"
-
-   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_WIG:[${REGISTERED_TAGS}]"
+   debug "The following ALIGNMENT_WIG instance has been successfully registered: ${REGISTERED_TAGS}"
+   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_WIG:[${REGISTERED_TAGS}]" ${JOB_PART_TRANSFER_STATUS}
 
    #push COUNTS back
    echo Pushing COUNTS
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} COUNTS: $RESULT_DIR/*.counts`
    if [ $? != 0 ]; then
-        echo "Failed to push back COUNTS files: ${REGISTERED_TAGS}"
+        error "Failed to push back COUNTS files: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
    fi
-   echo "The following COUNTS instance has been successfully registered: ${REGISTERED_TAGS}"
+   debug "The following COUNTS instance has been successfully registered: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
+
    ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} COUNTS:[${REGISTERED_TAGS}]"
 
    #push ALIGNMENT_ALL_FILES back
    echo Pushing ALIGNMENT_ALL_FILES
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} ALIGNMENT_ALL_FILES: $RESULT_DIR/*-all-files.zip`
    if [ $? != 0 ]; then
-        echo "Failed to push back ALIGNMENT_ALL_FILES files: ${REGISTERED_TAGS}"
+        error "Failed to push back ALIGNMENT_ALL_FILES files: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
+
    fi
-   echo "The following ALIGNMENT_ALL_FILES instance has been successfully registered: ${REGISTERED_TAGS}"
+   debug "The following ALIGNMENT_ALL_FILES instance has been successfully registered: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
    ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_ALL_FILES:[${REGISTERED_TAGS}]"
 
     #push ALIGNMENT_SEQUENCE_VARIATION_STATS back
    echo Pushing ALIGNMENT_ALL_FILES
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} ALIGNMENT_SEQUENCE_VARIATION_STATS: $RESULT_DIR/*.sequence-variation-stats.tsv    `
    if [ $? != 0 ]; then
-        echo "Failed to push back ALIGNMENT_SEQUENCE_VARIATION_STATS files: ${REGISTERED_TAGS}"
+        error "Failed to push back ALIGNMENT_SEQUENCE_VARIATION_STATS files: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
    fi
-   echo "The following ALIGNMENT_SEQUENCE_VARIATION_STATS instance has been successfully registered: ${REGISTERED_TAGS}"
+   debug "The following ALIGNMENT_SEQUENCE_VARIATION_STATS instance has been successfully registered: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
    ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_SEQUENCE_VARIATION_STATS:[${REGISTERED_TAGS}]"
 
     #push STATS back
    echo Pushing STATS
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} STATS: $RESULT_DIR/*.stats`
    if [ $? != 0 ]; then
-        echo "Failed to push back STATS files: ${REGISTERED_TAGS}"
+        error "Failed to push back STATS files: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
    fi
-   echo "The following STATS instance has been successfully registered: ${REGISTERED_TAGS}"
+   debug "The following STATS instance has been successfully registered: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
+
    ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} STATS:[${REGISTERED_TAGS}]"
 
     #push ALIGNMENT_STATS back
    echo Pushing ALIGNMENT_STATS
    REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} -a SOURCE_READS_ID=${SOURCE_READS_ID} ALIGNMENT_STATS: $RESULT_DIR/*.alignment-stats.txt`
    if [ $? != 0 ]; then
-        echo "Failed to push back ALIGNMENT_STATS files: ${REGISTERED_TAGS}"
-   fi
-   echo "The following ALIGNMENT_STATS instance has been successfully registered: ${REGISTERED_TAGS}"
-   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_STATS:[${REGISTERED_TAGS}]"
+        error "Failed to push back ALIGNMENT_STATS files: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
 
+   fi
+   debug "The following ALIGNMENT_STATS instance has been successfully registered: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
+   ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_STATS:[${REGISTERED_TAGS}]"
 }
 
 # Pushes some job metadata to the fileset area
@@ -496,6 +503,8 @@ function push_job_metadata {
    echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
    REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${TAG}.properties`
    echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
+   info "JOB_METADATA: ${REGISTERED_TAGS}" "${JOB_REGISTERED_FILESETS_STATUS}"
+
 }
 
 function bam_align {
@@ -514,12 +523,13 @@ function bam_align {
 
         push_bam_alignments
 
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index 1 --job-type job
-
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index 1 --job-type job
+        info "Job completed" ${JOB_PART_COMPLETED_STATUS}
         jobCompletedEmail
 
     else
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
+        error "Job failed" "${JOB_PART_FAILED_STATUS}" ${CURRENT_PART} ${NUMBER_OF_PARTS}
         jobFailedEmail
         exit ${RETURN_STATUS}
     fi
@@ -619,7 +629,8 @@ function jobDieUponError {
     if [ ! ${RETURN_STATUS} -eq 0 ]; then
             # Failed, no result to copy
             copy_logs job ${CURRENT_PART} ${NUMBER_OF_PARTS}
-            ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
+            #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
+            fatal "Job failed" ${JOB_PART_FAILED_STATUS} ${CURRENT_PART} ${NUMBER_OF_PARTS}
             jobFailedEmail
             exit ${RETURN_STATUS}
     fi
@@ -692,7 +703,8 @@ function run_single_align {
     /bin/cp ${BASENAME}*.entries ${BASENAME}*.header ${BASENAME}*.stats ${BASENAME}*.tmh ${BASENAME}*.index ${RESULT_DIR}
 
     copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, completed" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, completed" --index ${CURRENT_PART} --job-type job-part
+    debug "Sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, completed" "${JOB_PART_COMPLETED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
 }
 
 function alignment_concat {
@@ -702,7 +714,8 @@ function alignment_concat {
     RESULT_DIR=${SGE_O_WORKDIR}/results/${TAG}
 
     # Run the concatenate, only if more than one align part
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_CONCAT_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_CONCAT_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    debug "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" "${JOB_PART_CONCAT_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
     COMPRESS_ALIGNMENTS=" -x MessageChunksWriter:codec=hybrid-1 "
     COMPRESS_ALIGNMENTS="  "
     # Run the concatenate, only if more than one align part
@@ -720,7 +733,8 @@ function alignment_concat {
             if [ ! $RETURN_STATUS -eq 0 ]; then
                 # Failed
                 copy_logs concat ${CURRENT_PART} ${NUMBER_OF_PARTS}
-                ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+                #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+                error "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
                 jobFailedEmail
                 exit ${RETURN_STATUS}
             fi
@@ -752,7 +766,8 @@ function alignment_concat {
                 if [ ! $RETURN_STATUS -eq 0 ]; then
                     # Failed
                     copy_logs concat ${CURRENT_PART} ${NUMBER_OF_PARTS}
-                    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+                    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+                    error "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
                     jobFailedEmail
                     exit ${RETURN_STATUS}
                 fi
@@ -766,7 +781,8 @@ function alignment_concat {
             if [ ! $RETURN_STATUS -eq 0 ]; then
                 # Failed
                 copy_logs concat ${CURRENT_PART} ${NUMBER_OF_PARTS}
-                ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+                #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+                error "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
                 jobFailedEmail
                 exit ${RETURN_STATUS}
             fi
@@ -781,7 +797,8 @@ function alignment_concat {
    ( cd ${TMPDIR}  ; plugin_alignment_combine "${TAG}" "${READS}" "${BASENAME}" )
 
     copy_logs concat ${CURRENT_PART} ${NUMBER_OF_PARTS}
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS} completed" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS} completed" --index ${CURRENT_PART} --job-type job-part
+    debug "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS} completed" "${JOB_PART_COMPLETED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
 }
 
 function fail_when_no_results {
@@ -790,8 +807,10 @@ function fail_when_no_results {
     if [ ! -d "$RESULT_DIR" ]; then
         # Output dir doesn't exist but it should
         copy_logs counts ${CURRENT_PART} ${NUMBER_OF_PARTS}
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
+        error "-" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
+        error "Job failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         jobFailedEmail
         exit 1
     fi
@@ -808,13 +827,15 @@ function alignment_counts {
     #
     # Counts
     #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COUNTS_STATUS} --description "Counts, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COUNTS_STATUS} --description "Counts, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    debug "Counts, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" "${JOB_PART_COUNTS_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
     goby alignment-to-counts \
         --full-genome true $RESULT_DIR/*.entries
     RETURN_STATUS=$?
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Counts, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Counts, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        error "Counts, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" " ${JOB_PART_FAILED_STATUS}"  "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         # Don't exit.
     fi
 }
@@ -831,8 +852,10 @@ function alignment_stats {
     if [ ! -d "$RESULT_DIR" ]; then
         # Output dir doesn't exist but it should
         copy_logs counts ${CURRENT_PART} ${NUMBER_OF_PARTS}
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
+        error "-" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
+        error "Job failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         jobFailedEmail
         exit 1
     fi
@@ -840,14 +863,16 @@ function alignment_stats {
     #
     # Create alignment stats
     #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_ALIGNMENT_STATS_STATUS} --description "Alignment Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_ALIGNMENT_STATS_STATUS} --description "Alignment Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    debug "Alignment Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" "${JOB_PART_ALIGNMENT_STATS_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
     goby compact-file-stats \
         -o ${OUTPUT_FILENAME} \
         $RESULT_DIR/*.entries
     RETURN_STATUS=$?
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Alignment Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Alignment Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        error "Alignment Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         # Don't exit
     fi
 }
@@ -864,8 +889,11 @@ function alignment_sequence_variation_stats {
     if [ ! -d "$RESULT_DIR" ]; then
         # Output dir doesn't exist but it should
         copy_logs counts ${CURRENT_PART} ${NUMBER_OF_PARTS}
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
+        error "-" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
+        error "Job failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
+
         jobFailedEmail
         exit 1
     fi
@@ -873,14 +901,16 @@ function alignment_sequence_variation_stats {
     #
     # Create sequence-variation-stats
     #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_ALIGNMENT_SEQ_VARIATION_STATS_STATUS} --description "Alignment Sequence Variation Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_ALIGNMENT_SEQ_VARIATION_STATS_STATUS} --description "Alignment Sequence Variation Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    debug "Alignment Sequence Variation Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" "${JOB_PART_ALIGNMENT_SEQ_VARIATION_STATS_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
     goby sequence-variation-stats2 \
         -o ${OUTPUT_FILENAME} \
         $RESULT_DIR/*.entries
     RETURN_STATUS=$?
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Alignment Sequence Variation Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Alignment Sequence Variation Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        error  "Alignment Sequence Variation Stats, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         # Don't exit ${RETURN_STATUS}
     fi
 }
@@ -893,12 +923,14 @@ function wiggles {
     #
     # Wiggles
     #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_WIGGLES_STATUS} --description "Wiggles, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_WIGGLES_STATUS} --description "Wiggles, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    debug "Wiggles, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" "${JOB_PART_WIGGLES_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
     goby counts-to-wiggle --label ${READS_LABEL} --resolution 20 $RESULT_DIR/*.counts
     RETURN_STATUS=$?
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Wiggles, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Wiggles, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        error "Wiggles, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         # Don't exit
     fi
 }
@@ -911,12 +943,14 @@ function bedgraph {
     #
     # bedgraph
     #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_WIGGLES_STATUS} --description "Bedgraph, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_WIGGLES_STATUS} --description "Bedgraph, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    debug "Bedgraph, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" "${JOB_PART_WIGGLES_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
     goby counts-to-bedgraph --label ${READS_LABEL} $RESULT_DIR/*.counts
     RETURN_STATUS=$?
     if [ ! $RETURN_STATUS -eq 0 ]; then
         # Failed
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Bedgraph, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Bedgraph, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        error "Bedgraph, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         # Don't exit
     fi
 }
@@ -930,7 +964,8 @@ function compress {
     #
     # Compress to a single file
     #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPRESS_STATUS} --description "Compressing files" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPRESS_STATUS} --description "Compressing files" --index ${CURRENT_PART} --job-type job-part
+    debug "Compressing files" "${JOB_PART_COMPRESS_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
     cd $RESULT_DIR
     zip ${BASENAME}-all-files.zip ${BASENAME}*
     cd ${SGE_O_WORKDIR}
@@ -961,9 +996,10 @@ function job_complete {
     # Job completely done
     #
     copy_logs complete ${CURRENT_PART} ${NUMBER_OF_PARTS}
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index ${CURRENT_PART} --job-type job
-
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index ${CURRENT_PART} --job-type job
+    debug "-" "${JOB_PART_COMPLETED_STATUS}"
+    info "Job completed" "${JOB_PART_COMPLETED_STATUS}"
     jobCompletedEmail
 }
 
@@ -977,8 +1013,10 @@ function diffexp_job_complete {
     #
     copy_logs diffexp 1 1
 
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index ${CURRENT_PART} --job-type job
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index ${CURRENT_PART} --job-type job
+    debug "-" "${JOB_PART_COMPLETED_STATUS}"
+    info "Job completed" "${JOB_PART_COMPLETED_STATUS}"
 
     jobCompletedEmail
 }
@@ -1007,20 +1045,20 @@ function diffexp {
 
 
     if [ "${SPLIT_PROCESS_COMBINE}" == "false" ]; then
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_START_STATUS} --description "Starting alignment analysis plugin." --index ${CURRENT_PART} --job-type job
-
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_START_STATUS} --description "Starting alignment analysis plugin." --index ${CURRENT_PART} --job-type job
+        debug "Starting alignment analysis plugin." "${JOB_START_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         (cd ${TMPDIR} ; plugin_alignment_analysis_sequential )
         dieUponError "Alignment analysis plugin failed."
 
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_START_STATUS} --description "Alignment analysis plugin has returned." --index ${CURRENT_PART} --job-type job
-
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_START_STATUS} --description "Alignment analysis plugin has returned." --index ${CURRENT_PART} --job-type job
+        debug "Alignment analysis plugin has returned." "${JOB_START_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         /bin/mkdir -p ${RESULT_DIR}
         %COPY_PLUGIN_OUTPUT_FILES%
 
     else
       # define how to slice the input files for parallelization:
-      ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Starting to define parallelization plan." --index ${CURRENT_PART} --job-type job-part
-
+      #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Starting to define parallelization plan." --index ${CURRENT_PART} --job-type job-part
+      debug "Starting to define parallelization plan." "${JOB_PART_DIFF_EXP_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
       (cd ${TMPDIR} ; plugin_alignment_analysis_split 25 ${TAG}-slicing-plan.txt ${ENTRIES_FILES} )
       dieUponError "Unable to split alignment into parts for parallel processing."
       cp ${TMPDIR}/${TAG}-slicing-plan.txt ${RESULT_DIR}/${TAG}-slicing-plan.txt
@@ -1030,14 +1068,15 @@ function diffexp {
       # Introduce a synonym since some part of this script also use NUMBER_OF_ALIGN_PARTS
       NUMBER_OF_ALIGN_PARTS=${NUMBER_SEQ_VAR_SLICES}
 
-      ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Parallelization plan generated. " --index ${CURRENT_PART} --job-type job-part
-
+      #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Parallelization plan generated. " --index ${CURRENT_PART} --job-type job-part
+      debug "Parallelization plan generated." "${JOB_PART_DIFF_EXP_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
       # start SGE array jobs with NUMBER_SEQ_VAR_SLICES pieces:
 
       setup_parallel_alignment_analysis_jobs $RESULT_DIR/${TAG}-slicing-plan.txt
       RETURN_STATUS=$?
       # we exit ${RETURN_STATUS} here because the job has been submitted to SGE. Other parts will execute and
       # finish or fail the job
+      debug "Exit status: ${RETURN_STATUS}" "${JOB_PART_DIFF_EXP_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
       exit ${RETURN_STATUS}
     fi
 
@@ -1084,8 +1123,6 @@ function setup_plugin_functions {
 
 setup
 
-#include logging functions
-. ${JOB_DIR}/message-functions.sh
 
 ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
 . ${JOB_DIR}/artifacts.sh
@@ -1140,6 +1177,7 @@ case ${STATE} in
         ALL_REGISTERED_TAGS=""
         setup_plugin_functions
         run_alignment_analysis_combine
+        info "${ALL_REGISTERED_TAGS}" "${JOB_REGISTERED_FILESETS_STATUS}"
         push_job_metadata ${ALL_REGISTERED_TAGS}
         diffexp_job_complete
         ;;
@@ -1173,6 +1211,7 @@ case ${STATE} in
             push_bam_alignments
         fi
         push_aligner_results
+        info "${ALL_REGISTERED_TAGS}" "${JOB_REGISTERED_FILESETS_STATUS}"
         push_job_metadata ${ALL_REGISTERED_TAGS}
         cleanup
         job_complete
@@ -1183,10 +1222,11 @@ case ${STATE} in
         #if [ "${PLUGIN_ARTIFACTS_SUBMIT}" == "true" ]; then
         #    install_plugin_artifacts
         #fi
-
+        debug "Submitting job to the cluster" "${INITIAL_STATE}"
         SUBMISSION=`qsub -N ${TAG}.submit -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
         checkSubmission $SUBMISSION
         append_kill_file ${SUBMISSION}
-        echo ${SUBMISSION}
+        info "Job successfully submitted" "${INITIAL_STATE}"
+        trace "Output from submission command: ${SUBMISSION}" "${INITIAL_STATE}"
         ;;
 esac
