@@ -577,7 +577,8 @@ function dieUponError {
     if [ ! ${RETURN_STATUS} -eq 0 ]; then
             # Failed, no result to copy
             copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
-            ${QUEUE_WRITER} --tag ${TAG} --index ${CURRENT_PART} --job-type job-part --status ${JOB_PART_FAILED_STATUS} --description "${DESCRIPTION}"
+            #${QUEUE_WRITER} --tag ${TAG} --index ${CURRENT_PART} --job-type job-part --status ${JOB_PART_FAILED_STATUS} --description "${DESCRIPTION}"
+            fatal "${DESCRIPTION}" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
             exit ${RETURN_STATUS}
     fi
 }
@@ -663,8 +664,8 @@ function run_single_align {
 
 
     # Run the alignment
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_ALIGN_STATUS} --description "Align, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
-
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_ALIGN_STATUS} --description "Align, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    debug "Align, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" "${JOB_PART_ALIGN_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
       # call the aligner plugin script.sh from TMDDIR:
       ( cd ${TMPDIR} ;   plugin_align pre-sort-${TAG} ${BASENAME})
 
@@ -672,18 +673,20 @@ function run_single_align {
     if [ ! $? -eq 0 ]; then
         # Failed, no result to copy
         copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Align, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Align, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        error "Align, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         exit ${RETURN_STATUS}
     fi
 
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_SORT_STATUS} --description "Post-align sort, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
-
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_SORT_STATUS} --description "Post-align sort, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
+    debug "Post-align sort, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" "${JOB_PART_SORT_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
     goby_with_memory ${PLUGIN_NEED_ALIGN_JVM} sort pre-sort-${TAG}.entries -o ${BASENAME} -f 75
     RETURN_STATUS=$?
     if [ ! $? -eq 0 ]; then
         ls -lat
         rm ${TAG}.*
-        ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Post-align sort, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Post-align sort, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
+        error "Post-align sort, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         exit ${RETURN_STATUS}
     else
         # post-align sort was successful.
@@ -1039,7 +1042,8 @@ function diffexp {
     #
     # Differential Expression Analysis
     #
-    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_START_STATUS} --description "-" --index ${CURRENT_PART} --job-type job
+    #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_START_STATUS} --description "-" --index ${CURRENT_PART} --job-type job
+    debug "-" "${JOB_START_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
 
     RETURN_STATUS=0
 
