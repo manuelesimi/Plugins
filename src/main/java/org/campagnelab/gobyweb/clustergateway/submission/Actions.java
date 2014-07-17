@@ -52,18 +52,33 @@ final class Actions {
      * @throws IOException if the creation of the folder where to store job results fails
      */
     protected Actions(Submitter submitter, String fileSetAreaReference,
-                      JobArea jobArea, PluginRegistry registry,
-                      String brokerHostname, int brokerPort) throws IOException {
+                      JobArea jobArea, PluginRegistry registry) throws IOException {
         this.registry = registry;
         this.jobConfiguration = new CommonJobConfiguration();
         this.jobConfiguration.setFilesetAreaReference(fileSetAreaReference);
         this.jobConfiguration.setJobArea(jobArea);
         this.jobConfiguration.setOwner(jobArea.getOwner());
-        this.jobConfiguration.setBrokerHostname(brokerHostname);
-        this.jobConfiguration.setBrokerPort(brokerPort);
+        this.jobConfiguration.setUseBroker(false);
         this.submitter = submitter;
         if (!returnedJobFiles.exists())
             FileUtils.forceMkdir(returnedJobFiles);
+    }
+
+    /**
+     * Creates a new Actions object.
+     *
+     * @param fileSetAreaReference
+     * @param jobArea
+     * @param registry
+     * @throws IOException if the creation of the folder where to store job results fails
+     */
+    protected Actions(Submitter submitter, String fileSetAreaReference,
+                      JobArea jobArea, PluginRegistry registry,
+                      String brokerHostname, int brokerPort) throws IOException {
+        this(submitter,fileSetAreaReference,jobArea,registry);
+        this.jobConfiguration.setBrokerHostname(brokerHostname);
+        this.jobConfiguration.setBrokerPort(brokerPort);
+        this.jobConfiguration.setUseBroker(true);
     }
 
     /**

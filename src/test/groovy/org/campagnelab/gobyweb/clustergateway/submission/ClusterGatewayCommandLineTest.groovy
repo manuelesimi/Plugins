@@ -71,7 +71,7 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
-   @Test
+   //@Test
     public void runRemoteAligner() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
@@ -83,7 +83,7 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(0, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
+                    ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner campagne " +
@@ -97,8 +97,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
-                        "--broker-hostname ${brokerHostname} " +
-                        "--broker-port ${brokerPort} " +
+                       // "--broker-hostname ${brokerHostname} " +
+                       // "--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_READS: HQPMEDL"
 
@@ -135,8 +135,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
-                        "--broker-hostname ${brokerHostname} " +
-                        "--broker-port ${brokerPort} " +
+                        //"--broker-hostname ${brokerHostname} " +
+                        //"--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: VMUKAAN HGVOJLQ RHPHQGN ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
@@ -170,8 +170,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
-                        "--broker-hostname ${brokerHostname} " +
-                        "--broker-port ${brokerPort} " +
+                        //"--broker-hostname ${brokerHostname} " +
+                        //"--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: VMUKAAN HGVOJLQ RHPHQGN ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
@@ -208,8 +208,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
-                        "--broker-hostname ${brokerHostname} " +
-                        "--broker-port ${brokerPort} " +
+                        //"--broker-hostname ${brokerHostname} " +
+                        //"--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
@@ -244,8 +244,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
-                        "--broker-hostname ${brokerHostname} " +
-                        "--broker-port ${brokerPort} " +
+                        //"--broker-hostname ${brokerHostname} " +
+                        //"--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ" //slots cardinality does not match
                 ).split(" ")
@@ -280,8 +280,8 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
-                        "--broker-hostname ${brokerHostname} " +
-                        "--broker-port ${brokerPort} " +
+                        //"--broker-hostname ${brokerHostname} " +
+                        //"--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ KKHLEFC" //KKHLEFC does not match any source for alignments
                 ).split(" ")
@@ -353,8 +353,8 @@ public class ClusterGatewayCommandLineTest {
                 "--option BAZ=baz " +
                 "--option DEBUG=true " +
                 "--artifact-server localhost "+
-                "--broker-hostname ${brokerHostname} " +
-                "--broker-port ${brokerPort} " +
+                //"--broker-hostname ${brokerHostname} " +
+                //"--broker-port ${brokerPort} " +
                 "--repository ${repoDirAbsolutePath} "+
                 additionalCommands).split(" ");
 

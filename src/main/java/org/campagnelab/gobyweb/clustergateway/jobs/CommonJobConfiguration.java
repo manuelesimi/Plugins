@@ -16,7 +16,17 @@ public class CommonJobConfiguration {
     private String owner;
     private Set<InputSlotValue> inputSlots;
     private String brokerHostname;
-    private int brokerPort;
+    private int brokerPort = 0;
+    private boolean useBroker = false;
+
+    public boolean useBroker() {
+        return useBroker;
+    }
+
+    public void setUseBroker(boolean useBroker) {
+        this.useBroker = useBroker;
+    }
+
 
     public JobArea getJobArea() {
         return jobArea;

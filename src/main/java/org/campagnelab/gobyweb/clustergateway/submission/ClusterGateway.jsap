@@ -174,7 +174,7 @@
             <stringParser>
                 <classname>StringStringParser</classname>
             </stringParser>
-            <required>true</required>
+            <required>false</required>
             <longFlag>broker-hostname</longFlag>
             <help>The hostname where the messaging broker is running. Messages will be sent there.</help>
         </flaggedOption>
@@ -184,7 +184,7 @@
             <stringParser>
                 <classname>IntegerStringParser</classname>
             </stringParser>
-            <required>true</required>
+            <required>false</required>
             <longFlag>broker-port</longFlag>
             <help>The port where the messaging broker is listening. </help>
         </flaggedOption>

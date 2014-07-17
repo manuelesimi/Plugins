@@ -29,7 +29,7 @@ public class AlignerRemoteSubmissionTest {
     static Plugins plugins;
     static JobArea jobArea;
     static Actions actions;
-    static String brokerHostname = "localhost";
+    static String brokerHostname = "toulouse.med.cornell.edu";
     static int brokerPort = 5672;
     static final String filesetAreaReference = "/zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA";
     static final String jobAreaReference = "gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/";
@@ -84,7 +84,7 @@ public class AlignerRemoteSubmissionTest {
             submitter.setRemoteArtifactRepositoryPath("/scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK");
             submitter.setEnvironmentScript(new File(envScript).getAbsolutePath());
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, filesetAreaReference, jobArea, plugins.getRegistry(), brokerHostname, brokerPort);
+            actions = new Actions(submitter, filesetAreaReference, jobArea, plugins.getRegistry());
             actions.submitAligner(
                     alignerConfig,
                     SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "HRFBTKJ"}),

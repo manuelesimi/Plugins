@@ -84,7 +84,7 @@ public class TaskLocalSubmissionTest {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
+            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             actions.submitTask(taskConfig ,
                     SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}),
                     Collections.EMPTY_MAP);

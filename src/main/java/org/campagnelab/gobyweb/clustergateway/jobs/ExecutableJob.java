@@ -34,14 +34,27 @@ public class ExecutableJob extends Job {
      */
     private int brokerPort;
 
+    private boolean useBroker = false;
+
     public ExecutableJob(ExecutableConfig sourceConfig, CommonJobConfiguration jobConfiguration) {
          this.sourceConfig = sourceConfig;
          for (PluginFile file : sourceConfig.getFiles()) {
              this.addFile(file.getLocalFile());
          }
-        this.brokerHostname = jobConfiguration.getBrokerHostname();
-        this.brokerPort = jobConfiguration.getBrokerPort();
+        if (jobConfiguration.useBroker()) {
+            this.brokerHostname = jobConfiguration.getBrokerHostname();
+            this.brokerPort = jobConfiguration.getBrokerPort();
+            this.useBroker = true;
+        }
      }
+
+    /**
+     * Was the message broker set for this job?
+     * @return
+     */
+    public boolean useBroker() {
+        return useBroker;
+    }
 
      public ExecutableOutputSchema getOutputSchema() {
         return sourceConfig.getOutput();

@@ -3,6 +3,8 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 import junit.framework.Assert;
 import org.campagnelab.gobyweb.clustergateway.util.JobMetadataParser;
 import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.StringReader;
 import java.nio.ByteBuffer;
@@ -34,7 +36,7 @@ public class StatefulFileSetRPCManagerTest {
     public void testFetchStreamedEntry() throws Exception {
         List<ByteBuffer> data = new ArrayList<ByteBuffer>();
         List<String> errors = new ArrayList<String>();
-        manager.fetchStreamedEntry("JOB_STATISTICS","KPUBOXV",data,errors);
+        manager.fetchStreamedEntry("JOB_STATISTICS","ZGWYFYJ",data,errors);
         Assert.assertEquals(1,data.size());
         String propsAsString = new String(data.get(0).array());
         Properties props = new Properties();
@@ -46,11 +48,11 @@ public class StatefulFileSetRPCManagerTest {
     //@Before
     public void setUp() throws Exception {
         manager = new StatefulFileSetRPCManager("spanky.med.cornell.edu",8849,"spanky.med.cornell.edu","gobyweb",
-                "/zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA/","lmesd","JUnit");
+                "/zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA/","manuele.simi","JUnit");
         manager.connect();
     }
 
-    @After
+    //@After
     public void tearDown() throws Exception {
         manager.shutdown();
 
