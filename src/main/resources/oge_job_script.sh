@@ -436,7 +436,7 @@ function push_aligner_results {
    if [ $? != 0 ]; then
         error "Failed to push back ALIGNMENT_WIG files: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
    fi
-   debug "The following ALIGNMENT_WIG instance has been successfully registered: ${REGISTERED_TAGS}"
+   debug "The following ALIGNMENT_WIG instance has been successfully registered: ${REGISTERED_TAGS}" ${JOB_PART_TRANSFER_STATUS}
    ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ALIGNMENT_WIG:[${REGISTERED_TAGS}]" ${JOB_PART_TRANSFER_STATUS}
 
    #push COUNTS back
