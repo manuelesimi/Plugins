@@ -578,7 +578,7 @@ function dieUponError {
             # Failed, no result to copy
             copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
             #${QUEUE_WRITER} --tag ${TAG} --index ${CURRENT_PART} --job-type job-part --status ${JOB_PART_FAILED_STATUS} --description "${DESCRIPTION}"
-            fatal "${DESCRIPTION}" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
+            fatal "Job failed. Error description: ${DESCRIPTION}" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
             exit ${RETURN_STATUS}
     fi
 }
@@ -631,7 +631,7 @@ function jobDieUponError {
             # Failed, no result to copy
             copy_logs job ${CURRENT_PART} ${NUMBER_OF_PARTS}
             #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
-            fatal "Job failed" ${JOB_PART_FAILED_STATUS} ${CURRENT_PART} ${NUMBER_OF_PARTS}
+            fatal "Job failed. Error description: ${DESCRIPTION}" ${JOB_PART_FAILED_STATUS} ${CURRENT_PART} ${NUMBER_OF_PARTS}
             jobFailedEmail
             exit ${RETURN_STATUS}
     fi
