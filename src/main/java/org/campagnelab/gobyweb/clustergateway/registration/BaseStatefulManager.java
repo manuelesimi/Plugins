@@ -9,9 +9,13 @@ import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Base version of stateful FileSetManager.
@@ -66,4 +70,27 @@ public abstract class BaseStatefulManager implements Serializable,StatefulFileSe
         return fileset.registerPreview(inputEntries,fileSetID);
     }
 
+
+
+    /**
+     * Downloads listed entries from the instance.
+     *
+     * @param tag
+     * @param entries
+     * @param errors
+     * @return a map entry name -> downloaded files belonging to the entry
+     * @throws java.io.IOException
+     */
+    @Override
+    public Map<String, List<String>> download(String tag, List<String> entries, List<String> errors) throws IOException {
+        FileSetAPI fileset = FileSetAPI.getReadOnlyAPI(this.storageArea);
+        Map<String, List<String>> fetchedEntries = new HashMap<String, List<String>>(entries.size());
+        for (String entryName : entries) {
+            List<String> paths = new ArrayList<String>();
+            if (fileset.fetchEntry(entryName,tag,paths,errors)) {
+              fetchedEntries.put(entryName,paths);
+            }
+        }
+        return fetchedEntries;
+    }
 }

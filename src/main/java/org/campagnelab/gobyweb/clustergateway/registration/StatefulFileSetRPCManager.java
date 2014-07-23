@@ -56,8 +56,8 @@ public class StatefulFileSetRPCManager extends BaseStatefulManager {
      */
     public StatefulFileSetRPCManager(String serverHost, int serverPort, String filesetAreaHostname,
                                      String filesetAreaUsername, String filesetAreaPath,
-                                     String owner, String clientName) {
-        super();
+                                     String owner, String clientName) throws IOException {
+        super(String.format("%s@%s:%s", filesetAreaUsername,serverHost,filesetAreaPath),owner);
         this.pluginRegistry = PluginRegistry.getRegistry();
         this.owner = owner;
         this.clientName = clientName;

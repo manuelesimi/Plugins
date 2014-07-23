@@ -4,6 +4,7 @@ import org.campagnelab.gobyweb.filesets.preview.RegistrationPreviewDetails;
 import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -76,5 +77,15 @@ public interface StatefulFileSetManager {
      * @throws IOException
      */
     public boolean fetchStreamedEntry(String entryName, String tag, List<ByteBuffer> data, List<String> errors) throws IOException;
+
+    /**
+     * Downloads listed entries from the instance.
+     * @param tag
+     * @param entries
+     * @param errors
+     * @return a map entry name -> downloaded files belonging to the entry
+     * @throws IOException
+     */
+    public Map<String, List<String>> download(String tag, List<String> entries, List<String> errors) throws IOException;
 
 }
