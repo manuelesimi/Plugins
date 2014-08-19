@@ -46,7 +46,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         //in the local submitter we directly access to the job area folder to avoid creating and then copying local files
         final File jobLocalDir = new File(jobArea.getBasename(job.getTag()));
 
-        //complete the replacements map with the information available in the sumbitter
+        //complete the replacements map with the information available in the submitter
         this.completeJobEnvironment(job, jobArea.getBasename(job.getTag()));
 
         //prepare the protocol buffer with the job data

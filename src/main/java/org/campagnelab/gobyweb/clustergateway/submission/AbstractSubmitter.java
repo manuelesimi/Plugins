@@ -45,6 +45,8 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String environmentScriptFilename;
     protected String artifactRepositoryPath;
     protected String wrapperScript = "oge_task_wrapper_script.sh"; //default is OGE script for aligners and analyses
+    protected String commonScript = "job_common_functions.sh"; //common functions
+
     protected String queue;
     private static final File queueMessageDir = new File(System.getProperty("user.home") + "/.clustergateway/queue-message-dir");
 
@@ -487,7 +489,13 @@ abstract public class AbstractSubmitter implements Submitter {
         }
         FileUtils.writeStringToFile(new File(tempDir, wrapperScript), wrapperContent);
 
+        URL commonScriptURL = getClass().getClassLoader().getResource(commonScript);
+        String commonContent = IOUtils.toString(commonScriptURL);
+        commonContent = StringUtils.replace(wrapperContent, "\r", "");
+        FileUtils.writeStringToFile(new File(tempDir, commonScript), wrapperContent);
+
     }
+
 }
 
 

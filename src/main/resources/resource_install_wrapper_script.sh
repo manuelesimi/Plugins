@@ -22,6 +22,7 @@ fi
     . auto-options.sh
     . constants.sh
     . artifacts.sh
+    . job_common_functions.sh
 
 
 GOBY_DIR=${JOB_DIR}/goby

@@ -144,7 +144,10 @@ function setup {
 setup
 
  #include logging functions
-. ${JOB_DIR}/message-functions.sh
+. %JOB_DIR%/message-functions.sh
+
+. %JOB_DIR%/job_common_functions.sh
+
 
 case ${STATE} in
     task)
@@ -155,11 +158,11 @@ case ${STATE} in
         STATUS=$?
         if [ ${STATUS}==0 ]; then
          #echo "Task execution completed successfully." >>${LOG_FILE}
-         info "Task execution completed successfully." "COMPLETED"
+         jobFinished
         else
          #echo "An error occured"
-         fatal "An error occured. Exit status is: ${STATUS}" "COMPLETED"
-         exit ${STATUS}
+          jobFailed
+          exit ${STATUS}
         fi
         ;;
 
@@ -167,8 +170,7 @@ case ${STATE} in
         cd ${JOB_DIR}
         SUBMISSION=`qsub -N ${TAG}.submit -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
         echo ${SUBMISSION}
-        info "Task submitted: ${SUBMISSION}" "SUBMITTED"
-
+        jobStarted
         ;;
 esac
 

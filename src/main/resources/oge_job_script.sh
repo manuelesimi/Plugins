@@ -105,6 +105,9 @@ function setup {
     # include value definitions for automatic options:
     . %JOB_DIR%/auto-options.sh
 
+    # include value definitions for automatic options:
+    . %JOB_DIR%/job_common_functions.sh
+
     #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
     export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
     QUEUE_WRITER="%JOB_DIR%/groovy ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} %QUEUE_WRITER_POSTFIX% "
@@ -171,26 +174,6 @@ function setup {
         dieUponError "Could not obtain Goby version number."
 
     fi
-}
-
-
-
-function copy_logs {
-    STEP_NAME=$1
-    if [[ $2 == *\.* ]]; then
-        START_PART=`printf "%07.3f" $2`
-    else
-        START_PART=`printf "%03d" $2`
-    fi
-    if [[ $3 == *\.* ]]; then
-        END_PART=`printf "%07.3f" $3`
-    else
-        END_PART=`printf "%03d" $3`
-    fi
-    mkdir -p ${JAVA_LOG_DIR}/${STEP_NAME}
-    /bin/cp ${TMPDIR}/java-log-output.log ${JAVA_LOG_DIR}/${STEP_NAME}/java-log-output-${START_PART}-of-${END_PART}.log
-    /bin/cp ${TMPDIR}/steplogs/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
-    /bin/cp ${TMPDIR}/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
 }
 
 
@@ -560,28 +543,6 @@ function goby_with_memory {
                                      -Dgoby.configuration=file:${GOBY_DIR}/goby.properties -jar ${GOBY_DIR}/goby.jar \
                        --mode ${mode_name} $*
 }
-# This function should be called when an error condition requires to terminate the job. The first argument is a description
-# of the error that will be communicated to the end-user (will be displayed in the GobyWeb job status interface).
-
-function dieUponError {
-    RETURN_STATUS=$?
-    DESCRIPTION=$1
-
-    if [[ "${CURRENT_PART}" == "" ]]; then
-        CURRENT_PART=1
-    fi
-    if [[ "${NUMBER_OF_PARTS}" == "" ]]; then
-        NUMBER_OF_PARTS=1
-    fi
-
-    if [ ! ${RETURN_STATUS} -eq 0 ]; then
-            # Failed, no result to copy
-            copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
-            #${QUEUE_WRITER} --tag ${TAG} --index ${CURRENT_PART} --job-type job-part --status ${JOB_PART_FAILED_STATUS} --description "${DESCRIPTION}"
-            fatal "Job failed. Error description: ${DESCRIPTION}" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
-            exit ${RETURN_STATUS}
-    fi
-}
 
 function fetch_input_alignments {
 
@@ -813,7 +774,7 @@ function fail_when_no_results {
         #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
         error "-" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
-        error "Job failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
+        fatal "Job failed: no results found in ${RESULT_DIR}" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         jobFailedEmail
         exit 1
     fi
@@ -1001,9 +962,9 @@ function job_complete {
     copy_logs complete ${CURRENT_PART} ${NUMBER_OF_PARTS}
     #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
     #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index ${CURRENT_PART} --job-type job
-    debug "-" "${JOB_PART_COMPLETED_STATUS}"
-    info "Job completed" "${JOB_PART_COMPLETED_STATUS}"
-    jobCompletedEmail
+    #debug "-" "${JOB_PART_COMPLETED_STATUS}"
+    #info "Job completed" "${JOB_PART_COMPLETED_STATUS}"
+    jobCompleted
 }
 
 
@@ -1018,10 +979,10 @@ function diffexp_job_complete {
 
     #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "-" --index ${CURRENT_PART} --job-type job-part
     #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index ${CURRENT_PART} --job-type job
-    debug "-" "${JOB_PART_COMPLETED_STATUS}"
-    info "Job completed" "${JOB_PART_COMPLETED_STATUS}"
+    #debug "-" "${JOB_PART_COMPLETED_STATUS}"
+    #info "Job completed" "${JOB_PART_COMPLETED_STATUS}"
 
-    jobCompletedEmail
+    jobCompleted
 }
 
 function diffexp {
@@ -1091,23 +1052,6 @@ function diffexp {
     dieUponError "Cannot push alignment Results"
 }
 
-function jobStartedEmail {
-    %JOB_STARTED_EMAIL% > /dev/null
-    # Wait for the mail to be sent, otherwise it will just disappear
-    sleep 10
-}
-
-function jobFailedEmail {
-    %JOB_FAILED_EMAIL% > /dev/null
-    # Wait for the mail to be sent, otherwise it will just disappear
-    sleep 10
-}
-
-function jobCompletedEmail {
-    %JOB_COMPLETED_EMAIL% > /dev/null
-    # Wait for the mail to be sent, otherwise it will just disappear
-    sleep 10
-}
 
 function setup_plugin_functions {
     # define no-op function to be overridden as needed by plugin script:
@@ -1230,7 +1174,7 @@ case ${STATE} in
         SUBMISSION=`qsub -N ${TAG}.submit -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
         checkSubmission $SUBMISSION
         append_kill_file ${SUBMISSION}
-        info "Job successfully submitted" "${INITIAL_STATE}"
+        jobStarted
         trace "Output from submission command: ${SUBMISSION}" "${INITIAL_STATE}"
         ;;
 esac

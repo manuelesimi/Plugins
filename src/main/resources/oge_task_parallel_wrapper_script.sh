@@ -12,6 +12,9 @@
 
 . constants.sh
 
+. job_common_functions.sh
+
+
 function setup_task_functions {
     # define no-op function to be overridden as needed by task script:
     plugin_task() { echo; }
