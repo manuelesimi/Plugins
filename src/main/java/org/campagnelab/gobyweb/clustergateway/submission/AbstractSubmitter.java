@@ -491,8 +491,8 @@ abstract public class AbstractSubmitter implements Submitter {
 
         URL commonScriptURL = getClass().getClassLoader().getResource(commonScript);
         String commonContent = IOUtils.toString(commonScriptURL);
-        commonContent = StringUtils.replace(wrapperContent, "\r", "");
-        FileUtils.writeStringToFile(new File(tempDir, commonScript), wrapperContent);
+        commonContent = StringUtils.replace(commonContent, "\r", "");
+        FileUtils.writeStringToFile(new File(tempDir, commonScript), commonContent);
 
     }
 
