@@ -46,7 +46,7 @@ public class PluginLoaderSettings {
      */
     public static final String[] SERVER_SIDE_TOOL = new String[] {
             "GOBYWEB_SERVER_SIDE", //ID
-            "2.5",  //versionAtLeast
+            "2.5.1",  //versionAtLeast
             null, //versionExactly
             null //versionAtMost
     };

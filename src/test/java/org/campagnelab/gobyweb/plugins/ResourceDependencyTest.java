@@ -162,7 +162,7 @@ public class ResourceDependencyTest {
 
         assertEquals("org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig:STAR22_GOBY:STAR 2.20 (Goby output)=1.2\n" +
                 "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:MERCURY:Mercury messaging API=1.0\n" +
-                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GOBYWEB_SERVER_SIDE:GobyWeb server side tools=2.5\n"+
+                "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GOBYWEB_SERVER_SIDE:GobyWeb server side tools=2.5.1\n"+
                 "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:GROOVY:Groovy language=2.0.6\n"+
                 "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:FETCH_URL:Fetch and cache URL content=1.2\n"+
                 "org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig:BASH_LIBRARY:Library of Functions for the Bash Shell=1.0\n"+
