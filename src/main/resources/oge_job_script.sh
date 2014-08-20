@@ -314,7 +314,7 @@ function run_alignment_analysis_combine {
     %PUSH_PLUGIN_OUTPUT_FILES%
 
 
-    jobCompletedEmail
+    jobCompleted
 
     copy_logs diffexp 1 1
 }
@@ -505,15 +505,12 @@ function bam_align {
         /bin/cp ${BASENAME}.bam.bai  ${RESULT_DIR}/
 
         push_bam_alignments
-
-        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Job completed" --index 1 --job-type job
         info "Job completed" ${JOB_PART_COMPLETED_STATUS}
-        jobCompletedEmail
+        jobCompleted
 
     else
-        #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
         error "Job failed" "${JOB_PART_FAILED_STATUS}" ${CURRENT_PART} ${NUMBER_OF_PARTS}
-        jobFailedEmail
+        jobFailed
         exit ${RETURN_STATUS}
     fi
 }
@@ -593,7 +590,7 @@ function jobDieUponError {
             copy_logs job ${CURRENT_PART} ${NUMBER_OF_PARTS}
             #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
             fatal "Job failed. Error description: ${DESCRIPTION}" ${JOB_PART_FAILED_STATUS} ${CURRENT_PART} ${NUMBER_OF_PARTS}
-            jobFailedEmail
+            jobFailed
             exit ${RETURN_STATUS}
     fi
 }
@@ -699,7 +696,7 @@ function alignment_concat {
                 copy_logs concat ${CURRENT_PART} ${NUMBER_OF_PARTS}
                 #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
                 error "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
-                jobFailedEmail
+                jobFailed
                 exit ${RETURN_STATUS}
             fi
 
@@ -732,7 +729,7 @@ function alignment_concat {
                     copy_logs concat ${CURRENT_PART} ${NUMBER_OF_PARTS}
                     #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
                     error "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
-                    jobFailedEmail
+                    jobFailed
                     exit ${RETURN_STATUS}
                 fi
             done
@@ -747,7 +744,7 @@ function alignment_concat {
                 copy_logs concat ${CURRENT_PART} ${NUMBER_OF_PARTS}
                 #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" --index ${CURRENT_PART} --job-type job-part
                 error "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
-                jobFailedEmail
+                jobFailed
                 exit ${RETURN_STATUS}
             fi
 
@@ -775,7 +772,7 @@ function fail_when_no_results {
         error "-" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
         fatal "Job failed: no results found in ${RESULT_DIR}" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
-        jobFailedEmail
+        jobFailed
         exit 1
     fi
 }
@@ -820,7 +817,7 @@ function alignment_stats {
         #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_FAILED_STATUS} --description "Job failed" --index ${CURRENT_PART} --job-type job
         error "-" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         error "Job failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
-        jobFailedEmail
+        jobFailed
         exit 1
     fi
 
@@ -858,7 +855,7 @@ function alignment_sequence_variation_stats {
         error "-" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
         error "Job failed" "${JOB_PART_FAILED_STATUS}" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
 
-        jobFailedEmail
+        jobFailed
         exit 1
     fi
 

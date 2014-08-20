@@ -493,7 +493,6 @@ abstract public class AbstractSubmitter implements Submitter {
         String commonContent = IOUtils.toString(commonScriptURL);
         commonContent = StringUtils.replace(commonContent, "\r", "");
         FileUtils.writeStringToFile(new File(tempDir, commonScript), commonContent);
-
     }
 
 }

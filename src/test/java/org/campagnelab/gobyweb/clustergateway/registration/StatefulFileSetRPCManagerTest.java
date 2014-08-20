@@ -10,6 +10,7 @@ import java.io.StringReader;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -27,9 +28,21 @@ public class StatefulFileSetRPCManagerTest {
        return;
     }
 
-    //@Test
+    @Test
     public void testFetchMetadata() throws Exception {
       return;
+    }
+
+    @Test
+    public void download() throws Exception {
+        List<String> errors = new ArrayList<String>();
+        List<String> entries = new ArrayList<String>();
+        entries.add("INDEX");
+        entries.add("HEADER");
+        entries.add("ENTRIES");
+        Map<String, List<String>> fetched = manager.download("AWMOISQ", entries, errors);
+        Assert.assertEquals(entries.size(),fetched.size());
+
     }
 
     //@Test
@@ -45,14 +58,14 @@ public class StatefulFileSetRPCManagerTest {
         Assert.assertTrue("Invalid job data fetched", parser.getAllRelatedInstancesTags().size() > 0);
     }
 
-    //@Before
+    @Before
     public void setUp() throws Exception {
         manager = new StatefulFileSetRPCManager("spanky.med.cornell.edu",8849,"spanky.med.cornell.edu","gobyweb",
                 "/zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA/","manuele.simi","JUnit");
         manager.connect();
     }
 
-    //@After
+    @After
     public void tearDown() throws Exception {
         manager.shutdown();
 

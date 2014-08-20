@@ -2,121 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/stepslogger.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/stepslogger.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/stepslogger.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/stepslogger.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/stepslogger.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/stepslogger.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/stepslogger.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/stepslogger.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/ProcessSamples.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/ProcessSamples.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/ProcessSamples.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/ProcessSamples.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/ProcessSamples.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/ProcessSamples.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/ProcessSamples.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/ProcessSamples.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifact-manager.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifacts.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifacts.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifacts.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifacts.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifacts.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifacts.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifacts.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/artifacts.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/queue-writer.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/queue-writer.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/queue-writer.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/queue-writer.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/queue-writer.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/queue-writer.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/queue-writer.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/queue-writer.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/job_common_functions.sh" afterPath="$PROJECT_DIR$/src/main/resources/job_common_functions.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -323,91 +213,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Plugins.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="401" column="52" selection-start="16145" selection-end="16145" vertical-scroll-proportion="0.0" vertical-offset="4936" max-vertical-offset="10860">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="18" selection-start="894" selection-end="894" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="18" selection-start="894" selection-end="894" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="18" selection-start="894" selection-end="894" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="18" selection-start="894" selection-end="894" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="18" selection-start="894" selection-end="894" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="18" selection-start="894" selection-end="894" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="18" selection-start="894" selection-end="894" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="18" selection-start="894" selection-end="894" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResourceDependencyTest.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ResourceDependencyTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="164" column="129" selection-start="6364" selection-end="6364" vertical-scroll-proportion="0.43435755" vertical-offset="1954" max-vertical-offset="2670">
+            <state line="164" column="129" selection-start="6364" selection-end="6364" vertical-scroll-proportion="0.0" vertical-offset="1954" max-vertical-offset="2670">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="job_common_functions.sh" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/job_common_functions.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="99" selection-start="1638" selection-end="1638" vertical-scroll-proportion="0.6870229" vertical-offset="90" max-vertical-offset="1800">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oge_task_parallel_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_parallel_wrapper_script.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="22" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="1335">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractSubmitter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="491" column="70" selection-start="22493" selection-end="22493" vertical-scroll-proportion="0.0" vertical-offset="6340" max-vertical-offset="7020">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SubmissionRequest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="168" column="22" selection-start="7015" selection-end="7015" vertical-scroll-proportion="0.0" vertical-offset="1934" max-vertical-offset="4035">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oge_job_script.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="506" column="27" selection-start="22976" selection-end="22976" vertical-scroll-proportion="-3.0185184" vertical-offset="7427" max-vertical-offset="17745">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oge_task_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="160" column="48" selection-start="5188" selection-end="5188" vertical-scroll-proportion="0.0" vertical-offset="1842" max-vertical-offset="2730">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resource_install_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="26" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="local_task_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="35" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlignerRemoteSubmissionTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="86" column="97" selection-start="3532" selection-end="3532" vertical-scroll-proportion="0.0" vertical-offset="642" max-vertical-offset="1335">
               <folding />
             </state>
           </provider>
@@ -441,7 +331,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/test-data/plugin-root-3/plugins/aligners/STAR22_GOBY/config.xml" />
         <option value="$PROJECT_DIR$/schemas/common.xsd" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java" />
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/browser/BrowserCommandLineTest.groovy" />
@@ -476,11 +365,8 @@
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
         <option value="$PROJECT_DIR$/src/main/resources/common.sh" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
         <option value="$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_task_parallel_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
         <option value="$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" />
         <option value="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
@@ -492,6 +378,10 @@
         <option value="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
         <option value="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/job_common_functions.sh" />
+        <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
+        <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
       </list>
     </option>
   </component>
@@ -1957,6 +1847,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gobyweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clustergateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="submission" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="groovy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2771,7 +2695,7 @@
       <workItem from="1404318959559" duration="62000" />
       <workItem from="1405365473366" duration="49294000" />
       <workItem from="1406651544358" duration="591000" />
-      <workItem from="1408112215960" duration="15440000" />
+      <workItem from="1408112215960" duration="20830000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -4601,15 +4525,23 @@
       <created>1408484439110</created>
       <updated>1408484439110</updated>
     </task>
-    <option name="localTasksCounter" value="458" />
+    <task id="LOCAL-00458" summary="Update GOBYWEB_SERVER_SIDE resource to 2.5.1.">
+      <created>1408488102781</created>
+      <updated>1408488102781</updated>
+    </task>
+    <task id="LOCAL-00459" summary="Fix generation of job_common_functions.sh in the job folder.">
+      <created>1408489313534</created>
+      <updated>1408489313534</updated>
+    </task>
+    <option name="localTasksCounter" value="460" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="478323000" />
+    <option name="totallyTimeSpent" value="483713000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -4630,7 +4562,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2922955" sideWeight="0.22446236" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20810167" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20810167" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2922955" sideWeight="0.7755376" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38613862" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
@@ -4662,8 +4594,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Fix method name." />
-    <MESSAGE value="Use the suggested fileset id to preview fileset instances." />
     <MESSAGE value="Expose the register API for filesets in StatefulFileSetManager." />
     <MESSAGE value="Use JOB_DIR/source as target dir when fetching reads before align them." />
     <MESSAGE value="Fetch input compact-reads in the submit phase of an alignment job." />
@@ -4687,7 +4617,9 @@
     <MESSAGE value="Add download operation to StatefulFileSetManagers." />
     <MESSAGE value="Fix constructor of StatefulFileSetRPCManager." />
     <MESSAGE value="Isolate functions common to all job types in a script imported by all the wrapper scripts." />
-    <option name="LAST_COMMIT_MESSAGE" value="Isolate functions common to all job types in a script imported by all the wrapper scripts." />
+    <MESSAGE value="Update GOBYWEB_SERVER_SIDE resource to 2.5.1." />
+    <MESSAGE value="Fix generation of job_common_functions.sh in the job folder." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix generation of job_common_functions.sh in the job folder." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -4714,13 +4646,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap">
       <provider selected="true" editor-type-id="text-editor">
         <state line="172" column="42" selection-start="6578" selection-end="6578" vertical-scroll-proportion="0.0" vertical-offset="2290" max-vertical-offset="2970" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="227" column="36" selection-start="9855" selection-end="9855" vertical-scroll-proportion="0.0" vertical-offset="2752" max-vertical-offset="4035">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
@@ -4762,13 +4687,6 @@
     <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/FileSetCommandLineTest.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="43" selection-start="1005" selection-end="1005" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="2445">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="97" selection-start="3532" selection-end="3532" vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="1335">
           <folding />
         </state>
       </provider>
@@ -4921,58 +4839,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/job_common_functions.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="22" selection-start="2174" selection-end="2174" vertical-scroll-proportion="-34.2" vertical-offset="0" max-vertical-offset="1635">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="37" selection-start="1886" selection-end="1909" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7035">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="35" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="16" selection-start="3748" selection-end="3748" vertical-scroll-proportion="-13.576923" vertical-offset="1267" max-vertical-offset="17790">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_parallel_wrapper_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="22" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="35" selection-start="4861" selection-end="4861" vertical-scroll-proportion="0.0" vertical-offset="2037" max-vertical-offset="2730">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="26" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/browser/BrowserCommandLineTest.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="6" selection-start="551" selection-end="551" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2310">
@@ -5052,7 +4918,73 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="164" column="129" selection-start="6364" selection-end="6364" vertical-scroll-proportion="0.43435755" vertical-offset="1954" max-vertical-offset="2670">
+        <state line="164" column="129" selection-start="6364" selection-end="6364" vertical-scroll-proportion="0.0" vertical-offset="1954" max-vertical-offset="2670">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="491" column="70" selection-start="22493" selection-end="22493" vertical-scroll-proportion="0.0" vertical-offset="6340" max-vertical-offset="7020">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="168" column="22" selection-start="7015" selection-end="7015" vertical-scroll-proportion="0.0" vertical-offset="1934" max-vertical-offset="4035">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="506" column="27" selection-start="22976" selection-end="22976" vertical-scroll-proportion="-3.0185184" vertical-offset="7427" max-vertical-offset="17745">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_parallel_wrapper_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="22" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1335">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="48" selection-start="5188" selection-end="5188" vertical-scroll-proportion="0.0" vertical-offset="1842" max-vertical-offset="2730">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="26" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="35" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="97" selection-start="3532" selection-end="3532" vertical-scroll-proportion="0.0" vertical-offset="642" max-vertical-offset="1335">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/job_common_functions.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="99" selection-start="1638" selection-end="1638" vertical-scroll-proportion="0.6870229" vertical-offset="90" max-vertical-offset="1800">
           <folding />
         </state>
       </provider>

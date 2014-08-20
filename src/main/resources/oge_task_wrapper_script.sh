@@ -158,7 +158,7 @@ case ${STATE} in
         STATUS=$?
         if [ ${STATUS}==0 ]; then
          #echo "Task execution completed successfully." >>${LOG_FILE}
-         jobFinished
+         jobCompleted
         else
          #echo "An error occured"
           jobFailed
