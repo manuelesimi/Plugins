@@ -932,21 +932,7 @@ function compress {
     cd ${SGE_O_WORKDIR}
 }
 
-function cleanup {
-    CURRENT_PART=${NUMBER_OF_PARTS}
-    # We have concat'd. Remove the interim results.
-    if [ ! -z ${SGE_O_WORKDIR} ]; then
 
-        if [ -d ${SGE_O_WORKDIR}/results/ ]; then
-            rm -rf ${SGE_O_WORKDIR}/results/
-        fi
-
-    fi
-    #
-    # Keep this in case we need to run again with the same version?
-    #
-    # rm -rf ${GOBY_DIR}
-}
 
 function job_complete {
     echo .

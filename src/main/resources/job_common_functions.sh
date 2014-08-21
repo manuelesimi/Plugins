@@ -32,7 +32,12 @@ function push_job_metadata {
 # Grabs exceptions from the job's log files and publishes them as messages
 function publish_exceptions {
   if [ -n "$BROKER_HOSTNAME" ] && [ -n "$BROKER_PORT" ] && [ -n "$PLUGIN_NEED_DEFAULT_JVM_OPTIONS" ] && [ -n "$TAG" ]; then
-    ${RESOURCES_GROOVY_EXECUTABLE} -classpath ${RESOURCES_MERCURY_LIB} ${RESOURCES_GOBYWEB_SERVER_SIDE_GRAB_EXCEPTIONS} ${BROKER_HOSTNAME} ${BROKER_PORT} ${TAG} ${JOB_DIR}
+    #if RESOURCES_GROOVY_EXECUTABLE is not available, we might be in an execution phase where artifacts have not been installed yet
+    if [ -n "${RESOURCES_GROOVY_EXECUTABLE}" ]; then
+        ${RESOURCES_GROOVY_EXECUTABLE} -classpath ${RESOURCES_MERCURY_LIB} ${RESOURCES_GOBYWEB_SERVER_SIDE_GRAB_EXCEPTIONS} ${BROKER_HOSTNAME} ${BROKER_PORT} ${TAG} ${JOB_DIR}
+    else
+        groovy -classpath ${JOB_DIR}/mercury.jar ${JOB_DIR}/GrabExceptions.groovy  ${BROKER_HOSTNAME} ${BROKER_PORT} ${TAG} ${JOB_DIR}
+    fi
   fi
 }
 
@@ -71,13 +76,29 @@ function dieUponError {
 
     if [ ! ${RETURN_STATUS} -eq 0 ]; then
        # Failed, no result to copy
-       publish_exceptions
+       #publish_exceptions
        fatal "Job failed. Error description: ${DESCRIPTION}" "done" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
        copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
        exit ${RETURN_STATUS}
     fi
 }
 
+
+#this function is executed when the shell receives signal EXIT
+function cleanup {
+
+    publish_exceptions
+
+    # We have concat'd. Remove the interim results.
+    if [ ! -z ${SGE_O_WORKDIR} ]; then
+
+        if [ -d ${SGE_O_WORKDIR}/results/ ]; then
+            rm -rf ${SGE_O_WORKDIR}/results/
+        fi
+
+    fi
+
+}
 
 function jobStartedEmail {
     %JOB_STARTED_EMAIL% > /dev/null
@@ -99,13 +120,13 @@ function jobCompletedEmail {
 
 function jobCompleted {
    jobCompletedEmail
-   publish_exceptions
+   #publish_exceptions
    info "Job completed" "done"
 }
 
 function jobFailed {
    jobFailedEmail
-   publish_exceptions
+   #publish_exceptions
    fatal "Job failed" "done"
 }
 
@@ -113,3 +134,5 @@ function jobStarted {
     jobStartedEmail
    info "Task submitted: ${SUBMISSION}" "submitted"
 }
+
+trap cleanup EXIT
