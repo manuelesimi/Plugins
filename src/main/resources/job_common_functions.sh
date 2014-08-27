@@ -43,21 +43,23 @@ function publish_exceptions {
 
 
 function copy_logs {
-    STEP_NAME=$1
-    if [[ $2 == *\.* ]]; then
-        START_PART=`printf "%07.3f" $2`
-    else
-        START_PART=`printf "%03d" $2`
+    if [ -n "$JAVA_LOG_DIR" ]; then
+        STEP_NAME=$1
+        if [[ $2 == *\.* ]]; then
+            START_PART=`printf "%07.3f" $2`
+        else
+            START_PART=`printf "%03d" $2`
+        fi
+        if [[ $3 == *\.* ]]; then
+            END_PART=`printf "%07.3f" $3`
+        else
+            END_PART=`printf "%03d" $3`
+        fi
+        mkdir -p ${JAVA_LOG_DIR}/${STEP_NAME}
+        /bin/cp ${TMPDIR}/java-log-output.log ${JAVA_LOG_DIR}/${STEP_NAME}/java-log-output-${START_PART}-of-${END_PART}.log
+        /bin/cp ${TMPDIR}/steplogs/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
+        /bin/cp ${TMPDIR}/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
     fi
-    if [[ $3 == *\.* ]]; then
-        END_PART=`printf "%07.3f" $3`
-    else
-        END_PART=`printf "%03d" $3`
-    fi
-    mkdir -p ${JAVA_LOG_DIR}/${STEP_NAME}
-    /bin/cp ${TMPDIR}/java-log-output.log ${JAVA_LOG_DIR}/${STEP_NAME}/java-log-output-${START_PART}-of-${END_PART}.log
-    /bin/cp ${TMPDIR}/steplogs/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
-    /bin/cp ${TMPDIR}/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
 }
 
 # This function should be called when an error condition requires to terminate the job. The first argument is a description
