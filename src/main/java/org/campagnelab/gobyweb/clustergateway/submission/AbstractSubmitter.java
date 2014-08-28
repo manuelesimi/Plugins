@@ -492,6 +492,14 @@ abstract public class AbstractSubmitter implements Submitter {
         URL commonScriptURL = getClass().getClassLoader().getResource(commonScript);
         String commonContent = IOUtils.toString(commonScriptURL);
         commonContent = StringUtils.replace(commonContent, "\r", "");
+        for (int i = 0; i < 2; i++) {
+            // Do the replacements twice just in case replacements contain replacements
+            for (Map.Entry<String, Object> replacement : job.getEnvironment().entrySet()) {
+                commonContent = StringUtils.replace(commonContent, replacement.getKey(),
+                        (replacement.getValue() != null) ? replacement.getValue().toString() : "");
+            }
+        }
+
         FileUtils.writeStringToFile(new File(tempDir, commonScript), commonContent);
     }
 
