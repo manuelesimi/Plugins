@@ -51,7 +51,7 @@ public class StatefulFileSetLocalManager extends BaseStatefulManager {
         }
         FileSetAPI fileset = FileSetAPI.getReadWriteAPI(storageArea, configurationList);
         List<InputEntry> inputEntries = FileSetManager.parseInputEntries(entries);
-        return fileset.register(inputEntries,attributes,sharedWith,errors,tag);
+        return fileset.register(inputEntries,attributes,sharedWith,errors,tag,null);
     }
 
     @Override
