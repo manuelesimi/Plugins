@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Copy logs after a job is completed only when JAVA_LOG_DIR is valid.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
@@ -140,7 +139,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java" line="56" class="org.campagnelab.gobyweb.clustergateway.registration.StatefulFileSetRPCManagerTest" package="org.campagnelab.gobyweb.clustergateway.registration">
+      <breakpoint url="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java" line="81" class="org.campagnelab.gobyweb.clustergateway.registration.StatefulFileSetRPCManagerTest" package="org.campagnelab.gobyweb.clustergateway.registration">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -180,10 +179,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="StatefulFileSetRPCManagerTest.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="StatefulFileSetRPCManagerTest.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="75" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.0" vertical-offset="675" max-vertical-offset="1185">
+            <state line="52" column="58" selection-start="1415" selection-end="1415" vertical-scroll-proportion="0.37662336" vertical-offset="324" max-vertical-offset="1485">
               <folding />
             </state>
           </provider>
@@ -192,16 +191,16 @@
       <file leaf-file-name="job_common_functions.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/job_common_functions.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="73" selection-start="1697" selection-end="1718" vertical-scroll-proportion="-4.8" vertical-offset="420" max-vertical-offset="2175">
+            <state line="118" column="5" selection-start="4107" selection-end="4107" vertical-scroll-proportion="-10.52" vertical-offset="1507" max-vertical-offset="2175">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractSubmitter.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AbstractSubmitter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="211" column="138" selection-start="9867" selection-end="9867" vertical-scroll-proportion="0.56269115" vertical-offset="2797" max-vertical-offset="7710">
+            <state line="209" column="103" selection-start="9767" selection-end="9767" vertical-scroll-proportion="-13.0" vertical-offset="2797" max-vertical-offset="7710">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2644#2645#0" expanded="true" />
@@ -246,15 +245,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oge_job_script.sh" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="104" column="71" selection-start="3643" selection-end="3643" vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="17535">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BaseStatefulManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/BaseStatefulManager.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -273,10 +263,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="AlignerRemoteSubmissionTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="28" selection-start="1301" selection-end="1348" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1335">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="local_task_wrapper_script.sh" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="35" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0" vertical-offset="69" max-vertical-offset="1230">
+            <state line="6" column="35" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0" vertical-offset="537" max-vertical-offset="1230">
               <folding />
             </state>
           </provider>
@@ -358,9 +357,9 @@
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
-        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/job_common_functions.sh" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java" />
       </list>
     </option>
   </component>
@@ -2244,7 +2243,7 @@
       <recent name="org.campagnelab.gobyweb.plugins.xml.filesets" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StatefulFileSetRPCManagerTest.testFetchStreamedEntry">
+  <component name="RunManager" selected="JUnit.StatefulFileSetRPCManagerTest.download">
     <configuration default="false" name="ClusterGatewayCommandLineTest.runLocalTaskRNASelect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -2703,9 +2702,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.StatefulFileSetRPCManagerTest.testFetchStreamedEntry" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.BrowserCommandLineTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.StatefulFileSetRPCManagerTest.download" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.StatefulFileSetRPCManagerTest.download" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.StatefulFileSetRPCManagerTest.testFetchStreamedEntry" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.BrowserCommandLineTest" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.StatefulFileSetRPCManagerTest" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runLocalTaskRNASelect" />
       </list>
@@ -2775,7 +2774,7 @@
       <workItem from="1405365473366" duration="49294000" />
       <workItem from="1406651544358" duration="591000" />
       <workItem from="1408112215960" duration="38644000" />
-      <workItem from="1409149040139" duration="5371000" />
+      <workItem from="1409149040139" duration="7210000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -4629,11 +4628,15 @@
       <created>1409250454974</created>
       <updated>1409250454974</updated>
     </task>
-    <option name="localTasksCounter" value="464" />
+    <task id="LOCAL-00464" summary="Add mercury jar to classpath when generating FILESET_COMMAND.">
+      <created>1409320437063</created>
+      <updated>1409320437063</updated>
+    </task>
+    <option name="localTasksCounter" value="465" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="506898000" />
+    <option name="totallyTimeSpent" value="508737000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -4658,7 +4661,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20969023" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2922955" sideWeight="0.7741935" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2922955" sideWeight="0.7741935" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38613862" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -4690,7 +4693,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Make all the jobs submitted to OGE re-runnable (option -r for qsub)." />
     <MESSAGE value="Make sure that the dir in which fetched files will be stored exists.&#10;" />
     <MESSAGE value="Exit with status code when an error occurred for tasks.&#10;" />
     <MESSAGE value="Add a new StatefulFileSetManager that uses the FileSet RPC API. Generalize the behavior of StatefulManagers in a common base class." />
@@ -4715,7 +4717,8 @@
     <MESSAGE value="Publish exceptions grabbed in the job execution folder when the shell receives signal EXIT. Use only JOB_DIR variable if artifacts are not available in the same function&#10;" />
     <MESSAGE value="Copy logs after a job is completed only when JAVA_LOG_DIR is valid." />
     <MESSAGE value="Replace placeholders in job_common_functions.sh (previous job metadata were not deleted because of that)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Replace placeholders in job_common_functions.sh (previous job metadata were not deleted because of that)." />
+    <MESSAGE value="Add mercury jar to classpath when generating FILESET_COMMAND." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add mercury jar to classpath when generating FILESET_COMMAND." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -4995,13 +4998,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="97" selection-start="3532" selection-end="3532" vertical-scroll-proportion="0.0" vertical-offset="642" max-vertical-offset="1335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
@@ -5033,13 +5029,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="75" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.0" vertical-offset="301" max-vertical-offset="1020">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobPartStatus.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="12" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
@@ -5054,23 +5043,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="35" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0" vertical-offset="69" max-vertical-offset="1230">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/job_common_functions.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="73" selection-start="1697" selection-end="1718" vertical-scroll-proportion="-4.8" vertical-offset="420" max-vertical-offset="2175">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="211" column="138" selection-start="9867" selection-end="9867" vertical-scroll-proportion="0.56269115" vertical-offset="2797" max-vertical-offset="7710">
+        <state line="209" column="103" selection-start="9767" selection-end="9767" vertical-scroll-proportion="-13.0" vertical-offset="2797" max-vertical-offset="7710">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2644#2645#0" expanded="true" />
@@ -5084,6 +5059,34 @@
             <element signature="e#16822#16836#0" expanded="true" />
             <element signature="e#17980#17995#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/job_common_functions.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="118" column="5" selection-start="4107" selection-end="4107" vertical-scroll-proportion="-10.52" vertical-offset="1507" max-vertical-offset="2175">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="28" selection-start="1301" selection-end="1348" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1335">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="35" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0" vertical-offset="537" max-vertical-offset="1230">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="58" selection-start="1415" selection-end="1415" vertical-scroll-proportion="0.37662336" vertical-offset="324" max-vertical-offset="1485">
+          <folding />
         </state>
       </provider>
     </entry>

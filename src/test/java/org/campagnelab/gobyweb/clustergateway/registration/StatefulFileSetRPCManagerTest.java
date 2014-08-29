@@ -4,8 +4,10 @@ import junit.framework.Assert;
 import org.campagnelab.gobyweb.clustergateway.util.JobMetadataParser;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.io.StringReader;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -22,8 +24,23 @@ public class StatefulFileSetRPCManagerTest {
 
     StatefulFileSetRPCManager manager;
 
+    static Properties prop = new Properties();
 
-   // @Test
+    @BeforeClass
+    public static void configure() {
+        try {
+            prop.load(StatefulFileSetRPCManagerTest.class.getResourceAsStream("/filtered.properties"));
+        } catch (IOException e) {
+            //assume we go ahead with the remote tests
+            prop.setProperty("remoteTestSkip", "false");
+        }
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping AlignerRemoteSubmission test");
+            return;
+        }
+    }
+
+        // @Test
     public void testRegister() throws Exception {
        return;
     }
@@ -35,18 +52,26 @@ public class StatefulFileSetRPCManagerTest {
 
     @Test
     public void download() throws Exception {
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping AlignerRemoteSubmission.submit() test");
+            return;
+        }
         List<String> errors = new ArrayList<String>();
         List<String> entries = new ArrayList<String>();
         entries.add("INDEX");
         entries.add("HEADER");
         entries.add("ENTRIES");
-        Map<String, List<String>> fetched = manager.download("AWMOISQ", entries, errors);
-        Assert.assertEquals(entries.size(),fetched.size());
+        Map<String, List<String>> fetched = manager.download("faketag", entries, errors);
+        Assert.assertEquals(0,fetched.size());
 
     }
 
     @Test
     public void testFetchStreamedEntry() throws Exception {
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping AlignerRemoteSubmission.submit() test");
+            return;
+        }
         List<ByteBuffer> data = new ArrayList<ByteBuffer>();
         List<String> errors = new ArrayList<String>();
         manager.fetchStreamedEntry("JOB_STATISTICS","NITDQWR",data,errors);
@@ -60,6 +85,10 @@ public class StatefulFileSetRPCManagerTest {
 
     @Before
     public void setUp() throws Exception {
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping AlignerRemoteSubmission.submit() test");
+            return;
+        }
         manager = new StatefulFileSetRPCManager("spanky.med.cornell.edu",8849,"spanky.med.cornell.edu","gobyweb",
                 "/zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA/","campagne","JUnit");
         manager.connect();
@@ -67,6 +96,10 @@ public class StatefulFileSetRPCManagerTest {
 
     @After
     public void tearDown() throws Exception {
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping AlignerRemoteSubmission.submit() test");
+            return;
+        }
         manager.shutdown();
 
     }
