@@ -204,7 +204,7 @@ abstract public class AbstractSubmitter implements Submitter {
                         jobDir,
                         job.getTag(),
                         "-a SOURCE_PLUGIN_ID=" + job.getSourceConfig().getId() + " -a SOURCE_PLUGIN_TYPE="+ job.getSourceConfig().getHumanReadableConfigType(),
-                        "--broker-hostname "+job.getBrokerHostname() + " --broker-port " + job.getBrokerPort() + " --mercury-properties $RESOURCES_MERCURY_MERCURY_PROPERTIES}" )
+                        "--broker-hostname "+job.getBrokerHostname() + " --broker-port " + job.getBrokerPort() + " --mercury-properties ${RESOURCES_MERCURY_MERCURY_PROPERTIES}" )
         );
         if (job.useBroker()) {
             environment.put("BROKER_HOSTNAME", job.getBrokerHostname());
