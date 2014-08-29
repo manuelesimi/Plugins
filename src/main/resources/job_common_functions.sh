@@ -1,17 +1,6 @@
 
 #functions common to all types of job.
 
-function push_filesets {
-     slot_name=$1
-     shift
-     patterns="$@"
-     REGISTERED_TAGS=`${FILESET_COMMAND} --push ${slot_name}: ${patterns} `
-     dieUponError "Failed to push back the ${slot_name} Result"
-     ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS:-} ${REGISTERED_TAGS} "
-     info "${slot_name}:[${REGISTERED_TAGS}]" "${JOB_REGISTERED_FILESETS_STATUS}"
-     echo "${REGISTERED_TAGS}"
-}
-
 
 # Pushes some job metadata to the fileset area
 # param $1: space-separated list of fileset tags registered by the job
@@ -26,7 +15,7 @@ function push_job_metadata {
    echo "TAGS=${tags}" >> ${JOB_DIR}/${TAG}.properties
    echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
    REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${TAG}.properties`
-   info "JOB_METADATA: ${REGISTERED_TAGS}" "${JOB_REGISTERED_FILESETS_STATUS}"
+   #info "JOB_METADATA: ${REGISTERED_TAGS}" "${JOB_REGISTERED_FILESETS_STATUS}"
 }
 
 # Grabs exceptions from the job's log files and publishes them as messages
