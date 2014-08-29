@@ -200,10 +200,11 @@ abstract public class AbstractSubmitter implements Submitter {
         environment.put("FILESET_AREA", String.format("%s/%s",fileSetAreaReference, job.getOwnerId()));
         environment.put("FILESET_TARGET_DIR", "${JOB_DIR}/source");
         environment.put("FILESET_COMMAND",
-                String.format("java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_MERCURY_LIB}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} -Dlog4j.configuration=file:${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${FILESET_TARGET_DIR} --pb-file %s/filesets.pb --job-tag %s %s",
+                String.format("java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_MERCURY_LIB}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} -Dlog4j.configuration=file:${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${FILESET_TARGET_DIR} --pb-file %s/filesets.pb --job-tag %s %s %s",
                         jobDir,
                         job.getTag(),
-                        "-a SOURCE_PLUGIN_ID=" + job.getSourceConfig().getId() + " -a SOURCE_PLUGIN_TYPE="+ job.getSourceConfig().getHumanReadableConfigType())
+                        "-a SOURCE_PLUGIN_ID=" + job.getSourceConfig().getId() + " -a SOURCE_PLUGIN_TYPE="+ job.getSourceConfig().getHumanReadableConfigType(),
+                        "--broker-hostname "+job.getBrokerHostname() + " --broker-port " + job.getBrokerPort() + " --mercury-properties $RESOURCES_MERCURY_MERCURY_PROPERTIES}" )
         );
         if (job.useBroker()) {
             environment.put("BROKER_HOSTNAME", job.getBrokerHostname());

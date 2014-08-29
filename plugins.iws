@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Attach SOURCE_PLUGIN_ID and  SOURCE_PLUGIN_TYPE=&quot;">
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
@@ -200,7 +200,7 @@
       <file leaf-file-name="AbstractSubmitter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="206" column="78" selection-start="9751" selection-end="9751" vertical-scroll-proportion="0.4938838" vertical-offset="2767" max-vertical-offset="7725">
+            <state line="206" column="135" selection-start="9861" selection-end="9879" vertical-scroll-proportion="0.42507645" vertical-offset="2812" max-vertical-offset="7740">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2644#2645#0" expanded="true" />
@@ -210,9 +210,9 @@
                 <element signature="e#2914#2915#0" expanded="true" />
                 <element signature="e#2988#2989#0" expanded="true" />
                 <element signature="e#4029#4041#0" expanded="true" />
-                <element signature="e#13278#13290#0" expanded="true" />
-                <element signature="e#16985#16999#0" expanded="true" />
-                <element signature="e#18143#18158#0" expanded="true" />
+                <element signature="e#13459#13471#0" expanded="true" />
+                <element signature="e#17166#17180#0" expanded="true" />
+                <element signature="e#18324#18339#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2874,7 +2874,7 @@
       <workItem from="1405365473366" duration="49294000" />
       <workItem from="1406651544358" duration="591000" />
       <workItem from="1408112215960" duration="38644000" />
-      <workItem from="1409149040139" duration="8050000" />
+      <workItem from="1409149040139" duration="11323000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -4736,11 +4736,15 @@
       <created>1409324163924</created>
       <updated>1409324163924</updated>
     </task>
-    <option name="localTasksCounter" value="466" />
+    <task id="LOCAL-00466" summary="Attach SOURCE_PLUGIN_ID and  SOURCE_PLUGIN_TYPE attributes to fileset command.">
+      <created>1409324981281</created>
+      <updated>1409324981282</updated>
+    </task>
+    <option name="localTasksCounter" value="467" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="509577000" />
+    <option name="totallyTimeSpent" value="512850000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -4797,7 +4801,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Exit with status code when an error occurred for tasks.&#10;" />
     <MESSAGE value="Add a new StatefulFileSetManager that uses the FileSet RPC API. Generalize the behavior of StatefulManagers in a common base class." />
     <MESSAGE value="Open the connection with the FileSet Server in the constructor of StatefulFileSetRPCManager. The same connection is reused across multiple requests." />
     <MESSAGE value="Add methods to RPC to test and reset the connection. Implement the Serialize interface in Stateful Managers." />
@@ -4822,7 +4825,8 @@
     <MESSAGE value="Replace placeholders in job_common_functions.sh (previous job metadata were not deleted because of that)." />
     <MESSAGE value="Add mercury jar to classpath when generating FILESET_COMMAND." />
     <MESSAGE value="Do not execute RPCManager tests when remote tests are disabled." />
-    <option name="LAST_COMMIT_MESSAGE" value="Do not execute RPCManager tests when remote tests are disabled." />
+    <MESSAGE value="Attach SOURCE_PLUGIN_ID and  SOURCE_PLUGIN_TYPE attributes to fileset command." />
+    <option name="LAST_COMMIT_MESSAGE" value="Attach SOURCE_PLUGIN_ID and  SOURCE_PLUGIN_TYPE attributes to fileset command." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -5173,7 +5177,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="206" column="78" selection-start="9751" selection-end="9751" vertical-scroll-proportion="0.4938838" vertical-offset="2767" max-vertical-offset="7725">
+        <state line="206" column="135" selection-start="9861" selection-end="9879" vertical-scroll-proportion="0.42507645" vertical-offset="2812" max-vertical-offset="7740">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2644#2645#0" expanded="true" />
@@ -5183,9 +5187,9 @@
             <element signature="e#2914#2915#0" expanded="true" />
             <element signature="e#2988#2989#0" expanded="true" />
             <element signature="e#4029#4041#0" expanded="true" />
-            <element signature="e#13278#13290#0" expanded="true" />
-            <element signature="e#16985#16999#0" expanded="true" />
-            <element signature="e#18143#18158#0" expanded="true" />
+            <element signature="e#13459#13471#0" expanded="true" />
+            <element signature="e#17166#17180#0" expanded="true" />
+            <element signature="e#18324#18339#0" expanded="true" />
           </folding>
         </state>
       </provider>
