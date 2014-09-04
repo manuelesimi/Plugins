@@ -1,12 +1,17 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
+import org.apache.commons.io.IOUtils;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.filesets.registration.InputEntry;
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -87,6 +92,38 @@ public class StatefulFileSetLocalManager extends BaseStatefulManager {
      */
     @Override
     public boolean fetchStreamedEntry(String entryName, String tag, List<ByteBuffer> data, List<String> errors) throws IOException {
-        throw new UnsupportedOperationException();
+        FileSetAPI api = FileSetAPI.getReadOnlyAPI(storageArea);
+        List<String> paths = new ArrayList<String>();
+        if (api.fetchEntry(entryName,tag,paths,errors)) {
+            if (data == null)
+                data = new ArrayList<ByteBuffer>();
+            for (String path : paths) {
+                data.add(loadData(new File(path)));
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    private ByteBuffer loadData(File file) {
+        FileInputStream fIn;
+        FileChannel fChan;
+        long fSize;
+        ByteBuffer mBuf;
+        try {
+            fIn = new FileInputStream(file);
+            fChan = fIn.getChannel();
+            fSize = fChan.size();
+            mBuf = ByteBuffer.allocate((int) fSize);
+            fChan.read(mBuf);
+            mBuf.rewind();
+            fChan.close();
+            fIn.close();
+            return mBuf;
+        } catch (IOException exc) {
+            return null;
+        }
     }
 }
