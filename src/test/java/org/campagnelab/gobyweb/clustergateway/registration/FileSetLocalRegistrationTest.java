@@ -2,6 +2,7 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 
 import com.google.common.io.Files;
 import org.apache.log4j.Logger;
+import org.campagnelab.gobyweb.filesets.Broker;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
@@ -147,7 +148,8 @@ public class FileSetLocalRegistrationTest {
         }
         try {
             // test the case
-            returnedTags.addAll(fileset.register(inputEntries, new HashMap<String, String>(), new ArrayList<String>(),errors, null));
+            Broker broker = null;
+            returnedTags.addAll(fileset.register(inputEntries, new HashMap<String, String>(), new ArrayList<String>(),errors, null, broker));
         } catch (IOException e) {
             e.printStackTrace();
             fail(String.format("Failed to register fileset %s with %",caseID,format));
