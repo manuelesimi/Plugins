@@ -486,7 +486,6 @@ function push_job_metadata {
    echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
    REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${TAG}.properties`
    echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
-   info "JOB_METADATA: ${REGISTERED_TAGS}" "${JOB_REGISTERED_FILESETS_STATUS}"
 
 }
 
@@ -1108,7 +1107,6 @@ case ${STATE} in
         ALL_REGISTERED_TAGS=""
         setup_plugin_functions
         run_alignment_analysis_combine
-        info "${ALL_REGISTERED_TAGS}" "${JOB_REGISTERED_FILESETS_STATUS}"
         push_job_metadata ${ALL_REGISTERED_TAGS}
         diffexp_job_complete
         ;;
@@ -1142,7 +1140,6 @@ case ${STATE} in
             push_bam_alignments
         fi
         push_aligner_results
-        info "${ALL_REGISTERED_TAGS}" "${JOB_REGISTERED_FILESETS_STATUS}"
         push_job_metadata ${ALL_REGISTERED_TAGS}
         cleanup
         job_complete
