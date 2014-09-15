@@ -1117,7 +1117,6 @@ case ${STATE} in
         fi
         setup_plugin_functions
         diffexp
-        cleanup
         ;;
     post)
         install_plugin_mandatory_artifacts
