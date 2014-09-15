@@ -50,8 +50,15 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String queue;
     private static final File queueMessageDir = new File(System.getProperty("user.home") + "/.clustergateway/queue-message-dir");
 
+    /**
+     * The node from which the job will fetch artifacts. Can be local or remote to the submission machine
+     */
     private String submissionHostname;
 
+    /**
+     * The folder with the plugins repos in the submission node
+     */
+    private File pluginsDir;
 
     private static Logger logger = Logger.getLogger(Submitter.class);
 
@@ -71,8 +78,15 @@ abstract public class AbstractSubmitter implements Submitter {
         return new Session();
     }
 
+    @Override
     public void setSubmissionHostname(String submissionHostname) {
         this.submissionHostname = submissionHostname;
+    }
+
+
+    @Override
+    public void setLocalPluginsDir(File pluginsDir) {
+        this.pluginsDir = pluginsDir;
     }
 
     @Override
@@ -139,11 +153,14 @@ abstract public class AbstractSubmitter implements Submitter {
      * @throws IOException
      */
     protected void copyArtifactsPbRequests(Config config, String envScriptFilename, File tempDir) throws IOException {
+        if (this.pluginsDir == null) {
+            throw new IOException("No plugins dir has been set for this submitter.");
+        }
         ArtifactsProtoBufHelper helper = new ArtifactsProtoBufHelper();
+        helper.setWebServerHostname(submissionHostname, this.pluginsDir.getAbsolutePath());
         if (envScriptFilename != null)
             helper.registerPluginEnvironmentCollectionScript(envScriptFilename);
         assert submissionHostname != null : "submission hostname must be defined.";
-        helper.setWebServerHostname(submissionHostname);
         File installArtifactPbRequests;
         if ((config.getClass().isAssignableFrom(ExecutableConfig.class)) //same class
                 || (ExecutableConfig.class.isInstance(config)))  //or a sub-class

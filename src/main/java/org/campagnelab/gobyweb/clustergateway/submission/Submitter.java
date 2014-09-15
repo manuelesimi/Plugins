@@ -4,6 +4,8 @@ import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
 import org.campagnelab.gobyweb.io.JobArea;
 
+import java.io.File;
+
 /**
  * Model the behavior of a submitter in the Cluster Gateway.
  *
@@ -40,6 +42,8 @@ public interface Submitter {
     public void submitResourceInstall(JobArea jobArea, Session session, ResourceJob resource) throws Exception;
 
     public void setSubmissionHostname(String submissionHostname);
+
+    public void setLocalPluginsDir(File pluginsDir);
 
     public void setEnvironmentScript(String environmentScriptFilename);
 

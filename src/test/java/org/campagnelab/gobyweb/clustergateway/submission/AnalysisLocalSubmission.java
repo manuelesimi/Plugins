@@ -71,6 +71,7 @@ public class AnalysisLocalSubmission {
     public void submit() {
         try {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
+            submitter.setLocalPluginsDir(new File("test-data/root-for-rnaselect"));
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());

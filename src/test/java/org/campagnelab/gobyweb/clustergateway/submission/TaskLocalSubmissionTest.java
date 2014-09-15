@@ -83,6 +83,7 @@ public class TaskLocalSubmissionTest {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
+            submitter.setLocalPluginsDir(new File("test-data/root-for-rnaselect"));
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             actions.submitTask(taskConfig ,

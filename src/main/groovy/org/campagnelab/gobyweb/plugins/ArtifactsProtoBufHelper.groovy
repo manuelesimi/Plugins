@@ -4,11 +4,15 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.artifacts.Artifacts;
 import org.campagnelab.gobyweb.artifacts.BuildArtifactRequest
+import org.campagnelab.gobyweb.io.protocols.SSH
 import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Artifact;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConsumerConfig
+
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 /**
  * @author Fabien Campagne
@@ -17,22 +21,43 @@ import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConsumerConfig
  */
 public class ArtifactsProtoBufHelper {
 
+    public static final String sshPattern = "(.+?)@(.+?):(.+)"; //username@hostname:path
 
     private static Logger LOG = Logger.getLogger(Plugins.class);
     private ObjectArrayList<String> pluginEnvironmentCollectionScripts = new ObjectArrayList<String>()
     private String webServerHostname;
+    private String remotePluginsDir;
+    private String localPluginsDir;
+
+    private boolean dualRepoEnabled = false;
 
     public final String ARTIFACTS_INSTALL_REQUESTS = "artifacts-install-requests"
 
-    void setWebServerHostname(def webServerHostname) {
-        this.webServerHostname = webServerHostname
+    void setWebServerHostname(String webServerHostname, String ... localPluginsDir) throws IOException {
+        Pattern pattern = Pattern.compile(sshPattern); //username@hostname:path
+        Matcher matcher = pattern.matcher(webServerHostname);
+        if (matcher.matches())  {
+            this.remotePluginsDir = matcher.group(3);
+            this.webServerHostname(String.format("%s@%s", matcher.group(1), matcher.group(2)));
+            this.dualRepoEnabled = true;
+            if (localPluginsDir == null || localPluginsDir.length !=1) {
+                throw new IOException("A local plugins directory must be specified in order to build correct artifact paths.")
+            } else {
+                this.localPluginsDir = localPluginsDir[0];
+            }
+
+        } else {
+            this.webServerHostname = webServerHostname
+        }
+
+
     }
 /**
  * Register environment collection scripts.
  * @param script
  */
     void registerPluginEnvironmentCollectionScript(String script) {
-        this.pluginEnvironmentCollectionScripts.add(script);
+        this.pluginEnvironmentCollectionScripts.add(this.replaceIfDualRepo(script));
     }
     /**
      * Create artifacts install requests for the plugin given as argument. Traverse the graph of resource
@@ -135,7 +160,7 @@ public class ArtifactsProtoBufHelper {
             // how to install each artifact:
 
             String scriptFilename = resourceConfig.files.find { f -> f.id == "INSTALL" }.localFilename
-
+            scriptFilename = replaceIfDualRepo(scriptFilename);
             for (Artifact artifactXml : resourceConfig.artifacts) {
                 LOG.debug(String.format("PB request.add(%s:%s)", resourceConfig.id, artifactXml.id))
                 // generate a unique key for each plugin and artifact:
@@ -152,6 +177,13 @@ public class ArtifactsProtoBufHelper {
 
     }
 
+    private String replaceIfDualRepo(String pluginFile) {
+        if (dualRepoEnabled) {
+           return pluginFile.replaceFirst(this.localPluginsDir, this.remotePluginsDir)
+        }  else {
+           return pluginFile;
+        }
+    }
 
     static List<Artifacts.AttributeValuePair> constructAvp(Artifact artifact) {
 

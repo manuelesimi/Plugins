@@ -78,6 +78,7 @@ public class AlignerRemoteSubmissionTest {
         }
         try {
             Submitter submitter = new RemoteSubmitter(plugins.getRegistry(), "rascals.q");
+            submitter.setLocalPluginsDir(new File("test-data/root-for-aligners"));
             submitter.setSubmissionHostname(String.format("%s@%s",
                     System.getProperty("user.name"),
                     java.net.InetAddress.getLocalHost().getHostName()));
