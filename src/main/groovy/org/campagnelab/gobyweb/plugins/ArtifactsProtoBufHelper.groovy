@@ -38,7 +38,7 @@ public class ArtifactsProtoBufHelper {
         Matcher matcher = pattern.matcher(webServerHostname);
         if (matcher.matches())  {
             this.remotePluginsDir = matcher.group(3);
-            this.webServerHostname(String.format("%s@%s", matcher.group(1), matcher.group(2)));
+            this.webServerHostname = String.format("%s@%s", matcher.group(1), matcher.group(2));
             this.dualRepoEnabled = true;
             if (localPluginsDir == null || localPluginsDir.length !=1) {
                 throw new IOException("A local plugins directory must be specified in order to build correct artifact paths.")

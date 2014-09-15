@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AnalysisLocalSubmission.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AnalysisLocalSubmission.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -270,7 +263,7 @@
       <file leaf-file-name="ArtifactsProtoBufHelper.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="105" selection-start="2172" selection-end="2172" vertical-scroll-proportion="0.42318842" vertical-offset="293" max-vertical-offset="2925">
+            <state line="40" column="95" selection-start="1753" selection-end="1753" vertical-scroll-proportion="0.6086956" vertical-offset="0" max-vertical-offset="2925">
               <folding />
             </state>
           </provider>
@@ -1881,7 +1874,7 @@
       <workItem from="1406651544358" duration="591000" />
       <workItem from="1408112215960" duration="38644000" />
       <workItem from="1409149040139" duration="23859000" />
-      <workItem from="1410564020840" duration="16803000" />
+      <workItem from="1410564020840" duration="17085000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3775,11 +3768,19 @@
       <created>1410183093694</created>
       <updated>1410183093695</updated>
     </task>
-    <option name="localTasksCounter" value="474" />
+    <task id="LOCAL-00474" summary="Extend ArtifactHelper to use a plugins repository different from the submission node.">
+      <created>1410816085707</created>
+      <updated>1410816085707</updated>
+    </task>
+    <task id="LOCAL-00475" summary="Do not clean after each diffExp phase. Only after post.">
+      <created>1410816136621</created>
+      <updated>1410816136621</updated>
+    </task>
+    <option name="localTasksCounter" value="476" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="542189000" />
+    <option name="totallyTimeSpent" value="542471000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -3802,7 +3803,7 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33828384" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2922955" sideWeight="0.2240216" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2112788" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2112788" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2922955" sideWeight="0.7746289" order="0" side_tool="false" content_ui="combo" />
@@ -3836,8 +3837,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Upgrade icb-util dependency to version 1.1.5." />
-    <MESSAGE value="Convert queue messages to JMS messages in oge_job_script. Add a new job status to report on registered filesets." />
     <MESSAGE value="Convert some missed queue messages to JMS messages in oge_job_script." />
     <MESSAGE value="Add the error description to the fatal message sent on dieUponError." />
     <MESSAGE value="Make broker parameters optional. When they are not set, messages are not sent. Change all test cases in order to do not use the broker." />
@@ -3861,7 +3860,9 @@
     <MESSAGE value="Implement fetchStreamedEntry() for LocalManager." />
     <MESSAGE value="Add JUnit test for StatefulFileSetLocalManager. Fix FileSetLocalRegistrationTest to comply with the new signature of the register API." />
     <MESSAGE value="Remove job messages related to published fileset instances from oge_job_script.sh. They are now published as part of the fileset command execution." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove job messages related to published fileset instances from oge_job_script.sh. They are now published as part of the fileset command execution." />
+    <MESSAGE value="Extend ArtifactHelper to use a plugins repository different from the submission node." />
+    <MESSAGE value="Do not clean after each diffExp phase. Only after post." />
+    <option name="LAST_COMMIT_MESSAGE" value="Do not clean after each diffExp phase. Only after post." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -4213,7 +4214,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="105" selection-start="2172" selection-end="2172" vertical-scroll-proportion="0.42318842" vertical-offset="293" max-vertical-offset="2925">
+        <state line="40" column="95" selection-start="1753" selection-end="1753" vertical-scroll-proportion="0.6086956" vertical-offset="0" max-vertical-offset="2925">
           <folding />
         </state>
       </provider>
