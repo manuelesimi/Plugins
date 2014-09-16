@@ -78,8 +78,6 @@ function dieUponError {
 #this function is executed when the shell receives signal EXIT
 function cleanup {
 
-    publish_exceptions
-
     # We have concat'd. Remove the interim results.
     if [ ! -z ${SGE_O_WORKDIR} ]; then
 
@@ -126,4 +124,4 @@ function jobStarted {
    info "Task submitted: ${SUBMISSION}" "submitted"
 }
 
-trap cleanup EXIT
+trap publish_exceptions EXIT
