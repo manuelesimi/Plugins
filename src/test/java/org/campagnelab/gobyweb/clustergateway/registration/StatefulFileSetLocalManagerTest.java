@@ -2,6 +2,7 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 
 import junit.framework.Assert;
 import org.apache.commons.io.FileUtils;
+import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,17 +43,18 @@ public class StatefulFileSetLocalManagerTest {
     public void testSequence() throws Exception {
         testRegister();
         testFetchStreamedEntry();
+        testSharedWith();
     }
 
 
-    public void testRegister() throws Exception {
+    private void testRegister() throws Exception {
        List<String> tags = manager.register("JOB_METADATA", new String[]{"test-data/cluster-gateway/files-for-registration-test/fileSets/JOB_METADATA/WENSREU.properties"},
                Collections.EMPTY_MAP,Collections.EMPTY_LIST, new ArrayList<String>(), tag);
         Assert.assertEquals(tags.size(),1);
     }
 
 
-    public void testFetchStreamedEntry() throws Exception {
+    private void testFetchStreamedEntry() throws Exception {
         List<ByteBuffer> data = new ArrayList<ByteBuffer>();
         List<String> errors = new ArrayList<String>();
         Assert.assertTrue("Unable to fetch streamed entry", manager.fetchStreamedEntry("JOB_STATISTICS", tag, data, errors));
@@ -62,5 +64,22 @@ public class StatefulFileSetLocalManagerTest {
         props.load(new StringReader(propsAsString));
         Assert.assertTrue("Invalid properties fetched", props.size() == 5);
 
+    }
+
+    private void testSharedWith() throws Exception {
+        List<String> errors = new ArrayList<String>();
+        MetadataFileReader metadata = manager.fetchMetadata(tag, errors);
+        Assert.assertEquals(0, metadata.getSharedWith().size());
+        List<String> users = new ArrayList<String>();
+        users.add("manuele");
+        users.add("fac2003");
+        errors.clear();
+        Assert.assertTrue(manager.shareWith(tag,users,errors));
+        Assert.assertTrue("Some errors wrongly returned when trying to edit users", errors.size() == 0);
+        errors.clear();
+        metadata = manager.fetchMetadata(tag, errors);
+        Assert.assertEquals(2, metadata.getSharedWith().size());
+        Assert.assertEquals("manuele", metadata.getSharedWith().get(0));
+        Assert.assertEquals("fac2003", metadata.getSharedWith().get(1));
     }
 }

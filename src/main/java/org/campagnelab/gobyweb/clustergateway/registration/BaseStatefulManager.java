@@ -93,4 +93,19 @@ public abstract class BaseStatefulManager implements Serializable,StatefulFileSe
         }
         return fetchedEntries;
     }
+
+
+    /**
+     * Shares an instance with the listed users.
+     *
+     * @param tag
+     * @param sharedWith
+     * @param errors
+     */
+    @Override
+    public boolean shareWith(String tag, List<String> sharedWith, List<String> errors) throws Exception {
+        FileSetAPI fileset = FileSetAPI.getReadWriteAPI(this.storageArea, configurationList);
+        return fileset.editSharedUsers(tag,sharedWith,errors);
+    }
+
 }

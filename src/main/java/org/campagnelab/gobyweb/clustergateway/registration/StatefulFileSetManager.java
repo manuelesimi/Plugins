@@ -88,4 +88,13 @@ public interface StatefulFileSetManager {
      */
     public Map<String, List<String>> download(String tag, List<String> entries, List<String> errors) throws IOException;
 
+    /**
+     * Shares an instance with the listed users.
+     * @param tag
+     * @param sharedWith
+     * @param errors
+     * @return true, if all attributes were successfully edited, false otherwise
+     */
+    public boolean shareWith(String tag, List<String> sharedWith, List<String> errors) throws Exception;
+
 }
