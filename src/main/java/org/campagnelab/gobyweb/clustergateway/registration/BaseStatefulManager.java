@@ -26,15 +26,17 @@ public abstract class BaseStatefulManager implements Serializable,StatefulFileSe
 
     protected  FileSetArea storageArea;
 
+    protected  FileSetArea adminStorageArea;
+
     protected PluginRegistry pluginRegistry;
 
     protected ConfigurationList configurationList;
 
-    protected BaseStatefulManager() {
+    protected BaseStatefulManager() {}
 
-    }
     public BaseStatefulManager(String filesetAreaReference, String owner) throws IOException {
         this.storageArea = AreaFactory.createFileSetArea(filesetAreaReference, owner);
+        this.adminStorageArea = AreaFactory.createAdminFileSetArea(filesetAreaReference, owner);
         this.pluginRegistry = PluginRegistry.getRegistry();
     }
 
@@ -83,7 +85,7 @@ public abstract class BaseStatefulManager implements Serializable,StatefulFileSe
      */
     @Override
     public Map<String, List<String>> download(String tag, List<String> entries, List<String> errors) throws IOException {
-        FileSetAPI fileset = FileSetAPI.getReadOnlyAPI(this.storageArea);
+        FileSetAPI fileset = FileSetAPI.getReadOnlyAPI(this.adminStorageArea);
         Map<String, List<String>> fetchedEntries = new HashMap<String, List<String>>(entries.size());
         for (String entryName : entries) {
             List<String> paths = new ArrayList<String>();
