@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Extend StatefulFileSetManager interface with a method for sharing a fileset instance with a list of users. Provide a common implementation in the BaseManager (local and RPC have the same behavior here). Add a related test case in the Manager's JUnit tester class.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/BaseStatefulManager.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/BaseStatefulManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManager.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java" />
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/JOB_METADATA/WENSREU.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -227,10 +224,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="StatefulFileSetRPCManagerTest.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="StatefulFileSetRPCManagerTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="6" selection-start="2126" selection-end="2126" vertical-scroll-proportion="1.0417246" vertical-offset="91" max-vertical-offset="1800">
+            <state line="70" column="6" selection-start="2126" selection-end="2126" vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="1800">
               <folding>
                 <element signature="e#2424#2436#0" expanded="true" />
                 <element signature="e#2483#2491#0" expanded="true" />
@@ -244,7 +241,7 @@
       <file leaf-file-name="StatefulFileSetLocalManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="0" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="1800">
+            <state line="55" column="0" selection-start="1903" selection-end="1903" vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="1800">
               <folding />
             </state>
           </provider>
@@ -253,7 +250,7 @@
       <file leaf-file-name="StatefulFileSetRPCManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="10" selection-start="2716" selection-end="2716" vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="2865">
+            <state line="59" column="10" selection-start="2669" selection-end="2669" vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="2865">
               <folding />
             </state>
           </provider>
@@ -262,7 +259,7 @@
       <file leaf-file-name="StatefulFileSetLocalManagerTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManagerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="51" selection-start="3264" selection-end="3264" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1140">
+            <state line="50" column="168" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.0" vertical-offset="275" max-vertical-offset="1140">
               <folding>
                 <element signature="e#2704#2712#0" expanded="true" />
               </folding>
@@ -279,19 +276,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileSetAPI.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20140905.130945-97-sources.jar!/org/campagnelab/gobyweb/filesets/FileSetAPI.java">
+      <file leaf-file-name="WENSREU.properties" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/JOB_METADATA/WENSREU.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="157" column="0" selection-start="7263" selection-end="7263" vertical-scroll-proportion="0.0" vertical-offset="1966" max-vertical-offset="4110">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="706">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccessAPI.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20140905.130945-97-sources.jar!/org/campagnelab/gobyweb/filesets/AccessAPI.java">
+      <file leaf-file-name="FileSetAPI.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20140905.130945-97-sources.jar!/org/campagnelab/gobyweb/filesets/FileSetAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="0" selection-start="3183" selection-end="3183" vertical-scroll-proportion="0.0" vertical-offset="631" max-vertical-offset="4260">
+            <state line="157" column="0" selection-start="7263" selection-end="7263" vertical-scroll-proportion="0.0" vertical-offset="1966" max-vertical-offset="4110">
               <folding />
             </state>
           </provider>
@@ -310,7 +307,9 @@
         <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20140905.130945-97-sources.jar!/org/campagnelab/gobyweb/io/protocols/SSH.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="125" column="0" selection-start="4883" selection-end="4883" vertical-scroll-proportion="0.0" vertical-offset="1516" max-vertical-offset="2940">
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -319,7 +318,15 @@
         <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20140905.130945-97-sources.jar!/org/campagnelab/gobyweb/io/FileSetArea.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="17" column="0" selection-start="398" selection-end="398" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2850">
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#4025#4026#0" expanded="false" />
+                <element signature="e#4062#4063#0" expanded="false" />
+                <element signature="e#4177#4178#0" expanded="false" />
+                <element signature="e#4217#4218#0" expanded="false" />
+                <element signature="e#4994#4995#0" expanded="false" />
+                <element signature="e#5033#5034#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -775,11 +782,81 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cluster-gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cluster-gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="files-for-registration-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fileSets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cluster-gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="files-for-registration-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fileSets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JOB_METADATA" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -794,82 +871,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gobyweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins-git" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gobyweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clustergateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins-git" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gobyweb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="clustergateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="registration" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -944,20 +945,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="registration" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins-git" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1596,7 +1583,7 @@
       <workItem from="1406651544358" duration="591000" />
       <workItem from="1408112215960" duration="38644000" />
       <workItem from="1409149040139" duration="23859000" />
-      <workItem from="1410564020840" duration="42572000" />
+      <workItem from="1410564020840" duration="43458000" />
     </task>
     <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
       <created>1360193919156</created>
@@ -3510,15 +3497,19 @@
       <created>1411676461501</created>
       <updated>1411676461501</updated>
     </task>
-    <option name="localTasksCounter" value="479" />
+    <task id="LOCAL-00479" summary="Enable StatefulFileSetManagers to download entries from FS instances shared with the current user.">
+      <created>1412368462454</created>
+      <updated>1412368462454</updated>
+    </task>
+    <option name="localTasksCounter" value="480" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="567958000" />
+    <option name="totallyTimeSpent" value="568844000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3528,7 +3519,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29620463" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36468646" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36468646" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32818532" sideWeight="0.34195402" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -3540,7 +3531,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2112788" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2922955" sideWeight="0.6272727" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2922955" sideWeight="0.6272727" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38861385" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -3571,7 +3562,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Add missing phase to a debug message." />
     <MESSAGE value="Add download operation to StatefulFileSetManagers." />
     <MESSAGE value="Fix constructor of StatefulFileSetRPCManager." />
     <MESSAGE value="Isolate functions common to all job types in a script imported by all the wrapper scripts." />
@@ -3596,7 +3586,8 @@
     <MESSAGE value="Fix wrong assignment." />
     <MESSAGE value="Invoke only publish_exceptions when the EXIT signal is trapped. We can't invoke cleanup because it would clean results folder after each phase is completed. Also, remove publish_exceptions invocation from cleanup." />
     <MESSAGE value="Extend StatefulFileSetManager interface with a method for sharing a fileset instance with a list of users. Provide a common implementation in the BaseManager (local and RPC have the same behavior here). Add a related test case in the Manager's JUnit tester class." />
-    <option name="LAST_COMMIT_MESSAGE" value="Extend StatefulFileSetManager interface with a method for sharing a fileset instance with a list of users. Provide a common implementation in the BaseManager (local and RPC have the same behavior here). Add a related test case in the Manager's JUnit tester class." />
+    <MESSAGE value="Enable StatefulFileSetManagers to download entries from FS instances shared with the current user." />
+    <option name="LAST_COMMIT_MESSAGE" value="Enable StatefulFileSetManagers to download entries from FS instances shared with the current user." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3655,13 +3646,6 @@
     <entry file="file://$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/TEXT_1/foo.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="61" selection-start="33" selection-end="33" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/JOB_METADATA/WENSREU.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="789">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -3893,33 +3877,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManagerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="51" selection-start="3264" selection-end="3264" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1140">
-          <folding>
-            <element signature="e#2704#2712#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20140905.130945-97-sources.jar!/org/campagnelab/gobyweb/filesets/AccessAPI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="71" column="0" selection-start="3183" selection-end="3183" vertical-scroll-proportion="0.0" vertical-offset="631" max-vertical-offset="4260">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3375#3383#0" expanded="false" />
+            <element signature="e#11597#11617#0" expanded="false" />
+            <element signature="e#12172#12180#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20140905.130945-97-sources.jar!/org/campagnelab/gobyweb/io/FileSetArea.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="0" selection-start="398" selection-end="398" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2850">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#4025#4026#0" expanded="false" />
+            <element signature="e#4062#4063#0" expanded="false" />
+            <element signature="e#4177#4178#0" expanded="false" />
+            <element signature="e#4217#4218#0" expanded="false" />
+            <element signature="e#4994#4995#0" expanded="false" />
+            <element signature="e#5033#5034#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20140905.130945-97-sources.jar!/org/campagnelab/gobyweb/io/protocols/SSH.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="125" column="0" selection-start="4883" selection-end="4883" vertical-scroll-proportion="0.0" vertical-offset="1516" max-vertical-offset="2940">
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3939,14 +3929,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="0" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0" vertical-offset="190" max-vertical-offset="1800">
+        <state line="55" column="0" selection-start="1903" selection-end="1903" vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="1800">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="10" selection-start="2716" selection-end="2716" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="2865">
+        <state line="59" column="10" selection-start="2669" selection-end="2669" vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="2865">
           <folding />
         </state>
       </provider>
@@ -3960,13 +3950,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="6" selection-start="2126" selection-end="2126" vertical-scroll-proportion="1.0417246" vertical-offset="91" max-vertical-offset="1800">
+        <state line="70" column="6" selection-start="2126" selection-end="2126" vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="1800">
           <folding>
             <element signature="e#2424#2436#0" expanded="true" />
             <element signature="e#2483#2491#0" expanded="true" />
             <element signature="e#3090#3098#0" expanded="true" />
             <element signature="e#3285#3293#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="168" selection-start="1655" selection-end="1655" vertical-scroll-proportion="0.0" vertical-offset="275" max-vertical-offset="1140">
+          <folding>
+            <element signature="e#2704#2712#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/JOB_METADATA/WENSREU.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="789">
+          <folding />
         </state>
       </provider>
     </entry>
