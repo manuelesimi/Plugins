@@ -75,7 +75,7 @@ public class AnalysisLocalSubmission {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
+            actions = new Actions(submitter, referenceSA, null,jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
             /*actions.submitAnalysis(s
                     alignmentAnalysisConfig,
                     SubmissionRequest.toInputParameters(new String[]{}), Collections.EMPTY_MAP);   */

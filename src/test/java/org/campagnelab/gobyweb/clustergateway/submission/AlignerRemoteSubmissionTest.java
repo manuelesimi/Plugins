@@ -85,7 +85,7 @@ public class AlignerRemoteSubmissionTest {
             submitter.setRemoteArtifactRepositoryPath("/scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK");
             submitter.setEnvironmentScript(new File(envScript).getAbsolutePath());
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, filesetAreaReference, jobArea, plugins.getRegistry());
+            actions = new Actions(submitter, filesetAreaReference,null, jobArea, plugins.getRegistry());
             actions.submitAligner(
                     alignerConfig,
                     SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "HRFBTKJ"}),

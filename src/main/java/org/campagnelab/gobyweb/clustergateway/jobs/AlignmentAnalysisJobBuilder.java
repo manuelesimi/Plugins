@@ -39,7 +39,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         super(analysisConfig,jobConfiguration);
         this.analysisConfig = analysisConfig;
         JobArea jobArea = jobConfiguration.getJobArea();
-        String filesetAreaReference = jobConfiguration.getFilesetAreaReference();
+        String filesetAreaReference = jobConfiguration.getSubmissionFilesetAreaReference();
         String owner = jobConfiguration.getOwner();
         // create the fileset area according to the location of the job area
         if (jobArea.isLocal()) {

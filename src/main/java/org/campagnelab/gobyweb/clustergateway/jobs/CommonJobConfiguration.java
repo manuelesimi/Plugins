@@ -13,6 +13,8 @@ public class CommonJobConfiguration {
 
     private JobArea jobArea;
     private String filesetAreaReference;
+    private String submissionFilesetAreaReference;
+    private boolean useSubmissionFSA = false;
     private String owner;
     private Set<InputSlotValue> inputSlots;
     private String brokerHostname;
@@ -74,5 +76,14 @@ public class CommonJobConfiguration {
 
     public void setBrokerPort(int brokerPort) {
         this.brokerPort = brokerPort;
+    }
+
+    public String getSubmissionFilesetAreaReference() {
+        return useSubmissionFSA? submissionFilesetAreaReference : filesetAreaReference;
+    }
+
+    public void setSubmissionFilesetAreaReference(String submissionFilesetAreaReference) {
+        useSubmissionFSA = true;
+        this.submissionFilesetAreaReference = submissionFilesetAreaReference;
     }
 }

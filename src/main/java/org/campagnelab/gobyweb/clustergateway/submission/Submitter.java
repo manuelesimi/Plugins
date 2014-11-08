@@ -50,6 +50,9 @@ public interface Submitter {
     public void setRemoteArtifactRepositoryPath(String artifactRepositoryPath);
 
     public void setFileSetAreaReference(String fileSetAreaReference);
+
+    void setSubmissionFileSetAreaReference(String string);
+
     /**
      * Sets the tag to assign to the job being submitted.
      * @param jobTag

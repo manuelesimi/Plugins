@@ -66,6 +66,10 @@ abstract public class AbstractSubmitter implements Submitter {
 
     protected String fileSetAreaReference;
 
+    protected String submissionFileSetAreaReference;
+
+    protected boolean useSubmissionFSA = false;
+
 
     protected AbstractSubmitter(PluginRegistry registry) throws IOException {
         this.registry = registry;
@@ -121,6 +125,13 @@ abstract public class AbstractSubmitter implements Submitter {
     public void setFileSetAreaReference(String fileSetAreaReference) {
         assert fileSetAreaReference != null : "fileSetAreaReference cannot be null";
         this.fileSetAreaReference = fileSetAreaReference;
+    }
+
+    @Override
+    public void setSubmissionFileSetAreaReference(String fileSetAreaReference) {
+        assert fileSetAreaReference != null : "fileSetAreaReference cannot be null";
+        this.submissionFileSetAreaReference = fileSetAreaReference;
+        this.useSubmissionFSA = true;
     }
 
     /**

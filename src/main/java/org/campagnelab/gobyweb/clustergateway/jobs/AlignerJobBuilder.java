@@ -38,7 +38,7 @@ public class AlignerJobBuilder extends JobBuilder {
         super(alignerConfig,jobConfiguration);
         this.alignerConfig = alignerConfig;
         JobArea jobArea = jobConfiguration.getJobArea();
-        String filesetAreaReference = jobConfiguration.getFilesetAreaReference();
+        String filesetAreaReference = jobConfiguration.getSubmissionFilesetAreaReference();
         String user = jobConfiguration.getOwner();
         // create the fileset area according to the location of the job area
         if (jobArea.isLocal()) {

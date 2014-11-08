@@ -85,7 +85,7 @@ public class TaskLocalSubmissionTest {
             submitter.setRemoteArtifactRepositoryPath("");
             submitter.setLocalPluginsDir(new File("test-data/root-for-rnaselect"));
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
+            actions = new Actions(submitter, referenceSA, null,jobArea, plugins.getRegistry());
             actions.submitTask(taskConfig ,
                     SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}),
                     Collections.EMPTY_MAP);
@@ -103,7 +103,7 @@ public class TaskLocalSubmissionTest {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
+            actions = new Actions(submitter, referenceSA, null, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
             //12 values for input reads are not accepted
             actions.submitTask(
                     taskConfig,
@@ -126,7 +126,7 @@ public class TaskLocalSubmissionTest {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
+            actions = new Actions(submitter, referenceSA, referenceSA, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
             //no values for input reads are not accepted
             actions.submitTask(
                     taskConfig,
@@ -146,7 +146,7 @@ public class TaskLocalSubmissionTest {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
+            actions = new Actions(submitter, referenceSA,referenceSA, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
             //INPUT_READS slot is mandatory
             actions.submitTask(
                     taskConfig,

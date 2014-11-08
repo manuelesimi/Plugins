@@ -222,16 +222,19 @@ public abstract class SubmissionRequest {
             }
             Actions actions = null;
             if (config.userSpecified("broker-hostname") && config.userSpecified("broker-port") )
-                actions = new Actions(submitter, config.getString("fileset-area"),
+                actions = new Actions(submitter, config.getString("fileset-area"), config.getString("submission-fileset-area"),
                     jobArea, pluginRegistry, config.getString("broker-hostname"), config.getInt("broker-port"));
             else
-                actions = new Actions(submitter, config.getString("fileset-area"), jobArea, pluginRegistry);
+                actions = new Actions(submitter, config.getString("fileset-area"),
+                        config.getString("submission-fileset-area"),jobArea, pluginRegistry);
             assert actions != null : "action cannot be null.";
             submitter.setLocalPluginsDir(config.getFile("plugins-dir"));
             submitter.setSubmissionHostname(config.getString("artifact-server"));
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
             submitter.assignTagToJob(config.userSpecified("job-tag")? config.getString("job-tag"):ICBStringUtils.generateRandomString());
             submitter.setFileSetAreaReference(config.getString("fileset-area"));
+            if (config.userSpecified("submission-fileset-area"))
+                submitter.setSubmissionFileSetAreaReference(config.getString("submission-fileset-area"));
             if (config.userSpecified("env-script")) {
                 submitter.setEnvironmentScript(config.getFile("env-script").getAbsolutePath());
             } else {

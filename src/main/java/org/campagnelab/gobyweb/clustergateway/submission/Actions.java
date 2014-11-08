@@ -47,15 +47,18 @@ final class Actions {
      * Creates a new Actions object.
      *
      * @param fileSetAreaReference
+     * @param submissionFileSetAreaReference
      * @param jobArea
      * @param registry
      * @throws IOException if the creation of the folder where to store job results fails
      */
-    protected Actions(Submitter submitter, String fileSetAreaReference,
+    protected Actions(Submitter submitter, String fileSetAreaReference, String submissionFileSetAreaReference,
                       JobArea jobArea, PluginRegistry registry) throws IOException {
         this.registry = registry;
         this.jobConfiguration = new CommonJobConfiguration();
         this.jobConfiguration.setFilesetAreaReference(fileSetAreaReference);
+        if (submissionFileSetAreaReference != null && !submissionFileSetAreaReference.equals(""))
+            this.jobConfiguration.setSubmissionFilesetAreaReference(submissionFileSetAreaReference);
         this.jobConfiguration.setJobArea(jobArea);
         this.jobConfiguration.setOwner(jobArea.getOwner());
         this.jobConfiguration.setUseBroker(false);
@@ -72,10 +75,10 @@ final class Actions {
      * @param registry
      * @throws IOException if the creation of the folder where to store job results fails
      */
-    protected Actions(Submitter submitter, String fileSetAreaReference,
+    protected Actions(Submitter submitter, String fileSetAreaReference, String submissionFileSetAreaReference,
                       JobArea jobArea, PluginRegistry registry,
                       String brokerHostname, int brokerPort) throws IOException {
-        this(submitter,fileSetAreaReference,jobArea,registry);
+        this(submitter,fileSetAreaReference,submissionFileSetAreaReference, jobArea,registry);
         this.jobConfiguration.setBrokerHostname(brokerHostname);
         this.jobConfiguration.setBrokerPort(brokerPort);
         this.jobConfiguration.setUseBroker(true);

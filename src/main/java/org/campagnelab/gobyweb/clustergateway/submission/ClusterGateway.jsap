@@ -30,7 +30,23 @@
             <required>true</required>
             <shortFlag>f</shortFlag>
             <longFlag>fileset-area</longFlag>
-            <help>The directory where filesets are kept. Can be local or remote with respect to the job-area.
+            <help>The directory where filesets are fetched and pushed. Can be local or remote with respect to the job-area.
+            If the directory is on the same filesystem of the job-area, it must be specified as a local folder,
+            otherwise as a remote folder in the form of username@hostname:/path.
+            </help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>submission-fileset-area</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <shortFlag>b</shortFlag>
+            <longFlag>submission-fileset-area</longFlag>
+            <help>The directory where filesets are fetched. If specified, it is used to fetch
+            the input fileset metadata needed to prepare a job submission.
+            Can be local or remote with respect to the job-area.
             If the directory is on the same filesystem of the job-area, it must be specified as a local folder,
             otherwise as a remote folder in the form of username@hostname:/path.
             </help>
