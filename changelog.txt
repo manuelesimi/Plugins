@@ -1,3 +1,6 @@
+2.4.1
+    Remove disabled plugins from the PluginRegistry.
+
 2.4.0
     Support analyses with a single group.
     Integration with filesets library 1.2.0.
@@ -40,4 +43,5 @@
     Supported plugin types: resource, aligner, alignment analysis
     Split plugin.xsd in smaller schemas, one per each Plugin type
     New class hierarchy for Configs
+
 
