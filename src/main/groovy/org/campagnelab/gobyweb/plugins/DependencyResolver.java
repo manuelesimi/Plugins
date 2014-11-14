@@ -62,6 +62,8 @@ public class DependencyResolver {
         List<ResourceConfig> resourceList = new ArrayList<ResourceConfig>();
         synchronized (pluginConfigs) {
             for (ResourceConfig resource : pluginConfigs.filterConfigs(ResourceConfig.class)) {
+                if (resource.isDisabled()) continue;
+
                 if (!resource.getId().equalsIgnoreCase(resourceId)) continue;
 
                 if (versionExactly != null && !resource.exactlyVersion(versionExactly)) {
@@ -103,6 +105,7 @@ public class DependencyResolver {
         }
         synchronized (pluginConfigs) {
             for (FileSetConfig fileSet : pluginConfigs.filterConfigs(FileSetConfig.class)) {
+                if (fileSet.isDisabled()) continue;
                 if (versionExactly != null) { //check exactly
                     if (fileSet.getId().equalsIgnoreCase(fileSetId) &&
                             fileSet.exactlyVersion(versionExactly))
@@ -137,6 +140,7 @@ public class DependencyResolver {
         List<FileSetConfig> matchingFileSets = new ArrayList<FileSetConfig>();
         synchronized (pluginConfigs) {
             for (FileSetConfig fileSet : pluginConfigs.filterConfigs(FileSetConfig.class)) {
+                if (fileSet.isDisabled()) continue;
                 if (fileSet.getMimeType().equalsIgnoreCase(mimeType)) {
                    matchingFileSets.add(fileSet);
                 }
