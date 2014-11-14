@@ -309,7 +309,7 @@ public class Plugins {
         java.util.List<java.lang.String> errors
         java.io.File fileToUnmarshal
         (config, validationCollector, errors, fileToUnmarshal) = parsePluginConfig(pluginConfigFilePath, this)
-        if (config == null) {
+        if (config == null || config.isDisabled()) {
             return
         }
 
