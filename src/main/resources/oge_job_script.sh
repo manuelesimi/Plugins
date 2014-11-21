@@ -1150,7 +1150,13 @@ case ${STATE} in
         #    install_plugin_artifacts
         #fi
         debug "Submitting job to the cluster" "${INITIAL_STATE}"
-        SUBMISSION=`qsub -N ${TAG}.submit -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
+        if [[ -z "$JOBS_HOLD_LIST" ]]; then
+            HOLD_OPTION="-hold_jid ${JOBS_HOLD_LIST}"
+        else
+            HOLD_OPTION=""
+        fi
+
+        SUBMISSION=`qsub -N ${TAG}.submit ${HOLD_OPTION} -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
         checkSubmission $SUBMISSION
         append_kill_file ${SUBMISSION}
         jobStarted

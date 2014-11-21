@@ -76,6 +76,16 @@
             <help>The cluster queue to use for remote submissions</help>
         </flaggedOption>
 
+        <flaggedOption>
+            <id>depend-on</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>optional</required>
+            <longFlag>depend-on</longFlag>
+            <help>Comma-separated list of job tags that the job will wait before it starts.</help>
+        </flaggedOption>
+
 
         <flaggedOption>
             <id>job</id>

@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
+import com.google.common.base.Joiner;
 import com.google.common.io.Files;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.apache.commons.io.FileUtils;
@@ -70,6 +71,8 @@ abstract public class AbstractSubmitter implements Submitter {
 
     protected boolean useSubmissionFSA = false;
 
+    protected String jobList="";
+
 
     protected AbstractSubmitter(PluginRegistry registry) throws IOException {
         this.registry = registry;
@@ -112,6 +115,22 @@ abstract public class AbstractSubmitter implements Submitter {
     @Override
     public void assignTagToJob(String jobTag) {
         this.jobTag = jobTag;
+    }
+
+    /**
+     * Comma-separated list of tags on which this job will depend on
+     *
+     * @param jobList
+     */
+    @Override
+    public void setDependOnJobs(String jobList) {
+        List<String> expandedJobList = new ArrayList<String>();
+        for (String tag : jobList.split(",")) {
+            expandedJobList.add(tag+".submit");
+            expandedJobList.add(tag+".post");
+
+        }
+        this.jobList = Joiner.on(",").skipNulls().join(expandedJobList);
     }
 
 
@@ -213,6 +232,7 @@ abstract public class AbstractSubmitter implements Submitter {
         environment.put("JOB_REGISTERED_FILESETS_STATUS", JobPartStatus.REGISTERED_FILESETS.statusName);
         environment.put("JOB_KILLED_STATUS", JobPartStatus.KILLED.statusName);
         environment.put("JOB_DIR", jobDir);
+        environment.put("JOBS_HOLD_LIST", this.jobList);
         environment.put("GOBY_DIR", "${TMPDIR}");
         environment.put("SGE_O_WORKDIR", jobDir);
         environment.put("KILL_FILE", String.format("%s/kill.sh", jobDir));

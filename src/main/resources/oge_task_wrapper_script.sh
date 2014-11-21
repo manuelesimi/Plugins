@@ -168,7 +168,12 @@ case ${STATE} in
 
     *)
         cd ${JOB_DIR}
-        SUBMISSION=`qsub -N ${TAG}.submit -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
+        if [[ -z "$JOBS_HOLD_LIST" ]]; then
+            HOLD_OPTION="-hold_jid ${JOBS_HOLD_LIST}"
+        else
+            HOLD_OPTION=""
+        fi
+        SUBMISSION=`qsub -N ${TAG}.submit ${HOLD_OPTION} -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
         echo ${SUBMISSION}
         jobStarted
         ;;

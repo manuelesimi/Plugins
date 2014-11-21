@@ -1,3 +1,6 @@
+2.5.0
+    Add depend-on option. It allows to indicate execution dependencies among different submissions.
+
 2.4.0
     Support analyses with a single group.
     Integration with filesets library 1.2.0.

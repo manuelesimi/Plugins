@@ -60,6 +60,12 @@ public interface Submitter {
     public void assignTagToJob(String jobTag);
 
     /**
+     * Comma-separated list of tags on which this job will depend on
+     * @param jobList
+     */
+    public void setDependOnJobs(String jobList);
+
+    /**
      * The script to run for executing the job.
      * @param wrapperScript
      */

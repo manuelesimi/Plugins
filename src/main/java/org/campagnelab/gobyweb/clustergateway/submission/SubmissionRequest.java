@@ -233,6 +233,8 @@ public abstract class SubmissionRequest {
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
             submitter.assignTagToJob(config.userSpecified("job-tag")? config.getString("job-tag"):ICBStringUtils.generateRandomString());
             submitter.setFileSetAreaReference(config.getString("fileset-area"));
+            if (config.userSpecified("depend-on"))
+                submitter.setDependOnJobs(config.getString("depend-on"));
             if (config.userSpecified("submission-fileset-area"))
                 submitter.setSubmissionFileSetAreaReference(config.getString("submission-fileset-area"));
             if (config.userSpecified("env-script")) {

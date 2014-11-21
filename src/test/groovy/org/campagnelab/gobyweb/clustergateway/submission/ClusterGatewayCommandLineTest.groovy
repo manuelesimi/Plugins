@@ -96,6 +96,7 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAR=bar " +
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
+                        "--depend-on FAKETAG5,FAKETAG6 " +
                         "--artifact-server ${artifactServer} "+
                        // "--broker-hostname ${brokerHostname} " +
                        // "--broker-port ${brokerPort} " +
