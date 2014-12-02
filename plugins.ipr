@@ -994,13 +994,13 @@
     </library>
     <library name="Maven: org.campagnelab.gobyweb:filesets:1.3.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20141119.203750-118.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20141119.214505-119.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20141119.203750-118-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20141119.214505-119-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20141119.203750-118-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.3.0-SNAPSHOT/filesets-1.3.0-20141119.214505-119-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:filesets:2.0.0-SNAPSHOT">
@@ -1050,13 +1050,13 @@
     </library>
     <library name="Maven: org.campagnelab.mercury:mercury-api:1.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/mercury/mercury-api/1.0-SNAPSHOT/mercury-api-1.0-20141119.195433-22.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/mercury/mercury-api/1.0-SNAPSHOT/mercury-api-1.0-20141119.221540-23.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/mercury/mercury-api/1.0-SNAPSHOT/mercury-api-1.0-20141119.195433-22-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/mercury/mercury-api/1.0-SNAPSHOT/mercury-api-1.0-20141119.221540-23-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/mercury/mercury-api/1.0-SNAPSHOT/mercury-api-1.0-20141119.195433-22-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/mercury/mercury-api/1.0-SNAPSHOT/mercury-api-1.0-20141119.221540-23-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab:org.campagnelab.stepslogger:1.1.0">

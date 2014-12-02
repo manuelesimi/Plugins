@@ -96,7 +96,7 @@ function setup {
 
     export JOB_DIR=%JOB_DIR%
 
-   #include logging functions
+    #include logging functions
     . %JOB_DIR%/message-functions.sh
 
     # define job specific constants:
@@ -1155,7 +1155,7 @@ case ${STATE} in
         else
             HOLD_OPTION=""
         fi
-
+        deletePreviousExecutionData
         SUBMISSION=`qsub -N ${TAG}.submit ${HOLD_OPTION} -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
         checkSubmission $SUBMISSION
         append_kill_file ${SUBMISSION}

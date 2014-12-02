@@ -124,4 +124,8 @@ function jobStarted {
    info "Task submitted: ${SUBMISSION}" "submitted"
 }
 
+function deletePreviousExecutionData {
+   deleteTopic ${TAG}
+}
+
 trap publish_exceptions EXIT
