@@ -70,22 +70,10 @@ function run_task {
 
 function setup {
 
-     #include logging functions
-    . %JOB_DIR%/message-functions.sh
-
-    . %JOB_DIR%/job_common_functions.sh
-
-    # include value definitions for automatic options:
-    . %JOB_DIR%/auto-options.sh
-
-    # define job specific constants:
-    . %JOB_DIR%/constants.sh
-
     #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
     export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
 
     export JOB_DIR=%JOB_DIR%
-    trace "JOB _DIR is ${JOB_DIR}" "RUNNING"
 
     if [ -z "$TMPDIR" ]; then
         export TMPDIR=${JOB_DIR}
@@ -93,6 +81,11 @@ function setup {
 
     CURRENT_PART=1 # Needed when reporting errors with dieUponError
 
+    # include value definitions for automatic options:
+    . %JOB_DIR%/auto-options.sh
+
+    # define job specific constants:
+    . %JOB_DIR%/constants.sh
 
     #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
     export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
@@ -147,8 +140,13 @@ function setup {
 
 }
 
-
 setup
+
+ #include logging functions
+. %JOB_DIR%/message-functions.sh
+
+. %JOB_DIR%/job_common_functions.sh
+
 
 case ${STATE} in
     task)
