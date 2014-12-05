@@ -1,4 +1,4 @@
-#!/bin/bash -l
+#!/bin/bash -lx
 
 # Execute the script from the current directory
 #$ -cwd
