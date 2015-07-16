@@ -94,6 +94,23 @@ public class FileSetCommandLineTest {
             fail("Registration with tag one and two instances did not fail");
         } catch (Exception e) {/*expected*/}
 
+
+        //the following test of the edit action has to be here, because it needs the fileset registered with XXXXX7
+        String[] attributes = new String[4];
+        attributes[0] = "KEY1=VALUE1";
+        attributes[1] = "KEY2=VALUE2";
+        attributes[2] = "KEY3=VALUE3";
+        attributes[3] = "KEY4=VALUE4";
+
+        String[] users = new String[3];
+        users[0] = "me";
+        users[1] = "myself";
+        users[2] = "I";
+        assertEquals("Unexpected results returned by edit", 0, FileSetManager.process(buildFileEditArgs(
+                "XXXXXX7",
+                attributes, users
+        )).size());
+
     }
 
     @Test
@@ -107,25 +124,6 @@ public class FileSetCommandLineTest {
 
     }
 
-    @Test
-    public void edit() {
-        //this has to fail because the input tag already exists (from the previous registration)
-        String[] attributes = new String[4];
-        attributes[0] = "KEY1=VALUE1";
-        attributes[1] = "KEY2=VALUE2";
-        attributes[2] = "KEY3=VALUE3";
-        attributes[3] = "KEY4=VALUE4";
-
-        String[] users = new String[3];
-        users[0] = "me";
-        users[1] = "myself";
-        users[2] = "I";
-        assertEquals("Unexpected results returned by edit", 0, FileSetManager.process(buildFileEditArgs(
-                        "XXXXXX7",
-                attributes, users
-        )).size());
-
-    }
 
     private static String[] buildFileEditArgs(String tag, String[] attributes, String[] sharedWith) {
         StringBuilder builder = new StringBuilder();

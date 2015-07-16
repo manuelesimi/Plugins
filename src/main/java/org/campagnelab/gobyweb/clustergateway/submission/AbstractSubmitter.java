@@ -45,6 +45,8 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String environmentScriptFilename;
     protected String artifactRepositoryPath;
     protected String wrapperScript = "oge_task_wrapper_script.sh"; //default is OGE script for aligners and analyses
+    protected String commonScript = "job_common_functions.sh"; //common functions
+
     protected String queue;
     private static final File queueMessageDir = new File(System.getProperty("user.home") + "/.clustergateway/queue-message-dir");
 
@@ -69,6 +71,7 @@ abstract public class AbstractSubmitter implements Submitter {
         return new Session();
     }
 
+    @Override
     public void setSubmissionHostname(String submissionHostname) {
         this.submissionHostname = submissionHostname;
     }
@@ -94,6 +97,8 @@ abstract public class AbstractSubmitter implements Submitter {
         this.jobTag = jobTag;
     }
 
+    /**
+   
 
     @Override
     public void setRemoteArtifactRepositoryPath(String artifactRepositoryPath) {
@@ -197,8 +202,8 @@ abstract public class AbstractSubmitter implements Submitter {
         environment.put("FILESET_AREA", String.format("%s/%s",fileSetAreaReference, job.getOwnerId()));
         environment.put("FILESET_TARGET_DIR", "${JOB_DIR}/source");
         environment.put("FILESET_COMMAND",
-                String.format("java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} -Dlog4j.configuration=file:${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${FILESET_TARGET_DIR} --pb-file %s/filesets.pb --job-tag %s",
-                        jobDir,
+                String.format("java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} -Dlog4j.configuration=file:${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${FILESET_TARGET_DIR} --pb-file %s/filesets.pb --aggregated-metadata-file %s/aggregated-metadata-file.pb --job-tag %s",
+                        jobDir, jobDir,
                         job.getTag())
         );
         if (job.isParallel()) {

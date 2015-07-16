@@ -994,6 +994,10 @@ function diffexp {
     #create the directory where alignments will be downloaded
     /bin/mkdir -p  "${ENTRIES_DIRECTORY}"
 
+     #Aggregate metadata attributes to reduce the disk accesses
+     ${FILESET_COMMAND} --aggregate-attributes *
+     dieUponError "Unable to aggregate FileSet metadata before the job execution."
+
 
     #fetch the input entries from the fileset area
     fetch_input_alignments

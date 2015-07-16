@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Add, manage and test the submission fileset area option. When specified during a job submission, this area is used to fetch the metadata from input slots. It is especially useful when developing and testing plugins. The assumption is that the submission FSA has the same content that the FSA used at job execution time.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/FileSetCommandLineTest.groovy" afterPath="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/FileSetCommandLineTest.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/changelog.txt" afterPath="$PROJECT_DIR$/changelog.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="plugins.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +29,6 @@
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="DaemonCodeAnalyzer">
-    <disable_hints />
   </component>
   <component name="DebuggerManager">
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
@@ -156,8 +159,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <breakpoint_rules converted="true" />
     <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -165,100 +168,100 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Actions.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="3150">
-              <caret line="118" column="80" selection-start-line="118" selection-start-column="27" selection-end-line="118" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Plugins.groovy" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Plugins.groovy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.0" vertical-offset="7806" max-vertical-offset="10710">
+            <state vertical-scroll-proportion="0.0">
               <caret line="592" column="42" selection-start-line="592" selection-start-column="42" selection-end-line="592" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DependencyResolver.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="DependencyResolver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/DependencyResolver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="2385">
+            <state vertical-scroll-proportion="0.0">
               <caret line="142" column="51" selection-start-line="142" selection-start-column="51" selection-end-line="142" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PluginRegistry.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="PluginRegistry.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginRegistry.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="2025">
-              <caret line="54" column="35" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.55397725" vertical-offset="0" max-vertical-offset="4200">
-              <caret line="26" column="105" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskJobBuilder.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="changelog.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/changelog.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskJobBuilder.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/TaskJobBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="675">
+            <state vertical-scroll-proportion="0.0">
               <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SubmissionRequest.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SubmissionRequest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3405" max-vertical-offset="4260">
+            <state vertical-scroll-proportion="0.0">
               <caret line="227" column="34" selection-start-line="227" selection-start-column="34" selection-end-line="227" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AnalysisLocalSubmission.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="AnalysisLocalSubmission.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AnalysisLocalSubmission.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="1380">
+            <state vertical-scroll-proportion="0.0">
               <caret line="77" column="63" selection-start-line="77" selection-start-column="63" selection-end-line="77" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AlignmentAnalysisJobBuilder.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="AlignmentAnalysisJobBuilder.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="4965">
+            <state vertical-scroll-proportion="0.0">
               <caret line="41" column="90" selection-start-line="41" selection-start-column="90" selection-end-line="41" selection-end-column="90" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResourceJob.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ResourceJob.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ResourceJob.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="555">
+            <state vertical-scroll-proportion="0.0">
               <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
               <folding />
             </state>
@@ -290,64 +293,28 @@
       <MyDateState />
     </option>
   </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
-    <option name="changedFiles">
+    <option name="CHANGED_PATHS">
       <list>
-        <option value="$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.0-SNAPSHOT/filesets-1.2.0-SNAPSHOT-sources.jar!/org/campagnelab/gobyweb/io/AlternativeRoots.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java" />
-        <option value="$PROJECT_DIR$/bin/plugins-start-ng-server" />
         <option value="$PROJECT_DIR$/changelog.txt" />
-        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginRegistry.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequestFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobPartStatus.groovy" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ExecutableJob.java" />
-        <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" />
-        <option value="$PROJECT_DIR$/src/main/resources/common.sh" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/resources/oge_task_parallel_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/resources/local_task_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" />
-        <option value="$PROJECT_DIR$/test-data/plugin-root-1/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-        <option value="$PROJECT_DIR$/test-data/plugin-root-2/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-        <option value="$PROJECT_DIR$/test-data/plugin-root-3/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-        <option value="$PROJECT_DIR$/test-data/plugin-root-validate/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-        <option value="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-        <option value="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-        <option value="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-        <option value="$PROJECT_DIR$/test-data/root-for-rnaselect-parallel/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.1/config.xml" />
-        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistrationTest.java" />
-        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy" />
-        <option value="$PROJECT_DIR$/src/main/resources/job_common_functions.sh" />
-        <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetManager.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManagerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/BaseStatefulManager.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManagerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/CommonJobConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignerJobBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AnalysisLocalSubmission.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" />
-        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy" />
-        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/DependencyResolver.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
   <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
+    </option>
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="downloadDocsAutomatically" value="true" />
@@ -363,60 +330,6 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="plugins" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Dependencies" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="plugins" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Dependencies" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="org.campagnelab.gobyweb:artifacts:2.3.0" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="plugins" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Dependencies" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="org.campagnelab.gobyweb:artifacts:2.3.0" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="org.campagnelab.gobyweb:serverside-dependencies:full:1.0.6" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
-        </PATH_ELEMENT>
-      </PATH>
       <PATH>
         <PATH_ELEMENT>
           <option name="myItemId" value="" />
@@ -456,13 +369,12 @@
   <component name="MavenRunner">
     <option name="vmOptions" value="-Xms512m -Xmx4g" />
   </component>
-  <component name="MessagesViewTool">
-    <option name="autoscrollToSource" value="true" />
-    <option name="info" value="true" />
-    <option name="warnings" value="true" />
+  <component name="NamedScopeManager">
+    <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
+    <option name="x" value="2" />
+    <option name="y" value="86" />
     <option name="width" value="2560" />
     <option name="height" value="1330" />
   </component>
@@ -522,8 +434,9 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -674,6 +587,7 @@
     <property name="SearchEverywhereHistory" value="NG" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -872,128 +786,106 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
-      <module name="" />
-      <setting name="vmparams" value="" />
-      <setting name="cmdLine" value="run-app" />
-      <setting name="depsClasspath" value="false" />
-      <setting name="passParentEnv" value="true" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <setting name="launchBrowser" value="false" />
-      <method />
-    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
       <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
-    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list />
-            </option>
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
+      <module />
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
+    <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
       <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
+      <module name="" />
       <envs />
-      <properties />
-      <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea -Xmx1g" />
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
+      <module name="" />
       <envs />
-      <patterns />
-      <method>
-        <option name="Make" enabled="false" />
-        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="test-compile" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
       <option name="BCName" value="" />
@@ -1030,27 +922,6 @@
       <option name="usbDebugPort" value="7936" />
       <method />
     </configuration>
-    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
-      <module name="" />
-      <option name="TESTING_TYPE" value="0" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
       <option name="BCName" value="" />
       <option name="launcherParameters">
@@ -1065,58 +936,144 @@
       <option name="trusted" value="true" />
       <method />
     </configuration>
-    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <module name="" />
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="depsClasspath" value="false" />
+      <setting name="passParentEnv" value="true" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="myFilePath" />
-      <option name="GLUE" />
-      <option name="myNameFilter" />
-      <option name="myGeneratedName" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
+      <setting name="launchBrowser" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -Xmx1g" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method>
+        <option name="Make" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="test-compile" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
+    <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
       <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
       <envs />
+      <properties />
+      <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
     <configuration default="false" name="ClusterGatewayCommandLineTest.runRemoteAligner" type="JUnit" factoryName="JUnit">
@@ -1199,6 +1156,7 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="" />
       <created>1358024077716</created>
+      <option name="number" value="Default" />
       <updated>1358024077716</updated>
       <workItem from="1389038112932" duration="2856000" />
       <workItem from="1389114344673" duration="1736000" />
@@ -1240,1974 +1198,361 @@
       <workItem from="1415413252386" duration="2683000" />
       <workItem from="1415983204205" duration="428000" />
       <workItem from="1415983733917" duration="1642000" />
-    </task>
-    <task id="LOCAL-00001" summary="Set mandatory all the goby_alignment files">
-      <created>1360193919156</created>
-      <updated>1360193919156</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Fix on Config and BaseConfig to manage the disable flag (it was not loaded from the config.xml)">
-      <created>1360857973109</created>
-      <updated>1360857973109</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Add validateOptionValues method on ExecutableConfig, more fixes on PluginRegistry following the deployment on trial">
-      <created>1360866863110</created>
-      <updated>1360866863110</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Add missing guava dependency and getFiles method on ResourceConfig">
-      <created>1360872665116</created>
-      <updated>1360872665116</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Fix FileSet schema, jaxb class and tester">
-      <created>1360955723110</created>
-      <updated>1360955723110</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Preliminary work on Tasks, define rnaselect resource, define reads and tsv filesets">
-      <created>1360965607107</created>
-      <updated>1360965607107</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Some adjustments to task schema and rnaselect definition">
-      <created>1361201693114</created>
-      <updated>1361201693114</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Move OutputSchema from executables to sub-classes, stubs JAXB classes for Tasks input/output schema">
-      <created>1361204585107</created>
-      <updated>1361204585107</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Fix some complaints from JAXB on task serialization, add junit test for task">
-      <created>1361205324108</created>
-      <updated>1361205324108</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Complete unit test for TaskConfig, rename inFileSetRef/outFileSetRef to simply FileSetRef, some fixes in the JAXB annotations">
-      <created>1361289394131</created>
-      <updated>1361289394131</updated>
-    </task>
-    <task id="LOCAL-00011" summary="FileSets and Tasks correctly loaded by Plugins">
-      <created>1361295150106</created>
-      <updated>1361295150106</updated>
-    </task>
-    <task id="LOCAL-00012" summary="New RNASelect task config">
-      <created>1361295490111</created>
-      <updated>1361295490111</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Exploit and test the new atMostVersion option in resource and fileset dependencies">
-      <created>1361370246106</created>
-      <updated>1361370246106</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Remove file indexes from the task schema, add sample instances for filesets and rnaselect, add working submission example (use scp insteand of file-manager, temporary)">
-      <created>1361382933107</created>
-      <updated>1361382933107</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Move fileset instances from SEQ to compact-reads format, add oge-like script for testing task submission to OGE">
-      <created>1361390514116</created>
-      <updated>1361390514116</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Working prototype of ClusterGateway for task submission, SubmitTask tester changed for exploiting the ClusterGateway, add some compact-reads' instances">
-      <created>1361398148108</created>
-      <updated>1361398148108</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Create and scopy a local directory during the task submission (instead of one single file for each ssh connection).">
-      <created>1361459894111</created>
-      <updated>1361459894111</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Wrap the Task in a lite version of oge_job_script and execute it on OGE">
-      <created>1361462972111</created>
-      <updated>1361462972111</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Use classes from ICB-util for executing remote commands, remove dependency from artifacts">
-      <created>1361808941109</created>
-      <updated>1361808941109</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Write filesets information in a protocol bufffer message, serialize it on the disk and move the file on the cluster node along with the other task files">
-      <created>1361824093111</created>
-      <updated>1361824093111</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Comply with the new pb files defined for filesets">
-      <created>1362004694107</created>
-      <updated>1362004694107</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Upgrading GOBYWEB_SERVER_SIDE resource with filesets' and dependencies' jars">
-      <created>1362085667109</created>
-      <updated>1362085667109</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Integration with filesets completed, RNASelect task uses the filesets tool for querying/fetching fileset entries, isolate protocol buffer creation, simplified data model mirroring">
-      <created>1362090638110</created>
-      <updated>1362090638110</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Move oge wrapper script in the resource folder in order to be reused across different tasks">
-      <created>1362150613108</created>
-      <updated>1362150613108</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Correct version.atMost management when resolving fileset dependencies in a task configuration">
-      <created>1362157832106</created>
-      <updated>1362157832106</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Define additional fileset and task configurations for testing purposes">
-      <created>1362157913106</created>
-      <updated>1362157913106</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Create a base class to be extended by all task testers to avoid code duplication in each of them, adapt the RNATask tester">
-      <created>1362160171109</created>
-      <updated>1362160171109</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Add test instances and tester for TARBALLER task">
-      <created>1362160945108</created>
-      <updated>1362160945108</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Add tester and instances for testing fileset directories, update fileset.jar with the latest fixes on the SCP protocol">
-      <created>1362165729118</created>
-      <updated>1362165729118</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Upgrade filesets dependency">
-      <created>1362175952118</created>
-      <updated>1362175952118</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Add setPlugins to TaskInstance interface, invoke it from the remote submitter">
-      <created>1362407534113</created>
-      <updated>1362407534113</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Load wrapper script from the classpath instead of from the disk">
-      <created>1362411690107</created>
-      <updated>1362411690107</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Compliance with new filesets messages">
-      <created>1362512986114</created>
-      <updated>1362512986114</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Remove the empty java class (groovy eclipse compiler is happy with the clustergateway in the java folder)">
-      <created>1362513628112</created>
-      <updated>1362513628112</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Remove OGE queue from oge wrapper script, add it as parameter of the task submission">
-      <created>1362516241111</created>
-      <updated>1362516241111</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Create PushInfo messages during Task submission, RNASelect task uses the push option of filesets to register back TSV files">
-      <created>1362520642112</created>
-      <updated>1362520642113</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Load wrapper script from the CLASSPATH in the LocalSubmitter, adapt the submitter to the new approach for creating protocol buffers consumed by Tasks">
-      <created>1362520881110</created>
-      <updated>1362520881110</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Adapt protocol buffer writer to the new fileset messages, move URL information to fileset instances, add size information to each entry of a fileset">
-      <created>1362597822109</created>
-      <updated>1362597822109</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Update fileset library">
-      <created>1362600066118</created>
-      <updated>1362600066118</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Change fileset and task instances to mix LOCAL and SCP protocol usages. RNATask consumes both local and remote filesets in the same execution">
-      <created>1362603652111</created>
-      <updated>1362603652111</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Add destination root info to the Session, set and use the destination root within RNASelect task">
-      <created>1362609534112</created>
-      <updated>1362609534112</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Log the destination folder in RNASelect Script, new updated filesets library">
-      <created>1362667079112</created>
-      <updated>1362667079112</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Define and parse the command line interfaces for fileset registration and task submission">
-      <created>1362782029108</created>
-      <updated>1362782029108</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Parameters validation for FileSetRegistration, plugins loading at startup, manage local/remote Storage Area">
-      <created>1363018988110</created>
-      <updated>1363018988110</updated>
-    </task>
-    <task id="LOCAL-00045" summary="Use id instead of name as parameter for selecting the fileset configuration">
-      <created>1363020434106</created>
-      <updated>1363020434106</updated>
-    </task>
-    <task id="LOCAL-00046" summary="Parse and upload fileset entries in the storage area (both local and remote)">
-      <created>1363027670107</created>
-      <updated>1363027670107</updated>
-    </task>
-    <task id="LOCAL-00047" summary="Check tag availability before uploading entries in the storage area">
-      <created>1363029257107</created>
-      <updated>1363029257107</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Fix the tag availability check in the remote area, create the destination tag in the storage area before uploading its entries">
-      <created>1363030893107</created>
-      <updated>1363030893107</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Populate the fileset instance object according to runtime information, build and upload a protocol buffer with metadata information on the fileset instance">
-      <created>1363035902107</created>
-      <updated>1363035902107</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Add and implement unregistration action on fileset instances">
-      <created>1363037371106</created>
-      <updated>1363037371106</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Add some (stubbed) binaries for a simplified interaction with the ClusterGateway through the command line">
-      <created>1363037742106</created>
-      <updated>1363037742106</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Fix wrong returned values for hasError* checks on fileset parameters">
-      <created>1363095304106</created>
-      <updated>1363095304106</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Remove EnumeratedStringParser for the action parameter as it does not validate the enumeration, check allowed values manually">
-      <created>1363096142106</created>
-      <updated>1363096142106</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Validate entry names, rollback failed fileset registrations">
-      <created>1363097831105</created>
-      <updated>1363097831105</updated>
-    </task>
-    <task id="LOCAL-00055" summary="A bit of reorganization of packages for sharing the Storage Area class">
-      <created>1363102142105</created>
-      <updated>1363102142105</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Add and manage the JobArea parameter for task submissions, introduce a hierarchy for persistent areas to avoid duplication of code">
-      <created>1363109123106</created>
-      <updated>1363109123106</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Remove some duplicated class members">
-      <created>1363109210106</created>
-      <updated>1363109210106</updated>
-    </task>
-    <task id="LOCAL-00058" summary="Add the owner parameter to both fileset registration and task submission, manage ownership for filesets, tasks and persistent areas">
-      <created>1363114305105</created>
-      <updated>1363114305105</updated>
-    </task>
-    <task id="LOCAL-00059" summary="Fix the owner parameter name in the FileSet registration's parsing">
-      <created>1363114907105</created>
-      <updated>1363114907105</updated>
-    </task>
-    <task id="LOCAL-00060" summary="Ground work for local and remote Task execution (still need to be completed)">
-      <created>1363123517106</created>
-      <updated>1363123517107</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Create fileset instances for task submission starting from their metadata file, manage local cache and basenames in the storage area">
-      <created>1363192968106</created>
-      <updated>1363192968106</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Submit tasks for execution to the job area">
-      <created>1363195821108</created>
-      <updated>1363195821109</updated>
-    </task>
-    <task id="LOCAL-00063" summary="Add and manage template for passing env variables to the task script">
-      <created>1363197493106</created>
-      <updated>1363197493107</updated>
-    </task>
-    <task id="LOCAL-00064" summary="Register fileset entries with a relative path (allowing to move the storage area at other locations if needed and to fetch files from different submitters)">
-      <created>1363199828107</created>
-      <updated>1363199828108</updated>
-    </task>
-    <task id="LOCAL-00065" summary="Various fixes on task execution, still miss the assignment of tags to produced filesets">
-      <created>1363200635107</created>
-      <updated>1363200635107</updated>
-    </task>
-    <task id="LOCAL-00066" summary="Remove unused output-fileset parameter">
-      <created>1363202428106</created>
-      <updated>1363202428106</updated>
-    </task>
-    <task id="LOCAL-00067" summary="Make tag parameter optional for fileset registration, a default one is assigned if not specified">
-      <created>1363204747105</created>
-      <updated>1363204747106</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Add some sketched information in the scripts and properties file">
-      <created>1363209248106</created>
-      <updated>1363209248106</updated>
-    </task>
-    <task id="LOCAL-00069" summary="Add tag option to FILESET_COMMAND">
-      <created>1363381937118</created>
-      <updated>1363381937118</updated>
-    </task>
-    <task id="LOCAL-00070" summary="Fix the registration/unregistration interface both in the remote and local mode">
-      <created>1363623039107</created>
-      <updated>1363623039107</updated>
-    </task>
-    <task id="LOCAL-00071" summary="Add consistency check between mode and fileset area configuration">
-      <created>1363626359109</created>
-      <updated>1363626359109</updated>
-    </task>
-    <task id="LOCAL-00072" summary="Use the AreaFactory to create the FileSet area for registration and unregistration of fileset instances. Remove local checks.">
-      <created>1363628848107</created>
-      <updated>1363628848107</updated>
-    </task>
-    <task id="LOCAL-00073" summary="Fix parameters' names after a copy&amp;paste error">
-      <created>1363629294108</created>
-      <updated>1363629294108</updated>
-    </task>
-    <task id="LOCAL-00074" summary="Fix typos.">
-      <created>1363650795103</created>
-      <updated>1363650795103</updated>
-    </task>
-    <task id="LOCAL-00075" summary="Use relative path in the local submitter configuration, reorganize test-data for local and remote tests">
-      <created>1363700766108</created>
-      <updated>1363700766109</updated>
-    </task>
-    <task id="LOCAL-00076" summary="Add more test configurations">
-      <created>1363701576113</created>
-      <updated>1363701576113</updated>
-    </task>
-    <task id="LOCAL-00077" summary="Remove unused StorageArea class from the project">
-      <created>1363705406109</created>
-      <updated>1363705406109</updated>
-    </task>
-    <task id="LOCAL-00078" summary="Merge &quot;Migrate to the JobArea implementation provided by filesets. Clean up submitters from methods now available there. Remove runtime package. Update filesets library.&quot; 81b4d46f752e2cf8ea60ea64af2b0631dd93c583">
-      <created>1363980204483</created>
-      <updated>1363980204484</updated>
-    </task>
-    <task id="LOCAL-00079" summary="Merge &quot;Migrate to the JobArea implementation provided by filesets. Clean up submitters from methods now available there. Remove runtime package. Update filesets library.&quot; 81b4d46f752e2cf8ea60ea64af2b0631dd93c583">
-      <created>1363980470214</created>
-      <updated>1363980470215</updated>
-    </task>
-    <task id="LOCAL-00080" summary="Now that ClusterGateway validates plugin configurations, remove GSNAP_WITH_GOBY as an aligner, it conflicts with the reosources of the same ID.">
-      <created>1363981725304</created>
-      <updated>1363981725305</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Extend the JUnit to register filesets and submit a task in local mode. Not sure submission is doing anything yet.">
-      <created>1363984291282</created>
-      <updated>1363984291283</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Fix dynamic options in javascript.">
-      <created>1364242655834</created>
-      <updated>1364242655834</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Advance version number to 2.1.0 to match GobyWeb release.">
-      <created>1364992232976</created>
-      <updated>1364992232976</updated>
-    </task>
-    <task id="LOCAL-00084" summary="Advance version number to 2.1.0 to match GobyWeb release.">
-      <created>1364992936163</created>
-      <updated>1364992936163</updated>
-    </task>
-    <task id="LOCAL-00085" summary="Fix class and subclass matching in findByDbLegacyId().&#10;">
-      <created>1365779117096</created>
-      <updated>1365779117096</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Rename parameters as input slots, returned values as output slots.">
-      <created>1366121895499</created>
-      <updated>1366121895499</updated>
-    </task>
-    <task id="LOCAL-00087" summary="Rename classes and methods according to the new slots terminology.">
-      <created>1366123039937</created>
-      <updated>1366123039937</updated>
-    </task>
-    <task id="LOCAL-00088" summary="Make unique the type of an input slot.">
-      <created>1366124848138</created>
-      <updated>1366124848138</updated>
-    </task>
-    <task id="LOCAL-00089" summary="Populate the protocol buffer with the job data in the abstract submitter.">
-      <created>1366127640410</created>
-      <updated>1366127640412</updated>
-    </task>
-    <task id="LOCAL-00090" summary="Fix IO validation in TaskConfig.">
-      <created>1366127966192</created>
-      <updated>1366127966192</updated>
-    </task>
-    <task id="LOCAL-00091" summary="Fix IO population in TaskConfigTest.">
-      <created>1366128293532</created>
-      <updated>1366128293532</updated>
-    </task>
-    <task id="LOCAL-00092" summary="Fix TARBALLER task configuration to match the new IO schema.">
-      <created>1366128574289</created>
-      <updated>1366128574289</updated>
-    </task>
-    <task id="LOCAL-00093" summary="Add the version to the FileSet configurations submitted with the job.">
-      <created>1366129265904</created>
-      <updated>1366129265904</updated>
-    </task>
-    <task id="LOCAL-00094" summary="Update the XML schemas in the plugins-root testing folder.">
-      <created>1366129433758</created>
-      <updated>1366129433758</updated>
-    </task>
-    <task id="LOCAL-00095" summary="Use --job-tag instead of --task-tag, according to the new fileset manager options.">
-      <created>1366130368554</created>
-      <updated>1366130368555</updated>
-    </task>
-    <task id="LOCAL-00096" summary="Update GOBYWEB_SERVER_SIDE libraries.">
-      <created>1366143674574</created>
-      <updated>1366143674574</updated>
-    </task>
-    <task id="LOCAL-00097" summary="Adjusting input test-data for RNASelect.">
-      <created>1366143738572</created>
-      <updated>1366143738572</updated>
-    </task>
-    <task id="LOCAL-00098" summary="Fix fileset registration test.">
-      <created>1366143977557</created>
-      <updated>1366143977557</updated>
-    </task>
-    <task id="LOCAL-00099" summary="Fix Task local submission test.">
-      <created>1366144220286</created>
-      <updated>1366144220286</updated>
-    </task>
-    <task id="LOCAL-00100" summary="RNA script.sh prints out tags of the registered TSV instances.">
-      <created>1366144381365</created>
-      <updated>1366144381365</updated>
-    </task>
-    <task id="LOCAL-00101" summary="Fix integration test (command line) for local task submissions.">
-      <created>1366148089854</created>
-      <updated>1366148089854</updated>
-    </task>
-    <task id="LOCAL-00102" summary="Adjusting option names and constraints in the fileset registration interface.">
-      <created>1366216508096</created>
-      <updated>1366216508096</updated>
-    </task>
-    <task id="LOCAL-00103" summary="Adjusting option names and constraints in the ClusterGateway interface.">
-      <created>1366218223890</created>
-      <updated>1366218223890</updated>
-    </task>
-    <task id="LOCAL-00104" summary="Remove the connection to the FileSet area before the job submission. The type of the area (local or remote) is relative to the job and therefore could not be available on the ClusterGateway side.">
-      <created>1366223633223</created>
-      <updated>1366223633224</updated>
-    </task>
-    <task id="LOCAL-00105" summary="Update the filesets library.">
-      <created>1366223660405</created>
-      <updated>1366223660405</updated>
-    </task>
-    <task id="LOCAL-00106" summary="Change the creation of the Actions instance according to the new constructor signature in the task submission test.">
-      <created>1366224124395</created>
-      <updated>1366224124395</updated>
-    </task>
-    <task id="LOCAL-00107" summary="Change the name of the filesets directory under the plugins root (from fileSets to filesets) for consistency with the others.">
-      <created>1366232395369</created>
-      <updated>1366232395370</updated>
-    </task>
-    <task id="LOCAL-00108" summary="Change imports according to the new package organization in the FileSet manager.">
-      <created>1366304378208</created>
-      <updated>1366304378208</updated>
-    </task>
-    <task id="LOCAL-00109" summary="Make queue parameter optional. It is not needed for local jobs. The check is now inside the code when a remote job submission is detected.">
-      <created>1366304508417</created>
-      <updated>1366304508417</updated>
-    </task>
-    <task id="LOCAL-00110" summary="Remove source-dir parameter from FileSetRegistration interface.">
-      <created>1366383055552</created>
-      <updated>1366383055552</updated>
-    </task>
-    <task id="LOCAL-00111" summary="Add fileset import script for importing pre-existing content from GobyWeb as FileSet instances.">
-      <created>1366661758028</created>
-      <updated>1366661758028</updated>
-    </task>
-    <task id="LOCAL-00112" summary="Extend the description of the Tag parameter in FileSetManager JSAP for covering its usage in the registration operation.">
-      <created>1366731027181</created>
-      <updated>1366731027181</updated>
-    </task>
-    <task id="LOCAL-00113" summary="Add 3 test cases to FileSetCommandLineTest for testing the tag parameter within the register operation.">
-      <created>1366731163056</created>
-      <updated>1366731163056</updated>
-    </task>
-    <task id="LOCAL-00114" summary="Force FileSetManager to always throw an Exception when the registration of new FileSet instances fails.">
-      <created>1366731277372</created>
-      <updated>1366731277372</updated>
-    </task>
-    <task id="LOCAL-00115" summary="Add &quot;no-copy&quot; switch to FileSetManager interface to link input entries. Call a different registration API if the switch is specified or not.">
-      <created>1366838568171</created>
-      <updated>1366838568171</updated>
-    </task>
-    <task id="LOCAL-00116" summary="Add JUnit test for the new &quot;no-copy&quot;  switch.">
-      <created>1366839204905</created>
-      <updated>1366839204905</updated>
-    </task>
-    <task id="LOCAL-00117" summary="Update filesets.jar.">
-      <created>1366901442363</created>
-      <updated>1366901442363</updated>
-    </task>
-    <task id="LOCAL-00118" summary="Fix PluginRegistryTest.">
-      <created>1366901472719</created>
-      <updated>1366901472719</updated>
-    </task>
-    <task id="LOCAL-00119" summary="Create an output file from the import script with commands for registering filesets instances.">
-      <created>1366901534699</created>
-      <updated>1366901534699</updated>
-    </task>
-    <task id="LOCAL-00120" summary="Add no-copy parameter to the generated import commands.">
-      <created>1366907180661</created>
-      <updated>1366907180661</updated>
-    </task>
-    <task id="LOCAL-00121" summary="Rename import script in order to follow the same name patter of the other scripts.">
-      <created>1366907558439</created>
-      <updated>1366907558440</updated>
-    </task>
-    <task id="LOCAL-00122" summary="Remove fileset MODEs from JUnit tests.">
-      <created>1366918802160</created>
-      <updated>1366918802160</updated>
-    </task>
-    <task id="LOCAL-00123" summary="Return an empty set when no input entry has been specified for the job submission.">
-      <created>1366918877864</created>
-      <updated>1366918877864</updated>
-    </task>
-    <task id="LOCAL-00124" summary="Add fileset-area-cache to FILESET_COMMAND in constants.sh. Update fileset.jar.">
-      <created>1366919894572</created>
-      <updated>1366919894572</updated>
-    </task>
-    <task id="LOCAL-00125" summary="Improve log messages at the end of the remote task submission.">
-      <created>1366920564416</created>
-      <updated>1366920564416</updated>
-    </task>
-    <task id="LOCAL-00126" summary="Add script templates.">
-      <created>1367270402198</created>
-      <updated>1367270402198</updated>
-    </task>
-    <task id="LOCAL-00127" summary="Add template for artifacts.">
-      <created>1367356301859</created>
-      <updated>1367356301859</updated>
-    </task>
-    <task id="LOCAL-00128" summary="Prepare actions and interface for Aligners and Analyses submission.">
-      <created>1367435527148</created>
-      <updated>1367435527149</updated>
-    </task>
-    <task id="LOCAL-00129" summary="Add JUnit tests for local submission of  Aligners and Alignment Analyses.">
-      <created>1367436149284</created>
-      <updated>1367436149285</updated>
-    </task>
-    <task id="LOCAL-00130" summary="Update test for local Task submissions.">
-      <created>1367436203681</created>
-      <updated>1367436203682</updated>
-    </task>
-    <task id="LOCAL-00131" summary="Add comments and formatting to class Actions.">
-      <created>1367437001770</created>
-      <updated>1367437001770</updated>
-    </task>
-    <task id="LOCAL-00132" summary="Generalize Slot, InputSchema and OutputSchema to be used at Executable Plugin level instead of Task level. Modify ParametrizedJob to expose the I/O schema of subclasses. Change the AbstractSubmitter to handle Parametrized Jobs instead of Tasks. Remove criteria from Input Slots. Adapt JUnit tests.">
-      <created>1367441866966</created>
-      <updated>1367441866966</updated>
-    </task>
-    <task id="LOCAL-00133" summary="Remove unused I/O related classes for Tasks.">
-      <created>1367442019028</created>
-      <updated>1367442019028</updated>
-    </task>
-    <task id="LOCAL-00134" summary="Rename a JUnit test.">
-      <created>1367442207584</created>
-      <updated>1367442207584</updated>
-    </task>
-    <task id="LOCAL-00135" summary="Make source config final for TaskJob.">
-      <created>1367509718530</created>
-      <updated>1367509718530</updated>
-    </task>
-    <task id="LOCAL-00136" summary="Further abstraction on Job creation and submission. There exist ony two types of Job: Executable Job and Resource Job. Remove all task-related classes.">
-      <created>1367513203643</created>
-      <updated>1367513203644</updated>
-    </task>
-    <task id="LOCAL-00137" summary="Updating fileset.jar (fix filesets pushing for jobs).">
-      <created>1367513250548</created>
-      <updated>1367513250548</updated>
-    </task>
-    <task id="LOCAL-00138" summary="Remove some task references in the source comments.">
-      <created>1367513661406</created>
-      <updated>1367513661407</updated>
-    </task>
-    <task id="LOCAL-00139" summary="Add I/O Schema to AlignerConfig. Add fileset configuration for BAM alignments .">
-      <created>1367522822439</created>
-      <updated>1367522822440</updated>
-    </task>
-    <task id="LOCAL-00140" summary="Change I/O schema settings on AlignerConfig.">
-      <created>1367531095091</created>
-      <updated>1367531095091</updated>
-    </task>
-    <task id="LOCAL-00141" summary="Add plugins-edit-fileset command. Modify the FileSetManager interface to accept the new edit action and attributes. Add a test case for the edit action.">
-      <created>1367616968097</created>
-      <updated>1367616968097</updated>
-    </task>
-    <task id="LOCAL-00142" summary="Add new attributes option to FileSetManager.JSAP">
-      <created>1367617221869</created>
-      <updated>1367617221869</updated>
-    </task>
-    <task id="LOCAL-00143" summary="Manage the environment script for local resource submissions.">
-      <created>1367937858045</created>
-      <updated>1367937858045</updated>
-    </task>
-    <task id="LOCAL-00144" summary="Add templates folder to the distribution package. Also, distribute a template of env.sh.">
-      <created>1367938294532</created>
-      <updated>1367938294532</updated>
-    </task>
-    <task id="LOCAL-00145" summary="Fix JOB_DIR management for resource submission. Revert the environment script to be a plain script (not a template).">
-      <created>1367957762461</created>
-      <updated>1367957762461</updated>
-    </task>
-    <task id="LOCAL-00146" summary="Increase JVM heap size for Job submissions.">
-      <created>1368023431919</created>
-      <updated>1368023431919</updated>
-    </task>
-    <task id="LOCAL-00147" summary="Fix resource wrapper script for local submissions.">
-      <created>1368539515239</created>
-      <updated>1368539515239</updated>
-    </task>
-    <task id="LOCAL-00148" summary="Fix wrapper scripts.">
-      <created>1368542763526</created>
-      <updated>1368542763526</updated>
-    </task>
-    <task id="LOCAL-00149" summary="Add PATH to local submissions.">
-      <created>1368544009524</created>
-      <updated>1368544009524</updated>
-    </task>
-    <task id="LOCAL-00150" summary="Advance ICB-util dependency to 1.1.1.">
-      <created>1368549904981</created>
-      <updated>1368549904981</updated>
-    </task>
-    <task id="LOCAL-00151" summary="Introduce Job builders for Tasks and Aligners. Create variables for PLUGIN_NEEDS_*. Write constants.sh with VariableHelper. More tasks moved from subclasses to AbstractSubmitter. Add aligners common parameters to ClusterGateway.jsap.">
-      <created>1369171738533</created>
-      <updated>1369171738533</updated>
-    </task>
-    <task id="LOCAL-00152" summary="Use RNASELECT resource from RNASELECT Task">
-      <created>1369171822239</created>
-      <updated>1369171822239</updated>
-    </task>
-    <task id="LOCAL-00153" summary="Fix PLUGIN_NEED_* values.">
-      <created>1369172359327</created>
-      <updated>1369172359327</updated>
-    </task>
-    <task id="LOCAL-00154" summary="Add runtime and options to Task schema.">
-      <created>1369172758641</created>
-      <updated>1369172758641</updated>
-    </task>
-    <task id="LOCAL-00155" summary="Add runtime needs to RNASelect for testing purposes.">
-      <created>1369231211831</created>
-      <updated>1369231211831</updated>
-    </task>
-    <task id="LOCAL-00156" summary="Fix PLUGIN_NEED_* values.">
-      <created>1369231232802</created>
-      <updated>1369231232802</updated>
-    </task>
-    <task id="LOCAL-00157" summary="Make ExecutableJob constructor protected: only job builders can create jobs.">
-      <created>1369231391339</created>
-      <updated>1369231391339</updated>
-    </task>
-    <task id="LOCAL-00158" summary="Move newSession() from Local/Remote submitters to AbstractSubmitter.">
-      <created>1369231601476</created>
-      <updated>1369231601476</updated>
-    </task>
-    <task id="LOCAL-00159" summary="Set wrapper script for resource installation in Actions. Remove ad-hoc resource wrapper script from AbstractSubmitter.">
-      <created>1369233549723</created>
-      <updated>1369233549723</updated>
-    </task>
-    <task id="LOCAL-00160" summary="Fix the generation of replacement keys created from metadata for aligner jobs.">
-      <created>1369236759642</created>
-      <updated>1369236759642</updated>
-    </task>
-    <task id="LOCAL-00161" summary="Remove read-only view of output slots returned by ExecutableOutputSchema (aligners and analyses need to modify it at runtime).">
-      <created>1369237037342</created>
-      <updated>1369237037342</updated>
-    </task>
-    <task id="LOCAL-00162" summary="Fix READS placeholder for job aligners.">
-      <created>1369237850460</created>
-      <updated>1369237850461</updated>
-    </task>
-    <task id="LOCAL-00163" summary="Manage parallel jobs and CPU_REQUIREMENTS for aligners.">
-      <created>1369238693541</created>
-      <updated>1369238693541</updated>
-    </task>
-    <task id="LOCAL-00164" summary="Update GOBYWEB_SERVER_SIDE resources with the latest jars.">
-      <created>1369239616217</created>
-      <updated>1369239616217</updated>
-    </task>
-    <task id="LOCAL-00165" summary="Copy auto-options in the remote job dir before execution.">
-      <created>1369247182926</created>
-      <updated>1369247182926</updated>
-    </task>
-    <task id="LOCAL-00166" summary="Attach artifacts request to jobs.">
-      <created>1369251517067</created>
-      <updated>1369251517067</updated>
-    </task>
-    <task id="LOCAL-00167" summary="Add a new plugins root for testing aligner submissions.">
-      <created>1369254668095</created>
-      <updated>1369254668096</updated>
-    </task>
-    <task id="LOCAL-00168" summary="Block job submission when auto-options generation fails. Format auto-options with regex because option values are now always inferred as Strings.">
-      <created>1369256976187</created>
-      <updated>1369256976187</updated>
-    </task>
-    <task id="LOCAL-00169" summary="Add replacement for CONFIG_ENVIRONMENT.">
-      <created>1369259610730</created>
-      <updated>1369259610730</updated>
-    </task>
-    <task id="LOCAL-00170" summary="Give execution permissions to all the scripts in the job execution folder.">
-      <created>1369261054571</created>
-      <updated>1369261054572</updated>
-    </task>
-    <task id="LOCAL-00171" summary="Add queue message directory to submitters, add QUEUE_WRITER_POSTFIX to replacements map.">
-      <created>1369319451593</created>
-      <updated>1369319451593</updated>
-    </task>
-    <task id="LOCAL-00172" summary="List binaries for local resource submissions (using &quot;*.sh&quot; does not work for local processes).">
-      <created>1369319525278</created>
-      <updated>1369319525278</updated>
-    </task>
-    <task id="LOCAL-00173" summary="Give execution permissions to all the scripts in the job execution folder. Add testers for aligner/analysis remote submission.">
-      <created>1369323744128</created>
-      <updated>1369323744128</updated>
-    </task>
-    <task id="LOCAL-00174" summary="Give execution permissions to all the scripts in the job execution folder in the RemoteSubmitter.">
-      <created>1369334189719</created>
-      <updated>1369334189719</updated>
-    </task>
-    <task id="LOCAL-00175" summary="Add and declare fileset.jar in GOBYWEB_SERVER_SIDE resource.">
-      <created>1369335877649</created>
-      <updated>1369335877649</updated>
-    </task>
-    <task id="LOCAL-00176" summary="Fetch compact reads for aligners in OGE script.">
-      <created>1369337048242</created>
-      <updated>1369337048242</updated>
-    </task>
-    <task id="LOCAL-00177" summary="Use BWA_WITH_ARTIFACT to test aligner submission instead of LAST_GOBY.">
-      <created>1369339201633</created>
-      <updated>1369339201633</updated>
-    </task>
-    <task id="LOCAL-00178" summary="Add pb file to FILESET_COMMAND for jobs.">
-      <created>1369339692457</created>
-      <updated>1369339692457</updated>
-    </task>
-    <task id="LOCAL-00179" summary="Remove READS placeholder from the replacement map. It is now set in the OGE script.">
-      <created>1369339739608</created>
-      <updated>1369339739608</updated>
-    </task>
-    <task id="LOCAL-00180" summary="Add WEB_SERVER_SSH_PREFIX to replacements maps.">
-      <created>1369342917550</created>
-      <updated>1369342917550</updated>
-    </task>
-    <task id="LOCAL-00181" summary="Remove CONFIG_ENVIRONMENT replacement.">
-      <created>1369345318631</created>
-      <updated>1369345318631</updated>
-    </task>
-    <task id="LOCAL-00182" summary="Use TMPDIR as GOBY_DIR.">
-      <created>1369406647896</created>
-      <updated>1369406647897</updated>
-    </task>
-    <task id="LOCAL-00183" summary="Fix the export of READS file in OGE script.">
-      <created>1369410199797</created>
-      <updated>1369410199798</updated>
-    </task>
-    <task id="LOCAL-00184" summary="Fix the value of QUEUE_WRITER replacement.">
-      <created>1369410820091</created>
-      <updated>1369410820091</updated>
-    </task>
-    <task id="LOCAL-00185" summary="Add INPUT_READ_LENGTH to replacements map for aligner jobs.">
-      <created>1369419173099</created>
-      <updated>1369419173100</updated>
-    </task>
-    <task id="LOCAL-00186" summary="Fix QUEUE_WRITER in both the replacements map and OGE script.">
-      <created>1369419241169</created>
-      <updated>1369419241169</updated>
-    </task>
-    <task id="LOCAL-00187" summary="Add hook for artifacts in the aligners root.">
-      <created>1369428127030</created>
-      <updated>1369428127031</updated>
-    </task>
-    <task id="LOCAL-00188" summary="Upgrade BWA_GOBY_ARTIFACT with the lastet plugin's version.">
-      <created>1369428289773</created>
-      <updated>1369428289773</updated>
-    </task>
-    <task id="LOCAL-00189" summary="Merge from master -&gt; master.">
-      <created>1369431167938</created>
-      <updated>1369431167938</updated>
-    </task>
-    <task id="LOCAL-00190" summary="Export TMPDIR when not executing the wrapper script on OGE.">
-      <created>1369432318216</created>
-      <updated>1369432318216</updated>
-    </task>
-    <task id="LOCAL-00191" summary="Disable Remote Submission test for aligners. It won't work on Jenkins.">
-      <created>1369434276884</created>
-      <updated>1369434276884</updated>
-    </task>
-    <task id="LOCAL-00192" summary="Remove copy_back function from OGE script.">
-      <created>1369834643227</created>
-      <updated>1369834643227</updated>
-    </task>
-    <task id="LOCAL-00193" summary="Use the new names of Fileset alignments in PluginLoaderSettings.">
-      <created>1369842154986</created>
-      <updated>1369842154987</updated>
-    </task>
-    <task id="LOCAL-00194" summary="Fix wrong error message.">
-      <created>1369843084628</created>
-      <updated>1369843084628</updated>
-    </task>
-    <task id="LOCAL-00195" summary="Add a filtered property to POM for skipping or not unit tests that require a remote access to OGE. Passing &quot;-Dremote.test.skip=true&quot; to maven disables remote tests.">
-      <created>1369844223309</created>
-      <updated>1369844223309</updated>
-    </task>
-    <task id="LOCAL-00196" summary="Fix unit test for plugins-dependency-tree (an extra white space was messing up the parameters).">
-      <created>1369844272882</created>
-      <updated>1369844272882</updated>
-    </task>
-    <task id="LOCAL-00197" summary="Rename registration and submission test classes (Maven was not executing them because they didn't follow the *Test pattern). Fix Fileset unit test.">
-      <created>1369846060060</created>
-      <updated>1369846060060</updated>
-    </task>
-    <task id="LOCAL-00198" summary="Fix loading of filtered properties in AlignerRemoteSubmissionTest.">
-      <created>1369850160759</created>
-      <updated>1369850160759</updated>
-    </task>
-    <task id="LOCAL-00199" summary="Remove key decoration from PLUGIN_NEED* variables.">
-      <created>1369851104682</created>
-      <updated>1369851104682</updated>
-    </task>
-    <task id="LOCAL-00200" summary="Update serverside-dependencies library.">
-      <created>1369854487860</created>
-      <updated>1369854487860</updated>
-    </task>
-    <task id="LOCAL-00201" summary="Update filesets library.">
-      <created>1369857762296</created>
-      <updated>1369857762296</updated>
-    </task>
-    <task id="LOCAL-00202" summary="Improve some log messages.">
-      <created>1369857795072</created>
-      <updated>1369857795072</updated>
-    </task>
-    <task id="LOCAL-00203" summary="Introduce SubmissionRequests for dynamically adding options to JSAP interface. These are used by jobs to extends the ClusterGateway interface with options from their configuration.">
-      <created>1369932841454</created>
-      <updated>1369932841454</updated>
-    </task>
-    <task id="LOCAL-00204" summary="Add SubmissionRequest factory. Custom parsing of some basic options to avoid JSAP complaining about the dynamic options added by submission request subclasses.">
-      <created>1369946526390</created>
-      <updated>1369946526390</updated>
-    </task>
-    <task id="LOCAL-00205" summary="Add runRemoteAligner() test to ClusterGatewayCommandLineTest.">
-      <created>1369947352446</created>
-      <updated>1369947352447</updated>
-    </task>
-    <task id="LOCAL-00206" summary="Use SubmissionRequest in the Submission tests for parsing the input slots.">
-      <created>1369947425091</created>
-      <updated>1369947425091</updated>
-    </task>
-    <task id="LOCAL-00207" summary="Skipping ClusterGatewayCommandLineTest.runRemoteAligner() test when remote tests are disabled.">
-      <created>1369947592185</created>
-      <updated>1369947592185</updated>
-    </task>
-    <task id="LOCAL-00208" summary="Create GOBY_DIR in task/resource's wrapper scripts.">
-      <created>1369947699305</created>
-      <updated>1369947699305</updated>
-    </task>
-    <task id="LOCAL-00209" summary="Fit Analysis Submission stub test.">
-      <created>1369948655428</created>
-      <updated>1369948655428</updated>
-    </task>
-    <task id="LOCAL-00210" summary="Add JSAP options from aligner configuration.">
-      <created>1370028386014</created>
-      <updated>1370028386014</updated>
-    </task>
-    <task id="LOCAL-00211" summary="Add a clean template for environment script.">
-      <created>1370028493436</created>
-      <updated>1370028493437</updated>
-    </task>
-    <task id="LOCAL-00212" summary="Display the basic help when no job is specified by the user.">
-      <created>1370029374331</created>
-      <updated>1370029374331</updated>
-    </task>
-    <task id="LOCAL-00213" summary="Move options from plugin executable configuration in the SubmissionRequest superclass. Tasks, Aligners and AlignmentAnalyses just need to pass the configuration to the superclass to have these options set on their JSAP interface.">
-      <created>1370031582256</created>
-      <updated>1370031582256</updated>
-    </task>
-    <task id="LOCAL-00214" summary="Add UnflaggedOption for executable plugins with a custom description based on their Input Schema.">
-      <created>1370036682782</created>
-      <updated>1370036682782</updated>
-    </task>
-    <task id="LOCAL-00215" summary="Fix slots description.">
-      <created>1370036871925</created>
-      <updated>1370036871926</updated>
-    </task>
-    <task id="LOCAL-00216" summary="Improve slots description.">
-      <created>1370274416606</created>
-      <updated>1370274416607</updated>
-    </task>
-    <task id="LOCAL-00217" summary="Fix mandatory parameter names for aligners.">
-      <created>1370286789620</created>
-      <updated>1370286789620</updated>
-    </task>
-    <task id="LOCAL-00218" summary="Register alignment-stats.txt and tmh as optional files in the GOBY/BAM alignment instance produced by the aligner job.">
-      <created>1370295072661</created>
-      <updated>1370295072661</updated>
-    </task>
-    <task id="LOCAL-00219" summary="Update filesets.jar to the latest version.">
-      <created>1370295104248</created>
-      <updated>1370295104248</updated>
-    </task>
-    <task id="LOCAL-00220" summary="Push additional fileset instances (counts, gz, stats, tsv) produced by the aligner job in the fileset area. Add new sample fileset configurations.">
-      <created>1370360397773</created>
-      <updated>1370360397773</updated>
-    </task>
-    <task id="LOCAL-00221" summary="Remove environment variables TRANSCRIPT_ALIGN_FEWER_JOBS and SGE_MEMORY (no longer used)">
-      <created>1370370891656</created>
-      <updated>1370370891657</updated>
-    </task>
-    <task id="LOCAL-00222" summary="Remove source function from OGE script. It is not needed since analysis output files are now pushed in the fileset area.">
-      <created>1370374146833</created>
-      <updated>1370374146833</updated>
-    </task>
-    <task id="LOCAL-00223" summary="Comply with the new FileSetAPI interface.">
-      <created>1370443457509</created>
-      <updated>1370443457509</updated>
-    </task>
-    <task id="LOCAL-00224" summary="Use FileSet API to fetch input reads attributes for aligner jobs.">
-      <created>1370443970084</created>
-      <updated>1370443970084</updated>
-    </task>
-    <task id="LOCAL-00225" summary="Add plugins to test-data for testing analysis submissions.">
-      <created>1370529215075</created>
-      <updated>1370529215075</updated>
-    </task>
-    <task id="LOCAL-00226" summary="Add alignment analysis execution as a remote job.">
-      <created>1370536824888</created>
-      <updated>1370536824888</updated>
-    </task>
-    <task id="LOCAL-00227" summary="Add tester ClusterGatewayCommandLineTest.runRemoteAnalysis().">
-      <created>1370554187245</created>
-      <updated>1370554187245</updated>
-    </task>
-    <task id="LOCAL-00228" summary="Remove commas from slots syntax description.">
-      <created>1370629509787</created>
-      <updated>1370629509787</updated>
-    </task>
-    <task id="LOCAL-00229" summary="Update LAST_287 resource.">
-      <created>1370636020327</created>
-      <updated>1370636020327</updated>
-    </task>
-    <task id="LOCAL-00230" summary="Advance ICB-utils dependency to 1.1.4.">
-      <created>1370636067301</created>
-      <updated>1370636067301</updated>
-    </task>
-    <task id="LOCAL-00231" summary="Update fileset and serverside-dependencies jars.">
-      <created>1370640443041</created>
-      <updated>1370640443042</updated>
-    </task>
-    <task id="LOCAL-00232" summary="Fetch all the input alignment files for analyses (previously only entries were fecthed). Export ENTRIES_DIRECTORY for analyses.">
-      <created>1370880141524</created>
-      <updated>1370880141524</updated>
-    </task>
-    <task id="LOCAL-00233" summary="Move fileset-cache setting in a dedicate variable that can be overriden by OGE or plugin scripts.">
-      <created>1370889326351</created>
-      <updated>1370889326351</updated>
-    </task>
-    <task id="LOCAL-00234" summary="Move alignments from TMPDIR to JOB_DIR after downloading.">
-      <created>1370891067920</created>
-      <updated>1370891067920</updated>
-    </task>
-    <task id="LOCAL-00235" summary="Add more resources for testing alignment analyses.">
-      <created>1370895543075</created>
-      <updated>1370895543075</updated>
-    </task>
-    <task id="LOCAL-00236" summary="Use SEQ_VAR_GOBY_METHYLATION_REGIONS analysis for testing analyses submission.">
-      <created>1370900089830</created>
-      <updated>1370900089831</updated>
-    </task>
-    <task id="LOCAL-00237" summary="Add OutputSchema to alignment analyses and related fileset configurations.">
-      <created>1370961076653</created>
-      <updated>1370961076653</updated>
-    </task>
-    <task id="LOCAL-00238" summary="Push alignment analysis results (TSV or VCF) to fileset area.">
-      <created>1370964207406</created>
-      <updated>1370964207406</updated>
-    </task>
-    <task id="LOCAL-00239" summary="Add SOURCE_READS_ID attribute to alignments produced by an aligner job.">
-      <created>1370968582860</created>
-      <updated>1370968582860</updated>
-    </task>
-    <task id="LOCAL-00240" summary="Execute pre-deployment scripts before job submission.">
-      <created>1371072674317</created>
-      <updated>1371072674318</updated>
-    </task>
-    <task id="LOCAL-00241" summary="Add datamodel objects for alignment analysis submission to be used in pre-deployment scripts.">
-      <created>1371072728565</created>
-      <updated>1371072728565</updated>
-    </task>
-    <task id="LOCAL-00242" summary="Modify filter-attribute group options according to the new JobInterface definition.">
-      <created>1371137664745</created>
-      <updated>1371137664746</updated>
-    </task>
-    <task id="LOCAL-00243" summary="Return an empty map instead of a read-only map when no input attributes are provided.">
-      <created>1371149780244</created>
-      <updated>1371149780245</updated>
-    </task>
-    <task id="LOCAL-00244" summary="Update test tags for remote submission according to the new imported filesets' tags.">
-      <created>1371219764284</created>
-      <updated>1371219764284</updated>
-    </task>
-    <task id="LOCAL-00245" summary="Remove fixed TODOs from comments.">
-      <created>1371219920698</created>
-      <updated>1371219920699</updated>
-    </task>
-    <task id="LOCAL-00246" summary="Remove plugins-import-fileset command (filesets are now exported/imported directly by GobyWeb).">
-      <created>1371221031402</created>
-      <updated>1371221031402</updated>
-    </task>
-    <task id="LOCAL-00247" summary="Introduce executableIOSchema for aligner/alignment analysis / task (to be complete, tests does not work).">
-      <created>1371246512430</created>
-      <updated>1371246512431</updated>
-    </task>
-    <task id="LOCAL-00248" summary="Initialize the Executable IO Schema when it is not declared in the plugin configuration.">
-      <created>1371478892421</created>
-      <updated>1371478892422</updated>
-    </task>
-    <task id="LOCAL-00249" summary="Remove unused private method.">
-      <created>1371479792001</created>
-      <updated>1371479792002</updated>
-    </task>
-    <task id="LOCAL-00250" summary="Extend the CommandLine test with 2 cases for testing wrong cardinality and non matching reads when submitting alignment analyses.">
-      <created>1371485834113</created>
-      <updated>1371485834114</updated>
-    </task>
-    <task id="LOCAL-00251" summary="Add INPUT_READS slot to CONTAMINANT_EXTRACT.">
-      <created>1371486715599</created>
-      <updated>1371486715599</updated>
-    </task>
-    <task id="LOCAL-00252" summary="Set ENTRIES_DIRECTORY in the JobBuilder for Alignment Analyses.">
-      <created>1371486790463</created>
-      <updated>1371486790464</updated>
-    </task>
-    <task id="LOCAL-00253" summary="Fix minia resource.">
-      <created>1371487351810</created>
-      <updated>1371487351811</updated>
-    </task>
-    <task id="LOCAL-00254" summary="Fix minia resource (output filename).">
-      <created>1371491982652</created>
-      <updated>1371491982652</updated>
-    </task>
-    <task id="LOCAL-00255" summary="Fix output slot names in push_tsv_results and push_vcf_results.">
-      <created>1371495207466</created>
-      <updated>1371495207467</updated>
-    </task>
-    <task id="LOCAL-00256" summary="Update test-data for testing alignment analyses.">
-      <created>1371495253408</created>
-      <updated>1371495253409</updated>
-    </task>
-    <task id="LOCAL-00257" summary="Push Lucene Indexes produced by Alignment Analyses in the FileSet area.">
-      <created>1371574800196</created>
-      <updated>1371574800197</updated>
-    </task>
-    <task id="LOCAL-00258" summary="Add and manage plugin_push_results() to plugin's functions. Update aligner and alignment analisys' templates with the new function. Use the function to push CONTAMINANT_EXTRACT assembled reads as GZ instance.">
-      <created>1371584184219</created>
-      <updated>1371584184220</updated>
-    </task>
-    <task id="LOCAL-00259" summary="Add and manage plugin_push_results() to task's functions. Update task's template with the new function. Use the function to push RNA_SELECT results as TSV instances.">
-      <created>1371586144806</created>
-      <updated>1371586144806</updated>
-    </task>
-    <task id="LOCAL-00260" summary="Revert the introduction of plugin_push_results(). Plugin results are now pushed as soon as they are produced in the other plugin's functions.">
-      <created>1371590429238</created>
-      <updated>1371590429239</updated>
-    </task>
-    <task id="LOCAL-00261" summary="Remove plugin_push_results() from setup_plugin_functions() in OGE script.">
-      <created>1371647298528</created>
-      <updated>1371647298528</updated>
-    </task>
-    <task id="LOCAL-00262" summary="Attach TABLENAME attribute to TSV instances produced by an Alignment Analysis execution.">
-      <created>1371648161693</created>
-      <updated>1371648161694</updated>
-    </task>
-    <task id="LOCAL-00263" summary="Improve logs and error messages in OGE script.">
-      <created>1371648988243</created>
-      <updated>1371648988244</updated>
-    </task>
-    <task id="LOCAL-00264" summary="Fix SERVER_SIDE_TOOL in plugin settings.">
-      <created>1371669865343</created>
-      <updated>1371669865343</updated>
-    </task>
-    <task id="LOCAL-00265" summary="Add GOBYWEB_SERVER_SIDE_2.2 resource to test-data.">
-      <created>1371669899549</created>
-      <updated>1371669899549</updated>
-    </task>
-    <task id="LOCAL-00266" summary="Check if TMPDIR exists before to copy goby and support tools in OGE script. If it does not exist, this means we are in the submission phase running on the execution machine.">
-      <created>1371674157056</created>
-      <updated>1371674157056</updated>
-    </task>
-    <task id="LOCAL-00267" summary="Wrap GOBY_DIR and TMPDIR tests in double quotes to cover the cases in which the variables are empty or with empty spaces.">
-      <created>1371675861773</created>
-      <updated>1371675861773</updated>
-    </task>
-    <task id="LOCAL-00268" summary="Remove unused code and comments from PluginRegistry.">
-      <created>1371676940110</created>
-      <updated>1371676940110</updated>
-    </task>
-    <task id="LOCAL-00269" summary="Create ENTRIES_DIRECTORY only in DiffExp functions.">
-      <created>1371678283754</created>
-      <updated>1371678283754</updated>
-    </task>
-    <task id="LOCAL-00270" summary="Fetch reads file for BAM aligners in OGE script.">
-      <created>1371737396963</created>
-      <updated>1371737396963</updated>
-    </task>
-    <task id="LOCAL-00271" summary="Add INDEX_PREFIX variable for aligner job.">
-      <created>1371741202163</created>
-      <updated>1371741202163</updated>
-    </task>
-    <task id="LOCAL-00272" summary="Push only bam and bam.bai files in OGE script.">
-      <created>1371744438702</created>
-      <updated>1371744438702</updated>
-    </task>
-    <task id="LOCAL-00273" summary="Introduce ALIGNMENT_SOURCE_READS slot name convention for analyses. If it is declared in the Input Schema the SDK assumes the tags refer the input reads of the alignment to analyze.">
-      <created>1371744553615</created>
-      <updated>1371744553615</updated>
-    </task>
-    <task id="LOCAL-00274" summary="Update ALIGNMENT_SOURCE_READS slot name in the unit tests.">
-      <created>1371745258873</created>
-      <updated>1371745258873</updated>
-    </task>
-    <task id="LOCAL-00275" summary="Adjust ALIGNMENT_SOURCE_READS check in the job builder.">
-      <created>1371752173650</created>
-      <updated>1371752173650</updated>
-    </task>
-    <task id="LOCAL-00276" summary="Resolve #2.">
-      <created>1371752772576</created>
-      <updated>1371752772576</updated>
-    </task>
-    <task id="LOCAL-00277" summary="Fix slot name in CONTAMINANT_EXTRACT.">
-      <created>1371754839979</created>
-      <updated>1371754839979</updated>
-    </task>
-    <task id="LOCAL-00278" summary="Block the execution of disabled plugins.">
-      <created>1371757142909</created>
-      <updated>1371757142909</updated>
-    </task>
-    <task id="LOCAL-00279" summary="Change description and default of CHUNK_SIZE parameter for aligners.">
-      <created>1371757948993</created>
-      <updated>1371757948993</updated>
-    </task>
-    <task id="LOCAL-00280" summary="Remove NUMBER_OF_ALIGN_PARTS from aligner's interface. It is now calculated starting from the CHUNK_SIZE.">
-      <created>1371764639918</created>
-      <updated>1371764639918</updated>
-    </task>
-    <task id="LOCAL-00281" summary="ChunkSize as long instead of double for aligners.">
-      <created>1371823118743</created>
-      <updated>1371823118744</updated>
-    </task>
-    <task id="LOCAL-00282" summary="Print out only the error message instead of the stacktrace when a submission fails.">
-      <created>1371823170650</created>
-      <updated>1371823170650</updated>
-    </task>
-    <task id="LOCAL-00283" summary="Revert the introduction of plugin_push_results(). Plugin results are now pushed as soon as they are produced in the other plugin's functions.">
-      <created>1371823310436</created>
-      <updated>1371823310436</updated>
-    </task>
-    <task id="LOCAL-00284" summary="Re-enable contaminant_extract plugin.">
-      <created>1371823331693</created>
-      <updated>1371823331693</updated>
-    </task>
-    <task id="LOCAL-00285" summary="Check that group names in the comparison pairs are defined.">
-      <created>1371834321356</created>
-      <updated>1371834321356</updated>
-    </task>
-    <task id="LOCAL-00286" summary="Default env-script parameters to plugins-dir/artifacts-config/env.sh. Improve some parameter descriptions.">
-      <created>1371844895473</created>
-      <updated>1371844895473</updated>
-    </task>
-    <task id="LOCAL-00287" summary="Fix NUMBER_OF_ALIGN_PARTS and NUMBER_OF_PARTS as integer instead of double.">
-      <created>1371847728838</created>
-      <updated>1371847728838</updated>
-    </task>
-    <task id="LOCAL-00288" summary="Fix grpToAligns used by sampleToGroups pre-deployment scripts.">
-      <created>1371851123685</created>
-      <updated>1371851123685</updated>
-    </task>
-    <task id="LOCAL-00289" summary="Manage auto-options when coming from the command line.">
-      <created>1372094156957</created>
-      <updated>1372094156957</updated>
-    </task>
-    <task id="LOCAL-00290" summary="Fix map keys of grpToAligns in DiffExp.">
-      <created>1372097219488</created>
-      <updated>1372097219488</updated>
-    </task>
-    <task id="LOCAL-00291" summary="Export ENTRIES_FILES and ALIGNMENT_FILES from the AlignmentAnalysis job builder instead of OGE script.">
-      <created>1372100217216</created>
-      <updated>1372100217217</updated>
-    </task>
-    <task id="LOCAL-00292" summary="Create COMPARE_DEFINITION variable for Alignment Analysis jobs.">
-      <created>1372102093753</created>
-      <updated>1372102093753</updated>
-    </task>
-    <task id="LOCAL-00293" summary="Downgrade groovy-eclipse-compiler to 2.6.0-01 to avoid the issue documented here: http://thread.gmane.org/gmane.comp.lang.groovy.user/59454.">
-      <created>1372172864105</created>
-      <updated>1372172864105</updated>
-    </task>
-    <task id="LOCAL-00294" summary="Extend fileset configuration with MIME Type.">
-      <created>1372186316135</created>
-      <updated>1372186316136</updated>
-    </task>
-    <task id="LOCAL-00295" summary="Decorate Alignment Analysis output schema with slots created starting from its declared output files. Modify OGE script to push them.">
-      <created>1372186472661</created>
-      <updated>1372186472661</updated>
-    </task>
-    <task id="LOCAL-00296" summary="Modify test data for testing the new Output Schema for Analyses.">
-      <created>1372186672993</created>
-      <updated>1372186672993</updated>
-    </task>
-    <task id="LOCAL-00297" summary="Modify test data to comply with the new fileset XML Schema (MIME type element was added as mandatory).">
-      <created>1372187596266</created>
-      <updated>1372187596266</updated>
-    </task>
-    <task id="LOCAL-00298" summary="Remove redundant checks before invoking dieUponError() in OGE script.">
-      <created>1372192995334</created>
-      <updated>1372192995334</updated>
-    </task>
-    <task id="LOCAL-00299" summary="Fix lucene index generation for Alignment Analyses in OGE script.">
-      <created>1372258243033</created>
-      <updated>1372258243033</updated>
-    </task>
-    <task id="LOCAL-00300" summary="Allow pre-deployment scripts to access to the command line options.">
-      <created>1372259253209</created>
-      <updated>1372259253209</updated>
-    </task>
-    <task id="LOCAL-00301" summary="Change alignmentsListForGroupNumber() in DiffExp to return the alignment basename list.">
-      <created>1372261755233</created>
-      <updated>1372261755234</updated>
-    </task>
-    <task id="LOCAL-00302" summary="Fix parallelization for CONTAMINANT_EXTRACT test.">
-      <created>1372264712150</created>
-      <updated>1372264712150</updated>
-    </task>
-    <task id="LOCAL-00303" summary="Map alignments to reads in CONTAMINANT_EXTRACT.">
-      <created>1372274709353</created>
-      <updated>1372274709353</updated>
-    </task>
-    <task id="LOCAL-00304" summary="Introduce log4 configuration for plugins commands. Change the level of some log messages.">
-      <created>1372279238057</created>
-      <updated>1372279238057</updated>
-    </task>
-    <task id="LOCAL-00305" summary="Remove redundancy among loggers in log4j.properties.">
-      <created>1372280015991</created>
-      <updated>1372280015991</updated>
-    </task>
-    <task id="LOCAL-00306" summary="Add some log messages tracing the creation of the job submission.">
-      <created>1372280815499</created>
-      <updated>1372280815499</updated>
-    </task>
-    <task id="LOCAL-00307" summary="Add config folder to the distribution package.">
-      <created>1372281012802</created>
-      <updated>1372281012802</updated>
-    </task>
-    <task id="LOCAL-00308" summary="Move decoration of plugin options from Submission Requests to Job Builders. Validate options coming from the plugin configuration. Add a test case for testing a wrong option value.">
-      <created>1372344716722</created>
-      <updated>1372344716722</updated>
-    </task>
-    <task id="LOCAL-00309" summary="Initialize the interface parameters list in submitRequest().">
-      <created>1372348448075</created>
-      <updated>1372348448075</updated>
-    </task>
-    <task id="LOCAL-00310" summary="Write more consistent logs after pushing filesets for aligners in OGE script.">
-      <created>1372348622344</created>
-      <updated>1372348622345</updated>
-    </task>
-    <task id="LOCAL-00311" summary="Check on the option value is now case insensitive.">
-      <created>1372351074601</created>
-      <updated>1372351074601</updated>
-    </task>
-    <task id="LOCAL-00312" summary="Add the option type to the help string.">
-      <created>1372351277057</created>
-      <updated>1372351277057</updated>
-    </task>
-    <task id="LOCAL-00313" summary="Fix a typo in a log message.">
-      <created>1372429103319</created>
-      <updated>1372429103319</updated>
-    </task>
-    <task id="LOCAL-00314" summary="Remove SNAPSHOT depedencies. Advance version to 2.1 for the public release.">
-      <created>1372453894473</created>
-      <updated>1372453894474</updated>
-    </task>
-    <task id="LOCAL-00315" summary="Update change log.">
-      <created>1372774352472</created>
-      <updated>1372774352473</updated>
-    </task>
-    <task id="LOCAL-00316" summary="Advance version to 2.2-SNAPSHOT. Update project URL.">
-      <created>1372774870835</created>
-      <updated>1372774870835</updated>
-    </task>
-    <task id="LOCAL-00317" summary="Fix test case name for dependency tree visualization.">
-      <created>1372791883241</created>
-      <updated>1372791883241</updated>
-    </task>
-    <task id="LOCAL-00318" summary="Fix typo in an error message.">
-      <created>1372797558769</created>
-      <updated>1372797558769</updated>
-    </task>
-    <task id="LOCAL-00319" summary="Add more integrity controls to ClusterGatewaySimulator interface">
-      <created>1375126908373</created>
-      <updated>1375126908373</updated>
-    </task>
-    <task id="LOCAL-00320" summary="Return option values in the builder simulator for auto-options.">
-      <created>1375128442899</created>
-      <updated>1375128442899</updated>
-    </task>
-    <task id="LOCAL-00321" summary="Change JobBuilderSimulator to return the value and type of each Option. This is done for resources, still need implementation for executable plugins.">
-      <created>1375133396913</created>
-      <updated>1375133396914</updated>
-    </task>
-    <task id="LOCAL-00322" summary="Transform the process method of ClusterGatewaySimulator into an API that can be invoked programmatically.">
-      <created>1375191030409</created>
-      <updated>1375191030410</updated>
-    </task>
-    <task id="LOCAL-00323" summary="Change JobBuilderSimulator to return the value and type of each Option for executable plugins. Add a related test case.">
-      <created>1377539193695</created>
-      <updated>1377539193696</updated>
-    </task>
-    <task id="LOCAL-00324" summary="Add SDK-generated options to the environment created by JobBuilderSimulator.">
-      <created>1377632753112</created>
-      <updated>1377632753113</updated>
-    </task>
-    <task id="LOCAL-00325" summary="Add PLUGIN_NEEDS_* options to the environment created by JobBuilderSimulator.">
-      <created>1377634977625</created>
-      <updated>1377634977626</updated>
-    </task>
-    <task id="LOCAL-00326" summary="Add ArtifactInstallerSimulator to simulate the environment created at execution time by Artifact Manager.">
-      <created>1377709001810</created>
-      <updated>1377709001811</updated>
-    </task>
-    <task id="LOCAL-00327" summary="Fix compareTo algorithm for simulated Option instances.">
-      <created>1377709506746</created>
-      <updated>1377709506747</updated>
-    </task>
-    <task id="LOCAL-00328" summary="Add some OGE script vars to AlignerDefaultOption.">
-      <created>1377726635204</created>
-      <updated>1377726635205</updated>
-    </task>
-    <task id="LOCAL-00329" summary="Fix addittivity properties in log4.properties.">
-      <created>1378242465808</created>
-      <updated>1378242465809</updated>
-    </task>
-    <task id="LOCAL-00330" summary="Create a map file in oge_job_script to store environment variables generated in the script that must be visible in the plugin environment. This allows NYoSh-based plugins to load also this part of the environment at execution time.">
-      <created>1378326860769</created>
-      <updated>1378326860769</updated>
-    </task>
-    <task id="LOCAL-00331" summary="Update change log. Make release 2.3.0.">
-      <created>1378395350531</created>
-      <updated>1378395350532</updated>
-    </task>
-    <task id="LOCAL-00332" summary="Copy stepslogger.jar into ${GOBY_DIR} in oge_job_script.">
-      <created>1378395612801</created>
-      <updated>1378395612802</updated>
-    </task>
-    <task id="LOCAL-00333" summary="Improve error reporting when plugin definitions are loaded. Advance version to 2.3.1-SNAPSHOT.">
-      <created>1379450858295</created>
-      <updated>1379450858295</updated>
-    </task>
-    <task id="LOCAL-00334" summary="Additional error reporting when plugin definitions are loaded.">
-      <created>1379452829510</created>
-      <updated>1379452829510</updated>
-    </task>
-    <task id="LOCAL-00335" summary="Remove local path used for testing purposes.">
-      <created>1379453415900</created>
-      <updated>1379453415900</updated>
-    </task>
-    <task id="LOCAL-00336" summary="Add PLUGIN_NEED_DEFAULT_JVM_OPTIONS to plugin environment for default JVM executions.">
-      <created>1380035367939</created>
-      <updated>1380035367939</updated>
-    </task>
-    <task id="LOCAL-00337" summary="Adjust OGE memory settings to run on standard.q. Select jdk 1.6.25 as default java version to use.">
-      <created>1380047305429</created>
-      <updated>1380047305429</updated>
-    </task>
-    <task id="LOCAL-00338" summary="Copy stepslogger.jar to GOBY_DIR in task and resource wrapper scripts.">
-      <created>1380047480887</created>
-      <updated>1380047480887</updated>
-    </task>
-    <task id="LOCAL-00339" summary="Adjust OGE memory settings to run on standard.q. Update changelog.txt.">
-      <created>1380047583913</created>
-      <updated>1380047583913</updated>
-    </task>
-    <task id="LOCAL-00340" summary="Export JAVA_OPTS variable in OGE script to set the amount of memory allocated to the groovy scripts.">
-      <created>1380740425873</created>
-      <updated>1380740425873</updated>
-    </task>
-    <task id="LOCAL-00341" summary="Set h_vmem to 6g (goby processes require 4g and we need more to run on standard.q).">
-      <created>1380740523353</created>
-      <updated>1380740523353</updated>
-    </task>
-    <task id="LOCAL-00342" summary="Expose PLUGIN_VERSION variable to all plugins. The variable can be referred in the plugin script to avoid to duplicate this setting there.&#10;">
-      <created>1381154813729</created>
-      <updated>1381154813729</updated>
-    </task>
-    <task id="LOCAL-00343" summary="Expose PLUGIN_VERSION variable also to resource plugins. &#10;">
-      <created>1381156748201</created>
-      <updated>1381156748201</updated>
-    </task>
-    <task id="LOCAL-00344" summary="Add sample plugins to test PLUGIN_VERSION. Change CommanLine test to install ENSEMBL_API resource.">
-      <created>1381157109754</created>
-      <updated>1381157109754</updated>
-    </task>
-    <task id="LOCAL-00345" summary="Add two test cases that requests option for aligner and task plugins.">
-      <created>1381776292176</created>
-      <updated>1381776292176</updated>
-    </task>
-    <task id="LOCAL-00346" summary="Default minOccurs and maxOccurs to 1 when no cardinality information is available in the slot configuration for an executable plugin. This is inline with the XML Schema approach. This means that slots with no cardinality specified in config.xml are assumed to be mandatory and to accept only one tag.">
-      <created>1381779606206</created>
-      <updated>1381779606206</updated>
-    </task>
-    <task id="LOCAL-00347" summary="Fix oge script for remote task submission.">
-      <created>1381785595265</created>
-      <updated>1381785595265</updated>
-    </task>
-    <task id="LOCAL-00348" summary="Update changelog.">
-      <created>1381785609566</created>
-      <updated>1381785609566</updated>
-    </task>
-    <task id="LOCAL-00349" summary="Add support for artifacts installation to oge_task_wrapper_script.">
-      <created>1381860933088</created>
-      <updated>1381860933088</updated>
-    </task>
-    <task id="LOCAL-00350" summary="Create TMPDIR when not set in task wrapper script.">
-      <created>1381955857403</created>
-      <updated>1381955857403</updated>
-    </task>
-    <task id="LOCAL-00351" summary="Update change log. Make release 2.3.1.">
-      <created>1385157427409</created>
-      <updated>1385157427409</updated>
-    </task>
-    <task id="LOCAL-00352" summary="Select sun_jdk 6.0.25 distribution for task and resource installation on OGE.">
-      <created>1385585459534</created>
-      <updated>1385585459535</updated>
-    </task>
-    <task id="LOCAL-00353" summary="Use RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES as configuration file in FILESET_COMMAND.">
-      <created>1386003102668</created>
-      <updated>1386003102668</updated>
-    </task>
-    <task id="LOCAL-00354" summary="export variables in constant.sh and auto-options.sh">
-      <created>1386003132905</created>
-      <updated>1386003132906</updated>
-    </task>
-    <task id="LOCAL-00355" summary="Load auto-options.sh before constants.sh in oge scripts.">
-      <created>1386023258554</created>
-      <updated>1386023258554</updated>
-    </task>
-    <task id="LOCAL-00356" summary="Copy back stepslogger logs in the JOB_DIR after the execution.">
-      <created>1386175103176</created>
-      <updated>1386175103176</updated>
-    </task>
-    <task id="LOCAL-00357" summary="Clean up unused imports from plugins.groovy.">
-      <created>1386271505161</created>
-      <updated>1386271505161</updated>
-    </task>
-    <task id="LOCAL-00358" summary="Advance version to 2.4.0-SNAPSHOT.">
-      <created>1386599193292</created>
-      <updated>1386599193292</updated>
-    </task>
-    <task id="LOCAL-00359" summary="Apply the latest fixes from gobyweb to OGE script.">
-      <created>1391100770125</created>
-      <updated>1391100770126</updated>
-    </task>
-    <task id="LOCAL-00360" summary="Fix PLUGIN_GROUP_ALIGNMENTS_FILTERs variables in constants.sh">
-      <created>1391548669922</created>
-      <updated>1391548669922</updated>
-    </task>
-    <task id="LOCAL-00361" summary="Add methods to Plugins.groovy to generate command line options used from GobyWeb.">
-      <created>1393012044350</created>
-      <updated>1393012044350</updated>
-    </task>
-    <task id="LOCAL-00362" summary="Use an external QUEUE_WRITER_POSTFIX to report job messages when specified on the command line.">
-      <created>1393020638312</created>
-      <updated>1393020638312</updated>
-    </task>
-    <task id="LOCAL-00363" summary="Add and manage sharedWith argument within fileset registration.">
-      <created>1393349860421</created>
-      <updated>1393349860421</updated>
-    </task>
-    <task id="LOCAL-00364" summary="Use AdminFileSetAreas to fetch fileset metadata at job submission time. This allows to access and validate instances shared with the job owner.">
-      <created>1393450212153</created>
-      <updated>1393450212153</updated>
-    </task>
-    <task id="LOCAL-00365" summary="Rename the OutputSchema property in AlignmentAnalysisConfig. Gobyweb (groovy) resolved the previous name (output) with the access method getOutput() that instead relates to the IOExecutableSchema.">
-      <created>1393537473724</created>
-      <updated>1393537473724</updated>
-    </task>
-    <task id="LOCAL-00366" summary="Add a new optional parameter to plugins-submit-job to indicate the tag to be assigned to the job.&#10;">
-      <created>1393623315572</created>
-      <updated>1393623315572</updated>
-    </task>
-    <task id="LOCAL-00367" summary="Fix some test cases broken by the previous commit on external job tags.">
-      <created>1393625401641</created>
-      <updated>1393625401642</updated>
-    </task>
-    <task id="LOCAL-00368" summary="Fix java memory settings in test-data for artifacts installation.">
-      <created>1394144027358</created>
-      <updated>1394144027358</updated>
-    </task>
-    <task id="LOCAL-00369" summary="Add JOB_METADATA output slot to all Executable Configs.  oge_job_script.sh has been changed to generate metadata about the job execution and push them in the JOB_METADATA slot. Job metadata are needed by GobyWeb to match the information available in the local database with the filesets pushed by the job in the remote fileset area.">
-      <created>1394145107111</created>
-      <updated>1394145107111</updated>
-    </task>
-    <task id="LOCAL-00370" summary="Change the job metadata file from txt to properties.&#10;">
-      <created>1394206411227</created>
-      <updated>1394206411228</updated>
-    </task>
-    <task id="LOCAL-00371" summary="Generate and push job metadata for tasks.&#10;">
-      <created>1394207313448</created>
-      <updated>1394207313448</updated>
-    </task>
-    <task id="LOCAL-00372" summary="Add OWNER to job medatada.">
-      <created>1394223610607</created>
-      <updated>1394223610608</updated>
-    </task>
-    <task id="LOCAL-00373" summary="Add function dieUponError to task wrapper script.">
-      <created>1394223669471</created>
-      <updated>1394223669471</updated>
-    </task>
-    <task id="LOCAL-00374" summary="Add OWNER to job medatada in remote submitter.">
-      <created>1394225137183</created>
-      <updated>1394225137183</updated>
-    </task>
-    <task id="LOCAL-00375" summary="Add empty SHAREDWITH property to newly created metadata instances.">
-      <created>1394226129827</created>
-      <updated>1394226129827</updated>
-    </task>
-    <task id="LOCAL-00376" summary="Remove job metadata file before creating it. This is needed if the post phase is executed twice (e.g. manually resubmitted upon a first failure).">
-      <created>1394229294925</created>
-      <updated>1394229294925</updated>
-    </task>
-    <task id="LOCAL-00377" summary="Add and manage artifacts runtime requirement. Each scope can use it to declare whether it needs the plugins' artifacts during its execution or not.">
-      <created>1394465756688</created>
-      <updated>1394465756688</updated>
-    </task>
-    <task id="LOCAL-00378" summary="Make GOBYWEB_SERVER_SIDE resource and its dependencies mandatory artifacts. Integrate and advance pom dependency for Artifacts 2-4-0-SNAPSHOT.">
-      <created>1394477670084</created>
-      <updated>1394477670084</updated>
-    </task>
-    <task id="LOCAL-00379" summary="If the resource is mandatory, make also its dependencies recursively mandatory.">
-      <created>1394477997283</created>
-      <updated>1394477997283</updated>
-    </task>
-    <task id="LOCAL-00380" summary="Rename T_artifacts to T_artifacts_req (was in conflict with the resource XML schema).">
-      <created>1394478121810</created>
-      <updated>1394478121810</updated>
-    </task>
-    <task id="LOCAL-00381" summary="Fix writePbRequests test broken by the integration with Artifacts 2-4-0-SNAPSHOT.">
-      <created>1394479029022</created>
-      <updated>1394479029022</updated>
-    </task>
-    <task id="LOCAL-00382" summary="Update all test-dataand test cases to use GOBYWEB_SERVER_SIDE_2.4 and related artifacts.">
-      <created>1394547667448</created>
-      <updated>1394547667448</updated>
-    </task>
-    <task id="LOCAL-00383" summary="Add DIFFEXP_SUBMIT scope to common.xsd">
-      <created>1394547709333</created>
-      <updated>1394547709333</updated>
-    </task>
-    <task id="LOCAL-00384" summary="Force all plugins to depend on GOBYWEB_SERVER_SIDE_2.4 resource.">
-      <created>1394547861789</created>
-      <updated>1394547861789</updated>
-    </task>
-    <task id="LOCAL-00385" summary="Change oge_job_script.sh to invoke install_plugin_mandatory_artifacts and install_plugin_artifacts at each job state according to the plugin's configuration.">
-      <created>1394547997102</created>
-      <updated>1394547997103</updated>
-    </task>
-    <task id="LOCAL-00386" summary="Several fixes on artifacts management in oge_job_script.sh and oge_task_wrapper_script.sh. Align scope enumeration in common.xsd to the job states managed in the oge scripts.">
-      <created>1394553211453</created>
-      <updated>1394553211454</updated>
-    </task>
-    <task id="LOCAL-00387" summary="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource and schemas.">
-      <created>1394553954994</created>
-      <updated>1394553954995</updated>
-    </task>
-    <task id="LOCAL-00388" summary="Update test-data with the latest fixes on GOBYWEB_SERVER_SIDE_2.4 resource.&#10;">
-      <created>1394567368090</created>
-      <updated>1394567368090</updated>
-    </task>
-    <task id="LOCAL-00389" summary="Attach to each fileset tag in the job metadata the output slot name in which it has been published.">
-      <created>1394633053000</created>
-      <updated>1394633053000</updated>
-    </task>
-    <task id="LOCAL-00390" summary="Remove an extra-space char in oge_job_script.sh.">
-      <created>1394633255377</created>
-      <updated>1394633255377</updated>
-    </task>
-    <task id="LOCAL-00391" summary="Print out to the user the stacktrace when FilesetManager fails.">
-      <created>1394742212816</created>
-      <updated>1394742212818</updated>
-    </task>
-    <task id="LOCAL-00392" summary="Disable two test cases must be adapted to use JOB Metadata to be back working.">
-      <created>1394742280439</created>
-      <updated>1394742280441</updated>
-    </task>
-    <task id="LOCAL-00393" summary="Rename statistics.properties to TAG.properties for JOB_METADATA to be consistent with the name assigned in the GobyWeb import utilities.">
-      <created>1395242726780</created>
-      <updated>1395242726782</updated>
-    </task>
-    <task id="LOCAL-00394" summary="Print the path of the plugin configuration file that fails to be loaded.">
-      <created>1395427160745</created>
-      <updated>1395427160747</updated>
-    </task>
-    <task id="LOCAL-00395" summary="Add PLUGIN_ID to job metadata.">
-      <created>1395433503866</created>
-      <updated>1395433503868</updated>
-    </task>
-    <task id="LOCAL-00396" summary="Remove *.alignment-stats.txt from alignment filesets. TODO: register $RESULT_DIR/*.alignment-stats.txt and $RESULT_DIR/*.sequence-variation-stats.tsv as separate filesets.">
-      <created>1395436693962</created>
-      <updated>1395436693965</updated>
-    </task>
-    <task id="LOCAL-00397" summary="Add new output slots to the default I/O schema for aligners. Modify OGE_job_script to push additional filesets produced by aligner executions.">
-      <created>1395755409803</created>
-      <updated>1395755409805</updated>
-    </task>
-    <task id="LOCAL-00398" summary="Add an API version of the process method in ClusterGateway. This method can be invoked from external code and throws up Exceptions coming from the job submissions, if any.">
-      <created>1395840400633</created>
-      <updated>1395840400633</updated>
-    </task>
-    <task id="LOCAL-00399" summary="Fix some expected returned values in ClusterGatewayCommandLineTest.">
-      <created>1395840943752</created>
-      <updated>1395840943752</updated>
-    </task>
-    <task id="LOCAL-00400" summary="Fetch errors from jsapHelper and add them to the returned exception when the parsing of the input arguments fails.">
-      <created>1395843438394</created>
-      <updated>1395843438394</updated>
-    </task>
-    <task id="LOCAL-00401" summary="Push job metadata in local_task_wrapper_script.">
-      <created>1395859607548</created>
-      <updated>1395859607548</updated>
-    </task>
-    <task id="LOCAL-00402" summary="Delete the previous job metadata instance (if it exists) before re-publishing it.">
-      <created>1395861142954</created>
-      <updated>1395861142955</updated>
-    </task>
-    <task id="LOCAL-00403" summary="Add an API version of the process method in FileSetManager. This method can be invoked from external code and throws up Exceptions coming from filesets' operations, if any.">
-      <created>1395863974542</created>
-      <updated>1395863974542</updated>
-    </task>
-    <task id="LOCAL-00404" summary="Set  JAVA_OPTS for default memory settings needed by groovy scripts executed by tasks.&#10;">
-      <created>1396533106304</created>
-      <updated>1396533106304</updated>
-    </task>
-    <task id="LOCAL-00405" summary="Move  JAVA_OPTS setting in the setup function for tasks.&#10;">
-      <created>1396533248652</created>
-      <updated>1396533248652</updated>
-    </task>
-    <task id="LOCAL-00406" summary="Send the message that the task is completed after publishing the job metadata. The message cannot be sent by the task's script because it would be processed by the Service on the webapp before job metadata are published.">
-      <created>1396560187552</created>
-      <updated>1396560187552</updated>
-    </task>
-    <task id="LOCAL-00407" summary="Remove wrong check on QUEUE_WRITER in oge_task_wrapper_script.">
-      <created>1396625524932</created>
-      <updated>1396625524932</updated>
-    </task>
-    <task id="LOCAL-00408" summary="Make PluginRegistry thread safe">
-      <created>1396883434198</created>
-      <updated>1396883434199</updated>
-    </task>
-    <task id="LOCAL-00409" summary="Make internalProcess of FileSetManager private.&#10;">
-      <created>1396892527031</created>
-      <updated>1396892527031</updated>
-    </task>
-    <task id="LOCAL-00410" summary="Add a message to the Exception thrown when a fileset attribute is invalid.">
-      <created>1396893803652</created>
-      <updated>1396893803652</updated>
-    </task>
-    <task id="LOCAL-00411" summary="Fix ALIGNMENT_SEQUENCE_VARIATION_STATS input slot for aligner configurations.">
-      <created>1396901742684</created>
-      <updated>1396901742684</updated>
-    </task>
-    <task id="LOCAL-00412" summary="Fix input pattern for zip command when compressing all alignment files in oge_job_script.sh.&#10;">
-      <created>1396901887379</created>
-      <updated>1396901887379</updated>
-    </task>
-    <task id="LOCAL-00413" summary="Fix tag variables used to collect information on filesets published by an analysis job. Push job metadata for analysis after when run_alignment_analysis_combine returns.">
-      <created>1396974107684</created>
-      <updated>1396974107684</updated>
-    </task>
-    <task id="LOCAL-00414" summary="Synchronize the access to PluginRegistry in findByDbLegacyId.">
-      <created>1396977868967</created>
-      <updated>1396977868967</updated>
-    </task>
-    <task id="LOCAL-00415" summary="Push  the locally built job dir with the new pushJobDir method of the Job Area. Fix some logs to reflect the new folder organization in the Job Area.">
-      <created>1397077648674</created>
-      <updated>1397077648674</updated>
-    </task>
-    <task id="LOCAL-00416" summary="Synchronize access to plugin registry when looking up for resources and dependencies.">
-      <created>1397160188917</created>
-      <updated>1397160188917</updated>
-    </task>
-    <task id="LOCAL-00417" summary="Synchronize access to plugin registry when reloading a plugin config and check its dependencies.&#10;">
-      <created>1397225595655</created>
-      <updated>1397225595655</updated>
-    </task>
-    <task id="LOCAL-00418" summary="Fix the command that removes the job metadata instance (if it exists) before publishing it.">
-      <created>1397237870081</created>
-      <updated>1397237870081</updated>
-    </task>
-    <task id="LOCAL-00419" summary="Add SOURCE_OUTPUT_SLOT attribute to filesets published by alignment analyses.">
-      <created>1397425198234</created>
-      <updated>1397425198235</updated>
-    </task>
-    <task id="LOCAL-00420" summary="Add command to start a Nailgun server and register fileset using the NG client.">
-      <created>1397655400384</created>
-      <updated>1397655400384</updated>
-    </task>
-    <task id="LOCAL-00421" summary="Add javadoc comment to validatePair method.">
-      <created>1397656282682</created>
-      <updated>1397656282683</updated>
-    </task>
-    <task id="LOCAL-00422" summary="Fix single group analysis jobs. Change alignment filter variables to be compliant with bash (they include the group name that may contain chars not accepted in bash names).">
-      <created>1397662471978</created>
-      <updated>1397662471978</updated>
-    </task>
-    <task id="LOCAL-00423" summary="Add a unit test for analysis jobs with a single group defined.">
-      <created>1397663412446</created>
-      <updated>1397663412447</updated>
-    </task>
-    <task id="LOCAL-00424" summary="Update change log for version 2.4.0.">
-      <created>1397668226001</created>
-      <updated>1397668226001</updated>
-    </task>
-    <task id="LOCAL-00425" summary="Quote the description message for killed jobs.">
-      <created>1397675215574</created>
-      <updated>1397675215574</updated>
-    </task>
-    <task id="LOCAL-00426" summary="Set TMPDIR in kill.sh. It is needed to load the artifact variables.">
-      <created>1397677971098</created>
-      <updated>1397677971100</updated>
-    </task>
-    <task id="LOCAL-00427" summary="Send the message that a diffexp job is completed after pushing the job metadata in the fileset area.">
-      <created>1397760926268</created>
-      <updated>1397760926268</updated>
-    </task>
-    <task id="LOCAL-00428" summary="For each command, reload plugin definitions only if the registry is empty or the request is coming from the command line.">
-      <created>1397835455038</created>
-      <updated>1397835455039</updated>
-    </task>
-    <task id="LOCAL-00429" summary="Move version to 2.4.0.">
-      <created>1397835492509</created>
-      <updated>1397835492509</updated>
-    </task>
-    <task id="LOCAL-00430" summary="Remove snapshot dependencies for artifacts and filesets.">
-      <created>1397836364303</created>
-      <updated>1397836364303</updated>
-    </task>
-    <task id="LOCAL-00431" summary="Set java initial heap size in goby_with_memory.">
-      <created>1397850572811</created>
-      <updated>1397850572812</updated>
+      <workItem from="1437080090581" duration="403000" />
     </task>
     <task id="LOCAL-00432" summary="Add a StatefulFileSetManager tha exposes the preview API of the FileSet Library. Advance version to 2.4.1-SNAPSHOT.">
       <created>1398374979479</created>
+      <option name="number" value="00432" />
+      <option name="project" value="LOCAL" />
       <updated>1398374979480</updated>
     </task>
     <task id="LOCAL-00433" summary="Fix method name.">
       <created>1398444590075</created>
+      <option name="number" value="00433" />
+      <option name="project" value="LOCAL" />
       <updated>1398444590075</updated>
     </task>
     <task id="LOCAL-00434" summary="Use the suggested fileset id to preview fileset instances.">
       <created>1398449011041</created>
+      <option name="number" value="00434" />
+      <option name="project" value="LOCAL" />
       <updated>1398449011042</updated>
     </task>
     <task id="LOCAL-00435" summary="Expose the register API for filesets in StatefulFileSetManager.">
       <created>1398457411580</created>
+      <option name="number" value="00435" />
+      <option name="project" value="LOCAL" />
       <updated>1398457411580</updated>
     </task>
     <task id="LOCAL-00436" summary="Use JOB_DIR/source as target dir when fetching reads before align them.">
       <created>1398804737373</created>
+      <option name="number" value="00436" />
+      <option name="project" value="LOCAL" />
       <updated>1398804737373</updated>
     </task>
     <task id="LOCAL-00437" summary="Fetch input compact-reads in the submit phase of an alignment job.">
       <created>1398804780479</created>
+      <option name="number" value="00437" />
+      <option name="project" value="LOCAL" />
       <updated>1398804780479</updated>
     </task>
     <task id="LOCAL-00438" summary="Remove unused function from oge_job_script.">
       <created>1398820659033</created>
+      <option name="number" value="00438" />
+      <option name="project" value="LOCAL" />
       <updated>1398820659034</updated>
     </task>
     <task id="LOCAL-00439" summary="Make all the jobs submitted to OGE re-runnable (option -r for qsub).">
       <created>1398883016011</created>
+      <option name="number" value="00439" />
+      <option name="project" value="LOCAL" />
       <updated>1398883016011</updated>
     </task>
     <task id="LOCAL-00440" summary="Make sure that the dir in which fetched files will be stored exists.&#10;">
       <created>1398968667883</created>
+      <option name="number" value="00440" />
+      <option name="project" value="LOCAL" />
       <updated>1398968667883</updated>
     </task>
     <task id="LOCAL-00441" summary="Exit with status code when an error occurred for tasks.&#10;">
       <created>1398968795792</created>
+      <option name="number" value="00441" />
+      <option name="project" value="LOCAL" />
       <updated>1398968795793</updated>
     </task>
     <task id="LOCAL-00442" summary="Add a new StatefulFileSetManager that uses the FileSet RPC API. Generalize the behavior of StatefulManagers in a common base class.">
       <created>1399324581283</created>
+      <option name="number" value="00442" />
+      <option name="project" value="LOCAL" />
       <updated>1399324581283</updated>
     </task>
     <task id="LOCAL-00443" summary="Open the connection with the FileSet Server in the constructor of StatefulFileSetRPCManager. The same connection is reused across multiple requests.">
       <created>1399410925939</created>
+      <option name="number" value="00443" />
+      <option name="project" value="LOCAL" />
       <updated>1399410925939</updated>
     </task>
     <task id="LOCAL-00444" summary="Add methods to RPC to test and reset the connection. Implement the Serialize interface in Stateful Managers.">
       <created>1399490983080</created>
+      <option name="number" value="00444" />
+      <option name="project" value="LOCAL" />
       <updated>1399490983080</updated>
     </task>
     <task id="LOCAL-00445" summary="Add interface and implementation of common methods for StatefulManagers.">
       <created>1399567457068</created>
+      <option name="number" value="00445" />
+      <option name="project" value="LOCAL" />
       <updated>1399567457068</updated>
     </task>
     <task id="LOCAL-00446" summary="Do not remove the source folder after the job is completed.">
       <created>1399665251249</created>
+      <option name="number" value="00446" />
+      <option name="project" value="LOCAL" />
       <updated>1399665251250</updated>
     </task>
     <task id="LOCAL-00447" summary="Cleanup some unused imports.">
       <created>1399666353431</created>
+      <option name="number" value="00447" />
+      <option name="project" value="LOCAL" />
       <updated>1399666353431</updated>
     </task>
     <task id="LOCAL-00448" summary="Cache RPC clients to disconnect them before a new connection request fro the same client.">
       <created>1399910131911</created>
+      <option name="number" value="00448" />
+      <option name="project" value="LOCAL" />
       <updated>1399910131911</updated>
     </task>
     <task id="LOCAL-00449" summary="Upgrade icb-util dependency to version 1.1.5.">
       <created>1400081340341</created>
+      <option name="number" value="00449" />
+      <option name="project" value="LOCAL" />
       <updated>1400081340341</updated>
     </task>
     <task id="LOCAL-00450" summary="Convert queue messages to JMS messages in oge_job_script. Add a new job status to report on registered filesets.">
       <created>1403643042903</created>
+      <option name="number" value="00450" />
+      <option name="project" value="LOCAL" />
       <updated>1403643042903</updated>
     </task>
     <task id="LOCAL-00451" summary="Convert some missed queue messages to JMS messages in oge_job_script.">
       <created>1403727863443</created>
+      <option name="number" value="00451" />
+      <option name="project" value="LOCAL" />
       <updated>1403727863443</updated>
     </task>
     <task id="LOCAL-00452" summary="Add the error description to the fatal message sent on dieUponError.">
       <created>1405606990504</created>
+      <option name="number" value="00452" />
+      <option name="project" value="LOCAL" />
       <updated>1405606990504</updated>
     </task>
     <task id="LOCAL-00453" summary="Make broker parameters optional. When they are not set, messages are not sent. Change all test cases in order to do not use the broker.">
       <created>1405611903004</created>
+      <option name="number" value="00453" />
+      <option name="project" value="LOCAL" />
       <updated>1405611903005</updated>
     </task>
     <task id="LOCAL-00454" summary="Add missing phase to a debug message.">
       <created>1405625419468</created>
+      <option name="number" value="00454" />
+      <option name="project" value="LOCAL" />
       <updated>1405625419468</updated>
     </task>
     <task id="LOCAL-00455" summary="Add download operation to StatefulFileSetManagers.">
       <created>1406134521573</created>
+      <option name="number" value="00455" />
+      <option name="project" value="LOCAL" />
       <updated>1406134521574</updated>
     </task>
     <task id="LOCAL-00456" summary="Fix constructor of StatefulFileSetRPCManager.">
       <created>1406311516864</created>
+      <option name="number" value="00456" />
+      <option name="project" value="LOCAL" />
       <updated>1406311516864</updated>
     </task>
     <task id="LOCAL-00457" summary="Isolate functions common to all job types in a script imported by all the wrapper scripts.">
       <created>1408484439110</created>
+      <option name="number" value="00457" />
+      <option name="project" value="LOCAL" />
       <updated>1408484439110</updated>
     </task>
     <task id="LOCAL-00458" summary="Update GOBYWEB_SERVER_SIDE resource to 2.5.1.">
       <created>1408488102781</created>
+      <option name="number" value="00458" />
+      <option name="project" value="LOCAL" />
       <updated>1408488102781</updated>
     </task>
     <task id="LOCAL-00459" summary="Fix generation of job_common_functions.sh in the job folder.">
       <created>1408489313534</created>
+      <option name="number" value="00459" />
+      <option name="project" value="LOCAL" />
       <updated>1408489313534</updated>
     </task>
     <task id="LOCAL-00460" summary="Publish exceptions grabbed in the job execution folder as messages.">
       <created>1408559628592</created>
+      <option name="number" value="00460" />
+      <option name="project" value="LOCAL" />
       <updated>1408559628592</updated>
     </task>
     <task id="LOCAL-00461" summary="Publish exceptions grabbed in the job execution folder when the shell receives signal EXIT. Use only JOB_DIR variable if artifacts are not available in the same function&#10;">
       <created>1408649616545</created>
+      <option name="number" value="00461" />
+      <option name="project" value="LOCAL" />
       <updated>1408649616545</updated>
     </task>
     <task id="LOCAL-00462" summary="Copy logs after a job is completed only when JAVA_LOG_DIR is valid.">
       <created>1409147029181</created>
+      <option name="number" value="00462" />
+      <option name="project" value="LOCAL" />
       <updated>1409147029181</updated>
     </task>
     <task id="LOCAL-00463" summary="Replace placeholders in job_common_functions.sh (previous job metadata were not deleted because of that).">
       <created>1409250454974</created>
+      <option name="number" value="00463" />
+      <option name="project" value="LOCAL" />
       <updated>1409250454974</updated>
     </task>
     <task id="LOCAL-00464" summary="Add mercury jar to classpath when generating FILESET_COMMAND.">
       <created>1409320437063</created>
+      <option name="number" value="00464" />
+      <option name="project" value="LOCAL" />
       <updated>1409320437063</updated>
     </task>
     <task id="LOCAL-00465" summary="Do not execute RPCManager tests when remote tests are disabled.">
       <created>1409324163924</created>
+      <option name="number" value="00465" />
+      <option name="project" value="LOCAL" />
       <updated>1409324163924</updated>
     </task>
     <task id="LOCAL-00466" summary="Attach SOURCE_PLUGIN_ID and  SOURCE_PLUGIN_TYPE attributes to fileset command.">
       <created>1409324981281</created>
+      <option name="number" value="00466" />
+      <option name="project" value="LOCAL" />
       <updated>1409324981282</updated>
     </task>
     <task id="LOCAL-00467" summary="Add more parameters to FILESET_COMMAND.">
       <created>1409335164456</created>
+      <option name="number" value="00467" />
+      <option name="project" value="LOCAL" />
       <updated>1409335164457</updated>
     </task>
     <task id="LOCAL-00468" summary="Remove push_filesets function (replaced by the integration of the FileSet API with Mercury). Do not publish the registration message for job metadata.">
       <created>1409335496021</created>
+      <option name="number" value="00468" />
+      <option name="project" value="LOCAL" />
       <updated>1409335496022</updated>
     </task>
     <task id="LOCAL-00469" summary="Fix fileset command.">
       <created>1409335595371</created>
+      <option name="number" value="00469" />
+      <option name="project" value="LOCAL" />
       <updated>1409335595371</updated>
     </task>
     <task id="LOCAL-00470" summary="Comply with new signature of registration methods in the FileSet API.">
       <created>1409336366921</created>
+      <option name="number" value="00470" />
+      <option name="project" value="LOCAL" />
       <updated>1409336366922</updated>
     </task>
     <task id="LOCAL-00471" summary="Implement fetchStreamedEntry() for LocalManager.">
       <created>1409866620253</created>
+      <option name="number" value="00471" />
+      <option name="project" value="LOCAL" />
       <updated>1409866620253</updated>
     </task>
     <task id="LOCAL-00472" summary="Add JUnit test for StatefulFileSetLocalManager. Fix FileSetLocalRegistrationTest to comply with the new signature of the register API.">
       <created>1409923580427</created>
+      <option name="number" value="00472" />
+      <option name="project" value="LOCAL" />
       <updated>1409923580428</updated>
     </task>
     <task id="LOCAL-00473" summary="Remove job messages related to published fileset instances from oge_job_script.sh. They are now published as part of the fileset command execution.">
       <created>1410183093694</created>
+      <option name="number" value="00473" />
+      <option name="project" value="LOCAL" />
       <updated>1410183093695</updated>
     </task>
     <task id="LOCAL-00474" summary="Extend ArtifactHelper to use a plugins repository different from the submission node.">
       <created>1410816085707</created>
+      <option name="number" value="00474" />
+      <option name="project" value="LOCAL" />
       <updated>1410816085707</updated>
     </task>
     <task id="LOCAL-00475" summary="Do not clean after each diffExp phase. Only after post.">
       <created>1410816136621</created>
+      <option name="number" value="00475" />
+      <option name="project" value="LOCAL" />
       <updated>1410816136621</updated>
     </task>
     <task id="LOCAL-00476" summary="Fix wrong assignment.">
       <created>1410816329983</created>
+      <option name="number" value="00476" />
+      <option name="project" value="LOCAL" />
       <updated>1410816329984</updated>
     </task>
     <task id="LOCAL-00477" summary="Invoke only publish_exceptions when the EXIT signal is trapped. We can't invoke cleanup because it would clean results folder after each phase is completed. Also, remove publish_exceptions invocation from cleanup.">
       <created>1410874642129</created>
+      <option name="number" value="00477" />
+      <option name="project" value="LOCAL" />
       <updated>1410874642129</updated>
     </task>
     <task id="LOCAL-00478" summary="Extend StatefulFileSetManager interface with a method for sharing a fileset instance with a list of users. Provide a common implementation in the BaseManager (local and RPC have the same behavior here). Add a related test case in the Manager's JUnit tester class.">
       <created>1411676461501</created>
+      <option name="number" value="00478" />
+      <option name="project" value="LOCAL" />
       <updated>1411676461501</updated>
     </task>
     <task id="LOCAL-00479" summary="Enable StatefulFileSetManagers to download entries from FS instances shared with the current user.">
       <created>1412368462454</created>
+      <option name="number" value="00479" />
+      <option name="project" value="LOCAL" />
       <updated>1412368462454</updated>
     </task>
     <task id="LOCAL-00480" summary="Put back disabled plugins in the Registry. Do not use disabled plugins for dependency resolution.">
       <created>1415988126837</created>
+      <option name="number" value="00480" />
+      <option name="project" value="LOCAL" />
       <updated>1415988126837</updated>
     </task>
     <option name="localTasksCounter" value="481" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="573648000" />
+    <option name="totallyTimeSpent" value="574051000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2560" height="1330" extended-state="0" />
-    <editor active="true" />
+    <frame x="2" y="86" width="2560" height="1330" extended-state="6" />
+    <editor active="false" />
     <layout>
+      <window_info id="Inspector" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Usages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22359736" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40695652" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependencies Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32818532" sideWeight="0.34195402" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39438945" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32173914" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2915012" sideWeight="0.37218544" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11397935" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2915012" sideWeight="0.3764415" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11477363" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2915012" sideWeight="0.62649006" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3770627" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2915012" sideWeight="0.62355846" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975206" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3770627" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5188492" order="6" side_tool="false" content_ui="combo" />
-      <window_info id="Inspector" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25129983" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40695652" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="UsagesViewTool">
+    <version id="0.9997" />
+    <tabs />
+    <default_view_options>
+      <options category_option="false" module_option="true" model_option="true" root_option="true" path_option="false" count_option="true" info_option="true" view_searched_nodes_option="true" group_searched_nodes_option="true" autoscroll_option="false" />
+    </default_view_options>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -3223,9 +1568,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <option name="myTodoPanelSettings">
-      <TodoPanelSettings />
-    </option>
     <MESSAGE value="Fix constructor of StatefulFileSetRPCManager." />
     <MESSAGE value="Isolate functions common to all job types in a script imported by all the wrapper scripts." />
     <MESSAGE value="Update GOBYWEB_SERVER_SIDE resource to 2.5.1." />
@@ -3294,6 +1636,7 @@
       </breakpoints>
       <option name="time" value="6" />
     </breakpoint-manager>
+    <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -3302,14 +1645,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1305" max-vertical-offset="1545">
+        <state vertical-scroll-proportion="0.0">
           <caret line="87" column="71" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2220" max-vertical-offset="2625">
+        <state vertical-scroll-proportion="0.0">
           <caret line="148" column="69" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -3317,7 +1660,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="5280">
+        <state vertical-scroll-proportion="0.0">
           <caret line="69" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -3325,7 +1668,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="675" max-vertical-offset="2685">
+        <state vertical-scroll-proportion="0.0">
           <caret line="45" column="45" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -3333,7 +1676,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="885" max-vertical-offset="2865">
+        <state vertical-scroll-proportion="0.0">
           <caret line="59" column="53" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -3341,7 +1684,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/TaskJobBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="675">
+        <state vertical-scroll-proportion="0.0">
           <caret line="12" column="40" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -3349,7 +1692,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3405" max-vertical-offset="4260">
+        <state vertical-scroll-proportion="0.0">
           <caret line="227" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -3357,7 +1700,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AnalysisLocalSubmission.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="1380">
+        <state vertical-scroll-proportion="0.0">
           <caret line="77" column="63" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -3365,7 +1708,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="4965">
+        <state vertical-scroll-proportion="0.0">
           <caret line="41" column="90" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -3373,7 +1716,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ResourceJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="555">
+        <state vertical-scroll-proportion="0.0">
           <caret line="16" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -3381,49 +1724,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/alignmentanalyses/AlignmentAnalysisConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3990">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar!/java/util/List.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
+        <state vertical-scroll-proportion="0.0">
           <caret line="39" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/javatuples/javatuples/1.2/javatuples-1.2-sources.jar!/org/javatuples/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9585">
+        <state vertical-scroll-proportion="0.0">
           <caret line="189" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.3/commons-io-2.3-sources.jar!/org/apache/commons/io/IOUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="36750">
+        <state vertical-scroll-proportion="0.0">
           <caret line="81" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/filesets/JOB_METADATA/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+        <state vertical-scroll-proportion="0.0">
           <caret line="4" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/TEXT_1/foo.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
+        <state vertical-scroll-proportion="0.0">
           <caret line="8" column="61" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistrationTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1720" max-vertical-offset="3285">
+        <state vertical-scroll-proportion="0.0">
           <caret line="151" column="138" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -3431,108 +1774,105 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.1923075" vertical-offset="26" max-vertical-offset="2115">
+        <state vertical-scroll-proportion="-4.1923075">
           <caret line="27" column="46" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/common/PluginFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="183" max-vertical-offset="1200">
+        <state vertical-scroll-proportion="0.0">
           <caret line="68" column="18" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar!/java/lang/String.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1974" max-vertical-offset="3135">
+        <state vertical-scroll-proportion="0.0">
           <caret line="145" column="28" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/ArtifactsProtoBufHelper.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2925">
+        <state vertical-scroll-proportion="0.0">
           <caret line="49" column="58" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.423077" vertical-offset="16359" max-vertical-offset="17475">
+        <state vertical-scroll-proportion="-20.423077">
           <caret line="1126" column="86" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1489" max-vertical-offset="3510">
+        <state vertical-scroll-proportion="0.0">
           <caret line="133" column="113" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/PluginsToConfigurations.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
+        <state vertical-scroll-proportion="0.0">
           <caret line="14" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="309" max-vertical-offset="1470">
+        <state vertical-scroll-proportion="0.0">
           <caret line="78" column="30" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetLocalManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="1800">
+        <state vertical-scroll-proportion="0.0">
           <caret line="55" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/StatefulFileSetRPCManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="2865">
+        <state vertical-scroll-proportion="0.0">
           <caret line="59" column="10" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/registration/BaseStatefulManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="400" max-vertical-offset="1560">
+        <state vertical-scroll-proportion="0.0">
           <caret line="36" column="11" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="182" max-vertical-offset="994">
+        <state vertical-scroll-proportion="0.0">
           <caret line="38" column="67" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequestFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="80" max-vertical-offset="1302">
+        <state vertical-scroll-proportion="0.0">
           <caret line="20" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="1064">
+        <state vertical-scroll-proportion="0.0">
           <caret line="53" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="516" max-vertical-offset="7056">
+        <state vertical-scroll-proportion="0.0">
           <caret line="66" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -3540,42 +1880,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1232" max-vertical-offset="1666">
+        <state vertical-scroll-proportion="0.0">
           <caret line="15" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/TaskSubmissionRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+        <state vertical-scroll-proportion="0.0">
           <caret line="23" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerSubmissionRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="966">
+        <state vertical-scroll-proportion="0.0">
           <caret line="17" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignerJobBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1285" max-vertical-offset="1764">
+        <state vertical-scroll-proportion="0.0">
           <caret line="40" column="90" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerRemoteSubmissionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1305" max-vertical-offset="1545">
+        <state vertical-scroll-proportion="0.0">
           <caret line="87" column="71" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2220" max-vertical-offset="2625">
+        <state vertical-scroll-proportion="0.0">
           <caret line="148" column="69" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
           <folding />
         </state>
@@ -3583,7 +1923,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="5280">
+        <state vertical-scroll-proportion="0.0">
           <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding />
         </state>
@@ -3591,7 +1931,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="675" max-vertical-offset="2685">
+        <state vertical-scroll-proportion="0.0">
           <caret line="45" column="45" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
           <folding />
         </state>
@@ -3599,15 +1939,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="3150">
-          <caret line="118" column="80" selection-start-line="118" selection-start-column="27" selection-end-line="118" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="27" selection-start-line="118" selection-start-column="27" selection-end-line="118" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/TaskJobBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="675">
+        <state vertical-scroll-proportion="0.0">
           <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
           <folding />
         </state>
@@ -3615,7 +1955,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3405" max-vertical-offset="4260">
+        <state vertical-scroll-proportion="0.0">
           <caret line="227" column="34" selection-start-line="227" selection-start-column="34" selection-end-line="227" selection-end-column="34" />
           <folding />
         </state>
@@ -3623,7 +1963,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/AnalysisLocalSubmission.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="1380">
+        <state vertical-scroll-proportion="0.0">
           <caret line="77" column="63" selection-start-line="77" selection-start-column="63" selection-end-line="77" selection-end-column="63" />
           <folding />
         </state>
@@ -3631,7 +1971,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="4965">
+        <state vertical-scroll-proportion="0.0">
           <caret line="41" column="90" selection-start-line="41" selection-start-column="90" selection-end-line="41" selection-end-column="90" />
           <folding />
         </state>
@@ -3639,7 +1979,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ResourceJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="555">
+        <state vertical-scroll-proportion="0.0">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
           <folding />
         </state>
@@ -3647,7 +1987,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/Plugins.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.0" vertical-offset="7806" max-vertical-offset="10710">
+        <state vertical-scroll-proportion="0.0">
           <caret line="592" column="42" selection-start-line="592" selection-start-column="42" selection-end-line="592" selection-end-column="42" />
           <folding />
         </state>
@@ -3655,7 +1995,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/DependencyResolver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="2385">
+        <state vertical-scroll-proportion="0.0">
           <caret line="142" column="51" selection-start-line="142" selection-start-column="51" selection-end-line="142" selection-end-column="51" />
           <folding />
         </state>
@@ -3663,16 +2003,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginRegistry.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="2025">
-          <caret line="54" column="35" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="31" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55397725" vertical-offset="0" max-vertical-offset="4200">
-          <caret line="26" column="105" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/changelog.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -3767,4 +2115,3 @@
     </states>
   </component>
 </project>
-

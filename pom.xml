@@ -186,6 +186,11 @@
     </build>
     <dependencies>
         <dependency>
+            <groupId>com.martiansoftware</groupId>
+            <artifactId>jsap</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-eclipse-batch</artifactId>
             <version>1.8.6-01</version>
@@ -267,6 +272,19 @@
             <groupId>edu.cornell.med.icb</groupId>
             <artifactId>icb-util</artifactId>
             <version>1.1.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.javatuples</groupId>
+            <artifactId>javatuples</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.protobuf-rpc-pro</groupId>
+            <artifactId>protobuf-rpc-pro-duplex</artifactId>
+            <version>3.0.2</version>
+            <type>jar</type>
         </dependency>
 
     </dependencies>
