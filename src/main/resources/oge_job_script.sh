@@ -585,6 +585,7 @@ function fetch_input_alignments {
 
      ALIGNMENT_FILES=`${FILESET_COMMAND} --fetch INPUT_ALIGNMENTS`
      dieUponError "Failed to fecth INPUT_ALIGNMENTS: ${ALIGNMENT_FILES}"
+     dieIfEmpty "${ALIGNMENT_FILES}" "Failed to fecth INPUT_ALIGNMENTS"
 
      mv ${ALIGNMENT_FILES} ${ENTRIES_DIRECTORY}
 
@@ -605,6 +606,7 @@ function fetch_input_reads {
 
      READS=`${FILESET_COMMAND} --fetch INPUT_READS`
      dieUponError "Failed to fecth compact reads ${READS}"
+     dieIfEmpty "${READS}" "Failed to fecth compact reads"
      export READS
      echo "Localized filesets ${READS}"
 
