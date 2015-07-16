@@ -74,6 +74,26 @@ function dieUponError {
     fi
 }
 
+# This function should be called when an empty variable requires to terminate the jon. The first argument is the variable
+# to check, the second is the error message to report to the end-user.
+function dieIfEmpty {
+    VAR=$1
+    DESCRIPTION=$2
+
+    if [[ "${CURRENT_PART}" == "" ]]; then
+        CURRENT_PART=1
+    fi
+    if [[ "${NUMBER_OF_PARTS}" == "" ]]; then
+        NUMBER_OF_PARTS=1
+    fi
+
+    if [[ -z "${VAR// }" ]]; then
+       #publish_exceptions
+       fatal "Job failed. Error description: ${DESCRIPTION}" "done" "${CURRENT_PART}" "${NUMBER_OF_PARTS}"
+       copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
+       exit ${RETURN_STATUS}
+    fi
+}
 
 #this function is executed when the shell receives signal EXIT
 function cleanup {
