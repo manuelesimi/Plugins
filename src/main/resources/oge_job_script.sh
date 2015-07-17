@@ -1017,6 +1017,9 @@ function diffexp {
     #create the directory where alignments will be downloaded
     /bin/mkdir -p  "${ENTRIES_DIRECTORY}"
 
+     #make sure that the dir in which alignments files will be stored exists
+     mkdir -p ${FILESET_TARGET_DIR}
+
      #Aggregate metadata attributes to reduce the disk accesses
      ${FILESET_COMMAND} --aggregate-attributes *
      dieUponError "Unable to aggregate FileSet metadata before the job execution."
