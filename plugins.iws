@@ -241,8 +241,8 @@
       <file leaf-file-name="oge_job_script.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33286119">
-              <caret line="1020" column="34" selection-start-line="1020" selection-start-column="16" selection-end-line="1020" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.41784704">
+              <caret line="1024" column="50" selection-start-line="1024" selection-start-column="50" selection-end-line="1024" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -272,7 +272,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="127" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
+              <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -1273,13 +1273,7 @@
       <workItem from="1415983204205" duration="428000" />
       <workItem from="1415983733917" duration="1642000" />
       <workItem from="1437080090581" duration="403000" />
-      <workItem from="1437080740702" duration="3495000" />
-    </task>
-    <task id="LOCAL-00436" summary="Use JOB_DIR/source as target dir when fetching reads before align them.">
-      <created>1398804737373</created>
-      <option name="number" value="00436" />
-      <option name="project" value="LOCAL" />
-      <updated>1398804737373</updated>
+      <workItem from="1437080740702" duration="3749000" />
     </task>
     <task id="LOCAL-00437" summary="Fetch input compact-reads in the submit phase of an alignment job.">
       <created>1398804780479</created>
@@ -1569,11 +1563,17 @@
       <option name="project" value="LOCAL" />
       <updated>1437147789673</updated>
     </task>
-    <option name="localTasksCounter" value="485" />
+    <task id="LOCAL-00485" summary="Create FILESET_TARGET_DIR before aggregating metadata.">
+      <created>1437164000242</created>
+      <option name="number" value="00485" />
+      <option name="project" value="LOCAL" />
+      <updated>1437164000242</updated>
+    </task>
+    <option name="localTasksCounter" value="486" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="577546000" />
+    <option name="totallyTimeSpent" value="577800000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
@@ -1643,7 +1643,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Fix generation of job_common_functions.sh in the job folder." />
     <MESSAGE value="Publish exceptions grabbed in the job execution folder as messages." />
     <MESSAGE value="Publish exceptions grabbed in the job execution folder when the shell receives signal EXIT. Use only JOB_DIR variable if artifacts are not available in the same function&#10;" />
     <MESSAGE value="Copy logs after a job is completed only when JAVA_LOG_DIR is valid." />
@@ -1668,7 +1667,8 @@
     <MESSAGE value="Add dieIfEmpty function to check if an empty variable requires to terminate the job. This function is especially useful when used after invoking the fileset command. In fact, the command is usually invoked within an assignment expression. Because of that dieUponError does check the exit status of the assignment instead of the fileset command. As a consequence, the exit status returned was always ignored." />
     <MESSAGE value="Make a public release for 2.4.2." />
     <MESSAGE value="Fis mismatched comment line." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fis mismatched comment line." />
+    <MESSAGE value="Create FILESET_TARGET_DIR before aggregating metadata." />
+    <option name="LAST_COMMIT_MESSAGE" value="Create FILESET_TARGET_DIR before aggregating metadata." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2160,7 +2160,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="127" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
+          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -2175,8 +2175,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33286119">
-          <caret line="1020" column="34" selection-start-line="1020" selection-start-column="16" selection-end-line="1020" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.41784704">
+          <caret line="1024" column="50" selection-start-line="1024" selection-start-column="50" selection-end-line="1024" selection-end-column="50" />
           <folding />
         </state>
       </provider>

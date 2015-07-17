@@ -1021,7 +1021,7 @@ function diffexp {
      mkdir -p ${FILESET_TARGET_DIR}
 
      #Aggregate metadata attributes to reduce the disk accesses
-     ${FILESET_COMMAND} --aggregate-attributes *
+     ${FILESET_COMMAND} --aggregate-attributes '*'
      dieUponError "Unable to aggregate FileSet metadata before the job execution."
 
 
