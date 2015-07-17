@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/changelog.txt" afterPath="$PROJECT_DIR$/changelog.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
@@ -1278,13 +1276,7 @@
       <workItem from="1415983204205" duration="428000" />
       <workItem from="1415983733917" duration="1642000" />
       <workItem from="1437080090581" duration="403000" />
-      <workItem from="1437080740702" duration="743000" />
-    </task>
-    <task id="LOCAL-00433" summary="Fix method name.">
-      <created>1398444590075</created>
-      <option name="number" value="00433" />
-      <option name="project" value="LOCAL" />
-      <updated>1398444590075</updated>
+      <workItem from="1437080740702" duration="763000" />
     </task>
     <task id="LOCAL-00434" summary="Use the suggested fileset id to preview fileset instances.">
       <created>1398449011041</created>
@@ -1574,11 +1566,17 @@
       <option name="project" value="LOCAL" />
       <updated>1437080898371</updated>
     </task>
-    <option name="localTasksCounter" value="482" />
+    <task id="LOCAL-00482" summary="Add dieIfEmpty function to check if an empty variable requires to terminate the job. This function is especially useful when used after invoking the fileset command. In fact, the command is usually invoked within an assignment expression. Because of that dieUponError does check the exit status of the assignment instead of the fileset command. As a consequence, the exit status returned was always ignored.">
+      <created>1437147397706</created>
+      <option name="number" value="00482" />
+      <option name="project" value="LOCAL" />
+      <updated>1437147397706</updated>
+    </task>
+    <option name="localTasksCounter" value="483" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="574794000" />
+    <option name="totallyTimeSpent" value="574814000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
@@ -1604,7 +1602,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2915012" sideWeight="0.3800164" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11556791" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2915012" sideWeight="0.6199836" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2915012" sideWeight="0.6199836" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />

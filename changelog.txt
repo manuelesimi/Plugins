@@ -1,12 +1,8 @@
-2.4.2 
-    Integration wit filesets library 1.3.1
+2.4.2 (Jul 16 2015)
+    Integration with filesets library 1.3.1 to create metadata aggregation before executing tasks and analyses.
 
 2.4.1
     Remove disabled plugins from the PluginRegistry.
-
-2.5.0
-    Add depend-on option. It allows to indicate execution dependencies among different submissions.
-    Integration with filesets library 1.3.1 to create metadata aggregation before executing tasks and analyses.
 
 2.4.0
     Support analyses with a single group.
