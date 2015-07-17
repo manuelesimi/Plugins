@@ -97,8 +97,7 @@ abstract public class AbstractSubmitter implements Submitter {
         this.jobTag = jobTag;
     }
 
-    /**
-   
+
 
     @Override
     public void setRemoteArtifactRepositoryPath(String artifactRepositoryPath) {
