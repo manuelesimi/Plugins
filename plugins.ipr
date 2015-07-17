@@ -452,7 +452,7 @@
       <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
-      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+      <profile default="false" name="Annotation profile for plugins" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -486,24 +486,6 @@
     </excludes>
   </component>
   <component name="IdProvider" IDEtalkID="B10C822089469D4C4FCA986F20F8EDCE" />
-  <component name="InspectionProjectProfileManager">
-    <profiles>
-      <profile version="1.0" is_locked="false">
-        <option name="myName" value="Project Default" />
-        <option name="myLocal" value="false" />
-        <inspection_tool class="FinalizeCallsSuperFinalize" enabled="false" level="WARNING" enabled_by_default="false">
-          <option name="ignoreObjectSubclasses" value="false" />
-          <option name="ignoreTrivialFinalizers" value="true" />
-        </inspection_tool>
-        <inspection_tool class="LoopStatementsThatDontLoop" enabled="false" level="WARNING" enabled_by_default="false" />
-        <inspection_tool class="NoExplicitFinalizeCalls" enabled="false" level="WARNING" enabled_by_default="false" />
-        <inspection_tool class="RedundantThrowsDeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
-      </profile>
-    </profiles>
-    <option name="PROJECT_PROFILE" value="Project Default" />
-    <option name="USE_PROJECT_PROFILE" value="true" />
-    <version value="1.0" />
-  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -728,6 +710,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/2.4.1/protobuf-java-2.4.1-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: com.googlecode.protobuf-rpc-pro:protobuf-rpc-pro-duplex:3.0.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/googlecode/protobuf-rpc-pro/protobuf-rpc-pro-duplex/3.0.2/protobuf-rpc-pro-duplex-3.0.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/com/googlecode/protobuf-rpc-pro/protobuf-rpc-pro-duplex/3.0.2/protobuf-rpc-pro-duplex-3.0.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/com/googlecode/protobuf-rpc-pro/protobuf-rpc-pro-duplex/3.0.2/protobuf-rpc-pro-duplex-3.0.2-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: com.ibm.icu:icu4j:3.4.4">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/com/ibm/icu/icu4j/3.4.4/icu4j-3.4.4.jar!/" />
@@ -739,26 +732,26 @@
         <root url="jar://$MAVEN_REPOSITORY$/com/ibm/icu/icu4j/3.4.4/icu4j-3.4.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.martiansoftware:jsap:2.1">
+    <library name="Maven: com.martiansoftware:jsap:2.1.1">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/martiansoftware/jsap/2.1/jsap-2.1.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/martiansoftware/jsap/2.1.1/jsap-2.1.1.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/martiansoftware/jsap/2.1/jsap-2.1-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/martiansoftware/jsap/2.1.1/jsap-2.1.1-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/martiansoftware/jsap/2.1/jsap-2.1-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/martiansoftware/jsap/2.1.1/jsap-2.1.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.thoughtworks.xstream:xstream:1.4.4">
+    <library name="Maven: com.thoughtworks.xstream:xstream:1.4.8">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.4.4/xstream-1.4.4.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.4.8/xstream-1.4.8.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.4.4/xstream-1.4.4-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.4.8/xstream-1.4.8-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.4.4/xstream-1.4.4-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/thoughtworks/xstream/xstream/1.4.8/xstream-1.4.8-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: commons-beanutils:commons-beanutils:1.8.3">
@@ -805,15 +798,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.3/commons-io-2.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: commons-lang:commons-lang:2.4">
+    <library name="Maven: commons-lang:commons-lang:2.6">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.4/commons-lang-2.4.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.6/commons-lang-2.6.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.4/commons-lang-2.4-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.6/commons-lang-2.6-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.4/commons-lang-2.4-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.6/commons-lang-2.6-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: commons-logging:commons-logging:1.1.1">
@@ -871,6 +864,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/edu/cornell/med/icb/icb-util/1.1.5/icb-util-1.1.5-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: io.netty:netty:3.6.0.Final">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/io/netty/netty/3.6.0.Final/netty-3.6.0.Final.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/io/netty/netty/3.6.0.Final/netty-3.6.0.Final-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/io/netty/netty/3.6.0.Final/netty-3.6.0.Final-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: it.unimi.dsi:dsiutils:2.0.7">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/it/unimi/dsi/dsiutils/2.0.7/dsiutils-2.0.7.jar!/" />
@@ -915,6 +919,28 @@
         <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.16/log4j-1.2.16-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.apache.ant:ant-launcher:1.9.4">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant-launcher/1.9.4/ant-launcher-1.9.4.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant-launcher/1.9.4/ant-launcher-1.9.4-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant-launcher/1.9.4/ant-launcher-1.9.4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.ant:ant:1.9.4">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant/1.9.4/ant-1.9.4.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant/1.9.4/ant-1.9.4-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant/1.9.4/ant-1.9.4-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: org.apache.commons:commons-math3:3.0">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-math3/3.0/commons-math3-3.0.jar!/" />
@@ -937,15 +963,15 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.3.0/artifacts-2.3.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.campagnelab.gobyweb:filesets:1.2.1-SNAPSHOT">
+    <library name="Maven: org.campagnelab.gobyweb:filesets:1.2.1">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.1-SNAPSHOT/filesets-1.2.1-20140606.142328-2.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.1/filesets-1.2.1.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.1-SNAPSHOT/filesets-1.2.1-20140606.142328-2-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.1/filesets-1.2.1-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.1-SNAPSHOT/filesets-1.2.1-20140606.142328-2-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.2.1/filesets-1.2.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:icb-groovy-support:2.0">
@@ -1025,6 +1051,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.javatuples:javatuples:1.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/javatuples/javatuples/1.2/javatuples-1.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/javatuples/javatuples/1.2/javatuples-1.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/javatuples/javatuples/1.2/javatuples-1.2-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: org.scala-lang:scala-compiler:2.9.2">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-compiler/2.9.2/scala-compiler-2.9.2.jar!/" />
@@ -1056,6 +1093,17 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/scalatest/scalatest_2.9.2/1.6.1/scalatest_2.9.2-1.6.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.slf4j:slf4j-api:1.7.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: xmlpull:xmlpull:1.1.3.1">
@@ -1293,4 +1341,3 @@
     </option>
   </component>
 </project>
-
