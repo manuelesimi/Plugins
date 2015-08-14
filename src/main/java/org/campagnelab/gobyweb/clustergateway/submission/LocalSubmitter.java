@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.campagnelab.gobyweb.plugins.PluginLoaderSettings.SERVER_SIDE_TOOL;
+
 /**
  * Submitter for local task executions.
  *
@@ -104,7 +106,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, taskLocalDir);
 
-        copyResourceFiles(registry.findByTypedId("GOBYWEB_SERVER_SIDE", ResourceConfig.class), taskLocalDir);
+        copyResourceFiles(registry.findByTypedIdAndVersion(SERVER_SIDE_TOOL[0], SERVER_SIDE_TOOL[1], ResourceConfig.class), taskLocalDir);
 
         copyResourceFiles(resourceJob.getSourceConfig(), taskLocalDir);
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
