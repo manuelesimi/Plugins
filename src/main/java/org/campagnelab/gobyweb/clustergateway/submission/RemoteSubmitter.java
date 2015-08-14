@@ -20,6 +20,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.campagnelab.gobyweb.plugins.PluginLoaderSettings.SERVER_SIDE_TOOL;
+
 /**
  * Submitter for remote jobs.
  *
@@ -108,7 +110,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
         copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, tempDir);
 
-        copyResourceFiles(registry.findByTypedId("GOBYWEB_SERVER_SIDE", ResourceConfig.class), tempDir);
+        copyResourceFiles(registry.findByTypedIdAndVersion(SERVER_SIDE_TOOL[0], SERVER_SIDE_TOOL[1],ResourceConfig.class), tempDir);
 
         copyResourceFiles(resourceJob.getSourceConfig(), tempDir);
 
