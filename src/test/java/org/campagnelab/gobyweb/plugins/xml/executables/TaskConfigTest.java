@@ -35,8 +35,14 @@ public class TaskConfigTest {
     private static TaskConfig deserializedTask;
     private static java.io.File schemaFile = new File("./schemas/plugins.xsd");
 
+
     @Test
-    public void marshall() {
+    public void testConfigSerialization() {
+        marshall();
+        unmarshall();
+    }
+
+    private void marshall() {
 
         Marshaller marshaller=null;
         try {
@@ -105,8 +111,7 @@ public class TaskConfigTest {
 
     }
 
-    @Test
-    public void unmarshall() {
+    private void unmarshall() {
         Unmarshaller unmarshaller = null;
         try {
             JAXBContext context = JAXBContext.newInstance(TaskConfig.class);

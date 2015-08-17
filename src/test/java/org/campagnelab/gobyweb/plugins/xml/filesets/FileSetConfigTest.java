@@ -37,7 +37,13 @@ public class FileSetConfigTest {
     private static FileSetConfig deserializedSet;
 
     @Test
-    public void marshall() {
+    public void testConfigSerialization() {
+        marshall();
+        unmarshall();
+    }
+
+
+    private void marshall() {
 
         Marshaller marshaller=null;
         try {
@@ -83,8 +89,7 @@ public class FileSetConfigTest {
     }
 
 
-    @Test
-    public void unmarshall() {
+    private void unmarshall() {
         Unmarshaller unmarshaller = null;
         try {
             JAXBContext context = JAXBContext.newInstance(FileSetConfig.class);
