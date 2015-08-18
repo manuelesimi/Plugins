@@ -53,6 +53,25 @@ public class ClusterGatewayCommandLineTest {
     }
 
     @Test
+    public void runLocalTaskRNASelectNoServerHost() {
+        List<String> tags = new ArrayList<String>();
+        tags.addAll(FileSetManager.process(buildFileRegistrationArgs(
+                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads")));
+        assertNotNull(tags);
+        assertEquals(1, tags.size());
+
+        tags.addAll(FileSetManager.process(buildFileRegistrationArgs(
+                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/*.compact-reads")));
+
+        assertEquals(4, tags.size());
+
+        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(
+                "--job RNASELECT_TASK",
+                "test-data/root-for-rnaselect INPUT_READS: ${StringUtils.join(tags, ",")}",false)));
+
+    }
+
+    @Test
     public void runLocalTaskRNASelect() {
        List<String> tags = new ArrayList<String>();
        tags.addAll(FileSetManager.process(buildFileRegistrationArgs(
@@ -343,7 +362,8 @@ public class ClusterGatewayCommandLineTest {
                 ).split(" ");
 
     }
-    private static String[] buildClusterGatewayArgs(String additionalCommands, String pluginRoot=gatewayPluginRoot) {
+    private static String[] buildClusterGatewayArgs(String additionalCommands, String pluginRoot=gatewayPluginRoot,
+                                                    boolean addHost=true) {
         ("--job-area ${new File(resultsDir).getAbsolutePath()}/GOBYWEB_SGE_JOBS " +
                 "--fileset-area ${new File(resultsDir).getAbsolutePath()}/filesets " +
                 "--plugins-dir ${pluginRoot} " +
@@ -353,11 +373,10 @@ public class ClusterGatewayCommandLineTest {
                 "--option BAR=bar " +
                 "--option BAZ=baz " +
                 "--option DEBUG=true " +
-                "--artifact-server localhost "+
-                //"--broker-hostname ${brokerHostname} " +
-                //"--broker-port ${brokerPort} " +
+                (addHost ? "--artifact-server localhost " : "" )+
                 "--repository ${repoDirAbsolutePath} "+
                 additionalCommands).split(" ");
 
     }
+
 }

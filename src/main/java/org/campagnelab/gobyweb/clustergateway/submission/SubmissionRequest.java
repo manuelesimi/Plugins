@@ -229,7 +229,7 @@ public abstract class SubmissionRequest {
                         config.getString("submission-fileset-area"),jobArea, pluginRegistry);
             assert actions != null : "action cannot be null.";
             submitter.setLocalPluginsDir(config.getFile("plugins-dir"));
-            submitter.setSubmissionHostname(config.getString("artifact-server"));
+            submitter.setSubmissionHostname(config.userSpecified("artifact-server")? config.getString("artifact-server") : "");
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
             submitter.assignTagToJob(config.userSpecified("job-tag")? config.getString("job-tag"):ICBStringUtils.generateRandomString());
             submitter.setFileSetAreaReference(config.getString("fileset-area"));

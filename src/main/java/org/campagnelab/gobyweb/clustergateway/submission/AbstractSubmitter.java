@@ -190,7 +190,6 @@ abstract public class AbstractSubmitter implements Submitter {
         helper.setWebServerHostname(submissionHostname, this.pluginsDir.getAbsolutePath());
         if (envScriptFilename != null)
             helper.registerPluginEnvironmentCollectionScript(envScriptFilename);
-        assert submissionHostname != null : "submission hostname must be defined.";
         File installArtifactPbRequests;
         if ((config.getClass().isAssignableFrom(ExecutableConfig.class)) //same class
                 || (ExecutableConfig.class.isInstance(config)))  //or a sub-class

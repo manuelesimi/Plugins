@@ -1,5 +1,6 @@
 2.5.1 (Aug 17 2015)
     Migration to java 7.
+    Make artifact-server optional.
 
 2.5.0 (Jul 16 2015)
     Add depend-on option. It allows to indicate execution dependencies among different submissions.

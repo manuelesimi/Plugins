@@ -164,7 +164,7 @@
             <stringParser>
                 <classname>StringStringParser</classname>
             </stringParser>
-            <required>true</required>
+            <required>false</required>
             <shortFlag>a</shortFlag>
             <longFlag>artifact-server</longFlag>
             <help>The server where to the artifacts installation scripts are located.</help>

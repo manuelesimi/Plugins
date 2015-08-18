@@ -79,7 +79,7 @@ class Main {
         }
         String pluginRoot = config.getString("plugin-root")
         String remoteServer = config.getString("deployment-server")
-        String artifactServer = config.getString("artifact-server")
+        String artifactServer = config.hasProperty("artifact-server")? config.getString("artifact-server") : "";
         String username = config.getString("username")
         String remoteRepo = config.getString("repository")
         String tmpDir = config.getString("tmp-dir")

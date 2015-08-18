@@ -4,8 +4,6 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.artifacts.Artifacts;
 import org.campagnelab.gobyweb.artifacts.BuildArtifactRequest
-import org.campagnelab.gobyweb.io.protocols.SSH
-import org.campagnelab.gobyweb.plugins.xml.executables.ExecutableConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Artifact;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
@@ -67,7 +65,7 @@ public class ArtifactsProtoBufHelper {
      * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
      */
     public File createPbRequestFile(ResourceConsumerConfig pluginConfig) {
-        BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
+        BuildArtifactRequest requestBuilder = this.createArtifactBuilder();
         def uniqueFile = File.createTempFile(ARTIFACTS_INSTALL_REQUESTS, ".pb");
         Set<String> alreadyInstalled=new HashSet<String>();
         buildPbRequest(requestBuilder, pluginConfig, alreadyInstalled)
@@ -90,7 +88,7 @@ public class ArtifactsProtoBufHelper {
      * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
      */
     public File createPbRequestFile(ResourceConfig resourceConfig) {
-        BuildArtifactRequest requestBuilder = new BuildArtifactRequest(webServerHostname)
+        BuildArtifactRequest requestBuilder = this.createArtifactBuilder();
         def uniqueFile = File.createTempFile(ARTIFACTS_INSTALL_REQUESTS, ".pb");
         Set<String> alreadyInstalled=new HashSet<String>();
         buildPbRequest(requestBuilder, resourceConfig, alreadyInstalled)
@@ -197,5 +195,9 @@ public class ArtifactsProtoBufHelper {
                 builder.build()
         }
 
+    }
+
+    private BuildArtifactRequest createArtifactBuilder() {
+        return this.webServerHostname ? new BuildArtifactRequest(webServerHostname) : new BuildArtifactRequest();
     }
 }
