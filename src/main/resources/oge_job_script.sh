@@ -48,10 +48,6 @@
 
 %CPU_REQUIREMENTS%
 
-
-#select the java version to use
-slchoose sun_jdk 6.0.25 dist
-
 function checkSubmission {
     if [ -z $1 ]; then
         # Kill any already submitted jobs, inform the web server the job has been killed. Quit the script.
