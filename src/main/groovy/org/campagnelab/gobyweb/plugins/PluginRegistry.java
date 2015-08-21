@@ -116,7 +116,7 @@ public class PluginRegistry extends ArrayList<Config> {
     public synchronized  <T extends Config> T findByTypedIdAndVersion(String idToFind, String version, Class<T> configClass ) {
         if (idToFind != null) {
             for (Config config: this) {
-                if ((config.getId().compareTo(idToFind)==0)
+                if ((config.getId().compareTo(idToFind)==0) && (!config.isDisabled())
                         && ((config.getClass().isAssignableFrom(configClass)) //same class
                         ||(configClass.isInstance(config)))){  //or a sub-class
                     if ((version == null) || (config.getVersion().equalsIgnoreCase(version)))
