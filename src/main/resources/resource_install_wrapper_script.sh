@@ -8,6 +8,21 @@ function install_resource {
    echo ""
 }
 
+
+# This function should be called when an error condition requires to terminate the job. The first argument is a description
+# of the error that will be communicated to the end-user (will be displayed in the GobyWeb job status interface).
+
+function dieUponError {
+    RETURN_STATUS=$?
+    DESCRIPTION=$1
+
+    if [ ! ${RETURN_STATUS} -eq 0 ]; then
+       # Failed, no result to copy
+       #publish_exceptions
+       exit ${RETURN_STATUS}
+    fi
+}
+
 #in case the script is re-run from the command line, we need to set here the JOB dir
 if [ -z "$JOB_DIR" ]; then
     export JOB_DIR=="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -22,7 +37,6 @@ fi
     . auto-options.sh
     . constants.sh
     . artifacts.sh
-    . job_common_functions.sh
 
 
 GOBY_DIR=${JOB_DIR}/goby
