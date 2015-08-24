@@ -480,8 +480,15 @@ abstract public class AbstractSubmitter implements Submitter {
         for (int i = 0; i < 2; i++) {
             // Do the replacements twice just in case replacements contain replacements
             for (Map.Entry<String, Object> replacement : job.getEnvironment().entrySet()) {
-                wrapperContent = StringUtils.replace(wrapperContent, replacement.getKey(),
+                if (replacement.getKey().startsWith("%"))
+                    wrapperContent = StringUtils.replace(wrapperContent, replacement.getKey(),
                         (replacement.getValue() != null) ? replacement.getValue().toString() : "");
+                else if (replacement.getKey().equalsIgnoreCase("PLUGIN_NEED_GLOBAL")) {
+                    // PLUGIN_NEED_GLOBAL is not wrapped between % in the env,
+                    // but it must be replaced in the script, so this is a special case
+                    wrapperContent = StringUtils.replace(wrapperContent, "%"+replacement.getKey()+"%",
+                            (replacement.getValue() != null) ? replacement.getValue().toString() : "");
+                }
             }
         }
         FileUtils.writeStringToFile(new File(tempDir, wrapperScript), wrapperContent);
