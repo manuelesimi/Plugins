@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
@@ -183,8 +181,8 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.83002836">
-              <caret line="214" column="120" selection-start-line="214" selection-start-column="34" selection-end-line="214" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.3611898">
+              <caret line="17" column="77" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -2057,13 +2055,7 @@
       <workItem from="1437080090581" duration="403000" />
       <workItem from="1437080740702" duration="3749000" />
       <workItem from="1440424910579" duration="1825000" />
-      <workItem from="1440427452583" duration="7776000" />
-    </task>
-    <task id="LOCAL-00443" summary="Open the connection with the FileSet Server in the constructor of StatefulFileSetRPCManager. The same connection is reused across multiple requests.">
-      <created>1399410925939</created>
-      <option name="number" value="00443" />
-      <option name="project" value="LOCAL" />
-      <updated>1399410925939</updated>
+      <workItem from="1440427452583" duration="8564000" />
     </task>
     <task id="LOCAL-00444" summary="Add methods to RPC to test and reset the connection. Implement the Serialize interface in Stateful Managers.">
       <created>1399490983080</created>
@@ -2353,11 +2345,17 @@
       <option name="project" value="LOCAL" />
       <updated>1440436881542</updated>
     </task>
-    <option name="localTasksCounter" value="492" />
+    <task id="LOCAL-00492" summary="Update groovy dependencies.">
+      <created>1440437052644</created>
+      <option name="number" value="00492" />
+      <option name="project" value="LOCAL" />
+      <updated>1440437052644</updated>
+    </task>
+    <option name="localTasksCounter" value="493" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="587401000" />
+    <option name="totallyTimeSpent" value="588189000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
@@ -2427,7 +2425,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Attach SOURCE_PLUGIN_ID and  SOURCE_PLUGIN_TYPE attributes to fileset command." />
     <MESSAGE value="Add more parameters to FILESET_COMMAND." />
     <MESSAGE value="Remove push_filesets function (replaced by the integration of the FileSet API with Mercury). Do not publish the registration message for job metadata." />
     <MESSAGE value="Fix fileset command." />
@@ -2452,7 +2449,8 @@
     <MESSAGE value="Update test-data with GOBYWEB_SERVER_SIDE 2.5.2." />
     <MESSAGE value="Replace PLUGIN_NEED_GLOBAL in the wrapper script even if the key in the job environment is not wrapped in % (not sure why this problem started to appear only now)." />
     <MESSAGE value="Fix resource dependency test." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix resource dependency test." />
+    <MESSAGE value="Update groovy dependencies." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update groovy dependencies." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2928,8 +2926,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83002836">
-          <caret line="214" column="120" selection-start-line="214" selection-start-column="34" selection-end-line="214" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.3611898">
+          <caret line="17" column="77" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
           <folding />
         </state>
       </provider>
