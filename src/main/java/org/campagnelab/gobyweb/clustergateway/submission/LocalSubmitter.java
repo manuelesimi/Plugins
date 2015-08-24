@@ -106,7 +106,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, taskLocalDir);
 
-        copyResourceFiles(registry.findByTypedIdAndVersion(SERVER_SIDE_TOOL[0], SERVER_SIDE_TOOL[1], ResourceConfig.class), taskLocalDir);
+        copyResourceFiles(registry.findByTypedIdAndVersion(SERVER_SIDE_TOOL[0], SERVER_SIDE_TOOL[2], ResourceConfig.class), taskLocalDir);
 
         copyResourceFiles(resourceJob.getSourceConfig(), taskLocalDir);
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
