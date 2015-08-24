@@ -77,8 +77,6 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-aligners/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/queue-writer.sh" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/queue-writer.sh" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/queue-writer.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -1964,13 +1962,7 @@
       <workItem from="1437080090581" duration="403000" />
       <workItem from="1437080740702" duration="3749000" />
       <workItem from="1440424910579" duration="1825000" />
-      <workItem from="1440427452583" duration="3269000" />
-    </task>
-    <task id="LOCAL-00439" summary="Make all the jobs submitted to OGE re-runnable (option -r for qsub).">
-      <created>1398883016011</created>
-      <option name="number" value="00439" />
-      <option name="project" value="LOCAL" />
-      <updated>1398883016011</updated>
+      <workItem from="1440427452583" duration="3317000" />
     </task>
     <task id="LOCAL-00440" summary="Make sure that the dir in which fetched files will be stored exists.&#10;">
       <created>1398968667883</created>
@@ -2260,11 +2252,17 @@
       <option name="project" value="LOCAL" />
       <updated>1440427515715</updated>
     </task>
-    <option name="localTasksCounter" value="488" />
+    <task id="LOCAL-00488" summary="Force this branch to use GOBYWEB_SERVER_SIDE version 2.5.2.">
+      <created>1440431472059</created>
+      <option name="number" value="00488" />
+      <option name="project" value="LOCAL" />
+      <updated>1440431472059</updated>
+    </task>
+    <option name="localTasksCounter" value="489" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="582894000" />
+    <option name="totallyTimeSpent" value="582942000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
@@ -2334,7 +2332,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Copy logs after a job is completed only when JAVA_LOG_DIR is valid." />
     <MESSAGE value="Replace placeholders in job_common_functions.sh (previous job metadata were not deleted because of that)." />
     <MESSAGE value="Add mercury jar to classpath when generating FILESET_COMMAND." />
     <MESSAGE value="Do not execute RPCManager tests when remote tests are disabled." />
@@ -2359,7 +2356,8 @@
     <MESSAGE value="Create FILESET_TARGET_DIR before aggregating metadata." />
     <MESSAGE value="Resolve mandatory GOBYWEB_SERVER_SIDE resource using the version indicated in PluginsLoaderSettings when installing a resource plugin." />
     <MESSAGE value="Do not source job_common_functions from resource install script. Job functions are not available for resources." />
-    <option name="LAST_COMMIT_MESSAGE" value="Do not source job_common_functions from resource install script. Job functions are not available for resources." />
+    <MESSAGE value="Force this branch to use GOBYWEB_SERVER_SIDE version 2.5.2." />
+    <option name="LAST_COMMIT_MESSAGE" value="Force this branch to use GOBYWEB_SERVER_SIDE version 2.5.2." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
