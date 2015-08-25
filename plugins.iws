@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistrationTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistrationTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
@@ -178,11 +182,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53206">
-              <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileSetLocalRegistrationTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistrationTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.18417463">
+              <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskLocalSubmissionTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleFileVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$JAVA_HOME$/src.zip!/java/nio/file/SimpleFileVisitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -218,18 +252,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Submitter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="RemoteSubmitter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -250,53 +272,6 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="487" column="29" selection-start-line="487" selection-start-column="29" selection-end-line="487" selection-end-column="29" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Map.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$JAVA_HOME$/src.zip!/java/util/Map.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="383" column="10" selection-start-line="383" selection-start-column="10" selection-end-line="383" selection-end-column="10" />
-              <folding>
-                <element signature="e#0#53227#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExecutableConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/ExecutableConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="380" column="0" selection-start-line="380" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#14289#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#3276#3288#0" expanded="false" />
-                <element signature="e#4039#4040#0" expanded="false" />
-                <element signature="e#4076#4077#0" expanded="false" />
-                <element signature="e#4874#4875#0" expanded="false" />
-                <element signature="e#4904#4905#0" expanded="false" />
-                <element signature="e#6637#6645#0" expanded="false" />
-                <element signature="e#7148#7149#0" expanded="false" />
-                <element signature="e#7192#7193#0" expanded="false" />
-                <element signature="e#7245#7246#0" expanded="false" />
-                <element signature="e#7286#7287#0" expanded="false" />
-                <element signature="e#9976#9989#0" expanded="false" />
-                <element signature="e#10835#10836#0" expanded="false" />
-                <element signature="e#10863#10864#0" expanded="false" />
-                <element signature="e#10898#10899#0" expanded="false" />
-                <element signature="e#10928#10929#0" expanded="false" />
-                <element signature="e#10963#10964#0" expanded="false" />
-                <element signature="e#10993#10994#0" expanded="false" />
-                <element signature="e#11151#11152#0" expanded="false" />
-                <element signature="e#11216#11217#0" expanded="false" />
-                <element signature="e#12084#12085#0" expanded="false" />
-                <element signature="e#12151#12152#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -344,6 +319,8 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/plugins/ResourceDependencyTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistrationTest.java" />
       </list>
     </option>
   </component>
@@ -400,7 +377,7 @@
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="org.campagnelab.gobyweb:artifacts:2.3.0" />
+          <option name="myItemId" value="com.martiansoftware:jsap:2.1.2" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -520,26 +497,12 @@
               <option name="myItemId" value="External Libraries" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Maven: log4j:log4j:1.2.16" />
+              <option name="myItemId" value="Maven: xpp3:xpp3_min:1.1.4c" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="log4j-1.2.16.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="log4j" />
+              <option name="myItemId" value="xpp3_min-1.1.4c.jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -552,12 +515,114 @@
               <option name="myItemId" value="External Libraries" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Maven: log4j:log4j:1.2.16" />
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.8 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.8 &gt;" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="log4j-1.2.16.jar" />
+              <option name="myItemId" value="rt.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.8 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rt.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.8 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rt.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; 1.8 &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rt.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="file" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2105,13 +2170,7 @@
       <workItem from="1437080740702" duration="3749000" />
       <workItem from="1440424910579" duration="1825000" />
       <workItem from="1440427452583" duration="11036000" />
-      <workItem from="1440445720806" duration="2290000" />
-    </task>
-    <task id="LOCAL-00446" summary="Do not remove the source folder after the job is completed.">
-      <created>1399665251249</created>
-      <option name="number" value="00446" />
-      <option name="project" value="LOCAL" />
-      <updated>1399665251250</updated>
+      <workItem from="1440445720806" duration="3646000" />
     </task>
     <task id="LOCAL-00447" summary="Cleanup some unused imports.">
       <created>1399666353431</created>
@@ -2401,15 +2460,21 @@
       <option name="project" value="LOCAL" />
       <updated>1440447751538</updated>
     </task>
-    <option name="localTasksCounter" value="495" />
+    <task id="LOCAL-00495" summary="Use maven-parent 1.0.5 to target java 7.">
+      <created>1440463389314</created>
+      <option name="number" value="00495" />
+      <option name="project" value="LOCAL" />
+      <updated>1440463389314</updated>
+    </task>
+    <option name="localTasksCounter" value="496" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="592951000" />
+    <option name="totallyTimeSpent" value="594307000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Inspector" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2429,10 +2494,10 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32104832" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2915012" sideWeight="0.40078843" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21088165" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2915012" sideWeight="0.1064389" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21088165" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2915012" sideWeight="0.5992116" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2915012" sideWeight="0.8935611" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37674037" sideWeight="0.6530172" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2475,7 +2540,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Fix fileset command." />
     <MESSAGE value="Comply with new signature of registration methods in the FileSet API." />
     <MESSAGE value="Implement fetchStreamedEntry() for LocalManager." />
     <MESSAGE value="Add JUnit test for StatefulFileSetLocalManager. Fix FileSetLocalRegistrationTest to comply with the new signature of the register API." />
@@ -2500,7 +2564,8 @@
     <MESSAGE value="Update groovy dependencies." />
     <MESSAGE value="Back to use explicit version for maven-parent because ivy does not know how to resolve LATEST." />
     <MESSAGE value="Advance dependency on jsap to version 2.1.2." />
-    <option name="LAST_COMMIT_MESSAGE" value="Advance dependency on jsap to version 2.1.2." />
+    <MESSAGE value="Use maven-parent 1.0.5 to target java 7." />
+    <option name="LAST_COMMIT_MESSAGE" value="Use maven-parent 1.0.5 to target java 7." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2529,12 +2594,6 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistrationTest.java</url>
-          <line>2</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java</url>
           <line>44</line>
           <properties />
@@ -2542,19 +2601,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java</url>
-          <line>80</line>
+          <line>81</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java</url>
-          <line>53</line>
+          <line>54</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java</url>
-          <line>55</line>
+          <line>56</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
@@ -2586,25 +2645,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/filesets/JOB_METADATA/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test-data/cluster-gateway/files-for-registration-test/fileSets/TEXT_1/foo.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="61" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistrationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="151" column="138" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2785,14 +2829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2804,6 +2840,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="666" column="0" selection-start-line="666" selection-start-column="0" selection-end-line="666" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2993,8 +3030,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53206">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$JAVA_HOME$/src.zip!/java/nio/file/SimpleFileVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistrationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18417463">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
           <folding />
         </state>
       </provider>

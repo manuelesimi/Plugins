@@ -1,6 +1,5 @@
 package org.campagnelab.gobyweb.clustergateway.registration;
 
-import com.google.common.io.Files;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.io.AreaFactory;
@@ -15,7 +14,8 @@ import org.junit.runners.JUnit4;
 import static junit.framework.Assert.*;
 import static junit.framework.Assert.assertEquals;
 
-
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -200,11 +200,24 @@ public class FileSetLocalRegistrationTest {
     }
 
     //@AfterClass
-    public static void clean(){
-       try {
-           Files.deleteRecursively(new File(storageAreaDir).getParentFile());
+    public static void clean() {
+        try {
+            Path directory = Paths.get(new File(storageAreaDir).getParentFile().getAbsolutePath());
+            Files.walkFileTree(directory, new SimpleFileVisitor<Path>() {
+                @Override
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                    Files.delete(file);
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+                    Files.delete(dir);
+                    return FileVisitResult.CONTINUE;
+                }
+            });
         } catch (IOException e) {
-           e.printStackTrace();
+            e.printStackTrace();
             fail("failed to delete the storage area");
         }
     }
