@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
@@ -183,8 +181,8 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58390176">
-              <caret line="154" column="78" selection-start-line="154" selection-start-column="32" selection-end-line="154" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.53206">
+              <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -386,6 +384,24 @@
         <PATH_ELEMENT>
           <option name="myItemId" value="Dependencies" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="plugins" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Dependencies" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="org.campagnelab.gobyweb:artifacts:2.3.0" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
@@ -2089,13 +2105,7 @@
       <workItem from="1437080740702" duration="3749000" />
       <workItem from="1440424910579" duration="1825000" />
       <workItem from="1440427452583" duration="11036000" />
-      <workItem from="1440445720806" duration="867000" />
-    </task>
-    <task id="LOCAL-00445" summary="Add interface and implementation of common methods for StatefulManagers.">
-      <created>1399567457068</created>
-      <option name="number" value="00445" />
-      <option name="project" value="LOCAL" />
-      <updated>1399567457068</updated>
+      <workItem from="1440445720806" duration="2290000" />
     </task>
     <task id="LOCAL-00446" summary="Do not remove the source folder after the job is completed.">
       <created>1399665251249</created>
@@ -2385,11 +2395,17 @@
       <option name="project" value="LOCAL" />
       <updated>1440439121026</updated>
     </task>
-    <option name="localTasksCounter" value="494" />
+    <task id="LOCAL-00494" summary="Advance dependency on jsap to version 2.1.2.">
+      <created>1440447751538</created>
+      <option name="number" value="00494" />
+      <option name="project" value="LOCAL" />
+      <updated>1440447751538</updated>
+    </task>
+    <option name="localTasksCounter" value="495" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="591528000" />
+    <option name="totallyTimeSpent" value="592951000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1337" extended-state="6" />
@@ -2459,7 +2475,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Remove push_filesets function (replaced by the integration of the FileSet API with Mercury). Do not publish the registration message for job metadata." />
     <MESSAGE value="Fix fileset command." />
     <MESSAGE value="Comply with new signature of registration methods in the FileSet API." />
     <MESSAGE value="Implement fetchStreamedEntry() for LocalManager." />
@@ -2484,7 +2499,8 @@
     <MESSAGE value="Fix resource dependency test." />
     <MESSAGE value="Update groovy dependencies." />
     <MESSAGE value="Back to use explicit version for maven-parent because ivy does not know how to resolve LATEST." />
-    <option name="LAST_COMMIT_MESSAGE" value="Back to use explicit version for maven-parent because ivy does not know how to resolve LATEST." />
+    <MESSAGE value="Advance dependency on jsap to version 2.1.2." />
+    <option name="LAST_COMMIT_MESSAGE" value="Advance dependency on jsap to version 2.1.2." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2977,8 +2993,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58390176">
-          <caret line="154" column="78" selection-start-line="154" selection-start-column="32" selection-end-line="154" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.53206">
+          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
           <folding />
         </state>
       </provider>
