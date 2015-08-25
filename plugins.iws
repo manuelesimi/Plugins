@@ -1,83 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/artifact-manager.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/filesets.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/global_goby.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/icb-groovy-support.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/MERCURY_1.0/mercury.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/serverside-dependencies.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/stepslogger.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/stepslogger.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/stepslogger.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayLocalCommandLineTest.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/GrabExceptions.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/GrabExceptions.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/ProcessSamples.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/QueueWriter.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/TsvVcfToSqlite.groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/schemas/alignerConfig.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/schemas/alignmentAnalysisConf.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/artifact-manager.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/artifact-manager.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/artifact-manager.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/artifacts.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/artifacts.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/artifacts.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/BASH_LIBRARY_1.0/calculateMD5.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/schemas/common.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/BASH_LIBRARY_1.0/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/FETCH_URL_1.2/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GROOVY_2.0.6/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/MERCURY_1.0/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/SAMTOOLS_0.1.18.1/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/VCF_TOOLS_0.1.10/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/schemas/config.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/artifacts-config/env.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/schemas/executableIOSchema.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/FETCH_URL_1.2/fetch_url" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/FETCH_URL_1.2/fetch_url_pattern" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/schemas/fileSetConfig.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GROOVY_2.0.6/groovy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GROOVY_2.0.6/install.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/SAMTOOLS_0.1.18.1/install.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/VCF_TOOLS_0.1.10/install.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/BASH_LIBRARY_1.0/maps_in_bash3.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/MERCURY_1.0/mercury-log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/MERCURY_1.0/mercury.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/message-functions-wrapper.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/message-functions-wrapper.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/MERCURY_1.0/message-functions.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/schemas/plugins.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/queue-writer.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/GOBYWEB_SERVER_SIDE_2.6/queue-writer.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-rnaselect/plugins/resources/GOBYWEB_SERVER_SIDE_2.5.2/queue-writer.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/schemas/resourceConfig.xsd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/SAMTOOLS_0.1.18.1/samtools" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/schemas/taskConfig.xsd" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/SAMTOOLS_0.1.14/config.xml" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/SAMTOOLS_0.1.19/config.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test-data/root-for-gateway-command-line/plugins/resources/SAMTOOLS_0.1.14/samtools" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/SAMTOOLS_0.1.19/samtools" />
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Add test cases for resource installation using a local artifact server. Add test-data.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayLocalCommandLineTest.groovy" afterPath="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayLocalCommandLineTest.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/FETCH_URL_1.2/fetch_url" afterPath="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/FETCH_URL_1.2/fetch_url" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -268,11 +194,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClusterGatewayLocalCommandLineTest.groovy" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ClusterGatewayLocalCommandLineTest.groovy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayLocalCommandLineTest.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.555555">
-              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7838983">
+              <caret line="43" column="103" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
               <folding>
                 <element signature="e#59#97#0" expanded="true" />
               </folding>
@@ -320,11 +246,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fetch_url" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fetch_url" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/FETCH_URL_1.2/fetch_url">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63265306">
-              <caret line="31" column="100" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -399,8 +325,8 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java" />
         <option value="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/SAMTOOLS_0.1.10/config.xml" />
         <option value="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/SAMTOOLS_0.1.19/config.xml" />
-        <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayLocalCommandLineTest.groovy" />
         <option value="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/FETCH_URL_1.2/fetch_url" />
+        <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayLocalCommandLineTest.groovy" />
       </list>
     </option>
   </component>
@@ -685,6 +611,40 @@
               <option name="myItemId" value="gateway-local-command-line" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GOBYWEB_SGE_JOBS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="junit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Y" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="YHQWAJP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test-results" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gateway-local-command-line" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -919,132 +879,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="artifacts-config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins-git" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="root-for-gateway-command-line" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins-git" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="root-for-gateway-command-line" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins-git" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="root-for-gateway-command-line" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MERCURY_1.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins-git" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="root-for-gateway-command-line" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ENSEMBL_API_70" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins-git" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test-data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="root-for-gateway-command-line" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1399,7 +1233,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ClusterGatewayLocalCommandLineTest.installLocalResourceWithVersionNoArtifacts">
+  <component name="RunManager" selected="JUnit.ClusterGatewayLocalCommandLineTest.installLocalResourceNoArtifacts">
     <configuration default="false" name="ClusterGatewayLocalCommandLineTest.installLocalResourceNoArtifacts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1870,11 +1704,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ClusterGatewayLocalCommandLineTest.installLocalResourceWithVersionNoArtifacts" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ClusterGatewayLocalCommandLineTest.installLocalResourceWithVersionWithArtifacts" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.ClusterGatewayLocalCommandLineTest.installLocalResourceNoArtifacts" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ClusterGatewayLocalCommandLineTest.installLocalResourceWithArtifacts" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.ClusterGatewayLocalCommandLineTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.ClusterGatewayLocalCommandLineTest.installLocalResourceNoArtifacts" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.ClusterGatewayLocalCommandLineTest.installLocalResourceWithArtifacts" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.ClusterGatewayLocalCommandLineTest.installLocalResourceWithVersionNoArtifacts" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.ClusterGatewayLocalCommandLineTest.installLocalResourceWithVersionWithArtifacts" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -1961,13 +1795,7 @@
       <workItem from="1440184387888" duration="929000" />
       <workItem from="1440511202467" duration="896000" />
       <workItem from="1440512969103" duration="348000" />
-      <workItem from="1440519492664" duration="4692000" />
-    </task>
-    <task id="LOCAL-00450" summary="Convert queue messages to JMS messages in oge_job_script. Add a new job status to report on registered filesets.">
-      <created>1403643042903</created>
-      <option name="number" value="00450" />
-      <option name="project" value="LOCAL" />
-      <updated>1403643042903</updated>
+      <workItem from="1440519492664" duration="6102000" />
     </task>
     <task id="LOCAL-00451" summary="Convert some missed queue messages to JMS messages in oge_job_script.">
       <created>1403727863443</created>
@@ -2257,11 +2085,17 @@
       <option name="project" value="LOCAL" />
       <updated>1440524755015</updated>
     </task>
-    <option name="localTasksCounter" value="499" />
+    <task id="LOCAL-00499" summary="Add test cases for resource installation using a local artifact server. Add test-data.">
+      <created>1440524791986</created>
+      <option name="number" value="00499" />
+      <option name="project" value="LOCAL" />
+      <updated>1440524791986</updated>
+    </task>
+    <option name="localTasksCounter" value="500" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="676633000" />
+    <option name="totallyTimeSpent" value="678043000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -2351,7 +2185,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Remove job messages related to published fileset instances from oge_job_script.sh. They are now published as part of the fileset command execution." />
     <MESSAGE value="Extend ArtifactHelper to use a plugins repository different from the submission node." />
     <MESSAGE value="Do not clean after each diffExp phase. Only after post." />
     <MESSAGE value="Fix wrong assignment." />
@@ -2376,7 +2209,8 @@
     <MESSAGE value="Advance version to the next snapshot." />
     <MESSAGE value="Execute tests on marshalling/unmarshalling for FileSet and Task configuration in the correct order." />
     <MESSAGE value="Resolve GOBYWEB_SERVER_SIDE resource with exact version." />
-    <option name="LAST_COMMIT_MESSAGE" value="Resolve GOBYWEB_SERVER_SIDE resource with exact version." />
+    <MESSAGE value="Add test cases for resource installation using a local artifact server. Add test-data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add test cases for resource installation using a local artifact server. Add test-data." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2865,21 +2699,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayLocalCommandLineTest.groovy">
+    <entry file="file://$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/FETCH_URL_1.2/fetch_url">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.555555">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <element signature="e#59#97#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/FETCH_URL_1.2/fetch_url">
+    <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayLocalCommandLineTest.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63265306">
-          <caret line="31" column="100" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding />
+        <state vertical-scroll-proportion="0.7838983">
+          <caret line="43" column="103" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+          <folding>
+            <element signature="e#59#97#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

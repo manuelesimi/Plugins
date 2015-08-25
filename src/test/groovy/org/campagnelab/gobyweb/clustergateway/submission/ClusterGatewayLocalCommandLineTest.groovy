@@ -27,6 +27,7 @@ class ClusterGatewayLocalCommandLineTest {
     public static void configure() throws IOException {
         FileUtils.deleteDirectory(new File(resultsDir));
         FileUtils.forceMkdir(new File(resultsDir));
+        FileUtils.forceMkdir(new File(resultsDir + "/artifacts"));
 
     }
 
@@ -39,8 +40,7 @@ class ClusterGatewayLocalCommandLineTest {
 
     @Test
     public void installLocalResourceNoArtifacts() {
-        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--resource SAMTOOLS")));
-        assertTrue(new File(repoDirAbsolutePath + "/artifacts/SAMTOOLS/BINARIES/0.1.19").exists());
+        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--resource PLAST")));
     }
 
 
