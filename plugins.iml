@@ -32,7 +32,7 @@
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
-    <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:icb-groovy-support:2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:icb-groovy-support:2.1" level="project" />
     <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:option-validation-language:2.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-compiler:2.9.2" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.9.2" level="project" />
@@ -41,14 +41,14 @@
     <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:serverside-dependencies:full:1.0.13" level="project" />
     <orderEntry type="library" name="Maven: commons-net:commons-net:3.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:16.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.campagnelab:org.campagnelab.stepslogger:1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.campagnelab:org.campagnelab.stepslogger:1.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.campagnelab.gobyweb:filesets:1.2.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava-io:r03" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava-annotations:r03" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava-base:r03" level="project" />
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:2.4.1" level="project" />
     <orderEntry type="library" name="Maven: com.esotericsoftware.wildcard:wildcard:1.0" level="project" />
-    <orderEntry type="library" name="Maven: edu.cornell.med.icb:icb-util:1.1.5" level="project" />
+    <orderEntry type="library" name="Maven: edu.cornell.med.icb:icb-util:1.1.6" level="project" />
     <orderEntry type="library" name="Maven: com.ibm.icu:icu4j:3.4.4" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.3" level="project" />
     <orderEntry type="library" name="Maven: colt:colt:1.2.0" level="project" />
