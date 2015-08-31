@@ -1,3 +1,12 @@
+2.5.3 (Aug 28 2015)
+    Add test data and test cases for resource installation with a local artifact server.
+    Remove selection of java version from job scripts.
+    Update dependencies to the latest artifacts built for java 7.
+    Back to use explicit version for maven-parent because ivy does not know how to resolve LATEST.
+
+2.5.2 (Aug 21 2015)
+    Do not consider disabled plugins during dependency resolution.
+
 2.5.1 (Aug 17 2015)
     Migration to java 7.
     Make artifact-server optional.
