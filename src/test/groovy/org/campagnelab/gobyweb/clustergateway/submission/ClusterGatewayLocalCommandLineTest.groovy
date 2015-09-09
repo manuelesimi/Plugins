@@ -51,8 +51,8 @@ class ClusterGatewayLocalCommandLineTest {
 
     @Test
     public void installLocalResourceWithArtifactsAndAttributes() {
-        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--attribute-value INDEX.organism=human --attribute-value INDEX.reference-build=1 --attribute-value INDEX.ensembl-version-number=74 --resource BWA_WITH_GOBY_ARTIFACT")));
-        //assertTrue(new File(repoDirAbsolutePath + "/artifacts/VCF_TOOLS/BINARIES/0.1.10").exists())
+        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--attribute-value INDEX.organism=human --attribute-value INDEX.reference-build=1 --attribute-value INDEX.ensembl-version-number=74 --attribute-value SECOND.any=test --attribute-value SECOND.version-number=51 --resource VCF_TOOLS")));
+        //assertTrue(new File("test-results/gateway-local-command-line/GOBYWEB_SGE_JOBS/junit/T/TJSOHOF/INDEX.properties").exists())
     }
 
     private static String[] buildClusterGatewayArgs(String additionalCommands, String pluginRoot=gatewayPluginRoot,

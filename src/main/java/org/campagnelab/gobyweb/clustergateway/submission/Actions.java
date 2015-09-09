@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -207,11 +208,14 @@ final class Actions {
      * Submits a resource for installation.
      *
      * @param config      the resource
+     * @param artifactsAttributes
      * @throws Exception
      */
-    protected void submitResourceInstall(ResourceConfig config) throws Exception {
+    protected void submitResourceInstall(ResourceConfig config, SubmissionRequest.ArtifactInfoMap artifactsAttributes) throws Exception {
 
         ResourceJob resourceInstance = new ResourceJob(config);
+        if (artifactsAttributes.getArtifacts().size() > 0)
+            resourceInstance.setAttributes(artifactsAttributes);
         //resourceInstance.setTag(ICBStringUtils.generateRandomString());
         logger.debug("Tag assigned to Task instance: " + resourceInstance.getTag());
 

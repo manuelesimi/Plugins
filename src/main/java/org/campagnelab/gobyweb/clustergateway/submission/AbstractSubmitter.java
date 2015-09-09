@@ -27,6 +27,8 @@ import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import org.campagnelab.gobyweb.plugins.xml.Config;
 
 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * @author Fabien Campagne
@@ -202,13 +205,36 @@ abstract public class AbstractSubmitter implements Submitter {
         }
     }
 
+    protected void copyArtifactsPropertiesFiles(ResourceConfig config, SubmissionRequest.ArtifactInfoMap attributes, File tempDir) throws IOException {
+         for (String artifact : attributes.getArtifacts()) {
+                Properties prop = new Properties();
+                OutputStream output = null;
+                try {
+                    output = new FileOutputStream(tempDir.getAbsolutePath() + File.separator + artifact +".properties");
+                    for (SubmissionRequest.AttributeValuePair attribute : attributes.getAttributes(artifact))
+                        prop.setProperty(attribute.name, attribute.value);
+                    prop.store(output, null);
+                } catch (IOException io) {
+                    io.printStackTrace();
+                } finally {
+                    if (output != null) {
+                        try {
+                            output.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-    /**
-     * Completes job environment with the information available in the submitter.
-     *
-     * @param job    the job
-     * @param jobDir the target     execution directory
-     */
+                }
+            }
+    }
+
+        /**
+         * Completes job environment with the information available in the submitter.
+         *
+         * @param job    the job
+         * @param jobDir the target     execution directory
+         */
     protected void completeJobEnvironment(ExecutableJob job, String jobDir) {
         JobRuntimeEnvironment environment = job.getEnvironment();
         environment.put("TAG", job.getTag());

@@ -112,6 +112,8 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
         copyResourceFiles(registry.findByTypedId(SERVER_SIDE_TOOL[0], ResourceConfig.class), tempDir);
 
+        copyArtifactsPropertiesFiles(resourceJob.getSourceConfig(),resourceJob.getAttributes(),tempDir);
+
         copyResourceFiles(resourceJob.getSourceConfig(), tempDir);
 
         File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfig()));

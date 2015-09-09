@@ -32,7 +32,7 @@ class ResourceSubmissionRequest extends SubmissionRequest {
         ResourceConfig resourceConfig = DependencyResolver.resolveResource(id, version, version, version);
         if (resourceConfig.isDisabled())
             throw new Exception(String.format("Resource %s is currently disabled", resourceConfig.getId()));
-        actions.submitResourceInstall(resourceConfig);
+        actions.submitResourceInstall(resourceConfig, this.artifactsAttributes);
         return 0;
     }
 }

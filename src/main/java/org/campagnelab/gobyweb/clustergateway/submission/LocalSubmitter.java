@@ -96,7 +96,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         resourceJob.setTag(this.jobTag);
 
         jobArea.createTag(resourceJob.getTag());
-        final File taskLocalDir = new File(jobArea.getBasename(resourceJob.getTag()));
+        final File tempDir = new File(jobArea.getBasename(resourceJob.getTag()));
 
         //get the wrapper script
         URL wrapperScriptURL = getClass().getClassLoader().getResource(this.wrapperScript);
@@ -104,23 +104,25 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         FileUtils.writeStringToFile(new File(jobArea.getBasename(resourceJob.getTag()), constantsTemplate), writeConstants(jobArea, resourceJob));
 
-        copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, taskLocalDir);
+        copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, tempDir);
 
-        copyResourceFiles(registry.findByTypedIdAndVersion(SERVER_SIDE_TOOL[0], SERVER_SIDE_TOOL[1],ResourceConfig.class), taskLocalDir);
+        copyArtifactsPropertiesFiles(resourceJob.getSourceConfig(),resourceJob.getAttributes(),tempDir);
 
-        copyResourceFiles(resourceJob.getSourceConfig(), taskLocalDir);
+        copyResourceFiles(registry.findByTypedIdAndVersion(SERVER_SIDE_TOOL[0], SERVER_SIDE_TOOL[1],ResourceConfig.class), tempDir);
+
+        copyResourceFiles(resourceJob.getSourceConfig(), tempDir);
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
 
         File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfig()));
-        FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(taskLocalDir.getAbsolutePath(), "auto-options.sh")));
+        FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "auto-options.sh")));
         //give execute permission to resourceJob scripts
         String[] binaryFiles = new String[]{"groovy", this.wrapperScript, "auto-options.sh", "constants.sh"};
         jobArea.grantExecutePermissions(resourceJob.getTag(), binaryFiles);
 
         //execute the resourceJob
-        logger.info(String.format("Resource %s: submitting to local cluster at %s...", resourceJob.getTag(), taskLocalDir.getAbsolutePath()));
+        logger.info(String.format("Resource %s: submitting to local cluster at %s...", resourceJob.getTag(), tempDir.getAbsolutePath()));
         Map<String, String> env = new HashMap<String, String>();
-        env.put("JOB_DIR", taskLocalDir.getAbsolutePath());
+        env.put("JOB_DIR", tempDir.getAbsolutePath());
         env.put("PATH", System.getenv("PATH"));
         jobArea.execute(resourceJob.getTag(), this.wrapperScript, env);
     }
