@@ -49,6 +49,11 @@ class ClusterGatewayLocalCommandLineTest {
         assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--resource MERCURY:1.0")));
     }
 
+    @Test
+    public void installLocalResourceWithArtifactsAndAttributes() {
+        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--attribute-value INDEX.organism=human --attribute-value INDEX.reference-build=1 --attribute-value INDEX.ensembl-version-number=74 --resource BWA_WITH_GOBY_ARTIFACT")));
+        //assertTrue(new File(repoDirAbsolutePath + "/artifacts/VCF_TOOLS/BINARIES/0.1.10").exists())
+    }
 
     private static String[] buildClusterGatewayArgs(String additionalCommands, String pluginRoot=gatewayPluginRoot,
                                                     boolean addHost=true) {

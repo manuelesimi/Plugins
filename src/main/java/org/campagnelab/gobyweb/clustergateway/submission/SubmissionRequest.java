@@ -12,6 +12,7 @@ import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.executables.*;
+import org.campagnelab.gobyweb.plugins.xml.resources.Artifact;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,6 +66,8 @@ public abstract class SubmissionRequest {
     };
 
     private Map<String, String> optionsMap = new HashMap<String, String>();
+
+    private List<ArtifactInfo> artifactsAttributes = new ArrayList<ArtifactInfo>();
 
     private Set<InputSlotValue> inputSlots = Collections.EMPTY_SET;
 
@@ -138,6 +141,32 @@ public abstract class SubmissionRequest {
         }
     }
 
+    /**
+     * Parses the additional options specified on the command line and creates a map from them.
+     * @param values option in the form ARTIFACT_NAME.ATTRIBUTE_NAME=VALUE
+     * @return
+     */
+    private void parseAttributesValues(String[] values) throws Exception {
+        if (values == null)
+            return;
+        for (String value: values) {
+            boolean accepted = false;
+            String[] tokens = value.split("=",2);
+            if (tokens.length == 2) {
+                String[] names = tokens[0].split("\\.",2);
+                if (names.length == 2) {
+                    ArtifactInfo info = new ArtifactInfo(names[0]);
+                    info.addAttributeValue(names[1],tokens[1]);
+                    this.artifactsAttributes.add(info);
+                    accepted = true;
+                }
+            }
+            if (!accepted) {
+                logger.error("Invalid attribute format: " + value + ". Must be ARTIFACT_NAME.ATTRIBUTE_NAME=VALUE.");
+                throw new Exception("Invalid attribute format: " + value+ ". ARTIFACT_NAME.ATTRIBUTE_NAME=VALUE.");
+            }
+        }
+    }
     /**
      * Subclasses may override this method to provide additional options to the interface.
      * @return
@@ -244,7 +273,8 @@ public abstract class SubmissionRequest {
             }
             if (config.userSpecified("option"))
                 this.parseUnclassifiedOptions(config.getStringArray("option"));
-
+            if (config.userSpecified("attribute-value"))
+                this.parseAttributesValues(config.getStringArray("attribute-value"));
             if (config.userSpecified("slots"))
                 this.inputSlots = toInputParameters(config.getStringArray("slots"));
 
@@ -287,4 +317,22 @@ public abstract class SubmissionRequest {
 
     protected abstract int submit(JSAPResult config, Actions actions) throws Exception;
 
+    class AttributeValuePair {
+        String name;
+        String value;
+        AttributeValuePair(String name, String value) {
+            this.name = name;
+            this.value = value;
+        }
+    }
+    class ArtifactInfo {
+        String name;
+        List<AttributeValuePair> attributes = new ArrayList<AttributeValuePair>();
+        ArtifactInfo(String name) {
+            this.name = name;
+        }
+        void addAttributeValue(String name, String value) {
+           attributes.add(new AttributeValuePair(name,value));
+        }
+    }
 }

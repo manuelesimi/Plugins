@@ -196,6 +196,18 @@
         </flaggedOption>
 
         <flaggedOption>
+            <id>attribute-value</id>
+            <stringParser>
+                      <classname>StringStringParser</classname>
+            </stringParser>
+            <required>optional</required>
+            <longFlag>attribute-value</longFlag>
+            <shortFlag>v</shortFlag>
+            <allowMultipleDeclarations>true</allowMultipleDeclarations>
+            <help>Additional attribute to pass to the job in the format ARTIFACT_NAME.ATTRIBUTE_NAME=VALUE. The value is used during the installation of the artifact.</help>
+        </flaggedOption>
+
+        <flaggedOption>
             <id>broker-hostname</id>
             <stringParser>
                 <classname>StringStringParser</classname>
