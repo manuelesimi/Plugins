@@ -206,7 +206,9 @@ abstract public class AbstractSubmitter implements Submitter {
     }
 
     protected void copyArtifactsPropertiesFiles(ResourceConfig config, SubmissionRequest.ArtifactInfoMap attributes, File tempDir) throws IOException {
-         for (String artifact : attributes.getArtifacts()) {
+        if (attributes == null)
+            return;
+        for (String artifact : attributes.getArtifacts()) {
                 Properties prop = new Properties();
                 OutputStream output = null;
                 try {
