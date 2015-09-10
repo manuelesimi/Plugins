@@ -51,7 +51,12 @@ class ClusterGatewayLocalCommandLineTest {
 
     @Test
     public void installLocalResourceWithArtifactsAndAttributes() {
-        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--attribute-value INDEX.organism=human --attribute-value INDEX.reference-build=1 --attribute-value INDEX.ensembl-version-number=74 --attribute-value SECOND.any=test --attribute-value SECOND.version-number=51 --resource VCF_TOOLS")));
+        String attributes = "--attribute-value TOPLEVEL_IDS.organism=HOMO_SAPIENS --attribute-value TOPLEVEL_IDS.reference-build=1000GENOMES --attribute-value TOPLEVEL_IDS.ensembl-version-number=37 ";
+        attributes += "--attribute-value INDEX.organism=HOMO_SAPIENS --attribute-value INDEX.reference-build=1000GENOMES --attribute-value INDEX.ensembl-version-number=37 ";
+        attributes += "--attribute-value TOPLEVEL.organism=HOMO_SAPIENS --attribute-value TOPLEVEL.reference-build=1000GENOMES --attribute-value TOPLEVEL.ensembl-version-number=37 ";
+        attributes += "--attribute-value SAMTOOLS_FAI_INDEX.organism=HOMO_SAPIENS --attribute-value SAMTOOLS_FAI_INDEX.reference-build=1000GENOMES --attribute-value SAMTOOLS_FAI_INDEX.ensembl-version-number=37 ";
+
+        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(attributes + "--resource LAST_INDEX")));
         //assertTrue(new File("test-results/gateway-local-command-line/GOBYWEB_SGE_JOBS/junit/T/TJSOHOF/INDEX.properties").exists())
     }
 
