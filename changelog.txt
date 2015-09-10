@@ -1,3 +1,6 @@
+2.5.4 (Sept 2015)
+    Introduce artifact-value option for resource installation.
+
 2.5.3 (Aug 28 2015)
     Add test data and test cases for resource installation with a local artifact server.
     Remove selection of java version from job scripts.
