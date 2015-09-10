@@ -214,7 +214,7 @@ final class Actions {
     protected void submitResourceInstall(ResourceConfig config, SubmissionRequest.ArtifactInfoMap artifactsAttributes) throws Exception {
 
         ResourceJob resourceInstance = new ResourceJob(config);
-        if (artifactsAttributes.getArtifacts().size() > 0)
+        if (artifactsAttributes.getResources().size() > 0)
             resourceInstance.setAttributes(artifactsAttributes);
         //resourceInstance.setTag(ICBStringUtils.generateRandomString());
         logger.debug("Tag assigned to Task instance: " + resourceInstance.getTag());

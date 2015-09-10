@@ -151,15 +151,15 @@ public abstract class SubmissionRequest {
             boolean accepted = false;
             String[] tokens = value.split("=",2);
             if (tokens.length == 2) {
-                String[] names = tokens[0].split("\\.",2);
-                if (names.length == 2) {
-                    this.artifactsAttributes.addAttributeValue(names[0],names[1],tokens[1]);
+                String[] names = tokens[0].split("\\.",3);
+                if (names.length == 3) {
+                    this.artifactsAttributes.addAttributeValue(names[0],names[1],names[2],tokens[1]);
                     accepted = true;
                 }
             }
             if (!accepted) {
-                logger.error("Invalid attribute format: " + value + ". Must be ARTIFACT_NAME.ATTRIBUTE_NAME=VALUE.");
-                throw new Exception("Invalid attribute format: " + value+ ". ARTIFACT_NAME.ATTRIBUTE_NAME=VALUE.");
+                logger.error("Invalid attribute format: " + value + ". Must be RESOURCE_NAME.ARTIFACT_NAME.ATTRIBUTE_NAME=VALUE.");
+                throw new Exception("Invalid attribute format: " + value+ ". Must be RESOURCE_NAME.ARTIFACT_NAME.ATTRIBUTE_NAME=VALUE.");
             }
         }
     }
@@ -323,10 +323,14 @@ public abstract class SubmissionRequest {
         }
     }
 
-    public class ArtifactInfoMap {
+    /**
+     * artifact -> attribute pair<name,value>
+     */
+    public class AttributeInfoMap {
         private Map<String,List<AttributeValuePair>> map = new HashMap<>();
 
-        ArtifactInfoMap() { }
+        AttributeInfoMap() {  }
+
         void addAttributeValue(String artifact, String attribute, String value) {
             if (!map.containsKey(artifact))
                 map.put(artifact, new ArrayList<AttributeValuePair>());
@@ -339,7 +343,33 @@ public abstract class SubmissionRequest {
         }
 
         public List<AttributeValuePair> getAttributes(String artifact){
-            return map.get(artifact);
+            return map.containsKey(artifact)? map.get(artifact) : null;
+        }
+    }
+
+    /**
+     * resource -> attributeInfoMap
+     */
+    public class ArtifactInfoMap {
+        private Map<String,AttributeInfoMap> map = new HashMap<>();
+
+        ArtifactInfoMap() { }
+        void addAttributeValue(String resource, String artifact, String attribute, String value) {
+            if (!map.containsKey(resource))
+                map.put(resource, new AttributeInfoMap());
+            map.get(resource).addAttributeValue(artifact, attribute, value);
+        }
+
+        public Set<String> getResources() {
+            return map.keySet();
+        }
+
+        public Set<String> getArtifacts(String resource) {
+            return map.get(resource).getArtifacts();
+        }
+
+        public List<AttributeValuePair> getAttributes(String resource, String artifact){
+            return map.containsKey(resource) ? map.get(resource).getAttributes(artifact) : null;
         }
     }
 }

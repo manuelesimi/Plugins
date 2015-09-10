@@ -208,12 +208,15 @@ abstract public class AbstractSubmitter implements Submitter {
     protected void copyArtifactsPropertiesFiles(ResourceConfig config, SubmissionRequest.ArtifactInfoMap attributes, File tempDir) throws IOException {
         if (attributes == null)
             return;
-        for (String artifact : attributes.getArtifacts()) {
+        for (String resource : attributes.getResources()) {
+            for (String artifact : attributes.getArtifacts(resource)) {
+                File dest = new File(tempDir.getAbsolutePath() + File.separator + "artifacts-values" + File.separator + resource + "." + artifact + ".properties");
+                Files.createParentDirs(dest);
                 Properties prop = new Properties();
                 OutputStream output = null;
                 try {
-                    output = new FileOutputStream(tempDir.getAbsolutePath() + File.separator + artifact +".properties");
-                    for (SubmissionRequest.AttributeValuePair attribute : attributes.getAttributes(artifact))
+                    output = new FileOutputStream(dest.getAbsolutePath());
+                    for (SubmissionRequest.AttributeValuePair attribute : attributes.getAttributes(resource,artifact))
                         prop.setProperty(attribute.name, attribute.value);
                     prop.store(output, null);
                 } catch (IOException io) {
@@ -229,6 +232,7 @@ abstract public class AbstractSubmitter implements Submitter {
 
                 }
             }
+        }
     }
 
         /**

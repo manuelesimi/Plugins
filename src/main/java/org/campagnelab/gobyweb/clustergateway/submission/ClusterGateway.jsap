@@ -204,7 +204,7 @@
             <longFlag>attribute-value</longFlag>
             <shortFlag>v</shortFlag>
             <allowMultipleDeclarations>true</allowMultipleDeclarations>
-            <help>Additional attribute to pass to the job in the format ARTIFACT_NAME.ATTRIBUTE_NAME=VALUE. The value is used during the installation of the artifact.</help>
+            <help>Additional attribute to pass to the job in the format RESOURCE_NAME.ARTIFACT_NAME.ATTRIBUTE_NAME=VALUE. The value is used during the installation of the artifact.</help>
         </flaggedOption>
 
         <flaggedOption>
