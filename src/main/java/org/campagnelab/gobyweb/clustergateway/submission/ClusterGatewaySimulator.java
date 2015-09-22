@@ -106,8 +106,14 @@ public class ClusterGatewaySimulator {
                 throw new Exception(String.format("Cannot find plugin configuration %s",Arrays.toString(pluginInfoData)));
             }
             builderSimulator = new JobBuilderSimulator(resourceConfig,plugins.getRegistry());
-            pluginInfoData[1] = resourceConfig.getVersion();
+            //pluginInfoData[1] = resourceConfig.getVersion();
         }
+        if (config.userSpecified("attribute-value"))   {
+            SubmissionRequest.ArtifactInfoMap artifactsAttributes = new SubmissionRequest.ArtifactInfoMap();
+            SubmissionRequest.populateAttributesValues(artifactsAttributes, config.getStringArray("attribute-value"));
+            builderSimulator.setArtifactsAttributes(artifactsAttributes);
+        }
+
         assert builderSimulator != null;
         assert pluginInfoData != null;
         if (fromCommandLine)

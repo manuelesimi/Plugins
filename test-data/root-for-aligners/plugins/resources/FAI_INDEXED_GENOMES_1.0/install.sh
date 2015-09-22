@@ -13,9 +13,16 @@ function plugin_install_artifact {
             ENSEMBL_RELEASE=$5
 
             GENOME_DIR=$(eval echo \${RESOURCES_ARTIFACTS_ENSEMBL_GENOMES_TOPLEVEL_${ORG}_${BUILD_NUMBER}_${ENSEMBL_RELEASE}})
-
+            set -e
             # Link to the genome in the indexed directory, then put the index next to the link:
-            gzip -c -d ${GENOME_DIR}/genome-toplevel.fasta.gz >${installation_path}/genome-toplevel.fasta
+            if [ -e ${GENOME_DIR}/genome-toplevel.fasta.gz ]; then
+                gzip -c -d ${GENOME_DIR}/genome-toplevel.fasta.gz >${installation_path}/genome-toplevel.fasta || true
+            fi
+            if [ -e ${GENOME_DIR}/genome-toplevel.fasta ]; then
+                cp ${GENOME_DIR}/genome-toplevel.fasta ${installation_path}/genome-toplevel.fasta || true
+            fi
+
+            set +e
             ${RESOURCES_ARTIFACTS_SAMTOOLS_BINARIES}/samtools faidx ${installation_path}/genome-toplevel.fasta
 
             if [ -e ${installation_path}/genome-toplevel.fasta.fai ]; then

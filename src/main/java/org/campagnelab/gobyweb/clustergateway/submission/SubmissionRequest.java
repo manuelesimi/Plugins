@@ -144,7 +144,7 @@ public abstract class SubmissionRequest {
      * @param values option in the form ARTIFACT_NAME.ATTRIBUTE_NAME=VALUE
      * @return
      */
-    private void parseAttributesValues(String[] values) throws Exception {
+    static void populateAttributesValues(ArtifactInfoMap artifactsAttributes, String[] values) throws Exception {
         if (values == null)
             return;
         for (String value: values) {
@@ -153,7 +153,7 @@ public abstract class SubmissionRequest {
             if (tokens.length == 2) {
                 String[] names = tokens[0].split("\\.",3);
                 if (names.length == 3) {
-                    this.artifactsAttributes.addAttributeValue(names[0],names[1],names[2],tokens[1]);
+                    artifactsAttributes.addAttributeValue(names[0],names[1],names[2],tokens[1]);
                     accepted = true;
                 }
             }
@@ -270,7 +270,7 @@ public abstract class SubmissionRequest {
             if (config.userSpecified("option"))
                 this.parseUnclassifiedOptions(config.getStringArray("option"));
             if (config.userSpecified("attribute-value"))
-                this.parseAttributesValues(config.getStringArray("attribute-value"));
+                populateAttributesValues(this.artifactsAttributes, config.getStringArray("attribute-value"));;
             if (config.userSpecified("slots"))
                 this.inputSlots = toInputParameters(config.getStringArray("slots"));
 
@@ -314,9 +314,9 @@ public abstract class SubmissionRequest {
 
     protected abstract int submit(JSAPResult config, Actions actions) throws Exception;
 
-    public class AttributeValuePair {
-        String name;
-        String value;
+    public static class AttributeValuePair {
+        public String name;
+        public String value;
         AttributeValuePair(String name, String value) {
             this.name = name;
             this.value = value;
@@ -326,7 +326,7 @@ public abstract class SubmissionRequest {
     /**
      * artifact -> attribute pair<name,value>
      */
-    public class AttributeInfoMap {
+    public static class AttributeInfoMap {
         private Map<String,List<AttributeValuePair>> map = new HashMap<>();
 
         AttributeInfoMap() {  }
@@ -350,10 +350,10 @@ public abstract class SubmissionRequest {
     /**
      * resource -> attributeInfoMap
      */
-    public class ArtifactInfoMap {
+    public static class ArtifactInfoMap {
         private Map<String,AttributeInfoMap> map = new HashMap<>();
 
-        ArtifactInfoMap() { }
+        public ArtifactInfoMap() { }
         void addAttributeValue(String resource, String artifact, String attribute, String value) {
             if (!map.containsKey(resource))
                 map.put(resource, new AttributeInfoMap());

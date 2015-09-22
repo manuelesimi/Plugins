@@ -1,5 +1,6 @@
 package org.campagnelab.gobyweb.clustergateway.jobs.simulator;
 
+import org.campagnelab.gobyweb.clustergateway.submission.SubmissionRequest;
 import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.Plugins;
@@ -29,6 +30,7 @@ public class JobBuilderSimulator {
     private final ResourceConfig resourceConfig;
 
     private final PluginRegistry registry;
+    private SubmissionRequest.ArtifactInfoMap artifactsAttributes;
 
     /**
      *
@@ -91,7 +93,7 @@ public class JobBuilderSimulator {
             env.add(new Option(name, value, file.isDirectory? OptionKind.DIRECTORY : OptionKind.FILE));
         }
 
-        ArtifactInstallerSimulator.populateArtifactsOptions(resourceConfig, env);
+        ArtifactInstallerSimulator.populateArtifactsOptions(resourceConfig, env, this.artifactsAttributes);
     }
 
     private OptionKind detectOptionKind(org.campagnelab.gobyweb.plugins.xml.executables.Option option) {
@@ -155,8 +157,7 @@ public class JobBuilderSimulator {
 
         //extra-options coming from the SDK or input slots
         this.populateJobDefaultOptions(executableConfig, env);
-
-        ArtifactInstallerSimulator.populateArtifactsOptions(executableConfig, env);
+        ArtifactInstallerSimulator.populateArtifactsOptions(executableConfig, env, artifactsAttributes);
     }
 
     /**
@@ -203,4 +204,7 @@ public class JobBuilderSimulator {
             env.addAll(TaskDefaultOptions.get());
     }
 
+    public void setArtifactsAttributes(SubmissionRequest.ArtifactInfoMap artifactsAttributes) {
+        this.artifactsAttributes = artifactsAttributes;
+    }
 }
