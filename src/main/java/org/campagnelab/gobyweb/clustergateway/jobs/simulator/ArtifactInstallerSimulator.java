@@ -66,10 +66,12 @@ public class ArtifactInstallerSimulator {
         StringBuffer sb = new StringBuffer();
         for (Attribute attribute : artifactXml.attributes) {
             List<SubmissionRequest.AttributeValuePair> values = artifactsAttributes.getAttributes(resourceId, artifactXml.id);
-            for (SubmissionRequest.AttributeValuePair value : values) {
-                if (value.name.equalsIgnoreCase(attribute.name)) {
-                    sb.append("_");
-                    sb.append(value.value.toUpperCase());
+            if (values != null) {
+                for (SubmissionRequest.AttributeValuePair value : values) {
+                    if (value.name.equalsIgnoreCase(attribute.name)) {
+                        sb.append("_");
+                        sb.append(value.value.toUpperCase());
+                    }
                 }
             }
         }
