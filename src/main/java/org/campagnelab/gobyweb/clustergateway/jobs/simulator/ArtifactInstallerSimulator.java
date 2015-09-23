@@ -46,6 +46,9 @@ public class ArtifactInstallerSimulator {
 
         if (!resourceConfig.artifacts.isEmpty()) {
             for (Artifact artifactXml : resourceConfig.artifacts) {
+                //add var with the artifact name
+                String attributeKey = String.format("RESOURCES_ARTIFACTS_%s_%s",resourceConfig.getId(),artifactXml.id);
+                env.add(new Option(attributeKey, "", Option.OptionKind.STRING));
                 //add all attributes' values as variable
                 addOptionWithAttributesValues(resourceConfig.getId(), artifactXml, env, artifactsAttributes);
                 //add each attribute name as variable
