@@ -14,8 +14,8 @@ class ResourceSubmissionRequest extends SubmissionRequest {
     private String id;
 
     private String version;
+
     /**
-     *
      * @param resource the resource parameter coming from the command line.
      */
     protected ResourceSubmissionRequest(String resource) {
@@ -30,6 +30,9 @@ class ResourceSubmissionRequest extends SubmissionRequest {
     @Override
     protected int submit(JSAPResult config, Actions actions) throws Exception {
         ResourceConfig resourceConfig = DependencyResolver.resolveResource(id, version, version, version);
+        if (resourceConfig == null) {
+            throw new IllegalArgumentException("Unable to resolve resource: " + id + ":" + version);
+        }
         if (resourceConfig.isDisabled())
             throw new Exception(String.format("Resource %s is currently disabled", resourceConfig.getId()));
         actions.submitResourceInstall(resourceConfig, this.artifactsAttributes);
