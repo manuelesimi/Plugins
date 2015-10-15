@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/MultipleResourceSubmissionRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequestFactory.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequestFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/MultipleResourceSubmissionRequest.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/MultipleResourceSubmissionRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
     </list>
     <ignored path="plugins.iws" />
@@ -257,8 +256,8 @@
       <file leaf-file-name="MultipleResourceSubmissionRequest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/MultipleResourceSubmissionRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18367347">
-              <caret line="15" column="39" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.877551">
+              <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -1564,13 +1563,7 @@
       <workItem from="1440519492664" duration="31810000" />
       <workItem from="1442848782188" duration="649000" />
       <workItem from="1442849909929" duration="15481000" />
-      <workItem from="1444922863426" duration="2024000" />
-    </task>
-    <task id="LOCAL-00469" summary="Fix fileset command.">
-      <created>1409335595371</created>
-      <option name="number" value="00469" />
-      <option name="project" value="LOCAL" />
-      <updated>1409335595371</updated>
+      <workItem from="1444922863426" duration="2076000" />
     </task>
     <task id="LOCAL-00470" summary="Comply with new signature of registration methods in the FileSet API.">
       <created>1409336366921</created>
@@ -1860,11 +1853,17 @@
       <option name="project" value="LOCAL" />
       <updated>1444933899883</updated>
     </task>
-    <option name="localTasksCounter" value="518" />
+    <task id="LOCAL-00518" summary="Introduce MultipleResourceSubmissionRequest to handle dependencies resolution for multiple input resources.">
+      <created>1444934671700</created>
+      <option name="number" value="00518" />
+      <option name="project" value="LOCAL" />
+      <updated>1444934671700</updated>
+    </task>
+    <option name="localTasksCounter" value="519" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="721905000" />
+    <option name="totallyTimeSpent" value="721957000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1955,7 +1954,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Resolve mandatory GOBYWEB_SERVER_SIDE resource using the version indicated in PluginsLoaderSettings when installing a resource plugin.  Advance version to 2.5.1." />
     <MESSAGE value="Update parent to LATEST maven-parent. Upgrade plugins' dependencies to target java 1.7 and groovy 2.0." />
     <MESSAGE value="Update change log for release 2.5.1." />
     <MESSAGE value="Advance version to the next snapshot." />
@@ -1980,7 +1978,8 @@
     <MESSAGE value="Fix NPE when no attributes are specified in the gateway simulator." />
     <MESSAGE value="Cluster gateway simulator: add variable with the artifact name that points to the root folder of the artifact installation." />
     <MESSAGE value="Extend ClusterGateway's jsap interface and submission request factory to handle multiple resources from the command line." />
-    <option name="LAST_COMMIT_MESSAGE" value="Extend ClusterGateway's jsap interface and submission request factory to handle multiple resources from the command line." />
+    <MESSAGE value="Introduce MultipleResourceSubmissionRequest to handle dependencies resolution for multiple input resources." />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduce MultipleResourceSubmissionRequest to handle dependencies resolution for multiple input resources." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2461,8 +2460,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/MultipleResourceSubmissionRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18367347">
-          <caret line="15" column="39" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.877551">
+          <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
           <folding />
         </state>
       </provider>
