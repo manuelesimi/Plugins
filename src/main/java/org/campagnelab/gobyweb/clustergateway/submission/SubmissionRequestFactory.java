@@ -44,6 +44,12 @@ public class SubmissionRequestFactory {
             if (pluginInfo.getValue0().equalsIgnoreCase("resource")) {
                 if (pluginInfo.getSize() == 1)
                     request = new ResourceSubmissionRequest(pluginInfo.getValue1());
+                else {
+                    if (request == null)
+                        request = new MultipleResourceSubmissionRequest(pluginInfo.getValue1());
+                    else
+                        ((MultipleResourceSubmissionRequest) request).addResource(pluginInfo.getValue1());
+                }
             } else if  (pluginInfo.getValue0().equalsIgnoreCase("job")) {
                 AlignerConfig alignerConfig = pluginRegistry.findByTypedId(pluginInfo.getValue1(), AlignerConfig.class);
                 if (alignerConfig != null)
