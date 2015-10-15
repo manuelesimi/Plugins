@@ -119,6 +119,7 @@
             <list>true</list>
             <listSeparator>:</listSeparator>
             <longFlag>resource</longFlag>
+            <allowMultipleDeclarations>true</allowMultipleDeclarations>
             <help>The identifier and version number of the resource to install. In the format ID:VERSION.</help>
         </flaggedOption>
 

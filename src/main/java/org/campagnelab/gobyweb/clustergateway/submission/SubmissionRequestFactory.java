@@ -6,8 +6,11 @@ import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
+import org.javatuples.Pair;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A factory for submission requests.
@@ -35,23 +38,27 @@ public class SubmissionRequestFactory {
             }
         }
 
-        String[] pluginInfo = getPluginInfo(args);
+        List<Pair<String,String>> pluginsInfo = getPluginInfo(args);
         SubmissionRequest request = null;
-        if (pluginInfo[0].equalsIgnoreCase("resource")) {
-            request = new ResourceSubmissionRequest(pluginInfo[1]);
-        } else if  (pluginInfo[0].equalsIgnoreCase("job")) {
-            AlignerConfig alignerConfig = pluginRegistry.findByTypedId(pluginInfo[1], AlignerConfig.class);
-            if (alignerConfig != null)
-                request = new AlignerSubmissionRequest(alignerConfig);
+        for (Pair<String,String> pluginInfo : pluginsInfo) {
+            if (pluginInfo.getValue0().equalsIgnoreCase("resource")) {
+                if (pluginInfo.getSize() == 1)
+                    request = new ResourceSubmissionRequest(pluginInfo.getValue1());
+            } else if  (pluginInfo.getValue0().equalsIgnoreCase("job")) {
+                AlignerConfig alignerConfig = pluginRegistry.findByTypedId(pluginInfo.getValue1(), AlignerConfig.class);
+                if (alignerConfig != null)
+                    request = new AlignerSubmissionRequest(alignerConfig);
 
-            AlignmentAnalysisConfig analysisConfig = pluginRegistry.findByTypedId(pluginInfo[1], AlignmentAnalysisConfig.class);
-            if (analysisConfig != null)
-                request = new AlignmentAnalysisSubmissionRequest(analysisConfig);
+                AlignmentAnalysisConfig analysisConfig = pluginRegistry.findByTypedId(pluginInfo.getValue1(), AlignmentAnalysisConfig.class);
+                if (analysisConfig != null)
+                    request = new AlignmentAnalysisSubmissionRequest(analysisConfig);
 
-            TaskConfig taskConfig = pluginRegistry.findByTypedId(pluginInfo[1], TaskConfig.class);
-            if (taskConfig != null)
-                request =  new TaskSubmissionRequest(taskConfig);
+                TaskConfig taskConfig = pluginRegistry.findByTypedId(pluginInfo.getValue1(), TaskConfig.class);
+                if (taskConfig != null)
+                    request =  new TaskSubmissionRequest(taskConfig);
+            }
         }
+
         if (request != null) {
             request.setCommandLineArguments(args);
             return request;
@@ -78,15 +85,18 @@ public class SubmissionRequestFactory {
      * @param args
      * @return an array of two elements: the first one is the type of plugin (job or resource), the second one is the plugin ID
      */
-    private static String[] getPluginInfo(String[] args) {
+    private static List<Pair<String,String>> getPluginInfo(String[] args) {
+        List<Pair<String,String>> pluginsInfo = new ArrayList<>();
         for (int index=0; index<args.length; index++)  {
             if (args[index].equalsIgnoreCase("--job")) {
-                return new String[] {"job", args[++index]};
+                pluginsInfo.add(new Pair<String, String>("job",args[++index]));
             }
             if (args[index].equalsIgnoreCase("--resource")) {
-                return new String[] {"resource", args[++index]};
+                pluginsInfo.add(new Pair<String, String>("resource",args[++index]));
             }
         }
+        if (pluginsInfo.size() > 0)
+            return pluginsInfo;
         //if we are here, no plugins dir has been found
         throw new IllegalArgumentException("Error: One parameter between '--job' and '--resource' is required.");
 
