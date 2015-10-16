@@ -104,16 +104,16 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         FileUtils.writeStringToFile(new File(jobArea.getBasename(resourceJob.getTag()), constantsTemplate), writeConstants(jobArea, resourceJob));
 
-        copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, tempDir);
+        copyArtifactsPbRequests(resourceJob.getBaseSourceConfigs(), this.environmentScriptFilename, tempDir);
 
-        copyArtifactsPropertiesFiles(resourceJob.getSourceConfig(),resourceJob.getAttributes(),tempDir);
+        copyArtifactsPropertiesFiles(resourceJob.getAttributes(),tempDir);
 
         copyResourceFiles(registry.findByTypedIdAndVersion(SERVER_SIDE_TOOL[0], SERVER_SIDE_TOOL[1],ResourceConfig.class), tempDir);
 
-        copyResourceFiles(resourceJob.getSourceConfig(), tempDir);
+        copyResourcesFiles(resourceJob.getSourceConfigs(), tempDir);
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
 
-        File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfig()));
+        File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfigs()));
         FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "auto-options.sh")));
         //give execute permission to resourceJob scripts
         String[] binaryFiles = new String[]{"groovy", this.wrapperScript, "auto-options.sh", "constants.sh"};

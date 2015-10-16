@@ -177,15 +177,21 @@ abstract public class AbstractSubmitter implements Submitter {
     }
 
 
+    protected void copyArtifactsPbRequests(Config config, String envScriptFilename, File tempDir) throws IOException {
+        List<Config> configs = new ArrayList<>();
+        configs.add(config);
+        this.copyArtifactsPbRequests(configs,envScriptFilename,tempDir);
+
+    }
     /**
      * Generates the artifacts PB request file for the executable job and copies to destination directory.
      *
-     * @param config
+     * @param configs
      * @param envScriptFilename
      * @param tempDir
      * @throws IOException
      */
-    protected void copyArtifactsPbRequests(Config config, String envScriptFilename, File tempDir) throws IOException {
+    protected void copyArtifactsPbRequests(List<Config> configs, String envScriptFilename, File tempDir) throws IOException {
         if (this.pluginsDir == null) {
             throw new IOException("No plugins dir has been set for this submitter.");
         }
@@ -194,18 +200,25 @@ abstract public class AbstractSubmitter implements Submitter {
         if (envScriptFilename != null)
             helper.registerPluginEnvironmentCollectionScript(envScriptFilename);
         File installArtifactPbRequests;
+        Config config = configs.get(0);
         if ((config.getClass().isAssignableFrom(ExecutableConfig.class)) //same class
-                || (ExecutableConfig.class.isInstance(config)))  //or a sub-class
-            installArtifactPbRequests = helper.createPbRequestFile((ExecutableConfig) config);
-        else
-            installArtifactPbRequests = helper.createPbRequestFile((ResourceConfig) config);
+                    || (ExecutableConfig.class.isInstance(config)))  //or a sub-class
+                installArtifactPbRequests = helper.createPbRequestFile((ExecutableConfig) config);
+        else {
+            //as of version 2.5.5+, the SDK supports multiple plugins installation only for resources
+            if (configs.size() == 1) {
+                installArtifactPbRequests = helper.createPbRequestFile((ResourceConfig) config);
+            } else {
+                installArtifactPbRequests = helper.createPbRequestFileForMultipleResources((List<ResourceConfig>)(List<?>) configs);
+            }
+        }
 
         if (installArtifactPbRequests != null) {
             Files.copy(installArtifactPbRequests, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "artifacts-install-requests.pb")));
         }
     }
 
-    protected void copyArtifactsPropertiesFiles(ResourceConfig config, SubmissionRequest.ArtifactInfoMap attributes, File tempDir) throws IOException {
+    protected void copyArtifactsPropertiesFiles(SubmissionRequest.ArtifactInfoMap attributes, File tempDir) throws IOException {
         if (attributes == null)
             return;
         for (String resource : attributes.getResources()) {
@@ -328,6 +341,19 @@ abstract public class AbstractSubmitter implements Submitter {
     }
 
     /**
+     * Copies resource files to a destination directory. Handles directories appropriately.
+     *
+     * @param resourceConfigs
+     * @param tempDir
+     * @throws IOException
+     */
+    protected void copyResourcesFiles(List<ResourceConfig> resourceConfigs, File tempDir) throws IOException {
+        for (ResourceConfig resourceConfig : resourceConfigs) {
+            this.copyResourceFiles(resourceConfig,tempDir);
+        }
+    }
+
+    /**
      * Copy resource files to a destination directory. Handles directories appropriately.
      *
      * @param executableConfig
@@ -425,8 +451,8 @@ abstract public class AbstractSubmitter implements Submitter {
                 .replaceAll("%%JOB_DIR%%", jobArea.getBasename(job.getTag()))
                 .replaceAll("%%TAG%%", job.getTag())
                 .replaceAll("%%ARTIFACT_REPOSITORY_DIR%%", artifactRepositoryPath)
-                .replaceAll("%%PLUGIN_ID%%", job.getSourceConfig().getId())
-                .replaceAll("%%PLUGIN_VERSION%%", job.getSourceConfig().getVersion());
+                .replaceAll("%%PLUGIN_ID%%", job.getSourceConfigs().get(0).getId())
+                .replaceAll("%%PLUGIN_VERSION%%", job.getSourceConfigs().get(0).getVersion());
     }
 
     /**

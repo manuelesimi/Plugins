@@ -49,7 +49,7 @@ class MultipleResourceSubmissionRequest extends SubmissionRequest {
                 throw new Exception(String.format("Resource %s is currently disabled", resourceConfig.getId()));
             configs.add(resourceConfig);
         }
-        //actions.submitResourceInstall(resourceConfig, this.artifactsAttributes);
+        actions.submitMultipleResourceInstall(configs, this.artifactsAttributes);
         return 0;
     }
 }

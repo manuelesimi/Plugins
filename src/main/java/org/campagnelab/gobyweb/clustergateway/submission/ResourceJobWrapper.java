@@ -10,6 +10,7 @@ import org.campagnelab.gobyweb.plugins.xml.executables.Option;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -22,17 +23,24 @@ import static org.campagnelab.gobyweb.plugins.PluginLoaderSettings.SERVER_SIDE_T
  *         Time: 5:20 PM
  */
 public class ResourceJobWrapper extends ExecutableConfig {
-    private ResourceConfig resource;
+    private List<ResourceConfig> resources;
 
     @Override
     public String getId() {
-        return resource.getId();
+        return resources.get(0).getId();
     }
 
     public ResourceJobWrapper(ResourceConfig sourceConfig) {
         super();
-        this.resource = sourceConfig;
-        this.id = resource.getId();
+        this.resources = new ArrayList<>();
+        this.resources.add(sourceConfig);
+        this.id = resources.get(0).getId();
+    }
+
+    public ResourceJobWrapper(List<ResourceConfig> sourceConfigs) {
+        super();
+        this.resources = sourceConfigs;
+        this.id = resources.get(0).getId();
     }
 
     @Override
@@ -47,12 +55,12 @@ public class ResourceJobWrapper extends ExecutableConfig {
 
     @Override
     public String toString() {
-        return "Wrapping resource for job execution: " + resource;
+        return "Wrapping resource for job execution: " + resources.get(0);
     }
 
     @Override
     public String getHumanReadableConfigType() {
-        return resource.getHumanReadableConfigType();
+        return resources.get(0).getHumanReadableConfigType();
     }
 
     /**
@@ -66,7 +74,10 @@ public class ResourceJobWrapper extends ExecutableConfig {
 
     @Override
     public List<PluginFile> getFiles() {
-        return resource.getFiles();
+      List<PluginFile> files = new ArrayList<>();
+      for (ResourceConfig r : resources)
+        files.addAll(r.getFiles());
+      return files;
     }
 
     @Override
@@ -87,15 +98,16 @@ public class ResourceJobWrapper extends ExecutableConfig {
         mercuryRef.versionExactly = mercury.getVersion();
         result.add(mercuryRef);
 
+        for (ResourceConfig r : resources) {
+            Resource thisResource = new Resource();
+            thisResource.id = r.getId();
+            thisResource.versionAtLeast = r.getVersion();
+            thisResource.versionExactly = r.getVersion();
+            result.add(thisResource);
 
-        Resource thisResource = new Resource();
-        thisResource.id = resource.getId();
-        thisResource.versionAtLeast = resource.getVersion();
-        thisResource.versionExactly = resource.getVersion();
-        result.add(thisResource);
+            result.addAll(r.getRequiredResources());
+        }
 
-
-        result.addAll(resource.getRequiredResources());
         return result;
     }
 }

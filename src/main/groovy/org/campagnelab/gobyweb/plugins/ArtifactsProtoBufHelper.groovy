@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.artifacts.Artifacts;
 import org.campagnelab.gobyweb.artifacts.BuildArtifactRequest
+import org.campagnelab.gobyweb.plugins.xml.Config
 import org.campagnelab.gobyweb.plugins.xml.resources.Artifact;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
@@ -85,16 +86,46 @@ public class ArtifactsProtoBufHelper {
      * dependency and order resource artifact installation such that resources that must be installed before
      * others are so. The client is responsible for deleting the result file when it is no longer needed.
      * @param resourceConfig A resource that has artifacts.
-     * @return null if the plugin does not require any artifacts, or a unique ile containing pb requests.
+     * @return null if the plugin does not require any artifacts, or a unique file containing pb requests.
      */
     public File createPbRequestFile(ResourceConfig resourceConfig) {
-        BuildArtifactRequest requestBuilder = this.createArtifactBuilder();
+        List<ResourceConfig> configs = new ArrayList<>();
+        configs.add(resourceConfig);
+        return this.createPbRequestFileForMultipleResources(configs);
+
+        /*BuildArtifactRequest requestBuilder = this.createArtifactBuilder();
         def uniqueFile = File.createTempFile(ARTIFACTS_INSTALL_REQUESTS, ".pb");
         Set<String> alreadyInstalled=new HashSet<String>();
         buildPbRequest(requestBuilder, resourceConfig, alreadyInstalled)
         // the resource has artifacts, so we write these to the PB request:
         buildPbRequest(resourceConfig, requestBuilder,alreadyInstalled, true)
+        if (!requestBuilder.isEmpty()) {
+            requestBuilder.save(uniqueFile);
+            LOG.debug(requestBuilder.toString());
+            return uniqueFile
 
+        } else {
+            return null;
+        }*/
+    }
+
+
+    /**
+     * Create artifacts install requests for the plugins given as argument. Traverse the graph of resource
+     * dependency and order resource artifact installation such that resources that must be installed before
+     * others are so. The client is responsible for deleting the result file when it is no longer needed.
+     * @param resourceConfigs Resources that have artifacts.
+     * @return null if the plugin does not require any artifacts, or a unique file containing pb requests.
+     */
+    public File createPbRequestFileForMultipleResources(List<ResourceConfig> resourceConfigs) {
+        BuildArtifactRequest requestBuilder = this.createArtifactBuilder();
+        def uniqueFile = File.createTempFile(ARTIFACTS_INSTALL_REQUESTS, ".pb");
+        Set<String> alreadyInstalled=new HashSet<String>();
+        for (ResourceConfig config : resourceConfigs) {
+            buildPbRequest(requestBuilder, config, alreadyInstalled)
+            // the resource has artifacts, so we write these to the PB request:
+            buildPbRequest(config, requestBuilder,alreadyInstalled, true)
+        }
         if (!requestBuilder.isEmpty()) {
             requestBuilder.save(uniqueFile);
             LOG.debug(requestBuilder.toString());
@@ -104,6 +135,7 @@ public class ArtifactsProtoBufHelper {
             return null;
         }
     }
+
     /**
      * Create artifacts install requests for the plugin given as argument. Traverse the graph of resource
      * dependency and order resource artifact installation such that resources that must be installed before
@@ -200,4 +232,5 @@ public class ArtifactsProtoBufHelper {
     private BuildArtifactRequest createArtifactBuilder() {
         return this.webServerHostname ? new BuildArtifactRequest(webServerHostname) : new BuildArtifactRequest();
     }
+
 }

@@ -15,10 +15,7 @@ import org.campagnelab.gobyweb.plugins.xml.tasks.TaskConfig;
 import java.io.File;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Execute actions requested through the command line for ClusterGateway.
@@ -212,6 +209,19 @@ final class Actions {
      * @throws Exception
      */
     protected void submitResourceInstall(ResourceConfig config, SubmissionRequest.ArtifactInfoMap artifactsAttributes) throws Exception {
+        List<ResourceConfig> singleton = new ArrayList<>();
+        singleton.add(config);
+        this.submitMultipleResourceInstall(singleton,artifactsAttributes);
+    }
+
+    /**
+     * Submits a resource for installation.
+     *
+     * @param config      the resource
+     * @param artifactsAttributes
+     * @throws Exception
+     */
+    protected void submitMultipleResourceInstall(List<ResourceConfig> config, SubmissionRequest.ArtifactInfoMap artifactsAttributes) throws Exception {
 
         ResourceJob resourceInstance = new ResourceJob(config);
         if (artifactsAttributes.getResources().size() > 0)

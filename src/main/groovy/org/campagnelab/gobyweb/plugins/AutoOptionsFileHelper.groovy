@@ -28,24 +28,14 @@ class AutoOptionsFileHelper {
     AutoOptionsFileHelper(PluginRegistry registry) {
         this.registry = registry
     }
-/**
- * Write a bash shell script with environment variable definitions for each automatic plugin option.
- * @param pluginConfig The plugin for which user-defined option values should be written.
- * @param environment the job environment defined with the command line options. If variables are there, their value replaces
- *          the default value defined in the plugin configuration.
- *
- * @return The temporary file where options have been written.
- */
-    public File generateAutoOptionsFile(ExecutableConfig pluginConfig, String attributesPrefix = null,
-                           Map<String, String> attributes = null, JobRuntimeEnvironment environment = null) {
+
+    private void writeOptionsFromResource(ExecutableConfig pluginConfig, PrintWriter writer, String attributesPrefix = null,
+                                        Map<String, String> attributes = null, JobRuntimeEnvironment environment = null) {
         // call validate to force the update of user-defined values from default values.
         pluginConfig.validate(new Vector<String>())
-        File autoOptionTmpFile = new File("/tmp/auto-options-${ICBStringUtils.generateRandomString(15)}.sh")
-
-        PrintWriter writer = new PrintWriter(autoOptionTmpFile);
 
         List<Option> optionsToProcess =
-            attributes == null ? pluginConfig.userSpecifiedOptions() : pluginConfig.options()
+                attributes == null ? pluginConfig.userSpecifiedOptions() : pluginConfig.options()
         for (Option option : optionsToProcess) {
 
             def optionValue
@@ -101,6 +91,44 @@ class AutoOptionsFileHelper {
         writer.println("# The plugin has access to the following resources: ")
         for (Resource resourceRef : pluginConfig.getRequiredResources()) {
             writeResourceFileVariables(resourceRef, writer)
+        }
+
+    }
+
+    /**
+     * Writes a bash shell script with environment variable definitions for each automatic plugin option.
+     * @param pluginConfig The plugin for which user-defined option values should be written.
+     * @param environment the job environment defined with the command line options. If variables are there, their value replaces
+     *          the default value defined in the plugin configuration.
+     *
+     * @return The temporary file where options have been written.
+     */
+    public File generateAutoOptionsFile(ExecutableConfig pluginConfig, String attributesPrefix = null,
+                                        Map<String, String> attributes = null, JobRuntimeEnvironment environment = null) {
+
+        File autoOptionTmpFile = new File("/tmp/auto-options-${ICBStringUtils.generateRandomString(15)}.sh")
+        PrintWriter writer = new PrintWriter(autoOptionTmpFile);
+            this.writeOptionsFromResource(pluginConfig, writer, attributesPrefix, attributes, environment);
+        writer.flush()
+        return autoOptionTmpFile;
+    }
+
+
+    /**
+     * Writes a bash shell script with environment variable definitions for each automatic plugin option.
+     * @param pluginConfig The plugin for which user-defined option values should be written.
+     * @param environment the job environment defined with the command line options. If variables are there, their value replaces
+     *          the default value defined in the plugin configuration.
+     *
+     * @return The temporary file where options have been written.
+     */
+    public File generateAutoOptionsFile(List<ExecutableConfig> pluginConfigs, String attributesPrefix = null,
+                           Map<String, String> attributes = null, JobRuntimeEnvironment environment = null) {
+
+        File autoOptionTmpFile = new File("/tmp/auto-options-${ICBStringUtils.generateRandomString(15)}.sh")
+        PrintWriter writer = new PrintWriter(autoOptionTmpFile);
+        for (ExecutableConfig pluginConfig : pluginConfigs) {
+            this.writeOptionsFromResource(pluginConfig, writer, attributesPrefix, attributes, environment);
         }
         writer.flush()
         return autoOptionTmpFile;

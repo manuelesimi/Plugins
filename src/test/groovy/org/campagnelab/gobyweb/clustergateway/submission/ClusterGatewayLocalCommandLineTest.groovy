@@ -60,6 +60,17 @@ class ClusterGatewayLocalCommandLineTest {
         //assertTrue(new File("test-results/gateway-local-command-line/GOBYWEB_SGE_JOBS/junit/T/TJSOHOF/INDEX.properties").exists())
     }
 
+    @Test
+    public void installLocalMultipleResourceWithArtifactsAndAttributes() {
+        String attributes = "--attribute-value LAST_INDEX.TOPLEVEL_IDS.organism=HOMO_SAPIENS --attribute-value LAST_INDEX.TOPLEVEL_IDS.reference-build=1000GENOMES --attribute-value LAST_INDEX.TOPLEVEL_IDS.ensembl-version-number=37 ";
+        attributes += "--attribute-value LAST_INDEX.INDEX.organism=HOMO_SAPIENS --attribute-value LAST_INDEX.INDEX.reference-build=1000GENOMES --attribute-value LAST_INDEX.INDEX.ensembl-version-number=37 ";
+        attributes += "--attribute-value ENSEMBL_GENOMES.TOPLEVEL.organism=HOMO_SAPIENS --attribute-value ENSEMBL_GENOMES.TOPLEVEL.reference-build=1000GENOMES --attribute-value ENSEMBL_GENOMES.TOPLEVEL.ensembl-version-number=37 ";
+        attributes += "--attribute-value FAI_INDEXED_GENOMES.SAMTOOLS_FAI_INDEX.organism=HOMO_SAPIENS --attribute-value FAI_INDEXED_GENOMES.SAMTOOLS_FAI_INDEX.reference-build=1000GENOMES --attribute-value FAI_INDEXED_GENOMES.SAMTOOLS_FAI_INDEX.ensembl-version-number=37 ";
+
+        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(attributes + "--resource LAST_INDEX --resource PLAST")));
+        //assertTrue(new File("test-results/gateway-local-command-line/GOBYWEB_SGE_JOBS/junit/T/TJSOHOF/INDEX.properties").exists())
+    }
+
     private static String[] buildClusterGatewayArgs(String additionalCommands, String pluginRoot=gatewayPluginRoot,
                                                     boolean addHost=true) {
         ("--job-area ${new File(resultsDir).getAbsolutePath()}/GOBYWEB_SGE_JOBS " +

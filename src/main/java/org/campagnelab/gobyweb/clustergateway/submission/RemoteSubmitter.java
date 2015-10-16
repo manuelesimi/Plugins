@@ -108,15 +108,15 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
         AutoOptionsFileHelper helper = new AutoOptionsFileHelper(registry);
 
-        copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, tempDir);
+        copyArtifactsPbRequests(resourceJob.getBaseSourceConfigs(), this.environmentScriptFilename, tempDir);
 
         copyResourceFiles(registry.findByTypedId(SERVER_SIDE_TOOL[0], ResourceConfig.class), tempDir);
 
-        copyArtifactsPropertiesFiles(resourceJob.getSourceConfig(),resourceJob.getAttributes(),tempDir);
+        copyArtifactsPropertiesFiles(resourceJob.getAttributes(),tempDir);
 
-        copyResourceFiles(resourceJob.getSourceConfig(), tempDir);
+        copyResourcesFiles(resourceJob.getSourceConfigs(), tempDir);
 
-        File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfig()));
+        File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfigs()));
         FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "auto-options.sh")));
 
         pushJobDir(tempDir,resourceJob,jobArea);
