@@ -106,7 +106,7 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
      * @return the options
      * @deprecated see #ExecutableConfig.getOptions()
      */
-    public List<Option> options() {
+    public synchronized List<Option> options() {
         if (!this.areOptionsDecorated) {
             this.decorateOptions(this.options);
             this.areOptionsDecorated = true;
@@ -347,7 +347,7 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
      * Gets the output of the Executable I/O Schema.
      * @return
      */
-    public ExecutableInputSchema getInput() {
+    public synchronized ExecutableInputSchema getInput() {
         if (this.executableIOSchema.inputSchema == null)
             this.executableIOSchema.inputSchema = new ExecutableInputSchema();
         if (!this.isInputDecorated) {
@@ -362,13 +362,13 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
      * the Executable I/O Schema's input
      * @param inputSchema
      */
-    protected void decorateInput(ExecutableInputSchema inputSchema) {}
+    protected synchronized void decorateInput(ExecutableInputSchema inputSchema) {}
 
     /**
      * Sets the output of the Executable I/O Schema.
      * @param outputSchema
      */
-    public void setOutput(ExecutableOutputSchema outputSchema)  {
+    public synchronized void setOutput(ExecutableOutputSchema outputSchema)  {
         this.executableIOSchema.outputSchema = outputSchema;
     }
 
@@ -376,7 +376,7 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
      * Gets the output of the Executable I/O Schema.
      * @return
      */
-    public ExecutableOutputSchema getOutput() {
+    public synchronized ExecutableOutputSchema getOutput() {
         if (this.executableIOSchema.outputSchema == null)
             this.executableIOSchema.outputSchema = new ExecutableOutputSchema();
         this.decorateOutput(this.executableIOSchema.outputSchema);
@@ -388,7 +388,7 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
      * the Executable I/O Schema's input.
      * @param outputSchema
      */
-    protected void decorateOutput(ExecutableOutputSchema outputSchema) {
+    protected synchronized void decorateOutput(ExecutableOutputSchema outputSchema) {
         if (!this.isOutputDecorated) {
             this.addJobMetadataSlot(outputSchema);
             this.isOutputDecorated = true;
