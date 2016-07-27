@@ -42,7 +42,7 @@ public class SubmissionRequestFactory {
         SubmissionRequest request = null;
         for (Pair<String,String> pluginInfo : pluginsInfo) {
             if (pluginInfo.getValue0().equalsIgnoreCase("resource")) {
-                if (pluginInfo.getSize() == 1)
+                if (pluginsInfo.size() == 1)
                     request = new ResourceSubmissionRequest(pluginInfo.getValue1());
                 else {
                     if (request == null)
