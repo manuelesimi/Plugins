@@ -31,7 +31,7 @@ class MultipleResourceSubmissionRequest extends SubmissionRequest {
         String token[] = resource.split(":");
         Pair<String,String> r = new Pair<>(token[0], null);
         if (token.length >= 2) {
-            r.setAt1(token[1]);
+            r = r.setAt1(token[1]);
         }
         this.resources.add(r);
     }
