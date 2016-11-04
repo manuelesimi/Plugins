@@ -35,10 +35,14 @@ public class VariableHelper {
     public void writeVariables(final Map<String, Object> replacements, Writer writer) {
         replacements.keySet().each { constantName ->
             String key = constantName.replaceAll("%", "").toString()
+            LOG.debug("Writing variable ${key} to constants.sh. ");
+
             String value = replacements.get(constantName.toString()).toString()
+            LOG.debug("Writing variable value ${value}. ");
+
             value=transform(value,replacements)
             if (value.contains("\n") || value.contains("\"")) {
-                LOG.debug("Not writting variable ${key} to constants.sh because it contains new line or quote character. ");
+                LOG.debug("Not writing variable ${key} to constants.sh because it contains new line or quote character. ");
             } else {
                 writer.append("export ${key}=\"${value}\" \n");
             }
@@ -51,15 +55,21 @@ public class VariableHelper {
     }
 
     public String transform(String value, final Map<String, Object> replacements) {
-        int firstIndex = value.indexOf("%")
-        if (firstIndex != -1) {
-            int secondIndex = value.indexOf("%", firstIndex + 1)
-            String containedKey = value.substring(firstIndex + 1, secondIndex)
-            transform(substituteKeyValue(value, containedKey, replacements),
-                    replacements)
-        } else {
+        try {
+            int firstIndex = value.indexOf("%")
+            if (firstIndex != -1) {
+                int secondIndex = value.indexOf("%", firstIndex + 1)
+                String containedKey = value.substring(firstIndex + 1, secondIndex)
+                transform(substituteKeyValue(value, containedKey, replacements),
+                        replacements)
+            } else {
+                return value
+            }
+        } catch (Exception e) {
+            LOG.warn("Failed to tranform value ${value}")
             return value
         }
+
     }
 
     private String substituteKeyValue(String value, String containedKey, Map<String, Object> replacements) {
