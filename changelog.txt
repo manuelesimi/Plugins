@@ -1,3 +1,8 @@
+2.6.2 (open)
+    Tolerate export's variable with a '%' in the value. More in general, if the transformation of the value fails (for whatever reason), the value is written unchanged in exports.sh.
+    Correct the condition that decides if we have to go for single or multiple resources installation.
+    Upgrade filesets, artifacts and protbuf dependencies.
+
 2.5.4 (Sept 2015)
     Introduce artifact-value option for resource installation.
     Remove PLUGINS_ prefix to env variable names for resource files in the cluster simulator.
