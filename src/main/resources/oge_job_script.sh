@@ -290,34 +290,36 @@ function run_alignment_analysis_combine {
     jobDieUponError "failed to combine results (${HOSTNAME})"
 
     %COPY_PLUGIN_OUTPUT_FILES%
+    if [ "${GENERATE_INDEX}" == "true" ]; then
 
-    mkdir ${TMPDIR}/import-db
-    cp ${RESULT_DIR}/${TAG}*.tsv ${TMPDIR}/import-db/
-    cp ${RESULT_DIR}/${TAG}*.vcf.gz ${TMPDIR}/import-db/
+        mkdir ${TMPDIR}/import-db
+        cp ${RESULT_DIR}/${TAG}*.tsv ${TMPDIR}/import-db/
+        cp ${RESULT_DIR}/${TAG}*.vcf.gz ${TMPDIR}/import-db/
 
-    #Make a sqlite database into ${TMPDIR}/import-db/ of any file with ${TAG} and ${RESULT_FILE_EXTENSION} (tsv or vcf file):
-    #${RESULT_FILE_EXTENSION} will be "tsv" or "vcf.gz"
-    export QUEUE_WRITER
-    ${RESOURCES_GROOVY_EXECUTABLE} -cp ${GOBY_DIR}:${RESOURCES_GOBYWEB_SERVER_SIDE_GLOBAL_GOBY_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_ICB_GROOVY_SUPPORT_JAR} \
-           ${RESOURCES_GOBYWEB_SERVER_SIDE_TSV_VCF_TO_SQLITE} \
-           --job-start-status "${JOB_START_STATUS}" \
-           --queue-writer-prefix-variable QUEUE_WRITER \
-           --export-format lucene \
-           ${TMPDIR}/import-db/${TAG}-*.tsv  ${TMPDIR}/import-db/${TAG}-*.vcf.gz
-    jobDieUponError "failed to convert results to database"
-    cp ${TMPDIR}/import-db/${TAG}*.db ${RESULT_DIR}/
+        #Make a sqlite database into ${TMPDIR}/import-db/ of any file with ${TAG} and ${RESULT_FILE_EXTENSION} (tsv or vcf file):
+        #${RESULT_FILE_EXTENSION} will be "tsv" or "vcf.gz"
+        export QUEUE_WRITER
+        ${RESOURCES_GROOVY_EXECUTABLE} -cp ${GOBY_DIR}:${RESOURCES_GOBYWEB_SERVER_SIDE_GLOBAL_GOBY_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_ICB_GROOVY_SUPPORT_JAR} \
+               ${RESOURCES_GOBYWEB_SERVER_SIDE_TSV_VCF_TO_SQLITE} \
+               --job-start-status "${JOB_START_STATUS}" \
+               --queue-writer-prefix-variable QUEUE_WRITER \
+               --export-format lucene \
+               ${TMPDIR}/import-db/${TAG}-*.tsv  ${TMPDIR}/import-db/${TAG}-*.vcf.gz
+        jobDieUponError "failed to convert results to database"
+        cp ${TMPDIR}/import-db/${TAG}*.db ${RESULT_DIR}/
 
-    if [ ! $? -eq 0 ]; then
-       # remove any previous index:
-       rm -fr ${TMPDIR}/${TAG}*.lucene.index
-       cp -r ${TMPDIR}/import-db/${TAG}*.lucene.index ${RESULT_DIR}/
-       dieUponError "Could not copy db/lucene to ${RESULT_DIR} directory (this disk might be full)."
+        if [ ! $? -eq 0 ]; then
+           # remove any previous index:
+           rm -fr ${TMPDIR}/${TAG}*.lucene.index
+           cp -r ${TMPDIR}/import-db/${TAG}*.lucene.index ${RESULT_DIR}/
+           dieUponError "Could not copy db/lucene to ${RESULT_DIR} directory (this disk might be full)."
+        fi
+        ls -lrt
+
+        ls -lrt  ${TMPDIR}/import-db
+
+        ls -lrt  ${TMPDIR}/import-db/*
     fi
-    ls -lrt
-
-    ls -lrt  ${TMPDIR}/import-db
-
-    ls -lrt  ${TMPDIR}/import-db/*
 
     %PUSH_PLUGIN_OUTPUT_FILES%
 
