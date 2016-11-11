@@ -173,6 +173,8 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         environment.put("SPLIT_PROCESS_COMBINE", analysisConfig.splitProcessCombine);
         environment.put("RESULT_FILE_EXTENSION", analysisConfig.producesTabDelimitedOutput ?
                 "tsv" : analysisConfig.producesVariantCallingFormatOutput ? "vcf.gz" : "unknown");
+        environment.put("GENERATE_INDEX", analysisConfig.producesTabDelimitedOutput || analysisConfig.producesVariantCallingFormatOutput ?
+                "true" : "false");
         environment.put("PUSH_PLUGIN_OUTPUT_FILES", this.generatePluginOutputPushStatements());
         environment.put("COPY_PLUGIN_OUTPUT_FILES", this.generatePluginOutputCopyStatements());
         FileSetAPI api = FileSetAPI.getReadOnlyAPI(fileSetArea);
