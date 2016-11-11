@@ -93,7 +93,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
             command.append(String.format("if [ -e %s ]; then\n",file.filename));
             command.append(String.format("for f in %s; do\n" +
                     "    /bin/mv \"$f\" ${RESULT_DIR}/${TAG}-\"$f\" ; \n" +
-                    "done",file.filename ));
+                    "done\n",file.filename ));
             command.append("fi\n");
         }
         return command.toString();
