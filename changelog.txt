@@ -1,7 +1,10 @@
-2.4.3 (2016)
+2.4.3 (open)
     Tolerate export's variable with a '%' in the value when writing exports.sh.
     Update dependencies on icb-groovy-support and icb-util.
     Do not consider disabled plugins during dependency resolution.
+    Accept folders as output of a plugin's execution.
+    New GENERATE_INDEX variable in constants.sh. Do not try to build an index if the variable is false.
+    Copy results that match a bash pattern in the result dir after the analysis' combine phase.
 
 2.4.2 (Jul 16 2015)
     Integration with filesets library 1.3.1 to create metadata aggregation before executing tasks and analyses.
