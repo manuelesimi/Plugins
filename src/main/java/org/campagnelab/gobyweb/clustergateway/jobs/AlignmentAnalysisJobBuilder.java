@@ -10,6 +10,7 @@ import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.xml.alignmentanalyses.AlignmentAnalysisConfig;
 import org.campagnelab.gobyweb.plugins.xml.executables.OutputFile;
+import org.campagnelab.gobyweb.plugins.xml.executables.Slot;
 
 import java.io.IOException;
 import java.util.*;
@@ -176,8 +177,7 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         environment.put("SPLIT_PROCESS_COMBINE", analysisConfig.splitProcessCombine);
         environment.put("RESULT_FILE_EXTENSION", analysisConfig.producesTabDelimitedOutput ?
                 "tsv" : analysisConfig.producesVariantCallingFormatOutput ? "vcf.gz" : "unknown");
-        environment.put("GENERATE_INDEX", analysisConfig.producesTabDelimitedOutput || analysisConfig.producesVariantCallingFormatOutput ?
-                "true" : "false");
+        environment.put("GENERATE_INDEX", this.generateIndex() ? "true" : "false");
         environment.put("PUSH_PLUGIN_OUTPUT_FILES", this.generatePluginOutputPushStatements());
         environment.put("COPY_PLUGIN_OUTPUT_FILES", this.generatePluginOutputCopyStatements());
         FileSetAPI api = FileSetAPI.getReadOnlyAPI(fileSetArea);
@@ -312,6 +312,19 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         return true;
     }
 
+    /**
+     * Detect if the plugin will generate a lucene index
+     * @return
+     */
+    private boolean generateIndex() {
+        for (OutputFile file : this.analysisConfig.outputFiles.files) {
+           if ("application/lucene-index".equals(file.getFileType()))
+               return true;
+        }
+
+
+        return false;
+    }
     /**
      * Makes a name compliant with bash rules.
      * @param name
