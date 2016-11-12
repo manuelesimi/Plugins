@@ -340,26 +340,21 @@ function push_analysis_results {
         fi
     done
 
-    stat -t "${TMPDIR}/import-db/${TAG}-${file_to_push}"  >/dev/null 2>&1 && PUSH_FROM_IMPORT_DB="true"
-
-    stat -t "${JOB_DIR}/results/${TAG}/${TAG}-${file_to_push}" >/dev/null 2>&1 && PUSH_FROM_RESULT_DIR="true"
-
-    #push the file
-    if [ "${PUSH_FROM_IMPORT_DB}" == "true" ]; then
+    stat -t "${TMPDIR}/import-db/${TAG}-${file_to_push}"  >/dev/null 2>&1
+    if [ $? != 0 ]; then
        local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${TMPDIR}/import-db/${TAG}-${file_to_push}`
        dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAGS}"
        echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAGS}"
        ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${slot}:[${REGISTERED_TAGS}]"
-    elif [ "${PUSH_FROM_RESULT_DIR}" == "true" ]; then
+    fi
+
+    stat -t "${JOB_DIR}/results/${TAG}/${TAG}-${file_to_push}" >/dev/null 2>&1
+    if [ $? != 0 ]; then
         local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${JOB_DIR}/results/${TAG}/${TAG}-${file_to_push}`
         dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAGS}"
         echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAGS}"
         ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${slot}:[${REGISTERED_TAGS}]"
-    else
-        if [ "${mandatory}" == "true" ]; then
-              echo "ERROR: Mandatory file ${file_to_push} was not produced by the job."
-        fi;
-    fi;
+    fi
 }
 
 
