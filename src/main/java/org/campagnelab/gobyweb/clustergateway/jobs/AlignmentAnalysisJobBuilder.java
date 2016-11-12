@@ -92,11 +92,11 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
     private String generatePluginOutputCopyStatements() {
         StringBuilder command = new StringBuilder();
         for (OutputFile file : this.analysisConfig.outputFiles.files) {
-            command.append(String.format("if [ -e %s ]; then\n",file.filename));
             command.append(String.format("for f in %s; do\n" +
-                    "    /bin/mv \"$f\" ${RESULT_DIR}/${TAG}-\"$f\" ; \n" +
+                    "    if [ -e \"$f\" ]; then\n" +
+                    "        /bin/mv \"$f\" ${RESULT_DIR}/${TAG}-\"$f\" ; \n" +
+                    "    fi\n" +
                     "done\n",file.filename ));
-            command.append("fi\n");
         }
         return command.toString();
     }
