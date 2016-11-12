@@ -302,11 +302,6 @@ function run_alignment_analysis_combine {
            cp -r ${TMPDIR}/import-db/${TAG}*.lucene.index ${RESULT_DIR}/
            dieUponError "Could not copy db/lucene to ${RESULT_DIR} directory (this disk might be full)."
         fi
-        ls -lrt
-
-        ls -lrt  ${TMPDIR}/import-db
-
-        ls -lrt  ${TMPDIR}/import-db/*
     fi
 
     %PUSH_PLUGIN_OUTPUT_FILES%
@@ -328,21 +323,34 @@ function push_analysis_results {
     additional_attributes=$4 #-a TABLENAME=$tablename
 
     #prefix with tag if needed
-    if [ -e "${TMPDIR}/import-db/${file_to_push}" ]; then
-       mv "${TMPDIR}/import-db/${file_to_push}" "${TMPDIR}/import-db/${TAG}-${file_to_push}"
-    elif [ -e "${TMPDIR}/${file_to_push}" ]; then
-       mv "${TMPDIR}/${file_to_push}" "${TMPDIR}/import-db/${TAG}-${file_to_push}"
-    elif [ -e "${TMPDIR}/${TAG}-${file_to_push}" ]; then
-       mv "${TMPDIR}/${TAG}-${file_to_push}" "${TMPDIR}/import-db/${TAG}-${file_to_push}"
-    fi
+    for f in "${TMPDIR}/import-db/${file_to_push}"; do
+        if [ -e "$f" ]; then
+             mv "${TMPDIR}/import-db/${f}" "${TMPDIR}/import-db/${TAG}-${f}"
+        fi
+    done
+
+    for f in "${TMPDIR}/${file_to_push}"; do
+        if [ -e "$f" ]; then
+             mv "${TMPDIR}/${f}" "${TMPDIR}/import-db/${TAG}-${f}"
+        fi
+    done
+    for f in "${TMPDIR}/${TAG}-${file_to_push}"; do
+        if [ -e "$f" ]; then
+             mv "${TMPDIR}/${TAG}-${f}" "${TMPDIR}/import-db/${TAG}-${f}"
+        fi
+    done
+
+    stat -t "${TMPDIR}/import-db/${TAG}-${file_to_push}"  >/dev/null 2>&1 && PUSH_FROM_IMPORT_DB="true"
+
+    stat -t "${JOB_DIR}/results/${TAG}/${TAG}-${file_to_push}" >/dev/null 2>&1 && PUSH_FROM_RESULT_DIR="true"
 
     #push the file
-    if [ -e "${TMPDIR}/import-db/${TAG}-${file_to_push}" ]; then
+    if [ "${PUSH_FROM_IMPORT_DB}" == "true" ]; then
        local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${TMPDIR}/import-db/${TAG}-${file_to_push}`
        dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAGS}"
        echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAGS}"
        ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${slot}:[${REGISTERED_TAGS}]"
-    elif [ -e "${JOB_DIR}/results/${TAG}/${TAG}-${file_to_push}" ]; then
+    elif [ "${PUSH_FROM_RESULT_DIR}" == "true" ]; then
         local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${JOB_DIR}/results/${TAG}/${TAG}-${file_to_push}`
         dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAGS}"
         echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAGS}"
