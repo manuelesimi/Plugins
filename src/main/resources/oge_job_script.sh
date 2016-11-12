@@ -341,7 +341,7 @@ function push_analysis_results {
     done
 
     stat -t "${TMPDIR}/import-db/${TAG}-${file_to_push}"  >/dev/null 2>&1
-    if [ $? != 0 ]; then
+    if [ $? -eq 0 ]; then
        local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${TMPDIR}/import-db/${TAG}-${file_to_push}`
        dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAGS}"
        echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAGS}"
@@ -349,7 +349,7 @@ function push_analysis_results {
     fi
 
     stat -t "${JOB_DIR}/results/${TAG}/${TAG}-${file_to_push}" >/dev/null 2>&1
-    if [ $? != 0 ]; then
+    if [ $? -eq 0 ]; then
         local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${JOB_DIR}/results/${TAG}/${TAG}-${file_to_push}`
         dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAGS}"
         echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAGS}"
