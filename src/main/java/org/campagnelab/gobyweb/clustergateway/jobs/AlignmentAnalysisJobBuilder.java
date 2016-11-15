@@ -317,11 +317,9 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
      */
     private boolean generateIndex() {
         for (OutputFile file : this.analysisConfig.outputFiles.files) {
-           if ("application/lucene-index".equals(file.getFileType()))
+           if (file.getFileType() == OutputFile.OutputFileType.BROWSE)
                return true;
         }
-
-
         return false;
     }
     /**
