@@ -276,7 +276,8 @@ abstract public class AbstractSubmitter implements Submitter {
         environment.put("JOB_REGISTERED_FILESETS_STATUS", JobPartStatus.REGISTERED_FILESETS.statusName);
         environment.put("JOB_KILLED_STATUS", JobPartStatus.KILLED.statusName);
         environment.put("JOB_DIR", jobDir);
-        environment.put("JOBS_HOLD_LIST", this.jobList);
+        if (this.jobList.length() != 0)
+            environment.put("JOBS_HOLD_LIST", this.jobList);
         environment.put("GOBY_DIR", "${TMPDIR}");
         environment.put("SGE_O_WORKDIR", jobDir);
         environment.put("KILL_FILE", String.format("%s/kill.sh", jobDir));
