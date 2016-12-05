@@ -41,8 +41,8 @@ public class VariableHelper {
             LOG.debug("Writing variable value ${value}. ");
 
             value=transform(value,replacements)
-            if (value.contains("\n") || value.contains("\"")) {
-                LOG.debug("Not writing variable ${key} to constants.sh because it contains new line or quote character. ");
+            if (value.length()==0 || value.contains("\n") || value.contains("\"")) {
+                LOG.debug("Not writing variable ${key} to constants.sh because it contains new line or quote character or is empty. ");
             } else {
                 writer.append("export ${key}=\"${value}\" \n");
             }
@@ -67,7 +67,7 @@ public class VariableHelper {
             }
         } catch (Exception e) {
             LOG.warn("Failed to tranform value ${value}")
-            return value
+            return ""
         }
 
     }
