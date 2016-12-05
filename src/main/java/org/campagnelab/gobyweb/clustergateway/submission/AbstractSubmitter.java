@@ -590,7 +590,10 @@ abstract public class AbstractSubmitter implements Submitter {
         for (int i = 0; i < 2; i++) {
             // Do the replacements twice just in case replacements contain replacements
             for (Map.Entry<String, Object> replacement : job.getEnvironment().entrySet()) {
-                wrapperContent = StringUtils.replace(wrapperContent, replacement.getKey(),
+                String key = replacement.getKey();
+                if (!key.startsWith("%") && !key.endsWith("%"))
+                    key = "%"+ key + "%";
+                wrapperContent = StringUtils.replace(wrapperContent, key,
                         (replacement.getValue() != null) ? replacement.getValue().toString() : "");
             }
         }
