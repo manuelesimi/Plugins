@@ -1157,7 +1157,7 @@ case ${STATE} in
         #    install_plugin_artifacts
         #fi
         debug "Submitting job to the cluster" "${INITIAL_STATE}"
-        if [[ -z "$JOBS_HOLD_LIST" ]]; then
+        if [ -n "${JOBS_HOLD_LIST+set}" ]; then
             HOLD_OPTION="-hold_jid ${JOBS_HOLD_LIST}"
         else
             HOLD_OPTION=""
