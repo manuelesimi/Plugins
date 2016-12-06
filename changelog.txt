@@ -3,6 +3,8 @@
     Correct the condition that decides if we have to go for single or multiple resources installation.
     Upgrade filesets, artifacts and protbuf dependencies.
     Handle fileset with multiple files as result of an analisys execution.
+    Fix: Do not write variables in constants.sh if the value is null.
+    Fix: Remove broker parameters from FILESET_COMMAND variable.
 
 2.5.4 (Sept 2015)
     Introduce artifact-value option for resource installation.
