@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayRemoteSubmissions.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/changelog.txt" afterPath="$PROJECT_DIR$/changelog.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="plugins.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -185,11 +184,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="changelog.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="changelog.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/changelog.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+            <state relative-caret-position="120">
+              <caret line="8" column="69" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -300,7 +299,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MAVEN/org.campagnelab.gobyweb:plugins:2.6.2" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MAVEN/org.campagnelab.gobyweb:plugins:2.6.2" pinned="false" current-in-tab="false">
         <entry file="uml://MAVEN/org.campagnelab.gobyweb:plugins:2.6.2">
           <provider selected="true" editor-type-id="UmlEditorProvider">
             <state>
@@ -1153,7 +1152,7 @@
                   <point x="-38.5" y="-0.0" />
                 </edge>
               </edges>
-              <settings layout="Hierarchic Group" zoom="0.5705936493327197" x="566.4315670618598" y="496.25284297120743" />
+              <settings layout="Hierarchic Group" zoom="0.5705936493327197" x="-249.38543430921845" y="401.61456569078155" />
               <SelectedNodes />
               <Categories />
               <VISIBILITY>All</VISIBILITY>
@@ -1254,8 +1253,8 @@
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayRemoteSubmissions.groovy" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
-        <option value="$PROJECT_DIR$/changelog.txt" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/changelog.txt" />
       </list>
     </option>
   </component>
@@ -2297,14 +2296,7 @@
       <workItem from="1479225474684" duration="2516000" />
       <workItem from="1480956267727" duration="14467000" />
       <workItem from="1481042789561" duration="3565000" />
-      <workItem from="1481644252659" duration="3682000" />
-    </task>
-    <task id="LOCAL-00478" summary="Extend StatefulFileSetManager interface with a method for sharing a fileset instance with a list of users. Provide a common implementation in the BaseManager (local and RPC have the same behavior here). Add a related test case in the Manager's JUnit tester class.">
-      <created>1411676461501</created>
-      <option name="number" value="00478" />
-      <option name="presentableId" value="LOCAL-00478" />
-      <option name="project" value="LOCAL" />
-      <updated>1411676461501</updated>
+      <workItem from="1481644252659" duration="3739000" />
     </task>
     <task id="LOCAL-00479" summary="Enable StatefulFileSetManagers to download entries from FS instances shared with the current user.">
       <created>1412368462454</created>
@@ -2642,7 +2634,14 @@
       <option name="project" value="LOCAL" />
       <updated>1481037698829</updated>
     </task>
-    <option name="localTasksCounter" value="527" />
+    <task id="LOCAL-00527" summary="Advance  version to 2.6.2.">
+      <created>1482855775015</created>
+      <option name="number" value="00527" />
+      <option name="presentableId" value="LOCAL-00527" />
+      <option name="project" value="LOCAL" />
+      <updated>1482855775015</updated>
+    </task>
+    <option name="localTasksCounter" value="528" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2678,7 +2677,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="767706000" />
+    <option name="totallyTimeSpent" value="767763000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -2808,7 +2807,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Make release 2.5.3 public." />
     <MESSAGE value="Update change log for releases 2.5.2 and 2.5.3. Advance version to next snapshot." />
     <MESSAGE value="Add attribute-value options to the cluster gateway interface. Parse the values in the submission request." />
     <MESSAGE value="Manage the new attribute-value options for resource installations. A property file for each artifact is created in the job folder with the value of each attribute specified from the command line or in the API. Add a related test case for local resource installations." />
@@ -2833,7 +2831,8 @@
     <MESSAGE value="Do not write variables in constants.sh if the value is null." />
     <MESSAGE value="Fix variable replacement in oge_script." />
     <MESSAGE value="Update changelog." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update changelog." />
+    <MESSAGE value="Advance  version to 2.6.2." />
+    <option name="LAST_COMMIT_MESSAGE" value="Advance  version to 2.6.2." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3308,14 +3307,6 @@
             <element signature="e#3779#3780#0" expanded="false" />
             <element signature="e#3815#3816#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/changelog.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4187,10 +4178,18 @@
               <point x="-38.5" y="-0.0" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="0.5705936493327197" x="566.4315670618598" y="496.25284297120743" />
+          <settings layout="Hierarchic Group" zoom="0.5705936493327197" x="-249.38543430921845" y="401.61456569078155" />
           <SelectedNodes />
           <Categories />
           <VISIBILITY>All</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/changelog.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="69" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
