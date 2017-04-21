@@ -5,7 +5,7 @@ import org.campagnelab.gobyweb.filesets.Broker;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
-import org.campagnelab.gobyweb.filesets.registration.InputEntry;
+import org.campagnelab.gobyweb.filesets.registration.core.BaseEntry;
 import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.junit.*;
@@ -135,7 +135,7 @@ public class FileSetLocalRegistrationTest {
         logger.debug(String.format("Testing registration %s (%s)",caseID,format));
         List<String> errors = new ArrayList<String>();
         List<String> returnedTags = new ArrayList<String>();
-        List<InputEntry> inputEntries = null;
+        List<BaseEntry> inputEntries = null;
         try {
             inputEntries = FileSetManager.parseInputEntries(entries);
         } catch (Exception e) {

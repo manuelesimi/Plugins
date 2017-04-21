@@ -3,13 +3,12 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.preview.RegistrationPreviewDetails;
-import org.campagnelab.gobyweb.filesets.registration.InputEntry;
+import org.campagnelab.gobyweb.filesets.registration.core.BaseEntry;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.FileSetArea;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public abstract class BaseStatefulManager implements Serializable,StatefulFileSe
             String[] paths, String ... fileSetID) throws Exception {
         //convert plugins configuration to configurations that can be consumed by FileSetAPI
         FileSetAPI fileset = FileSetAPI.getReadWriteAPI(AreaFactory.createDummyFileSetArea(), configurationList);
-        List<InputEntry> inputEntries;
+        List<BaseEntry> inputEntries;
         if (fileSetID != null && fileSetID.length > 0) {
             String[] entries = new String[paths.length + 1];
             entries[0] = fileSetID[0] + ":";

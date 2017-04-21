@@ -2,7 +2,7 @@ package org.campagnelab.gobyweb.clustergateway.registration;
 
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.filesets.protos.MetadataFileReader;
-import org.campagnelab.gobyweb.filesets.registration.InputEntry;
+import org.campagnelab.gobyweb.filesets.registration.core.BaseEntry;
 
 
 import java.io.File;
@@ -54,7 +54,7 @@ public class StatefulFileSetLocalManager extends BaseStatefulManager {
             return Collections.emptyList();
         }
         FileSetAPI fileset = FileSetAPI.getReadWriteAPI(storageArea, configurationList);
-        List<InputEntry> inputEntries = FileSetManager.parseInputEntries(entries);
+        List<BaseEntry> inputEntries = FileSetManager.parseInputEntries(entries);
         return fileset.register(inputEntries,attributes,sharedWith,errors,tag,null);
     }
 

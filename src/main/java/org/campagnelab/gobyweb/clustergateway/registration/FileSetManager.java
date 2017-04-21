@@ -6,7 +6,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.filesets.FileSetAPI;
 import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
-import org.campagnelab.gobyweb.filesets.registration.InputEntry;
+import org.campagnelab.gobyweb.filesets.registration.core.BaseEntry;
+import org.campagnelab.gobyweb.filesets.registration.local.InputEntry;
 import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.FileSetArea;
@@ -125,7 +126,7 @@ public class FileSetManager {
         ConfigurationList configurationList = PluginsToConfigurations.convertAsList(pluginRegistry.getRegistry().filterConfigs(FileSetConfig.class));
         FileSetAPI fileset = FileSetAPI.getReadWriteAPI(storageArea, configurationList);
         if (config.getString("action").equalsIgnoreCase("register")) {
-            List<InputEntry> entries = parseInputEntries(config.getStringArray("entries"));
+            List<BaseEntry> entries = parseInputEntries(config.getStringArray("entries"));
             if (config.userSpecified("no-copy"))
                 returned_values = fileset.registerNoCopy(entries, parseInputAttributes(config.getStringArray("attribute")),
                         Arrays.asList(config.getStringArray("sharedWith")), errors, config.getString("tag"), null);
@@ -214,8 +215,8 @@ public class FileSetManager {
      * @return the list of input entry
      * @throws Exception if any of the input entry does not have files associated
      */
-    public static List<InputEntry> parseInputEntries(final String[] entries) throws Exception {
-        List<InputEntry> inputEntries = new ArrayList<InputEntry>();
+    public static List<BaseEntry> parseInputEntries(final String[] entries) throws Exception {
+        List<BaseEntry> inputEntries = new ArrayList<BaseEntry>();
         String currentFilesetId = null;
         for (String entry : entries) {
             if (entry.endsWith(":")) {
@@ -223,16 +224,16 @@ public class FileSetManager {
                 currentFilesetId = StringUtils.strip(entry, ":");
                 continue;
             }
-            InputEntry inputEntry;
+            BaseEntry BaseEntry;
             if (currentFilesetId == null || currentFilesetId.matches("guess")) {
-                inputEntry = new InputEntry(entry);
+                BaseEntry = new InputEntry(entry);
             } else {
-                inputEntry = new InputEntry(currentFilesetId, entry);
+                BaseEntry = new InputEntry(currentFilesetId, entry);
             }
-            if (inputEntry.getFiles().size() > 0)
-                inputEntries.add(inputEntry);
+            if (BaseEntry.getFiles().size() > 0)
+                inputEntries.add(BaseEntry);
             else {
-               String message = String.format("Invalid entry: %s does not have any file associated ", inputEntry.getHumanReadableName());
+               String message = String.format("Invalid entry: %s does not have any file associated ", BaseEntry.getHumanReadableName());
                logger.fatal(message);
                throw new Exception(message);
             }
