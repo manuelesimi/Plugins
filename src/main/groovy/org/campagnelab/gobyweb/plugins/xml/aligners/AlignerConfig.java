@@ -188,6 +188,7 @@ public class AlignerConfig extends ExecutableConfig {
         List<Slot> slots = inputSchema.getInputSlots();
         Slot readsSlot = new Slot();
         readsSlot.setName("INPUT_READS");
+        readsSlot.setDescription("Sample Selection");
         Slot.IOFileSetRef type = new Slot.IOFileSetRef();
         type.id = PluginLoaderSettings.COMPACT_READS[0];
         type.versionAtLeast = PluginLoaderSettings.COMPACT_READS[1];
