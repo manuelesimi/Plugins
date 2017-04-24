@@ -191,6 +191,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
         if (supportsGobyAlignments){
             Slot gobySlot = new Slot();
             gobySlot.setName("INPUT_ALIGNMENTS");
+            gobySlot.setDescription("Goby Alignment Group");
             Slot.IOFileSetRef gobyType = new Slot.IOFileSetRef();
             gobyType.id = PluginLoaderSettings.GOBY_ALIGNMENTS[0];
             gobyType.versionAtLeast = PluginLoaderSettings.GOBY_ALIGNMENTS[1];
@@ -204,6 +205,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
         if (supportsBAMAlignments) {
             Slot bamSlot = new Slot();
             bamSlot.setName("INPUT_ALIGNMENTS");
+            bamSlot.setDescription(" BAM Alignment Group");
             Slot.IOFileSetRef bamType = new Slot.IOFileSetRef();
             bamType.id = PluginLoaderSettings.BAM_ALIGNMENTS[0];
             bamType.versionAtLeast = PluginLoaderSettings.BAM_ALIGNMENTS[1];
