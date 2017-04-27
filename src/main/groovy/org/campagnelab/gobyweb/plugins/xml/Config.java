@@ -126,6 +126,21 @@ public interface Config {
     public void validate(List<String> errors);
 
     /**
+     * Sets the template to use to render the options in a
+     * graphical user interface.
+     *
+     * @param template the template
+     */
+    public void setUiTemplate(String template);
+
+    /**
+     * Gets the UI template.
+     *
+     * @return the template
+     */
+    public String getUiTemplate();
+
+    /**
      * Validates the configuration identifier
      * @param type
      * @param id
