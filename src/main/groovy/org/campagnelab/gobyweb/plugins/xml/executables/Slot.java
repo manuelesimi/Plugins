@@ -14,6 +14,8 @@ public class Slot {
 
     String name;
 
+    String description;
+
     IOFileSetRef type;
 
     public IOFileSetRef geType() {
@@ -30,6 +32,15 @@ public class Slot {
 
     public void setName(String name) {
         this.name=name;
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @XmlAccessorType(XmlAccessType.FIELD)

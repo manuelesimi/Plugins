@@ -41,7 +41,11 @@ public abstract class BaseConfig implements Config {
      */
     protected boolean disabled = false;
 
-
+    /**
+     * The optional template to render the plugin's config in a graphical user interface.
+     */
+    protected String uiTemplate;
+    
     /**
      * The location of the plugin directory on the web server/development machine.
      */
@@ -195,6 +199,16 @@ public abstract class BaseConfig implements Config {
     public void setDisabled(boolean disabled) {
          this.disabled = disabled;
     }
+
+
+    public String getUiTemplate() {
+        return uiTemplate;
+    }
+
+    public void setUiTemplate(String uiTemplate) {
+        this.uiTemplate = uiTemplate;
+    }
+
 
     /**
      * Validates the plugins id
