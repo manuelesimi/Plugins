@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Do not write variables in constants.sh if the value is null.&#10;&#10;(cherry picked from commit 5db4b56)">
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <list id="22548fb4-4a68-4dee-bc62-7d1ee67dd88a" name="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.  (cherry picked from commit 0a1c3f9)" comment="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.&#10;&#10;(cherry picked from commit 0a1c3f9)" />
     <ignored path="plugins.iws" />
@@ -163,6 +163,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="111" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AlignmentAnalysisConfig.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/alignmentanalyses/AlignmentAnalysisConfig.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -193,10 +203,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AlignmentAnalysisJobBuilder.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AlignmentAnalysisJobBuilder.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
+            <state relative-caret-position="3657">
               <caret line="289" column="104" lean-forward="true" selection-start-line="289" selection-start-column="66" selection-end-line="289" selection-end-column="66" />
               <folding>
                 <element signature="e#1022#1030#0" expanded="true" />
@@ -346,7 +356,6 @@
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayLocalCommandLineTest.groovy" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/ExecutableConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/VariableHelper.groovy" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/changelog.txt" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_job_script.sh" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/BaseConfig.java" />
@@ -354,6 +363,7 @@
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/Slot.java" />
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/plugins/util/PluginsUtilCommandLineTest.groovy" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -1615,13 +1625,6 @@
       <workItem from="1478879083671" duration="2130000" />
       <workItem from="1495742776691" duration="2226000" />
     </task>
-    <task id="LOCAL-00474" summary="Extend ArtifactHelper to use a plugins repository different from the submission node.">
-      <created>1410816085707</created>
-      <option name="number" value="00474" />
-      <option name="presentableId" value="LOCAL-00474" />
-      <option name="project" value="LOCAL" />
-      <updated>1410816085707</updated>
-    </task>
     <task id="LOCAL-00475" summary="Do not clean after each diffExp phase. Only after post.">
       <created>1410816136621</created>
       <option name="number" value="00475" />
@@ -1958,7 +1961,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478289080349</updated>
     </task>
-    <option name="localTasksCounter" value="523" />
+    <task id="LOCAL-00523" summary="Do not write variables in constants.sh if the value is null.&#10;&#10;(cherry picked from commit 5db4b56)">
+      <created>1497295022355</created>
+      <option name="number" value="00523" />
+      <option name="presentableId" value="LOCAL-00523" />
+      <option name="project" value="LOCAL" />
+      <updated>1497295022355</updated>
+    </task>
+    <option name="localTasksCounter" value="524" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1994,7 +2004,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="768267000" />
+    <option name="totallyTimeSpent" value="768294000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -2124,7 +2134,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Resolve GOBYWEB_SERVER_SIDE resource with exact version." />
     <MESSAGE value="Add test cases for resource installation using a local artifact server. Add test-data." />
     <MESSAGE value="Remove wrong checks for resources with no artifacts (files are just copied in the job folder)." />
     <MESSAGE value="Add PARALLEL_LAST resource to test-data." />
@@ -2149,7 +2158,8 @@
     <MESSAGE value="Make public release 2.6.0." />
     <MESSAGE value="Tolerate export's variable with a '%' in the value. More in general, if the transformation of the value fails (for whatever reason), the value is written unchanged in exports.sh." />
     <MESSAGE value="Update change log." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update change log." />
+    <MESSAGE value="Do not write variables in constants.sh if the value is null.&#10;&#10;(cherry picked from commit 5db4b56)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Do not write variables in constants.sh if the value is null.&#10;&#10;(cherry picked from commit 5db4b56)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2468,14 +2478,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/changelog.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -2636,7 +2638,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/AlignmentAnalysisJobBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
+        <state relative-caret-position="3657">
           <caret line="289" column="104" lean-forward="true" selection-start-line="289" selection-start-column="66" selection-end-line="289" selection-end-column="66" />
           <folding>
             <element signature="e#1022#1030#0" expanded="true" />
@@ -2649,6 +2651,14 @@
             <element signature="e#9028#9047#0" expanded="true" />
             <element signature="e#13614#13622#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="111" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
