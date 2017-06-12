@@ -92,11 +92,11 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
     private String generatePluginOutputCopyStatements() {
         StringBuilder command = new StringBuilder();
         for (OutputFile file : this.analysisConfig.outputFiles.files) {
+            command.append(String.format("if [ -e %s ]; then\n",file.filename));
             command.append(String.format("for f in %s; do\n" +
-                    "    if [ -e \"$f\" ]; then\n" +
-                    "        /bin/mv \"$f\" ${RESULT_DIR}/${TAG}-\"$f\" ; \n" +
-                    "    fi\n" +
+                    "    /bin/mv \"$f\" ${RESULT_DIR}/${TAG}-\"$f\" ; \n" +
                     "done\n",file.filename ));
+            command.append("fi\n");
         }
         return command.toString();
     }
@@ -313,13 +313,13 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
     }
 
     /**
-     * Detect if the plugin will generate a lucene index
+     * Detects if the plugin will generate a lucene index
      * @return
      */
     private boolean generateIndex() {
         for (OutputFile file : this.analysisConfig.outputFiles.files) {
-           if (file.getFileType() == OutputFile.OutputFileType.BROWSE)
-               return true;
+            if ("application/lucene-index".equals(file.getFileType()))
+                return true;
         }
         return false;
     }
