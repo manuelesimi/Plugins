@@ -24,8 +24,6 @@ import java.util.*;
 public abstract class SubmissionRequest {
 
     protected static final org.apache.log4j.Logger logger = Logger.getLogger(SubmissionRequest.class);
-    private static final String default_wrappers_type = "bash";
-    private static final String default_wrappers_location = "classpath";
 
     /**
      * The executable plugin that will be submitted
