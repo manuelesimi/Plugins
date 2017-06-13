@@ -341,7 +341,14 @@ setup
 
 ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
 
-export GOBYWEB_CONTAINER_NAME="gobyweb_oge_execution_environment"
+if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
+    export GOBYWEB_CONTAINER_TECHNOLOGY="none"
+else
+    if [ -z "${GOBYWEB_CONTAINER_NAME+set}" ]; then
+    export GOBYWEB_CONTAINER_NAME="gobyweb_oge_execution_environment"
+    fi
+fi
+
 case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
  singularity)
      DELEGATE_OGE_JOB_SCRIPT="singularity exec ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/oge_job_script_legacy.sh"
