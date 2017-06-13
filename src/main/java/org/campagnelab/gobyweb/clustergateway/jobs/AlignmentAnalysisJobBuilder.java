@@ -163,7 +163,6 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         DiffExp diffExp = new DiffExp();
         diffExp.setOptions(commandLineOptions);
         JobRuntimeEnvironment environment = executableJob.getEnvironment();
-
         environment.put("PLUGIN_ID", analysisConfig.getId());
         environment.put("PLUGIN_VERSION", analysisConfig.getVersion());
         environment.put("DIFF_EXP_TYPE", analysisConfig.getId());

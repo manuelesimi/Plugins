@@ -46,9 +46,9 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String artifactRepositoryPath;
     protected String wrapperScript = "oge_task_wrapper_script.sh"; //default is OGE script for aligners and analyses
     protected String commonScript = "job_common_functions.sh"; //common functions
-    protected String containerTechnology = "None";
-    protected String containerName = "None";
-    protected String wrappersPaths;
+    protected String containerTechnology = "none";
+    protected String containerName = "none";
+    protected String wrappersPaths= "classpath";
     protected String queue;
     private static final File queueMessageDir = new File(System.getProperty("user.home") + "/.clustergateway/queue-message-dir");
 
@@ -193,6 +193,9 @@ abstract public class AbstractSubmitter implements Submitter {
         JobRuntimeEnvironment environment = job.getEnvironment();
         environment.put("TAG", job.getTag());
         environment.put("OWNER", job.getOwnerId());
+        environment.put("GOBYWEB_CONTAINER_TECHNOLOGY", this.containerTechnology);
+        environment.put("GOBYWEB_CONTAINER_NAME", this.containerName);
+        environment.put("OGE_WRAPPERS_PATHS", this.wrappersPaths);
         environment.put("JOB_PART_COMPLETED_STATUS", JobPartStatus.COMPLETED.statusName);
         environment.put("JOB_PART_FAILED_STATUS", JobPartStatus.FAILED.statusName);
         environment.put("JOB_PART_SPLIT_STATUS", JobPartStatus.SPLIT.statusName);
@@ -366,7 +369,10 @@ abstract public class AbstractSubmitter implements Submitter {
                 .replaceAll("%%TAG%%", job.getTag())
                 .replaceAll("%%ARTIFACT_REPOSITORY_DIR%%", artifactRepositoryPath)
                 .replaceAll("%%PLUGIN_ID%%", job.getSourceConfig().getId())
-                .replaceAll("%%PLUGIN_VERSION%%", job.getSourceConfig().getVersion());
+                .replaceAll("%%PLUGIN_VERSION%%", job.getSourceConfig().getVersion()
+                .replaceAll("%%GOBYWEB_CONTAINER_TECHNOLOGY%%", this.containerTechnology)
+                .replaceAll("%%GOBYWEB_CONTAINER_NAME%%", this.containerName)
+                .replaceAll("%%OGE_WRAPPER_PATHS%%", this.wrappersPaths));
     }
 
     /**
