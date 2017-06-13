@@ -48,6 +48,18 @@
 
 %CPU_REQUIREMENTS%
 
+. ./common.sh
+
+
+case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
+ singularity)
+     DELEGATE_OGE_JOB_SCRIPT="singularity exec ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/oge_job_script_legacy.sh"
+ ;;
+ none)
+    DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/oge_job_script_legacy.sh"
+ ;;
+esac
+
 function checkSubmission {
     if [ -z $1 ]; then
         # Kill any already submitted jobs, inform the web server the job has been killed. Quit the script.
@@ -147,7 +159,7 @@ function setup {
         dieUponError "Could not obtain Java version number."
 
         echo "Goby.jar version"
-        goby_with_memory 40m version
+        java -Xmx40m -jar goby/goby.jar  --mode version
         dieUponError "Could not obtain Goby version number."
 
     fi
