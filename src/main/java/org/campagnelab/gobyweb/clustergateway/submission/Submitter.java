@@ -77,4 +77,17 @@ public interface Submitter {
      */
     public boolean isLocal();
 
+    /**
+     * Sets the path from where the script wrappers have to be loaded.
+     * @param paths
+     */
+    public void setWrappersPaths(String paths);
+
+    /**
+     * Sets the technology of script wrappers to use.
+     * @param technology the type of technology (docker, singularity, etc.)
+     * @param name the container name
+     */
+    public void setContainerTechnology(String technology, String ... name);
+
 }
