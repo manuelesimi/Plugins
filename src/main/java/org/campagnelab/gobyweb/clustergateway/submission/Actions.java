@@ -130,7 +130,7 @@ final class Actions {
         builder.setChunkSize(chunkSize);
         builder.setGenomeID(genomeID);
         if (!submitter.isLocal())
-            submitter.setWrapperScripts("oge_job_script.sh","oge_job_script_legacy.sh");
+            submitter.setWrapperScripts("oge_job_script.sh","oge_job_script_legacy.sh", "common.sh");
         else
             throw new UnsupportedOperationException("Local submission for aligners is not supported yet");
         this.submitJob(builder.build(unclassifiedOptions), inputSlots);
@@ -154,7 +154,7 @@ final class Actions {
         builder.setGroupDefinition(Arrays.asList(groups_definitions));
         builder.setComparisonPairs(Arrays.asList(comparison_pairs));
         if (!submitter.isLocal())
-            submitter.setWrapperScripts("oge_job_script.sh","oge_job_script_legacy.sh");
+            submitter.setWrapperScripts("oge_job_script.sh","oge_job_script_legacy.sh", "common.sh");
         else
             throw new UnsupportedOperationException("Local submission for aligners is not supported yet");
         this.submitJob(builder.build(unclassifiedOptions), inputSlots);
@@ -174,9 +174,9 @@ final class Actions {
 
         TaskJobBuilder builder = new TaskJobBuilder(taskConfig);
         if (submitter.isLocal())
-            submitter.setWrapperScripts("local_task_wrapper_script.sh");
+            submitter.setWrapperScripts("local_task_wrapper_script.sh", "common.sh");
         else
-            submitter.setWrapperScripts("oge_task_wrapper_script.sh");
+            submitter.setWrapperScripts("oge_task_wrapper_script.sh", "common.sh");
 
         this.submitJob(builder.build(unclassifiedOptions), inputSlots);
     }
@@ -195,7 +195,7 @@ final class Actions {
 
         //prepare the session for the submission
         Session session = prepareJobSession();
-        submitter.setWrapperScripts("resource_install_wrapper_script.sh");
+        submitter.setWrapperScripts("resource_install_wrapper_script.sh", "common.sh");
 
         //submit the resourceInstance
         submitter.submitResourceInstall(jobArea, session, resourceInstance);
