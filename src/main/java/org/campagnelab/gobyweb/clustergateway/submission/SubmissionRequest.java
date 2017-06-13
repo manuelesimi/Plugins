@@ -10,7 +10,6 @@ import org.campagnelab.gobyweb.io.AreaFactory;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
-import org.campagnelab.gobyweb.plugins.Plugins;
 import org.campagnelab.gobyweb.plugins.xml.executables.*;
 
 import java.io.File;
@@ -25,6 +24,8 @@ import java.util.*;
 public abstract class SubmissionRequest {
 
     protected static final org.apache.log4j.Logger logger = Logger.getLogger(SubmissionRequest.class);
+    private static final String default_wrappers_type = "bash";
+    private static final String default_wrappers_location = "classpath";
 
     /**
      * The executable plugin that will be submitted
@@ -235,7 +236,14 @@ public abstract class SubmissionRequest {
 
             if (config.userSpecified("slots"))
                 this.inputSlots = toInputParameters(config.getStringArray("slots"));
-
+            if (config.userSpecified("container_technology")) {
+                if (config.userSpecified("container_name"))
+                    submitter.setContainerTechnology(config.getString("container_technology"),config.getString("container_name") );
+                else
+                    submitter.setContainerTechnology(config.getString("container_technology"));
+            }
+            if (config.userSpecified("job_wrappers_paths"))
+                submitter.setWrappersPaths(config.getString("job_wrappers_paths"));
             return this.submit(config,actions);
         } catch (Exception e) {
             logger.error("Failed to manage the requested action. " + e.getMessage());

@@ -145,6 +145,36 @@
         </flaggedOption>
 
         <flaggedOption>
+            <id>container_technology</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <longFlag>container_technology</longFlag>
+            <help>The container technology to use to run the jobs (docker, singularity, etc).</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>container_name</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <longFlag>container_name</longFlag>
+            <help>The name of the image to use within the container technology..</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>job_wrapper_paths</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <longFlag>job_wrappers_paths</longFlag>
+            <help>The paths/patterns where the wrapper scripts are located (e.g. /my/path/oge_singularity*.sh).</help>
+        </flaggedOption>
+
+        <flaggedOption>
             <id>repository</id>
             <stringParser>
                 <classname>StringStringParser</classname>

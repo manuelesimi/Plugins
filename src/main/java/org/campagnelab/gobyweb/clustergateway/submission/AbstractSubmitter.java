@@ -46,7 +46,9 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String artifactRepositoryPath;
     protected String wrapperScript = "oge_task_wrapper_script.sh"; //default is OGE script for aligners and analyses
     protected String commonScript = "job_common_functions.sh"; //common functions
-
+    protected String containerTechnology = "None";
+    protected String containerName = "None";
+    protected String wrappersPaths;
     protected String queue;
     private static final File queueMessageDir = new File(System.getProperty("user.home") + "/.clustergateway/queue-message-dir");
 
@@ -79,6 +81,28 @@ abstract public class AbstractSubmitter implements Submitter {
     @Override
     public void setWrapperScript(String wrapperScript) {
         this.wrapperScript = wrapperScript;
+    }
+
+    /**
+     * Sets the paths from where the script wrappers have to be loaded.
+     *
+     * @param paths
+     */
+    @Override
+    public void setWrappersPaths(String paths) {
+        this.wrappersPaths = paths;
+    }
+
+    /**
+     * Sets the type of script wrappers to use.
+     *
+     * @param technology
+     */
+    @Override
+    public void setContainerTechnology(String technology, String ... name) {
+     this.containerTechnology = technology;
+     if (name != null && name.length >1)
+        this.containerName = name[0];
     }
 
     @Override
