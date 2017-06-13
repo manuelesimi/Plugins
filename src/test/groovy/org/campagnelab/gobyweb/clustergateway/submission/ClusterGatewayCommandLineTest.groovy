@@ -69,6 +69,25 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
+    @Test
+    public void runLocalTaskRNASelectWithTechnology() {
+        List<String> tags = new ArrayList<String>();
+        tags.addAll(FileSetManager.process(buildFileRegistrationArgs(
+                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads")));
+        assertNotNull(tags);
+        assertEquals(1, tags.size());
+
+        tags.addAll(FileSetManager.process(buildFileRegistrationArgs(
+                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/*.compact-reads")));
+
+        assertEquals(4, tags.size());
+
+        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(
+                "--container_technology singularity --container_name artifacts/base --job RNASELECT_TASK",
+                "test-data/root-for-rnaselect INPUT_READS: ${StringUtils.join(tags, ",")}")));
+
+    }
+
    //@Test
     public void runRemoteAligner() {
 
