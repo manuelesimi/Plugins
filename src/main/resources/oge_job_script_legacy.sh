@@ -48,7 +48,7 @@
 
 %CPU_REQUIREMENTS%
 
-. ./common.sh
+. %JOB_DIR%/common.sh
 
 function calculate_PAD_FORMAT {
     _NUMBER=$1
@@ -63,9 +63,6 @@ function calculate_PAD_FORMAT {
         PAD_FORMAT=%0$(( _NUMBER_TO_PAD + 1 ))d
     fi
 }
-
-
-
 
 function submit_parallel_alignment_analysis {
     jobStartedEmail
@@ -978,7 +975,6 @@ function setup_plugin_functions {
 ## Script logic starts here
 #######################################################################################
 
-setup
 
 ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
 . ${JOB_DIR}/artifacts.sh
@@ -991,6 +987,7 @@ case ${STATE} in
         setup_plugin_functions
         ;;
     pre_align)
+        setup
         install_plugin_mandatory_artifacts
         if [ "${PLUGIN_ARTIFACTS_SUBMIT}" == "true" ]; then
             install_plugin_artifacts

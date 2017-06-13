@@ -18,6 +18,7 @@ if [ -z "${TMPDIR+set}" ]; then
     export TMPDIR=/tmp/`cat /dev/urandom | tr -cd 'a-f0-9' | head -c 10`
     mkdir -p ${TMPDIR}
 fi
+
 function goby {
    set -x
    set -T
@@ -222,4 +223,5 @@ function setup {
 
     fi
 }
+
 

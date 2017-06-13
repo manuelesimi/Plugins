@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-. ./common.sh
+. %JOB_DIR%/common.sh
 
 # Script to trigger the installation of artifacts for a resource plugin. Does nothing after installation.
 
