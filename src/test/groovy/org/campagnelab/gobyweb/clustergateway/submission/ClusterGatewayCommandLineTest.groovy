@@ -88,7 +88,7 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
-   //@Test
+   @Test
     public void runRemoteAligner() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
@@ -100,13 +100,13 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(0, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
-                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
-                        "--plugins-dir test-data/root-for-aligners " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
+                        "--plugins-dir ../gobyweb2-plugins " +
                         "--owner campagne " +
                         "--queue rascals.q " +
                         "--env-script ${envScript} "+
-                        "--job BWA_GOBY_ARTIFACT " +
+                        "--job BWA_MEM_ARTIFACT " +
                         "--GENOME_REFERENCE_ID WBcel215.69 "+
                         "--CHUNK_SIZE 50000000 "+
                         "--option FOO=foo " +
@@ -115,7 +115,39 @@ public class ClusterGatewayCommandLineTest {
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
-                        "INPUT_READS: HQPMEDL"
+                        "INPUT_READS: OTDDNIK"
+
+                ).split(" ")
+        ));
+
+    }
+    @Test
+    public void runRemoteAlignerSingularity() {
+
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAligner() test");
+            return;
+        }
+
+        String artifactServer = String.format("%s@%s",
+                System.getProperty("user.name"),
+                java.net.InetAddress.getLocalHost().getHostName());
+        assertEquals(0, ClusterGateway.process(
+                ("--job-area gobyweb3@darla.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /scratchLocal/gobyweb/gobyweb3/FILESET_AREA " +
+                        "--plugins-dir ../gobyweb2-plugins " +
+                        "--owner campagne " +
+                        "--queue fclab-debug.q " +
+                        "--env-script ${envScript} "+
+                        "--job BWA_ARTIFACT " +
+                        "--container_technology singularity "+
+                        "--container_name docker://artifacts/base:latest "+
+                        "--GENOME_REFERENCE_ID 1000GENOMES.37 "+
+                        "--CHUNK_SIZE 50000000 "+
+                        "--option DEBUG=true " +
+                        "--artifact-server ${artifactServer} "+
+                        "--repository /scratchLocal/gobyweb/gobyweb3/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
+                        "INPUT_READS: ZTDMGNB"
 
                 ).split(" ")
         ));
@@ -134,8 +166,8 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(0, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
-                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
                         "--queue rascals.q " +
@@ -168,8 +200,8 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(0, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
-                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
                         "--queue rascals.q " +
@@ -202,8 +234,8 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(3, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
-                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
                         "--queue rascals.q " +
@@ -238,8 +270,8 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(3, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
-                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
                         "--queue rascals.q " +
@@ -272,8 +304,8 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(3, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
-                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
                         "--queue rascals.q " +
