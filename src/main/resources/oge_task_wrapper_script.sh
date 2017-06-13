@@ -1,4 +1,4 @@
-#!/bin/bash -lx
+#!/bin/bash -l
 
 # Execute the script from the current directory
 #$ -cwd
@@ -9,9 +9,16 @@
 # Cluster queue to use
 #$ -q %QUEUE_NAME%
 
-function debug {
-    echo "$*";
-}
+. ./common.sh
+
+case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
+ singularity)
+     DELEGATE_OGE_JOB_SCRIPT="singularity exec ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/oge_task_wrapper_script_legacy.sh"
+ ;;
+ none)
+    DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/oge_task_wrapper_script_legacy.sh"
+ ;;
+esac
 
 function setup_task_functions {
 
@@ -26,11 +33,9 @@ function install_resources {
     #include needed function for resources installation
     ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
     . %JOB_DIR%/artifacts.sh
-     debug "Installing mandatory plugin artifacts" "RUNNING"
      install_plugin_mandatory_artifacts
      if [ "${PLUGIN_ARTIFACTS_TASK}" != "false" ]; then
-        debug "Installing plugin artifacts" "RUNNING"
-        install_plugin_artifacts
+           install_plugin_artifacts
      fi
 }
 
@@ -48,14 +53,14 @@ function push_job_metadata {
    echo "TAGS=${tags}" >> ${JOB_DIR}/${TAG}.properties
    echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
    REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${TAG}.properties`
-   debug "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}" "RUNNING"
+   echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
 }
 
 function dieUponError {
   RETURN_STATUS=$?
   DESCRIPTION=$1
   if [ ! ${RETURN_STATUS} -eq 0 ]; then
-       fatal "Task failed. Error description: ${DESCRIPTION}" "COMPLETED"
+       echo "Task failed. Error description: ${DESCRIPTION}"
        exit ${RETURN_STATUS}
   fi
 
@@ -67,8 +72,7 @@ function run_task {
    ALL_REGISTERED_TAGS=""
    plugin_task
    push_job_metadata ${ALL_REGISTERED_TAGS}
-   #${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Task completed" --index 0 --job-type job
-   info "Task completed" "COMPLETED"
+   ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Task completed" --index 0 --job-type job
 }
 
 function setup {
@@ -77,6 +81,7 @@ function setup {
     export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
 
     export JOB_DIR=%JOB_DIR%
+    echo "JOB _DIR is ${JOB_DIR}"
 
     if [ -z "$TMPDIR" ]; then
         export TMPDIR=${JOB_DIR}
@@ -145,35 +150,13 @@ function setup {
 
 setup
 
- #include logging functions
-. %JOB_DIR%/message-functions.sh
-
-. %JOB_DIR%/job_common_functions.sh
-
-
 case ${STATE} in
     task)
-        setup_task_functions
-        install_resources
-        LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"
-
-        #Aggregate metadata attributes to reduce the disk accesses
-        ${FILESET_COMMAND} --aggregate-attributes *
-        dieUponError "Unable to aggregate FileSet metadata before the task execution."
-
-        run_task 2>&1 |tee ${LOG_FILE}
-        STATUS=$?
-        if [ ${STATUS}==0 ]; then
-         #echo "Task execution completed successfully." >>${LOG_FILE}
-         jobCompleted
-        else
-         #echo "An error occured"
-          jobFailed
-          exit ${STATUS}
-        fi
+         # delegate everything else either inside container or execute directly legacy script:
+        ${DELEGATE_OGE_JOB_SCRIPT} ${STATE}
         ;;
 
-    *)
+    submit)
         cd ${JOB_DIR}
         if [[ -z "$JOBS_HOLD_LIST" ]]; then
             HOLD_OPTION="-hold_jid ${JOBS_HOLD_LIST}"
@@ -182,8 +165,8 @@ case ${STATE} in
         fi
         deletePreviousExecutionData
         SUBMISSION=`qsub -N ${TAG}.submit ${HOLD_OPTION} -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
+        SUBMISSION=`qsub -N ${TAG}.submit -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=task oge_task_wrapper_script.sh`
         echo ${SUBMISSION}
-        jobStarted
         ;;
-esac
 
+esac

@@ -64,85 +64,6 @@ function calculate_PAD_FORMAT {
     fi
 }
 
-function setup {
-
-    export JOB_DIR=%JOB_DIR%
-   
-    # define job specific constants:
-    . %JOB_DIR%/constants.sh
-
-    # include value definitions for automatic options:
-    . %JOB_DIR%/auto-options.sh
-
-    #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
-    export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
-    QUEUE_WRITER="%JOB_DIR%/groovy ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} %QUEUE_WRITER_POSTFIX% "
-    create_kill_file
-
-
-    if [ ! -z $SGE_O_WORKDIR ]; then
-        # R will be configured via the bash login
-        # export R_HOME=`R RHOME | /bin/grep --invert-match WARNING`
-        # export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${R_HOME}/lib:${CLUSTER_HOME_DIR}/R/x86_64-unknown-linux-gnu-library/2.11/rJava/jri
-
-        JAVA_LOG_DIR=${SGE_O_WORKDIR}/logs
-        if [ ! -d ${JAVA_LOG_DIR} ]; then
-            mkdir ${JAVA_LOG_DIR}
-        fi
-
-        echo ------------------------------------------------------
-        echo This machines hostname: `hostname`
-        echo ------------------------------------------------------
-        echo SGE: qsub is running on ${SGE_O_HOST}
-        echo SGE: originating queue is ${QUEUE}
-        echo SGE: executing cell is ${SGE_CELL}
-        echo SGE: working directory is ${SGE_O_WORKDIR}
-        echo SGE: execution mode is ${ENVIRONMENT}
-        echo SGE: execution host is ${HOSTNAME}
-        echo SGE: job identifier is ${JOB_ID}
-        echo SGE: job name is ${JOB_NAME}
-        echo SGE: job current state = ${STATE}
-        echo SGE: task number is ${SGE_TASK_ID}
-        echo SGE: current home directory is ${SGE_O_HOME}
-        echo SGE: scratch directory is ${TMPDIR}
-        echo SGE: PATH = ${SGE_O_PATH}
-        echo ------------------------------------------------------
-
-        GOBY_DIR=${SGE_O_WORKDIR}/goby
-        if [ ! -d "${GOBY_DIR}" ]; then
-            echo Creating goby dir...
-            mkdir -p ${GOBY_DIR}
-             /bin/cp ${SGE_O_WORKDIR}/global_goby.jar ${GOBY_DIR}/goby.jar
-             /bin/cp ${SGE_O_WORKDIR}/log4j.properties ${GOBY_DIR}/
-             /bin/cp ${SGE_O_WORKDIR}/QueueWriter.groovy ${GOBY_DIR}
-             /bin/cp ${SGE_O_WORKDIR}/TsvVcfToSqlite.groovy ${GOBY_DIR}
-             /bin/cp ${SGE_O_WORKDIR}/icb-groovy-support.jar ${GOBY_DIR}
-             /bin/cp ${SGE_O_WORKDIR}/artifact-manager.jar ${GOBY_DIR}
-             /bin/cp ${SGE_O_WORKDIR}/serverside-dependencies.jar ${GOBY_DIR}
-             /bin/cp ${SGE_O_WORKDIR}/stepslogger.jar ${GOBY_DIR}
-        fi
-
-        # Copy the goby and support tools to the local node
-        if [ -d "${TMPDIR}" ]; then
-            echo Copying goby dir to the local node ...
-            /bin/cp ${GOBY_DIR}/* ${TMPDIR}
-            cd ${TMPDIR}
-            export TMPDIR
-        fi
-
-        # Show the java & goby.jar version
-        echo "Java version"
-        java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -version
-        dieUponError "Could not obtain Java version number."
-
-        echo "Goby.jar version"
-        goby_with_memory 40m version
-        dieUponError "Could not obtain Goby version number."
-
-    fi
-}
-
-
 
 
 
@@ -1061,23 +982,6 @@ function diffexp_parallel {
 }
 
 
-function jobStartedEmail {
-    %JOB_STARTED_EMAIL% > /dev/null
-    # Wait for the mail to be sent, otherwise it will just disappear
-    sleep 10
-}
-
-function jobFailedEmail {
-    %JOB_FAILED_EMAIL% > /dev/null
-    # Wait for the mail to be sent, otherwise it will just disappear
-    sleep 10
-}
-
-function jobCompletedEmail {
-    %JOB_COMPLETED_EMAIL% > /dev/null
-    # Wait for the mail to be sent, otherwise it will just disappear
-    sleep 10
-}
 
 function setup_plugin_functions {
     # define no-op function to be overridden as needed by plugin script:
