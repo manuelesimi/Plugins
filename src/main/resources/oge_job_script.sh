@@ -48,7 +48,7 @@
 
 %CPU_REQUIREMENTS%
 
-. ./common.sh
+. %JOB_DIR%/common.sh
 
 
 case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
@@ -199,10 +199,6 @@ function cleanup {
 ## Script logic starts here
 #######################################################################################
 
-setup
-
-ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
-
 if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
     export GOBYWEB_CONTAINER_TECHNOLOGY="none"
 else
@@ -223,12 +219,14 @@ esac
 if [ -z "${STATE+set}" ]; then
  # When state is not defined, assume the user wants to submit the job to OGE.
  export STATE="submit"
+ echo "Defined STATE=${STATE}"
 fi
 
 case ${STATE} in
     submit)
+        setup
         cd ${JOB_DIR}
-        SUBMISSION=`qsub -N ${TAG}.submit -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh`
+        SUBMISSION=`qsub -N ${TAG}.submit -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh `
         checkSubmission $SUBMISSION
         append_kill_file ${SUBMISSION}
         echo ${SUBMISSION}

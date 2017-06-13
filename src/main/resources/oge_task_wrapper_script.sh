@@ -9,7 +9,7 @@
 # Cluster queue to use
 #$ -q %QUEUE_NAME%
 
-. ./common.sh
+. %JOB_DIR%/common.sh
 
 case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
  singularity)

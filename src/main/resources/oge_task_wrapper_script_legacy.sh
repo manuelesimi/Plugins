@@ -9,7 +9,7 @@
 # Cluster queue to use
 #$ -q %QUEUE_NAME%
 
-. ./common.sh
+. %JOB_DIR%/common.sh
 oge_task_parallel_wrapper_script.sh
 
 function setup_task_functions {
