@@ -50,9 +50,9 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String artifactRepositoryPath;
     protected String wrapperScript = "oge_task_wrapper_script.sh"; //default is OGE script for aligners and analyses
     protected String commonScript = "job_common_functions.sh"; //common functions
-    protected String containerTechnology = "None";
-    protected String containerName = "None";
-    protected String wrappersPaths;
+    protected String containerTechnology = "none";
+    protected String containerName = "none";
+    protected String wrappersPaths= "classpath";
     protected String queue;
     private static final File queueMessageDir = new File(System.getProperty("user.home") + "/.clustergateway/queue-message-dir");
 
@@ -210,12 +210,12 @@ abstract public class AbstractSubmitter implements Submitter {
     /**
      * Generates the artifacts PB request file for the executable job and copies to destination directory.
      *
-     * @param configs
+     * @param config
      * @param envScriptFilename
      * @param tempDir
      * @throws IOException
      */
-    protected void copyArtifactsPbRequests(List<Config> configs, String envScriptFilename, File tempDir) throws IOException {
+    protected void copyArtifactsPbRequests(Config config, String envScriptFilename, File tempDir) throws IOException {
         if (this.pluginsDir == null) {
             throw new IOException("No plugins dir has been set for this submitter.");
         }
@@ -223,19 +223,13 @@ abstract public class AbstractSubmitter implements Submitter {
         helper.setWebServerHostname(submissionHostname, this.pluginsDir.getAbsolutePath());
         if (envScriptFilename != null)
             helper.registerPluginEnvironmentCollectionScript(envScriptFilename);
+        assert submissionHostname != null : "submission hostname must be defined.";
         File installArtifactPbRequests;
-        Config config = configs.get(0);
         if ((config.getClass().isAssignableFrom(ExecutableConfig.class)) //same class
-                    || (ExecutableConfig.class.isInstance(config)))  //or a sub-class
-                installArtifactPbRequests = helper.createPbRequestFile((ExecutableConfig) config);
-        else {
-            //as of version 2.5.5+, the SDK supports multiple plugins installation only for resources
-            if (configs.size() == 1) {
-                installArtifactPbRequests = helper.createPbRequestFile((ResourceConfig) config);
-            } else {
-                installArtifactPbRequests = helper.createPbRequestFileForMultipleResources((List<ResourceConfig>)(List<?>) configs);
-            }
-        }
+                || (ExecutableConfig.class.isInstance(config)))  //or a sub-class
+            installArtifactPbRequests = helper.createPbRequestFile((ExecutableConfig) config);
+        else
+            installArtifactPbRequests = helper.createPbRequestFile((ResourceConfig) config);
 
         if (installArtifactPbRequests != null) {
             Files.copy(installArtifactPbRequests, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "artifacts-install-requests.pb")));
@@ -272,16 +266,19 @@ abstract public class AbstractSubmitter implements Submitter {
         }
     }
 
-        /**
-         * Completes job environment with the information available in the submitter.
-         *
-         * @param job    the job
-         * @param jobDir the target     execution directory
-         */
+    /**
+     * Completes job environment with the information available in the submitter.
+     *
+     * @param job    the job
+     * @param jobDir the target     execution directory
+     */
     protected void completeJobEnvironment(ExecutableJob job, String jobDir) {
         JobRuntimeEnvironment environment = job.getEnvironment();
         environment.put("TAG", job.getTag());
         environment.put("OWNER", job.getOwnerId());
+        environment.put("GOBYWEB_CONTAINER_TECHNOLOGY", this.containerTechnology);
+        environment.put("GOBYWEB_CONTAINER_NAME", this.containerName);
+        environment.put("OGE_WRAPPERS_PATHS", this.wrappersPaths);
         environment.put("JOB_PART_COMPLETED_STATUS", JobPartStatus.COMPLETED.statusName);
         environment.put("JOB_PART_FAILED_STATUS", JobPartStatus.FAILED.statusName);
         environment.put("JOB_PART_SPLIT_STATUS", JobPartStatus.SPLIT.statusName);
@@ -475,8 +472,11 @@ abstract public class AbstractSubmitter implements Submitter {
                 .replaceAll("%%JOB_DIR%%", jobArea.getBasename(job.getTag()))
                 .replaceAll("%%TAG%%", job.getTag())
                 .replaceAll("%%ARTIFACT_REPOSITORY_DIR%%", artifactRepositoryPath)
-                .replaceAll("%%PLUGIN_ID%%", job.getSourceConfigs().get(0).getId())
-                .replaceAll("%%PLUGIN_VERSION%%", job.getSourceConfigs().get(0).getVersion());
+                .replaceAll("%%PLUGIN_ID%%", job.getSourceConfig().getId())
+                .replaceAll("%%PLUGIN_VERSION%%", job.getSourceConfig().getVersion()
+                .replaceAll("%%GOBYWEB_CONTAINER_TECHNOLOGY%%", this.containerTechnology)
+                .replaceAll("%%GOBYWEB_CONTAINER_NAME%%", this.containerName)
+                .replaceAll("%%OGE_WRAPPER_PATHS%%", this.wrappersPaths));
     }
 
     /**
@@ -643,7 +643,6 @@ abstract public class AbstractSubmitter implements Submitter {
 
         FileUtils.writeStringToFile(new File(tempDir, commonScript), commonContent);
     }
-
 }
 
 
