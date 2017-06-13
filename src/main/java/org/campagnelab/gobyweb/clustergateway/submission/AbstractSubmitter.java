@@ -101,7 +101,7 @@ abstract public class AbstractSubmitter implements Submitter {
     @Override
     public void setContainerTechnology(String technology, String ... name) {
      this.containerTechnology = technology;
-     if (name != null && name.length >1)
+     if (name != null && name.length >0)
         this.containerName = name[0];
     }
 
