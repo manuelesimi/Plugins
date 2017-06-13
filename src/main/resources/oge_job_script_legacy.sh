@@ -52,6 +52,10 @@ function debug {
     echo "$*";
 }
 
+function error {
+    echo "$*";
+}
+
 
 function checkSubmission {
     if [ -z $1 ]; then
