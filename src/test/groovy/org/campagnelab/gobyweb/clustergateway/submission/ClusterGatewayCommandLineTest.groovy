@@ -28,8 +28,6 @@ public class ClusterGatewayCommandLineTest {
     static def repoDirAbsolutePath=new File("${resultsDir}/REPO").getAbsolutePath()
 
     static Properties prop = new Properties();
-    static String brokerHostname = "localhost";
-    static int brokerPort = 5672;
 
 
     @BeforeClass
@@ -90,9 +88,28 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
+    @Test
+    public void runLocalTaskRNASelectWithTechnology() {
+        List<String> tags = new ArrayList<String>();
+        tags.addAll(FileSetManager.process(buildFileRegistrationArgs(
+                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads")));
+        assertNotNull(tags);
+        assertEquals(1, tags.size());
+
+        tags.addAll(FileSetManager.process(buildFileRegistrationArgs(
+                "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_2/*.compact-reads")));
+
+        assertEquals(4, tags.size());
+
+        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(
+                "--container_technology singularity --container_name artifacts/base --job RNASELECT_TASK",
+                "test-data/root-for-rnaselect INPUT_READS: ${StringUtils.join(tags, ",")}")));
+
+    }
+
 
     @Test
-    public void runLocalTaskRNASelectWitCloud() {
+    public void runLocalTaskRNASelectWithCloud() {
         List<String> tags = new ArrayList<String>();
         tags.addAll(FileSetManager.process(buildFileRegistrationArgs(
                 "COMPACT_READS: test-data/cluster-gateway/files-for-registration-test/fileSets/CASE_1/CASE1_FILE1.compact-reads")));
@@ -122,7 +139,7 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(0, ClusterGateway.process(
-                    ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
+                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner campagne " +
@@ -175,8 +192,6 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
-                        //"--broker-hostname ${brokerHostname} " +
-                        //"--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: VMUKAAN HGVOJLQ RHPHQGN ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
@@ -210,8 +225,6 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
-                        //"--broker-hostname ${brokerHostname} " +
-                        //"--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: VMUKAAN HGVOJLQ RHPHQGN ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
@@ -248,8 +261,6 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
-                        //"--broker-hostname ${brokerHostname} " +
-                        //"--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ SFQMOBF"
                 ).split(" ")
@@ -284,8 +295,6 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
-                        //"--broker-hostname ${brokerHostname} " +
-                        //"--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ" //slots cardinality does not match
                 ).split(" ")
@@ -320,8 +329,6 @@ public class ClusterGatewayCommandLineTest {
                         "--option BAZ=baz " +
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
-                        //"--broker-hostname ${brokerHostname} " +
-                        //"--broker-port ${brokerPort} " +
                         "--repository /scratchLocal/gobyweb/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_ALIGNMENTS: KAKIMJE ZDFTZZE PVOVHCB ALIGNMENT_SOURCE_READS: XJYTQZO HRFBTKJ KKHLEFC" //KKHLEFC does not match any source for alignments
                 ).split(" ")
@@ -382,8 +389,7 @@ public class ClusterGatewayCommandLineTest {
                 ).split(" ");
 
     }
-    private static String[] buildClusterGatewayArgs(String additionalCommands, String pluginRoot=gatewayPluginRoot,
-                                                    boolean addHost=true) {
+    private static String[] buildClusterGatewayArgs(String additionalCommands, String pluginRoot=gatewayPluginRoot) {
         ("--job-area ${new File(resultsDir).getAbsolutePath()}/GOBYWEB_SGE_JOBS " +
                 "--fileset-area ${new File(resultsDir).getAbsolutePath()}/filesets " +
                 "--plugins-dir ${pluginRoot} " +
@@ -393,10 +399,9 @@ public class ClusterGatewayCommandLineTest {
                 "--option BAR=bar " +
                 "--option BAZ=baz " +
                 "--option DEBUG=true " +
-                (addHost ? "--artifact-server localhost " : "" )+
+                "--artifact-server localhost "+
                 "--repository ${repoDirAbsolutePath} "+
                 additionalCommands).split(" ");
 
     }
-
 }
