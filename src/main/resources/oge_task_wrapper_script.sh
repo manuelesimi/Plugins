@@ -9,9 +9,16 @@
 # Cluster queue to use
 #$ -q %QUEUE_NAME%
 
-function debug {
-    echo "$*";
-}
+. ./common.sh
+
+case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
+ singularity)
+     DELEGATE_OGE_JOB_SCRIPT="singularity exec ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/oge_task_wrapper_script_legacy.sh"
+ ;;
+ none)
+    DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/oge_task_wrapper_script_legacy.sh"
+ ;;
+esac
 
 function setup_task_functions {
 
@@ -143,31 +150,16 @@ function setup {
 
 setup
 
-
 case ${STATE} in
     task)
-        setup_task_functions
-        install_resources
-        LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"
-
-        #Aggregate metadata attributes to reduce the disk accesses
-        ${FILESET_COMMAND} --aggregate-attributes *
-        dieUponError "Unable to aggregate FileSet metadata before the task execution."
-
-        run_task 2>&1 |tee ${LOG_FILE}
-        STATUS=$?
-        if [ ${STATUS}==0 ]; then
-         echo "Task execution completed successfully." >>${LOG_FILE}
-        else
-         echo "An error occured"
-         exit ${STATUS}
-        fi
+         # delegate everything else either inside container or execute directly legacy script:
+        ${DELEGATE_OGE_JOB_SCRIPT} ${STATE}
         ;;
 
-    *)
+    submit)
         cd ${JOB_DIR}
-        SUBMISSION=`qsub -N ${TAG}.submit -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
+        SUBMISSION=`qsub -N ${TAG}.submit -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=task oge_task_wrapper_script.sh`
         echo ${SUBMISSION}
         ;;
-esac
 
+esac
