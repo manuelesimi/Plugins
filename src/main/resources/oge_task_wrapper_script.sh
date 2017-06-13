@@ -9,7 +9,12 @@
 # Cluster queue to use
 #$ -q %QUEUE_NAME%
 
+function debug {
+    echo "$*";
+}
+
 function setup_task_functions {
+
     # define no-op function to be overridden as needed by task script:
     plugin_task() { echo; }
     # include the plugin_task function for the appropriate task:
