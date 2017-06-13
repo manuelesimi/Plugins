@@ -221,7 +221,7 @@ case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
 esac
 
 if [ -z "${STATE+set}" ]; then
- // When state is not defined, assume the user wants to submit the job to OGE.
+ # When state is not defined, assume the user wants to submit the job to OGE.
  export STATE="submit"
 fi
 

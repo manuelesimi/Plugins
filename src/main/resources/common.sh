@@ -14,6 +14,32 @@ else
     fi
 fi
 
+if [ -z "${TMPDIR+set}" ]; then
+    export TMPDIR=/tmp/`cat /dev/urandom | tr -cd 'a-f0-9' | head -c 10`
+    mkdir -p ${TMPDIR}
+fi
+function goby {
+   set -x
+   set -T
+   mode_name="$1"
+   shift
+   echo GOBY_PROPERTIES:
+   cat ${TMPDIR}/goby.properties
+   java ${GRID_JVM_FLAGS} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
+                                             -Dgoby.configuration=file:${GOBY_DIR}/goby.properties -jar ${GOBY_DIR}/goby.jar \
+                       --mode ${mode_name} $*
+}
+
+function goby_with_memory {
+
+   memory="$1"
+   mode_name="$2"
+   shift
+   shift
+   java -Xms${memory} -Xmx${memory} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
+                                     -Dgoby.configuration=file:${GOBY_DIR}/goby.properties -jar ${GOBY_DIR}/goby.jar \
+                       --mode ${mode_name} $*
+}
 
 function dieUponError {
     RETURN_STATUS=$?

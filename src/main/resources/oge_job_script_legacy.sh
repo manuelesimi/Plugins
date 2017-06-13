@@ -409,28 +409,7 @@ function bam_align {
 # This function runs a Goby mode. It initializes java memory and logging parameters and can be called with any
 # number of parameters. For instance goby fasta-to-compact will run the fasta-to-compact mode with no arguments.
 
-function goby {
-   set -x
-   set -T
-   mode_name="$1"
-   shift
-   echo GOBY_PROPERTIES:
-   cat ${TMPDIR}/goby.properties
-   java ${GRID_JVM_FLAGS} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
-                                             -Dgoby.configuration=file:${GOBY_DIR}/goby.properties -jar ${GOBY_DIR}/goby.jar \
-                       --mode ${mode_name} $*
-}
 
-function goby_with_memory {
-
-   memory="$1"
-   mode_name="$2"
-   shift
-   shift
-   java -Xms${memory} -Xmx${memory} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
-                                     -Dgoby.configuration=file:${GOBY_DIR}/goby.properties -jar ${GOBY_DIR}/goby.jar \
-                       --mode ${mode_name} $*
-}
 # This function should be called when an error condition requires to terminate the job. The first argument is a description
 # of the error that will be communicated to the end-user (will be displayed in the GobyWeb job status interface).
 
