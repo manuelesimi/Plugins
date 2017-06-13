@@ -53,10 +53,12 @@ public interface Submitter {
     public void assignTagToJob(String jobTag);
 
     /**
-     * The script to run for executing the job.
-     * @param wrapperScript
+     * The script to run for executing the job, or a pattern (i.e., oge_script*.sh) identifying several scripts
+     * needed for execution. All scripts matched by the pattern will be written to the job directory after expansion
+     * of %variables%. The very first script matched by the pattern will be executed.
+     * @param wrapperScripts
      */
-    public void setWrapperScript(String wrapperScript);
+    public void setWrapperScripts(String ... wrapperScripts);
 
     /**
      * Checks if this is a local or remote submitter.

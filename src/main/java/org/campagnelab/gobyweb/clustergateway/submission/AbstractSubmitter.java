@@ -8,31 +8,32 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.*;
-
-import static org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob.*;
-
-import org.campagnelab.gobyweb.filesets.protos.JobDataWriter;
-import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.configuration.Configuration;
+import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.jobschema.JobInputSlot;
 import org.campagnelab.gobyweb.filesets.jobschema.JobOutputSlot;
+import org.campagnelab.gobyweb.filesets.protos.JobDataWriter;
 import org.campagnelab.gobyweb.io.JobArea;
-import org.campagnelab.gobyweb.plugins.*;
+import org.campagnelab.gobyweb.plugins.ArtifactsProtoBufHelper;
+import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
+import org.campagnelab.gobyweb.plugins.DependencyResolver;
+import org.campagnelab.gobyweb.plugins.PluginRegistry;
+import org.campagnelab.gobyweb.plugins.xml.Config;
 import org.campagnelab.gobyweb.plugins.xml.common.PluginFile;
 import org.campagnelab.gobyweb.plugins.xml.executables.*;
 import org.campagnelab.gobyweb.plugins.xml.filesets.FileSetConfig;
 import org.campagnelab.gobyweb.plugins.xml.resources.Resource;
 import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
-import org.campagnelab.gobyweb.plugins.xml.Config;
 
-
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import static org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob.InvalidJobDataException;
 
 /**
  * @author Fabien Campagne
@@ -44,7 +45,7 @@ abstract public class AbstractSubmitter implements Submitter {
     protected PluginRegistry registry;
     protected String environmentScriptFilename;
     protected String artifactRepositoryPath;
-    protected String wrapperScript = "oge_task_wrapper_script.sh"; //default is OGE script for aligners and analyses
+    protected String wrapperScripts[] = {"oge_task_wrapper_script.sh"}; //default is OGE script for aligners and analyses
     protected String commonScript = "job_common_functions.sh"; //common functions
     protected String containerTechnology = "none";
     protected String containerName = "none";
@@ -79,8 +80,8 @@ abstract public class AbstractSubmitter implements Submitter {
     }
 
     @Override
-    public void setWrapperScript(String wrapperScript) {
-        this.wrapperScript = wrapperScript;
+    public void setWrapperScripts(String... wrapperScripts) {
+        this.wrapperScripts = wrapperScripts;
     }
 
     /**
@@ -120,7 +121,6 @@ abstract public class AbstractSubmitter implements Submitter {
     public void assignTagToJob(String jobTag) {
         this.jobTag = jobTag;
     }
-
 
 
     @Override
@@ -225,7 +225,7 @@ abstract public class AbstractSubmitter implements Submitter {
                     + queueMessageDir.getAbsolutePath());
         }
         environment.put("ARTIFACT_REPOSITORY_DIR", artifactRepositoryPath);
-        environment.put("FILESET_AREA", String.format("%s/%s",fileSetAreaReference, job.getOwnerId()));
+        environment.put("FILESET_AREA", String.format("%s/%s", fileSetAreaReference, job.getOwnerId()));
         environment.put("FILESET_TARGET_DIR", "${JOB_DIR}/source");
         environment.put("FILESET_COMMAND",
                 String.format("java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_FILESET_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_DEPENDENCIES_JAR} -Dlog4j.configuration=file:${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} org.campagnelab.gobyweb.filesets.JobInterface --fileset-area-cache ${FILESET_TARGET_DIR} --pb-file %s/filesets.pb --aggregated-metadata-file %s/aggregated-metadata-file.pb --job-tag %s",
@@ -495,34 +495,55 @@ abstract public class AbstractSubmitter implements Submitter {
     }
 
     /**
-     * Prepares the wrapper script for the job and copies it in the temporary dir.
+     * Prepares the wrapper script(s) for the job and copies them in the temporary dir.
      *
      * @param job     the job that will be executed by the submitter
      * @param tempDir the directory where to copy the wrapper script
      * @throws IOException
      */
-    public void copyWrapperScript(ExecutableJob job, File tempDir) throws IOException {
+    public void copyWrapperScripts(Job job, File tempDir) throws IOException {
+        for (String wrapperScript : wrapperScripts) {
 
-        //get the wrapper script
-        URL wrapperScriptURL = getClass().getClassLoader().getResource(wrapperScript);
-        String wrapperContent = IOUtils.toString(wrapperScriptURL);
+            copyOneWrapperScript(job, tempDir, wrapperScript);
+        }
+    }
+
+
+    private void copyOneWrapperScript(Job job, File tempDir, String wrapperScript) throws
+            IOException {
+        //get the wrapper script wither from a file, or from the classpath:
+        String wrapperContent = null;
+        if (new File(wrapperScript).exists()) {
+            wrapperContent = FileUtils.readFileToString(new File(wrapperScript));
+        } else {
+            URL wrapperScriptURL = getClass().getClassLoader().getResource(wrapperScript);
+            assert wrapperScriptURL != null : "Unable to locate wrapperScript: " + wrapperScript;
+            wrapperContent = IOUtils.toString(wrapperScriptURL);
+        }
         wrapperContent = StringUtils.replace(wrapperContent, "\r", "");
         for (int i = 0; i < 2; i++) {
             // Do the replacements twice just in case replacements contain replacements
             for (Map.Entry<String, Object> replacement : job.getEnvironment().entrySet()) {
                 if (replacement.getKey().startsWith("%"))
                     wrapperContent = StringUtils.replace(wrapperContent, replacement.getKey(),
-                        (replacement.getValue() != null) ? replacement.getValue().toString() : "");
+                            (replacement.getValue() != null) ? replacement.getValue().toString() : "");
                 else if (replacement.getKey().equalsIgnoreCase("PLUGIN_NEED_GLOBAL")) {
                     // PLUGIN_NEED_GLOBAL is not wrapped between % in the env,
                     // but it must be replaced in the script, so this is a special case
-                    wrapperContent = StringUtils.replace(wrapperContent, "%"+replacement.getKey()+"%",
+                    wrapperContent = StringUtils.replace(wrapperContent, "%" + replacement.getKey() + "%",
                             (replacement.getValue() != null) ? replacement.getValue().toString() : "");
                 }
             }
         }
         FileUtils.writeStringToFile(new File(tempDir, wrapperScript), wrapperContent);
+    }
 
+    /**
+     * Return the wrapper script to execute (main script).
+     * @return
+     */
+    public String getWrapperScript() {
+        return wrapperScripts[0];
     }
 }
 

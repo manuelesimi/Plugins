@@ -3,6 +3,7 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 import com.google.common.io.Files;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
@@ -64,7 +65,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         Files.copy(pbfile, new File(tempDir, pbfile.getName()));
 
         //fill the wrapper script and copy it on the temp dir
-        this.copyWrapperScript(job, tempDir);
+        this.copyWrapperScripts(job, tempDir);
 
         VariableHelper helper = new VariableHelper();
         helper.writeVariables(new File(tempDir, constantsTemplate), job.getEnvironment());
@@ -81,13 +82,14 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         pushJobDir(tempDir,job,jobArea);
 
         //grant execute permissions to the task's scripts
-        String[] binaryFiles = new String[]{"groovy", this.wrapperScript, "*"};
+        String[] binaryFiles = (String[]) ArrayUtils.addAll(this.wrapperScripts, new String[]{"groovy", "*"});
+
         jobArea.grantExecutePermissions(job.getTag(), binaryFiles);
 
         //execute the task
         logger.info("Requesting job execution...");
         logger.info("Output from the submission process:");
-        jobArea.execute(this.jobTag, wrapperScript);
+        jobArea.execute(this.jobTag, getWrapperScript());
         logger.info(String.format("The job will be executed in the Job Area at %s/%s/%s", jobArea.toString(),
                 job.getTag().charAt(0), job.getTag()));
 
@@ -101,8 +103,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         //create the temp dir with the submission files to move on the cluster
         File tempDir = Files.createTempDir();
         //get the wrapper script
-        URL wrapperScriptURL = getClass().getClassLoader().getResource(this.wrapperScript);
-        FileUtils.copyURLToFile(wrapperScriptURL, new File(tempDir, this.wrapperScript));
+        this.copyWrapperScripts(resourceJob, tempDir);
 
         FileUtils.writeStringToFile(new File(tempDir, constantsTemplate), writeConstants(jobArea, resourceJob));
 
@@ -120,14 +121,14 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         pushJobDir(tempDir,resourceJob,jobArea);
 
         //give execute permission to resourceJob script and anything at top level (needed for resource files)
-        jobArea.grantExecutePermissions(resourceJob.getTag(), new String[]{this.wrapperScript, "*"});
+        jobArea.grantExecutePermissions(resourceJob.getTag(), (String[]) ArrayUtils.add(this.wrapperScripts, "*"));
 
         //execute the resourceJob
         logger.info(String.format("The job will be executed in the Job Area at %s/%s/%s)", jobArea.toString(),
                 resourceJob.getTag().charAt(0), resourceJob.getTag()));
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", jobArea.getBasename(resourceJob.getTag()));
-        jobArea.execute(resourceJob.getTag(), this.wrapperScript,env);
+        jobArea.execute(resourceJob.getTag(), this.getWrapperScript(),env);
     }
 
     /**

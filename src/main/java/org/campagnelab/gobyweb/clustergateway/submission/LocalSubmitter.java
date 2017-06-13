@@ -2,6 +2,7 @@ package org.campagnelab.gobyweb.clustergateway.submission;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob;
 import org.campagnelab.gobyweb.clustergateway.jobs.ResourceJob;
@@ -55,8 +56,8 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         File pbFile = this.createJobDataPB(session, job);
         FileUtils.copyFileToDirectory(pbFile, jobLocalDir);
 
-        //copy the wrapper script in the execution dir
-        this.copyWrapperScript(job, jobLocalDir);
+        //copy the wrapper script(s) in the execution dir
+        this.copyWrapperScripts(job, jobLocalDir);
 
         //write constants script
         VariableHelper helper = new VariableHelper();
@@ -72,7 +73,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         runPreDeploymentScripts(job, jobLocalDir);
 
         //give execute permission to task scripts
-        jobArea.grantExecutePermissions(job.getTag(), new String[]{this.wrapperScript});
+        jobArea.grantExecutePermissions(job.getTag(), this.wrapperScripts);
 
         //execute the task
         logger.info(String.format("Submitting job to local cluster at %s %s", job.getTag(),
@@ -81,7 +82,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         env.put("JOB_DIR", jobLocalDir.getAbsolutePath());
         env.put("PATH", System.getenv("PATH"));
         logger.info("Output from the submission process:");
-        logger.info(jobArea.execute(job.getTag(),this.wrapperScript,env));
+        logger.info(jobArea.execute(job.getTag(), this.getWrapperScript(), env));
     }
 
 
@@ -99,9 +100,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         final File taskLocalDir = new File(jobArea.getBasename(resourceJob.getTag()));
 
         //get the wrapper script
-        URL wrapperScriptURL = getClass().getClassLoader().getResource(this.wrapperScript);
-        FileUtils.copyURLToFile(wrapperScriptURL, new File(jobArea.getBasename(resourceJob.getTag()), this.wrapperScript));
-
+        copyWrapperScripts(resourceJob, new File(jobArea.getBasename(resourceJob.getTag())));
         FileUtils.writeStringToFile(new File(jobArea.getBasename(resourceJob.getTag()), constantsTemplate), writeConstants(jobArea, resourceJob));
 
         copyArtifactsPbRequests(resourceJob.getSourceConfig(), this.environmentScriptFilename, taskLocalDir);
@@ -114,7 +113,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfig()));
         FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(taskLocalDir.getAbsolutePath(), "auto-options.sh")));
         //give execute permission to resourceJob scripts
-        String[] binaryFiles = new String[]{"groovy", this.wrapperScript, "auto-options.sh", "constants.sh"};
+        String[] binaryFiles = (String[]) ArrayUtils.addAll(this.wrapperScripts, new String[]{"groovy", "auto-options.sh", "constants.sh"});
         jobArea.grantExecutePermissions(resourceJob.getTag(), binaryFiles);
 
         //execute the resourceJob
@@ -122,7 +121,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", taskLocalDir.getAbsolutePath());
         env.put("PATH", System.getenv("PATH"));
-        jobArea.execute(resourceJob.getTag(), this.wrapperScript, env);
+        jobArea.execute(resourceJob.getTag(), this.getWrapperScript(), env);
     }
 
 
