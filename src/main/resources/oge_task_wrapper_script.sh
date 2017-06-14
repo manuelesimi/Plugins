@@ -9,14 +9,15 @@
 # Cluster queue to use
 #$ -q %QUEUE_NAME%
 
+WRAPPER_SCRIPT_PREFIX="oge_task_wrapper_script"
 . %JOB_DIR%/common.sh
 
 case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
  singularity)
-     DELEGATE_OGE_JOB_SCRIPT="singularity exec ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/oge_task_wrapper_script_legacy.sh"
+     DELEGATE_OGE_JOB_SCRIPT="singularity exec ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh"
  ;;
  none)
-    DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/oge_task_wrapper_script_legacy.sh"
+    DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh"
  ;;
 esac
 
@@ -153,13 +154,14 @@ function setup {
 
 case ${STATE} in
     task)
+        initializeJobEnvironment
          # delegate everything else either inside container or execute directly legacy script:
         ${DELEGATE_OGE_JOB_SCRIPT} ${STATE}
         ;;
 
     submit)
-        setup
         initializeJobEnvironment
+        setup
         cd ${JOB_DIR}
         if [[ -z "$JOBS_HOLD_LIST" ]]; then
             HOLD_OPTION="-hold_jid ${JOBS_HOLD_LIST}"

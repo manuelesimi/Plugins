@@ -203,9 +203,9 @@ final class Actions {
         TaskJobBuilder builder = new TaskJobBuilder(taskConfig, jobConfiguration);
 
         if (submitter.isLocal())
-            submitter.setWrapperScripts("local_task_wrapper_script.sh", "common.sh");
+            submitter.setWrapperScripts("local_task_wrapper_script.sh","local_task_wrapper_script_legacy.sh", "common.sh");
         else
-            submitter.setWrapperScripts("oge_task_wrapper_script.sh", "common.sh");
+            submitter.setWrapperScripts("oge_task_wrapper_script.sh", "oge_task_wrapper_script_legacy.sh", "common.sh");
 
         this.submitJob(builder.build(unclassifiedOptions), inputSlots);
     }

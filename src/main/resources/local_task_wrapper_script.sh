@@ -1,6 +1,6 @@
 #!/bin/sh
-
-. ./common.sh
+WRAPPER_SCRIPT_PREFIX="local_task_wrapper_script"
+. %JOB_DIR%/common.sh
 
 
 if [ -z "${STATE+set}" ]; then

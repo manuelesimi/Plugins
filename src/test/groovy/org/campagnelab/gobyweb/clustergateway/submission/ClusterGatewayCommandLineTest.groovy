@@ -196,6 +196,39 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
+    @Test
+    public void runProcessReadsSingularity() {
+
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAligner() test");
+            return;
+        }
+
+        String artifactServer = String.format("%s@%s",
+                System.getProperty("user.name"),
+                java.net.InetAddress.getLocalHost().getHostName());
+        assertEquals(0, ClusterGateway.process(
+                ("--job-area gobyweb3@darla.med.cornell.edu:/scratchLocal/gobyweb/gobyweb3/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /scratchLocal/gobyweb/gobyweb3/FILESET_AREA " +
+                        "--plugins-dir ../gobyweb2-plugins " +
+                        "--owner instructor " +
+                        "--queue fclab-debug.q " +
+                        "--env-script ${envScript} "+
+                        "--job PROCESS_READS_TASK " +
+                        "--container_technology singularity "+
+                        "--container_name shub://CampagneLaboratory/GobyWeb-Singularity "+
+                     //   "--option QUEUE_WRITER_POSTFIX=--handler-service sampleService "+
+                        "--artifact-server ${artifactServer} "+
+                        "--repository /scratchLocal/gobyweb/gobyweb3/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
+                        "--SAMPLE_NAME HRPB-CTL-Male-Triplet-WGS " +
+                        "--QUALITY_ENCODING Sanger " +
+                        "--READS_PLATFORM Illumina " +
+                        "--TAG TAWVUNS " +
+                        "UPLOADS_FILES: ZTDMGNB " +
+                        "UPLOAD_MERGE_PLAN: DZGPAXU").split(" ")))
+
+    }
+
     //@Test
     public void runRemoteAnalysis() {
 

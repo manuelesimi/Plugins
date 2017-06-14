@@ -48,7 +48,9 @@
 
 %CPU_REQUIREMENTS%
 
+WRAPPER_SCRIPT_PREFIX="oge_job_script"
 . %JOB_DIR%/common.sh
+
 
 
 function calculate_PAD_FORMAT {
