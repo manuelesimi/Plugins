@@ -21,6 +21,12 @@ public abstract class JobBuilder {
         this.executableConfig = executableConfig;
     }
 
+    protected void configureDefaultEmail(JobRuntimeEnvironment environment) {
+        environment.put("JOB_STARTED_EMAIL","echo 'no email configured'");
+        environment.put("JOB_FAILED_EMAIL","echo 'no email configured'");
+        environment.put("JOB_COMPLETED_EMAIL","echo 'no email configured'");
+    }
+
     /**
      * Parses plugin runtime requirements.
      *

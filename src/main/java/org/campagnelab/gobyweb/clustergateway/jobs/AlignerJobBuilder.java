@@ -94,11 +94,16 @@ public class AlignerJobBuilder extends JobBuilder {
         environment.put("GENOME_REFERENCE_ID", this.genomeID);
         // Increase total number of parts for CONCAT and POST
         environment.put("NUMBER_OF_PARTS", num_parts + 2);
+
+       configureDefaultEmail(environment);
+
         if (this.genomeID.startsWith("Transcript-"))
             environment.put("INITIAL_STATE", "pre_transcript_align");
         else
             environment.put("INITIAL_STATE", "pre_align");
     }
+
+
 
     private int getNumParts(long readsSize) {
         return (int) Math.ceil(readsSize / this.chunkSize);

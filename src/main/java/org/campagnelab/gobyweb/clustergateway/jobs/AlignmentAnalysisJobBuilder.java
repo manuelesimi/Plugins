@@ -179,6 +179,9 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
         environment.put("GENERATE_INDEX", this.generateIndex() ? "true" : "false");
         environment.put("PUSH_PLUGIN_OUTPUT_FILES", this.generatePluginOutputPushStatements());
         environment.put("COPY_PLUGIN_OUTPUT_FILES", this.generatePluginOutputCopyStatements());
+
+        configureDefaultEmail(environment);
+
         FileSetAPI api = FileSetAPI.getReadOnlyAPI(fileSetArea);
         List<String> errors = new ArrayList<String>();
         //map an alignment tag with the alignment basename
