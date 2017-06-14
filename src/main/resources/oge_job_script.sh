@@ -51,18 +51,6 @@
 . %JOB_DIR%/common.sh
 
 
-
-
-case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
- singularity)
-     DELEGATE_OGE_JOB_SCRIPT="singularity exec ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/oge_job_script_legacy.sh"
- ;;
- none)
-    DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/oge_job_script_legacy.sh"
- ;;
-esac
-
-
 function submit_align {
     jobStartedEmail
   cd ${SGE_O_WORKDIR}
@@ -90,7 +78,7 @@ function submit_align {
     checkSubmission $POST
     append_kill_file ${POST}
   fi
-
+  echo "Done submitting alignment parts"
 }
 
 function submit_parallel_alignment_analysis_jobs {
@@ -226,8 +214,8 @@ fi
 
 case ${STATE} in
     submit)
-        setup
         initializeJobEnvironment
+        setup
         cd ${JOB_DIR}
         SUBMISSION=`qsub -N ${TAG}.submit -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh `
         checkSubmission $SUBMISSION
@@ -237,7 +225,7 @@ case ${STATE} in
 
     pre_align)
         initializeJobEnvironment
-        STATE="pre_align"
+        export STATE="pre_align"
         ${DELEGATE_OGE_JOB_SCRIPT} "$*"
         submit_align
         ;;
@@ -258,6 +246,7 @@ case ${STATE} in
         cleanup
         ;;
     *)
+        initializeJobEnvironment
         # delegate everything else either inside container or execute directly legacy script:
         ${DELEGATE_OGE_JOB_SCRIPT} ${STATE}
         ;;

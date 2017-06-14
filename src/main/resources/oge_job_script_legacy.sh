@@ -50,6 +50,7 @@
 
 . %JOB_DIR%/common.sh
 
+
 function calculate_PAD_FORMAT {
     _NUMBER=$1
     _NUMBER_TO_PAD=0
@@ -975,7 +976,7 @@ function setup_plugin_functions {
 ## Script logic starts here
 #######################################################################################
 
-
+echo "START of LEGACY SCRIPT"
 initializeGobyWebArtifactEnvironment
 
 case ${STATE} in
@@ -1079,3 +1080,5 @@ case ${STATE} in
       echo "Invalid stat for oge_job_script_legacy.sh. Should the state ${STATE} have been handled by oge_job_script.sh instead?"
       exit 1;
 esac
+
+echo "END of LEGACY SCRIPT"

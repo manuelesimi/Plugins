@@ -1,7 +1,28 @@
 #!/usr/bin/env bash
 
+
 function initializeJobEnvironment {
     export JOB_DIR=%JOB_DIR%
+    set +x
+    . ${JOB_DIR}/constants.sh
+    . ${JOB_DIR}/auto-options.sh
+    set -x
+    echo "Using container technology: ${GOBYWEB_CONTAINER_TECHNOLOGY}"
+
+    case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
+        singularity)
+         echo "Calling legacy script with Singularity"
+         export DELEGATE_OGE_JOB_SCRIPT="singularity exec \
+                                    -B ${FILESET_AREA}:${FILESET_AREA} \
+                                    -B ${JOB_DIR}:${JOB_DIR} \
+                                    -B ${ARTIFACT_REPOSITORY_DIR}:${ARTIFACT_REPOSITORY_DIR} \
+                                    ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/oge_job_script_legacy.sh"
+     ;;
+     none)
+        echo "Calling legacy script directly"
+        export DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/oge_job_script_legacy.sh"
+     ;;
+    esac
 }
 
 
@@ -9,8 +30,6 @@ function initializeGobyWebArtifactEnvironment {
     initializeJobEnvironment
     export ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
     . ${JOB_DIR}/artifacts.sh
-    . ${JOB_DIR}/auto-options.sh
-    . ${JOB_DIR}/constants.sh
 }
 
 function debug {
@@ -25,7 +44,7 @@ if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
     export GOBYWEB_CONTAINER_TECHNOLOGY="none"
 else
     if [ -z "${GOBYWEB_CONTAINER_NAME+set}" ]; then
-    export GOBYWEB_CONTAINER_NAME="artifacts/base"
+    export GOBYWEB_CONTAINER_NAME="shub://CampagneLaboratory/GobyWeb-Singularity"
     fi
 fi
 
@@ -127,7 +146,9 @@ function checkSubmission {
 
 function create_kill_file {
     if [ ! -f %KILL_FILE% ]; then
+        set +x
         . %JOB_DIR%/constants.sh
+
         echo '#!/bin/bash -l' >> %KILL_FILE%
         echo 'export JOB_DIR=%JOB_DIR%' >> %KILL_FILE%
         echo 'export TMPDIR=%JOB_DIR%' >> %KILL_FILE%
@@ -163,14 +184,7 @@ function jobCompletedEmail {
 
 function setup {
 
-    export JOB_DIR=%JOB_DIR%
-
-    # define job specific constants:
-    . %JOB_DIR%/constants.sh
-
-    # include value definitions for automatic options:
-    . %JOB_DIR%/auto-options.sh
-
+    initializeJobEnvironment
     #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
     export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
     QUEUE_WRITER="%JOB_DIR%/groovy ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} %QUEUE_WRITER_POSTFIX% "
