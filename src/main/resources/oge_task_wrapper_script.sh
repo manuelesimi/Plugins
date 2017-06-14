@@ -84,10 +84,6 @@ function setup {
     export JOB_DIR=%JOB_DIR%
     echo "JOB _DIR is ${JOB_DIR}"
 
-    if [ -z "$TMPDIR" ]; then
-        export TMPDIR=${JOB_DIR}
-    fi
-
     CURRENT_PART=1 # Needed when reporting errors with dieUponError
 
     # include value definitions for automatic options:
