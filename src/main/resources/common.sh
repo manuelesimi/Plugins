@@ -31,6 +31,10 @@ function initializeGobyWebArtifactEnvironment {
     . ${JOB_DIR}/artifacts.sh
 }
 
+function trace {
+    echo "$*";
+}
+
 function debug {
     echo "$*";
 }
@@ -48,8 +52,14 @@ else
 fi
 
 if [ -z "${TMPDIR+set}" ]; then
-    export TMPDIR=/tmp/`cat /dev/urandom | tr -cd 'a-f0-9' | head -c 10`
-    mkdir -p ${TMPDIR}
+    if [ ! -z  "${SGE_O_WORKDIR}+set" ]; then
+        # not running inside SGE? Use the workdir as TMPDIR:
+        export TMPDIR=${JOB_DIR}
+        mkdir -p ${TMPDIR}
+    else
+        # Otherwise, use the SGE work directory
+        export TMPDIR="${SGE_O_WORKDIR}"
+    fi
 fi
 
 function goby {
