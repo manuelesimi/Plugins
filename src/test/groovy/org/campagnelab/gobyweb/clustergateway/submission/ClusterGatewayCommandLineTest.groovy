@@ -141,7 +141,7 @@ public class ClusterGatewayCommandLineTest {
                         "--env-script ${envScript} "+
                         "--job BWA_ARTIFACT " +
                         "--container_technology singularity "+
-                        "--container_name docker://artifacts/base:latest "+
+                        "--container_name shub://CampagneLaboratory/GobyWeb-Singularity "+
                         "--GENOME_REFERENCE_ID 1000GENOMES.37 "+
                         "--CHUNK_SIZE 50000000 "+
                         "--option DEBUG=true " +
