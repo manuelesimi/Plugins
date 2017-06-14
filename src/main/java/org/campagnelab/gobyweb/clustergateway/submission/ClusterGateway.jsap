@@ -165,12 +165,13 @@
         </flaggedOption>
 
         <flaggedOption>
-            <id>job_wrapper_paths</id>
+            <id>job_wrappers_paths</id>
             <stringParser>
                 <classname>StringStringParser</classname>
             </stringParser>
             <required>false</required>
             <longFlag>job_wrappers_paths</longFlag>
+            <allowMultipleDeclarations>true</allowMultipleDeclarations>
             <help>The paths/patterns where the wrapper scripts are located (e.g. /my/path/oge_singularity*.sh).</help>
         </flaggedOption>
 

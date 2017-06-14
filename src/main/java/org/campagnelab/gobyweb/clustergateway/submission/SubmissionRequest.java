@@ -241,7 +241,7 @@ public abstract class SubmissionRequest {
                     submitter.setContainerTechnology(config.getString("container_technology"));
             }
             if (config.userSpecified("job_wrappers_paths"))
-                submitter.setWrappersPaths(config.getString("job_wrappers_paths"));
+                submitter.setWrappersPaths(config.getStringArray("job_wrappers_paths"));
             return this.submit(config,actions);
         } catch (Exception e) {
             logger.error("Failed to manage the requested action. " + e.getMessage());
