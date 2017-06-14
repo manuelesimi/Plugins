@@ -51,6 +51,8 @@
 . %JOB_DIR%/common.sh
 
 
+
+
 case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
  singularity)
      DELEGATE_OGE_JOB_SCRIPT="singularity exec ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/oge_job_script_legacy.sh"
@@ -225,6 +227,7 @@ fi
 case ${STATE} in
     submit)
         setup
+        initializeJobEnvironment
         cd ${JOB_DIR}
         SUBMISSION=`qsub -N ${TAG}.submit -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh `
         checkSubmission $SUBMISSION
@@ -233,12 +236,14 @@ case ${STATE} in
         ;;
 
     pre_align)
+        initializeJobEnvironment
         STATE="pre_align"
         ${DELEGATE_OGE_JOB_SCRIPT} "$*"
         submit_align
         ;;
 
     diffexp)
+        initializeJobEnvironment
         if [ "${SPLIT_PROCESS_COMBINE}" == "false" ]; then
            ${DELEGATE_OGE_JOB_SCRIPT} "diffexp_sequential"
          else

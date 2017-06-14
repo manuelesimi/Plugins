@@ -148,7 +148,8 @@ function setup {
 
 }
 
-setup
+
+
 
 case ${STATE} in
     task)
@@ -157,6 +158,8 @@ case ${STATE} in
         ;;
 
     submit)
+        setup
+        initializeJobEnvironment
         cd ${JOB_DIR}
         SUBMISSION=`qsub -N ${TAG}.submit -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=task oge_task_wrapper_script.sh`
         echo ${SUBMISSION}

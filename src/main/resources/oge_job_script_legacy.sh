@@ -976,9 +976,7 @@ function setup_plugin_functions {
 #######################################################################################
 
 
-ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
-. ${JOB_DIR}/artifacts.sh
-
+initializeGobyWebArtifactEnvironment
 
 case ${STATE} in
     install_plugin_artifacts)

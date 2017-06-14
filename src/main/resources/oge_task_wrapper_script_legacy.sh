@@ -61,6 +61,7 @@ setup
 
 case ${STATE} in
     task)
+        initializeGobyWebArtifactEnvironment
         setup_task_functions
         install_resources
         LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"

@@ -1,11 +1,26 @@
 #!/usr/bin/env bash
 
+function initializeJobEnvironment {
+    export JOB_DIR=%JOB_DIR%
+}
+
+
+function initializeGobyWebArtifactEnvironment {
+    initializeJobEnvironment
+    export ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
+    . ${JOB_DIR}/artifacts.sh
+    . ${JOB_DIR}/auto-options.sh
+    . ${JOB_DIR}/constants.sh
+}
+
 function debug {
     echo "$*";
 }
+
 function error {
     echo "$*";
 }
+
 if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
     export GOBYWEB_CONTAINER_TECHNOLOGY="none"
 else
