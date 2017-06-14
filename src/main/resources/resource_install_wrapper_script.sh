@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+
+WRAPPER_SCRIPT_PREFIX="resource_install_wrapper_script"
 . %JOB_DIR%/common.sh
 
 # Script to trigger the installation of artifacts for a resource plugin. Does nothing after installation.

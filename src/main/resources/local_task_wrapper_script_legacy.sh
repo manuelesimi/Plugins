@@ -1,6 +1,7 @@
 #!/bin/sh
+WRAPPER_SCRIPT_PREFIX="local_task_wrapper_script"
+. %JOB_DIR%/common.sh
 
-. ./common.sh
 
 function setup_task_functions {
     # define no-op function to be overridden as needed by task script:

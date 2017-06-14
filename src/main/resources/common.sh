@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 function initializeJobEnvironment {
     export JOB_DIR=%JOB_DIR%
     set +x
@@ -16,11 +15,11 @@ function initializeJobEnvironment {
                                     -B ${FILESET_AREA}:${FILESET_AREA} \
                                     -B ${JOB_DIR}:${JOB_DIR} \
                                     -B ${ARTIFACT_REPOSITORY_DIR}:${ARTIFACT_REPOSITORY_DIR} \
-                                    ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/oge_job_script_legacy.sh"
+                                    ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh"
      ;;
      none)
         echo "Calling legacy script directly"
-        export DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/oge_job_script_legacy.sh"
+        export DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh"
      ;;
     esac
 }
@@ -254,3 +253,8 @@ function setup {
 }
 
 
+if [ -z "${STATE+set}" ]; then
+ # When state is not defined, assume the user wants to submit the job to OGE.
+ export STATE="submit"
+ echo "Defined STATE=${STATE}"
+fi
