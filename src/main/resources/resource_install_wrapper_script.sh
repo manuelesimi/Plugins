@@ -18,16 +18,12 @@ if [ -z "$JOB_DIR" ]; then
     export JOB_DIR=="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 fi
 
-    export TMPDIR=$JOB_DIR
+export TMPDIR=$JOB_DIR
 
-    cd ${JOB_DIR}
-    # create a fake goby directory, necessary to find artifact-manager.jar in ${JOB_DIR}/goby
-    ln -s . goby
-
-    . auto-options.sh
-    . constants.sh
-    . artifacts.sh
-
+cd ${JOB_DIR}
+# create a fake goby directory, necessary to find artifact-manager.jar in ${JOB_DIR}/goby
+ln -s . goby
+initializeGobyWebArtifactEnvironment
 
 GOBY_DIR=${JOB_DIR}/goby
 if [ ! -d ${GOBY_DIR} ]; then
@@ -48,5 +44,5 @@ install_plugin_artifacts 2>&1 |tee ${LOG_FILE}
 if [ $?==0 ]; then
   echo "Installation completed successfully." >>${LOG_FILE}
 else
-  echo "An error occured"
+  echo "An error occurred."
 fi
