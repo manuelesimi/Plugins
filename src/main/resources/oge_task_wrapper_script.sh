@@ -148,7 +148,8 @@ function setup {
 
 }
 
-setup
+
+
 
 case ${STATE} in
     task)
@@ -157,6 +158,8 @@ case ${STATE} in
         ;;
 
     submit)
+        setup
+        initializeJobEnvironment
         cd ${JOB_DIR}
         if [[ -z "$JOBS_HOLD_LIST" ]]; then
             HOLD_OPTION="-hold_jid ${JOBS_HOLD_LIST}"

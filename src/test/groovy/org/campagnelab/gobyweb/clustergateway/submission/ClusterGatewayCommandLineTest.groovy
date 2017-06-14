@@ -175,13 +175,13 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(0, ClusterGateway.process(
-                ("--job-area gobyweb3@darla.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                ("--job-area gobyweb3@darla.med.cornell.edu:/scratchLocal/gobyweb/gobyweb3/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /scratchLocal/gobyweb/gobyweb3/FILESET_AREA " +
                         "--plugins-dir ../gobyweb2-plugins " +
                         "--owner campagne " +
                         "--queue fclab-debug.q " +
                         "--env-script ${envScript} "+
-                        "--job BWA_ARTIFACT " +
+                        "--job BWA_GOBY_ARTIFACT " +
                         "--container_technology singularity "+
                         "--container_name shub://CampagneLaboratory/GobyWeb-Singularity "+
                         "--GENOME_REFERENCE_ID 1000GENOMES.37 "+

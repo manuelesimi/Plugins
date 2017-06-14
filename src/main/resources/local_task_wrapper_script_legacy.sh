@@ -53,8 +53,6 @@ export TMPDIR=$JOB_DIR
 export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
 
 cd ${JOB_DIR}
-. auto-options.sh
-. constants.sh
 
 GOBY_DIR=${JOB_DIR}/goby
 if [ ! -d ${GOBY_DIR} ]; then
