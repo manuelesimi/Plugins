@@ -80,10 +80,10 @@ public interface Submitter {
     public boolean isLocal();
 
     /**
-     * Sets the path from where the script wrappers have to be loaded.
+     * Sets the paths from where the script wrappers have to be loaded.
      * @param paths
      */
-    public void setWrappersPaths(String paths);
+    public void setWrappersPaths(String[] paths);
 
     /**
      * Sets the technology of script wrappers to use.

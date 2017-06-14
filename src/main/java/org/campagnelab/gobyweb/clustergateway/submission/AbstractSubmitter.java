@@ -39,6 +39,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
+import java.util.*;
 
 import static org.campagnelab.gobyweb.clustergateway.jobs.ExecutableJob.InvalidJobDataException;
 
@@ -56,7 +57,6 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String commonScript = "job_common_functions.sh"; //common functions
     protected String containerTechnology = "none";
     protected String containerName = "none";
-    protected String wrappersPaths= "classpath";
     protected String queue;
     private static final File queueMessageDir = new File(System.getProperty("user.home") + "/.clustergateway/queue-message-dir");
 
@@ -116,8 +116,14 @@ abstract public class AbstractSubmitter implements Submitter {
      * @param paths
      */
     @Override
-    public void setWrappersPaths(String paths) {
-        this.wrappersPaths = paths;
+    public void setWrappersPaths(String[] paths) {
+        Set<String> wrappers = new HashSet<String>();
+        for (String path : paths) {
+            PathPattern pathPattern = new PathPattern(path);
+            for (File file : pathPattern.scan())
+                wrappers.add(file.getAbsolutePath());
+        }
+        this.wrapperScripts = wrappers.toArray(new String[]{});
     }
 
     /**
@@ -287,7 +293,6 @@ abstract public class AbstractSubmitter implements Submitter {
         environment.put("OWNER", job.getOwnerId());
         environment.put("GOBYWEB_CONTAINER_TECHNOLOGY", this.containerTechnology);
         environment.put("GOBYWEB_CONTAINER_NAME", this.containerName);
-        environment.put("OGE_WRAPPERS_PATHS", this.wrappersPaths);
         environment.put("JOB_PART_COMPLETED_STATUS", JobPartStatus.COMPLETED.statusName);
         environment.put("JOB_PART_FAILED_STATUS", JobPartStatus.FAILED.statusName);
         environment.put("JOB_PART_SPLIT_STATUS", JobPartStatus.SPLIT.statusName);
@@ -484,8 +489,7 @@ abstract public class AbstractSubmitter implements Submitter {
                 .replaceAll("%%PLUGIN_ID%%", job.getSourceConfigs().get(0).getId())
                 .replaceAll("%%PLUGIN_VERSION%%", job.getSourceConfigs().get(0).getVersion()
                 .replaceAll("%%GOBYWEB_CONTAINER_TECHNOLOGY%%", this.containerTechnology)
-                .replaceAll("%%GOBYWEB_CONTAINER_NAME%%", this.containerName)
-                .replaceAll("%%OGE_WRAPPER_PATHS%%", this.wrappersPaths));
+                .replaceAll("%%GOBYWEB_CONTAINER_NAME%%", this.containerName));
     }
 
     /**
