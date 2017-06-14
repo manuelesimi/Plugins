@@ -254,7 +254,7 @@
         <dependency>
             <groupId>org.campagnelab.gobyweb</groupId>
             <artifactId>filesets</artifactId>
-            <version>1.2.2</version>
+            <version>1.2.3-SNAPSHOT</version>
         </dependency>
 
         <dependency>
