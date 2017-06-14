@@ -142,7 +142,7 @@ public class ClusterGatewayCommandLineTest {
                 ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir ../gobyweb2-plugins " +
-                        "--owner campagne " +
+                        "--owner instructor " +
                         "--queue rascals.q " +
                         "--env-script ${envScript} "+
                         "--job BWA_MEM_ARTIFACT " +
@@ -178,7 +178,7 @@ public class ClusterGatewayCommandLineTest {
                 ("--job-area gobyweb3@darla.med.cornell.edu:/scratchLocal/gobyweb/gobyweb3/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /scratchLocal/gobyweb/gobyweb3/FILESET_AREA " +
                         "--plugins-dir ../gobyweb2-plugins " +
-                        "--owner campagne " +
+                        "--owner instructor " +
                         "--queue fclab-debug.q " +
                         "--env-script ${envScript} "+
                         "--job BWA_GOBY_ARTIFACT " +
