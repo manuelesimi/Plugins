@@ -979,6 +979,7 @@ function setup_plugin_functions {
 #######################################################################################
 
 echo "START of LEGACY SCRIPT"
+env
 initializeGobyWebArtifactEnvironment
 
 case ${STATE} in

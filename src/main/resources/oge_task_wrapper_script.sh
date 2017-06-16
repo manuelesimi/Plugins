@@ -12,14 +12,6 @@
 WRAPPER_SCRIPT_PREFIX="oge_task_wrapper_script"
 . %JOB_DIR%/common.sh
 
-case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
- singularity)
-     DELEGATE_OGE_JOB_SCRIPT="singularity exec ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh"
- ;;
- none)
-    DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh"
- ;;
-esac
 
 function setup_task_functions {
 
@@ -83,10 +75,6 @@ function setup {
 
     export JOB_DIR=%JOB_DIR%
     echo "JOB _DIR is ${JOB_DIR}"
-
-    if [ -z "$TMPDIR" ]; then
-        export TMPDIR=${JOB_DIR}
-    fi
 
     CURRENT_PART=1 # Needed when reporting errors with dieUponError
 
@@ -156,7 +144,7 @@ case ${STATE} in
     task)
         initializeJobEnvironment
          # delegate everything else either inside container or execute directly legacy script:
-        ${DELEGATE_OGE_JOB_SCRIPT} ${STATE}
+        delegate_oge_job_script ${STATE}
         ;;
 
     submit)

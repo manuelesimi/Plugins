@@ -9,25 +9,15 @@ if [ -z "${STATE+set}" ]; then
 fi
 
 
-case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
- singularity)
-     DELEGATE_OGE_JOB_SCRIPT="singularity exec ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/local_task_wrapper_script_legacy.sh"
- ;;
- none)
-    DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/local_task_wrapper_script_legacy.sh"
- ;;
-esac
-
-
 case ${STATE} in
 
     run_in_container)
         STATE="run_task"
-        ${DELEGATE_OGE_JOB_SCRIPT} "$*"
+        delegate_oge_job_script "$*"
         ;;
     *)
         # delegate everything else either inside container or execute directly legacy script:
         export STATE="run_task"
-        ${DELEGATE_OGE_JOB_SCRIPT} ${STATE}
+        delegate_oge_job_script ${STATE}
         ;;
 esac

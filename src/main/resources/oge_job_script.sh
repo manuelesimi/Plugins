@@ -190,22 +190,6 @@ function cleanup {
 ## Script logic starts here
 #######################################################################################
 
-if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
-    export GOBYWEB_CONTAINER_TECHNOLOGY="none"
-else
-    if [ -z "${GOBYWEB_CONTAINER_NAME+set}" ]; then
-    export GOBYWEB_CONTAINER_NAME="gobyweb_oge_execution_environment"
-    fi
-fi
-
-case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
- singularity)
-     DELEGATE_OGE_JOB_SCRIPT="singularity exec ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/oge_job_script_legacy.sh"
- ;;
- none)
-    DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/oge_job_script_legacy.sh"
- ;;
-esac
 
 if [ -z "${STATE+set}" ]; then
  # When state is not defined, assume the user wants to submit the job to OGE.
@@ -227,16 +211,16 @@ case ${STATE} in
     pre_align)
         initializeJobEnvironment
         export STATE="pre_align"
-        ${DELEGATE_OGE_JOB_SCRIPT} "$*"
+        delegate_oge_job_script "$*"
         submit_align
         ;;
 
     diffexp)
         initializeJobEnvironment
         if [ "${SPLIT_PROCESS_COMBINE}" == "false" ]; then
-           ${DELEGATE_OGE_JOB_SCRIPT} "diffexp_sequential"
+           delegate_oge_job_script "diffexp_sequential"
          else
-            ${DELEGATE_OGE_JOB_SCRIPT} "diffexp_parallel"
+            delegate_oge_job_script "diffexp_parallel"
             # Next, start SGE array jobs with NUMBER_SEQ_VAR_SLICES pieces:
             submit_parallel_alignment_analysis_jobs $RESULT_DIR/${TAG}-slicing-plan.txt
             RETURN_STATUS=$?
@@ -249,6 +233,6 @@ case ${STATE} in
     *)
         initializeJobEnvironment
         # delegate everything else either inside container or execute directly legacy script:
-        ${DELEGATE_OGE_JOB_SCRIPT} ${STATE}
+        delegate_oge_job_script ${STATE}
         ;;
 esac

@@ -122,7 +122,7 @@ public class ClusterGatewayCommandLineTest {
 
     }
     @Test
-    public void runRemoteAlignerSingularity() {
+    public void runRemoteBWAAlignerSingularity() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
             System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAligner() test");
@@ -148,6 +148,40 @@ public class ClusterGatewayCommandLineTest {
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/gobyweb3/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "INPUT_READS: ZTDMGNB"
+
+                ).split(" ")
+        ));
+
+    }
+
+    @Test
+    public void runRemoteLastAlignerSingularity() {
+
+        if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
+            System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAligner() test");
+            return;
+        }
+
+        String artifactServer = String.format("%s@%s",
+                System.getProperty("user.name"),
+                java.net.InetAddress.getLocalHost().getHostName());
+        assertEquals(0, ClusterGateway.process(
+                ("--job-area gobyweb3@darla.med.cornell.edu:/scratchLocal/gobyweb/gobyweb3/GOBYWEB_SGE_JOBS/ " +
+                        "--fileset-area /scratchLocal/gobyweb/gobyweb3/FILESET_AREA " +
+                        "--plugins-dir ../gobyweb2-plugins " +
+                        "--owner instructor " +
+                        "--queue fclab-debug.q " +
+                        "--env-script ${envScript} "+
+                        "--job LAST_NATIVE_PARALLEL_ARTIFACT " +
+                        "--container_technology singularity "+
+                 //       "--container_name /scratchLocal/gobyweb/gobyweb3/a2134bd109062d60855cf2f196e146f7f79ef0e6.img "+
+                        "--container_name shub://CampagneLaboratory/GobyWeb-Singularity "+
+                        "--GENOME_REFERENCE_ID 1000GENOMES.37 "+
+                        "--CHUNK_SIZE 100000000 "+
+                        "--option DEBUG=true " +
+                        "--artifact-server ${artifactServer} "+
+                        "--repository /scratchLocal/gobyweb/gobyweb3/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
+                        "INPUT_READS: ZTDMGNB --D 10 --E 10 --S 10"
 
                 ).split(" ")
         ));
