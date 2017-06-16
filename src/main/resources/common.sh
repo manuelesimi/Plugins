@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [ -d "${TMPDIR}" ]; then
+ export TMP_NODE_WORK_DIR=${TMPDIR}
+fi
+
 function initializeJobEnvironment {
     export JOB_DIR=%JOB_DIR%
     set +x
@@ -59,13 +63,14 @@ else
 fi
 
 if [ -z "${TMPDIR+set}" ]; then
-    if [ ! -z  "${SGE_O_WORKDIR}+set" ]; then
-        # not running inside SGE? Use the workdir as TMPDIR:
+    if [ -z  "${SGE_O_WORKDIR}+set" ]; then
+       # Not running inside SGE yet? Use the jobdir as TMPDIR:
+     #   export TMPDIR="${SGE_O_WORKDIR}"
         export TMPDIR=${JOB_DIR}
-        mkdir -p ${TMPDIR}
     else
-        # Otherwise, use the SGE work directory
-        export TMPDIR="${SGE_O_WORKDIR}"
+        # Running inside SGE? Switch to the TMPDIR:
+        mkdir -p ${TMPDIR}
+        cd ${TMPDIR}
     fi
 fi
 

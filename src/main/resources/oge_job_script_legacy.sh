@@ -144,7 +144,7 @@ function run_single_alignment_analysis_process {
 
   # This variable is defined on the command line: SLICING_PLAN_FILENAME
 
-  (cd ${TMPDIR} ; plugin_alignment_analysis_process ${SLICING_PLAN_FILENAME} ${CURRENT_PART} )
+  (cd ${TMP_NODE_WORK_DIR} ; plugin_alignment_analysis_process ${SLICING_PLAN_FILENAME} ${CURRENT_PART} )
 
   RETURN_STATUS=$?
   if [ ! $RETURN_STATUS -eq 0 ]; then
@@ -166,17 +166,17 @@ function run_alignment_analysis_combine {
 
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Starting to combine results.." --index 1 --job-type job-part
     RESULT_DIR=${SGE_O_WORKDIR}/results/${TAG}
-    (cd ${TMPDIR} ; plugin_alignment_analysis_combine ${RESULT_DIR}/${TAG}.${RESULT_FILE_EXTENSION} ${SGE_O_WORKDIR}/split-results/${TAG}/${TAG}-*.${RESULT_FILE_EXTENSION} )
+    (cd ${TMP_NODE_WORK_DIR} ; plugin_alignment_analysis_combine ${RESULT_DIR}/${TAG}.${RESULT_FILE_EXTENSION} ${SGE_O_WORKDIR}/split-results/${TAG}/${TAG}-*.${RESULT_FILE_EXTENSION} )
     jobDieUponError "failed to combine results (${HOSTNAME})"
 
     %COPY_PLUGIN_OUTPUT_FILES%
     if [ "${GENERATE_INDEX}" == "true" ]; then
 
-        mkdir ${TMPDIR}/import-db
-        cp ${RESULT_DIR}/${TAG}*.tsv ${TMPDIR}/import-db/
-        cp ${RESULT_DIR}/${TAG}*.vcf.gz ${TMPDIR}/import-db/
+        mkdir ${TMP_NODE_WORK_DIR}/import-db
+        cp ${RESULT_DIR}/${TAG}*.tsv ${TMP_NODE_WORK_DIR}/import-db/
+        cp ${RESULT_DIR}/${TAG}*.vcf.gz ${TMP_NODE_WORK_DIR}/import-db/
 
-        #Make a sqlite database into ${TMPDIR}/import-db/ of any file with ${TAG} and ${RESULT_FILE_EXTENSION} (tsv or vcf file):
+        #Make a sqlite database into ${TMP_NODE_WORK_DIR}/import-db/ of any file with ${TAG} and ${RESULT_FILE_EXTENSION} (tsv or vcf file):
         #${RESULT_FILE_EXTENSION} will be "tsv" or "vcf.gz"
         export QUEUE_WRITER
         ${RESOURCES_GROOVY_EXECUTABLE} -cp ${GOBY_DIR}:${RESOURCES_GOBYWEB_SERVER_SIDE_GLOBAL_GOBY_JAR}:${RESOURCES_GOBYWEB_SERVER_SIDE_ICB_GROOVY_SUPPORT_JAR} \
@@ -184,14 +184,14 @@ function run_alignment_analysis_combine {
                --job-start-status "${JOB_START_STATUS}" \
                --queue-writer-prefix-variable QUEUE_WRITER \
                --export-format lucene \
-               ${TMPDIR}/import-db/${TAG}-*.tsv  ${TMPDIR}/import-db/${TAG}-*.vcf.gz
+               ${TMP_NODE_WORK_DIR}/import-db/${TAG}-*.tsv  ${TMP_NODE_WORK_DIR}/import-db/${TAG}-*.vcf.gz
         jobDieUponError "failed to convert results to database"
-        cp ${TMPDIR}/import-db/${TAG}*.db ${RESULT_DIR}/
+        cp ${TMP_NODE_WORK_DIR}/import-db/${TAG}*.db ${RESULT_DIR}/
 
         if [ ! $? -eq 0 ]; then
            # remove any previous index:
-           rm -fr ${TMPDIR}/${TAG}*.lucene.index
-           cp -r ${TMPDIR}/import-db/${TAG}*.lucene.index ${RESULT_DIR}/
+           rm -fr ${TMP_NODE_WORK_DIR}/${TAG}*.lucene.index
+           cp -r ${TMP_NODE_WORK_DIR}/import-db/${TAG}*.lucene.index ${RESULT_DIR}/
            dieUponError "Could not copy db/lucene to ${RESULT_DIR} directory (this disk might be full)."
         fi
     fi
@@ -215,26 +215,26 @@ function push_analysis_results {
     additional_attributes=$4 #-a TABLENAME=$tablename
 
     #prefix with tag if needed
-    for f in "${TMPDIR}/import-db/${file_to_push}"; do
+    for f in "${TMP_NODE_WORK_DIR}/import-db/${file_to_push}"; do
         if [ -e "$f" ]; then
-             mv "${TMPDIR}/import-db/${f}" "${TMPDIR}/import-db/${TAG}-${f}"
+             mv "${TMP_NODE_WORK_DIR}/import-db/${f}" "${TMP_NODE_WORK_DIR}/import-db/${TAG}-${f}"
         fi
     done
 
-    for f in "${TMPDIR}/${file_to_push}"; do
+    for f in "${TMP_NODE_WORK_DIR}/${file_to_push}"; do
         if [ -e "$f" ]; then
-             mv "${TMPDIR}/${f}" "${TMPDIR}/import-db/${TAG}-${f}"
+             mv "${TMP_NODE_WORK_DIR}/${f}" "${TMP_NODE_WORK_DIR}/import-db/${TAG}-${f}"
         fi
     done
-    for f in "${TMPDIR}/${TAG}-${file_to_push}"; do
+    for f in "${TMP_NODE_WORK_DIR}/${TAG}-${file_to_push}"; do
         if [ -e "$f" ]; then
-             mv "${TMPDIR}/${TAG}-${f}" "${TMPDIR}/import-db/${TAG}-${f}"
+             mv "${TMP_NODE_WORK_DIR}/${TAG}-${f}" "${TMP_NODE_WORK_DIR}/import-db/${TAG}-${f}"
         fi
     done
 
-    stat -t $TMPDIR/import-db/$TAG-$file_to_push
+    stat -t $TMP_NODE_WORK_DIR/import-db/$TAG-$file_to_push
     if [ $? -eq 0 ]; then
-       local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${TMPDIR}/import-db/${TAG}-${file_to_push}`
+       local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${TMP_NODE_WORK_DIR}/import-db/${TAG}-${file_to_push}`
        dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAGS}"
        echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAGS}"
        ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${slot}:[${REGISTERED_TAGS}]"
@@ -383,7 +383,7 @@ function bam_align {
     # Set CURRENT_PART because we will need it in the dieUponError function
     CURRENT_PART=1
 
-    (cd ${TMPDIR} ; plugin_align  pre-sort-${TAG} ${BASENAME} )
+    (cd ${TMP_NODE_WORK_DIR} ; plugin_align  pre-sort-${TAG} ${BASENAME} )
     RETURN_STATUS=$?
     if [ $? -eq 0 ]; then
         # Completed, copy the results back
@@ -529,16 +529,16 @@ function run_single_align {
     fi
 
     #these variables are also appended to oge-constants.sh to be visible to NYoSh-based plugins
-    echo "START_POSITION=${START_POSITION}" >> ${TMPDIR}/oge-constants.sh
-    echo "END_POSITION=${END_POSITION}" >> ${TMPDIR}/oge-constants.sh
-    echo "READS_FILE=${READS_FILE}" >> ${TMPDIR}/oge-constants.sh
+    echo "START_POSITION=${START_POSITION}" >> ${TMP_NODE_WORK_DIR}/oge-constants.sh
+    echo "END_POSITION=${END_POSITION}" >> ${TMP_NODE_WORK_DIR}/oge-constants.sh
+    echo "READS_FILE=${READS_FILE}" >> ${TMP_NODE_WORK_DIR}/oge-constants.sh
 
 
     # Run the alignment
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_ALIGN_STATUS} --description "Align, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS}, starting" --index ${CURRENT_PART} --job-type job-part
 
       # call the aligner plugin script.sh from TMDDIR:
-      ( cd ${TMPDIR} ;   plugin_align pre-sort-${TAG} ${BASENAME})
+      ( cd ${TMP_NODE_WORK_DIR} ;   plugin_align pre-sort-${TAG} ${BASENAME})
 
     RETURN_STATUS=$?
     if [ ! $? -eq 0 ]; then
@@ -661,7 +661,7 @@ function alignment_concat {
     fi
     # Call the optional combine function on the complete alignment. In most cases, this function does nothing, but can be
     # used to collect some statistics or other data from the alignment and the reads.
-   ( cd ${TMPDIR}  ; plugin_alignment_combine "${TAG}" "${READS}" "${BASENAME}" )
+   ( cd ${TMP_NODE_WORK_DIR}  ; plugin_alignment_combine "${TAG}" "${READS}" "${BASENAME}" )
 
     copy_logs concat ${CURRENT_PART} ${NUMBER_OF_PARTS}
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Concat, sub-task ${CURRENT_PART} of ${NUMBER_OF_PARTS} completed" --index ${CURRENT_PART} --job-type job-part
@@ -898,7 +898,7 @@ function diffexp_sequential {
 
      ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_START_STATUS} --description "Starting alignment analysis plugin." --index ${CURRENT_PART} --job-type job
 
-    (cd ${TMPDIR} ; plugin_alignment_analysis_sequential )
+    (cd ${TMP_NODE_WORK_DIR} ; plugin_alignment_analysis_sequential )
     dieUponError "Alignment analysis plugin failed."
 
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_START_STATUS} --description "Alignment analysis plugin has returned." --index ${CURRENT_PART} --job-type job
@@ -947,11 +947,11 @@ function diffexp_parallel {
     # define how to slice the input files for parallelization:
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Starting to define parallelization plan." --index ${CURRENT_PART} --job-type job-part
 
-    (cd ${TMPDIR} ; plugin_alignment_analysis_split 25 ${TAG}-slicing-plan.txt ${ENTRIES_FILES} )
+    (cd ${TMP_NODE_WORK_DIR} ; plugin_alignment_analysis_split 25 ${TAG}-slicing-plan.txt ${ENTRIES_FILES} )
     dieUponError "Unable to split alignment into parts for parallel processing."
-    cp ${TMPDIR}/${TAG}-slicing-plan.txt ${RESULT_DIR}/${TAG}-slicing-plan.txt
+    cp ${TMP_NODE_WORK_DIR}/${TAG}-slicing-plan.txt ${RESULT_DIR}/${TAG}-slicing-plan.txt
 
-    NUMBER_SEQ_VAR_SLICES=`(cd ${TMPDIR} ; plugin_alignment_analysis_num_parts ${RESULT_DIR}/${TAG}-slicing-plan.txt)`
+    NUMBER_SEQ_VAR_SLICES=`(cd ${TMP_NODE_WORK_DIR} ; plugin_alignment_analysis_num_parts ${RESULT_DIR}/${TAG}-slicing-plan.txt)`
 
     # Introduce a synonym since some part of this script also use NUMBER_OF_ALIGN_PARTS
     NUMBER_OF_ALIGN_PARTS=${NUMBER_SEQ_VAR_SLICES}
@@ -978,8 +978,7 @@ function setup_plugin_functions {
 ## Script logic starts here
 #######################################################################################
 
-echo "START of LEGACY SCRIPT"
-env
+echo "START of LEGACY SCRIPT, TMPDIR=${TMPDIR}, TMP_NODE_WORK_DIR=${TMP_NODE_WORK_DIR}"
 initializeGobyWebArtifactEnvironment
 
 case ${STATE} in
