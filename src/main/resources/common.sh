@@ -11,15 +11,22 @@ function initializeJobEnvironment {
     case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
         singularity)
          echo "Calling legacy script with Singularity"
-         export DELEGATE_OGE_JOB_SCRIPT="singularity exec \
-                                    -B ${FILESET_AREA}:${FILESET_AREA} \
-                                    -B ${JOB_DIR}:${JOB_DIR} \
-                                    -B ${ARTIFACT_REPOSITORY_DIR}:${ARTIFACT_REPOSITORY_DIR} \
-                                    ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh"
-     ;;
+         export SINGULARITY_CACHEDIR=/scratchLocal/gobyweb/gobyweb3/SINGULARITY_CACHE
+         mkdir -p ${SINGULARITY_CACHEDIR}
+         function delegate_oge_job_script {
+            singularity exec \
+                    -B ${FILESET_AREA}:${FILESET_AREA} \
+                    -B ${JOB_DIR}:${JOB_DIR} \
+                    -B ${ARTIFACT_REPOSITORY_DIR}:${ARTIFACT_REPOSITORY_DIR} \
+                    ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh "$1" && \
+                    dieUponError 'Unable to execute with singularity container'
+         }
+      ;;
      none)
         echo "Calling legacy script directly"
-        export DELEGATE_OGE_JOB_SCRIPT="%JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh"
+        function delegate_oge_job_script {
+            %JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh
+        }
      ;;
     esac
 }
@@ -69,7 +76,7 @@ function goby {
    shift
    echo GOBY_PROPERTIES:
    cat ${TMPDIR}/goby.properties
-   java ${GRID_JVM_FLAGS} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
+   java ${GRID_JVM_FLAGS} -Dlog4j.debug=false -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
                                              -Dgoby.configuration=file:${GOBY_DIR}/goby.properties -jar ${GOBY_DIR}/goby.jar \
                        --mode ${mode_name} $*
 }
@@ -80,12 +87,14 @@ function goby_with_memory {
    mode_name="$2"
    shift
    shift
-   java -Xms${memory} -Xmx${memory} -Dlog4j.debug=true -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
+   # note that we defined MaxHeapSize and CompressedClassSpaceSize to workaround bug http://bugs.java.com/view_bug.do?bug_id=8043516
+   java -XX:MaxHeapSize=512m -XX:CompressedClassSpaceSize=64m -Xms${memory} -Xmx${memory} -Dlog4j.debug=false -Dlog4j.configuration=file:${GOBY_DIR}/log4j.properties \
                                      -Dgoby.configuration=file:${GOBY_DIR}/goby.properties -jar ${GOBY_DIR}/goby.jar \
                        --mode ${mode_name} $*
 }
 
 function dieUponError {
+    set +x
     RETURN_STATUS=$?
     DESCRIPTION=$1
 
@@ -102,11 +111,13 @@ function dieUponError {
             ${QUEUE_WRITER} --tag ${TAG} --index ${CURRENT_PART} --job-type job-part --status ${JOB_PART_FAILED_STATUS} --description "${DESCRIPTION}"
             exit ${RETURN_STATUS}
     fi
+    set -x
 }
 
 # This function should be called when an empty variable requires to terminate the jon. The first argument is the variable
 # to check, the second is the error message to report to the end-user.
 function dieIfEmpty {
+    set +x
     VAR=$1
     DESCRIPTION=$2
 
@@ -123,6 +134,7 @@ function dieIfEmpty {
        copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
        exit ${RETURN_STATUS}
     fi
+    set -x
 }
 
 function copy_logs {
