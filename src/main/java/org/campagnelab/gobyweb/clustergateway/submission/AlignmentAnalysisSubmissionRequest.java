@@ -51,11 +51,15 @@ class AlignmentAnalysisSubmissionRequest extends SubmissionRequest {
     protected int submit(JSAPResult config, Actions actions) throws Exception {
         if (alignmentAnalysisConfig.isDisabled())
             throw new Exception(String.format("Alignment analysis %s is currently disabled", alignmentAnalysisConfig.getId()));
+        int memory = config.userSpecified("container_memory")? config.getInt("container_memory"):0;
+
         actions.submitAnalysis(alignmentAnalysisConfig,
                 this.getInputSlots(),
                 config.getStringArray("GROUP_DEFINITION"),
                 config.getStringArray("COMPARISON_PAIR"),
-                this.getUnclassifiedOptions());
+                this.getUnclassifiedOptions(),
+                memory
+                );
         return 0;
     }
 }

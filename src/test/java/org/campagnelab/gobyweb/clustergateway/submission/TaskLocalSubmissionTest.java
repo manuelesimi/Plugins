@@ -86,7 +86,7 @@ public class TaskLocalSubmissionTest {
             actions = new Actions(submitter, referenceSA, jobArea, plugins.getRegistry());
             actions.submitTask(taskConfig ,
                     SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "TESTTAG1", "TESTTAG2", "TESTTAG3"}),
-                    Collections.EMPTY_MAP);
+                    Collections.EMPTY_MAP, 0);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,7 +108,7 @@ public class TaskLocalSubmissionTest {
                     SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:",
                             "TESTTAG1", "TESTTAG2", "TESTTAG3", "TESTTAG1",
                             "TESTTAG2", "TESTTAG3", "TESTTAG1", "TESTTAG2",
-                            "TESTTAG3", "TESTTAG1", "TESTTAG2", "TESTTAG3"}), Collections.EMPTY_MAP);
+                            "TESTTAG3", "TESTTAG1", "TESTTAG2", "TESTTAG3"}), Collections.EMPTY_MAP, 0);
             fail("Exception must occur");
         } catch (ExecutableJob.InvalidSlotValueException is) {
             //this is expected
@@ -128,7 +128,7 @@ public class TaskLocalSubmissionTest {
             //no values for input reads are not accepted
             actions.submitTask(
                     taskConfig,
-                    SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:",}), Collections.EMPTY_MAP);
+                    SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:",}), Collections.EMPTY_MAP, 0);
             fail("Exception must occur");
         } catch (ExecutableJob.InvalidSlotValueException is) {
             //this is expected
@@ -148,7 +148,7 @@ public class TaskLocalSubmissionTest {
             //INPUT_READS slot is mandatory
             actions.submitTask(
                     taskConfig,
-                    SubmissionRequest.toInputParameters(new String[]{}), Collections.EMPTY_MAP);
+                    SubmissionRequest.toInputParameters(new String[]{}), Collections.EMPTY_MAP, 0);
             fail("Exception must occur");
         } catch (ExecutableJob.InvalidJobDataException is) {
             //this is expected

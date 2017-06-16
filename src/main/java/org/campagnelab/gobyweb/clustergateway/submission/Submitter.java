@@ -75,8 +75,9 @@ public interface Submitter {
     /**
      * Sets the technology of script wrappers to use.
      * @param technology the type of technology (docker, singularity, etc.)
+     * @param memory
      * @param name the container name
      */
-    public void setContainerTechnology(String technology, String ... name);
+    public void setContainerTechnology(String technology, int memory, String ... name);
 
 }

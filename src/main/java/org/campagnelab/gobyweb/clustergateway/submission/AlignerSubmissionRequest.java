@@ -59,11 +59,13 @@ class AlignerSubmissionRequest extends SubmissionRequest {
     protected int submit(JSAPResult config, Actions actions) throws Exception {
         if (alignerConfig.isDisabled())
             throw new Exception(String.format("Aligner %s is currently disabled", alignerConfig.getId()));
+        int memory = config.userSpecified("container_memory")? config.getInt("container_memory"):0;
+
         actions.submitAligner(alignerConfig,
                 this.getInputSlots(),
                 config.getString("GENOME_REFERENCE_ID"),
                 Long.valueOf(config.getString("CHUNK_SIZE")),
-                this.getUnclassifiedOptions());
+                this.getUnclassifiedOptions(), memory);
        return 0;
     }
 

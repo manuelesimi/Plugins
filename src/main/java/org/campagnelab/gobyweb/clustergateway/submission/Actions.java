@@ -1,12 +1,10 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
-import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.*;
 
 import org.campagnelab.gobyweb.io.JobArea;
-import org.campagnelab.gobyweb.plugins.DependencyResolver;
 import org.campagnelab.gobyweb.plugins.PluginRegistry;
 import org.campagnelab.gobyweb.plugins.xml.aligners.AlignerConfig;
 
@@ -121,14 +119,16 @@ final class Actions {
      * @param genomeID
      * @param chunkSize
      * @param unclassifiedOptions
+     * @param memory
      * @throws Exception
      */
     protected void submitAligner(AlignerConfig alignerConfig, Set<InputSlotValue> inputSlots, String genomeID,
-                                 long chunkSize, Map<String, String> unclassifiedOptions) throws Exception {
+                                 long chunkSize, Map<String, String> unclassifiedOptions, int memory) throws Exception {
         AlignerJobBuilder builder = new AlignerJobBuilder(alignerConfig, jobArea,
                 fileSetAreaReference, jobArea.getOwner(), inputSlots);
         builder.setChunkSize(chunkSize);
         builder.setGenomeID(genomeID);
+        builder.setContainerMemory(memory);
         if (!submitter.isLocal())
             submitter.setWrapperScripts("oge_job_script.sh","oge_job_script_legacy.sh", "common.sh");
         else
@@ -138,21 +138,22 @@ final class Actions {
 
     /**
      * Submits an alignment analysis for execution.
-     *
-     * @param analysisConfig
+     *  @param analysisConfig
      * @param inputSlots
      * @param groups_definitions group definition list, each definition in the form: Group_N=TAG,TAG342,TAG231...
      * @param comparison_pairs comparison pair list, each pair in the form "Group_1/Group_2"
      * @param unclassifiedOptions
+     * @param memory
      */
     protected void submitAnalysis(AlignmentAnalysisConfig analysisConfig, Set<InputSlotValue> inputSlots, String[] groups_definitions,
-                                  String[] comparison_pairs, Map<String, String> unclassifiedOptions)
+                                  String[] comparison_pairs, Map<String, String> unclassifiedOptions, int memory)
             throws Exception {
 
         AlignmentAnalysisJobBuilder builder = new AlignmentAnalysisJobBuilder(analysisConfig, jobArea,
                 fileSetAreaReference, jobArea.getOwner(), inputSlots);
         builder.setGroupDefinition(Arrays.asList(groups_definitions));
         builder.setComparisonPairs(Arrays.asList(comparison_pairs));
+        builder.setContainerMemory(memory);
         if (!submitter.isLocal())
             submitter.setWrapperScripts("oge_job_script.sh","oge_job_script_legacy.sh", "common.sh");
         else
@@ -167,12 +168,14 @@ final class Actions {
      * @param taskConfig         the plugin configuration
      * @param inputSlots the input filesets
      * @param unclassifiedOptions additional options defined by the user
+     * @param memory
      * @throws Exception
      */
     protected void submitTask(TaskConfig taskConfig, Set<InputSlotValue> inputSlots,
-                              Map<String, String> unclassifiedOptions) throws Exception {
+                              Map<String, String> unclassifiedOptions, int memory) throws Exception {
 
         TaskJobBuilder builder = new TaskJobBuilder(taskConfig);
+        builder.setContainerMemory(memory);
         if (submitter.isLocal())
             submitter.setWrapperScripts("local_task_wrapper_script.sh","local_task_wrapper_script_legacy.sh", "common.sh");
         else
