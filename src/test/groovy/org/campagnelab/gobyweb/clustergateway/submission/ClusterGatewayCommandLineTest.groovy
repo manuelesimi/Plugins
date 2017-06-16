@@ -216,9 +216,10 @@ public class ClusterGatewayCommandLineTest {
                         "--env-script ${envScript} "+
                         "--job LAST_NATIVE_PARALLEL_ARTIFACT " +
                         "--container_technology singularity "+
-                        "--container_name /scratchLocal/gobyweb/gobyweb3/a2134bd109062d60855cf2f196e146f7f79ef0e6.img "+
+                 //       "--container_name /scratchLocal/gobyweb/gobyweb3/a2134bd109062d60855cf2f196e146f7f79ef0e6.img "+
+                        "--container_name shub://CampagneLaboratory/GobyWeb-Singularity "+
                         "--GENOME_REFERENCE_ID 1000GENOMES.37 "+
-                        "--CHUNK_SIZE 50000000 "+
+                        "--CHUNK_SIZE 100000000 "+
                         "--option DEBUG=true " +
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/gobyweb3/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
