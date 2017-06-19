@@ -164,6 +164,7 @@ function copy_logs {
     else
         END_PART=`printf "%03d" $3`
     fi
+    JAVA_LOG_DIR=${SGE_O_WORKDIR}/logs
     mkdir -p ${JAVA_LOG_DIR}/${STEP_NAME}
     /bin/cp ${TMPDIR}/java-log-output.log ${JAVA_LOG_DIR}/${STEP_NAME}/java-log-output-${START_PART}-of-${END_PART}.log
     /bin/cp ${TMPDIR}/steplogs/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
@@ -232,7 +233,7 @@ function setup {
         # export R_HOME=`R RHOME | /bin/grep --invert-match WARNING`
         # export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${R_HOME}/lib:${CLUSTER_HOME_DIR}/R/x86_64-unknown-linux-gnu-library/2.11/rJava/jri
 
-        JAVA_LOG_DIR=${SGE_O_WORKDIR}/logs
+        export JAVA_LOG_DIR=${SGE_O_WORKDIR}/logs
         if [ ! -d ${JAVA_LOG_DIR} ]; then
             mkdir ${JAVA_LOG_DIR}
         fi
