@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 
 if [ -d "${TMPDIR}" ]; then
- export TMP_NODE_WORK_DIR=${TMPDIR}
+    export TMP_NODE_WORK_DIR=${TMPDIR}
+    if [ ! -e ${TMP_NODE_WORK_DIR}/goby.jar ]; then
+             /bin/cp ${SGE_O_WORKDIR}/global_goby.jar ${TMP_NODE_WORK_DIR}/goby.jar
+             /bin/cp ${SGE_O_WORKDIR}/log4j.properties ${TMP_NODE_WORK_DIR}/
+             /bin/cp ${SGE_O_WORKDIR}/QueueWriter.groovy ${TMP_NODE_WORK_DIR}
+             /bin/cp ${SGE_O_WORKDIR}/TsvVcfToSqlite.groovy ${TMP_NODE_WORK_DIR}
+             /bin/cp ${SGE_O_WORKDIR}/icb-groovy-support.jar ${TMP_NODE_WORK_DIR}
+             /bin/cp ${SGE_O_WORKDIR}/artifact-manager.jar ${TMP_NODE_WORK_DIR}
+             /bin/cp ${SGE_O_WORKDIR}/serverside-dependencies.jar ${TMP_NODE_WORK_DIR}
+             /bin/cp ${SGE_O_WORKDIR}/stepslogger.jar ${TMP_NODE_WORK_DIR}
+    fi
 fi
 
 function initializeJobEnvironment {
@@ -257,6 +267,8 @@ function setup {
              /bin/cp ${SGE_O_WORKDIR}/artifact-manager.jar ${GOBY_DIR}
              /bin/cp ${SGE_O_WORKDIR}/serverside-dependencies.jar ${GOBY_DIR}
              /bin/cp ${SGE_O_WORKDIR}/stepslogger.jar ${GOBY_DIR}
+
+
         fi
 
         # Copy the goby and support tools to the local node
