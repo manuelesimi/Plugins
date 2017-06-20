@@ -971,7 +971,7 @@ function setup_plugin_functions {
     plugin_alignment_analysis_combine() { echo; }
     # include the plugin_align function for the appropriate aligner:
     . ${JOB_DIR}/script.sh
-
+    enforce_minimum_bound_on_align_parts
 }
 
 #######################################################################################

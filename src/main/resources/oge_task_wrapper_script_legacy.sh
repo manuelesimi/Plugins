@@ -18,7 +18,7 @@ function setup_task_functions {
     plugin_task() { echo; }
     # include the plugin_task function for the appropriate task:
     . ${JOB_DIR}/script.sh
-
+    enforce_minimum_bound_on_align_parts
 }
 
 function install_resources {
