@@ -159,7 +159,7 @@ function jobDieUponError {
 
 
 function fail_when_no_results {
-  RESULT_DIR=${SGE_O_WORKDIR}/results/${TAG}
+  RESULT_DIR=${JOB_DIR}/results/${TAG}
 
     if [ ! -d "$RESULT_DIR" ]; then
         # Output dir doesn't exist but it should
@@ -178,10 +178,10 @@ function fail_when_no_results {
 function cleanup {
     CURRENT_PART=${NUMBER_OF_PARTS}
     # We have concat'd. Remove the interim results.
-    if [ ! -z ${SGE_O_WORKDIR} ]; then
+    if [ ! -z ${JOB_DIR} ]; then
 
-        if [ -d ${SGE_O_WORKDIR}/results/ ]; then
-            rm -rf ${SGE_O_WORKDIR}/results/
+        if [ -d ${JOB_DIR}/split-results/ ]; then
+            rm -rf ${JOB_DIR}/split-results/
         fi
     fi
 }
