@@ -951,10 +951,10 @@ function diffexp_parallel {
     dieUponError "Unable to split alignment into parts for parallel processing."
     cp ${TMP_NODE_WORK_DIR}/${TAG}-slicing-plan.txt ${RESULT_DIR}/${TAG}-slicing-plan.txt
 
-    NUMBER_SEQ_VAR_SLICES=`(cd ${TMP_NODE_WORK_DIR} ; plugin_alignment_analysis_num_parts ${RESULT_DIR}/${TAG}-slicing-plan.txt)`
+    export NUMBER_SEQ_VAR_SLICES=`(cd ${TMP_NODE_WORK_DIR} ; plugin_alignment_analysis_num_parts ${RESULT_DIR}/${TAG}-slicing-plan.txt)`
 
     # Introduce a synonym since some part of this script also use NUMBER_OF_ALIGN_PARTS
-    NUMBER_OF_ALIGN_PARTS=${NUMBER_SEQ_VAR_SLICES}
+    export NUMBER_OF_ALIGN_PARTS=${NUMBER_SEQ_VAR_SLICES}
 
     ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_DIFF_EXP_STATUS} --description "Parallelization plan generated. " --index ${CURRENT_PART} --job-type job-part
 
@@ -971,7 +971,7 @@ function setup_plugin_functions {
     plugin_alignment_analysis_combine() { echo; }
     # include the plugin_align function for the appropriate aligner:
     . ${JOB_DIR}/script.sh
-
+    enforce_minimum_bound_on_align_parts
 }
 
 #######################################################################################

@@ -16,6 +16,7 @@ fi
 
 function initializeJobEnvironment {
     export JOB_DIR=%JOB_DIR%
+    echo "Sourcing GobyWeb plugin environment (constants.sh and auto-options.sh)"
     set +x
     . ${JOB_DIR}/constants.sh
     . ${JOB_DIR}/auto-options.sh
@@ -164,6 +165,7 @@ function copy_logs {
     else
         END_PART=`printf "%03d" $3`
     fi
+    JAVA_LOG_DIR=${SGE_O_WORKDIR}/logs
     mkdir -p ${JAVA_LOG_DIR}/${STEP_NAME}
     /bin/cp ${TMPDIR}/java-log-output.log ${JAVA_LOG_DIR}/${STEP_NAME}/java-log-output-${START_PART}-of-${END_PART}.log
     /bin/cp ${TMPDIR}/steplogs/*.slog ${JAVA_LOG_DIR}/${STEP_NAME}/
@@ -232,7 +234,7 @@ function setup {
         # export R_HOME=`R RHOME | /bin/grep --invert-match WARNING`
         # export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${R_HOME}/lib:${CLUSTER_HOME_DIR}/R/x86_64-unknown-linux-gnu-library/2.11/rJava/jri
 
-        JAVA_LOG_DIR=${SGE_O_WORKDIR}/logs
+        export JAVA_LOG_DIR=${SGE_O_WORKDIR}/logs
         if [ ! -d ${JAVA_LOG_DIR} ]; then
             mkdir ${JAVA_LOG_DIR}
         fi
@@ -291,7 +293,16 @@ function setup {
     fi
 }
 
+function enforce_minimum_bound_on_align_parts() {
+    # minimum bound on NUMBER_OF_ALIGN_PARTS: the number of splits already done (in case we reached the concat step):
+    if [ ! -z "${NUMBER_OF_ALIGN_PARTS+set}" ]; then
+        NUMBER_OF_SPLITS_COMPLETED=`ls -1 ${JOB_DIR}/split-results/|wc -l`
+        if [ ${NUMBER_OF_ALIGN_PARTS} -lt ${NUMBER_OF_SPLITS_COMPLETED} ]; then
+            export NUMBER_OF_ALIGN_PARTS=${NUMBER_OF_SPLITS_COMPLETED}
+        fi
+    fi
 
+}
 if [ -z "${STATE+set}" ]; then
  # When state is not defined, assume the user wants to submit the job to OGE.
  export STATE="submit"
