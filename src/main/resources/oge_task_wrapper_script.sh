@@ -19,13 +19,7 @@ function setup_task_functions {
     plugin_task() { echo; }
     # include the plugin_task function for the appropriate task:
     . ${JOB_DIR}/script.sh
-    # miniumum bound on NUMBER_OF_ALIGN_PARTS: the number of splits already done (in case we reached the concat step):
-    if [ ! -z "${NUMBER_OF_ALIGN_PARTS+set}" ]; then
-        NUMBER_OF_SPLITS_COMPLETED=`ls -1 ${JOB_DIR}/split-results/|wc -l`
-        if [ ${NUMBER_OF_ALIGN_PARTS} -lt ${NUMBER_OF_SPLITS_COMPLETED} ]; then
-            export NUMBER_OF_ALIGN_PARTS=${NUMBER_OF_SPLITS_COMPLETED}
-        fi
-    fi
+    enforce_minimum_bound_on_align_parts
 }
 
 function install_resources {
