@@ -41,6 +41,7 @@ function initializeJobEnvironment {
         echo "Calling legacy script directly"
         function delegate_oge_job_script {
             %JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh
+            dieUponError 'Unable to directly delegate to legacy script'
         }
      ;;
     esac
