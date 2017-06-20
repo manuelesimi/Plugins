@@ -48,7 +48,7 @@ public abstract class JobBuilder {
             // if key is present, format as key=value,
             // otherwise, just write value to PLUGIN_NEED constant.
             String value = need.value;
-            if ("PROCESS".equalsIgnoreCase(need.scope)) {
+            if ("h_vmem".equalsIgnoreCase(need.key)) {
                 value = increaseMemoryForContainerTechnology(need.key, value);
             }
             String needAsString = (need.key != null && (!need.key.equalsIgnoreCase(""))) ?
@@ -71,13 +71,10 @@ public abstract class JobBuilder {
 
     private String increaseMemoryForContainerTechnology(String key, String value) {
         String newValue = value;
-        if ("h_vmem".equalsIgnoreCase(key)) {
-            Matcher matcher = pattern.matcher(value);
-            if (matcher.find()) {
-                int newMem = Integer.valueOf(matcher.group(1)) + this.containerMemory;
-                newValue = String.format("%d%s", newMem,matcher.group(2));
-            }
-
+        Matcher matcher = pattern.matcher(value);
+        if (matcher.find()) {
+            int newMem = Integer.valueOf(matcher.group(1)) + this.containerMemory;
+            newValue = String.format("%d%s", newMem, matcher.group(2));
         }
         return newValue;
     }
