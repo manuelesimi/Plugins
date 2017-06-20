@@ -129,9 +129,7 @@ final class Actions {
         builder.setChunkSize(chunkSize);
         builder.setGenomeID(genomeID);
         builder.setContainerMemory(memory);
-        if (!submitter.isLocal())
-            submitter.setWrapperScripts("oge_job_script.sh","oge_job_script_legacy.sh", "common.sh");
-        else
+        if (submitter.isLocal())
             throw new UnsupportedOperationException("Local submission for aligners is not supported yet");
         this.submitJob(builder.build(unclassifiedOptions), inputSlots);
     }
@@ -154,9 +152,7 @@ final class Actions {
         builder.setGroupDefinition(Arrays.asList(groups_definitions));
         builder.setComparisonPairs(Arrays.asList(comparison_pairs));
         builder.setContainerMemory(memory);
-        if (!submitter.isLocal())
-            submitter.setWrapperScripts("oge_job_script.sh","oge_job_script_legacy.sh", "common.sh");
-        else
+        if (submitter.isLocal())
             throw new UnsupportedOperationException("Local submission for aligners is not supported yet");
         this.submitJob(builder.build(unclassifiedOptions), inputSlots);
     }
@@ -176,6 +172,7 @@ final class Actions {
 
         TaskJobBuilder builder = new TaskJobBuilder(taskConfig);
         builder.setContainerMemory(memory);
+        // TODO: determine how to switch between local/SGE for tasks, without overwritting the wrapper script arguments
         if (submitter.isLocal())
             submitter.setWrapperScripts("local_task_wrapper_script.sh","local_task_wrapper_script_legacy.sh", "common.sh");
         else
