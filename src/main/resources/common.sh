@@ -16,6 +16,7 @@ fi
 
 function initializeJobEnvironment {
     export JOB_DIR=%JOB_DIR%
+    echo "Sourcing GobyWeb plugin environment (constants.sh and auto-options.sh)"
     set +x
     . ${JOB_DIR}/constants.sh
     . ${JOB_DIR}/auto-options.sh
