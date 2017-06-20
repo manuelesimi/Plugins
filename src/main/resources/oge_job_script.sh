@@ -171,21 +171,6 @@ function fail_when_no_results {
     fi
 }
 
-
-
-
-
-function cleanup {
-    CURRENT_PART=${NUMBER_OF_PARTS}
-    # We have concat'd. Remove the interim results.
-    if [ ! -z ${JOB_DIR} ]; then
-
-        if [ -d ${JOB_DIR}/split-results/ ]; then
-            rm -rf ${JOB_DIR}/split-results/
-        fi
-    fi
-}
-
 #######################################################################################
 ## Script logic starts here
 #######################################################################################
@@ -228,7 +213,7 @@ case ${STATE} in
             # finish or fail the job
             exit ${RETURN_STATUS}
         fi
-        cleanup
+
         ;;
     *)
         initializeJobEnvironment
