@@ -218,6 +218,7 @@ public class ClusterGatewayCommandLineTest {
                         "--container_technology singularity "+
                  //       "--container_name /scratchLocal/gobyweb/gobyweb3/a2134bd109062d60855cf2f196e146f7f79ef0e6.img "+
                         "--container_name shub://CampagneLaboratory/GobyWeb-Singularity "+
+                        "--container_memory 4 "+
                         "--GENOME_REFERENCE_ID 1000GENOMES.37 "+
                         "--CHUNK_SIZE 100000000 "+
                         "--option DEBUG=true " +
