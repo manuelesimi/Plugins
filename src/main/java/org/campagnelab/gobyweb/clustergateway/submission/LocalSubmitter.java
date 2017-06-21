@@ -73,7 +73,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         runPreDeploymentScripts(job, jobLocalDir);
 
         //give execute permission to task scripts
-        jobArea.grantExecutePermissions(job.getTag(), this.wrapperScripts);
+        jobArea.grantExecutePermissions(job.getTag(), this.extractWrapperFilenames());
 
         //execute the task
         logger.info(String.format("Submitting job to local cluster at %s %s", job.getTag(),
@@ -113,7 +113,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
         File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfig()));
         FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(taskLocalDir.getAbsolutePath(), "auto-options.sh")));
         //give execute permission to resourceJob scripts
-        String[] binaryFiles = (String[]) ArrayUtils.addAll(this.wrapperScripts, new String[]{"groovy", "auto-options.sh", "constants.sh"});
+        String[] binaryFiles = (String[]) ArrayUtils.addAll(this.extractWrapperFilenames(), new String[]{"groovy", "auto-options.sh", "constants.sh"});
         jobArea.grantExecutePermissions(resourceJob.getTag(), binaryFiles);
 
         //execute the resourceJob
