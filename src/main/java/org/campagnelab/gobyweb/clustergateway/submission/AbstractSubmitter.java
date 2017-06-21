@@ -518,8 +518,9 @@ abstract public class AbstractSubmitter implements Submitter {
             IOException {
         //get the wrapper script wither from a file, or from the classpath:
         String wrapperContent = null;
-        if (new File(wrapperScript).exists()) {
-            wrapperContent = FileUtils.readFileToString(new File(wrapperScript));
+        File wrapperFile = new File(wrapperScript);
+        if (wrapperFile.exists()) {
+            wrapperContent = FileUtils.readFileToString(wrapperFile);
         } else {
             URL wrapperScriptURL = getClass().getClassLoader().getResource(wrapperScript);
             assert wrapperScriptURL != null : "Unable to locate wrapperScript: " + wrapperScript;
@@ -540,7 +541,7 @@ abstract public class AbstractSubmitter implements Submitter {
                 }
             }
         }
-        FileUtils.writeStringToFile(new File(tempDir, wrapperScript), wrapperContent);
+        FileUtils.writeStringToFile(new File(tempDir, wrapperFile.getName()), wrapperContent);
     }
 
     /**
