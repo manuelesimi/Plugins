@@ -18,7 +18,9 @@ import org.campagnelab.gobyweb.plugins.xml.resources.ResourceConfig;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.campagnelab.gobyweb.plugins.PluginLoaderSettings.SERVER_SIDE_TOOL;
@@ -82,7 +84,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         pushJobDir(tempDir,job,jobArea);
 
         //grant execute permissions to the task's scripts
-        String[] binaryFiles = (String[]) ArrayUtils.addAll(this.wrapperScripts, new String[]{"groovy", "*"});
+        String[] binaryFiles = (String[]) ArrayUtils.addAll(this.extractWrapperFilenames(), new String[]{"groovy", "*"});
 
         jobArea.grantExecutePermissions(job.getTag(), binaryFiles);
 
@@ -123,7 +125,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
         pushJobDir(tempDir,resourceJob,jobArea);
 
         //give execute permission to resourceJob script and anything at top level (needed for resource files)
-        jobArea.grantExecutePermissions(resourceJob.getTag(), (String[]) ArrayUtils.add(this.wrapperScripts, "*"));
+        jobArea.grantExecutePermissions(resourceJob.getTag(), (String[]) ArrayUtils.add(this.extractWrapperFilenames(), "*"));
 
         //execute the resourceJob
         logger.info(String.format("The job will be executed in the Job Area at %s/%s/%s)", jobArea.toString(),

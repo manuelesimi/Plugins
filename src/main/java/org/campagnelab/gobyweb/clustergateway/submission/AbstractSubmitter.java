@@ -54,7 +54,6 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String environmentScriptFilename;
     protected String artifactRepositoryPath;
     protected String wrapperScripts[] = {"oge_job_script.sh.sh","oge_job_script_legacy.sh","common.sh"}; //default is OGE script for aligners and analyses
-    protected String commonScript = "job_common_functions.sh"; //common functions
     protected String containerTechnology = "none";
     protected String containerName = "none";
     protected String queue;
@@ -677,7 +676,19 @@ abstract public class AbstractSubmitter implements Submitter {
      * @return
      */
     public String getWrapperScript() {
-        return wrapperScripts[0];
+        return FilenameUtils.getBaseName(wrapperScripts[0]);
+    }
+
+    /**
+     * Return the filenames of the wrappers
+     * @return
+     */
+    protected String[] extractWrapperFilenames() {
+        List<String> filenames = new ArrayList<String>();
+        for (String wrapper : wrapperScripts) {
+            filenames.add(FilenameUtils.getBaseName(wrapper));
+        }
+        return filenames.toArray(new String[]{});
     }
 }
 
