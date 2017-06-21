@@ -676,7 +676,7 @@ abstract public class AbstractSubmitter implements Submitter {
      * @return
      */
     public String getWrapperScript() {
-        return FilenameUtils.getBaseName(wrapperScripts[0]);
+        return FilenameUtils.getName(wrapperScripts[0]);
     }
 
     /**
@@ -686,7 +686,7 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String[] extractWrapperFilenames() {
         List<String> filenames = new ArrayList<String>();
         for (String wrapper : wrapperScripts) {
-            filenames.add(FilenameUtils.getBaseName(wrapper));
+            filenames.add(FilenameUtils.getName(wrapper));
         }
         return filenames.toArray(new String[]{});
     }
