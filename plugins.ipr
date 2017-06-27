@@ -1744,24 +1744,24 @@
     </library>
     <library name="Maven: org.campagnelab.gobyweb:artifacts:2.3.3-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.3.3-SNAPSHOT/artifacts-2.3.3-20160801.134143-69.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.3.3-SNAPSHOT/artifacts-2.3.3-20170615.195644-70.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.3.3-SNAPSHOT/artifacts-2.3.3-20160801.134143-69-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.3.3-SNAPSHOT/artifacts-2.3.3-20170615.195644-70-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.3.3-SNAPSHOT/artifacts-2.3.3-20160801.134143-69-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/artifacts/2.3.3-SNAPSHOT/artifacts-2.3.3-20170615.195644-70-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:filesets:1.4.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-20170215.194705-34.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-20170627.140540-44.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-20170215.194705-34-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-20170627.140540-44-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-20170215.194705-34-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-20170627.140540-44-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:filesets:2.0.0-SNAPSHOT">

@@ -227,5 +227,26 @@
             <longFlag>broker-port</longFlag>
             <help>The port where the messaging broker is listening. </help>
         </flaggedOption>
+
+    <flaggedOption>
+            <id>cloud-id</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <longFlag>cloud-id</longFlag>
+            <help>Identifier of the google could project from which to pull/push the job input slots.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>cloud-secret</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <longFlag>cloud-secret</longFlag>
+            <help>Secret string of the google could project from which to pull/push the job input slots.</help>
+        </flaggedOption>
+
     </parameters>
 </jsap>

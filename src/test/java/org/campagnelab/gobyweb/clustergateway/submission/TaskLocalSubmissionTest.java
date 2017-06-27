@@ -108,7 +108,7 @@ public class TaskLocalSubmissionTest {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, referenceSA, null, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
+            actions = new Actions(submitter, referenceSA, null, jobArea, plugins.getRegistry());
             //12 values for input reads are not accepted
             actions.submitTask(
                     taskConfig,
@@ -131,7 +131,7 @@ public class TaskLocalSubmissionTest {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, referenceSA, referenceSA, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
+            actions = new Actions(submitter, referenceSA, referenceSA, jobArea, plugins.getRegistry());
             //no values for input reads are not accepted
             actions.submitTask(
                     taskConfig,
@@ -151,7 +151,7 @@ public class TaskLocalSubmissionTest {
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
-            actions = new Actions(submitter, referenceSA,referenceSA, jobArea, plugins.getRegistry(),brokerHostname,brokerPort);
+            actions = new Actions(submitter, referenceSA,referenceSA, jobArea, plugins.getRegistry());
             //INPUT_READS slot is mandatory
             actions.submitTask(
                     taskConfig,

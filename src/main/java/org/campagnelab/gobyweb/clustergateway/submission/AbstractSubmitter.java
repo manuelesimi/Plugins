@@ -467,12 +467,19 @@ abstract public class AbstractSubmitter implements Submitter {
         job.validateMandatorySlots();
 
         JobDataWriter jobDataWriter = new JobDataWriter();
-
-        //add data used by the job for returning information (typically, the IDs of the produced filesets
-        jobDataWriter.addPushInfo(new File(session.targetAreaReferenceName).getAbsolutePath(),
-                session.targetAreaOwner,
-                new File(session.callerAreaReferenceName).getAbsolutePath(),
-                session.callerAreaOwner);
+         if (session.hasCloudAccess())  {
+             //add data used by the job for returning information (typically, the IDs of the produced filesets
+             jobDataWriter.addPushInfoWithCloud(new File(session.targetAreaReferenceName).getAbsolutePath(),
+                     session.targetAreaOwner,
+                     new File(session.callerAreaReferenceName).getAbsolutePath(),
+                     session.callerAreaOwner, session.cloudConnection.id, session.cloudConnection.secret);
+         } else {
+             //add data used by the job for returning information (typically, the IDs of the produced filesets
+             jobDataWriter.addPushInfo(new File(session.targetAreaReferenceName).getAbsolutePath(),
+                     session.targetAreaOwner,
+                     new File(session.callerAreaReferenceName).getAbsolutePath(),
+                     session.callerAreaOwner);
+         }
         ConfigurationList configurationList = new ConfigurationList();
         List<JobInputSlot> inputSlots = new ArrayList<JobInputSlot>();
         ExecutableInputSchema inputSchema = job.getInputSchema();

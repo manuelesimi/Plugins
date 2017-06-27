@@ -1,7 +1,7 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
 /**
- * A session in a Submitter
+ * Session data for an {@link AbstractSubmitter} implementation.
  * @author manuele
  */
 public class Session {
@@ -14,6 +14,24 @@ public class Session {
 
     public String targetAreaOwner;
 
+    public GoogleCloudConnection cloudConnection;
+
     protected Session () {}
+
+    public boolean hasCloudAccess() {
+        return cloudConnection != null;
+    }
+
+    public static class GoogleCloudConnection {
+
+        public final String id;
+
+        public final String secret;
+
+        public GoogleCloudConnection(String cloudID, String cloudSecret) {
+            this.id = cloudID;
+            this.secret = cloudSecret;
+        }
+    }
 
 }

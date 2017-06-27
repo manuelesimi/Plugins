@@ -20,6 +20,9 @@ public class CommonJobConfiguration {
     private String brokerHostname;
     private int brokerPort = 0;
     private boolean useBroker = false;
+    private boolean hasCloudAccess = false;
+    private String cloudId;
+    private String cloudSecret;
 
     public boolean useBroker() {
         return useBroker;
@@ -85,5 +88,29 @@ public class CommonJobConfiguration {
     public void setSubmissionFilesetAreaReference(String submissionFilesetAreaReference) {
         useSubmissionFSA = true;
         this.submissionFilesetAreaReference = submissionFilesetAreaReference;
+    }
+
+    public boolean hasCloudAccess() {
+        return hasCloudAccess;
+    }
+
+    public void setCloudAccess(boolean hasCloudAccess) {
+        this.hasCloudAccess = hasCloudAccess;
+    }
+
+    public String getCloudId() {
+        return cloudId;
+    }
+
+    public void setCloudId(String cloudId) {
+        this.cloudId = cloudId;
+    }
+
+    public String getCloudSecret() {
+        return cloudSecret;
+    }
+
+    public void setCloudSecret(String cloudSecret) {
+        this.cloudSecret = cloudSecret;
     }
 }

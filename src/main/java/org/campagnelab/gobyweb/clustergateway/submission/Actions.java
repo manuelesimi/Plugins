@@ -66,20 +66,26 @@ final class Actions {
     }
 
     /**
-     * Creates a new Actions object.
+     * Add broker configuration.
      *
-     * @param fileSetAreaReference
-     * @param jobArea
-     * @param registry
-     * @throws IOException if the creation of the folder where to store job results fails
+     * @param brokerHostname
+     * @param brokerPort
      */
-    protected Actions(Submitter submitter, String fileSetAreaReference, String submissionFileSetAreaReference,
-                      JobArea jobArea, PluginRegistry registry,
-                      String brokerHostname, int brokerPort) throws IOException {
-        this(submitter,fileSetAreaReference,submissionFileSetAreaReference, jobArea,registry);
+    protected void setBroker(String brokerHostname, int brokerPort) {
         this.jobConfiguration.setBrokerHostname(brokerHostname);
         this.jobConfiguration.setBrokerPort(brokerPort);
         this.jobConfiguration.setUseBroker(true);
+    }
+
+    /**
+     * Configure the instance to access to the cloud storage for fetching/pushing job results.
+     * @param cloudId
+     * @param cloudSecret
+     */
+    protected void configureCloudAccess(String cloudId, String cloudSecret) {
+        this.jobConfiguration.setCloudAccess(true);
+        this.jobConfiguration.setCloudId(cloudId);
+        this.jobConfiguration.setCloudSecret(cloudSecret);
     }
 
     /**
@@ -110,6 +116,9 @@ final class Actions {
         Session session = submitter.newSession();
         session.targetAreaReferenceName = this.jobConfiguration.getFilesetAreaReference();
         session.targetAreaOwner = this.jobConfiguration.getOwner();
+        if (this.jobConfiguration.hasCloudAccess())
+            session.cloudConnection = new Session.GoogleCloudConnection(this.jobConfiguration.getCloudId(),
+                this.jobConfiguration.getCloudSecret());
         //create the directory for results
         FileUtils.forceMkdir(returnedJobFiles);
         if (this.jobConfiguration.getJobArea().isLocal()) {

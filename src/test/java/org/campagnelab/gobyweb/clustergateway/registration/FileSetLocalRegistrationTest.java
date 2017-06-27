@@ -150,7 +150,7 @@ public class FileSetLocalRegistrationTest {
         try {
             // test the case
             Broker broker = null;
-            returnedTags.addAll(fileset.register(inputEntries, new HashMap<String, String>(), new ArrayList<String>(),errors, null, broker));
+            returnedTags.addAll(fileset.register(inputEntries, new HashMap<String, String>(), new ArrayList<String>(),errors, null));
         } catch (IOException e) {
             e.printStackTrace();
             fail(String.format("Failed to register fileset %s with %",caseID,format));

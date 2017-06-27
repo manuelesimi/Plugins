@@ -245,14 +245,14 @@ public abstract class SubmissionRequest {
                 else
                     throw new Exception("No queue has been indicated");
             }
-            Actions actions = null;
+            Actions actions = new Actions(submitter, config.getString("fileset-area"),
+                    config.getString("submission-fileset-area"),jobArea, pluginRegistry);;
+            //add broker config
             if (config.userSpecified("broker-hostname") && config.userSpecified("broker-port") )
-                actions = new Actions(submitter, config.getString("fileset-area"), config.getString("submission-fileset-area"),
-                    jobArea, pluginRegistry, config.getString("broker-hostname"), config.getInt("broker-port"));
-            else
-                actions = new Actions(submitter, config.getString("fileset-area"),
-                        config.getString("submission-fileset-area"),jobArea, pluginRegistry);
-            assert actions != null : "action cannot be null.";
+                actions.setBroker(config.getString("broker-hostname"), config.getInt("broker-port"));
+            // configure cloud access
+            if (config.userSpecified("cloud-id") && config.userSpecified("cloud-secret") )
+                actions.configureCloudAccess(config.getString("cloud-id"), config.getString("cloud-secret"));
             submitter.setLocalPluginsDir(config.getFile("plugins-dir"));
             submitter.setSubmissionHostname(config.userSpecified("artifact-server")? config.getString("artifact-server") : "");
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
