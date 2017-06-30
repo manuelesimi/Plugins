@@ -29,10 +29,12 @@ function initializeJobEnvironment {
          export SINGULARITY_CACHEDIR=/scratchLocal/gobyweb/gobyweb3/SINGULARITY_CACHE
          mkdir -p ${SINGULARITY_CACHEDIR}
          function delegate_oge_job_script {
+            export STATE="$1"
             singularity exec \
                     -B ${FILESET_AREA}:${FILESET_AREA} \
                     -B ${JOB_DIR}:${JOB_DIR} \
                     -B ${ARTIFACT_REPOSITORY_DIR}:${ARTIFACT_REPOSITORY_DIR} \
+                    -B ~/mail:/etc/mail \
                     ${GOBYWEB_CONTAINER_NAME} %JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh "$1" && \
                     dieUponError 'Unable to execute with singularity container'
          }
@@ -40,7 +42,7 @@ function initializeJobEnvironment {
      none)
         echo "Calling legacy script directly"
         function delegate_oge_job_script {
-            %JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh
+            %JOB_DIR%/${WRAPPER_SCRIPT_PREFIX}_legacy.sh "$1" && \
             dieUponError 'Unable to directly delegate to legacy script'
         }
      ;;
