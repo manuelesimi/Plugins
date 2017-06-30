@@ -210,12 +210,12 @@ abstract public class AbstractSubmitter implements Submitter {
     /**
      * Generates the artifacts PB request file for the executable job and copies to destination directory.
      *
-     * @param config
+     * @param configs
      * @param envScriptFilename
      * @param tempDir
      * @throws IOException
      */
-    protected void copyArtifactsPbRequests(Config config, String envScriptFilename, File tempDir) throws IOException {
+    protected void copyArtifactsPbRequests(List<Config> configs, String envScriptFilename, File tempDir) throws IOException {
         if (this.pluginsDir == null) {
             throw new IOException("No plugins dir has been set for this submitter.");
         }
@@ -223,13 +223,19 @@ abstract public class AbstractSubmitter implements Submitter {
         helper.setWebServerHostname(submissionHostname, this.pluginsDir.getAbsolutePath());
         if (envScriptFilename != null)
             helper.registerPluginEnvironmentCollectionScript(envScriptFilename);
-        assert submissionHostname != null : "submission hostname must be defined.";
         File installArtifactPbRequests;
+        Config config = configs.get(0);
         if ((config.getClass().isAssignableFrom(ExecutableConfig.class)) //same class
-                || (ExecutableConfig.class.isInstance(config)))  //or a sub-class
-            installArtifactPbRequests = helper.createPbRequestFile((ExecutableConfig) config);
-        else
-            installArtifactPbRequests = helper.createPbRequestFile((ResourceConfig) config);
+                    || (ExecutableConfig.class.isInstance(config)))  //or a sub-class
+                installArtifactPbRequests = helper.createPbRequestFile((ExecutableConfig) config);
+        else {
+            //as of version 2.5.5+, the SDK supports multiple plugins installation only for resources
+            if (configs.size() == 1) {
+                installArtifactPbRequests = helper.createPbRequestFile((ResourceConfig) config);
+            } else {
+                installArtifactPbRequests = helper.createPbRequestFileForMultipleResources((List<ResourceConfig>)(List<?>) configs);
+            }
+        }
 
         if (installArtifactPbRequests != null) {
             Files.copy(installArtifactPbRequests, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "artifacts-install-requests.pb")));
@@ -643,6 +649,7 @@ abstract public class AbstractSubmitter implements Submitter {
 
         FileUtils.writeStringToFile(new File(tempDir, commonScript), commonContent);
     }
+
 }
 
 
