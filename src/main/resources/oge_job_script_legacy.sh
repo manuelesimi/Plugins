@@ -962,7 +962,7 @@ function setup_plugin_functions {
 ## Script logic starts here
 #######################################################################################
 
-echo "START of LEGACY SCRIPT, TMPDIR=${TMPDIR}, TMP_NODE_WORK_DIR=${TMP_NODE_WORK_DIR}"
+echo "START of LEGACY SCRIPT, TMPDIR=${TMPDIR}, TMP_NODE_WORK_DIR=${TMP_NODE_WORK_DIR} STATE=${STATE}"
 initializeGobyWebArtifactEnvironment
 
 case ${STATE} in
