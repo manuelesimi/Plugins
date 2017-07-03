@@ -158,7 +158,7 @@ final class Actions {
         builder.setChunkSize(chunkSize);
         builder.setGenomeID(genomeID);
         if (!submitter.isLocal())
-            submitter.setWrapperScript("oge_job_script.sh");
+            submitter.setWrapperScripts("oge_job_script.sh","oge_job_script_legacy.sh");
         else
             throw new UnsupportedOperationException("Local submission for aligners is not supported yet");
         this.submitJob(builder.build(unclassifiedOptions), inputSlots);
@@ -181,7 +181,7 @@ final class Actions {
         builder.setGroupDefinition(Arrays.asList(groups_definitions));
         builder.setComparisonPairs(Arrays.asList(comparison_pairs));
         if (!submitter.isLocal())
-            submitter.setWrapperScript("oge_job_script.sh");
+            submitter.setWrapperScripts("oge_job_script.sh","oge_job_script_legacy.sh");
         else
             throw new UnsupportedOperationException("Local submission for aligners is not supported yet");
         this.submitJob(builder.build(unclassifiedOptions), inputSlots);
@@ -203,9 +203,9 @@ final class Actions {
         TaskJobBuilder builder = new TaskJobBuilder(taskConfig, jobConfiguration);
 
         if (submitter.isLocal())
-            submitter.setWrapperScript("local_task_wrapper_script.sh");
+            submitter.setWrapperScripts("local_task_wrapper_script.sh");
         else
-            submitter.setWrapperScript("oge_task_wrapper_script.sh");
+            submitter.setWrapperScripts("oge_task_wrapper_script.sh");
 
         this.submitJob(builder.build(unclassifiedOptions), inputSlots);
     }
@@ -240,7 +240,7 @@ final class Actions {
 
         //prepare the session for the submission
         Session session = prepareJobSession();
-        submitter.setWrapperScript("resource_install_wrapper_script.sh");
+        submitter.setWrapperScripts("resource_install_wrapper_script.sh");
 
         //submit the resourceInstance
         submitter.submitResourceInstall(jobConfiguration.getJobArea(), session, resourceInstance);
