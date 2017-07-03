@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Adjust handling of wrapper script to support more than one script.&#10;&#10;(cherry picked from commit 59cd97b6974b2b4edbf33bf08e06408b2df3126d)&#10;&#10;Conflicts:&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java&#10;">
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/RemoteSubmitter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_task_parallel_wrapper_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_task_parallel_wrapper_script.sh" />
     </list>
     <list id="22548fb4-4a68-4dee-bc62-7d1ee67dd88a" name="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.  (cherry picked from commit 0a1c3f9)" comment="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.&#10;&#10;(cherry picked from commit 0a1c3f9)" />
     <list id="e12297a6-04a4-4092-a060-447d7ac4509c" name="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.  (cherry picked from commit 357dcb3)" comment="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.&#10;&#10;(cherry picked from commit 357dcb3)" />
@@ -169,11 +165,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AbstractSubmitter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AbstractSubmitter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="480">
+              <caret line="32" column="79" lean-forward="true" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
               <folding>
                 <element signature="e#3407#3408#0" expanded="true" />
                 <element signature="e#3443#3444#0" expanded="true" />
@@ -199,6 +195,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="local_task_wrapper_script_legacy.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script_legacy.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oge_task_wrapper_script_legacy.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="515">
+              <caret line="84" column="50" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="JobRuntimeEnvironment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobRuntimeEnvironment.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -213,7 +229,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3000">
-              <caret line="215" column="58" lean-forward="true" selection-start-line="215" selection-start-column="38" selection-end-line="215" selection-end-column="38" />
+              <caret line="215" column="58" lean-forward="false" selection-start-line="215" selection-start-column="38" selection-end-line="215" selection-end-column="38" />
               <folding>
                 <element signature="e#1270#1271#0" expanded="true" />
                 <element signature="e#1312#1313#0" expanded="true" />
@@ -275,27 +291,6 @@
             <state relative-caret-position="-664">
               <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="oge_job_script_legacy.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/oge_job_script_legacy.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1498853478000" expanded="true" signature="46243:46386" ph="{...}" />
-                <marker date="1498853478000" expanded="true" signature="46391:46708" ph="{...}" />
-                <marker date="1498853478000" expanded="true" signature="46713:47026" ph="{...}" />
-                <marker date="1498853478000" expanded="true" signature="47031:47262" ph="{...}" />
-                <marker date="1498853478000" expanded="true" signature="47267:47542" ph="{...}" />
-                <marker date="1498853478000" expanded="true" signature="47547:47917" ph="{...}" />
-                <marker date="1498853478000" expanded="true" signature="47923:48163" ph="{...}" />
-                <marker date="1498853478000" expanded="true" signature="48169:48405" ph="{...}" />
-                <marker date="1498853478000" expanded="true" signature="48415:49132" ph="{...}" />
-                <marker date="1498853478000" expanded="true" signature="49137:49284" ph="{...}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -1582,34 +1577,6 @@
       <workItem from="1498058284398" duration="1339000" />
       <workItem from="1498847689036" duration="2486000" />
     </task>
-    <task id="LOCAL-00489" summary="Remove maven dependency for serverside-dependencies 1.0.11. Add direct dependency for the new JSAP 2.1.1. Serverside-dependencies should be used only within a gobyweb plugin.">
-      <created>1434036563759</created>
-      <option name="number" value="00489" />
-      <option name="presentableId" value="LOCAL-00489" />
-      <option name="project" value="LOCAL" />
-      <updated>1434036563762</updated>
-    </task>
-    <task id="LOCAL-00490" summary="Use the new aggregate-attributes action from FileSet library to create a cache of the fileset metadata. This should reduce and optimize the disk's accesses.">
-      <created>1437060309875</created>
-      <option name="number" value="00490" />
-      <option name="presentableId" value="LOCAL-00490" />
-      <option name="project" value="LOCAL" />
-      <updated>1437060309875</updated>
-    </task>
-    <task id="LOCAL-00491" summary="Make a public release for 2.5.0.&#10;">
-      <created>1437068114539</created>
-      <option name="number" value="00491" />
-      <option name="presentableId" value="LOCAL-00491" />
-      <option name="project" value="LOCAL" />
-      <updated>1437068114539</updated>
-    </task>
-    <task id="LOCAL-00492" summary="Advance version to the next snapshot.">
-      <created>1437577050308</created>
-      <option name="number" value="00492" />
-      <option name="presentableId" value="LOCAL-00492" />
-      <option name="project" value="LOCAL" />
-      <updated>1437577050308</updated>
-    </task>
     <task id="LOCAL-00493" summary="Resolve mandatory GOBYWEB_SERVER_SIDE resource using the version indicated in PluginsLoaderSettings when installing a resource plugin.  Advance version to 2.5.1.">
       <created>1439585763538</created>
       <option name="number" value="00493" />
@@ -1925,7 +1892,35 @@
       <option name="project" value="LOCAL" />
       <updated>1499093617609</updated>
     </task>
-    <option name="localTasksCounter" value="538" />
+    <task id="LOCAL-00538" summary="Adjust handling of wrapper script to support more than one script.&#10;&#10;(cherry picked from commit 59cd97b6974b2b4edbf33bf08e06408b2df3126d)&#10;&#10;Conflicts:&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java&#10;">
+      <created>1499094824442</created>
+      <option name="number" value="00538" />
+      <option name="presentableId" value="LOCAL-00538" />
+      <option name="project" value="LOCAL" />
+      <updated>1499094824442</updated>
+    </task>
+    <task id="LOCAL-00539" summary="define error function.&#10;&#10;(cherry picked from commit 678acf5)">
+      <created>1499095246468</created>
+      <option name="number" value="00539" />
+      <option name="presentableId" value="LOCAL-00539" />
+      <option name="project" value="LOCAL" />
+      <updated>1499095246468</updated>
+    </task>
+    <task id="LOCAL-00540" summary="Introduce common.sh to contain most common function definitions used across plugins oge/local scripts.&#10;&#10;(cherry picked from commit 16df7fd)">
+      <created>1499095280251</created>
+      <option name="number" value="00540" />
+      <option name="presentableId" value="LOCAL-00540" />
+      <option name="project" value="LOCAL" />
+      <updated>1499095280251</updated>
+    </task>
+    <task id="LOCAL-00541" summary="Refactor more code to common.sh.&#10;&#10;(cherry picked from commit bbe3dfa)">
+      <created>1499096190304</created>
+      <option name="number" value="00541" />
+      <option name="presentableId" value="LOCAL-00541" />
+      <option name="project" value="LOCAL" />
+      <updated>1499096190304</updated>
+    </task>
+    <option name="localTasksCounter" value="542" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1961,7 +1956,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="815628000" />
+    <option name="totallyTimeSpent" value="817094000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1994,18 +1989,18 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23872027" sideWeight="0.35504368" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46841672" sideWeight="0.51111996" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21207307" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23872027" sideWeight="0.6449563" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46841672" sideWeight="0.49205717" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23872027" sideWeight="0.6429706" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46841672" sideWeight="0.48888007" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34208366" sideWeight="0.49841145" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22438443" sideWeight="0.7133621" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22438443" sideWeight="0.70987654" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22438443" sideWeight="0.28663793" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22438443" sideWeight="0.29012346" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -2091,10 +2086,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Advance version to 2.5.4." />
-    <MESSAGE value="Remove SNAPSHOT dependencies. Update changelog." />
-    <MESSAGE value="Extend the ClusterGatewaySimulator interface to support artifact values. Create the variable with the attributes values for each artifact of the resource. Various fixes in the gateway simulator. Add new test cases and data for the simulator." />
-    <MESSAGE value="Fix NPE when no attributes are specified in the gateway simulator." />
     <MESSAGE value="Cluster gateway simulator: add variable with the artifact name that points to the root folder of the artifact installation." />
     <MESSAGE value="Extend ClusterGateway's jsap interface and submission request factory to handle multiple resources from the command line." />
     <MESSAGE value="Introduce MultipleResourceSubmissionRequest to handle dependencies resolution for multiple input resources." />
@@ -2116,7 +2107,11 @@
     <MESSAGE value="Add defaults for GOBYWEB_CONTAINER_TECHNOLOGY and GOBYWEB_CONTAINER_NAME variables for backward compatibility.&#10;&#10;(cherry picked from commit 1e555a6)" />
     <MESSAGE value="Define debug function (used by artifact.sh script).&#10;&#10;(cherry picked from commit 6780445)" />
     <MESSAGE value="Add the new container settings to the job environment.&#10;&#10;(cherry picked from commit b07d109)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add the new container settings to the job environment.&#10;&#10;(cherry picked from commit b07d109)" />
+    <MESSAGE value="Adjust handling of wrapper script to support more than one script.&#10;&#10;(cherry picked from commit 59cd97b6974b2b4edbf33bf08e06408b2df3126d)&#10;&#10;Conflicts:&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java&#10;" />
+    <MESSAGE value="define error function.&#10;&#10;(cherry picked from commit 678acf5)" />
+    <MESSAGE value="Introduce common.sh to contain most common function definitions used across plugins oge/local scripts.&#10;&#10;(cherry picked from commit 16df7fd)" />
+    <MESSAGE value="Refactor more code to common.sh.&#10;&#10;(cherry picked from commit bbe3dfa)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor more code to common.sh.&#10;&#10;(cherry picked from commit bbe3dfa)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2184,20 +2179,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/BaseConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="47" lean-forward="false" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/plugins/util/PluginsUtilCommandLineTest.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" column="45" lean-forward="false" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2010">
@@ -2353,10 +2334,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="439">
           <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <marker date="1498853487000" expanded="true" signature="4847:5472" ph="{...}" />
-            <marker date="1498853487000" expanded="true" signature="5478:5893" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2482,16 +2460,16 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1498853478000" expanded="true" signature="46243:46386" ph="{...}" />
-            <marker date="1498853478000" expanded="true" signature="46391:46708" ph="{...}" />
-            <marker date="1498853478000" expanded="true" signature="46713:47026" ph="{...}" />
-            <marker date="1498853478000" expanded="true" signature="47031:47262" ph="{...}" />
-            <marker date="1498853478000" expanded="true" signature="47267:47542" ph="{...}" />
-            <marker date="1498853478000" expanded="true" signature="47547:47917" ph="{...}" />
-            <marker date="1498853478000" expanded="true" signature="47923:48163" ph="{...}" />
-            <marker date="1498853478000" expanded="true" signature="48169:48405" ph="{...}" />
-            <marker date="1498853478000" expanded="true" signature="48415:49132" ph="{...}" />
-            <marker date="1498853478000" expanded="true" signature="49137:49284" ph="{...}" />
+            <marker date="1499095561000" expanded="true" signature="41265:41408" ph="{...}" />
+            <marker date="1499095561000" expanded="true" signature="41413:41730" ph="{...}" />
+            <marker date="1499095561000" expanded="true" signature="41735:42048" ph="{...}" />
+            <marker date="1499095561000" expanded="true" signature="42053:42284" ph="{...}" />
+            <marker date="1499095561000" expanded="true" signature="42289:42564" ph="{...}" />
+            <marker date="1499095561000" expanded="true" signature="42569:42939" ph="{...}" />
+            <marker date="1499095561000" expanded="true" signature="42945:43185" ph="{...}" />
+            <marker date="1499095561000" expanded="true" signature="43191:43427" ph="{...}" />
+            <marker date="1499095561000" expanded="true" signature="43437:44154" ph="{...}" />
+            <marker date="1499095561000" expanded="true" signature="44159:44306" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2599,7 +2577,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3000">
-          <caret line="215" column="58" lean-forward="true" selection-start-line="215" selection-start-column="38" selection-end-line="215" selection-end-column="38" />
+          <caret line="215" column="58" lean-forward="false" selection-start-line="215" selection-start-column="38" selection-end-line="215" selection-end-column="38" />
           <folding>
             <element signature="e#1270#1271#0" expanded="true" />
             <element signature="e#1312#1313#0" expanded="true" />
@@ -2609,8 +2587,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="480">
+          <caret line="32" column="79" lean-forward="true" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
           <folding>
             <element signature="e#3407#3408#0" expanded="true" />
             <element signature="e#3443#3444#0" expanded="true" />
@@ -2632,6 +2610,22 @@
             <element signature="e#30284#30285#0" expanded="true" />
             <element signature="e#30324#30325#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/local_task_wrapper_script_legacy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="84" column="50" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
