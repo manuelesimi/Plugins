@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilder.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilder.java" />
     </list>
     <list id="22548fb4-4a68-4dee-bc62-7d1ee67dd88a" name="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.  (cherry picked from commit 0a1c3f9)" comment="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.&#10;&#10;(cherry picked from commit 0a1c3f9)" />
     <list id="e12297a6-04a4-4092-a060-447d7ac4509c" name="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.  (cherry picked from commit 357dcb3)" comment="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.&#10;&#10;(cherry picked from commit 357dcb3)" />
@@ -167,28 +168,11 @@
       <file leaf-file-name="AbstractSubmitter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+            <state relative-caret-position="375">
+              <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
               <folding>
-                <element signature="e#3407#3408#0" expanded="true" />
-                <element signature="e#3443#3444#0" expanded="true" />
-                <element signature="e#3525#3526#0" expanded="true" />
-                <element signature="e#3585#3586#0" expanded="true" />
-                <element signature="e#3655#3656#0" expanded="true" />
-                <element signature="e#3699#3700#0" expanded="true" />
-                <element signature="e#3776#3777#0" expanded="true" />
-                <element signature="e#3828#3829#0" expanded="true" />
-                <element signature="e#4007#4008#0" expanded="true" />
-                <element signature="e#4049#4050#0" expanded="true" />
-                <element signature="e#4694#4695#0" expanded="true" />
-                <element signature="e#4730#4731#0" expanded="true" />
-                <element signature="e#4963#4971#0" expanded="true" />
-                <element signature="e#6336#6348#0" expanded="true" />
-                <element signature="e#18546#18558#0" expanded="true" />
-                <element signature="e#23060#23074#0" expanded="true" />
-                <element signature="e#24218#24233#0" expanded="true" />
-                <element signature="e#30284#30285#0" expanded="true" />
-                <element signature="e#30324#30325#0" expanded="true" />
+                <element signature="e#30442#30443#0" expanded="true" />
+                <element signature="e#30482#30483#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -204,11 +188,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oge_task_wrapper_script_legacy.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="oge_task_wrapper_script_legacy.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
-              <caret line="59" column="39" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -247,11 +231,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobBuilder.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="JobBuilder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1519">
-              <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+            <state relative-caret-position="7">
+              <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="32" />
               <folding>
                 <element signature="e#1594#1610#0" expanded="true" />
                 <element signature="e#4549#4565#0" expanded="true" />
@@ -417,9 +401,9 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ResourceJob.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/TaskJobBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilder.java" />
       </list>
     </option>
   </component>
@@ -1576,41 +1560,6 @@
       <workItem from="1498058284398" duration="1339000" />
       <workItem from="1498847689036" duration="2486000" />
     </task>
-    <task id="LOCAL-00499" summary="Add test cases for resource installation using a local artifact server. Add test-data.">
-      <created>1440524791986</created>
-      <option name="number" value="00499" />
-      <option name="presentableId" value="LOCAL-00499" />
-      <option name="project" value="LOCAL" />
-      <updated>1440524791986</updated>
-    </task>
-    <task id="LOCAL-00500" summary="Remove wrong checks for resources with no artifacts (files are just copied in the job folder).">
-      <created>1440528563420</created>
-      <option name="number" value="00500" />
-      <option name="presentableId" value="LOCAL-00500" />
-      <option name="project" value="LOCAL" />
-      <updated>1440528563420</updated>
-    </task>
-    <task id="LOCAL-00501" summary="Add PARALLEL_LAST resource to test-data.">
-      <created>1440528614692</created>
-      <option name="number" value="00501" />
-      <option name="presentableId" value="LOCAL-00501" />
-      <option name="project" value="LOCAL" />
-      <updated>1440528614692</updated>
-    </task>
-    <task id="LOCAL-00502" summary="Make release 2.5.3 public.">
-      <created>1440771464043</created>
-      <option name="number" value="00502" />
-      <option name="presentableId" value="LOCAL-00502" />
-      <option name="project" value="LOCAL" />
-      <updated>1440771464043</updated>
-    </task>
-    <task id="LOCAL-00503" summary="Update change log for releases 2.5.2 and 2.5.3. Advance version to next snapshot.">
-      <created>1441028612105</created>
-      <option name="number" value="00503" />
-      <option name="presentableId" value="LOCAL-00503" />
-      <option name="project" value="LOCAL" />
-      <updated>1441028612105</updated>
-    </task>
     <task id="LOCAL-00504" summary="Add attribute-value options to the cluster gateway interface. Parse the values in the submission request.">
       <created>1441816796112</created>
       <option name="number" value="00504" />
@@ -1919,7 +1868,42 @@
       <option name="project" value="LOCAL" />
       <updated>1499098347387</updated>
     </task>
-    <option name="localTasksCounter" value="548" />
+    <task id="LOCAL-00548" summary="Add parameter for job_wrappers_paths (can be repeated). Expand each path and add it to the submission pipeline. New test case for the new params.&#10;&#10;(cherry picked from commit 03825c1)">
+      <created>1499107431531</created>
+      <option name="number" value="00548" />
+      <option name="presentableId" value="LOCAL-00548" />
+      <option name="project" value="LOCAL" />
+      <updated>1499107431532</updated>
+    </task>
+    <task id="LOCAL-00549" summary="Change owner to instructor to match fileset area content.&#10;&#10;(cherry picked from commit 7eb8cc7)">
+      <created>1499107541782</created>
+      <option name="number" value="00549" />
+      <option name="presentableId" value="LOCAL-00549" />
+      <option name="project" value="LOCAL" />
+      <updated>1499107541782</updated>
+    </task>
+    <task id="LOCAL-00550" summary="Define email variables, which Gobyweb usually provides.&#10;&#10;(cherry picked from commit 098e84e)">
+      <created>1499107954216</created>
+      <option name="number" value="00550" />
+      <option name="presentableId" value="LOCAL-00550" />
+      <option name="project" value="LOCAL" />
+      <updated>1499107954216</updated>
+    </task>
+    <task id="LOCAL-00551" summary="Now runs align step in Singularity (still installing artifacts on darla).&#10;&#10;(cherry picked from commit 5612aca)">
+      <created>1499108151918</created>
+      <option name="number" value="00551" />
+      <option name="presentableId" value="LOCAL-00551" />
+      <option name="project" value="LOCAL" />
+      <updated>1499108151918</updated>
+    </task>
+    <task id="LOCAL-00552" summary="Fixes for process reads task. Added a unit test. Artifact repo currently locked installing index for bwa, so testing is pending on that.&#10;&#10;(cherry picked from commit a0f2b66)">
+      <created>1499108174737</created>
+      <option name="number" value="00552" />
+      <option name="presentableId" value="LOCAL-00552" />
+      <option name="project" value="LOCAL" />
+      <updated>1499108174737</updated>
+    </task>
+    <option name="localTasksCounter" value="553" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1955,7 +1939,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="819493000" />
+    <option name="totallyTimeSpent" value="820380000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1988,18 +1972,18 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46841672" sideWeight="0.5127085" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23872027" sideWeight="0.3629865" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21207307" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23872027" sideWeight="0.6409849" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46841672" sideWeight="0.4872915" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23872027" sideWeight="0.6370135" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46841672" sideWeight="0.48570293" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34208366" sideWeight="0.49841145" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22438443" sideWeight="0.70987654" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22438443" sideWeight="0.7133621" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22438443" sideWeight="0.29012346" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22438443" sideWeight="0.28663793" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -2085,11 +2069,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Update change log." />
-    <MESSAGE value="Do not write variables in constants.sh if the value is null.&#10;&#10;(cherry picked from commit 5db4b56)" />
-    <MESSAGE value="Advance version to 2.4.3." />
-    <MESSAGE value="Advance version to 2.4.4-SNAPSHOT." />
-    <MESSAGE value="Add parameters and variable for the container technology and name and the paths/patters for the job wrapper scripts." />
     <MESSAGE value="Remove unused defaults for container and paths." />
     <MESSAGE value="Fix check on container technology name." />
     <MESSAGE value="Add the new container settings to the job environment." />
@@ -2110,7 +2089,12 @@
     <MESSAGE value="Use %JOB_DIR%/common.sh.&#10;&#10;(cherry picked from commit a43b73e)" />
     <MESSAGE value="Fix container name.&#10;&#10;(cherry picked from commit 7c3937b)" />
     <MESSAGE value="Tweak scripts. Correct location of job directory.&#10;&#10;(cherry picked from commit 4a6ab56)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tweak scripts. Correct location of job directory.&#10;&#10;(cherry picked from commit 4a6ab56)" />
+    <MESSAGE value="Add parameter for job_wrappers_paths (can be repeated). Expand each path and add it to the submission pipeline. New test case for the new params.&#10;&#10;(cherry picked from commit 03825c1)" />
+    <MESSAGE value="Change owner to instructor to match fileset area content.&#10;&#10;(cherry picked from commit 7eb8cc7)" />
+    <MESSAGE value="Define email variables, which Gobyweb usually provides.&#10;&#10;(cherry picked from commit 098e84e)" />
+    <MESSAGE value="Now runs align step in Singularity (still installing artifacts on darla).&#10;&#10;(cherry picked from commit 5612aca)" />
+    <MESSAGE value="Fixes for process reads task. Added a unit test. Artifact repo currently locked installing index for bwa, so testing is pending on that.&#10;&#10;(cherry picked from commit a0f2b66)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes for process reads task. Added a unit test. Artifact repo currently locked installing index for bwa, so testing is pending on that.&#10;&#10;(cherry picked from commit a0f2b66)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2318,7 +2302,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3615">
           <caret line="272" column="16" lean-forward="false" selection-start-line="272" selection-start-column="16" selection-end-line="272" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2333,7 +2316,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="439">
           <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2403,24 +2385,24 @@
         <state relative-caret-position="3675">
           <caret line="259" column="37" lean-forward="false" selection-start-line="259" selection-start-column="37" selection-end-line="259" selection-end-column="37" />
           <folding>
-            <marker date="1498850209000" expanded="true" signature="13813:13971" ph="/**...*/" />
-            <marker date="1498850209000" expanded="true" signature="14041:15524" ph="{...}" />
-            <marker date="1498850209000" expanded="true" signature="15658:15850" ph="{...}" />
-            <marker date="1498850209000" expanded="true" signature="15771:15844" ph="{...}" />
-            <marker date="1498850209000" expanded="true" signature="15856:15913" ph="/**...*/" />
-            <marker date="1498850209000" expanded="true" signature="15955:16600" ph="{...}" />
-            <marker date="1498850209000" expanded="true" signature="16147:16351" ph="{...}" />
-            <marker date="1498850209000" expanded="false" signature="16394:16409" ph=" { " />
-            <marker date="1498850209000" expanded="false" signature="16429:16439" ph=" }" />
-            <marker date="1498850209000" expanded="true" signature="16511:16594" ph="{...}" />
-            <marker date="1498850209000" expanded="true" signature="16606:16653" ph="/**...*/" />
-            <marker date="1498850209000" expanded="true" signature="16694:17504" ph="{...}" />
-            <marker date="1498850209000" expanded="true" signature="16899:17090" ph="{...}" />
-            <marker date="1498850209000" expanded="false" signature="17133:17148" ph=" { " />
-            <marker date="1498850209000" expanded="false" signature="17168:17178" ph=" }" />
-            <marker date="1498850209000" expanded="false" signature="17236:17251" ph=" { " />
-            <marker date="1498850209000" expanded="false" signature="17291:17301" ph=" }" />
-            <marker date="1498850209000" expanded="true" signature="17390:17498" ph="{...}" />
+            <marker date="1499105404000" expanded="true" signature="13818:13976" ph="/**...*/" />
+            <marker date="1499105404000" expanded="true" signature="14046:15529" ph="{...}" />
+            <marker date="1499105404000" expanded="true" signature="15663:15855" ph="{...}" />
+            <marker date="1499105404000" expanded="true" signature="15776:15849" ph="{...}" />
+            <marker date="1499105404000" expanded="true" signature="15861:15918" ph="/**...*/" />
+            <marker date="1499105404000" expanded="true" signature="15960:16605" ph="{...}" />
+            <marker date="1499105404000" expanded="true" signature="16152:16356" ph="{...}" />
+            <marker date="1499105404000" expanded="false" signature="16399:16414" ph=" { " />
+            <marker date="1499105404000" expanded="false" signature="16434:16444" ph=" }" />
+            <marker date="1499105404000" expanded="true" signature="16516:16599" ph="{...}" />
+            <marker date="1499105404000" expanded="true" signature="16611:16658" ph="/**...*/" />
+            <marker date="1499105404000" expanded="true" signature="16699:17509" ph="{...}" />
+            <marker date="1499105404000" expanded="true" signature="16904:17095" ph="{...}" />
+            <marker date="1499105404000" expanded="false" signature="17138:17153" ph=" { " />
+            <marker date="1499105404000" expanded="false" signature="17173:17183" ph=" }" />
+            <marker date="1499105404000" expanded="false" signature="17241:17256" ph=" { " />
+            <marker date="1499105404000" expanded="false" signature="17296:17306" ph=" }" />
+            <marker date="1499105404000" expanded="true" signature="17395:17503" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2450,7 +2432,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2459,16 +2440,16 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1499098328000" expanded="true" signature="40506:40649" ph="{...}" />
-            <marker date="1499098328000" expanded="true" signature="40637:40944" ph="{...}" />
-            <marker date="1499098328000" expanded="true" signature="40949:41262" ph="{...}" />
-            <marker date="1499098328000" expanded="true" signature="41267:41498" ph="{...}" />
-            <marker date="1499098328000" expanded="true" signature="41503:41778" ph="{...}" />
-            <marker date="1499098328000" expanded="true" signature="41783:42153" ph="{...}" />
-            <marker date="1499098328000" expanded="true" signature="42159:42399" ph="{...}" />
-            <marker date="1499098328000" expanded="true" signature="42405:42641" ph="{...}" />
-            <marker date="1499098328000" expanded="true" signature="42651:43368" ph="{...}" />
-            <marker date="1499098328000" expanded="true" signature="43373:43520" ph="{...}" />
+            <marker date="1499108156000" expanded="true" signature="40506:40649" ph="{...}" />
+            <marker date="1499108156000" expanded="true" signature="40637:40944" ph="{...}" />
+            <marker date="1499108156000" expanded="true" signature="40949:41262" ph="{...}" />
+            <marker date="1499108156000" expanded="true" signature="41267:41498" ph="{...}" />
+            <marker date="1499108156000" expanded="true" signature="41503:41778" ph="{...}" />
+            <marker date="1499108156000" expanded="true" signature="41783:42153" ph="{...}" />
+            <marker date="1499108156000" expanded="true" signature="42159:42399" ph="{...}" />
+            <marker date="1499108156000" expanded="true" signature="42405:42641" ph="{...}" />
+            <marker date="1499108156000" expanded="true" signature="42651:43368" ph="{...}" />
+            <marker date="1499108156000" expanded="true" signature="43373:43520" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2507,7 +2488,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3675">
           <caret line="245" column="33" lean-forward="false" selection-start-line="245" selection-start-column="33" selection-end-line="245" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2545,21 +2525,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1519">
-          <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-          <folding>
-            <element signature="e#1594#1610#0" expanded="true" />
-            <element signature="e#4549#4565#0" expanded="true" />
-            <element signature="e#6130#6131#0" expanded="true" />
-            <element signature="e#6184#6185#0" expanded="true" />
-            <element signature="e#6223#6224#0" expanded="true" />
-            <element signature="e#6261#6262#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/TaskJobBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -2586,28 +2551,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+        <state relative-caret-position="375">
+          <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
           <folding>
-            <element signature="e#3407#3408#0" expanded="true" />
-            <element signature="e#3443#3444#0" expanded="true" />
-            <element signature="e#3525#3526#0" expanded="true" />
-            <element signature="e#3585#3586#0" expanded="true" />
-            <element signature="e#3655#3656#0" expanded="true" />
-            <element signature="e#3699#3700#0" expanded="true" />
-            <element signature="e#3776#3777#0" expanded="true" />
-            <element signature="e#3828#3829#0" expanded="true" />
-            <element signature="e#4007#4008#0" expanded="true" />
-            <element signature="e#4049#4050#0" expanded="true" />
-            <element signature="e#4694#4695#0" expanded="true" />
-            <element signature="e#4730#4731#0" expanded="true" />
-            <element signature="e#4963#4971#0" expanded="true" />
-            <element signature="e#6336#6348#0" expanded="true" />
-            <element signature="e#18546#18558#0" expanded="true" />
-            <element signature="e#23060#23074#0" expanded="true" />
-            <element signature="e#24218#24233#0" expanded="true" />
-            <element signature="e#30284#30285#0" expanded="true" />
-            <element signature="e#30324#30325#0" expanded="true" />
+            <element signature="e#30442#30443#0" expanded="true" />
+            <element signature="e#30482#30483#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2623,8 +2571,23 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="59" column="39" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7">
+          <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="32" />
+          <folding>
+            <element signature="e#1594#1610#0" expanded="true" />
+            <element signature="e#4549#4565#0" expanded="true" />
+            <element signature="e#6130#6131#0" expanded="true" />
+            <element signature="e#6184#6185#0" expanded="true" />
+            <element signature="e#6223#6224#0" expanded="true" />
+            <element signature="e#6261#6262#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
