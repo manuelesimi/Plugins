@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iml" afterPath="$PROJECT_DIR$/plugins.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.ipr" afterPath="$PROJECT_DIR$/plugins.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <list id="22548fb4-4a68-4dee-bc62-7d1ee67dd88a" name="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.  (cherry picked from commit 0a1c3f9)" comment="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.&#10;&#10;(cherry picked from commit 0a1c3f9)" />
     <list id="e12297a6-04a4-4092-a060-447d7ac4509c" name="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.  (cherry picked from commit 357dcb3)" comment="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.&#10;&#10;(cherry picked from commit 357dcb3)" />
     <list id="705f66d0-97f3-4050-b7c3-624bc1f1e4e7" name="Adjust handling of wrapper script to support more than one script.  (cherry picked from commit 59cd97b)" comment="Adjust handling of wrapper script to support more than one script.&#10;&#10;(cherry picked from commit 59cd97b)" />
     <list id="d0c3cab4-0bbf-4996-b0b0-1bed28146f49" name="Add container_memory parameter. When it is set and a container technology is specified, the memory requested to OGE is increased according to the value of the parameter.  (cherry picked from commit 5ed18ba)" comment="Add container_memory parameter. When it is set and a container technology is specified, the memory requested to OGE is increased according to the value of the parameter.&#10;&#10;(cherry picked from commit 5ed18ba)" />
+    <list id="f8b4a5d5-3a13-49f7-b40d-9a74ffb7dd57" name="Remover overwritting of wrapper scripts argument for aligner and analysis.  (cherry picked from commit 399f473)" comment="Remover overwritting of wrapper scripts argument for aligner and analysis.&#10;&#10;(cherry picked from commit 399f473)">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" />
+    </list>
     <ignored path="plugins.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -211,8 +211,8 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="92" column="129" lean-forward="true" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
+            <state relative-caret-position="490">
+              <caret line="102" column="100" lean-forward="true" selection-start-line="102" selection-start-column="46" selection-end-line="102" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -242,8 +242,10 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
-              <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-              <folding />
+              <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <folding>
+                <marker date="1499113696000" expanded="true" signature="2517:2521" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -251,13 +253,10 @@
       <file leaf-file-name="Actions.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="996">
-              <caret line="231" column="55" lean-forward="false" selection-start-line="231" selection-start-column="55" selection-end-line="231" selection-end-column="55" />
+            <state relative-caret-position="681">
+              <caret line="241" column="0" lean-forward="false" selection-start-line="241" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1390#1391#0" expanded="false" />
-                <element signature="e#1432#1433#0" expanded="false" />
-                <marker date="1499110442000" expanded="true" signature="6056:6660" ph="{...}" />
+                <marker date="1499115388000" expanded="true" signature="10365:10400" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -345,8 +344,8 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="Manuele Simi &lt;manuele.simi@campagnelab.org&gt;" />
         <option value="Fabien Campagne &lt;fac2003@campagnelab.org&gt;" />
+        <option value="Manuele Simi &lt;manuele.simi@campagnelab.org&gt;" />
         <option value="quyq" />
       </list>
     </option>
@@ -1577,69 +1576,6 @@
       <workItem from="1498058284398" duration="1339000" />
       <workItem from="1498847689036" duration="2486000" />
     </task>
-    <task id="LOCAL-00505" summary="Manage the new attribute-value options for resource installations. A property file for each artifact is created in the job folder with the value of each attribute specified from the command line or in the API. Add a related test case for local resource installations.">
-      <created>1441819116843</created>
-      <option name="number" value="00505" />
-      <option name="presentableId" value="LOCAL-00505" />
-      <option name="project" value="LOCAL" />
-      <updated>1441819116843</updated>
-    </task>
-    <task id="LOCAL-00506" summary="Add test-data to test resource installation with attributes for artifacts specified on the command line.">
-      <created>1441895409385</created>
-      <option name="number" value="00506" />
-      <option name="presentableId" value="LOCAL-00506" />
-      <option name="project" value="LOCAL" />
-      <updated>1441895409385</updated>
-    </task>
-    <task id="LOCAL-00507" summary="Manage the case when an artifact has no attributes.">
-      <created>1441895713358</created>
-      <option name="number" value="00507" />
-      <option name="presentableId" value="LOCAL-00507" />
-      <option name="project" value="LOCAL" />
-      <updated>1441895713358</updated>
-    </task>
-    <task id="LOCAL-00508" summary="Add test case and data to test attributes' values from the command line.">
-      <created>1441903066834</created>
-      <option name="number" value="00508" />
-      <option name="presentableId" value="LOCAL-00508" />
-      <option name="project" value="LOCAL" />
-      <updated>1441903066834</updated>
-    </task>
-    <task id="LOCAL-00509" summary="Prefix the attribute name with the resource and artifact.">
-      <created>1441907301382</created>
-      <option name="number" value="00509" />
-      <option name="presentableId" value="LOCAL-00509" />
-      <option name="project" value="LOCAL" />
-      <updated>1441907301382</updated>
-    </task>
-    <task id="LOCAL-00510" summary="Update test data.">
-      <created>1441907804404</created>
-      <option name="number" value="00510" />
-      <option name="presentableId" value="LOCAL-00510" />
-      <option name="project" value="LOCAL" />
-      <updated>1441907804404</updated>
-    </task>
-    <task id="LOCAL-00511" summary="Update change log. Advance version for artifact manager dependency.">
-      <created>1441908297135</created>
-      <option name="number" value="00511" />
-      <option name="presentableId" value="LOCAL-00511" />
-      <option name="project" value="LOCAL" />
-      <updated>1441908297135</updated>
-    </task>
-    <task id="LOCAL-00512" summary="Advance version to 2.5.4.">
-      <created>1442852268392</created>
-      <option name="number" value="00512" />
-      <option name="presentableId" value="LOCAL-00512" />
-      <option name="project" value="LOCAL" />
-      <updated>1442852268392</updated>
-    </task>
-    <task id="LOCAL-00513" summary="Remove SNAPSHOT dependencies. Update changelog.">
-      <created>1442929331429</created>
-      <option name="number" value="00513" />
-      <option name="presentableId" value="LOCAL-00513" />
-      <option name="project" value="LOCAL" />
-      <updated>1442929331429</updated>
-    </task>
     <task id="LOCAL-00514" summary="Extend the ClusterGatewaySimulator interface to support artifact values. Create the variable with the attributes values for each artifact of the resource. Various fixes in the gateway simulator. Add new test cases and data for the simulator.">
       <created>1442947526823</created>
       <option name="number" value="00514" />
@@ -1920,7 +1856,70 @@
       <option name="project" value="LOCAL" />
       <updated>1499112843176</updated>
     </task>
-    <option name="localTasksCounter" value="554" />
+    <task id="LOCAL-00554" summary="Set compilation targer to 1.7.">
+      <created>1499113299643</created>
+      <option name="number" value="00554" />
+      <option name="presentableId" value="LOCAL-00554" />
+      <option name="project" value="LOCAL" />
+      <updated>1499113299643</updated>
+    </task>
+    <task id="LOCAL-00555" summary="Use TMP_NODE_WORK_DIR instead of TMPDIR, because TMPDIR is erased by singularity.&#10;&#10;(cherry picked from commit a431c73)">
+      <created>1499113613865</created>
+      <option name="number" value="00555" />
+      <option name="presentableId" value="LOCAL-00555" />
+      <option name="project" value="LOCAL" />
+      <updated>1499113613865</updated>
+    </task>
+    <task id="LOCAL-00556" summary="Copy goby.jar and other files to TMP_NODE_WORK_DIR if they were not there already.&#10;&#10;(cherry picked from commit f08943f)">
+      <created>1499113644453</created>
+      <option name="number" value="00556" />
+      <option name="presentableId" value="LOCAL-00556" />
+      <option name="project" value="LOCAL" />
+      <updated>1499113644453</updated>
+    </task>
+    <task id="LOCAL-00557" summary="Attempt fix for JAVA_LOG_DIR missing (and copy_logs failure in post).&#10;&#10;(cherry picked from commit e692e78)">
+      <created>1499113667228</created>
+      <option name="number" value="00557" />
+      <option name="presentableId" value="LOCAL-00557" />
+      <option name="project" value="LOCAL" />
+      <updated>1499113667228</updated>
+    </task>
+    <task id="LOCAL-00558" summary="Fix for align post.&#10;&#10;(cherry picked from commit 524cccc)">
+      <created>1499113696038</created>
+      <option name="number" value="00558" />
+      <option name="presentableId" value="LOCAL-00558" />
+      <option name="project" value="LOCAL" />
+      <updated>1499113696038</updated>
+    </task>
+    <task id="LOCAL-00559" summary="Add function to consistently adjust NUMBER_OF_ALIGN_PARTS.&#10;&#10;(cherry picked from commit a3bda40)">
+      <created>1499113713051</created>
+      <option name="number" value="00559" />
+      <option name="presentableId" value="LOCAL-00559" />
+      <option name="project" value="LOCAL" />
+      <updated>1499113713051</updated>
+    </task>
+    <task id="LOCAL-00560" summary="Add option to increase memory for container use.&#10;&#10;(cherry picked from commit c8acc65)">
+      <created>1499113729358</created>
+      <option name="number" value="00560" />
+      <option name="presentableId" value="LOCAL-00560" />
+      <option name="project" value="LOCAL" />
+      <updated>1499113729358</updated>
+    </task>
+    <task id="LOCAL-00561" summary="Remove spli-results after concat, not results.&#10;&#10;(cherry picked from commit 5ac9d0a)">
+      <created>1499113816234</created>
+      <option name="number" value="00561" />
+      <option name="presentableId" value="LOCAL-00561" />
+      <option name="project" value="LOCAL" />
+      <updated>1499113816235</updated>
+    </task>
+    <task id="LOCAL-00562" summary="Remove the cleanup function.&#10;&#10;(cherry picked from commit af356cd)">
+      <created>1499115223164</created>
+      <option name="number" value="00562" />
+      <option name="presentableId" value="LOCAL-00562" />
+      <option name="project" value="LOCAL" />
+      <updated>1499115223164</updated>
+    </task>
+    <option name="localTasksCounter" value="563" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1956,7 +1955,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="822125000" />
+    <option name="totallyTimeSpent" value="824274000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1989,10 +1988,10 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23872027" sideWeight="0.3689436" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23872027" sideWeight="0.3709293" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21207307" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23872027" sideWeight="0.63105637" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46841672" sideWeight="0.48252583" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23872027" sideWeight="0.6290707" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46841672" sideWeight="0.48093724" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34208366" sideWeight="0.49682286" order="8" side_tool="false" content_ui="tabs" />
@@ -2086,15 +2085,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Fix check on container technology name." />
-    <MESSAGE value="Add the new container settings to the job environment." />
-    <MESSAGE value="Add parameter for job_wrappers_paths (can be repeated). Expand each path and add it to the submission pipeline. New test case for the new params." />
-    <MESSAGE value="Update filesets dependency to version 1.2.3-SNAPSHOT." />
-    <MESSAGE value="Target java 1.6 when compiling the project." />
-    <MESSAGE value="New test case using the container and paths' parameters.&#10;&#10;(cherry picked from commit fcc9b0b)" />
-    <MESSAGE value="Add defaults for GOBYWEB_CONTAINER_TECHNOLOGY and GOBYWEB_CONTAINER_NAME variables for backward compatibility.&#10;&#10;(cherry picked from commit 1e555a6)" />
-    <MESSAGE value="Define debug function (used by artifact.sh script).&#10;&#10;(cherry picked from commit 6780445)" />
-    <MESSAGE value="Add the new container settings to the job environment.&#10;&#10;(cherry picked from commit b07d109)" />
     <MESSAGE value="Adjust handling of wrapper script to support more than one script.&#10;&#10;(cherry picked from commit 59cd97b6974b2b4edbf33bf08e06408b2df3126d)&#10;&#10;Conflicts:&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java&#10;" />
     <MESSAGE value="define error function.&#10;&#10;(cherry picked from commit 678acf5)" />
     <MESSAGE value="Introduce common.sh to contain most common function definitions used across plugins oge/local scripts.&#10;&#10;(cherry picked from commit 16df7fd)" />
@@ -2111,7 +2101,16 @@
     <MESSAGE value="Now runs align step in Singularity (still installing artifacts on darla).&#10;&#10;(cherry picked from commit 5612aca)" />
     <MESSAGE value="Fixes for process reads task. Added a unit test. Artifact repo currently locked installing index for bwa, so testing is pending on that.&#10;&#10;(cherry picked from commit a0f2b66)" />
     <MESSAGE value="Increase chunk size for test.&#10;&#10;(cherry picked from commit bd4e99f)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Increase chunk size for test.&#10;&#10;(cherry picked from commit bd4e99f)" />
+    <MESSAGE value="Set compilation targer to 1.7." />
+    <MESSAGE value="Use TMP_NODE_WORK_DIR instead of TMPDIR, because TMPDIR is erased by singularity.&#10;&#10;(cherry picked from commit a431c73)" />
+    <MESSAGE value="Copy goby.jar and other files to TMP_NODE_WORK_DIR if they were not there already.&#10;&#10;(cherry picked from commit f08943f)" />
+    <MESSAGE value="Attempt fix for JAVA_LOG_DIR missing (and copy_logs failure in post).&#10;&#10;(cherry picked from commit e692e78)" />
+    <MESSAGE value="Fix for align post.&#10;&#10;(cherry picked from commit 524cccc)" />
+    <MESSAGE value="Add function to consistently adjust NUMBER_OF_ALIGN_PARTS.&#10;&#10;(cherry picked from commit a3bda40)" />
+    <MESSAGE value="Add option to increase memory for container use.&#10;&#10;(cherry picked from commit c8acc65)" />
+    <MESSAGE value="Remove spli-results after concat, not results.&#10;&#10;(cherry picked from commit 5ac9d0a)" />
+    <MESSAGE value="Remove the cleanup function.&#10;&#10;(cherry picked from commit af356cd)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove the cleanup function.&#10;&#10;(cherry picked from commit af356cd)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2583,8 +2582,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
+          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <marker date="1499113696000" expanded="true" signature="2517:2521" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2606,13 +2607,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="996">
-          <caret line="231" column="55" lean-forward="false" selection-start-line="231" selection-start-column="55" selection-end-line="231" selection-end-column="55" />
+        <state relative-caret-position="681">
+          <caret line="241" column="0" lean-forward="false" selection-start-line="241" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1390#1391#0" expanded="false" />
-            <element signature="e#1432#1433#0" expanded="false" />
-            <marker date="1499110442000" expanded="true" signature="6056:6660" ph="{...}" />
+            <marker date="1499115388000" expanded="true" signature="10365:10400" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2663,8 +2661,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="92" column="129" lean-forward="true" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
+        <state relative-caret-position="490">
+          <caret line="102" column="100" lean-forward="true" selection-start-line="102" selection-start-column="46" selection-end-line="102" selection-end-column="46" />
           <folding />
         </state>
       </provider>
