@@ -75,6 +75,7 @@ abstract public class AbstractSubmitter implements Submitter {
     protected String jobTag = null;
 
     protected String fileSetAreaReference;
+    protected int containerMemory;
 
     protected String submissionFileSetAreaReference;
 
@@ -129,11 +130,14 @@ abstract public class AbstractSubmitter implements Submitter {
     /**
      * Sets the type of script wrappers to use.
      *
-     * @param technology
+     * @param technology the technology to use (singularity, docker, etc.)
+     * @param memory additional memory to request to OGE for running the job inside the container
+     * @param name the name of the container image
      */
     @Override
-    public void setContainerTechnology(String technology, String ... name) {
+    public void setContainerTechnology(String technology, int memory, String ... name) {
      this.containerTechnology = technology;
+     this.containerMemory = memory;
      if (name != null && name.length >0)
         this.containerName = name[0];
     }

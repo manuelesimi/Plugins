@@ -21,7 +21,8 @@ class TaskSubmissionRequest extends SubmissionRequest {
     protected int submit(JSAPResult config, Actions actions) throws Exception {
         if (taskConfig.isDisabled())
             throw new Exception(String.format("Task %s is currently disabled", taskConfig.getId()));
-        actions.submitTask(taskConfig, this.getInputSlots(), this.getUnclassifiedOptions());
+        int memory = config.userSpecified("container_memory")? config.getInt("container_memory"):0;
+        actions.submitTask(taskConfig, this.getInputSlots(), this.getUnclassifiedOptions(), memory);
         return 0;
     }
 }

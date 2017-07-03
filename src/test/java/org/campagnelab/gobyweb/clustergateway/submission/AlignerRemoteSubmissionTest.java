@@ -91,7 +91,7 @@ public class AlignerRemoteSubmissionTest {
                     SubmissionRequest.toInputParameters(new String[]{"INPUT_READS:", "HRFBTKJ"}),
                     "WBcel215.69", //genome id
                     50000000, //chuck size
-                    Collections.EMPTY_MAP); //number of parts
+                    Collections.EMPTY_MAP, 0); //number of parts
         } catch (Exception e) {
             e.printStackTrace();
             fail("failed to submit a remote aligner for LAST_GOBY configuration");

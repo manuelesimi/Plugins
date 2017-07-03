@@ -276,10 +276,14 @@ public abstract class SubmissionRequest {
             if (config.userSpecified("slots"))
                 this.inputSlots = toInputParameters(config.getStringArray("slots"));
             if (config.userSpecified("container_technology")) {
+                int memory = config.userSpecified("container_memory")? config.getInt("container_memory"):0;
                 if (config.userSpecified("container_name"))
-                    submitter.setContainerTechnology(config.getString("container_technology"),config.getString("container_name") );
+                    submitter.setContainerTechnology(config.getString("container_technology"),
+                            memory,
+                            config.getString("container_name") );
                 else
-                    submitter.setContainerTechnology(config.getString("container_technology"));
+                    submitter.setContainerTechnology(config.getString("container_technology"), memory);
+
             }
             if (config.userSpecified("job_wrappers_paths"))
                 submitter.setWrappersPaths(config.getStringArray("job_wrappers_paths"));

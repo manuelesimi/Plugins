@@ -188,7 +188,17 @@
             </stringParser>
             <required>false</required>
             <longFlag>container_name</longFlag>
-            <help>The name of the image to use within the container technology..</help>
+            <help>The name of the image to use within the container technology.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>container_memory</id>
+            <stringParser>
+                <classname>IntegerStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <longFlag>container_memory</longFlag>
+            <help>Additional memory (in GB) to request to OGE in order to run the job inside the container image.</help>
         </flaggedOption>
 
         <flaggedOption>

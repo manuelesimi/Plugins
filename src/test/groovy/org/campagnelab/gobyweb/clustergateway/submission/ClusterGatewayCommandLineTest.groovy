@@ -251,7 +251,8 @@ public class ClusterGatewayCommandLineTest {
                         "--job PROCESS_READS_TASK " +
                         "--container_technology singularity "+
                         "--container_name shub://CampagneLaboratory/GobyWeb-Singularity "+
-                     //   "--option QUEUE_WRITER_POSTFIX=--handler-service sampleService "+
+                        "--container_memory 4 "+
+                        //   "--option QUEUE_WRITER_POSTFIX=--handler-service sampleService "+
                         "--artifact-server ${artifactServer} "+
                         "--repository /scratchLocal/gobyweb/gobyweb3/ARTIFACT_REPOSITORY-PLUGINS-SDK " +
                         "--SAMPLE_NAME HRPB-CTL-Male-Triplet-WGS " +
