@@ -478,8 +478,8 @@ abstract public class AbstractSubmitter implements Submitter {
                 .replaceAll("%%JOB_DIR%%", jobArea.getBasename(job.getTag()))
                 .replaceAll("%%TAG%%", job.getTag())
                 .replaceAll("%%ARTIFACT_REPOSITORY_DIR%%", artifactRepositoryPath)
-                .replaceAll("%%PLUGIN_ID%%", job.getSourceConfig().getId())
-                .replaceAll("%%PLUGIN_VERSION%%", job.getSourceConfig().getVersion()
+                .replaceAll("%%PLUGIN_ID%%", job.getSourceConfigs().get(0).getId())
+                .replaceAll("%%PLUGIN_VERSION%%", job.getSourceConfigs().get(0).getVersion()
                 .replaceAll("%%GOBYWEB_CONTAINER_TECHNOLOGY%%", this.containerTechnology)
                 .replaceAll("%%GOBYWEB_CONTAINER_NAME%%", this.containerName)
                 .replaceAll("%%OGE_WRAPPER_PATHS%%", this.wrappersPaths));

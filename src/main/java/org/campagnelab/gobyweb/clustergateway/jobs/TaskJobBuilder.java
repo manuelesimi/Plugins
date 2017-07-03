@@ -35,6 +35,7 @@ public class TaskJobBuilder extends JobBuilder {
         environment.put("INITIAL_STATE", "task");
         environment.put("PLUGIN_ID", this.taskConfig.getId());
         environment.put("PLUGIN_VERSION", this.taskConfig.getVersion());
+        configureDefaultEmail(environment);
     }
 
     @Override

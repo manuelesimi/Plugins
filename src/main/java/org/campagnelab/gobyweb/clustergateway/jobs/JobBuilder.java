@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Base Job builder
@@ -16,11 +18,20 @@ import java.util.Map;
 public abstract class JobBuilder {
 
     private final ExecutableConfig executableConfig;
+    private int containerMemory;
     private final CommonJobConfiguration jobConfiguration;
 
     protected JobBuilder(ExecutableConfig executableConfig, CommonJobConfiguration jobConfiguration) {
         this.executableConfig = executableConfig;
         this.jobConfiguration = jobConfiguration;
+    }
+
+    private Pattern pattern = Pattern.compile("(\\d+)(.*)");
+
+    protected void configureDefaultEmail(JobRuntimeEnvironment environment) {
+        environment.put("JOB_STARTED_EMAIL","echo 'no email configured'");
+        environment.put("JOB_FAILED_EMAIL","echo 'no email configured'");
+        environment.put("JOB_COMPLETED_EMAIL","echo 'no email configured'");
     }
 
     /**
@@ -38,8 +49,13 @@ public abstract class JobBuilder {
         for (Need need : needs) {
             // if key is present, format as key=value,
             // otherwise, just write value to PLUGIN_NEED constant.
+            String value = need.value;
+            if ("h_vmem".equalsIgnoreCase(need.key)) {
+                value = increaseMemoryForContainerTechnology(need.key, value);
+            }
             String needAsString = (need.key != null && (!need.key.equalsIgnoreCase(""))) ?
-                    String.format("%s=%s", need.key,need.value): need.value;
+                    String.format("%s=%s", need.key,value): value;
+
             String key = String.format("PLUGIN_NEED_%s", need.scope);
             if (requirementsByScope.containsKey(key)) {
                 requirementsByScope.put(key, requirementsByScope.get(key)+","+needAsString);
@@ -55,6 +71,16 @@ public abstract class JobBuilder {
         return requirementsByScope;
     }
 
+    private String increaseMemoryForContainerTechnology(String key, String value) {
+        String newValue = value;
+        Matcher matcher = pattern.matcher(value);
+        if (matcher.find()) {
+            int newMem = Integer.valueOf(matcher.group(1)) + this.containerMemory;
+            newValue = String.format("%d%s", newMem, matcher.group(2));
+        }
+        return newValue;
+    }
+
     /**
      * Builds the job.
      * @param commandLineOptions  options specified by the user
@@ -62,7 +88,7 @@ public abstract class JobBuilder {
      * @throws IOException
      */
     public ExecutableJob build(final Map<String, String> commandLineOptions) throws IOException {
-        ExecutableJob executableJob = new ExecutableJob(executableConfig, jobConfiguration);
+        ExecutableJob executableJob = new ExecutableJob(executableConfig,this.jobConfiguration);
         //default memory settings (can be overridden by subclasses)
         executableJob.setMemoryInGigs(8);
         this.manageConfigOptions(commandLineOptions);
@@ -116,4 +142,11 @@ public abstract class JobBuilder {
      */
     protected abstract void customizeJob(ExecutableJob executableJob, final Map<String, String> commandLineOptions) throws IOException;
 
+    public void setContainerMemory(int containerMemory) {
+        this.containerMemory = containerMemory;
+    }
+
+    public int getContainerMemory() {
+        return containerMemory;
+    }
 }
