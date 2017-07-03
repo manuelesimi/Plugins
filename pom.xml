@@ -49,8 +49,8 @@
                 <configuration>
                     <compilerId>groovy-eclipse-compiler</compilerId>
                     <!-- Java version -->
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
                 <dependencies>
                     <dependency>
