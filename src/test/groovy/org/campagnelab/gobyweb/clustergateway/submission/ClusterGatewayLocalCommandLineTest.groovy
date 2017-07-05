@@ -24,7 +24,7 @@ class ClusterGatewayLocalCommandLineTest {
 
 
     @BeforeClass
-    public static void configure() throws IOException {
+    static void configure() throws IOException {
         FileUtils.deleteDirectory(new File(resultsDir));
         FileUtils.forceMkdir(new File(resultsDir));
         FileUtils.forceMkdir(new File(resultsDir + "/artifacts"));
@@ -33,24 +33,24 @@ class ClusterGatewayLocalCommandLineTest {
 
 
     @Test
-    public void installLocalResourceWithArtifacts() {
+    void installLocalResourceWithArtifacts() {
         assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--resource VCF_TOOLS")));
         assertTrue(new File(repoDirAbsolutePath + "/artifacts/VCF_TOOLS/BINARIES/0.1.10").exists())
     }
 
     @Test
-    public void installLocalResourceNoArtifacts() {
+    void installLocalResourceNoArtifacts() {
         assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--resource PLAST")));
     }
 
 
     @Test
-    public void installLocalResourceWithVersionNoArtifacts() {
+    void installLocalResourceWithVersionNoArtifacts() {
         assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--resource MERCURY:1.0")));
     }
 
     @Test
-    public void installLocalResourceWithArtifactsAndAttributes() {
+    void installLocalResourceWithArtifactsAndAttributes() {
         String attributes = "--attribute-value LAST_INDEX.TOPLEVEL_IDS.organism=HOMO_SAPIENS --attribute-value LAST_INDEX.TOPLEVEL_IDS.reference-build=1000GENOMES --attribute-value LAST_INDEX.TOPLEVEL_IDS.ensembl-version-number=37 ";
         attributes += "--attribute-value LAST_INDEX.INDEX.organism=HOMO_SAPIENS --attribute-value LAST_INDEX.INDEX.reference-build=1000GENOMES --attribute-value LAST_INDEX.INDEX.ensembl-version-number=37 ";
         attributes += "--attribute-value ENSEMBL_GENOMES.TOPLEVEL.organism=HOMO_SAPIENS --attribute-value ENSEMBL_GENOMES.TOPLEVEL.reference-build=1000GENOMES --attribute-value ENSEMBL_GENOMES.TOPLEVEL.ensembl-version-number=37 ";
@@ -61,7 +61,7 @@ class ClusterGatewayLocalCommandLineTest {
     }
 
     @Test
-    public void installLocalMultipleResourceWithArtifactsAndAttributes() {
+    void installLocalMultipleResourceWithArtifactsAndAttributes() {
         String attributes = "--attribute-value LAST_INDEX.TOPLEVEL_IDS.organism=HOMO_SAPIENS --attribute-value LAST_INDEX.TOPLEVEL_IDS.reference-build=1000GENOMES --attribute-value LAST_INDEX.TOPLEVEL_IDS.ensembl-version-number=37 ";
         attributes += "--attribute-value LAST_INDEX.INDEX.organism=HOMO_SAPIENS --attribute-value LAST_INDEX.INDEX.reference-build=1000GENOMES --attribute-value LAST_INDEX.INDEX.ensembl-version-number=37 ";
         attributes += "--attribute-value ENSEMBL_GENOMES.TOPLEVEL.organism=HOMO_SAPIENS --attribute-value ENSEMBL_GENOMES.TOPLEVEL.reference-build=1000GENOMES --attribute-value ENSEMBL_GENOMES.TOPLEVEL.ensembl-version-number=37 ";
