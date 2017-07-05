@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="Remover overwritting of wrapper scripts argument for aligner and analysis.&#10;&#10;(cherry picked from commit 399f47329d9464a43886390756335ab189b75f25)&#10;&#10;Conflicts:&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java&#10;">
+    <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
     </list>
     <list id="22548fb4-4a68-4dee-bc62-7d1ee67dd88a" name="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.  (cherry picked from commit 0a1c3f9)" comment="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.&#10;&#10;(cherry picked from commit 0a1c3f9)" />
     <list id="e12297a6-04a4-4092-a060-447d7ac4509c" name="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.  (cherry picked from commit 357dcb3)" comment="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.&#10;&#10;(cherry picked from commit 357dcb3)" />
@@ -167,12 +167,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AbstractSubmitter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AbstractSubmitter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2745">
-              <caret line="234" column="80" lean-forward="false" selection-start-line="234" selection-start-column="80" selection-end-line="234" selection-end-column="80" />
-              <folding />
+            <state relative-caret-position="705">
+              <caret line="88" column="107" lean-forward="true" selection-start-line="88" selection-start-column="50" selection-end-line="88" selection-end-column="50" />
+              <folding>
+                <element signature="e#4007#4015#0" expanded="true" />
+                <element signature="e#5458#5466#0" expanded="true" />
+                <element signature="e#6831#6843#0" expanded="true" />
+                <element signature="e#18974#18986#0" expanded="true" />
+                <element signature="e#23415#23429#0" expanded="true" />
+                <element signature="e#24573#24588#0" expanded="true" />
+                <element signature="e#30913#30921#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -191,7 +199,7 @@
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="295">
-              <caret line="89" column="103" lean-forward="true" selection-start-line="89" selection-start-column="40" selection-end-line="89" selection-end-column="40" />
+              <caret line="89" column="40" lean-forward="false" selection-start-line="89" selection-start-column="40" selection-end-line="89" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -229,11 +237,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Actions.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClusterGatewayCommandLineTest.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="283">
+              <caret line="166" column="33" lean-forward="false" selection-start-line="166" selection-start-column="33" selection-end-line="166" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Actions.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="219" column="60" lean-forward="true" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+            <state relative-caret-position="606">
+              <caret line="236" column="38" lean-forward="false" selection-start-line="236" selection-start-column="38" selection-end-line="236" selection-end-column="38" />
               <folding>
                 <marker date="1499115388000" expanded="true" signature="10365:10400" ph="{...}" />
               </folding>
@@ -246,7 +264,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
               <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1266#1267#0" expanded="false" />
+                <element signature="e#1346#1347#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -256,17 +278,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="525">
               <caret line="43" column="7" lean-forward="false" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResourceJob.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ResourceJob.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#6130#6131#0" expanded="false" />
+                <element signature="e#6184#6185#0" expanded="false" />
+                <element signature="e#6223#6224#0" expanded="false" />
+                <element signature="e#6261#6262#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -298,6 +316,7 @@
       <find>Builder</find>
       <find>PAD_FORMAT</find>
       <find>wrapperscripts</find>
+      <find>runRemoteBWAAlignerSingularity</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -382,11 +401,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ResourceJob.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/TaskJobBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/JobBuilder.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java" />
       </list>
     </option>
   </component>
@@ -555,6 +574,66 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="groovy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gobyweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="groovy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gobyweb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="submission" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -627,6 +706,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="submission" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -741,33 +834,7 @@
       <recent name="org.campagnelab.gobyweb.plugins.xml.filesets" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ClusterGatewayCommandLineTest.checkWrappersPaths">
-    <configuration default="false" name="PluginsUtilCommandLineTest.testDependencyTreeVisualization" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="org.campagnelab.gobyweb.plugins.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="plugins" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="org.campagnelab.gobyweb.plugins.util" />
-      <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.plugins.util.PluginsUtilCommandLineTest" />
-      <option name="METHOD_NAME" value="testDependencyTreeVisualization" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea -Xmx1g" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.ClusterGatewayCommandLineTest.runRemoteBWAAlignerSingularity">
     <configuration default="false" name="ClusterGatewayCommandLineTest.runLocalTaskRNASelect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -859,6 +926,32 @@
       <option name="PACKAGE_NAME" value="org.campagnelab.gobyweb.clustergateway.submission" />
       <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.clustergateway.submission.ClusterGatewayCommandLineTest" />
       <option name="METHOD_NAME" value="runProcessReadsSingularity" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea -Xmx1g" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="ClusterGatewayCommandLineTest.runRemoteBWAAlignerSingularity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.campagnelab.gobyweb.clustergateway.submission.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="plugins" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="org.campagnelab.gobyweb.clustergateway.submission" />
+      <option name="MAIN_CLASS_NAME" value="org.campagnelab.gobyweb.clustergateway.submission.ClusterGatewayCommandLineTest" />
+      <option name="METHOD_NAME" value="runRemoteBWAAlignerSingularity" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea -Xmx1g" />
       <option name="PARAMETERS" value="" />
@@ -1337,19 +1430,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runRemoteAligner" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.PluginsUtilCommandLineTest.testDependencyTreeVisualization" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runLocalTaskRNASelect" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runLocalTaskRNASelectWithTechnology" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.checkWrappersPaths" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runProcessReadsSingularity" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runLocalTaskRNASelect" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runLocalTaskRNASelectWithTechnology" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.checkWrappersPaths" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runProcessReadsSingularity" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runRemoteBWAAlignerSingularity" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.checkWrappersPaths" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runProcessReadsSingularity" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runLocalTaskRNASelectWithTechnology" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runLocalTaskRNASelect" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.PluginsUtilCommandLineTest.testDependencyTreeVisualization" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runRemoteBWAAlignerSingularity" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.checkWrappersPaths" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runProcessReadsSingularity" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runLocalTaskRNASelectWithTechnology" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.ClusterGatewayCommandLineTest.runLocalTaskRNASelect" />
       </list>
     </recent_temporary>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1489,14 +1582,7 @@
       <workItem from="1498003616848" duration="1213000" />
       <workItem from="1498058284398" duration="1339000" />
       <workItem from="1498847689036" duration="2486000" />
-      <workItem from="1499115997279" duration="302000" />
-    </task>
-    <task id="LOCAL-00517" summary="Extend ClusterGateway's jsap interface and submission request factory to handle multiple resources from the command line.">
-      <created>1444933899883</created>
-      <option name="number" value="00517" />
-      <option name="presentableId" value="LOCAL-00517" />
-      <option name="project" value="LOCAL" />
-      <updated>1444933899883</updated>
+      <workItem from="1499115997279" duration="1289000" />
     </task>
     <task id="LOCAL-00518" summary="Introduce MultipleResourceSubmissionRequest to handle dependencies resolution for multiple input resources.">
       <created>1444934671700</created>
@@ -1834,19 +1920,17 @@
       <option name="project" value="LOCAL" />
       <updated>1499115674160</updated>
     </task>
-    <option name="localTasksCounter" value="566" />
+    <task id="LOCAL-00566" summary="Remove overwritting of wrapper scripts argument for aligner and analysis.&#10;&#10;(cherry picked from commit 399f47329d9464a43886390756335ab189b75f25)&#10;&#10;Conflicts:&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java&#10;">
+      <created>1499116378510</created>
+      <option name="number" value="00566" />
+      <option name="presentableId" value="LOCAL-00566" />
+      <option name="project" value="LOCAL" />
+      <updated>1499116378510</updated>
+    </task>
+    <option name="localTasksCounter" value="567" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ClusterGatewayCommandLineTest_checkWrappersPaths - 2017.06.20 at 20h 49m 20s.xml">
-      <configuration name="ClusterGatewayCommandLineTest.checkWrappersPaths" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ClusterGatewayCommandLineTest_runProcessReadsSingularity - 2017.06.16 at 17h 00m 12s.xml">
-      <configuration name="ClusterGatewayCommandLineTest.runProcessReadsSingularity" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ClusterGatewayCommandLineTest_runProcessReadsSingularity - 2017.06.16 at 17h 04m 37s.xml">
-      <configuration name="ClusterGatewayCommandLineTest.runProcessReadsSingularity" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ClusterGatewayCommandLineTest_runProcessReadsSingularity - 2017.06.16 at 17h 07m 38s.xml">
       <configuration name="ClusterGatewayCommandLineTest.runProcessReadsSingularity" configurationId="JUnit" />
     </history-entry>
@@ -1868,9 +1952,18 @@
     <history-entry file="ClusterGatewayCommandLineTest_runProcessReadsSingularity - 2017.06.16 at 17h 15m 43s.xml">
       <configuration name="ClusterGatewayCommandLineTest.runProcessReadsSingularity" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ClusterGatewayCommandLineTest_runRemoteBWAAlignerSingularity - 2017.07.05 at 10h 20m 55s.xml">
+      <configuration name="ClusterGatewayCommandLineTest.runRemoteBWAAlignerSingularity" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ClusterGatewayCommandLineTest_runRemoteBWAAlignerSingularity - 2017.07.05 at 10h 22m 10s.xml">
+      <configuration name="ClusterGatewayCommandLineTest.runRemoteBWAAlignerSingularity" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ClusterGatewayCommandLineTest_runRemoteBWAAlignerSingularity - 2017.07.05 at 10h 22m 34s.xml">
+      <configuration name="ClusterGatewayCommandLineTest.runRemoteBWAAlignerSingularity" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="824986000" />
+    <option name="totallyTimeSpent" value="825973000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1899,26 +1992,27 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43934426" sideWeight="0.4952343" order="25" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23852459" sideWeight="0.372915" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2581967" sideWeight="0.37887213" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21207307" sideWeight="0.668595" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46841672" sideWeight="0.4793487" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23872027" sideWeight="0.627085" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2581967" sideWeight="0.6211279" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34208366" sideWeight="0.49682286" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.225973" sideWeight="0.70721203" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.225973" sideWeight="0.70718235" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.225973" sideWeight="0.29278794" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.225973" sideWeight="0.29281768" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4036095" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40327868" sideWeight="0.49841145" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975206" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1933,7 +2027,6 @@
       <window_info id="Inspector" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="17" side_tool="true" content_ui="tabs" />
       <window_info id="Usages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="18" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4397047" sideWeight="0.5" order="25" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="100" y="122" width="2360" height="1130" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -2000,7 +2093,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Refactor more code to common.sh.&#10;&#10;(cherry picked from commit bbe3dfa)" />
     <MESSAGE value="Remove unused script, not need to maintain it at this point.&#10;&#10;(cherry picked from commit 7e9dea018cf79f9706aebbf09a57dd053606270e)&#10;&#10;Conflicts:&#10;&#9;src/main/resources/oge_task_parallel_wrapper_script.sh&#10;" />
     <MESSAGE value="Define TMPDIR if it was not provided by the environment. Not optimal, since we now have two directories: one created before submission to SGE, and the regular OGE TMPDIR.&#10;&#10;(cherry picked from commit da95628)" />
     <MESSAGE value="Add a test for singularity on darla (may need tweaking once we can use the queue).&#10;&#10;(cherry picked from commit 4552f53)" />
@@ -2025,7 +2117,8 @@
     <MESSAGE value="Use the filenames of the wrapper scripts to submit the job.&#10;&#10;(cherry picked from commit e468b3d)" />
     <MESSAGE value="Use the name instead of basename for the wrapper scripts to submit the job.&#10;&#10;(cherry picked from commit 7f694a0)" />
     <MESSAGE value="Export STATE.&#10;&#10;(cherry picked from commit dc7b79e)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Export STATE.&#10;&#10;(cherry picked from commit dc7b79e)" />
+    <MESSAGE value="Remove overwritting of wrapper scripts argument for aligner and analysis.&#10;&#10;(cherry picked from commit 399f47329d9464a43886390756335ab189b75f25)&#10;&#10;Conflicts:&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove overwritting of wrapper scripts argument for aligner and analysis.&#10;&#10;(cherry picked from commit 399f47329d9464a43886390756335ab189b75f25)&#10;&#10;Conflicts:&#10;&#9;src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2083,8 +2176,14 @@
           <properties />
           <option name="timeStamp" value="34" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java</url>
+          <line>646</line>
+          <properties />
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="54" />
+      <option name="time" value="55" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2263,13 +2362,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="82" column="30" lean-forward="false" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/submission/TaskLocalSubmissionTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
@@ -2418,7 +2510,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#982#983#0" expanded="false" />
+            <element signature="e#1012#1013#0" expanded="false" />
+            <element signature="e#1152#1153#0" expanded="false" />
+            <element signature="e#1206#1207#0" expanded="false" />
+            <element signature="e#1286#1287#0" expanded="false" />
+            <element signature="e#1330#1331#0" expanded="false" />
+            <element signature="e#1394#1395#0" expanded="false" />
+            <element signature="e#1427#1428#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2426,7 +2528,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1266#1267#0" expanded="false" />
+            <element signature="e#1346#1347#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2457,7 +2563,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="43" column="7" lean-forward="false" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#6130#6131#0" expanded="false" />
+            <element signature="e#6184#6185#0" expanded="false" />
+            <element signature="e#6223#6224#0" expanded="false" />
+            <element signature="e#6261#6262#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2477,28 +2589,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2745">
-          <caret line="234" column="80" lean-forward="false" selection-start-line="234" selection-start-column="80" selection-end-line="234" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
-          <caret line="89" column="103" lean-forward="true" selection-start-line="89" selection-start-column="40" selection-end-line="89" selection-end-column="40" />
+          <caret line="89" column="40" lean-forward="false" selection-start-line="89" selection-start-column="40" selection-end-line="89" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Actions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="219" column="60" lean-forward="true" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+        <state relative-caret-position="606">
+          <caret line="236" column="38" lean-forward="false" selection-start-line="236" selection-start-column="38" selection-end-line="236" selection-end-column="38" />
           <folding>
             <marker date="1499115388000" expanded="true" signature="10365:10400" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="166" column="33" lean-forward="false" selection-start-line="166" selection-start-column="33" selection-end-line="166" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AbstractSubmitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="88" column="107" lean-forward="true" selection-start-line="88" selection-start-column="50" selection-end-line="88" selection-end-column="50" />
+          <folding>
+            <element signature="e#4007#4015#0" expanded="true" />
+            <element signature="e#5458#5466#0" expanded="true" />
+            <element signature="e#6831#6843#0" expanded="true" />
+            <element signature="e#18974#18986#0" expanded="true" />
+            <element signature="e#23415#23429#0" expanded="true" />
+            <element signature="e#24573#24588#0" expanded="true" />
+            <element signature="e#30913#30921#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -53,7 +53,7 @@ abstract public class AbstractSubmitter implements Submitter {
     protected PluginRegistry registry;
     protected String environmentScriptFilename;
     protected String artifactRepositoryPath;
-    protected String wrapperScripts[] = {"oge_job_script.sh.sh","oge_job_script_legacy.sh","common.sh"}; //default is OGE script for aligners and analyses
+    protected String wrapperScripts[] = {"oge_job_script.sh","oge_job_script_legacy.sh","common.sh"}; //default is OGE script for aligners and analyses
     protected String containerTechnology = "none";
     protected String containerName = "none";
     protected String queue;
