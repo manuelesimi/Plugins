@@ -64,8 +64,8 @@ public class ClusterGatewayCommandLineTest {
         assertEquals(4, tags.size());
 
         assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(
-                "--job RNASELECT_TASK",
-                "test-data/root-for-rnaselect INPUT_READS: ${StringUtils.join(tags, ",")}",false)));
+                "--job RNASELECT_TASK "+
+                "INPUT_READS: ${StringUtils.join(tags, ",")}","test-data/root-for-rnaselect")));
 
     }
 
@@ -83,8 +83,8 @@ public class ClusterGatewayCommandLineTest {
        assertEquals(4, tags.size());
 
        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(
-               "--job RNASELECT_TASK",
-               "test-data/root-for-rnaselect INPUT_READS: ${StringUtils.join(tags, ",")}")));
+               "--job RNASELECT_TASK " +
+               "INPUT_READS: ${StringUtils.join(tags, ",")}", "test-data/root-for-rnaselect")));
 
     }
 
@@ -102,8 +102,8 @@ public class ClusterGatewayCommandLineTest {
         assertEquals(4, tags.size());
 
         assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(
-                "--container_technology singularity --container_name artifacts/base --job RNASELECT_TASK",
-                "test-data/root-for-rnaselect INPUT_READS: ${StringUtils.join(tags, ",")}")));
+                "--container_technology singularity --container_name artifacts/base --job RNASELECT_TASK " +
+                "INPUT_READS: ${StringUtils.join(tags, ",")}", "test-data/root-for-rnaselect")));
 
     }
 
@@ -122,8 +122,8 @@ public class ClusterGatewayCommandLineTest {
         assertEquals(4, tags.size());
 
         assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(
-                "--job RNASELECT_TASK --cloud-id test-cloud-id --cloud-secret tst-cloud-secret",
-                "test-data/root-for-rnaselect INPUT_READS: ${StringUtils.join(tags, ",")}")));
+                "--job RNASELECT_TASK --cloud-id test-cloud-id --cloud-secret tst-cloud-secret" +
+                " INPUT_READS: ${StringUtils.join(tags, ",")}","test-data/root-for-rnaselect")));
 
     }
 
