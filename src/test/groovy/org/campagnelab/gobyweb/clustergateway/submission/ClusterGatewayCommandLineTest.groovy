@@ -163,8 +163,8 @@ public class ClusterGatewayCommandLineTest {
         ));
 
     }
-    @Test
-    public void runRemoteBWAAlignerSingularity() {
+    //@Test
+    void runRemoteBWAAlignerSingularity() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
             System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAligner() test");
@@ -196,8 +196,8 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
-    @Test
-    public void runRemoteLastAlignerSingularity() {
+    //@Test
+    void runRemoteLastAlignerSingularity() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
             System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAligner() test");
@@ -231,8 +231,8 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
-    @Test
-    public void runProcessReadsSingularity() {
+    //@Test
+    void runProcessReadsSingularity() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
             System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAligner() test");
@@ -266,7 +266,7 @@ public class ClusterGatewayCommandLineTest {
     }
 
     //@Test
-    public void runRemoteAnalysis() {
+    void runRemoteAnalysis() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
             System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAnalysis() test");
@@ -333,8 +333,8 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
-    @Test
-    public void runRemoteAnalysisWrongOptionValue() {
+    //@Test
+    void runRemoteAnalysisWrongOptionValue() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
             System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAnalysis() test");
@@ -370,7 +370,7 @@ public class ClusterGatewayCommandLineTest {
     }
 
     @Test
-    public void runRemoteAnalysisWithWrongCardinality() {
+    void runRemoteAnalysisWithWrongCardinality() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
             System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAnalysisWithWrongCardinality() test");
@@ -403,8 +403,8 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
-    @Test
-    public void runRemoteAnalysisWithNotMatchingSlots() {
+    //@Test
+    void runRemoteAnalysisWithNotMatchingSlots() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
             System.out.println("Skipping ClusterGatewayCommandLineTest.runRemoteAnalysisWithNotMatchingSlots() test");
