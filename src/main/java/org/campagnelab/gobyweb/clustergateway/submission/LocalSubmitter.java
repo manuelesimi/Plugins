@@ -98,7 +98,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
 
         jobArea.createTag(resourceJob.getTag());
         final File tempDir = new File(jobArea.getBasename(resourceJob.getTag()));
-
+        resourceJob.getEnvironment().put("JOB_DIR", tempDir.getAbsolutePath());
         //get the wrapper script
         copyWrapperScripts(resourceJob, new File(jobArea.getBasename(resourceJob.getTag())));
         FileUtils.writeStringToFile(new File(jobArea.getBasename(resourceJob.getTag()), constantsTemplate), writeConstants(jobArea, resourceJob));
