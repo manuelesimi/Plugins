@@ -244,6 +244,12 @@
             <groupId>org.campagnelab.gobyweb</groupId>
             <artifactId>artifacts</artifactId>
             <version>2.3.3-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.campagnelab.gobyweb</groupId>
+                    <artifactId>serverside-dependencies</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

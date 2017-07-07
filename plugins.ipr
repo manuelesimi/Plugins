@@ -1786,15 +1786,26 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/option-validation-language/2.1.0/option-validation-language-2.1.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.campagnelab.gobyweb:serverside-dependencies:full:1.0.14">
+    <library name="Maven: org.campagnelab.gobyweb:serverside-dependencies:full:1.0.16">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.14/serverside-dependencies-1.0.14-full.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.16/serverside-dependencies-1.0.16-full.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.14/serverside-dependencies-1.0.14-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.16/serverside-dependencies-1.0.16-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.14/serverside-dependencies-1.0.14-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/serverside-dependencies/1.0.16/serverside-dependencies-1.0.16-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.campagnelab.icb:icb-utils:2.0.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/icb/icb-utils/2.0.2/icb-utils-2.0.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/icb/icb-utils/2.0.2/icb-utils-2.0.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/icb/icb-utils/2.0.2/icb-utils-2.0.2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.mercury:mercury-api:1.0">
