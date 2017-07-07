@@ -327,7 +327,7 @@ public abstract class ExecutableConfig extends ResourceConsumerConfig implements
     /**
      * This method is a hook for subclasses that want to decorate
      * the plugin options
-     * @param inputSchema
+     * @param options
      */
     protected void decorateOptions(Options options) {}
 
