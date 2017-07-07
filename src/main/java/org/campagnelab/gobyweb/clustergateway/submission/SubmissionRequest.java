@@ -311,11 +311,11 @@ public abstract class SubmissionRequest {
         StringBuilder formDescription = new StringBuilder();
         for (Slot slot: executableConfig.getInput().getInputSlots()){
             description.append(String.format("- %s (instance of %s): minOccurs %s, maxOccurs %s\n",slot.getName(),
-                    slot.geType().id,slot.geType().minOccurs, slot.geType().maxOccurs));
-            if (slot.geType().maxOccurs.equalsIgnoreCase("unbounded"))
+                    slot.geType().id,slot.geType().getMinOccurs(), slot.geType().getMaxOccurs()));
+            if (slot.geType().getMaxOccurs().equalsIgnoreCase(Slot.UNBOUNDED_SLOT))
                 formDescription.append(String.format("%s: TAG1 ... TAGN ", slot.getName()));
-            else if  (Integer.valueOf(slot.geType().maxOccurs) > 1)
-                formDescription.append(String.format("%s: TAG1 ... TAG%s ", slot.getName(), slot.geType().maxOccurs));
+            else if  (Integer.valueOf(slot.geType().getMaxOccurs()) > 1)
+                formDescription.append(String.format("%s: TAG1 ... TAG%s ", slot.getName(), slot.geType().getMaxOccurs()));
             else
                 formDescription.append(String.format("%s: TAG ", slot.getName()));
         }

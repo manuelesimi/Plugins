@@ -148,13 +148,13 @@ public class ExecutableJob extends Job {
                         return false;
                     }
                 }
-                if (type.maxOccurs !=null) {
-                    if (type.maxOccurs.equalsIgnoreCase(Slot.UNBOUNDED_SLOT)
-                            || (Integer.valueOf(type.maxOccurs) >= actualValues.size()))
+                if (type.getMaxOccurs() !=null) {
+                    if (type.getMaxOccurs().equalsIgnoreCase(Slot.UNBOUNDED_SLOT)
+                            || (Integer.valueOf(type.getMaxOccurs()) >= actualValues.size()))
                         return true;
                     else {
                         logger.error(String.format("Input slot %s is not valid: at most %d values are expected (%d found)",
-                                value.getName(), Integer.valueOf(type.maxOccurs), actualValues.size()));
+                                value.getName(), Integer.valueOf(type.getMaxOccurs()), actualValues.size()));
                         return false;
                     }
                 }

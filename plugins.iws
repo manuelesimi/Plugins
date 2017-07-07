@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/ExecutableConfig.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/ExecutableConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/Slot.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/Slot.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ExecutableJob.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ExecutableJob.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java" />
     </list>
     <list id="22548fb4-4a68-4dee-bc62-7d1ee67dd88a" name="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.  (cherry picked from commit 0a1c3f9)" comment="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.&#10;&#10;(cherry picked from commit 0a1c3f9)" />
     <list id="e12297a6-04a4-4092-a060-447d7ac4509c" name="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.  (cherry picked from commit 357dcb3)" comment="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.&#10;&#10;(cherry picked from commit 357dcb3)" />
@@ -178,18 +178,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileSetLocalRegistrationTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/gobyweb/clustergateway/registration/FileSetLocalRegistrationTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1935">
-              <caret line="152" column="130" lean-forward="false" selection-start-line="152" selection-start-column="130" selection-end-line="152" selection-end-column="130" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Session.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Session.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -220,17 +208,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExecutableJob.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ExecutableJob.java">
+      <file leaf-file-name="SubmissionRequest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="151" column="56" lean-forward="false" selection-start-line="151" selection-start-column="56" selection-end-line="151" selection-end-column="75" />
+            <state relative-caret-position="431">
+              <caret line="322" column="61" lean-forward="false" selection-start-line="322" selection-start-column="61" selection-end-line="322" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Slot.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ExecutableJob.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ExecutableJob.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="156" column="84" lean-forward="false" selection-start-line="156" selection-start-column="84" selection-end-line="156" selection-end-column="84" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Slot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/Slot.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="670">
@@ -373,7 +371,6 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/PathPattern.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/Submitter.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.jsap" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AlignmentAnalysisSubmissionRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/TaskSubmissionRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/AlignerSubmissionRequest.java" />
@@ -391,10 +388,11 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/LocalSubmitter.java" />
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayLocalCommandLineTest.groovy" />
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ExecutableJob.java" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/alignmentanalyses/AlignmentAnalysisConfig.java" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/ExecutableConfig.java" />
         <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/Slot.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ExecutableJob.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java" />
       </list>
     </option>
   </component>
@@ -665,6 +663,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="clustergateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clustergateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="submission" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1731,13 +1759,6 @@
       <workItem from="1498847689036" duration="2486000" />
       <workItem from="1499115997279" duration="7270000" />
     </task>
-    <task id="LOCAL-00523" summary="Do not write variables in constants.sh if the value is null.&#10;&#10;(cherry picked from commit 5db4b56)">
-      <created>1497295022355</created>
-      <option name="number" value="00523" />
-      <option name="presentableId" value="LOCAL-00523" />
-      <option name="project" value="LOCAL" />
-      <updated>1497295022355</updated>
-    </task>
     <task id="LOCAL-00524" summary="Advance version to 2.4.3.">
       <created>1497295061357</created>
       <option name="number" value="00524" />
@@ -2074,7 +2095,14 @@
       <option name="project" value="LOCAL" />
       <updated>1499442398801</updated>
     </task>
-    <option name="localTasksCounter" value="572" />
+    <task id="LOCAL-00572" summary="Defatul minOccurs and maxOccurs to 1 when they are not specified in the plugin config.">
+      <created>1499443994596</created>
+      <option name="number" value="00572" />
+      <option name="presentableId" value="LOCAL-00572" />
+      <option name="project" value="LOCAL" />
+      <updated>1499443994596</updated>
+    </task>
+    <option name="localTasksCounter" value="573" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2110,7 +2138,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="837591000" />
+    <option name="totallyTimeSpent" value="837829000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -2240,7 +2268,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Tweak scripts. Correct location of job directory.&#10;&#10;(cherry picked from commit 4a6ab56)" />
     <MESSAGE value="Add parameter for job_wrappers_paths (can be repeated). Expand each path and add it to the submission pipeline. New test case for the new params.&#10;&#10;(cherry picked from commit 03825c1)" />
     <MESSAGE value="Change owner to instructor to match fileset area content.&#10;&#10;(cherry picked from commit 7eb8cc7)" />
     <MESSAGE value="Define email variables, which Gobyweb usually provides.&#10;&#10;(cherry picked from commit 098e84e)" />
@@ -2265,7 +2292,8 @@
     <MESSAGE value="Add JOB_DIR to the environment before submitting the resource for a local installation." />
     <MESSAGE value="Remove unnecessary public modifier for some test cases." />
     <MESSAGE value="Manage unbounded fileset input slots for executable plugins." />
-    <option name="LAST_COMMIT_MESSAGE" value="Manage unbounded fileset input slots for executable plugins." />
+    <MESSAGE value="Defatul minOccurs and maxOccurs to 1 when they are not specified in the plugin config." />
+    <option name="LAST_COMMIT_MESSAGE" value="Defatul minOccurs and maxOccurs to 1 when they are not specified in the plugin config." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2445,33 +2473,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1110">
           <caret line="90" column="44" lean-forward="false" selection-start-line="90" selection-start-column="44" selection-end-line="90" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3630">
-          <caret line="256" column="37" lean-forward="false" selection-start-line="256" selection-start-column="37" selection-end-line="256" selection-end-column="37" />
-          <folding>
-            <marker date="1499282584000" expanded="true" signature="14000:14158" ph="/**...*/" />
-            <marker date="1499282584000" expanded="true" signature="14228:15711" ph="{...}" />
-            <marker date="1499282584000" expanded="true" signature="15845:16037" ph="{...}" />
-            <marker date="1499282584000" expanded="true" signature="15958:16031" ph="{...}" />
-            <marker date="1499282584000" expanded="true" signature="16043:16100" ph="/**...*/" />
-            <marker date="1499282584000" expanded="true" signature="16142:16787" ph="{...}" />
-            <marker date="1499282584000" expanded="true" signature="16334:16538" ph="{...}" />
-            <marker date="1499282584000" expanded="false" signature="16581:16596" ph=" { " />
-            <marker date="1499282584000" expanded="false" signature="16616:16626" ph=" }" />
-            <marker date="1499282584000" expanded="true" signature="16698:16781" ph="{...}" />
-            <marker date="1499282584000" expanded="true" signature="16793:16840" ph="/**...*/" />
-            <marker date="1499282584000" expanded="true" signature="16881:17691" ph="{...}" />
-            <marker date="1499282584000" expanded="true" signature="17086:17277" ph="{...}" />
-            <marker date="1499282584000" expanded="false" signature="17320:17335" ph=" { " />
-            <marker date="1499282584000" expanded="false" signature="17355:17365" ph=" }" />
-            <marker date="1499282584000" expanded="false" signature="17423:17438" ph=" { " />
-            <marker date="1499282584000" expanded="false" signature="17478:17488" ph=" }" />
-            <marker date="1499282584000" expanded="true" signature="17577:17685" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2773,14 +2774,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ExecutableJob.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="151" column="56" lean-forward="false" selection-start-line="151" selection-start-column="56" selection-end-line="151" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/alignmentanalyses/AlignmentAnalysisConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
@@ -2807,6 +2800,22 @@
             <element signature="e#1893#1894#0" expanded="true" />
             <element signature="e#1973#1974#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ExecutableJob.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="156" column="84" lean-forward="false" selection-start-line="156" selection-start-column="84" selection-end-line="156" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="322" column="61" lean-forward="false" selection-start-line="322" selection-start-column="61" selection-end-line="322" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
