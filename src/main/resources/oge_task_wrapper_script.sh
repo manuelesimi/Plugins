@@ -157,7 +157,6 @@ case ${STATE} in
            HOLD_OPTION="-hold_jid ${JOBS_HOLD_LIST}"
         fi
         SUBMISSION=`qsub -N ${TAG}.submit ${HOLD_OPTION} -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
-        SUBMISSION=`qsub -N ${TAG}.submit -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=task oge_task_wrapper_script.sh`
         echo ${SUBMISSION}
         ;;
 
