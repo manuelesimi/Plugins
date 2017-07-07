@@ -198,7 +198,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
             gobyType.versionExactly = PluginLoaderSettings.GOBY_ALIGNMENTS[2];
             gobyType.versionAtMost = PluginLoaderSettings.GOBY_ALIGNMENTS[3];
             gobyType.minOccurs = Integer.toString(1);
-            gobyType.maxOccurs = "unbounded";
+            gobyType.maxOccurs = Slot.UNBOUNDED_SLOT;
             gobySlot.seType(gobyType);
             slots.add(gobySlot);
         }
@@ -212,7 +212,7 @@ public class AlignmentAnalysisConfig extends ExecutableConfig {
             bamType.versionExactly = PluginLoaderSettings.BAM_ALIGNMENTS[2];
             bamType.versionAtMost = PluginLoaderSettings.BAM_ALIGNMENTS[3];
             bamType.minOccurs = Integer.toString(1);
-            bamType.maxOccurs = "unbounded";
+            bamType.maxOccurs = Slot.UNBOUNDED_SLOT;
             bamSlot.seType(bamType);
             slots.add(bamSlot);
         }

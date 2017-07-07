@@ -149,7 +149,7 @@ public class ExecutableJob extends Job {
                     }
                 }
                 if (type.maxOccurs !=null) {
-                    if (type.maxOccurs.equalsIgnoreCase("unbounded")
+                    if (type.maxOccurs.equalsIgnoreCase(Slot.UNBOUNDED_SLOT)
                             || (Integer.valueOf(type.maxOccurs) >= actualValues.size()))
                         return true;
                     else {

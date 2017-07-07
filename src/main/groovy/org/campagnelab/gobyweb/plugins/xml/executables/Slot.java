@@ -18,6 +18,8 @@ public class Slot {
 
     IOFileSetRef type;
 
+    public static final String UNBOUNDED_SLOT = "unbounded";
+
     public IOFileSetRef geType() {
         return this.type;
     }
@@ -69,6 +71,14 @@ public class Slot {
         public String maxOccurs = "1";
 
         public IOFileSetRef() {}
+
+        public String getMinOccurs() {
+            return "-1".equals(minOccurs)? UNBOUNDED_SLOT : minOccurs;
+        }
+        public String getMaxOccurs() {
+            return "-1".equals(maxOccurs)? UNBOUNDED_SLOT : maxOccurs;
+        }
+
 
     }
 
