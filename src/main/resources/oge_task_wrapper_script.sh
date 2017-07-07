@@ -151,10 +151,10 @@ case ${STATE} in
         initializeJobEnvironment
         setup
         cd ${JOB_DIR}
-        if [[ -z "$JOBS_HOLD_LIST" ]]; then
-            HOLD_OPTION="-hold_jid ${JOBS_HOLD_LIST}"
+        if [[ -z ${JOBS_HOLD_LIST+x} ]]; then
+           HOLD_OPTION=""
         else
-            HOLD_OPTION=""
+           HOLD_OPTION="-hold_jid ${JOBS_HOLD_LIST}"
         fi
         deletePreviousExecutionData
         SUBMISSION=`qsub -N ${TAG}.submit ${HOLD_OPTION} -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
