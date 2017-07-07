@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" afterPath="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" />
     </list>
     <list id="22548fb4-4a68-4dee-bc62-7d1ee67dd88a" name="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.  (cherry picked from commit 0a1c3f9)" comment="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.&#10;&#10;(cherry picked from commit 0a1c3f9)" />
     <list id="e12297a6-04a4-4092-a060-447d7ac4509c" name="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.  (cherry picked from commit 357dcb3)" comment="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.&#10;&#10;(cherry picked from commit 357dcb3)" />
@@ -261,11 +261,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oge_task_wrapper_script.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="oge_task_wrapper_script.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="765">
-              <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+              <caret line="159" column="26" lean-forward="false" selection-start-line="159" selection-start-column="26" selection-end-line="159" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PluginLoaderSettings.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="47" column="32" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -310,34 +320,6 @@
                 <element signature="e#866#867#0" expanded="false" />
                 <element signature="e#920#921#0" expanded="false" />
                 <element signature="e#966#967#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExecutableConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/xml/executables/ExecutableConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5280">
-              <caret line="413" column="30" lean-forward="false" selection-start-line="413" selection-start-column="30" selection-end-line="413" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#14805#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#3276#3288#0" expanded="false" />
-                <element signature="e#5301#5302#0" expanded="false" />
-                <element signature="e#5331#5332#0" expanded="false" />
-                <element signature="e#6758#6766#0" expanded="false" />
-                <element signature="e#7269#7270#0" expanded="false" />
-                <element signature="e#7313#7314#0" expanded="false" />
-                <element signature="e#7366#7367#0" expanded="false" />
-                <element signature="e#7407#7408#0" expanded="false" />
-                <element signature="e#10097#10110#0" expanded="false" />
-                <element signature="e#10956#10957#0" expanded="false" />
-                <element signature="e#10984#10985#0" expanded="false" />
-                <element signature="e#11414#11415#0" expanded="false" />
-                <element signature="e#11444#11445#0" expanded="false" />
-                <element signature="e#11602#11603#0" expanded="false" />
-                <element signature="e#11667#11668#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -417,7 +399,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/resource_install_wrapper_script.sh" />
         <option value="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/SAMTOOLS_0.1.10/config.xml" />
         <option value="$PROJECT_DIR$/test-data/root-for-resource-installation/plugins/resources/SAMTOOLS_0.1.19/config.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/ClusterGateway.java" />
@@ -468,6 +449,7 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/jobs/ExecutableJob.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/gobyweb/clustergateway/submission/SubmissionRequest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
+        <option value="$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java" />
       </list>
     </option>
   </component>
@@ -673,6 +655,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="groovy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins-git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assemble" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1537,14 +1563,7 @@
       <workItem from="1498058284398" duration="1339000" />
       <workItem from="1498847689036" duration="2486000" />
       <workItem from="1499115997279" duration="7270000" />
-      <workItem from="1499447339225" duration="3854000" />
-    </task>
-    <task id="LOCAL-00527" summary="Remove unused defaults for container and paths.">
-      <created>1497369240242</created>
-      <option name="number" value="00527" />
-      <option name="presentableId" value="LOCAL-00527" />
-      <option name="project" value="LOCAL" />
-      <updated>1497369240242</updated>
+      <workItem from="1499447339225" duration="4670000" />
     </task>
     <task id="LOCAL-00528" summary="Fix check on container technology name.">
       <created>1497369305613</created>
@@ -1882,7 +1901,14 @@
       <option name="project" value="LOCAL" />
       <updated>1499448563406</updated>
     </task>
-    <option name="localTasksCounter" value="576" />
+    <task id="LOCAL-00576" summary="Remove duplicate submission for tasks (probably introduced by the merging with the feature branch).">
+      <created>1499454201523</created>
+      <option name="number" value="00576" />
+      <option name="presentableId" value="LOCAL-00576" />
+      <option name="project" value="LOCAL" />
+      <updated>1499454201523</updated>
+    </task>
+    <option name="localTasksCounter" value="577" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1918,7 +1944,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="843345000" />
+    <option name="totallyTimeSpent" value="844161000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -2048,7 +2074,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Now runs align step in Singularity (still installing artifacts on darla).&#10;&#10;(cherry picked from commit 5612aca)" />
     <MESSAGE value="Fixes for process reads task. Added a unit test. Artifact repo currently locked installing index for bwa, so testing is pending on that.&#10;&#10;(cherry picked from commit a0f2b66)" />
     <MESSAGE value="Increase chunk size for test.&#10;&#10;(cherry picked from commit bd4e99f)" />
     <MESSAGE value="Set compilation targer to 1.7." />
@@ -2073,7 +2098,8 @@
     <MESSAGE value="Use getters to access max/minOccurs for input slots." />
     <MESSAGE value="Fix hos the hold_jid option for qsub is set for tasks." />
     <MESSAGE value="Remove unused broker-related function." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove unused broker-related function." />
+    <MESSAGE value="Remove duplicate submission for tasks (probably introduced by the merging with the feature branch)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove duplicate submission for tasks (probably introduced by the merging with the feature branch)." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2181,13 +2207,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3465">
           <caret line="273" column="16" lean-forward="false" selection-start-line="272" selection-start-column="16" selection-end-line="272" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="47" column="32" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -2624,7 +2643,15 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
-          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+          <caret line="159" column="26" lean-forward="false" selection-start-line="159" selection-start-column="26" selection-end-line="159" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/groovy/org/campagnelab/gobyweb/plugins/PluginLoaderSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="47" column="32" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="32" />
           <folding />
         </state>
       </provider>
