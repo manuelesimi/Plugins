@@ -101,8 +101,7 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
     public void submitResourceInstall(JobArea jobArea, Session session, ResourceJob resourceJob) throws Exception {
 
         resourceJob.setTag(this.jobTag);
-        resourceJob.getEnvironment().put("JOB_DIR", String.format("%s/%s/%s",jobArea.getRootPath(),
-                resourceJob.getTag().charAt(0), resourceJob.getTag()));
+        resourceJob.getEnvironment().put("JOB_DIR", jobArea.getBasename(resourceJob.getTag()));
 
         //create the temp dir with the submission files to move on the cluster
         File tempDir = Files.createTempDir();
@@ -123,7 +122,6 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
 
         File autoOptions = helper.generateAutoOptionsFile(new ResourceJobWrapper(resourceJob.getSourceConfigs()));
         FileUtils.moveFile(autoOptions, new File(FilenameUtils.concat(tempDir.getAbsolutePath(), "auto-options.sh")));
-
         pushJobDir(tempDir,resourceJob,jobArea);
 
         //give execute permission to resourceJob script and anything at top level (needed for resource files)
