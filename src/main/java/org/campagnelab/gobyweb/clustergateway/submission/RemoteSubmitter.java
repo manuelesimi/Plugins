@@ -101,6 +101,8 @@ public class RemoteSubmitter extends AbstractSubmitter implements Submitter {
     public void submitResourceInstall(JobArea jobArea, Session session, ResourceJob resourceJob) throws Exception {
 
         resourceJob.setTag(this.jobTag);
+        resourceJob.getEnvironment().put("JOB_DIR", String.format("%s/%s/%s",jobArea.getRootPath(),
+                resourceJob.getTag().charAt(0), resourceJob.getTag()));
 
         //create the temp dir with the submission files to move on the cluster
         File tempDir = Files.createTempDir();
