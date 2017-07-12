@@ -72,8 +72,12 @@ fi
 
  #make sure that the dir in which reads files will be stored exists
  mkdir -p ${FILESET_TARGET_DIR}
+tail wuioweiwo
+dieUponError "Failure"
 
 setup_task_functions
+initializeGobyWebArtifactEnvironment
+
 install_resources
 
 

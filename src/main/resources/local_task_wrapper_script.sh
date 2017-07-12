@@ -8,7 +8,7 @@ if [ -z "${STATE+set}" ]; then
  export STATE="submit"
 fi
 
-
+initializeJobEnvironment
 case ${STATE} in
 
     run_in_container)

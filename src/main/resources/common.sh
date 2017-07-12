@@ -56,16 +56,34 @@ function initializeGobyWebArtifactEnvironment {
     . ${JOB_DIR}/artifacts.sh
 }
 
+
+function LOG {
+    LEVEL=$1
+    shift
+    message="$*";
+    EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
+    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES}} \
+        -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
+        org.campagnelab.gobyweb.events.tools.AppendEvent \
+        --message "$*" -p ${EVENT_FILE} --level ${LEVEL}
+
+    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES}} -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
+      org.campagnelab.gobyweb.events.tools.PushEvents \
+      -p ${EVENT_FILE} ${QUEUE_WRITER_POSTFIX}
+}
+
 function trace {
     echo "$*";
+    LOG "trace" "$*";
 }
 
 function debug {
-    echo "$*";
+    LOG "debug" "$*";
 }
 
 function error {
     echo "$*";
+    LOG "error" "$*";
 }
 
 if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then

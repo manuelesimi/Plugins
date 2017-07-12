@@ -98,7 +98,22 @@ abstract public class AbstractSubmitter implements Submitter {
     public void setSubmissionHostname(String submissionHostname) {
         this.submissionHostname = submissionHostname;
     }
-
+    public String getSubmissionUsername() {
+        String tokens[]=this.submissionHostname.split("@");
+        if (tokens.length==2) {
+            return tokens[0];
+        }else {
+            return System.getProperty("user.name");
+        }
+    }
+    public String getSubmissionHostname() {
+        String tokens[]=this.submissionHostname.split("@");
+        if (tokens.length==2) {
+            return tokens[1];
+        }else {
+            return this.submissionHostname;
+        }
+    }
 
     @Override
     public void setLocalPluginsDir(File pluginsDir) {
@@ -327,6 +342,12 @@ abstract public class AbstractSubmitter implements Submitter {
             environment.put("QUEUE_WRITER", "${RESOURCES_GROOVY_EXECUTABLE} ${RESOURCES_GOBYWEB_SERVER_SIDE_QUEUE_WRITER} --handler-service PluginsSDK --queue-message-dir "
                     + queueMessageDir.getAbsolutePath());
         }
+        // override to test new events system:
+        environment.put("QUEUE_WRITER_POSTFIX", String.format(" --username %s --hostname %s --server-path %s ",this.getSubmissionUsername(),
+                getSubmissionHostname(),
+                queueMessageDir.getAbsolutePath())
+                );
+
         environment.put("ARTIFACT_REPOSITORY_DIR", artifactRepositoryPath);
         environment.put("FILESET_AREA", String.format("%s/%s", fileSetAreaReference, job.getOwnerId()));
         environment.put("FILESET_TARGET_DIR", "${JOB_DIR}/source");

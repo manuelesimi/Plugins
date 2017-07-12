@@ -80,6 +80,7 @@ public class LocalSubmitter extends AbstractSubmitter implements Submitter {
                 jobLocalDir.getAbsolutePath()));
         Map<String, String> env = new HashMap<String, String>();
         env.put("JOB_DIR", jobLocalDir.getAbsolutePath());
+        env.put("TMPDIR", System.getenv("java.io.tmpdir"));
         env.put("PATH", System.getenv("PATH"));
         logger.info("Output from the submission process:");
         logger.info(jobArea.execute(job.getTag(), this.getWrapperScript(), env));
