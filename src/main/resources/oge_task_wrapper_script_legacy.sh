@@ -67,7 +67,7 @@ case ${STATE} in
         LOG_FILE="run-task-`date "+%Y-%m-%d-%H:%M:%S"`.log"
 
         #Aggregate metadata attributes to reduce the disk accesses
-        ${FILESET_COMMAND} --aggregate-attributes *
+        ${FILESET_COMMAND} --aggregate-attributes \*
         dieUponError "Unable to aggregate FileSet metadata before the task execution."
 
         run_task 2>&1 |tee ${LOG_FILE}

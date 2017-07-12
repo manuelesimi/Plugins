@@ -865,7 +865,7 @@ function diffexp_sequential {
      mkdir -p ${FILESET_TARGET_DIR}
 
      #Aggregate metadata attributes to reduce the disk accesses
-     ${FILESET_COMMAND} --aggregate-attributes '*'
+     ${FILESET_COMMAND} --aggregate-attributes \*
      dieUponError "Unable to aggregate FileSet metadata before the job execution."
 
 
@@ -913,7 +913,7 @@ function diffexp_parallel {
      mkdir -p ${FILESET_TARGET_DIR}
 
      #Aggregate metadata attributes to reduce the disk accesses
-     ${FILESET_COMMAND} --aggregate-attributes '*'
+     ${FILESET_COMMAND} --aggregate-attributes \*
      dieUponError "Unable to aggregate FileSet metadata before the job execution."
 
 
