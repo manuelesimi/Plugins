@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="config.xsd"/>
+
+    <xs:include schemaLocation="common.xsd"/>
+
+    <xs:complexType name="T_selectorList" mixed="true">
+        <xs:sequence minOccurs="0">
+            <xs:element name="selector" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:string"/>
+                        <xs:element name="pattern" type="xs:string"/>
+                        <xs:element name="mandatory" type="xs:boolean"/>
+                    </xs:sequence>
+                    <xs:attribute name="matchAttribute" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="T_fileSetConfig">
+        <xs:complexContent>
+            <xs:extension base="BasePluginConfig">
+                <xs:sequence>
+                    <xs:element name="mimeType" type="xs:string"/>
+                    <xs:element name="files" type="T_selectorList" minOccurs="0"/>
+                    <xs:element name="directories" type="T_selectorList" minOccurs="0"/>
+                    <xs:element name="attributes" type="T_attributes" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+</xs:schema>

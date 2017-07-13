@@ -39,8 +39,6 @@ public class TaskLocalSubmissionTest {
     static JobArea jobArea;
     static FileSetArea storageArea;
     static Actions actions;
-    static String brokerHostname = "toulouse.med.cornell.edu";
-    static int brokerPort = 5672;
     static TaskConfig taskConfig;
     static final String sourceStorageAreaDir = "test-data/cluster-gateway/fileset-area-for-submission-test";
     static final String rootAreaDir = "test-results";
@@ -56,7 +54,7 @@ public class TaskLocalSubmissionTest {
     public static void configure() {
         plugins = new Plugins();
         plugins.replaceDefaultSchemaConfig(".");
-        plugins.addServerConf("test-data/root-for-rnaselect");
+        plugins.addServerConf("test-data/gobyweb2-plugins");
         plugins.setWebServerHostname("localhost");
         plugins.reload();
         //prepare the storage area for testing
@@ -88,7 +86,7 @@ public class TaskLocalSubmissionTest {
             Submitter submitter = new LocalSubmitter(plugins.getRegistry());
             submitter.setSubmissionHostname("");
             submitter.setRemoteArtifactRepositoryPath("");
-            submitter.setLocalPluginsDir(new File("test-data/root-for-rnaselect"));
+            submitter.setLocalPluginsDir(new File("test-data/gobyweb2-plugins"));
             submitter.assignTagToJob(ICBStringUtils.generateRandomString());
             actions = new Actions(submitter, referenceSA, null,jobArea, plugins.getRegistry());
             actions.submitTask(taskConfig ,

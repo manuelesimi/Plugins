@@ -25,7 +25,7 @@ public class ClusterGatewayCommandLineTest {
 
     static final String resultsDir = String.format("test-results/gateway-command-line");
     static final String owner = "junit";
-    static def repoDirAbsolutePath=new File("${resultsDir}/REPO").getAbsolutePath()
+    static final String repoDirAbsolutePath=new File("${resultsDir}/REPO").getAbsolutePath()
 
     static Properties prop = new Properties();
 
@@ -45,9 +45,7 @@ public class ClusterGatewayCommandLineTest {
 
     @Test
     public void installResourceWithArtifacts() {
-
-       assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs("--resource ENSEMBL_API:73")));
-
+       assertEquals(0, ClusterGateway.process(buildRemoteClusterGatewayArgs("--resource GROOVY:2.0.6")));
     }
 
     @Test
@@ -127,7 +125,7 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
-   //@Test
+   @Test
     public void runRemoteAligner() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
@@ -139,7 +137,7 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(0, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                ("--job-area gobyweb3@darla.med.cornell.edu:/home/gobyweb3/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir ../gobyweb2-plugins " +
                         "--owner instructor " +
@@ -523,6 +521,22 @@ public class ClusterGatewayCommandLineTest {
                 "--option DEBUG=true " +
                 "--artifact-server localhost "+
                 "--repository ${repoDirAbsolutePath} "+
+                additionalCommands).split(" ");
+
+    }
+
+    private static String[] buildRemoteClusterGatewayArgs(String additionalCommands, String pluginRoot=gatewayPluginRoot) {
+        ("--job-area gobyweb3@petey.med.cornell.edu:/home/gobyweb3/GOBYWEB_SGE_JOBS " +
+                "--fileset-area /home/gobyweb3/filesets " +
+                "--plugins-dir /Users/mas2182/Lab/Projects/Git/gobyweb2-plugins " +
+                "--owner manuele " +
+                "--env-script ${envScript} "+
+                "--option FOO=foo " +
+                "--option BAR=bar " +
+                "--option BAZ=baz " +
+                "--option DEBUG=true " +
+                "--artifact-server mas2182@mac162547.med.cornell.edu "+
+                "--repository /scratchLocal/gobyweb3/ARTIFACT_REPOSITORY/ "+
                 additionalCommands).split(" ");
 
     }

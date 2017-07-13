@@ -1755,13 +1755,13 @@
     </library>
     <library name="Maven: org.campagnelab.gobyweb:filesets:1.4.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-20170710.202523-49.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-20170710.202523-49-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/campagnelab/gobyweb/filesets/1.4.0-SNAPSHOT/filesets-1.4.0-20170710.202523-49-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.campagnelab.gobyweb:icb-groovy-support:2.1">

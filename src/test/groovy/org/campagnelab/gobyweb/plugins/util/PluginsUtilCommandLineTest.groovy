@@ -13,13 +13,13 @@ class PluginsUtilCommandLineTest {
 
     @Test
     public void testDependencyTreeVisualization() {
-       PluginsUtil.process(buildDependencyTreeArguments("GSNAP_GOBY"));
+       PluginsUtil.process(buildDependencyTreeArguments("RNASELECT_TASK"));
 
     }
 
 
     private static String[] buildDependencyTreeArguments(String pluginID) {
-        ("--plugins-dir test-data/root-for-rnaselect " +
+        ("--plugins-dir test-data/gobyweb2-plugins " +
                 "--action dependency-tree " +
                 "--id ${pluginID} "
         ).split(" ");

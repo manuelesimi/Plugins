@@ -1,0 +1,7 @@
+#!/bin/bash
+# Execute the groovy executable from the artifact repository:
+. ${JOB_DIR}/artifacts.sh
+expose_artifact_environment_variables
+export GROOVY_HOME=${RESOURCES_ARTIFACTS_GROOVY_DISTRIBUTION}
+export JAVA_OPTS="${JAVA_OPTS}"
+${RESOURCES_ARTIFACTS_GROOVY_DISTRIBUTION}/bin/groovy "$@"
