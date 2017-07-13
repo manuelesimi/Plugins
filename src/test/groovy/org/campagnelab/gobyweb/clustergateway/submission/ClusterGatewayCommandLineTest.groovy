@@ -45,7 +45,7 @@ public class ClusterGatewayCommandLineTest {
 
     @Test
     public void installResourceWithArtifacts() {
-       assertEquals(0, ClusterGateway.process(buildRemoteClusterGatewayArgs("--resource GROOVY:2.0.6")));
+       assertEquals(0, ClusterGateway.process(buildRemoteClusterGatewayArgs("--resource SAMTOOLS:0.1.18")));
     }
 
     @Test
@@ -125,7 +125,7 @@ public class ClusterGatewayCommandLineTest {
 
     }
 
-   @Test
+  // @Test
     public void runRemoteAligner() {
 
         if (prop.getProperty("remoteTestSkip").equalsIgnoreCase("true")) {
