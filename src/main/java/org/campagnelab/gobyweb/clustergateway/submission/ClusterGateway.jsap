@@ -289,5 +289,15 @@
             <help>Secret string of the google could project from which to pull/push the job input slots.</help>
         </flaggedOption>
 
+        <flaggedOption>
+            <id>target-bucket</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <longFlag>target-bucket</longFlag>
+            <help>Cloud location where the files produced by the job will be pushed (e.g.: gs://campagne_lab_data/testing/) .</help>
+        </flaggedOption>
+
     </parameters>
 </jsap>

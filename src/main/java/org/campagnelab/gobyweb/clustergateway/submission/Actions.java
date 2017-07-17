@@ -1,6 +1,5 @@
 package org.campagnelab.gobyweb.clustergateway.submission;
 
-import edu.cornell.med.icb.util.ICBStringUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.clustergateway.jobs.*;
@@ -86,11 +85,13 @@ final class Actions {
      * Configure the instance to access to the cloud storage for fetching/pushing job results.
      * @param cloudId
      * @param cloudSecret
+     * @param targetBucket
      */
-    protected void configureCloudAccess(String cloudId, String cloudSecret) {
+    protected void configureCloudAccess(String cloudId, String cloudSecret, String targetBucket) {
         this.jobConfiguration.setCloudAccess(true);
         this.jobConfiguration.setCloudId(cloudId);
         this.jobConfiguration.setCloudSecret(cloudSecret);
+        this.jobConfiguration.setTargetBucket(targetBucket);
     }
 
     /**
@@ -123,7 +124,7 @@ final class Actions {
         session.targetAreaOwner = this.jobConfiguration.getOwner();
         if (this.jobConfiguration.hasCloudAccess())
             session.cloudConnection = new Session.GoogleCloudConnection(this.jobConfiguration.getCloudId(),
-                this.jobConfiguration.getCloudSecret());
+                this.jobConfiguration.getCloudSecret(), this.jobConfiguration.getTargetBucket());
         //create the directory for results
         FileUtils.forceMkdir(returnedJobFiles);
         if (this.jobConfiguration.getJobArea().isLocal()) {

@@ -23,6 +23,7 @@ public class CommonJobConfiguration {
     private boolean hasCloudAccess = false;
     private String cloudId;
     private String cloudSecret;
+    private String targetBucket;
 
     public boolean useBroker() {
         return useBroker;
@@ -32,6 +33,14 @@ public class CommonJobConfiguration {
         this.useBroker = useBroker;
     }
 
+
+    public String getTargetBucket() {
+        return targetBucket;
+    }
+
+    public void setTargetBucket(String targetBucket) {
+        this.targetBucket = targetBucket;
+    }
 
     public JobArea getJobArea() {
         return jobArea;

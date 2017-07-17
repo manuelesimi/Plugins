@@ -533,7 +533,7 @@ abstract public class AbstractSubmitter implements Submitter {
              jobDataWriter.addPushInfoWithCloud(new File(session.targetAreaReferenceName).getAbsolutePath(),
                      session.targetAreaOwner,
                      new File(session.callerAreaReferenceName).getAbsolutePath(),
-                     session.callerAreaOwner, session.cloudConnection.id, session.cloudConnection.secret);
+                     session.callerAreaOwner, session.cloudConnection.id, session.cloudConnection.secret,session.cloudConnection.targetBucket);
          } else {
              //add data used by the job for returning information (typically, the IDs of the produced filesets
              jobDataWriter.addPushInfo(new File(session.targetAreaReferenceName).getAbsolutePath(),

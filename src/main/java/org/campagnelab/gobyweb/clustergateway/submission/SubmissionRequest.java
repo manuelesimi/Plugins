@@ -253,8 +253,11 @@ public abstract class SubmissionRequest {
             if (config.userSpecified("broker-hostname") && config.userSpecified("broker-port") )
                 actions.setBroker(config.getString("broker-hostname"), config.getInt("broker-port"));
             // configure cloud access
-            if (config.userSpecified("cloud-id") && config.userSpecified("cloud-secret") )
-                actions.configureCloudAccess(config.getString("cloud-id"), config.getString("cloud-secret"));
+            if (config.userSpecified("cloud-id") && config.userSpecified("cloud-secret") ) {
+                actions.configureCloudAccess(config.getString("cloud-id"), config.getString("cloud-secret"),
+                        config.userSpecified("target-bucket")? config.getString("target-bucket") : "");
+
+            }
             submitter.setLocalPluginsDir(config.getFile("plugins-dir"));
             submitter.setSubmissionHostname(config.userSpecified("artifact-server")? config.getString("artifact-server") : "");
             submitter.setRemoteArtifactRepositoryPath(config.getString("repository"));
