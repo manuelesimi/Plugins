@@ -43,7 +43,7 @@ public class ClusterGatewayCommandLineTest {
         }
     }
 
-    @Test
+    //@Test
     public void installResourceWithArtifacts() {
        assertEquals(0, ClusterGateway.process(buildRemoteClusterGatewayArgs("--resource SAMTOOLS:0.1.18")));
     }
