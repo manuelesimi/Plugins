@@ -196,7 +196,7 @@ case ${STATE} in
     pre_align)
         initializeJobEnvironment
         export STATE="pre_align"
-        delegate_oge_job_script "$*"
+        delegate_oge_job_script ${STATE} "$*"
         submit_align
         ;;
 
