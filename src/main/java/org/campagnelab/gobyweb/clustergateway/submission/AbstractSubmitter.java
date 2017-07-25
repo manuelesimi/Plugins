@@ -132,13 +132,17 @@ abstract public class AbstractSubmitter implements Submitter {
      */
     @Override
     public void setWrappersPaths(String[] paths) {
-        Set<String> wrappers = new HashSet<String>();
+        List<String> wrappers = new ArrayList<String>();
         for (String path : paths) {
             PathPattern pathPattern = new PathPattern(path);
             for (File file : pathPattern.scan())
                 wrappers.add(file.getAbsolutePath());
         }
-        this.wrapperScripts = wrappers.toArray(new String[]{});
+        this.wrapperScripts = new String[wrappers.size()];
+        int i = 0;
+        for (String wrapper : wrappers) {
+            this.wrapperScripts[i++] = wrapper;
+        }
     }
 
     /**
