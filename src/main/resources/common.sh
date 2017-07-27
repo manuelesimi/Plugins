@@ -65,7 +65,7 @@ function LOG {
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
         -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
         org.campagnelab.gobyweb.events.tools.AppendEvent \
-        --message "$*" -p ${EVENT_FILE} --level ${LEVEL}
+        --message "$*" --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
 
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES}-cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
       org.campagnelab.gobyweb.events.tools.PushEvents \
