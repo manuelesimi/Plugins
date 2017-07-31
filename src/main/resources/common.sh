@@ -57,6 +57,38 @@ function initializeGobyWebArtifactEnvironment {
 }
 
 
+function pushEventFile {
+    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES}-cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
+          org.campagnelab.gobyweb.events.tools.PushEvents \
+          -p "$1" ${QUEUE_WRITER_POSTFIX}
+}
+
+#LOG fileset activity
+function LOG_FS {
+    LEVEL=$1
+    STATUS=$2
+    FS_TAG=$3
+    SLOT=$4
+    EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
+    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
+        -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
+        org.campagnelab.gobyweb.events.tools.FileSetEvent --new-status ${STATUS} \
+        --source-tag ${TAG} --tag ${FS_TAG} -p ${EVENT_FILE} \
+        --slot-name ${SLOT} --level ${LEVEL}
+    pushEventFile ${EVENT_FILE}
+
+}
+
+function filesetRegistered {
+   echo "$*";
+   LOG_FS "debug" "REGISTERED" "$*"
+}
+
+function filesetFailed {
+   echo "$*";
+   LOG_FS "error" "FAILURE" "$*"
+}
+
 function LOG {
     LEVEL=$1
     shift
@@ -66,10 +98,7 @@ function LOG {
         -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
         org.campagnelab.gobyweb.events.tools.AppendEvent \
         --message "$*" --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
-
-    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES}-cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
-      org.campagnelab.gobyweb.events.tools.PushEvents \
-      -p ${EVENT_FILE} ${QUEUE_WRITER_POSTFIX}
+    pushEventFile ${EVENT_FILE}
 }
 
 function trace {
