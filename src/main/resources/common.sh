@@ -70,7 +70,7 @@ function LOG_FS {
     STATUS=$2
     FS_TAG=$3
     SLOT=$4
-    EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
+    EVENT_FILE=${TMPDIR}/fileset-events-`date +%s`.proto
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
         -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
         org.campagnelab.gobyweb.events.tools.FileSetEvent --new-status ${STATUS} \
