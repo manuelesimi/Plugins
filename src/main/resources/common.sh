@@ -58,9 +58,10 @@ function initializeGobyWebArtifactEnvironment {
 
 
 function pushEventFile {
-    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES}-cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
-          org.campagnelab.gobyweb.events.tools.PushEvents \
-          -p "$1" ${QUEUE_WRITER_POSTFIX}
+    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
+    -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
+    org.campagnelab.gobyweb.events.tools.PushEvents \
+    -p "$1" ${QUEUE_WRITER_POSTFIX}
 }
 
 #LOG fileset activity
@@ -85,7 +86,7 @@ function filesetRegistered {
 }
 
 function filesetFailed {
-   echo "$*";
+   echo "$*";   
    LOG_FS "error" "FAILURE" "$*"
 }
 
