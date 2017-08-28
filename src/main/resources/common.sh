@@ -77,17 +77,17 @@ function LOG_FS {
         --source-tag ${TAG} --tag ${FS_TAG} -p ${EVENT_FILE} \
         --slot-name ${SLOT} --level ${LEVEL}
     pushEventFile ${EVENT_FILE}
-
+                                                
 }
 
 function filesetRegistered {
    echo "$*";
-   LOG_FS "debug" "REGISTERED" "$*"
+   LOG_FS "debug" "REGISTERED" $*
 }
 
 function filesetFailed {
    echo "$*";   
-   LOG_FS "error" "FAILURE" "$*"
+   LOG_FS "error" "FAILURE" $*
 }
 
 function LOG {
