@@ -290,24 +290,6 @@ function setup {
             mkdir ${JAVA_LOG_DIR}
         fi
 
-        echo ------------------------------------------------------
-        echo This machines hostname: `hostname`
-        echo ------------------------------------------------------
-        echo SGE: qsub is running on ${SGE_O_HOST}
-        echo SGE: originating queue is ${QUEUE}
-        echo SGE: executing cell is ${SGE_CELL}
-        echo SGE: working directory is ${SGE_O_WORKDIR}
-        echo SGE: execution mode is ${ENVIRONMENT}
-        echo SGE: execution host is ${HOSTNAME}
-        echo SGE: job identifier is ${JOB_ID}
-        echo SGE: job name is ${JOB_NAME}
-        echo SGE: job current state = ${STATE}
-        echo SGE: task number is ${SGE_TASK_ID}
-        echo SGE: current home directory is ${SGE_O_HOME}
-        echo SGE: scratch directory is ${TMPDIR}
-        echo SGE: PATH = ${SGE_O_PATH}
-        echo ------------------------------------------------------
-
         GOBY_DIR=${SGE_O_WORKDIR}/goby
         if [ ! -d "${GOBY_DIR}" ]; then
             echo Creating goby dir...
@@ -332,15 +314,7 @@ function setup {
             export TMPDIR
         fi
 
-        # Show the java & goby.jar version
-        echo "Java version"
-        java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -version
-        dieUponError "Could not obtain Java version number."
-
-        echo "Goby.jar version"
-        goby_with_memory 40m version
-        dieUponError "Could not obtain Goby version number."
-
+        print_OGE_env
     fi
 }
 
@@ -354,6 +328,42 @@ function enforce_minimum_bound_on_align_parts() {
     fi
 
 }
+
+function print_OGE_env {
+      if [ ! -z $SGE_O_WORKDIR ]; then
+
+
+        echo ------------------------------------------------------
+        echo This machines hostname: `hostname`
+        echo ------------------------------------------------------
+        echo SGE: qsub is running on ${SGE_O_HOST}
+        echo SGE: originating queue is ${QUEUE}
+        echo SGE: executing cell is ${SGE_CELL}
+        echo SGE: working directory is ${SGE_O_WORKDIR}
+        echo SGE: execution mode is ${ENVIRONMENT}
+        echo SGE: execution host is ${HOSTNAME}
+        echo SGE: job identifier is ${JOB_ID}
+        echo SGE: job name is ${JOB_NAME}
+        echo SGE: job current state = ${STATE}
+        echo SGE: task number is ${SGE_TASK_ID}
+        echo SGE: current home directory is ${SGE_O_HOME}
+        echo SGE: scratch directory is ${TMPDIR}
+        echo SGE: PATH = ${SGE_O_PATH}
+        echo ------------------------------------------------------
+
+
+        # Show the java & goby.jar version
+        echo "Java version"
+        java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -version
+        dieUponError "Could not obtain Java version number."
+
+        echo "Goby.jar version"
+        goby_with_memory 40m version
+        dieUponError "Could not obtain Goby version number."
+
+    fi
+}
+
 if [ -z "${STATE+set}" ]; then
  # When state is not defined, assume the user wants to submit the job to OGE.
  export STATE="submit"

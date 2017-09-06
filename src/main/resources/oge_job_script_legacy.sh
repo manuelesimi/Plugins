@@ -964,7 +964,7 @@ function setup_plugin_functions {
 
 echo "START of LEGACY SCRIPT, TMPDIR=${TMPDIR}, TMP_NODE_WORK_DIR=${TMP_NODE_WORK_DIR} STATE=${STATE}"
 initializeGobyWebArtifactEnvironment
-
+print_OGE_env
 case ${STATE} in
     install_plugin_artifacts)
         install_plugin_mandatory_artifacts
