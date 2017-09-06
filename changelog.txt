@@ -1,3 +1,7 @@
+2.7.0
+    Merge gobyweb2.3 branch into master
+    Support for singularity
+
 2.6.2 (Dec 27 1016)
     Tolerate export's variable with a '%' in the value. More in general, if the transformation of the value fails (for whatever reason), the value is written unchanged in exports.sh.
     Correct the condition that decides if we have to go for single or multiple resources installation.
