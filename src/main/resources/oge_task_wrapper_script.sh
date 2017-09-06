@@ -87,24 +87,6 @@ function setup {
     #JAVA_OPTS is used to set the amount of memory allocated to the groovy scripts.
     export JAVA_OPTS=${PLUGIN_NEED_DEFAULT_JVM_OPTIONS}
 
-    echo ------------------------------------------------------
-    echo This machines hostname: `hostname`
-    echo ------------------------------------------------------
-    echo SGE: qsub is running on ${SGE_O_HOST}
-    echo SGE: originating queue is ${QUEUE}
-    echo SGE: executing cell is ${SGE_CELL}
-    echo SGE: working directory is ${SGE_O_WORKDIR}
-    echo SGE: execution mode is ${ENVIRONMENT}
-    echo SGE: execution host is ${HOSTNAME}
-    echo SGE: job identifier is ${JOB_ID}
-    echo SGE: job name is ${JOB_NAME}
-    echo SGE: job current state = ${STATE}
-    echo SGE: task number is ${SGE_TASK_ID}
-    echo SGE: current home directory is ${SGE_O_HOME}
-    echo SGE: scratch directory is ${TMPDIR}
-    echo SGE: PATH = ${SGE_O_PATH}
-    echo ------------------------------------------------------
-
 
     GOBY_DIR=${JOB_DIR}/goby
     if [ ! -d ${GOBY_DIR} ]; then
@@ -127,17 +109,9 @@ function setup {
             export TMPDIR
     fi
 
-    # Show the java & goby.jar version
-    echo "Java version"
-    java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -version
-    dieUponError "Could not obtain Java version number."
-
-    #make sure that the dir in which reads files will be stored exists
-    mkdir -p ${FILESET_TARGET_DIR}
-
+    #see where we are running
+    print_OGE_env
 }
-
-
 
 
 case ${STATE} in

@@ -181,6 +181,8 @@ if [ -z "${STATE+set}" ]; then
  export STATE="submit"
  echo "Defined STATE=${STATE}"
 fi
+#see where we are running
+print_OGE_env
 
 case ${STATE} in
     submit)
