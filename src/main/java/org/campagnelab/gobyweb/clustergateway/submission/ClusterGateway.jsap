@@ -276,7 +276,7 @@
             </stringParser>
             <required>false</required>
             <longFlag>cloud-id</longFlag>
-            <help>Identifier of the google could project from which to pull/push the job input slots.</help>
+            <help>Identifier of the google cloud project from which to pull/push the job input slots.</help>
         </flaggedOption>
 
         <flaggedOption>
@@ -286,7 +286,17 @@
             </stringParser>
             <required>false</required>
             <longFlag>cloud-secret</longFlag>
-            <help>Secret string of the google could project from which to pull/push the job input slots.</help>
+            <help>Secret string of the google cloud project from which to pull/push the job input slots.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>cloud-token</id>
+            <stringParser>
+                <classname>StringStringParser</classname>
+            </stringParser>
+            <required>false</required>
+            <longFlag>cloud-token</longFlag>
+            <help>A long-lived refresh token to access to the google cloud project.</help>
         </flaggedOption>
 
         <flaggedOption>

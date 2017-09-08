@@ -28,12 +28,15 @@ public class Session {
 
         public final String secret;
 
+        public final String token;
+
         public final String targetBucket;
 
 
-        public GoogleCloudConnection(String cloudID, String cloudSecret, String targetBucket) {
+        public GoogleCloudConnection(String cloudID, String cloudSecret, String token, String targetBucket) {
             this.id = cloudID;
             this.secret = cloudSecret;
+            this.token = token;
             this.targetBucket = targetBucket;
         }
     }

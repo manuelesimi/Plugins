@@ -23,6 +23,7 @@ public class CommonJobConfiguration {
     private boolean hasCloudAccess = false;
     private String cloudId;
     private String cloudSecret;
+    private String cloudToken;
     private String targetBucket;
 
     public boolean useBroker() {
@@ -121,5 +122,13 @@ public class CommonJobConfiguration {
 
     public void setCloudSecret(String cloudSecret) {
         this.cloudSecret = cloudSecret;
+    }
+
+    public String getCloudToken() {
+        return cloudToken;
+    }
+
+    public void setCloudToken(String cloudToken) {
+        this.cloudToken = cloudToken;
     }
 }

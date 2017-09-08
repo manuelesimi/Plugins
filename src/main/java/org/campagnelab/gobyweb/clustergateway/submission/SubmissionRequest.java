@@ -255,6 +255,7 @@ public abstract class SubmissionRequest {
             // configure cloud access
             if (config.userSpecified("cloud-id") && config.userSpecified("cloud-secret") ) {
                 actions.configureCloudAccess(config.getString("cloud-id"), config.getString("cloud-secret"),
+                        config.getString("cloud-token"),
                         config.userSpecified("target-bucket")? config.getString("target-bucket") : "");
 
             }
