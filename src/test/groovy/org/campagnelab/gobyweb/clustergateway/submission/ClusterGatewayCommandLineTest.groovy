@@ -119,7 +119,7 @@ public class ClusterGatewayCommandLineTest {
 
         assertEquals(4, tags.size());
 
-        assertEquals(0, ClusterGateway.process(buildClusterGatewayArgs(
+        assertEquals(3, ClusterGateway.process(buildClusterGatewayArgs(
                 "--job RNASELECT_TASK --cloud-id test-cloud-id --cloud-secret tst-cloud-secret" +
                 " INPUT_READS: ${StringUtils.join(tags, ",")}","test-data/root-for-rnaselect")));
 
