@@ -42,7 +42,7 @@ class ClusterGatewayRemoteSubmissions {
     }
 
     private static String[] buildClusterGatewayDarla() {
-        ("--job-area gobyweb@spanky.med.cornell.edu:/home/gobyweb/darla-test/GOBYWEB_SGE_JOBS-dev " +
+        ("--job-area gobyweb@spanky.pbtech:/home/gobyweb/darla-test/GOBYWEB_SGE_JOBS-dev " +
                 "--fileset-area /home/gobyweb/darla-test/GOBYWEB_FILES-dev " +
                 "--plugins-dir ${pluginRoot} " +
                 "--owner ${owner} " +

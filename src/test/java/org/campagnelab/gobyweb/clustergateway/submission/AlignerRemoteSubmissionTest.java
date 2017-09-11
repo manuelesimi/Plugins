@@ -32,7 +32,7 @@ public class AlignerRemoteSubmissionTest {
     static String brokerHostname = "toulouse.med.cornell.edu";
     static int brokerPort = 5672;
     static final String filesetAreaReference = "/zenodotus/campagnelab/store/data/gobyweb/trial/FILESET_AREA";
-    static final String jobAreaReference = "gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/";
+    static final String jobAreaReference = "gobyweb@spanky.pbtech:/zenodotus/campagnelab/scratch/data/gobyweb/trial/GOBYWEB_SGE_JOBS/";
     static final String envScript = "test-data/root-for-aligners/artifacts-config/env.sh";
     static Properties prop = new Properties();
     static final String owner = "gobywebpaper";

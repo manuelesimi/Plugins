@@ -275,7 +275,7 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(0, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                ("--job-area gobyweb@spanky.pbtech:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
@@ -309,7 +309,7 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(0, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                ("--job-area gobyweb@spanky.pbtech:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
@@ -343,7 +343,7 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(3, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                ("--job-area gobyweb@spanky.pbtech:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
@@ -379,7 +379,7 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(3, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                ("--job-area gobyweb@spanky.pbtech:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
@@ -413,7 +413,7 @@ public class ClusterGatewayCommandLineTest {
                 System.getProperty("user.name"),
                 java.net.InetAddress.getLocalHost().getHostName());
         assertEquals(3, ClusterGateway.process(
-                ("--job-area gobyweb@spanky.med.cornell.edu:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
+                ("--job-area gobyweb@spanky.pbtech:/zenodotus/campagnelab/scratch/data/gobyweb/dev/GOBYWEB_SGE_JOBS/ " +
                         "--fileset-area /zenodotus/campagnelab/store/data/gobyweb/dev/FILESET_AREA " +
                         "--plugins-dir test-data/root-for-aligners " +
                         "--owner gobywebpaper " +
