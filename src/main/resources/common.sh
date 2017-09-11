@@ -23,6 +23,9 @@ function initializeJobEnvironment {
     set -x
     echo "Using container technology: ${GOBYWEB_CONTAINER_TECHNOLOGY}"
 
+    #make sure that the dir in which files will be stored exists
+    mkdir -p ${FILESET_TARGET_DIR}
+
     case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
         singularity)
          echo "Calling legacy script with Singularity"
