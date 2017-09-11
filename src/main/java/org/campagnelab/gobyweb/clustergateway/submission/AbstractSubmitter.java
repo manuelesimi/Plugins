@@ -16,6 +16,7 @@ import org.campagnelab.gobyweb.filesets.configuration.ConfigurationList;
 import org.campagnelab.gobyweb.filesets.configuration.Configuration;
 import org.campagnelab.gobyweb.filesets.jobschema.JobInputSlot;
 import org.campagnelab.gobyweb.filesets.jobschema.JobOutputSlot;
+import org.campagnelab.gobyweb.filesets.registration.cloud.GoogleConnection;
 import org.campagnelab.gobyweb.io.JobArea;
 import org.campagnelab.gobyweb.plugins.ArtifactsProtoBufHelper;
 import org.campagnelab.gobyweb.plugins.AutoOptionsFileHelper;
@@ -533,12 +534,15 @@ abstract public class AbstractSubmitter implements Submitter {
 
         JobDataWriter jobDataWriter = new JobDataWriter();
          if (session.hasCloudAccess())  {
+             GoogleConnection connection = new GoogleConnection();
+             connection.googleClientId = session.cloudConnection.id;
+             connection.googleClientSecret = session.cloudConnection.secret;
+             connection.googleToken = session.cloudConnection.token;
              //add data used by the job for returning information (typically, the IDs of the produced filesets
              jobDataWriter.addPushInfoWithCloud(new File(session.targetAreaReferenceName).getAbsolutePath(),
                      session.targetAreaOwner,
                      new File(session.callerAreaReferenceName).getAbsolutePath(),
-                     session.callerAreaOwner, session.cloudConnection.id, session.cloudConnection.secret,
-                     session.cloudConnection.token, session.cloudConnection.targetBucket);
+                     session.callerAreaOwner, connection, session.cloudConnection.targetBucket);
          } else {
              //add data used by the job for returning information (typically, the IDs of the produced filesets
              jobDataWriter.addPushInfo(new File(session.targetAreaReferenceName).getAbsolutePath(),
