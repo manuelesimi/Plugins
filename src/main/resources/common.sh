@@ -113,7 +113,6 @@ function goby_with_memory {
 }
 
 function dieUponError {
-    set +x
     RETURN_STATUS=$?
     DESCRIPTION=$1
 
