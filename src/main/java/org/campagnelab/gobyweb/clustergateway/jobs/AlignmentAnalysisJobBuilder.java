@@ -320,8 +320,8 @@ public class AlignmentAnalysisJobBuilder extends JobBuilder {
      */
     private boolean generateIndex() {
         for (OutputFile file : this.analysisConfig.outputFiles.files) {
-            if ("application/lucene-index".equals(file.getFileType()))
-                return true;
+           if (file.getFileType() == OutputFile.OutputFileType.BROWSE)
+               return true;
         }
         return false;
     }
