@@ -214,32 +214,6 @@ function push_analysis_results {
     mandatory=$3
     additional_attributes=$4 #-a TABLENAME=$tablename
 
-    #prefix with tag if needed
-    for f in "${TMP_NODE_WORK_DIR}/import-db/${file_to_push}"; do
-        if [ -e "$f" ]; then
-             mv "${TMP_NODE_WORK_DIR}/import-db/${f}" "${TMP_NODE_WORK_DIR}/import-db/${TAG}-${f}"
-        fi
-    done
-
-    for f in "${TMP_NODE_WORK_DIR}/${file_to_push}"; do
-        if [ -e "$f" ]; then
-             mv "${TMP_NODE_WORK_DIR}/${f}" "${TMP_NODE_WORK_DIR}/import-db/${TAG}-${f}"
-        fi
-    done
-    for f in "${TMP_NODE_WORK_DIR}/${TAG}-${file_to_push}"; do
-        if [ -e "$f" ]; then
-             mv "${TMP_NODE_WORK_DIR}/${TAG}-${f}" "${TMP_NODE_WORK_DIR}/import-db/${TAG}-${f}"
-        fi
-    done
-
-    stat -t $TMP_NODE_WORK_DIR/import-db/$TAG-$file_to_push
-    if [ $? -eq 0 ]; then
-       local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${TMP_NODE_WORK_DIR}/import-db/${TAG}-${file_to_push}`
-       dieUponError "Failed to push ${file_to_push} in the FileSet area. ${REGISTERED_TAGS}"
-       echo "${file_to_push} has been successfully registered with tag ${REGISTERED_TAGS}"
-       ALL_REGISTERED_TAGS="${ALL_REGISTERED_TAGS} ${slot}:[${REGISTERED_TAGS}]"
-    fi
-
     stat -t $JOB_DIR/results/$TAG/$TAG-$file_to_push
     if [ $? -eq 0 ]; then
         local REGISTERED_TAGS=`${FILESET_COMMAND} --push -a ORGANISM=${ORGANISM} -a GENOME_REFERENCE_ID=${GENOME_REFERENCE_ID} ${additional_attributes} -a SOURCE_OUTPUT_SLOT=${slot} ${slot}: ${JOB_DIR}/results/${TAG}/${TAG}-${file_to_push}`
