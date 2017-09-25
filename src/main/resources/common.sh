@@ -96,27 +96,37 @@ function filesetFailed {
 function LOG {
     LEVEL=$1
     shift
+    PHASE=$1
+    shift
     message="$*";
     EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
         -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
         org.campagnelab.gobyweb.events.tools.JobEvent \
-        --message "$*" --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
+        --phase ${PHASE} --message "$*" --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
     pushEventFile ${EVENT_FILE}
 }
 
 function trace {
     echo "$*";
-    LOG "trace" "$*";
+    PHASE=$1
+    shift
+    LOG "trace" ${PHASE} "$*";
+    
 }
 
 function debug {
-    LOG "debug" "$*";
+    echo "$*";
+    PHASE=$1
+    shift
+    LOG "debug" ${PHASE} "$*";
 }
 
 function error {
     echo "$*";
-    LOG "error" "$*";
+    PHASE=$1
+    shift
+    LOG "error" ${PHASE} "$*";
 }
 
 if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
