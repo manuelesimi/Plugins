@@ -68,15 +68,15 @@ function pushEventFile {
 }
 
 #LOG fileset activity
-function LOG_FS {
+function LOG_JS {
     LEVEL=$1
     STATUS=$2
     FS_TAG=$3
     SLOT=$4
-    EVENT_FILE=${TMPDIR}/fileset-events-`date +%s`.proto
+    EVENT_FILE=${TMPDIR}/job-slot-events-`date +%s`.proto
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
         -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
-        org.campagnelab.gobyweb.events.tools.FileSetEvent --new-status ${STATUS} \
+        org.campagnelab.gobyweb.events.tools.JobSlotEvent --new-status ${STATUS} \
         --source-tag ${TAG} --tag ${FS_TAG} -p ${EVENT_FILE} \
         --slot-name ${SLOT} --level ${LEVEL}
     pushEventFile ${EVENT_FILE}
@@ -85,12 +85,12 @@ function LOG_FS {
 
 function filesetRegistered {
    echo "$*";
-   LOG_FS "debug" "REGISTERED" $*
+   LOG_JS "debug" "REGISTERED" $*
 }
 
 function filesetFailed {
    echo "$*";   
-   LOG_FS "error" "FAILURE" $*
+   LOG_JS "error" "FAILURE" $*
 }
 
 function LOG {
