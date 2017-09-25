@@ -122,6 +122,13 @@ function debug {
     LOG "debug" ${PHASE} "$*";
 }
 
+function info {
+    echo "$*";
+    PHASE=$1
+    shift
+    LOG "info" ${PHASE} "$*";
+}
+
 function error {
     echo "$*";
     PHASE=$1
