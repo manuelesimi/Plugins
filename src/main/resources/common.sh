@@ -107,6 +107,23 @@ function LOG {
     pushEventFile ${EVENT_FILE}
 }
 
+function LOG_WITH_INDEX {
+    LEVEL=$1
+    shift
+    PHASE=$1
+    shift
+    INDEX=$1
+    shift
+    message="$*";
+    EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
+    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
+        -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
+        org.campagnelab.gobyweb.events.tools.JobEvent \
+        --phase ${PHASE} --index ${INDEX} \
+        --message "$*" --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
+    pushEventFile ${EVENT_FILE}
+}
+
 function trace {
     echo "$*";
     PHASE=$1
@@ -134,6 +151,27 @@ function error {
     PHASE=$1
     shift
     LOG "error" ${PHASE} "$*";
+}
+
+function newActivity {
+    ACTIVITY=$1
+    LOG "info" ${ACTIVITY} "new_activity";
+}
+
+function activityCompleted {
+    ACTIVITY=$1
+    LOG "info" ${ACTIVITY} "activity_completed";
+}
+
+function newPhase {
+    PHASE=$1
+    NUM_OF_INDEXES=$2
+    LOG_WITH_INDEX "info" ${PHASE} ${NUM_OF_INDEXES} "new_phase";
+}
+
+function phaseCompleted {
+    PHASE=$1
+    LOG "info" ${PHASE} "phase_completed";
 }
 
 if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
