@@ -29,6 +29,7 @@ function initializeJobEnvironment {
     case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
         singularity)
          echo "Calling legacy script with Singularity"
+         info ${EXECUTION_ACTIVITY} "Calling legacy script with Singularity"
          export SINGULARITY_CACHEDIR=/scratchLocal/gobyweb/gobyweb3/SINGULARITY_CACHE
          mkdir -p ${SINGULARITY_CACHEDIR}
          function delegate_oge_job_script {
@@ -96,21 +97,17 @@ function filesetFailed {
 function LOG {
     LEVEL=$1
     shift
-    PHASE=$1
-    shift
     message="$*";
     EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
         -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
         org.campagnelab.gobyweb.events.tools.JobEvent \
-        --phase ${PHASE} --message "$*" --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
+        --phase ${STATE} --message "$*" --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
     pushEventFile ${EVENT_FILE}
 }
 
 function LOG_WITH_INDEX {
     LEVEL=$1
-    shift
-    PHASE=$1
     shift
     INDEX=$1
     shift
@@ -119,59 +116,70 @@ function LOG_WITH_INDEX {
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
         -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
         org.campagnelab.gobyweb.events.tools.JobEvent \
-        --phase ${PHASE} --index ${INDEX} \
+        --phase ${STATE} --index ${INDEX} \
         --message "$*" --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
     pushEventFile ${EVENT_FILE}
 }
 
 function trace {
-    echo "$*";
-    PHASE=$1
+    trace_index 1 "$*";
+}
+
+function trace_index {
+    INDEX=$1
     shift
-    LOG "trace" ${PHASE} "$*";
-    
+    LOG_WITH_INDEX "trace" ${INDEX} "$*";
 }
 
 function debug {
-    echo "$*";
-    PHASE=$1
+    debug_index 1 "$*";
+}
+
+function debug_index {
+    INDEX=$1
     shift
-    LOG "debug" ${PHASE} "$*";
+    LOG_WITH_INDEX "debug" ${INDEX} "$*";
 }
 
 function info {
-    echo "$*";
-    PHASE=$1
+    info_index 1 "$*";
+}
+
+function info_index {
+    INDEX=$1
     shift
-    LOG "info" ${PHASE} "$*";
+    LOG_WITH_INDEX "info" ${INDEX} "$*";
 }
 
 function error {
-    echo "$*";
-    PHASE=$1
+    error_index 1 "$*";
+}
+
+function error_index {
+    INDEX=$1
     shift
-    LOG "error" ${PHASE} "$*";
+    LOG_WITH_INDEX "error" ${INDEX} "$*";
 }
 
 function newActivity {
     ACTIVITY=$1
     LOG "info" ${ACTIVITY} "new_activity";
+    CURRENT_ACTIVITY=${ACTIVITY}
 }
 
 function activityCompleted {
     ACTIVITY=$1
     LOG "info" ${ACTIVITY} "activity_completed";
+    CURRENT_ACTIVITY=""
 }
 
 function newPhase {
-    PHASE=$1
-    NUM_OF_INDEXES=$2
-    LOG_WITH_INDEX "info" ${PHASE} ${NUM_OF_INDEXES} "new_phase";
+    NUM_OF_INDEXES=$1
+    LOG_WITH_INDEX "info" ${NUM_OF_INDEXES} "new_phase";
 }
 
 function phaseCompleted {
-    PHASE=$1
-    LOG "info" ${PHASE} "phase_completed";
+    LOG "info" "phase_completed";
 }
 
 if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
@@ -233,6 +241,7 @@ function dieUponError {
             # Failed, no result to copy
             copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
             ${QUEUE_WRITER} --tag ${TAG} --index ${CURRENT_PART} --job-type job-part --status ${JOB_PART_FAILED_STATUS} --description "${DESCRIPTION}"
+            error_index ${CURRENT_PART} "${DESCRIPTION}"
             exit ${RETURN_STATUS}
     fi
     set -x

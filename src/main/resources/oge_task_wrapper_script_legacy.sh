@@ -29,6 +29,8 @@ function install_resources {
      if [ "${PLUGIN_ARTIFACTS_TASK}" != "false" ]; then
            install_plugin_artifacts
      fi
+     info "All plugin artifacts hasve been installed"
+
 }
 
 
@@ -46,6 +48,7 @@ function push_job_metadata {
    echo "SHAREDWITH=" >> ${JOB_DIR}/${TAG}.properties
    REGISTERED_TAGS=`${FILESET_COMMAND} --push --fileset-tag ${TAG} JOB_METADATA: ${JOB_DIR}/${TAG}.properties`
    echo "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
+   info "The following JOB_METADATA instance has been successfully registered: ${REGISTERED_TAGS}"
 }
 
 
@@ -61,6 +64,7 @@ setup
 
 case ${STATE} in
     task)
+        newPhase 1
         initializeGobyWebArtifactEnvironment
         setup_task_functions
         install_resources
@@ -74,8 +78,12 @@ case ${STATE} in
         STATUS=$?
         if [ ${STATUS}==0 ]; then
          echo "Task execution completed successfully." >>${LOG_FILE}
+         info "Task execution completed successfully."
+         phaseCompleted
         else
-         echo "An error occured"
+         echo "An error occurred"
+         error "An error occurred"
+         phaseCompleted
          exit ${STATUS}
         fi
         ;;

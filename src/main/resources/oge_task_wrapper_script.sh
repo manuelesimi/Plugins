@@ -63,6 +63,7 @@ function dieUponError {
 
 function run_task {
    ALL_REGISTERED_TAGS=""
+   
    plugin_task
    push_job_metadata ${ALL_REGISTERED_TAGS}
    ${QUEUE_WRITER} --tag ${TAG} --status ${JOB_PART_COMPLETED_STATUS} --description "Task completed" --index 0 --job-type job
@@ -116,12 +117,17 @@ function setup {
 
 case ${STATE} in
     task)
+        newPhase 1
         initializeJobEnvironment
          # delegate everything else either inside container or execute directly legacy script:
         delegate_oge_job_script ${STATE}
+        phaseCompleted
+        activityCompleted TASK_EXECUTION
         ;;
 
     submit)
+        newActivity TASK_EXECUTION
+        newPhase 1
         initializeJobEnvironment
         setup
         cd ${JOB_DIR}
@@ -131,6 +137,7 @@ case ${STATE} in
            HOLD_OPTION="-hold_jid ${JOBS_HOLD_LIST}"
         fi
         SUBMISSION=`qsub -N ${TAG}.submit ${HOLD_OPTION} -terse -l ${PLUGIN_NEED_PROCESS} -r y -v STATE=${INITIAL_STATE} oge_task_wrapper_script.sh`
+        phaseCompleted 
         echo ${SUBMISSION}
         ;;
 
