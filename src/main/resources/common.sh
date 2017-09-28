@@ -114,30 +114,30 @@ function filesetFailed {
    LOG_JS "error" "FAILURE" $*
 }
 
-function LOG {
+function LOG_STATUS {
     LEVEL=$1
     shift
-    message="$*";
+    STATUS="$*";
     EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
         -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
         org.campagnelab.gobyweb.events.tools.JobEvent \
-        --phase ${STATE} --message "$*" --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
+        --phase ${STATE} --job-status ${STATUS} --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
     pushEventFile ${EVENT_FILE}
 }
 
-function LOG_WITH_INDEX {
+function LOG_STATUS_WITH_INDEX {
     LEVEL=$1
     shift
     INDEX=$1
     shift
-    message="$*";
+    STATUS="$*";
     EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
         -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
         org.campagnelab.gobyweb.events.tools.JobEvent \
         --phase ${STATE} --index ${INDEX} \
-        --message "$*" --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
+        --job-status ${STATUS} --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
     pushEventFile ${EVENT_FILE}
 }
 
@@ -148,7 +148,7 @@ function trace {
 function trace_index {
     INDEX=$1
     shift
-    LOG_WITH_INDEX "trace" ${INDEX} "$*";
+    LOG_STATUS_WITH_INDEX "trace" ${INDEX} "$*";
 }
 
 function debug {
@@ -158,7 +158,7 @@ function debug {
 function debug_index {
     INDEX=$1
     shift
-    LOG_WITH_INDEX "debug" ${INDEX} "$*";
+    LOG_STATUS_WITH_INDEX "debug" ${INDEX} "$*";
 }
 
 function info {
@@ -168,7 +168,7 @@ function info {
 function info_index {
     INDEX=$1
     shift
-    LOG_WITH_INDEX "info" ${INDEX} "$*";
+    LOG_STATUS_WITH_INDEX "info" ${INDEX} "$*";
 }
 
 function error {
@@ -178,28 +178,28 @@ function error {
 function error_index {
     INDEX=$1
     shift
-    LOG_WITH_INDEX "error" ${INDEX} "$*";
+    LOG_STATUS_WITH_INDEX "error" ${INDEX} "$*";
 }
 
 function newActivity {
     ACTIVITY=$1
-    LOG "info" ${ACTIVITY} "new_activity";
+    LOG_STATUS "info" ${ACTIVITY} "new_activity";
     CURRENT_ACTIVITY=${ACTIVITY}
 }
 
 function activityCompleted {
     ACTIVITY=$1
-    LOG "info" ${ACTIVITY} "activity_completed";
+    LOG_STATUS "info" ${ACTIVITY} "activity_completed";
     CURRENT_ACTIVITY=""
 }
 
 function newPhase {
     NUM_OF_INDEXES=$1
-    LOG_WITH_INDEX "info" ${NUM_OF_INDEXES} "new_phase";
+    LOG_STATUS_WITH_INDEX "info" ${NUM_OF_INDEXES} "new_phase";
 }
 
 function phaseCompleted {
-    LOG "info" "phase_completed";
+    LOG_STATUS "info" "phase_completed";
 }
 
 if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
