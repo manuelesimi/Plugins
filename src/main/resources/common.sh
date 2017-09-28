@@ -114,30 +114,47 @@ function filesetFailed {
    LOG_JS "error" "FAILURE" $*
 }
 
-function LOG_STATUS {
-    LEVEL=$1
-    shift
-    STATUS="$*";
-    EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
-    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
-        -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
-        org.campagnelab.gobyweb.events.tools.JobEvent \
-        --phase ${STATE} --job-status ${STATUS} --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
-    pushEventFile ${EVENT_FILE}
-}
-
-function LOG_STATUS_WITH_INDEX {
+function LOG {
     LEVEL=$1
     shift
     INDEX=$1
     shift
-    STATUS="$*";
+    MESSAGE="$*";
     EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
         -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
-        org.campagnelab.gobyweb.events.tools.JobEvent \
+        org.campagnelab.gobyweb.events.tools.LogEvent \
+        --phase ${STATE} --index ${INDEX} --message ${MESSAGE} \
+        --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
+    pushEventFile ${EVENT_FILE}
+}
+
+function LOG_JOB_STATUS {
+    INDEX=$1
+    STATUS=$2;
+    EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
+    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
+        -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
+        org.campagnelab.gobyweb.events.tools.JobStatusEvent  \
         --phase ${STATE} --index ${INDEX} \
-        --job-status ${STATUS} --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
+        --new-status ${STATUS} --tag ${TAG} -p ${EVENT_FILE}
+    pushEventFile ${EVENT_FILE}
+}
+
+function LOG_JOB_EVENT {
+   NAME=$1
+   TYPE=$2
+   INDEXES=$3
+   MAX_INDEX_PARAM=
+   if [[ $INDEXES ]]; then
+    MAX_INDEX_PARAM="--max-index ${INDEXES}"
+   fi
+   EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
+   java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
+        -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
+        org.campagnelab.gobyweb.events.tools.JobEvent \
+        --name ${NAME} --type ${TYPE} \
+        ${MAX_INDEX_PARAM} --tag ${TAG} -p ${EVENT_FILE}
     pushEventFile ${EVENT_FILE}
 }
 
@@ -148,7 +165,7 @@ function trace {
 function trace_index {
     INDEX=$1
     shift
-    LOG_STATUS_WITH_INDEX "trace" ${INDEX} "$*";
+    LOG "trace" ${INDEX} "$*";
 }
 
 function debug {
@@ -158,7 +175,7 @@ function debug {
 function debug_index {
     INDEX=$1
     shift
-    LOG_STATUS_WITH_INDEX "debug" ${INDEX} "$*";
+    LOG "debug" ${INDEX} "$*";
 }
 
 function info {
@@ -168,7 +185,7 @@ function info {
 function info_index {
     INDEX=$1
     shift
-    LOG_STATUS_WITH_INDEX "info" ${INDEX} "$*";
+    LOG "info" ${INDEX} "$*";
 }
 
 function error {
@@ -178,28 +195,28 @@ function error {
 function error_index {
     INDEX=$1
     shift
-    LOG_STATUS_WITH_INDEX "error" ${INDEX} "$*";
+    LOG "error" ${INDEX} "$*";
 }
 
 function newActivity {
     ACTIVITY=$1
-    LOG_STATUS "info" ${ACTIVITY} "new_activity";
+    LOG_JOB_EVENT ${ACTIVITY} "NEW_ACTIVITY";
     CURRENT_ACTIVITY=${ACTIVITY}
 }
 
 function activityCompleted {
     ACTIVITY=$1
-    LOG_STATUS "info" ${ACTIVITY} "activity_completed";
+    LOG_JOB_EVENT ${ACTIVITY} "ACTIVITY_COMPLETED";
     CURRENT_ACTIVITY=""
 }
 
 function newPhase {
     NUM_OF_INDEXES=$1
-    LOG_STATUS_WITH_INDEX "info" ${NUM_OF_INDEXES} "new_phase";
+    LOG_JOB_EVENT ${STATE} "NEW_PHASE" ${NUM_OF_INDEXES};
 }
 
 function phaseCompleted {
-    LOG_STATUS "info" "phase_completed";
+    LOG_JOB_EVENT ${STATE} "PHASE_COMPLETED";
 }
 
 if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
