@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
 
+export JOB_DIR=%JOB_DIR%
+
+if [[ ! $TMPDIR ]]; then
+    echo "TMPDIR is not set or empty"
+    if [[ ! $SGE_O_WORKDIR ]]; then
+       # Not running inside SGE yet? Use the jobdir as TMPDIR:
+        #export TMPDIR="${SGE_O_WORKDIR}"
+        echo "Use JOB_DIR"
+        export TMPDIR=${JOB_DIR}
+    else
+        # Running inside SGE? Switch to the TMPDIR:
+        echo "Use SGE_O_WORKDIR"
+        export TMPDIR="${SGE_O_WORKDIR}"
+        mkdir -p ${TMPDIR}
+        cd ${TMPDIR}
+    fi
+else
+  mkdir -p ${TMPDIR}
+  cd ${TMPDIR}
+fi
+
 if [ -d "${TMPDIR}" ]; then
     export TMP_NODE_WORK_DIR=${TMPDIR}
     if [ ! -e ${TMP_NODE_WORK_DIR}/goby.jar ]; then
@@ -15,7 +36,6 @@ if [ -d "${TMPDIR}" ]; then
 fi
 
 function initializeJobEnvironment {
-    export JOB_DIR=%JOB_DIR%
     echo "Sourcing GobyWeb plugin environment (constants.sh and auto-options.sh)"
     set +x
     . ${JOB_DIR}/constants.sh
@@ -188,25 +208,6 @@ else
     if [ -z "${GOBYWEB_CONTAINER_NAME+set}" ]; then
     export GOBYWEB_CONTAINER_NAME="shub://CampagneLaboratory/GobyWeb-Singularity"
     fi
-fi
-
-if [[ ! $TMPDIR ]]; then
-    echo "TMPDIR is not set or empty"
-    if [[ ! $SGE_O_WORKDIR ]]; then
-       # Not running inside SGE yet? Use the jobdir as TMPDIR:
-        #export TMPDIR="${SGE_O_WORKDIR}"
-        echo "Use JOB_DIR"
-        export TMPDIR=${JOB_DIR}
-    else
-        # Running inside SGE? Switch to the TMPDIR:
-        echo "Use SGE_O_WORKDIR"
-        export TMPDIR="${SGE_O_WORKDIR}"
-        mkdir -p ${TMPDIR}
-        cd ${TMPDIR}
-    fi
-else
-  mkdir -p ${TMPDIR}
-  cd ${TMPDIR}
 fi
 
 function goby {
