@@ -190,16 +190,23 @@ else
     fi
 fi
 
-if [ -z "${TMPDIR+set}" ]; then
-    if [ -z  "${SGE_O_WORKDIR}+set" ]; then
+if [[ ! $TMPDIR ]]; then
+    echo "TMPDIR is not set or empty"
+    if [[ ! $SGE_O_WORKDIR ]]; then
        # Not running inside SGE yet? Use the jobdir as TMPDIR:
-     #   export TMPDIR="${SGE_O_WORKDIR}"
+        #export TMPDIR="${SGE_O_WORKDIR}"
+        echo "Use JOB_DIR"
         export TMPDIR=${JOB_DIR}
     else
         # Running inside SGE? Switch to the TMPDIR:
+        echo "Use SGE_O_WORKDIR"
+        export TMPDIR="${SGE_O_WORKDIR}"
         mkdir -p ${TMPDIR}
         cd ${TMPDIR}
     fi
+else
+  mkdir -p ${TMPDIR}
+  cd ${TMPDIR}
 fi
 
 function goby {
