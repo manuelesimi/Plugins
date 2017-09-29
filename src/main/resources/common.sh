@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
 export JOB_DIR=%JOB_DIR%
+echo "Sourcing GobyWeb plugin environment (constants.sh and auto-options.sh)"
+
+set +x
+. ${JOB_DIR}/auto-options.sh
 . ${JOB_DIR}/constants.sh
+set -x
 
 if [[ ! $TMPDIR ]]; then
     echo "TMPDIR is not set or empty"
@@ -37,10 +42,7 @@ if [ -d "${TMPDIR}" ]; then
 fi
 
 function initializeJobEnvironment {
-    echo "Sourcing GobyWeb plugin environment (constants.sh and auto-options.sh)"
-    set +x
-    . ${JOB_DIR}/auto-options.sh
-    set -x
+
     echo "Using container technology: ${GOBYWEB_CONTAINER_TECHNOLOGY}"
 
     #make sure that the dir in which files will be stored exists
