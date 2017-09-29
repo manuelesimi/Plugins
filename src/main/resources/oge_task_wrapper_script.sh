@@ -117,12 +117,12 @@ function setup {
 
 case ${STATE} in
     task)
-        newPhase 1
+        #newPhase 1
         initializeJobEnvironment
          # delegate everything else either inside container or execute directly legacy script:
         delegate_oge_job_script ${STATE}
-        phaseCompleted
-        activityCompleted TASK_EXECUTION
+        #phaseCompleted
+        #activityCompleted TASK_EXECUTION
         ;;
 
     submit)

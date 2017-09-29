@@ -80,10 +80,14 @@ case ${STATE} in
          echo "Task execution completed successfully." >>${LOG_FILE}
          info "Task execution completed successfully."
          phaseCompleted
+         activityCompleted TASK_EXECUTION
         else
          echo "An error occurred"
          error "An error occurred"
          phaseCompleted
+         #TODO: send an error job status here
+
+         activityCompleted TASK_EXECUTION
          exit ${STATUS}
         fi
         ;;
