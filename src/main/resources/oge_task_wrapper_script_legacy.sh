@@ -80,6 +80,7 @@ case ${STATE} in
          echo "Task execution completed successfully." >>${LOG_FILE}
          info "Task execution completed successfully."
          phaseCompleted
+         LOG_JOB_STATUS SUCCESS "Task execution completed successfully." 1
          activityCompleted TASK_EXECUTION
         else
          echo "An error occurred"

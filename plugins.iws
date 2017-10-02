@@ -4,6 +4,7 @@
     <list default="true" id="91423bbb-9c59-45b0-befd-d6fbd69209f1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins.iws" afterPath="$PROJECT_DIR$/plugins.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/common.sh" afterPath="$PROJECT_DIR$/src/main/resources/common.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh" afterPath="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh" />
     </list>
     <list id="22548fb4-4a68-4dee-bc62-7d1ee67dd88a" name="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.  (cherry picked from commit 0a1c3f9)" comment="Set GENERATE_INDEX according to the presence of an output file of type application/lucene-index declared in the plugin configuration.&#10;&#10;(cherry picked from commit 0a1c3f9)" />
     <list id="e12297a6-04a4-4092-a060-447d7ac4509c" name="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.  (cherry picked from commit 357dcb3)" comment="Refactor oge_job_script to support containers (draft). See GOBYWEB_CONTAINER_NAME and GOBYWEB_CONTAINER_TECHNOLOGY variables. Set GOBYWEB_CONTAINER_TECHNOLOGY to &quot;singularity&quot; or none (legacy, no container). Set GOBYWEB_CONTAINER_NAME to the name of the singularity container to use.&#10;&#10;(cherry picked from commit 357dcb3)" />
@@ -190,8 +191,8 @@
       <file leaf-file-name="oge_task_wrapper_script.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="124" column="9" lean-forward="false" selection-start-line="124" selection-start-column="9" selection-end-line="124" selection-end-column="9" />
+            <state relative-caret-position="298">
+              <caret line="128" column="34" lean-forward="false" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -207,11 +208,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oge_task_wrapper_script_legacy.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="oge_task_wrapper_script_legacy.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1125">
-              <caret line="75" column="32" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+            <state relative-caret-position="343">
+              <caret line="86" column="74" lean-forward="true" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -227,11 +228,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="common.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/common.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="267" column="59" lean-forward="true" selection-start-line="267" selection-start-column="41" selection-end-line="267" selection-end-column="41" />
+            <state relative-caret-position="-572">
+              <caret line="272" column="63" lean-forward="false" selection-start-line="272" selection-start-column="0" selection-end-line="273" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -248,8 +249,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Int</find>
-      <find>PROCESS</find>
       <find>PLUGIN_NEED</find>
       <find>NEED</find>
       <find>Builder</find>
@@ -278,6 +277,8 @@
       <find>delegate</find>
       <find>TMPDIR</find>
       <find>delegate_oge_job_script</find>
+      <find>TASK_EXECUTION</find>
+      <find>die</find>
     </findStrings>
     <replaceStrings>
       <replace>2.7</replace>
@@ -370,8 +371,8 @@
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCloudTest.groovy" />
         <option value="$PROJECT_DIR$/src/test/groovy/org/campagnelab/gobyweb/clustergateway/submission/ClusterGatewayCommandLineTest.groovy" />
         <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh" />
-        <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh" />
         <option value="$PROJECT_DIR$/src/main/resources/common.sh" />
+        <option value="$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh" />
       </list>
     </option>
   </component>
@@ -1498,14 +1499,7 @@
       <workItem from="1499977283531" duration="1475000" />
       <workItem from="1505415049639" duration="10204000" />
       <workItem from="1505922781026" duration="25578000" />
-      <workItem from="1506630811152" duration="11320000" />
-    </task>
-    <task id="LOCAL-00553" summary="Increase chunk size for test.&#10;&#10;(cherry picked from commit bd4e99f)">
-      <created>1499112843176</created>
-      <option name="number" value="00553" />
-      <option name="presentableId" value="LOCAL-00553" />
-      <option name="project" value="LOCAL" />
-      <updated>1499112843176</updated>
+      <workItem from="1506630811152" duration="14201000" />
     </task>
     <task id="LOCAL-00554" summary="Set compilation targer to 1.7.">
       <created>1499113299643</created>
@@ -1843,7 +1837,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506718110821</updated>
     </task>
-    <option name="localTasksCounter" value="602" />
+    <task id="LOCAL-00602" summary="Send a failure status with description on dieUponError.">
+      <created>1506955053143</created>
+      <option name="number" value="00602" />
+      <option name="presentableId" value="LOCAL-00602" />
+      <option name="project" value="LOCAL" />
+      <updated>1506955053143</updated>
+    </task>
+    <option name="localTasksCounter" value="603" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1879,7 +1880,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="934584000" />
+    <option name="totallyTimeSpent" value="937465000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -2009,7 +2010,6 @@
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Use GOBYWEB_SERVER_SIDE 2.7." />
     <MESSAGE value="Update test-data to GOBYWEB_SERVER_SIDE resource to 2.7. in the test-data." />
     <MESSAGE value="Fix ResourceDependency test." />
     <MESSAGE value="Exclude serverside-dependencies from artifacts." />
@@ -2034,7 +2034,8 @@
     <MESSAGE value="Source constants.sh at the beginning of the common script. Some info (tag) are needed before initializing the job environment for logging purposes." />
     <MESSAGE value="Source also auto-options as first step." />
     <MESSAGE value="Remove duplicated task phase. Close the activity in the legacy script." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove duplicated task phase. Close the activity in the legacy script." />
+    <MESSAGE value="Send a failure status with description on dieUponError." />
+    <option name="LAST_COMMIT_MESSAGE" value="Send a failure status with description on dieUponError." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2491,24 +2492,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="124" column="9" lean-forward="false" selection-start-line="124" selection-start-column="9" selection-end-line="124" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="75" column="32" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+        <state relative-caret-position="298">
+          <caret line="128" column="34" lean-forward="false" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/common.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="267" column="59" lean-forward="true" selection-start-line="267" selection-start-column="41" selection-end-line="267" selection-end-column="41" />
+        <state relative-caret-position="-572">
+          <caret line="272" column="63" lean-forward="false" selection-start-line="272" selection-start-column="0" selection-end-line="273" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/oge_task_wrapper_script_legacy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="86" column="74" lean-forward="true" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
           <folding />
         </state>
       </provider>

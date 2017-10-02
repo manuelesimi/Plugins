@@ -276,7 +276,7 @@ function dieUponError {
     set -x
 }
 
-# This function should be called when an empty variable requires to terminate the jon. The first argument is the variable
+# This function should be called when an empty variable requires to terminate the job. The first argument is the variable
 # to check, the second is the error message to report to the end-user.
 function dieIfEmpty {
     set +x
