@@ -132,13 +132,14 @@ function LOG {
 }
 
 function LOG_JOB_STATUS {
-    INDEX=$1
-    STATUS=$2;
+    STATUS=$1
+    MESSAGE =$2
+    INDEX=$3
     EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
         -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
         org.campagnelab.gobyweb.events.tools.JobStatusEvent  \
-        --phase ${STATE} --index ${INDEX} \
+        --phase ${STATE} --index ${INDEX} --message "${MESSAGE}" \
         --new-status ${STATUS} --tag ${TAG} -p ${EVENT_FILE}
     pushEventFile ${EVENT_FILE}
 }
@@ -269,6 +270,7 @@ function dieUponError {
             copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
             ${QUEUE_WRITER} --tag ${TAG} --index ${CURRENT_PART} --job-type job-part --status ${JOB_PART_FAILED_STATUS} --description "${DESCRIPTION}"
             error_index ${CURRENT_PART} "${DESCRIPTION}"
+            LOG_JOB_STATUS FAILURE "${DESCRIPTION}" ${CURRENT_PART}
             exit ${RETURN_STATUS}
     fi
     set -x
