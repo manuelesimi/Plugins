@@ -151,6 +151,8 @@ function LOG_JOB_EVENT {
    MAX_INDEX_PARAM=
    if [[ $INDEXES ]]; then
     MAX_INDEX_PARAM="--max-index ${INDEXES}"
+   else
+    MAX_INDEX_PARAM="--max-index 1"
    fi
    EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
@@ -219,7 +221,8 @@ function newPhase {
 }
 
 function phaseCompleted {
-    LOG_JOB_EVENT ${STATE} "PHASE_COMPLETED";
+    PHASE_INDEX=$1
+    LOG_JOB_EVENT ${STATE} "PHASE_COMPLETED" ${PHASE_INDEX};
 }
 
 if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
