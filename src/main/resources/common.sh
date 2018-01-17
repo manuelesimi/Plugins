@@ -21,6 +21,7 @@ function initializeJobEnvironment {
     . ${JOB_DIR}/constants.sh
     . ${JOB_DIR}/auto-options.sh
     set -x
+    setup_plugin_functions
     echo "Using container technology: ${GOBYWEB_CONTAINER_TECHNOLOGY}"
     export RESULT_DIR=${JOB_DIR}/results/${TAG}
 
@@ -55,6 +56,19 @@ function initializeGobyWebArtifactEnvironment {
     initializeJobEnvironment
     export ARTIFACT_REPOSITORY_DIR=%ARTIFACT_REPOSITORY_DIR%
     . ${JOB_DIR}/artifacts.sh
+}
+
+function setup_plugin_functions {
+    # define no-op function to be overridden as needed by plugin script:
+    plugin_alignment_combine() { echo; }
+    plugin_alignment_analysis_sequential() { echo; }
+    plugin_alignment_analysis_split() { echo; }
+    plugin_alignment_analysis_process() { echo; }
+    plugin_alignment_analysis_combine() { echo; }
+    plugin_alignment_analysis_num_parts() { echo; }
+    # include the plugin_align function for the appropriate aligner:
+    . ${JOB_DIR}/script.sh
+    enforce_minimum_bound_on_align_parts
 }
 
 function trace {
