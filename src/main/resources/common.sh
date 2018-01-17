@@ -22,6 +22,7 @@ function initializeJobEnvironment {
     . ${JOB_DIR}/auto-options.sh
     set -x
     echo "Using container technology: ${GOBYWEB_CONTAINER_TECHNOLOGY}"
+    export RESULT_DIR=${JOB_DIR}/results/${TAG}
 
     case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
         singularity)
