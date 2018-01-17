@@ -44,6 +44,7 @@ fi
 function initializeJobEnvironment {
 
     echo "Using container technology: ${GOBYWEB_CONTAINER_TECHNOLOGY}"
+    export RESULT_DIR=${JOB_DIR}/results/${TAG}
 
     #make sure that the dir in which files will be stored exists
     mkdir -p ${FILESET_TARGET_DIR}
