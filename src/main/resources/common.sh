@@ -27,7 +27,7 @@ function initializeJobEnvironment {
     case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
         singularity)
          echo "Calling legacy script with Singularity"
-         export SINGULARITY_CACHEDIR=/scratchLocal/gobyweb/gobyweb3/SINGULARITY_CACHE
+         export SINGULARITY_CACHEDIR=/scratchLocal/gobyweb2/SINGULARITY_CACHE
          mkdir -p ${SINGULARITY_CACHEDIR}
          function delegate_oge_job_script {
             export STATE="$1"
