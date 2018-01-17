@@ -202,6 +202,7 @@ case ${STATE} in
            delegate_oge_job_script "diffexp_sequential"
          else
             delegate_oge_job_script "diffexp_parallel"
+            export NUMBER_SEQ_VAR_SLICES=`(cd ${TMP_NODE_WORK_DIR} ; plugin_alignment_analysis_num_parts ${RESULT_DIR}/${TAG}-slicing-plan.txt)`
             # Next, start SGE array jobs with NUMBER_SEQ_VAR_SLICES pieces:
             submit_parallel_alignment_analysis_jobs $RESULT_DIR/${TAG}-slicing-plan.txt
             RETURN_STATUS=$?

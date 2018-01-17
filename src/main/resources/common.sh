@@ -42,7 +42,13 @@ if [ -d "${TMPDIR}" ]; then
 fi
 
 function initializeJobEnvironment {
-
+    export JOB_DIR=%JOB_DIR%
+    echo "Sourcing GobyWeb plugin environment (constants.sh and auto-options.sh)"
+    set +x
+    . ${JOB_DIR}/constants.sh
+    . ${JOB_DIR}/auto-options.sh
+    set -x
+    setup_plugin_functions
     echo "Using container technology: ${GOBYWEB_CONTAINER_TECHNOLOGY}"
     export RESULT_DIR=${JOB_DIR}/results/${TAG}
 
@@ -83,6 +89,21 @@ function initializeGobyWebArtifactEnvironment {
     . ${JOB_DIR}/artifacts.sh
 }
 
+function setup_plugin_functions {
+    # define no-op function to be overridden as needed by plugin script:
+    plugin_alignment_combine() { echo; }
+    plugin_alignment_analysis_sequential() { echo; }
+    plugin_alignment_analysis_split() { echo; }
+    plugin_alignment_analysis_process() { echo; }
+    plugin_alignment_analysis_combine() { echo; }
+    plugin_alignment_analysis_num_parts() { echo; }
+    # include the plugin_align function for the appropriate aligner:
+    . ${JOB_DIR}/script.sh
+    enforce_minimum_bound_on_align_parts
+}
+
+function trace {
+    echo "$*";
 
 function pushEventFile {
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
@@ -104,7 +125,7 @@ function LOG_JS {
         --source-tag ${TAG} --tag ${FS_TAG} -p ${EVENT_FILE} \
         --slot-name ${SLOT} --level ${LEVEL}
     pushEventFile ${EVENT_FILE}
-                                                
+
 }
 
 function filesetRegistered {
@@ -113,7 +134,7 @@ function filesetRegistered {
 }
 
 function filesetFailed {
-   echo "$*";   
+   echo "$*";
    LOG_JS "error" "FAILURE" $*
 }
 
@@ -231,6 +252,18 @@ if [ -z "${GOBYWEB_CONTAINER_TECHNOLOGY+set}" ]; then
 else
     if [ -z "${GOBYWEB_CONTAINER_NAME+set}" ]; then
     export GOBYWEB_CONTAINER_NAME="shub://CampagneLaboratory/GobyWeb-Singularity"
+    fi
+fi
+
+if [ -z "${TMPDIR+set}" ]; then
+    if [ -z  "${SGE_O_WORKDIR}+set" ]; then
+       # Not running inside SGE yet? Use the jobdir as TMPDIR:
+     #   export TMPDIR="${SGE_O_WORKDIR}"
+        export TMPDIR=${JOB_DIR}
+    else
+        # Running inside SGE? Switch to the TMPDIR:
+        mkdir -p ${TMPDIR}
+        cd ${TMPDIR}
     fi
 fi
 
