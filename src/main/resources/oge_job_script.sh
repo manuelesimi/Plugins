@@ -176,11 +176,11 @@ if [ -z "${STATE+set}" ]; then
  echo "Defined STATE=${STATE}"
 fi
 #see where we are running
-print_OGE_env
 
 case ${STATE} in
     submit)
         initializeJobEnvironment
+        print_OGE_env
         setup
         cd ${JOB_DIR}
         SUBMISSION=`qsub -N ${TAG}.submit -r y -terse -v STATE=${INITIAL_STATE} oge_job_script.sh `
@@ -192,12 +192,14 @@ case ${STATE} in
     pre_align)
         initializeJobEnvironment
         export STATE="pre_align"
+        print_OGE_env
         delegate_oge_job_script ${STATE} "$*"
         submit_align
         ;;
 
     diffexp)
         initializeJobEnvironment
+        print_OGE_env
         if [ "${SPLIT_PROCESS_COMBINE}" == "false" ]; then
            delegate_oge_job_script "diffexp_sequential"
          else
