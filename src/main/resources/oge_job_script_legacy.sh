@@ -920,6 +920,10 @@ function diffexp_parallel {
 ## Script logic starts here
 #######################################################################################
 
+if [ -z "${TMPDIR-}" ] && [ ! -z "${TMP_NODE_WORK_DIR-set}" ]; then
+       # when TMPDIR not set, but TMP_NODE_WORK_DIR is set, use it to restore TMPDIR, some container technology erase host TMPDIR:
+      export TMPDIR=${TMP_NODE_WORK_DIR}
+fi
 echo "START of LEGACY SCRIPT, TMPDIR=${TMPDIR}, TMP_NODE_WORK_DIR=${TMP_NODE_WORK_DIR} STATE=${STATE}"
 initializeGobyWebArtifactEnvironment
 print_OGE_env
@@ -937,7 +941,7 @@ case ${STATE} in
         fi
         #fetch the input reads from the fileset area
         fetch_input_reads
-        echo "export READS=${READS}" >> "${JOB_DIR}/constants.sh"
+        echo "export READS=${READS}" >> "${JOB_DIR}/constants.sh"                                                
         ;;
     bam_align)
         install_plugin_mandatory_artifacts
