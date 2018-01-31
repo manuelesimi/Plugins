@@ -44,10 +44,9 @@ fi
 function initializeJobEnvironment {
     export JOB_DIR=%JOB_DIR%
     echo "Sourcing GobyWeb plugin environment (constants.sh and auto-options.sh)"
-    set +x
+    set -x
     . ${JOB_DIR}/constants.sh
     . ${JOB_DIR}/auto-options.sh
-    set -x
     setup_plugin_functions
     echo "Using container technology: ${GOBYWEB_CONTAINER_TECHNOLOGY}"
     export RESULT_DIR=${JOB_DIR}/results/${TAG}
@@ -489,9 +488,9 @@ function print_OGE_env {
         java ${PLUGIN_NEED_DEFAULT_JVM_OPTIONS} -version
         dieUponError "Could not obtain Java version number."
 
-        echo "Goby.jar version"
-        goby_with_memory 40m version
-        dieUponError "Could not obtain Goby version number."
+        #echo "Goby.jar version"
+        #goby_with_memory 40m version
+        #dieUponError "Could not obtain Goby version number."
 
     fi
 }
