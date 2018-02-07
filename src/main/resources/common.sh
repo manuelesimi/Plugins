@@ -3,10 +3,8 @@
 export JOB_DIR=%JOB_DIR%
 echo "Sourcing GobyWeb plugin environment (constants.sh and auto-options.sh)"
 
-set +x
 . ${JOB_DIR}/auto-options.sh
 . ${JOB_DIR}/constants.sh
-set -x
 
 if [[ ! $TMPDIR ]]; then
     echo "TMPDIR is not set or empty"
@@ -44,7 +42,6 @@ fi
 function initializeJobEnvironment {
     export JOB_DIR=%JOB_DIR%
     echo "Sourcing GobyWeb plugin environment (constants.sh and auto-options.sh)"
-    set -x
     . ${JOB_DIR}/constants.sh
     . ${JOB_DIR}/auto-options.sh
     setup_plugin_functions
@@ -103,7 +100,8 @@ function setup_plugin_functions {
 
 function trace {
     echo "$*";
-
+}
+ 
 function pushEventFile {
     java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
     -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
@@ -144,12 +142,12 @@ function LOG {
     shift
     MESSAGE="$*";
     EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
-    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
-        -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
-        org.campagnelab.gobyweb.events.tools.LogEvent \
-        --phase ${STATE} --index ${INDEX} --message ${MESSAGE} \
-        --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
-    pushEventFile ${EVENT_FILE}
+    #java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
+    #    -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
+    #    org.campagnelab.gobyweb.events.tools.LogEvent \
+    #    --phase ${STATE} --index ${INDEX} --message ${MESSAGE} \
+    #    --tag ${TAG} -p ${EVENT_FILE} --level ${LEVEL}
+    #pushEventFile ${EVENT_FILE}
 }
 
 function LOG_JOB_STATUS {
@@ -157,12 +155,12 @@ function LOG_JOB_STATUS {
     MESSAGE =$2
     INDEX=$3
     EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
-    java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
-        -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
-        org.campagnelab.gobyweb.events.tools.JobStatusEvent  \
-        --phase ${STATE} --index ${INDEX} --message "${MESSAGE}" \
-        --new-status ${STATUS} --tag ${TAG} -p ${EVENT_FILE}
-    pushEventFile ${EVENT_FILE}
+    #java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
+    #    -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
+    #    org.campagnelab.gobyweb.events.tools.JobStatusEvent  \
+    #    --phase ${STATE} --index ${INDEX} --message "${MESSAGE}" \
+    #    --new-status ${STATUS} --tag ${TAG} -p ${EVENT_FILE}
+    #pushEventFile ${EVENT_FILE}
 }
 
 function LOG_JOB_EVENT {
@@ -176,12 +174,12 @@ function LOG_JOB_EVENT {
     MAX_INDEX_PARAM="--max-index 1"
    fi
    EVENT_FILE=${TMPDIR}/events-`date +%s`.proto
-   java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
-        -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
-        org.campagnelab.gobyweb.events.tools.JobEvent \
-        --name ${NAME} --type ${TYPE} \
-        ${MAX_INDEX_PARAM} --tag ${TAG} -p ${EVENT_FILE}
-    pushEventFile ${EVENT_FILE}
+   #java -Dlog4j.configuration=${RESOURCES_GOBYWEB_SERVER_SIDE_LOG4J_PROPERTIES} \
+   #     -cp ${RESOURCES_GOBYWEB_SERVER_SIDE_EVENT_TOOLS_JAR} \
+   #     org.campagnelab.gobyweb.events.tools.JobEvent \
+   #     --name ${NAME} --type ${TYPE} \
+   #     ${MAX_INDEX_PARAM} --tag ${TAG} -p ${EVENT_FILE}
+   # pushEventFile ${EVENT_FILE}
 }
 
 function trace {
@@ -267,7 +265,6 @@ if [ -z "${TMPDIR+set}" ]; then
 fi
 
 function goby {
-   set -x
    set -T
    mode_name="$1"
    shift
@@ -309,13 +306,11 @@ function dieUponError {
             LOG_JOB_STATUS FAILURE "${DESCRIPTION}" ${CURRENT_PART}
             exit ${RETURN_STATUS}
     fi
-    set -x
 }
 
 # This function should be called when an empty variable requires to terminate the job. The first argument is the variable
 # to check, the second is the error message to report to the end-user.
 function dieIfEmpty {
-    set +x
     VAR=$1
     DESCRIPTION=$2
 
@@ -332,7 +327,6 @@ function dieIfEmpty {
        copy_logs align ${CURRENT_PART} ${NUMBER_OF_PARTS}
        exit ${RETURN_STATUS}
     fi
-    set -x
 }
 
 function copy_logs {
@@ -366,7 +360,6 @@ function checkSubmission {
 
 function create_kill_file {
     if [ ! -f %KILL_FILE% ]; then
-        set +x
         . %JOB_DIR%/constants.sh
 
         echo '#!/bin/bash -l' >> %KILL_FILE%

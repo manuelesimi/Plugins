@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.campagnelab.gobyweb.io.CommandLineHelper;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 
 /**
@@ -36,6 +37,7 @@ public class ClusterGateway {
     public static int process(String[] args) {
 
         try {
+            System.out.println("Gateway Input params (from command line): " + Arrays.toString(args));
             SubmissionRequest request = SubmissionRequestFactory.createRequest(args,false);
             return request.submitRequest(false);
         } catch (Exception e) {
@@ -64,6 +66,7 @@ public class ClusterGateway {
      * @throws Exception
      */
     public static int processAPI(String[] args) throws Exception {
+        System.out.println("Gateway Input params (from API): " + Arrays.toString(args));
         SubmissionRequest request = SubmissionRequestFactory.createRequest(args,true);
         return request.submitRequest(true);
     }
