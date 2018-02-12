@@ -40,6 +40,7 @@ if [ -d "${TMPDIR}" ]; then
 fi
 
 function initializeJobEnvironment {
+    set -x
     export JOB_DIR=%JOB_DIR%
     echo "Sourcing GobyWeb plugin environment (constants.sh and auto-options.sh)"
     . ${JOB_DIR}/constants.sh
