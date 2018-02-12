@@ -49,7 +49,11 @@ function initializeJobEnvironment {
     export RESULT_DIR=${JOB_DIR}/results/${TAG}
 
     #make sure that the dir in which files will be stored exists
-    mkdir -p ${FILESET_TARGET_DIR}
+    if [ -z "${FILESET_TARGET_DIR+set}" ]; then
+        mkdir -p ${FILESET_TARGET_DIR}
+    else
+        echo "FILESET_TARGET_DIR not set (is this a resource installation?)"
+    fi
 
     case ${GOBYWEB_CONTAINER_TECHNOLOGY} in
         singularity)
@@ -94,7 +98,11 @@ function setup_plugin_functions {
     plugin_alignment_analysis_combine() { echo; }
     plugin_alignment_analysis_num_parts() { echo; }
     # include the plugin_align function for the appropriate aligner:
-    . ${JOB_DIR}/script.sh
+    if [ -e "${JOB_DIR}/script.sh" ]; then
+        . ${JOB_DIR}/script.sh
+    else
+        echo "No script.sh detected in the JOB_DIR (is this a resource installation?)"
+    fi
     enforce_minimum_bound_on_align_parts
 }
 
